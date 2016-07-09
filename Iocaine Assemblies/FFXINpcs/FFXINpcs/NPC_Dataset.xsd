@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NPC_Dataset" targetNamespace="http://tempuri.org/NPC_Dataset.xsd" xmlns:mstns="http://tempuri.org/NPC_Dataset.xsd" xmlns="http://tempuri.org/NPC_Dataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="NotPublic" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NPC_Dataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NPC_Dataset" msprop:Generator_UserDSName="NPC_Dataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NPCs" msprop:Generator_TableClassName="NPCsDataTable" msprop:Generator_TableVarName="tableNPCs" msprop:Generator_TablePropName="NPCs" msprop:Generator_RowDeletingName="NPCsRowDeleting" msprop:Generator_UserTableName="NPCs" msprop:Generator_RowChangingName="NPCsRowChanging" msprop:Generator_RowEvHandlerName="NPCsRowChangeEventHandler" msprop:Generator_RowDeletedName="NPCsRowDeleted" msprop:Generator_RowEvArgName="NPCsRowChangeEvent" msprop:Generator_RowChangedName="NPCsRowChanged" msprop:Generator_RowClassName="NPCsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="Data" msprop:Generator_ColumnVarNameInTable="columnData" msprop:Generator_ColumnPropNameInRow="Data" msprop:Generator_ColumnPropNameInTable="DataColumn" msprop:Generator_UserColumnName="Data" type="xs:unsignedInt" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GuildHours" msprop:Generator_TableClassName="GuildHoursDataTable" msprop:Generator_TableVarName="tableGuildHours" msprop:Generator_TablePropName="GuildHours" msprop:Generator_RowDeletingName="GuildHoursRowDeleting" msprop:Generator_UserTableName="GuildHours" msprop:Generator_RowChangingName="GuildHoursRowChanging" msprop:Generator_RowEvHandlerName="GuildHoursRowChangeEventHandler" msprop:Generator_RowDeletedName="GuildHoursRowDeleted" msprop:Generator_RowEvArgName="GuildHoursRowChangeEvent" msprop:Generator_RowChangedName="GuildHoursRowChanged" msprop:Generator_RowClassName="GuildHoursRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Guild" msprop:Generator_ColumnVarNameInTable="columnGuild" msprop:Generator_ColumnPropNameInRow="Guild" msprop:Generator_ColumnPropNameInTable="GuildColumn" msprop:Generator_UserColumnName="Guild" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="HourOpen" msprop:Generator_ColumnVarNameInTable="columnHourOpen" msprop:Generator_ColumnPropNameInRow="HourOpen" msprop:Generator_ColumnPropNameInTable="HourOpenColumn" msprop:Generator_UserColumnName="HourOpen" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="HourClose" msprop:Generator_ColumnVarNameInTable="columnHourClose" msprop:Generator_ColumnPropNameInRow="HourClose" msprop:Generator_ColumnPropNameInTable="HourCloseColumn" msprop:Generator_UserColumnName="HourClose" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="DayOff" msprop:Generator_ColumnVarNameInTable="columnDayOff" msprop:Generator_ColumnPropNameInRow="DayOff" msprop:Generator_ColumnPropNameInTable="DayOffColumn" msprop:Generator_UserColumnName="DayOff" type="xs:unsignedByte" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
