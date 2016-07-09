@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B76C45E2-E307-406F-BAEA-C8288B5737C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iocaine2</RootNamespace>
+    <AssemblyName>IocaineCore</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IocaineIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Actions.cs">
+      <Link>Actions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Character.cs">
+      <Link>Character.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\ChatLine.cs">
+      <Link>ChatLine.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Command.cs">
+      <Link>Command.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Nav_Route.cs">
+      <Link>Nav_Route.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Nav_Trip.cs">
+      <Link>Nav_Trip.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\PlayerCache.cs">
+      <Link>PlayerCache.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\PLCharacter.cs">
+      <Link>PLCharacter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Recipe.cs">
+      <Link>Recipe.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\RecipeLog.cs">
+      <Link>RecipeLog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Statics.cs">
+      <Link>Statics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Task.cs">
+      <Link>Task.cs</Link>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Triggers.cs">
+      <Link>Triggers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\FishStatsDataSet.Designer.cs">
+      <Link>FishStatsDataSet.Designer.cs</Link>
+      <DependentUpon>FishStatsDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\MainDB.cs">
+      <Link>MainDB.cs</Link>
+      <DependentUpon>MainDB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\MainDB.Designer.cs">
+      <Link>MainDB.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDB.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\Routes.cs">
+      <Link>Routes.cs</Link>
+      <DependentUpon>Routes.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\Routes.Designer.cs">
+      <Link>Routes.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Routes.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\CommandLine.cs">
+      <Link>CommandLine.cs</Link>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\CommandLine.designer.cs">
+      <Link>CommandLine.designer.cs</Link>
+      <DependentUpon>CommandLine.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\MessageForm.cs">
+      <Link>MessageForm.cs</Link>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\MessageForm.designer.cs">
+      <Link>MessageForm.designer.cs</Link>
+      <DependentUpon>MessageForm.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\StatusBox.cs">
+      <Link>StatusBox.cs</Link>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\StatusBox.designer.cs">
+      <Link>StatusBox.designer.cs</Link>
+      <DependentUpon>StatusBox.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Logging\LoggingFunctions.cs">
+      <Link>LoggingFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Main APIs\IocaineFunctions.cs">
+      <Link>IocaineFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Main APIs\kbHelper.cs">
+      <Link>kbHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\ChangeMonitor.cs">
+      <Link>ChangeMonitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\ChatLogger.cs">
+      <Link>ChatLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\MemoryFunctions.cs">
+      <Link>MemoryFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\MemReads.cs">
+      <Link>MemReads.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\MemScanner.cs">
+      <Link>MemScanner.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\ProcessFunctions.cs">
+      <Link>ProcessFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Memory Functions\WinApi.cs">
+      <Link>WinApi.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\ChatLogManager.cs">
+      <Link>ChatLogManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\CommandManager.cs">
+      <Link>CommandManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\InventoryMovement.cs" />
+    <Compile Include="..\..\..\Iocaine IP\Tools\JAManager.cs">
+      <Link>JAManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\SpellsManager.cs">
+      <Link>SpellsManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\UserSettings.cs">
+      <Link>UserSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\VanaTime.cs">
+      <Link>VanaTime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Item.cs">
+      <Link>Item.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\ItemContainer.cs">
+      <Link>ItemContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\MenuNavigation.cs">
+      <Link>MenuNavigation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\InventoryContainers.cs">
+      <Link>InventoryContainers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\Interaction.cs">
+      <Link>Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\BaitBoxItem.cs">
+      <Link>BaitBoxItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\WSManager.cs">
+      <Link>WSManager.cs</Link>
+    </Compile>
+    <Compile Include="IocaineThreading.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\Iocaine IP\Tools\Toolbox.cs">
+      <Link>Toolbox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Tools\Schedules.cs">
+      <Link>Schedules.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FFXIResource\FFXIResource\FFXIResource.csproj">
+      <Project>{CB437CB5-9269-4571-A925-E80868F76342}</Project>
+      <Name>FFXIResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FFXIThingsDll\FFXIThings\FFXIThings.csproj">
+      <Project>{DECE4A8B-8C02-4162-82CE-97B058DF0CE1}</Project>
+      <Name>FFXIThings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FFXINpcs\FFXINpcs.csproj">
+      <Project>{34A07D26-85C6-41A3-A474-D7C30E248A8E}</Project>
+      <Name>FFXINpcs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Iocaine IP\DataSets\FishStatsDataSet.xsc">
+      <Link>FishStatsDataSet.xsc</Link>
+      <DependentUpon>FishStatsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\FishStatsDataSet.xsd">
+      <Link>FishStatsDataSet.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FishStatsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Iocaine2.Data.Server</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\FishStatsDataSet.xss">
+      <Link>FishStatsDataSet.xss</Link>
+      <DependentUpon>FishStatsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDB.xsc">
+      <Link>MainDB.xsc</Link>
+      <DependentUpon>MainDB.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDB.xsd">
+      <Link>MainDB.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDB.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDB.xss">
+      <Link>MainDB.xss</Link>
+      <DependentUpon>MainDB.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Routes.xsc">
+      <Link>Routes.xsc</Link>
+      <DependentUpon>Routes.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Routes.xsd">
+      <Link>Routes.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Routes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Routes.xss">
+      <Link>Routes.xss</Link>
+      <DependentUpon>Routes.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Other Forms\CommandLine.resx">
+      <Link>CommandLine.resx</Link>
+      <DependentUpon>CommandLine.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Other Forms\MessageForm.resx">
+      <Link>MessageForm.resx</Link>
+      <DependentUpon>MessageForm.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Other Forms\StatusBox.resx">
+      <Link>StatusBox.resx</Link>
+      <DependentUpon>StatusBox.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Tools</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IocaineIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
