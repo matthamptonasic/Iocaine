@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocaineEvents", "IocaineEvents\IocaineEvents.csproj", "{999D02D3-2128-43A9-90CD-FD3E2FA883B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFXIResource", "..\FFXIResource\FFXIResource\FFXIResource.csproj", "{CB437CB5-9269-4571-A925-E80868F76342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocaineCore", "..\IocaineCore\IocaineCore\IocaineCore.csproj", "{B76C45E2-E307-406F-BAEA-C8288B5737C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,22 @@ Global
 		{999D02D3-2128-43A9-90CD-FD3E2FA883B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{999D02D3-2128-43A9-90CD-FD3E2FA883B0}.Release|x86.ActiveCfg = Release|x86
 		{999D02D3-2128-43A9-90CD-FD3E2FA883B0}.Release|x86.Build.0 = Release|x86
+		{CB437CB5-9269-4571-A925-E80868F76342}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB437CB5-9269-4571-A925-E80868F76342}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB437CB5-9269-4571-A925-E80868F76342}.Debug|x86.ActiveCfg = Debug|x86
+		{CB437CB5-9269-4571-A925-E80868F76342}.Debug|x86.Build.0 = Debug|x86
+		{CB437CB5-9269-4571-A925-E80868F76342}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB437CB5-9269-4571-A925-E80868F76342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB437CB5-9269-4571-A925-E80868F76342}.Release|x86.ActiveCfg = Release|x86
+		{CB437CB5-9269-4571-A925-E80868F76342}.Release|x86.Build.0 = Release|x86
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Debug|x86.ActiveCfg = Debug|x86
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Debug|x86.Build.0 = Debug|x86
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Release|x86.ActiveCfg = Release|x86
+		{B76C45E2-E307-406F-BAEA-C8288B5737C0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

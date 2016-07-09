@@ -247,17 +247,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FFXINpcs\FFXINpcs\FFXINpcs.csproj">
+      <Project>{34a07d26-85c6-41a3-a474-d7c30e248a8e}</Project>
+      <Name>FFXINpcs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\FFXIResource\FFXIResource\FFXIResource.csproj">
-      <Project>{CB437CB5-9269-4571-A925-E80868F76342}</Project>
+      <Project>{cb437cb5-9269-4571-a925-e80868f76342}</Project>
       <Name>FFXIResource</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\FFXIThingsDll\FFXIThings\FFXIThings.csproj">
-      <Project>{DECE4A8B-8C02-4162-82CE-97B058DF0CE1}</Project>
+      <Project>{dece4a8b-8c02-4162-82ce-97b058df0ce1}</Project>
       <Name>FFXIThings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FFXINpcs\FFXINpcs.csproj">
-      <Project>{34A07D26-85C6-41A3-A474-D7C30E248A8E}</Project>
-      <Name>FFXINpcs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
