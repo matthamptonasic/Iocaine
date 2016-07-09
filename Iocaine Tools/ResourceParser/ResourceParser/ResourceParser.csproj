@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD276FC0-EB60-451D-B912-F42B829F8EF5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ResourceParser</RootNamespace>
+    <AssemblyName>ResourceParser</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\MainDatabase.cs">
+      <Link>MainDatabase.cs</Link>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\MainDatabase.Designer.cs">
+      <Link>MainDatabase.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Enums\FFXIEnums.cs">
+      <Link>FFXIEnums.cs</Link>
+    </Compile>
+    <Compile Include="ManualJAUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualJAUpdater.Designer.cs">
+      <DependentUpon>ManualJAUpdater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManualJobAbilities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualSpellUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualSpellUpdater.Designer.cs">
+      <DependentUpon>ManualSpellUpdater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManualWSJobs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualWSUpdater.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManualWSUpdater.Designer.cs">
+      <DependentUpon>ManualWSUpdater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParserForm.Designer.cs">
+      <DependentUpon>ParserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ManualTargets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="ManualJAUpdater.resx">
+      <DependentUpon>ManualJAUpdater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualSpellUpdater.resx">
+      <DependentUpon>ManualSpellUpdater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManualWSUpdater.resx">
+      <DependentUpon>ManualWSUpdater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParserForm.resx">
+      <DependentUpon>ParserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDatabase.xsc">
+      <Link>MainDatabase.xsc</Link>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDatabase.xsd">
+      <Link>MainDatabase.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MainDatabase.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Iocaine2.Data.Client</CustomToolNamespace>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\MainDatabase.xss">
+      <Link>MainDatabase.xss</Link>
+      <DependentUpon>MainDatabase.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

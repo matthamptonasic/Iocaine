@@ -1,12 +1,6 @@
-﻿namespace ResourceParser {
-    
-    
-    public partial class MainDatabase {
-    }
-}
-namespace ResourceParser {
-    
-    
-    public partial class MainDatabase {
+﻿namespace Iocaine2.Data.Client
+{
+    public partial class MainDatabase
+    {
     }
 }
