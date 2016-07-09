@@ -1,0 +1,933 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F21096D0-F5B2-4C39-9B0F-E76EEC72B467}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iocaine2.Data.Client</RootNamespace>
+    <AssemblyName>ItemsFishing</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bait.cs" />
+    <Compile Include="Fish.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Betta_Full.jpg">
+      <Link>Images\Betta_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Abaia_Full.jpg">
+      <Link>Images\Abaia_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ahtapot_Full.jpg">
+      <Link>Images\Ahtapot_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Alabaligi_Full.jpg">
+      <Link>Images\Alabaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Armored_Pisces_Full.jpg">
+      <Link>Images\Armored_Pisces_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bastore_Bream_Full.jpg">
+      <Link>Images\Bastore_Bream_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bastore_Sardine_Full.jpg">
+      <Link>Images\Bastore_Sardine_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bastore_Sweeper_Full.jpg">
+      <Link>Images\Bastore_Sweeper_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bhefhel_Marlin_Full.jpg">
+      <Link>Images\Bhefhel_Marlin_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bibikibo_Full.jpg">
+      <Link>Images\Bibikibo_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bibiki_Slug_Full.jpg">
+      <Link>Images\Bibiki_Slug_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bibiki_Urchin_Full.jpg">
+      <Link>Images\Bibiki_Urchin_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Black_Bubble_Eye_Full.jpg">
+      <Link>Images\Black_Bubble_Eye_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Black_Eel_Full.jpg">
+      <Link>Images\Black_Eel_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Black_Ghost_Full.jpg">
+      <Link>Images\Black_Ghost_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Black_Sole_Full.jpg">
+      <Link>Images\Black_Sole_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bladefish_Full.jpg">
+      <Link>Images\Bladefish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Blindfish_Full.jpg">
+      <Link>Images\Blindfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bluetail_Full.jpg">
+      <Link>Images\Bluetail_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Brass_Loach_Full.jpg">
+      <Link>Images\Brass_Loach_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Caedarva_Frog_Full.jpg">
+      <Link>Images\Caedarva_Frog_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Calico_Comet_Full.jpg">
+      <Link>Images\Calico_Comet_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Cave_Cherax_Full.jpg">
+      <Link>Images\Cave_Cherax_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ca_Cuong_Full.jpg">
+      <Link>Images\Ca_Cuong_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Cheval_Salmon_Full.jpg">
+      <Link>Images\Cheval_Salmon_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Cobalt_Jellyfish_Full.jpg">
+      <Link>Images\Cobalt_Jellyfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Cone_Calamary_Full.jpg">
+      <Link>Images\Cone_Calamary_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Copper_Frog_Full.jpg">
+      <Link>Images\Copper_Frog_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Coral_Butterfly_Full.jpg">
+      <Link>Images\Coral_Butterfly_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Crayfish_Full.jpg">
+      <Link>Images\Crayfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Crescent_Fish_Full.jpg">
+      <Link>Images\Crescent_Fish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Crystal_Bass_Full.jpg">
+      <Link>Images\Crystal_Bass_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dark_Bass_Full.jpg">
+      <Link>Images\Dark_Bass_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Denizanasi_Full.jpg">
+      <Link>Images\Denizanasi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dil_Full.jpg">
+      <Link>Images\Dil_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Elshimo_Frog_Full.jpg">
+      <Link>Images\Elshimo_Frog_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Elshimo_Newt_Full.jpg">
+      <Link>Images\Elshimo_Newt_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Emperor_Fish_Full.jpg">
+      <Link>Images\Emperor_Fish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Fat_Greedie_Full.jpg">
+      <Link>Images\Fat_Greedie_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Forest_Carp_Full.jpg">
+      <Link>Images\Forest_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Garpike_Full.jpg">
+      <Link>Images\Garpike_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gavial_Fish_Full.jpg">
+      <Link>Images\Gavial_Fish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gerrothorax_Full.jpg">
+      <Link>Images\Gerrothorax_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Giant_Catfish_Full.jpg">
+      <Link>Images\Giant_Catfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Giant_Chirai_Full.jpg">
+      <Link>Images\Giant_Chirai_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Giant_Donko_Full.jpg">
+      <Link>Images\Giant_Donko_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gigant_Squid_Full.jpg">
+      <Link>Images\Gigant_Squid_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gold_Carp_Full.jpg">
+      <Link>Images\Gold_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gold_Lobster_Full.jpg">
+      <Link>Images\Gold_Lobster_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Greedie_Full.jpg">
+      <Link>Images\Greedie_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Grimmonite_Full.jpg">
+      <Link>Images\Grimmonite_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gugrusaurus_Full.jpg">
+      <Link>Images\Gugrusaurus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gugru_Tuna_Full.jpg">
+      <Link>Images\Gugru_Tuna_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gurnard_Full.jpg">
+      <Link>Images\Gurnard_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Hamsi_Full.jpg">
+      <Link>Images\Hamsi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Icefish_Full.jpg">
+      <Link>Images\Icefish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Istakoz_Full.jpg">
+      <Link>Images\Istakoz_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Istavrit_Full.jpg">
+      <Link>Images\Istavrit_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Istiridye_Full.jpg">
+      <Link>Images\Istiridye_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Jacknife_Full.jpg">
+      <Link>Images\Jacknife_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Jungle_Catfish_Full.jpg">
+      <Link>Images\Jungle_Catfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kalamar_Full.jpg">
+      <Link>Images\Kalamar_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kalkanbaligi_Full.jpg">
+      <Link>Images\Kalkanbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kaplumbaga_Full.jpg">
+      <Link>Images\Kaplumbaga_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kayabaligi_Full.jpg">
+      <Link>Images\Kayabaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kilicbaligi_Full.jpg">
+      <Link>Images\Kilicbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lakerda_Full.jpg">
+      <Link>Images\Lakerda_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lamp_Marimo_Full.jpg">
+      <Link>Images\Lamp_Marimo_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lik_Full.jpg">
+      <Link>Images\Lik_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lionhead_Full.jpg">
+      <Link>Images\Lionhead_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lungfish_Full.jpg">
+      <Link>Images\Lungfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Matsya_Full.jpg">
+      <Link>Images\Matsya_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Megalodon_Full.jpg">
+      <Link>Images\Megalodon_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Moat_Carp_Full.jpg">
+      <Link>Images\Moat_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Mola_Mola_Full.jpg">
+      <Link>Images\Mola_Mola_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Monke_Onke_Full.jpg">
+      <Link>Images\Monke_Onke_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Moorish_Idol_Full.jpg">
+      <Link>Images\Moorish_Idol_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Morinabaligi_Full.jpg">
+      <Link>Images\Morinabaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Muddy_Siredon_Full.jpg">
+      <Link>Images\Muddy_Siredon_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Nebimonite_Full.jpg">
+      <Link>Images\Nebimonite_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Noble_Lady_Full.jpg">
+      <Link>Images\Noble_Lady_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Nosteau_Herring_Full.jpg">
+      <Link>Images\Nosteau_Herring_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ogre_Eel_Full.jpg">
+      <Link>Images\Ogre_Eel_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Pearlscale_Full.jpg">
+      <Link>Images\Pearlscale_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Phanauet_Newt_Full.jpg">
+      <Link>Images\Phanauet_Newt_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Pipira_Full.jpg">
+      <Link>Images\Pipira_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Pterygotus_Full.jpg">
+      <Link>Images\Pterygotus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Quus_Full.jpg">
+      <Link>Images\Quus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Red_Bubble_Eye_Full.jpg">
+      <Link>Images\Red_Bubble_Eye_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Red_Terrapin_Full.jpg">
+      <Link>Images\Red_Terrapin_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ryugu_Titan_Full.jpg">
+      <Link>Images\Ryugu_Titan_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Sandfish_Full.jpg">
+      <Link>Images\Sandfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Sazanbaligi_Full.jpg">
+      <Link>Images\Sazanbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Sea_Zombie_Full.jpg">
+      <Link>Images\Sea_Zombie_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Shall_Shell_Full.jpg">
+      <Link>Images\Shall_Shell_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Shining_Trout_Full.jpg">
+      <Link>Images\Shining_Trout_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Silver_Shark_Full.jpg">
+      <Link>Images\Silver_Shark_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Takitaro_Full.jpg">
+      <Link>Images\Takitaro_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tavnazian_Goby_Full.jpg">
+      <Link>Images\Tavnazian_Goby_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Three_Eyed_Fish_Full.jpg">
+      <Link>Images\Three_Eyed_Fish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tiger_Cod_Full.jpg">
+      <Link>Images\Tiger_Cod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tiny_Goldfish_Full.jpg">
+      <Link>Images\Tiny_Goldfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Titanictus_Full.jpg">
+      <Link>Images\Titanictus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Titanic_Sawfish_Full.jpg">
+      <Link>Images\Titanic_Sawfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tricolored_Carp_Full.jpg">
+      <Link>Images\Tricolored_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tricorn_Full.jpg">
+      <Link>Images\Tricorn_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Trilobite_Full.jpg">
+      <Link>Images\Trilobite_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tropical_Clam_Full.jpg">
+      <Link>Images\Tropical_Clam_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Trumpet_Shell_Full.jpg">
+      <Link>Images\Trumpet_Shell_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Turnabaligi_Full.jpg">
+      <Link>Images\Turnabaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Uskumru_Full.jpg">
+      <Link>Images\Uskumru_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Veydal_Wrasse_Full.jpg">
+      <Link>Images\Veydal_Wrasse_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Vongola_Clam_Full.jpg">
+      <Link>Images\Vongola_Clam_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Yayinbaligi_Full.jpg">
+      <Link>Images\Yayinbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Yellow_Globe_Full.jpg">
+      <Link>Images\Yellow_Globe_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Yilanbaligi_Full.jpg">
+      <Link>Images\Yilanbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Zafmlug_Bass_Full.jpg">
+      <Link>Images\Zafmlug_Bass_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Zebra_Eel_Full.jpg">
+      <Link>Images\Zebra_Eel_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Arrowwood_Log_Full.jpg">
+      <Link>Images\Arrowwood_Log_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Bugbear_Mask_Full.jpg">
+      <Link>Images\Bugbear_Mask_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Copper_Ring_Full.jpg">
+      <Link>Images\Copper_Ring_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Coral_Fragment_Full.jpg">
+      <Link>Images\Coral_Fragment_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Damp_Scroll_Full.jpg">
+      <Link>Images\Damp_Scroll_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Devil_Manta_Full.jpg">
+      <Link>Images\Devil_Manta_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Gold_Ring_Full.jpg">
+      <Link>Images\Gold_Ring_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Moblin_Mask_Full.jpg">
+      <Link>Images\Moblin_Mask_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Mythril_Dagger_Full.jpg">
+      <Link>Images\Mythril_Dagger_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Norg_Shell_Full.jpg">
+      <Link>Images\Norg_Shell_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Pamtam_Kelp_Full.jpg">
+      <Link>Images\Pamtam_Kelp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Ripped_Cap_Full.jpg">
+      <Link>Images\Ripped_Cap_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Bucket_Full.jpg">
+      <Link>Images\Rusty_Bucket_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Cap_Full.jpg">
+      <Link>Images\Rusty_Cap_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Greatsword_Full.jpg">
+      <Link>Images\Rusty_Greatsword_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Pick_Full.jpg">
+      <Link>Images\Rusty_Pick_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Subligar_Full.jpg">
+      <Link>Images\Rusty_Subligar_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Silver_Ring_Full.jpg">
+      <Link>Images\Silver_Ring_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Gigant_Octopus_Full.jpg">
+      <Link>Images\Gigant_Octopus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Fish_Scale_Shield_Full.jpg">
+      <Link>Images\Fish_Scale_Shield_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Mercanbaligi_Full.jpg">
+      <Link>Images\Mercanbaligi_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Pirarucu_Full.jpg">
+      <Link>Images\Pirarucu_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Rhinochimera_Full.jpg">
+      <Link>Images\Rhinochimera_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Crayfish_Ball_Full.jpg">
+      <Link>Images\Crayfish_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Drill_Calamary_Full.jpg">
+      <Link>Images\Drill_Calamary_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Dwarf_Pugil_Full.jpg">
+      <Link>Images\Dwarf_Pugil_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Fly_Lure_Full.jpg">
+      <Link>Images\Fly_Lure_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Frog_Lure_Full.jpg">
+      <Link>Images\Frog_Lure_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Giant_Shell_Bug_Full.jpg">
+      <Link>Images\Giant_Shell_Bug_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Little_Worm_Full.jpg">
+      <Link>Images\Little_Worm_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Lizard_Lure_Full.jpg">
+      <Link>Images\Lizard_Lure_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Lufaise_Fly_Full.jpg">
+      <Link>Images\Lufaise_Fly_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Lugworm_Full.jpg">
+      <Link>Images\Lugworm_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Meatball_Full.jpg">
+      <Link>Images\Meatball_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Minnow_Full.jpg">
+      <Link>Images\Minnow_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Peeled_Crayfish_Full.jpg">
+      <Link>Images\Peeled_Crayfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Peeled_Lobster_Full.jpg">
+      <Link>Images\Peeled_Lobster_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Robber_Rig_Full.jpg">
+      <Link>Images\Robber_Rig_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Rogue_Rig_Full.jpg">
+      <Link>Images\Rogue_Rig_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Rotten_Meat_Full.jpg">
+      <Link>Images\Rotten_Meat_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sabiki_Rig_Full.jpg">
+      <Link>Images\Sabiki_Rig_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Shell_Bug_Full.jpg">
+      <Link>Images\Shell_Bug_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Shrimp_Lure_Full.jpg">
+      <Link>Images\Shrimp_Lure_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sinking_Minnow_Full.jpg">
+      <Link>Images\Sinking_Minnow_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sliced_Cod_Full.jpg">
+      <Link>Images\Sliced_Cod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Worm_Lure_Full.jpg">
+      <Link>Images\Worm_Lure_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Bamboo_Fishing_Rod_Full.jpg">
+      <Link>Images\Bamboo_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Carbon_Fishing_Rod_Full.jpg">
+      <Link>Images\Carbon_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Clothespole_Full.jpg">
+      <Link>Images\Clothespole_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Composite_Fishing_Rod_Full.jpg">
+      <Link>Images\Composite_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Ebisu_Fishing_Rod_Full.jpg">
+      <Link>Images\Ebisu_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Fastwater_Fishing_Rod_Full.jpg">
+      <Link>Images\Fastwater_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Glass_Fiber_Fishing_Rod_Full.jpg">
+      <Link>Images\Glass_Fiber_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Halcyon_Rod_Full.jpg">
+      <Link>Images\Halcyon_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Hume_Fishing_Rod_Full.jpg">
+      <Link>Images\Hume_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Lu_Shangs_Fishing_Rod_Full.jpg">
+      <Link>Images\Lu_Shangs_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Mithran_Fishing_Rod_Full.jpg">
+      <Link>Images\Mithran_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Single_Hook_Fishing_Rod_Full.jpg">
+      <Link>Images\Single_Hook_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Tarutaru_Fishing_Rod_Full.jpg">
+      <Link>Images\Tarutaru_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Willow_Fishing_Rod_Full.jpg">
+      <Link>Images\Willow_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Yew_Fishing_Rod_Full.jpg">
+      <Link>Images\Yew_Fishing_Rod_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Insect_Ball_Full.jpg">
+      <Link>Images\Insect_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sardine_Ball_Full.jpg">
+      <Link>Images\Sardine_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sliced_Sardine_Full.jpg">
+      <Link>Images\Sliced_Sardine_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Trout_Ball_Full.jpg">
+      <Link>Images\Trout_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Ebisu_Fishing_Rod_+1_Full.jpg">
+      <Link>Images\Ebisu_Fishing_Rod_+1_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Rods\Lu_Shangs_Fishing_Rod_+1_Full.jpg">
+      <Link>Images\Lu_Shangs_Fishing_Rod_+1_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ancient_Carp_Full.jpg">
+      <Link>Images\Ancient_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Apkallufa_Full.jpg">
+      <Link>Images\Apkallufa_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Black_Prawn_Full.jpg">
+      <Link>Images\Black_Prawn_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bonefish_Full.jpg">
+      <Link>Images\Bonefish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Cameroceras_Full.jpg">
+      <Link>Images\Cameroceras_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Clotflagration_Full.jpg">
+      <Link>Images\Clotflagration_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Contortacle_Full.jpg">
+      <Link>Images\Contortacle_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Contortopus_Full.jpg">
+      <Link>Images\Contortopus_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Crocodilos_Full.jpg">
+      <Link>Images\Crocodilos_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Deademoiselle_Full.jpg">
+      <Link>Images\Deademoiselle_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dorado_Gar_Full.jpg">
+      <Link>Images\Dorado_Gar_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dragonfish_Full.jpg">
+      <Link>Images\Dragonfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dragons_Tabernacle_Full.jpg">
+      <Link>Images\Dragons_Tabernacle_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Duskcrawler_Full.jpg">
+      <Link>Images\Duskcrawler_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dwarf_Remora_Full.jpg">
+      <Link>Images\Dwarf_Remora_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Frigorifish_Full.jpg">
+      <Link>Images\Frigorifish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\King_Perch_Full.jpg">
+      <Link>Images\King_Perch_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Kokuryu_Full.jpg">
+      <Link>Images\Kokuryu_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Malicious_Perch_Full.jpg">
+      <Link>Images\Malicious_Perch_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Mussel_Full.jpg">
+      <Link>Images\Mussel_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Pelazoea_Full.jpg">
+      <Link>Images\Pelazoea_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Phantom_Serpent_Full.jpg">
+      <Link>Images\Phantom_Serpent_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Quicksilver_Blade_Full.jpg">
+      <Link>Images\Quicksilver_Blade_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Remora_Full.jpg">
+      <Link>Images\Remora_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ruddy_Seema_Full.jpg">
+      <Link>Images\Ruddy_Seema_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Sekiryu_Full.jpg">
+      <Link>Images\Sekiryu_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Senroh_Frog_Full.jpg">
+      <Link>Images\Senroh_Frog_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Senroh_Sardine_Full.jpg">
+      <Link>Images\Senroh_Sardine_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Soryu_Full.jpg">
+      <Link>Images\Soryu_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Thysanopeltis_Full.jpg">
+      <Link>Images\Thysanopeltis_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tiger_Shark_Full.jpg">
+      <Link>Images\Tiger_Shark_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Translucent_Salpa_Full.jpg">
+      <Link>Images\Translucent_Salpa_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Tusoteuthis_Longa_Full.jpg">
+      <Link>Images\Tusoteuthis_Longa_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Ulbukan_Lobster_Full.jpg">
+      <Link>Images\Ulbukan_Lobster_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\White_Lobster_Full.jpg">
+      <Link>Images\White_Lobster_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Yawning_Catfish_Full.jpg">
+      <Link>Images\Yawning_Catfish_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Yorchete_Full.jpg">
+      <Link>Images\Yorchete_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Kunai_Full.jpg">
+      <Link>Images\Rusty_Kunai_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Spear_Full.jpg">
+      <Link>Images\Rusty_Spear_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Applications\IocaineCore\IocaineCore.csproj">
+      <Project>{B76C45E2-E307-406F-BAEA-C8288B5737C0}</Project>
+      <Name>IocaineCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FFXIResource\FFXIResource\FFXIResource.csproj">
+      <Project>{CB437CB5-9269-4571-A925-E80868F76342}</Project>
+      <Name>FFXIResource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Large_MMM_Ball_Full.jpg">
+      <Link>Images\Large_MMM_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Sea_Dragon_Liver_Full.jpg">
+      <Link>Images\Sea_Dragon_Liver_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Reg_MMM_Ball_Full.jpg">
+      <Link>Images\Reg_MMM_Ball_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Bloodblotch_Full.jpg">
+      <Link>Images\Bloodblotch_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Blowfish_Full.jpg">
+      <Link>Images\Blowfish_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Dragoneye_Full.jpg">
+      <Link>Images\Dragoneye_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Clump_Of_Adoulinian_Kelp_Full.jpg">
+      <Link>Images\Clump_Of_Adoulinian_Kelp_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Clump_Of_Pamtam_Kelp_Full.jpg">
+      <Link>Images\Clump_Of_Pamtam_Kelp_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Hakuryu_Full.jpg">
+      <Link>Images\Hakuryu_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Lord_Of_Ulbuka_Full.jpg">
+      <Link>Images\Lord_Of_Ulbuka_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Mackerel_Full.jpg">
+      <Link>Images\Mackerel_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Pair_Of_Rusty_Leggings_Full.jpg">
+      <Link>Images\Pair_Of_Rusty_Leggings_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Rakaznar_Shellfish_Full.jpg">
+      <Link>Images\Rakaznar_Shellfish_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Bone_Chip_Full.jpg">
+      <Link>Images\Bone_Chip_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Rusty_Zaghnal_Full.jpg">
+      <Link>Images\Rusty_Zaghnal_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Barnacle_Full.jpg">
+      <Link>Images\Barnacle_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish\Shen_Full.jpg">
+      <Link>Images\Shen_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fish_Items\Ulbuconut_Full.jpg">
+      <Link>Images\Ulbuconut_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Slice_of_Bluetail_Full.jpg">
+      <Link>Images\Slice_of_Bluetail_Full.jpg</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Slice_of_Carp_Full.jpg">
+      <Link>Images\Slice_of_Carp_Full.jpg</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
