@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MapInfoDS" targetNamespace="http://tempuri.org/MapInfoDS.xsd" xmlns:mstns="http://tempuri.org/MapInfoDS.xsd" xmlns="http://tempuri.org/MapInfoDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MapInfoDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MapInfoDS" msprop:Generator_UserDSName="MapInfoDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MapInfoBoxes" msprop:Generator_TableClassName="MapInfoBoxesDataTable" msprop:Generator_TableVarName="tableMapInfoBoxes" msprop:Generator_TablePropName="MapInfoBoxes" msprop:Generator_RowDeletingName="MapInfoBoxesRowDeleting" msprop:Generator_RowChangingName="MapInfoBoxesRowChanging" msprop:Generator_RowEvHandlerName="MapInfoBoxesRowChangeEventHandler" msprop:Generator_RowDeletedName="MapInfoBoxesRowDeleted" msprop:Generator_UserTableName="MapInfoBoxes" msprop:Generator_RowChangedName="MapInfoBoxesRowChanged" msprop:Generator_RowEvArgName="MapInfoBoxesRowChangeEvent" msprop:Generator_RowClassName="MapInfoBoxesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneID" msprop:Generator_ColumnVarNameInTable="columnZoneID" msprop:Generator_ColumnPropNameInRow="ZoneID" msprop:Generator_ColumnPropNameInTable="ZoneIDColumn" msprop:Generator_UserColumnName="ZoneID" type="xs:unsignedShort" />
+              <xs:element name="MapID" msprop:Generator_ColumnVarNameInTable="columnMapID" msprop:Generator_ColumnPropNameInRow="MapID" msprop:Generator_ColumnPropNameInTable="MapIDColumn" msprop:Generator_UserColumnName="MapID" type="xs:unsignedByte" />
+              <xs:element name="BoxID" msprop:Generator_ColumnVarNameInTable="columnBoxID" msprop:Generator_ColumnPropNameInRow="BoxID" msprop:Generator_ColumnPropNameInTable="BoxIDColumn" msprop:Generator_UserColumnName="BoxID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="X1" msprop:Generator_ColumnVarNameInTable="columnX1" msprop:Generator_ColumnPropNameInRow="X1" msprop:Generator_ColumnPropNameInTable="X1Column" msprop:Generator_UserColumnName="X1" type="xs:short" />
+              <xs:element name="X2" msprop:Generator_ColumnVarNameInTable="columnX2" msprop:Generator_ColumnPropNameInRow="X2" msprop:Generator_ColumnPropNameInTable="X2Column" msprop:Generator_UserColumnName="X2" type="xs:short" />
+              <xs:element name="Y1" msprop:Generator_ColumnVarNameInTable="columnY1" msprop:Generator_ColumnPropNameInRow="Y1" msprop:Generator_ColumnPropNameInTable="Y1Column" msprop:Generator_UserColumnName="Y1" type="xs:short" />
+              <xs:element name="Y2" msprop:Generator_ColumnVarNameInTable="columnY2" msprop:Generator_ColumnPropNameInRow="Y2" msprop:Generator_ColumnPropNameInTable="Y2Column" msprop:Generator_UserColumnName="Y2" type="xs:short" />
+              <xs:element name="Z1" msprop:Generator_ColumnVarNameInTable="columnZ1" msprop:Generator_ColumnPropNameInRow="Z1" msprop:Generator_ColumnPropNameInTable="Z1Column" msprop:Generator_UserColumnName="Z1" type="xs:short" />
+              <xs:element name="Z2" msprop:Generator_ColumnVarNameInTable="columnZ2" msprop:Generator_ColumnPropNameInRow="Z2" msprop:Generator_ColumnPropNameInTable="Z2Column" msprop:Generator_UserColumnName="Z2" type="xs:short" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MapInfoMaps" msprop:Generator_TableClassName="MapInfoMapsDataTable" msprop:Generator_TableVarName="tableMapInfoMaps" msprop:Generator_TablePropName="MapInfoMaps" msprop:Generator_RowDeletingName="MapInfoMapsRowDeleting" msprop:Generator_RowChangingName="MapInfoMapsRowChanging" msprop:Generator_RowEvHandlerName="MapInfoMapsRowChangeEventHandler" msprop:Generator_RowDeletedName="MapInfoMapsRowDeleted" msprop:Generator_UserTableName="MapInfoMaps" msprop:Generator_RowChangedName="MapInfoMapsRowChanged" msprop:Generator_RowEvArgName="MapInfoMapsRowChangeEvent" msprop:Generator_RowClassName="MapInfoMapsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneID" msprop:Generator_ColumnVarNameInTable="columnZoneID" msprop:Generator_ColumnPropNameInRow="ZoneID" msprop:Generator_ColumnPropNameInTable="ZoneIDColumn" msprop:Generator_UserColumnName="ZoneID" type="xs:unsignedShort" />
+              <xs:element name="MapID" msprop:Generator_ColumnVarNameInTable="columnMapID" msprop:Generator_ColumnPropNameInRow="MapID" msprop:Generator_ColumnPropNameInTable="MapIDColumn" msprop:Generator_UserColumnName="MapID" type="xs:unsignedByte" />
+              <xs:element name="Multiplier" msprop:Generator_ColumnVarNameInTable="columnMultiplier" msprop:Generator_ColumnPropNameInRow="Multiplier" msprop:Generator_ColumnPropNameInTable="MultiplierColumn" msprop:Generator_UserColumnName="Multiplier" type="xs:float" />
+              <xs:element name="X" msprop:Generator_ColumnVarNameInTable="columnX" msprop:Generator_ColumnPropNameInRow="X" msprop:Generator_ColumnPropNameInTable="XColumn" msprop:Generator_UserColumnName="X" type="xs:float" />
+              <xs:element name="Y" msprop:Generator_ColumnVarNameInTable="columnY" msprop:Generator_ColumnPropNameInRow="Y" msprop:Generator_ColumnPropNameInTable="YColumn" msprop:Generator_UserColumnName="Y" type="xs:float" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
