@@ -1,0 +1,198 @@
+minnow = 17407
+2/9/16:
+Weather: DONE
+Zoning: DONE
+Limit Points: DONE
+Merit Points: DONE
+XP Mode: DONE
+Status Effects: DONE
+PC Info Pet ID: DONE
+
+12/9/15:
+Target status: DONE
+PC HPP: DONE
+PC Status: DONE
+NPC Inv/Snk: DONE
+NPC Status: DONE
+NPC Speed: DONE
+
+11/10/15:
+In mog house: DONE
+Target locked: 
+Bag info: DONE
+Shops: DONE
+Network: DONE
+
+9/15/15:
+Chat log: DONE
+Bag: DONE
+PC Info Pet ID: DONE
+Shops: DONE
+Network: DONE
+
+8/5/15:
+Player View: DONE
+
+6/24/15:
+Player 1 broken: DONE
+Weather: DONE
+Zoning: DONE
+Status Effects: DONE
+Target Distance: DONE
+Target Status: DONE
+Target Locked: DONE
+Fishing: ????
+Shop Quantity: DONE
+Bag Info: DONE
+PC Distance: DONE
+PC HPP: DONE
+PC Status: DONE
+Shop Windows: DONE
+Spell Recast: DONE
+Network: DONE
+
+5/14/15:
+In Mog House: DONE
+Limit/Merit Points: DONE
+Zoning Now: DONE
+Target Locked: DONE
+Item Info: DONE
+PC Status: DONE
+
+3/26/15:
+Bag Info: DONE
+Item Quantity: DONE
+Item Equipped: DONE
+Shop Guild: DONE
+Shop NPC: DONE
+Recast: DONE
+Network is off by a number: DONE
+
+2/18/15:
+Weather: DONE
+Zoning now: DONE
+Limit/Merit Points/Mode: DONE
+Status effects: DONE
+Player view: DONE
+Target distance: DONE
+PC HPP, status, distance: DONE
+Spell recast: DONE
+Ability recast: DONE
+Casting: DONE
+
+1/15/15:
+Player status (player5): DONE
+Chat has issues: DONE
+Bag: DONE
+Text Menus: DONE
+Button Menus: DONE
+
+12/9/14:
+Weather: DONE
+Zoning now: DONE
+Status effects: DONE
+Bag: DONE
+
+11/10/14:
+Weather: DONE
+Crafting is off a few: DONE
+Status effects: DONE
+xp/merit: DONE
+Combat skills: DONE
+zoning now: DONE
+Bag: DONE
+NPC shop: DONE
+
+10/6/14:
+Weather: Done
+Merit/limit points & XP mode: Done
+Status effects: Done
+Bag/Equip table: Done
+Network is off again: Done
+NPC Shop: Done
+
+9/9/14:
+Bag: DONE
+Spell  recast: DONE
+Network is off by 1 or so: Done
+
+8/11/14:
+Player1: Done
+Weather ID: Done
+Zoning now: Done
+Status effects: Done
+Item quantity: Done
+Item equipped: Done
+Bag: Done
+Spell recast: Done
+Network: Deferred
+Text Menu Pointer: Deferred
+Text Menu Top Text: Done
+
+7/11/14:
+Status effects:
+Help text: Done
+Top/Left text: Done
+Item equipped: Done
+Bag: Done
+Equip table: Done
+Spell recast:
+Network:
+Zoning now:
+Shop npc:
+
+6/16/04:
+NPC Shop Buy window:
+DONE - Bag pointer:
+DONE - Info_Bag = 067049A4 - Still broken.
+Zoning Now:
+Done - Weather:
+Status Effects:
+Spell Recast:
+Item equipped:
+DONE - Craft window: index 0 ID: 0D79B6B2, Prt addr= 065EBD9C , val= 0D79B608
+  ID addr: 0D79B6B2 - ptr val: = 0D79B6B2 - 0D79B608 = 170 (dec).
+  Bag index = 170 - 13 = 157.
+  Qty still ID + 20 = 190.
+Party:
+NPC Map count:
+Network:
+
+5/14/14:
+Bag strucutres (Wardrobe) - DONE
+Weather ID - DONE
+Status effects
+Item equipped (in wardrobe) - DONE
+2nd window info - DONE
+Equip table - DONE
+Network
+Shop NPC
+
+4/8/14:
+Item name - DONE
+Status effects
+Shop NPC number of items
+Shop NPC item ID's/prices
+Zoning now
+Network
+
+3/17/14:
+weather - unknown
+status effects - broken
+player status - good, but need to update values
+player view - broken
+shop npc - broken
+network - slightly off, offset is good
+
+2/17/14:
+status effects - DONE
+player5 - view perspective - DONE
+target actually crashes iocaine - DONE
+Windows - top left text - OK
+windows - item equipped - OK
+PC HPP - DONE
+PC Active - DONE
+Trade window looks wrong - OK
+So does trade PC window - Didn't Check
+Network is slightly off - DONE
+No idea about text style menu's - OK

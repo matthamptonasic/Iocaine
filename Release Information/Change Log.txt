@@ -1,0 +1,704 @@
+Iocaine Change Notes:
+
+Main.exe			- 2.10.0.0 - 2016/07/08
+IocainCore.dll		- 1.3.9.0
+FFXIResource.dll	- 1.2.5.0
+FFXIThings.dll		- 1.2.3.0
+IocaineServer.dll	- 1.0.1.0
+	- Added Position and Speed hacks tab.
+	- Added Server Status Light and Server reconnection functionality.
+	- Added Fisher Stats Box filtering
+		- Checking Auto-Reset will reset the counts at Japanese midnight.
+		- Checking This Zone Only will only display counts for your current zone/area.
+	- Fixed Fish Stats combo box items being out of order.
+	- Fixed issue where server connection cookie was immediately expiring.
+	- Updated items after the July update.
+	
+Main.exe			- 2.9.5.1 - 2016/06/28
+IocaineServer.dll	- 1.0.0.1
+	- Changed the SQL server timeout from 10 seconds to 20 seconds.
+	- Fixed issue with the Alert tab not clearing when "Always Alert" is unchecked.
+
+Main.exe			- 2.9.5.0 - 2016/06/27
+IocainCore.dll		- 1.3.8.0
+MapDll.dll			- 1.1.4.0
+FFXIThings.dll		- 1.2.2.0
+FFXIResource.dll	- 1.2.4.0
+IocaineServer.dll	- 1.0.0.0
+	- Added "offline mode" for the fisher.
+	- Added error alert to the top form.
+	- Changed fisher counting to separate items and fish.
+	- Added items from June version update.
+
+Main.exe			- 2.9.4.3 - 2016/05/04
+	- Fixed the issues related to tab names (PL Events shown and Settings not working).
+	
+Main.exe			- 2.9.4.2 - 2016/05/04
+	- Added more debug capabilities.
+IocainCore.dll		- 1.3.7.1
+	- Fixed end-of-line chat log parsing.
+
+Main.exe			- 2.9.4.1 - 2016/05/01
+	- Fixed Fisher catching mobs.
+	
+Main.exe			- 2.9.4.0 - 2016/05/01
+IocainCore.dll		- 1.3.7.0
+	- Synergy is working again.
+	
+IocainCore.dll		- 1.3.6.4 - 2016/04/05
+	- Fixed after version update.
+	
+IocainCore.dll		- 1.3.6.3 - 2016/02/10
+FFXIResource.dll	- 1.2.3.3
+	- Fixed after version update.
+	
+Main.exe			- 2.9.3.3 - 2015/12/17
+IocainCore.dll		- 1.3.6.2
+	- Fixhed some fisher bugs.
+	
+Main.exe			- 2.9.3.1 - 2015/12/10
+IocainCore.dll		- 1.3.6.1
+	- Fixed after version update.
+	
+Main.exe			- 2.9.3.0 - 2015/11/30
+IocainCore.dll		- 1.3.6.0
+	- Reorganization and cleanup.
+	
+Main.exe			- 2.9.2.9 - 2015/11/22
+IocainCore.dll		- 1.3.5.8
+	- Removed IP checking to speed up initialization.
+	- Fixed target lock mem-read (SU, PL, and Reive bots).
+	
+Main.exe			- 2.9.2.8 - 2015/11/22
+IocainCore.dll		- 1.3.5.7
+	- Fixed issue with map/zone updates not working when no fishing rod equiped.
+	- Fixed some of the background thread issues in the PL and TA.
+
+Main.exe		- 2.9.2.7 - 2015/11/10
+IocainCore.dll		- 1.3.5.6
+FFXIThings.dll		- 1.2.1.7
+FFXIResource.dll	- 1.2.3.2
+	- Fixed after version update.
+	- Fisher: Added equiping bait from wardrobe (needs to be tested).
+	- TA/PL:  Added using Mweya Plasm items between actions.
+
+IocainCore.dll		- 1.3.5.5 - 2015/10/05
+	- Top:	Fixed chat log again after version update.
+
+Main.exe		- 2.9.2.5 - 2015/09/29
+IocainCore.dll		- 1.3.5.4
+FFXIThings.dll		- 1.2.1.6
+FFXIResource.dll	- 1.2.3.1
+	- Top:	Fixed chat log again after version update (NPC shops still broken).
+	- Top:  Updated items, spells, & abilities after version update.
+	- SkillUp: Fixed bug that occasionally caused the Reive Bot to crash.
+
+Main.exe		- 2.9.2.4 - 2015/09/20
+IocainCore.dll		- 1.3.5.3
+	- Top:	Fixed after September version update (NPC shops still broken).
+
+Main.exe		- 2.9.2.3 - 2015/09/05
+IocainCore.dll		- 1.3.5.2
+	- Top:	Added Alert feature.
+	- Top:	Made top settings common for all characters.
+
+Main.exe		- 2.9.1.0 - 2015/08/31
+IocainCore.dll		- 1.3.4.1
+MapDll.dll		- 1.1.3.0
+	- Maps:   Fixed map selected for overlapping zones (3-D seletion).
+	- Maps:   Added target line/circle.
+	- Trader: When selecting item to trade, automatically puts the max value in the '# of' box.
+	- Reives: Improved logic to get rid of invalid cast attempts.
+	- Reives: No longer relies on respawn timer, now detects lair is active/inactive.
+	- Seller/Buyer: Removed private feature status. Not sure buyer actually works (probably doesn't).
+
+Main.exe		- 2.9.0.0 - 2015/08/29
+IocainCore.dll		- 1.3.4.0
+MapDll.dll		- 1.1.2.0
+	- Added Pop-Out Map.
+
+Main.exe		- 2.8.3.0 - 2015/08/19
+IocainCore.dll		- 1.3.3.0
+MapDll.dll		- 1.1.1.1
+FFXIThings.dll		- 1.2.1.5
+FFXIResource.dll	- 1.2.3.0
+Iocaine2.exe		- 1.3.1.0
+	- Fish Stats: Fixed.
+	- Fish Stats: Added map markings.
+	- Fish Stats: Added double-click linking.
+	- Crafter: Updated the initial bag sorting/opening logic.
+	- Top: Changed the clock to only read from memory.
+	- Top: If updates required, will now close and automatically download them.
+	- Top: Updated init messages to user.
+	- PL: Fixed issue where changing job/level could crash the main background thread.
+	- SU: Removed the spell upgrading from the Reive bot.
+	- Removed maps from the dll (to files).
+	- Added items after August update.
+
+Main.exe		- 2.8.2.0 - 2015/08/05
+IocainCore.dll		- 1.3.2.4
+ItemsFishing.dll	- 1.0.3.0
+MapDll.dll		- 1.1.0.0
+	- Fixed after August update.
+	- Fixed issue where the fisher was missing arrows.
+	- Fixed issue where the trader would only move 1 item from sack/satchel/case at a time.
+	- Added 3 build-in trader scripts (Zaldon, Yoran-Oran, Melyon).
+
+Main.exe		- 2.8.1.4 - 2015/07/08
+	- Fixed fisher bug that failed to save fish with an apostrophe in the name.
+
+Main.exe		- 2.8.1.3 - 2015/07/07
+IocainCore.dll		- 1.3.2.3
+FFXIResource.dll	- 1.2.2.0
+ItemsFishing.dll	- 1.0.2.0
+FFXIThings.dll		- 1.2.1.4
+	- Updated fish and bait.
+	- Moved local fish and bait tables to FFXIResource.
+
+IocainCore.dll		- 1.3.2.2 - 2015/06/30
+FFXIResource.dll	- 1.2.1.4
+FFXIThings.dll		- 1.2.1.3
+	- Fixed after the June version update.
+
+Main.exe		- 2.8.1.2 - 2015/05/16
+	- Changed reive bot target lock from 'h' key to '*'.
+	- Fixed enfeebling cast of Dia casting Diaga.
+
+IocainCore.dll		- 1.3.2.1 - 2015/05/15
+FFXIResource.dll	- 1.2.1.3
+FFXIThings.dll		- 1.2.1.2
+	- Fixed after the May version update.
+
+Main.exe		- 2.8.1.1 - 2015/03/27
+IocainCore.dll		- 1.3.2.0
+FFXIResource.dll	- 1.2.1.2
+FFXIThings.dll		- 1.2.1.1
+	- Fixed after the March version update.
+	- Added skills/spells/items from the update.
+	- Fixed Banish in the Reive bot.
+
+Main.exe		- 2.8.1.0 - 2015/03/21
+IocainCore.dll		- 1.3.1.0
+FFXIResource.dll	- 1.2.1.1
+	- Added Reives option to the Skill Up.
+	- Added Erase to the manual cures list.
+
+Main.exe		- 2.8.0.3 - 2015/02/22
+IocainCore.dll		- 1.3.0.3
+	- Fixed the PL grids that were not displaying correctly.
+
+FFXIThings.dll		- 1.2.1.0 - 2015/02/20
+FFXIResource.dll	- 1.2.1.0
+	- Updated items and spells after the February version update.
+
+Main.exe		- 2.8.0.1 - 2015/02/19
+IocainCore.dll		- 1.3.0.1
+FFXIResource.dll	- 1.2.0.1
+IocaineEvents.dll	- 1.0.0.0
+	- Fixed after the February version update.
+	- Brought the beta version to general release.
+
+=== BETA ===
+Main.exe		- 2.8.0.0 - 2015/01/29
+IocaineCore.dll		- 1.3.0.0
+FFXIResource.dll	- 1.1.5.0
+FFXIThings.dll		- 1.2.0.0
+	- Began overhaul of the powerlevel bot.
+		- Now the user can add any party/target buff desired.
+		- Can use Curing Waltz on DNC as cures.
+		- All recast timers are based on memory, not Iocaine timers.
+		- This includes shared job ability timers like COR rolls.
+		- All cure/buff/debuff lists are based on your current job/sub.
+		- These lists automatically refresh if you change jobs.
+
+IocaineCore.dll		- 1.2.13.2 - 2015/01/15
+	- Fixed more string parsing after chat log changed.
+
+Main.exe		- 2.7.13.2 - 2015/01/15
+IocaineCore.dll		- 1.2.13.1
+FFXIThings.dll		- 1.1.3.0
+	- Fixed memreads after the January update.
+	- Added items after December update.
+	- Added Haste II to the PL target buffs.
+	- Added looping to the nav-bot.
+
+IocaineCore.dll		- 1.2.12.1 - 2014/12/09
+FFXIThings.dll		- 1.1.2.0
+	- Fixed memreads after December update.
+	- Added items after December update.
+
+Main.exe		- 2.7.12.0 - 2014/12/06
+IocaineCore.dll		- 1.2.12.0
+	- Added moving items to/from the sack/satchel/case in the crafter.
+	- Added moving items from the sack/satchel/case in the trader.
+	- Fixed number of items moved (mainly a fisher issue where bag would fill up with bait).
+
+IocaineCore.dll		- 1.2.11.6 - 2014/12/01
+	- Added the new fish to the local dataset.
+
+FFXIThings.dll		- 1.1.1.1 - 2014/11/17
+	- Added items after November update (really this time).
+
+IocaineCore.dll		- 1.2.11.5 - 2014/11/15
+	- Fixed target distance memread after November update.
+
+IocaineCore.dll		- 1.2.11.4 - 2014/11/13
+	- Fixed PC distance memread after November update.
+
+Main.exe		- 2.7.10.4 - 2014/11/12
+IocaineCore.dll		- 1.2.11.3
+FFXIThings.dll		- 1.1.1.0
+	- Fixed memreads after November update.
+	- Added items after November update.
+	- Fixed WMS issue with bag items being added to pooled list twice.
+
+Main.exe		- 2.7.10.3 - 2014/10/17
+	- Added Geo and Rune to the SU Bot.
+
+FFXIThings.dll		- 1.1.0.0 - 2014/10/15
+	- Added all items thanks to the Windower Resource Extractor.
+
+Main.exe		- 2.7.10.2 - 2014/10/09
+IocaineCore.dll		- 1.2.11.1
+	- Fixed after the October update.
+	- Added stretch ability to the Fisher, PL, Nav, WMS and the Inventory Labels.
+	- Added Wardrobe to the WMS.
+
+Main.exe		- 2.7.8.0 - 2014/09/13
+IocaineCore.dll		- 1.2.10.0
+FFXIThings.dll		- 1.0.17.0
+	- Fixed after September update.
+	- Added/modified spells list thanks to Alehldean.
+
+Main.exe		- 2.7.7.4 - 2014/08/16
+	- Fixed TA TP issue.
+IocaineCore.dll		- 1.2.9.7
+	- Fixed after August update.
+
+IocaineCore.dll		- 1.2.9.6 - 2014/07/12
+FFXIThings.dll		- 1.0.16.0
+	- Fixed after July update.
+	- Added as many items as possible.
+
+IocaineCore.dll		- 1.2.9.5 - 2014/06/29
+	- Fixed the crafter offsets.
+
+Main.exe		- 2.7.7.3 - 2014/06/21
+IocaineCore.dll		- 1.2.9.4
+	- Fixed after June update.
+	- Synergy bot is still broken.
+	- Some other issues remain.
+
+Main.exe		- 2.7.7.2 - 2014/05/17
+IocaineCore.dll		- 1.2.9.3
+	- Fixed the bait/rod equip string.
+
+IocaineCore.dll		- 1.2.9.2 - 2014/05/16
+	- Fixed after the version update on 5/14/14.
+
+Main.exe		- 2.7.7.1 - 2014/05/08
+IocaineCore.dll		- 1.2.9.1
+	- Added Mog Case to the WMS.
+	- Fixed the WMS to save/display all characters' items.
+
+Main.exe		- 2.7.7.0 - 2014/05/05
+IocaineCore.dll		- 1.2.9.0
+	- Made the fisher recast delay configurable and reduced the default time.
+	- Added inventory status to the bottom of the window.
+
+Main.exe		- 2.7.6.1 - 2014/05/03
+IocaineCore.dll		- 1.2.8.2
+	- Fixed how the drop mobs feature works. Now works on chat log parsing instead of fish ID's.
+
+Main.exe		- 2.7.6.0 - 2014/05/01
+IocaineCore.dll		- 1.2.8.1
+	- Fixed the Zoning Now memread that was messing with the fisher/navigation.
+
+Main.exe		- 2.7.5.0 - 2014/04/23
+IocaineCore.dll		- 1.2.8.0
+	- Added option to change fishing arrow keys.
+FFXIResource.dll	- 1.1.5.0
+	- Added new zones.
+
+IocaineCore.dll		- 1.2.7.0 - 2014/04/13
+	- Fixed Item Name memory read. Should fix the fisher item moving and the crafter.
+
+Main.exe		- 2.7.4.2 - 2014/03/24
+IocaineCore.dll		- 1.2.6.5
+	- Fixed the fisher.
+FFXIResource.dll	- 1.1.4.2
+	- Changed player status enums.
+
+FFXIResource.dll	- 1.1.4.1 - 2014/03/21
+	- Changed player status enums.
+IocaineCore.dll
+	- FISHER IS STILL BROKEN.
+	- Fixed player view perspective and some fishing structures.
+
+IocaineCore.dll		- 1.2.6.3 - 2014/02/21
+	- Fixed distance to PC memory read.
+
+Main.exe		- 2.7.4.1 - 2014/02/20
+IocaineCore.dll		- 1.2.6.2
+	- Fixed Mog Case item movement logic.
+
+IocaineCore.dll		- 1.2.6.1 - 2014/02/20
+	- Fixed fishing rod location memory read.
+
+Main.exe		- 2.7.4.0 - 2014/02/19
+IocaineCore.dll		- 1.2.6.0
+	- Fixed memory reads after February Update.
+	- Added Mog Case to the Fisher logic.
+
+IocaineCore.dll		- 1.2.5.5 - 2014/01/21
+	- Fixed memory reads after January update.
+
+IocaineCore.dll		- 1.2.5.4 - 2014/01/13
+Main.exe		- 2.7.3.2
+	- Added a fisher stop after navigation in the Timed End branch.
+
+FFXIThings.dll		- 1.0.15.0 - 2013/12/18
+	- Added armor and weapons since October update.
+
+IocaineCore.dll		- 1.2.5.3 - 2013/12/18
+	- Fixed memory reads after December update.
+
+IocaineCore.dll		- 1.2.5.1 - 2013/10/20
+Main.exe		- 2.7.3.1
+	- Fixed memory reads after October update.
+
+Main.exe		- 2.7.3.0 - 2013/07/26
+IocaineCore.dll		- 1.2.5.0
+	- Added debug scope settings under Abou Tab => Settings => Debug.
+
+IocaineCore.dll		- 1.2.4.0 - 2013/07/08
+	- Fixed memory locations after the July 8th major version update.
+
+IocaineCore.dll		- 1.2.3.2 - 2013/07/04
+	- Fixed the zones' short name entries that show up in the nav bot which was broken on the last release.
+
+IocaineCore.dll		- 1.2.3.1 - 2013/07/04
+	- Updated the local zone table with the latest zones (only the server was updated previously).
+
+Main.exe		- 2.7.2.0 - 2013/06/30
+	- Updated all references to ZoneID from 1-byte to 2-bytes.
+IocaineCore.dll		- 1.2.3.0
+	- Updated the ZoneID mem-read from 1-byte to 2-bytes.
+	- Updated all references to ZoneID from 1-byte to 2-bytes.
+MapDll.dll		- 1.0.1.0
+	- Updated size of ZoneID from 8 bits to 16 bits.
+FFXIResource.dll	- 1.1.4.0
+	- Updated all references to ZoneID from 1-byte to 2-bytes.
+FFXINpcs.dll		- 1.0.2.0
+	- Updated all references to ZoneID from 1-byte to 2-bytes.
+
+FFXIThings.dll		- 1.0.14.0 - 2013/06/22
+	- Added items from all updates since the March 2013 version update.
+
+IocaineCore.dll		- 1.2.2.1 - 2013/06/20
+	- MainDb: Fixed cast time on baramnesra again (changed to 8.5 seconds).
+
+IocaineCore.dll		- 1.2.2.0 - 2013/06/11
+	- MainDb: Added Geomancy information.
+	- MainDb: Fixed typo on "Adventures Dirge".
+	- MainDb: Fixed cast time on baramnesra.
+	- MainDb: Added "Foil".
+
+IocaineCore.dll		- 1.2.1.4 - 2013/04/05
+	- MemReads: Fixed memreads after the March 2013 version update.
+FFXIThings.dll		- 1.0.13.0
+	- Added items from the March 2013 version update.
+FFXIResource.dll	- 1.1.3.0
+	- Added GEO and RUN job enums.
+
+IocaineCore.dll		- 1.2.1.3 - 2013/01/05
+	- Spell DB - Fixed the cast time for Baramnesra.
+
+IocaineCore.dll		- 1.2.1.2 - 2013/01/05
+	- MemReads (Theofel): Fixed the memreads for the Synergy bot.
+
+IocaineCore.dll		- 1.2.1.1 - 2012/12/29
+	- MemReads - Fixed the distance to target memory read which was causing
+		     issues with the TA, PL, and possibly other bots.
+
+IocaineCore.dll		- 1.2.1.0 - 2012/12/29
+	- Top - (Alehldean) Added, updated, and corrected spells, songs, and rolls.
+
+IocaineCore.dll		- 1.2.0.5 - 2012/12/25
+	- Top - Fixed after update on 12/12/12 broke memory reads.
+FFXIThings.dll		- 1.0.12.0
+	- Added items from updates since 6/13/12.
+Main.exe		- 2.7.1.0 - 2012/12/25
+	- Crafter - Further reduced time between crafting.
+
+Main.exe		- 2.7.0.6 - 2012/09/16
+	- Crafter - Reduced time between crafting.
+
+Main.exe  		- 2.7.0.5 - 2012/07/26
+	- Top - Fix inventory code after July 2012 update.
+
+Main.exe		- 2.7.0.4 - 2012/07/15
+	- Top - Fixed issue with toolchain optimization.
+
+Main.exe	        - 2.7.0.3 - 2012/07/05
+IocaineCore.dll		- 1.2.0.4
+	- Top - Fixed several initialization issues.
+
+Main.exe	        - 2.7.0.2 - 2012/06/14
+IocaineCore.dll		- 1.2.0.1
+FFXIResource.dll	- 1.1.2.0
+FFXIThings.dll		- 1.0.11.0
+	- Top - Fixed after update on 6/14/12 broke the app.
+
+Main.exe		- 2.7.0.1 - 2012/06/13
+	- Crafter: Fixed loss of recipes bug.
+
+Main.Exe 		- 2.7.0.0 - 2012/05/10
+IocaineCore.dll		- 1.2.0.0 
+	- Crafter: Added Synergy Bot.
+
+Main.exe		- 2.6.15.0 - 2012/03/29
+IocaineCore.dll		- 1.1.1.0
+	- Added a "Stop on item received" feature to the trader.
+
+Main.exe 	        - 2.6.14.6  - 2012/02/26
+	- Crafter (Theofel): Increased skill level definition of infinite from 110 to 255.
+
+Main.exe		- 2.6.14.5  - 2012/03/26
+IocaineCore.dll		- 1.1.0.2
+	- Top - Fixed after update on 3/26/12 broke the app.
+FFXIThings.dll		- 1.0.10.0  - 2012/03/26
+	- Added items from update on 3/26/12.
+
+Main.exe 	        - 2.6.14.4  - 2012/02/26
+	- Crafter (Theofel): Fixed a bug where an new recipe could be created, which overwrote the old recipe file.
+
+Main.exe 	        - 2.6.14.3  - 2012/02/23
+	- Crafter (Theofel): The recipe report now updates after every synth.
+
+Main.exe		- 2.6.14.2  - 2012/02/23
+	- Crafter (Theofel): Recipes can now be entered in short form (e.g. copper ore x4)
+	- Crafter (Theofel): Recipe manager/crafter now indicates whether an ingredient/result is known, by changing the background color of the textbox to red if unknown.
+	- Crafter (Theofel): Recipe crafter has an extra column, indicating the number of crafts available per ingredient.
+	- Crafter (Theofel): Recipe crafter now displays the number of available crystals for that craft.
+	- Crafter (Theofel): Desynths are now listed with the first ingredient as recipe name. (e.g. "Solea (Desynth) (11)" instead of "Leather (11)")
+Things.dll 		- 1.0.9.1   - 2012/02/23
+	- (Theofel) Added definition for an invalid item ID. 
+
+
+Main.exe		- 2.6.14.2  - 2012/02/21
+	- Hopefully fixed the initialization status box hanging Iocaine.
+IocaineCore.dll		- 1.1.0.1   - 2012/02/21
+	- Same as Main.exe.
+
+Main.exe		- 2.6.14.0  - 2012/02/19
+	- (Theofel) Several enhancements and fixes to the crafter.
+IocaineCore.dll		- 1.1.0.0   - 2012/02/19
+	- Same updates as above.
+FFXINpcs.dll		- 1.0.1.0   - 2012/02/19
+	- Added guild related NPCs and guild hours.
+
+FFXIThings.dll		- 1.0.9.0   - 2012/02/13
+	- Updated with items from the last 2-3 version updates.
+Main.exe		- 2.6.13.6  - 2012/02/13
+	- Rebuilt due to FFXIThings.dll update issues.
+IocaineCore.dll		- 1.0.2.1   - 2012/02/13
+	- Rebuilt due to FFXIThings.dll update issues.
+
+2.6.13.5  - 2012/02/01 - Fisher   - (Theofel) Added support for handling fishes with multiple Fish IDs.
+2.6.13.4  - 2012/01/23 - Fisher   - Fixed the Bait Box error when clicking +/- when nothing is selected.
+2.6.13.4  - 2012/01/23 - Fisher   - Fixed the Drop Box error when clicking Remove when nothing is selected.
+2.6.13.2  - 2012/01/19 - SkillUp  - (Theofel) Fixed the issue where sometimes the items in the spell box were duplicated.
+2.6.13.1  - 2012/01/17 - SkillUp  - (Theofel) Fixed the issue where a spell was cast after pressing the stop or panic button while resting.
+2.6.13.0  - 2011/12/27 - Fisher   - Added ability to move lures from sack/satchel to bag.
+2.6.13.0  - 2011/12/27 - Fisher   - Added ability to move fish/items to sack/satchel.
+2.6.13.0  - 2011/12/27 - Fisher   - Added ability to use multiple lures.
+2.6.12.4  - 2011/12/18 - Nav      - Fixed the issue with saving a route with no nodes (not allowed).
+2.6.12.1  - 2011/12/05 - All Dlls - Bumped revision of all libraries to make sure they're all current.
+2.6.12.0  - 2011/12/04 - Top      - Fixed command entry to work anytime and immediately.
+                       - Top      - Major code reorganization. Extracted IocaineCore to a new dll.
+2.6.11.9  - 2011/11/28 - Top      - Fixed issue with security logging thread not completing.
+2.6.11.8  - 2011/11/18 - Top      - Added status box during initialization.
+2.6.11.7  - 2011/11/17 - Top      - Released with new obfuscation.
+2.6.11.6  - 2011/11/10 - Fisher   - Fixed issue where no catch count wasn't being reset at Jp midnight.
+2.6.11.5  - 2011/11/08 - Fisher   - Added a check of the fish HP percentage being > 100.
+2.6.11.4  - 2011/11/07 - Fisher   - Hopefully fixed crashes on Resume and at Jp midnight restart.
+2.6.11.2  - 2011/11/01 - Top      - Fixed password saving issue.
+2.6.11.1  - 2011/10/31 - Top      - Obfuscated with old tool to see if it fixes issues with the PL bot.
+                       - Top      - Updated FFXIThings.dll.
+2.6.11.0  - 2011/10/29 - Top      - Started using password protection for Iocaine.
+                       - Top      - Added a timeout/retry mechanism to fix the Vana time/date issue when NTP server doesn't respond.
+                       - Top      - Added server connection checking on startup so Iocaine shouldn't just crash if it cannot connect.
+                       - Top      - Added server based security logging.
+                       - Fisher   - Fixed issue where, in some cases, running out of bait would not trigger an audio message.
+                       - Fisher   - Fixed issue where, after inventory has become full and Jp midnight comes around, the audio message gets spammed.
+                       - Fisher   - Fixed issue where the 'continue fishing' when inventory is full was no longer working.
+2.6.10.1  - 2011/09/19 - PowerLvl - Fixed Winds of Promy text and added Triumphant Roar & Regeneration to the self buffs list.
+2.6.10.0  - 2011/09/18 - Fisher   - Added stop on no rod/bait by checking if they're equipped instead of bad fish count.
+                       - Fisher   - Added stop on full by checking inventory instead of releasing a fish first.
+                       - SkillUp  - Added Water Spirit to the Summons list.
+                       - PowerLvl - Added BLU commands to the self buff list.
+2.6.9.0   - 2011/08/02 - Top      - Added basic GM tell response settings (kill, stop all, stop fisher).
+2.6.8.1   - 2011/07/29 - CmdLine  - Fixed issue where reaching 120 characters in the cmd line would block out any keyboard input (no backspace).
+                       - Nav      - Fixed issue where saving a new trip did not update all of the zone tables properly and reported an error.
+2.6.8.0   - 2011/07/29 - SkillUp  - Added setting to delay between casts.
+                       - Nav      - Added setting to sort trips by final zone only (set by default).
+                       - Nav      - Fixed issue where bot would pause between routes even if the next node was a position node.
+                       - Nav      - Fixed issue where clearing a trip removed it's routes until restart.
+                       - Fisher   - Added bot stop when zone changes.
+2.6.7.0   - 2011/07/17 - Top      - General release of the Navigation bot.
+2.6.6.5   - 2011/07/16 - Nav      - Fixed issue when running a trip that wasn't yet saved.
+                       - Nav      - Fixed the time remaining counter (was being reset when each route was started).
+2.6.6.4   - 2011/07/15 - Nav      - Fixed another bug where null trip tags caused a crash.
+2.6.6.3   - 2011/07/15 - TA       - Fixed PC player status mem-read offset broken after update on 7/11/11.
+                       - Nav      - Fixed bug where null trip tags caused a crash.
+                       - Nav      - Fixed bug when saving a new route or trip, the zone map for that route/trip were not being updated causing errors.
+2.6.6.2   - 2011/07/11 - Top      - Fixed issues caused from version update.
+                       - Nav      - Fixed issue when loading a route.
+2.6.6.0   - 2011/07/11 - Nav      - Added time remaining text.
+                       - Nav      - Added a distance and zone check before trying to write current position to memory (only occurs on an end position node).
+                       - Nav      - Added a check for trip/route name when saving, prompts/exits if name already exists.
+                       - Nav      - Fixed lack or prompt when right clicking on a route in the Route tree view.
+2.6.5.0   - 2011/07/10 - Nav      - Changed the trip creation/selection interface to use TreeView's.
+                       - Nav      - Added trip & route tagging to allow for better organization.
+                       - Nav      - Added ability to run a single route (right click).
+2.6.4.0   - 2011/06/27 - Fisher   - Integrated navigation into the fisher on done/full/fatigued.
+                       - Nav      - Fixed the recording tab route listbox scrolling problem with reordering.
+                       - Nav      - Fixed the problem with drag/drop and double clicking conflicts.
+2.6.3.0   - 2011/06/25 - Settings - Hopefully fixed the issue when using non-NA decimal separator settings.
+                       - Nav      - Added setting to change the sound when finishing a route.
+2.6.2.0   - 2011/06/24 - Nav      - Added settings for default route recording values.
+                       - Nav      - Added ability to reorder (drag/drop) route nodes in the Recording tab Route Nodes list box.
+                       - Nav      - Fixed the crashing when route/trip name contains apostrophe.
+                       - Nav      - Allow running a trip if no positions are near if there is a teleport command in the trip.
+                       - Nav      - Fixed issue after zoning due to teleport, added a wait.
+2.6.1.0   - 2011/06/15 - Nav      - If Target NPC text box is empty or has default text, will add any targeted NPC.
+2.6.0.1   - 2011/06/15 - Nav      - Added a zone check before processing any position node.
+2.6.0.0   - 2011/06/14 - Nav      - Initial release of Navigation.
+                       - Fisher   - Made fatigue sticky so it's not reset when you stop the fisher.
+2.5.1.5   - 2011/05/28 - PowerLvl - Allow convert if sub is RDM 40 or above.
+2.5.1.4   - 2011/05/23 - Crafter  - Fixed bug for new Lightning Crystal abbreviation in inventory.
+2.5.1.2   - 2011/05/14 - Fisher   - Fixed bug where fisher sometimes didn't stop when ferry was docking.
+2.5.1.1   - 2011/05/12 - PowerLvl - Fixed bugs related to changing pol process.
+                       - Fisher   - Made fatigue rely on chat log messages.
+2.5.1.0   - 2011/05/09 - Top      - Added ability to select POL process.
+                       - Top      - Auto-save user settings per character.
+                       - Top      - Fixed offset for the top left menu text.
+                       - Updater  - Changed from rtf text box to progress bar.
+2.5.0.3   - 2011/04/20 - Fisher   - Made SQL port configurable via reading from a file called SQLPort.txt.
+                       - PL       - Added several scrolls/songs that were missing.
+2.5.0.2   - 2011/03/04 - TA       - Fixed another issue with PC player status. TA should be working now.
+2.5.0.1   - 2011/03/02 - TA       - Fixed the 'target lock' mem read that had broken the TA.
+2.5.0.0   - 2010/12/14 - WMS      - Initial release of WMS.
+2.4.5.0   - 2010/12/13 - Things   - Updated FFXIThings.dll with new items from version update.
+2.4.5.0   - 2010/12/07 - Top      - Fixed after version update.
+2.4.4.6   - 2010/10/31 - PowerLvl - Fixed when changing from Refresh to Refresh II (was not changing).
+2.4.4.5   - 2010/09/24 - TA       - Fixed an issue causing the cpu to max out when running.
+2.4.4.4   - 2010/09/21 - PowerLvl - Fixed Refresh II macro text.
+2.4.4.3   - 2010/09/20 - Top	  - Minor edits.
+2.4.4.2   - 2010/09/19 - PowerLvl - Fixed bug that was causing all shared commands to hang when PL character is removed.
+2.4.4.1   - 2010/09/16 - PowerLvl - Added refresh II to target buffs list.
+                       - PowerLvl - Fixed bug where PL default buffs/cures settings were not being saved.
+                       - PowerLvl - Fixed bug where chat command caused you to stand while resting.
+2.4.4.0   - 2010/09/15 - TA	  - Added the TA (simple version).
+                       - PowerLvl - Added new spells/songs/rolls for 76-85.
+                       - All      - Various bug fixes.
+                       - Fisher   - Added sound when inventory full or finished fishing.
+                       - Crafter  - Added sound when finished crafting.
+2.4.3.0   - 2010/04/28 - PowerLvl - Added bard songs and corsair rolls to self buffs.
+2.4.2.0   - 2010/03/25 - Fisher   - Added Continue on Release option.
+                       - DLL      - Updated FFXIThings.dll with the new items from the March update.
+2.4.1.0   - 2009/12/29 - Crafter  - Added an extra wait delay config.
+                       - Fisher   - Bug Fix: Fisher incorrect time displayed.
+2.4.0.3   - 2009/12/23 - Trader   - Fixed Trader memloc.
+2.4.0.2   - 2009/11/27 - Trader   - Fixed this, memloc and data structure had completely changed.
+                       - PowerLvl - Added Regen to the manual Cure box.
+                       - Crafter  - Bug Fix: Recipe manager quantity boxes capped at 12, changed to 99.
+                       - Crafter  - Bug Fix: Recipe manager errored on Apply when no crafter guild button was selected.
+                       - Crafter  - Bug Fix: Was not parsing results correctly, this should be fixed.
+                       - Top      - Updated support for new items from last version update.
+2.4.0.0   - 2009/11/09 - Top      - Added Crafter and Helpers (Trader).
+2.3.6.2   - 2009/07/23 - Fisher   - Bug Fix: When returning to fisher tab, the clock's day/moon was not being updated.
+                       - Fisher   - Bug Fix: Broken Lu Shang's would not be re-equipped.
+                       - Top      - Bug Fix: when entering window name, if there was no text it crashed Iocaine.
+2.3.6.1   - 2009/07/21 - Top      - Fixed PL Bot offset (PC Map).
+2.3.6.0   - 2009/07/20 - Top      - Now using byte pattern matching to locate offsets.
+2.3.5.0   - 2009/04/22 - Top      - Updated offsets for 4/22/09 version update.
+                       - PowerLvl - Added Refresh to Buff list.
+                       - PowerLvl - Added Auspice to buff list.
+                       - PowerLvl - Added Sacrifice, Esuna, Erase, and Raises to manual buff box.
+                       - Top      - Bug Fix: When 2 pol's are open and Iocaine searches for the given window name, cpu goes to 100%
+                       - Top      - Added Sacrifice, Esuna, Cura, and Auspice to command database.
+2.3.4.0   - 2009/04/08 - Top      - Updated offsets for version update Apr 8, 2009.
+                       - Top      - Made version update mandatory if new version available.
+                       - Fisher   - Bug Fix: Command Entry, when moving down command history, would skip last command.
+2.3.3.2   - 2009/03/18 - Fisher   - Bug Fix: When getting a /tell, if it wrapped multiple lines would crash.
+                       - Fisher   - Bug Fix: Fixed so that when your neighbor catches a monster, 
+				    it won't count to you.
+2.3.3.1   - 2009/03/14 - Fisher   - Bug Fix: Fixed exceptions on zone/area change.
+				  - Bug Fix: Fixed exceptions on initial window load.
+2.3.3.0   - 2009/03/14 - Fisher   - Added Command Entry button/form for chatting while fishing.
+		       - Fisher   - Added 'Release' button to give up and pause fisher.
+		       - Top      - Made several code changes to improve stability.
+2.3.2.0   - 2009/03/03 - Fisher   - Upgraded more security features.
+2.3.1.0   - 2009/03/03 - Fisher   - Upgraded security features.
+2.3.0.2   - 2009/03/02 - Fisher   - Added random time server to initialize Vana time.
+2.3.0.1   - 2009/03/01 - Stats    - Added Fish % to Stats Viewer Fish tab.
+2.3.0.0   - 2009/02/25 - Stats    - Introduced Stats Viewer with Fish Stats.
+2.2.1.4   - 2009/02/03 - PowerLvl - Added 3 more user configurable commands.
+2.2.1.4   - 2009/02/03 - Fisher   - Bug Fix: Internal zone variable in the fisher was not getting updated
+                                    causing some fish stats records to have the incorrect zone.
+2.2.1.3   - 2009/01/30 - Top      - Bug Fix: Chat log fix (for Vista).
+2.2.1.2   - 2009/01/28 - Top      - Bug Fix: Changed chat log mem reads based on OS type (Vista now works).
+2.2.1.1   - 2009/01/19 - Fisher   - Bug Fix: When changing characters, sometimes old data was loaded.
+2.2.1.0   - 2009/01/17 - Fisher   - Implemented fish stats tracking system.
+                       - Fisher   - Added weather to main interface.
+                       - Fisher   - Added chat log parsing to pause bot when nearing a harbor (will pause bot).
+                       - Fisher   - Added chat log parsing for skill up.
+                       - Fisher   - Bug Fix: With Catch All checked, would catch mobs on ferry w/ ID2=20.
+                       - Fisher   - Bug Fix: Even without Catch All checked, this would happen.
+                       - Top      - Added update of Iocaine2.exe file.
+                       - Fisher   - Added extra 'enter' presses to catch fish after hp=0.
+                       - Top      - Added icon.
+2.2.0.3   - 2009/01/01 - PowerLvl - Bug Fix: Was trying to buff for a player that had been removed.
+                       - PowerLvl - Changed way recast time is used, now much more accurate.
+2.2.0.1   - 2008/12/26 - PowerLvl - Bug Fix: Was hitting error condition when reading tasks.
+2.2.0.0   - 2008/12/26 - PowerLvl - Bug Fix: Was always sending lost chat command even if disabled.
+                       - SkillUp  - Initial Release.
+2.1.7.1   - 2008/12/22 - Fisher   - Bug Fix: Was crashing on fisher start.
+2.1.7.0   - 2008/12/22 - PowerLvl - Added Convert configuration.
+                       - PowerLvl - Added chat commands to settings.
+                       - PowerLvl - Added user defined recurring command (intended for food usage).
+                       - PowerLvl - Other various minor bug fixes.
+2.1.6.0   - 2008/12/15 - Fisher   - Bug fix: Mobs could be caught with "drop mobs" enabled.
+                       - PowerLvl - Changed how bot follows so it will follow through zones (if set up properly).
+                       - PowerLvl - Now saves powerlevel user settings.
+                       - PowerLvl - Added "Upper MP Margin" in case gear swaps increase MP when standing (see setup).
+                       - PowerLvl - Added cast time modifiers (were not connected previously).
+                       - PowerLvl - Bug fix: Added a delay when zoning to reduce possibility of hp=0 reads (cure spam).
+                       - PowerLvl - Bug fix: Would occasionally try to follow someone while resting.
+                       - PowerLvl - Bug fix: Was trying to cast without proper MP available.
+                       - PowerLvl - Bug fix: Follow distance was not being updated correctly when user changed it.
+                       - PowerLvl - Other minor bug fixes.
+2.1.5.3   - 2008/12/09 - Fisher   - Changed how fisher identifies a monster (for real this time).
+                       - Fisher   - Added log messages when giving command before shutdown.
+2.1.5.2   - 2008/12/08 - Top      - Updated offsets for 12/8/08 version update.
+                       - Fisher   - Increased time before giving logout command when done fishing.
+                       - Fisher   - Changed how fisher identifies a monster.
+2.1.5.0   - 2008/11/28 - Fisher   - Added zone to Fisher form.
+                       - PowerLvl - Added status text to PL bot.
+                       - PowerLvl - Various bug fixes (notably fixed crashes in PL bot).
+2.1.4.0   - 2008/11/21 - Fisher   - Added "Catch All Except" option to fisher.
+2.1.3.1   - 2008/11/20 - Fisher   - Removed connection error pop-up.
+2.1.3.0   - 2008/11/20 - Fisher   - Added timed fishing (start/end times).
+2.1.2.0   - 2008/11/17 - Fisher   - Removed connection error pop-up.
+                       - Fisher   - Added random release time option under fisher settings.
+                       - Fisher   - Reset fatigue on zone change or window change.
+2.1.1.0   - 2008/11/12 - Top      - Added auto-update feature.
+                       - PowerLvl - Changed movement keys from W and R to num-8 and num-7.
+2.1.0.1   - 2008/10/08 - Top      - Initial PL Bot release.
+
+2.0.3.9   - 2008/09/14 - Fisher   - Fixed bug where drop items could not be removed.
+2.0.3.8   - 2008/09/08 - Top      - Updated offsets for version update.
+2.0.3.7   - 2008/08/25 - Fisher   - Added delay when releasing to the settings form.
+2.0.3.6   - 2008/08/23 - Top      - Initial release of Fish Bot.
