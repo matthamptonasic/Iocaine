@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WMSDataSet" targetNamespace="http://tempuri.org/WMSDataSet.xsd" xmlns:mstns="http://tempuri.org/WMSDataSet.xsd" xmlns="http://tempuri.org/WMSDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WMSDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="WMSDataSet" msprop:Generator_UserDSName="WMSDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CharacterInfo" msprop:Generator_TableClassName="CharacterInfoDataTable" msprop:Generator_RowEvArgName="CharacterInfoRowChangeEvent" msprop:Generator_TableVarName="tableCharacterInfo" msprop:Generator_TablePropName="CharacterInfo" msprop:Generator_RowDeletingName="CharacterInfoRowDeleting" msprop:Generator_RowChangingName="CharacterInfoRowChanging" msprop:Generator_RowEvHandlerName="CharacterInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="CharacterInfoRowDeleted" msprop:Generator_UserTableName="CharacterInfo" msprop:Generator_RowChangedName="CharacterInfoRowChanged" msprop:Generator_RowClassName="CharacterInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="BagOcc" msprop:Generator_ColumnVarNameInTable="columnBagOcc" msprop:Generator_ColumnPropNameInRow="BagOcc" msprop:Generator_ColumnPropNameInTable="BagOccColumn" msprop:Generator_UserColumnName="BagOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="BagCap" msprop:Generator_ColumnVarNameInTable="columnBagCap" msprop:Generator_ColumnPropNameInRow="BagCap" msprop:Generator_ColumnPropNameInTable="BagCapColumn" msprop:Generator_UserColumnName="BagCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SatchelOcc" msprop:Generator_ColumnVarNameInTable="columnSatchelOcc" msprop:Generator_ColumnPropNameInRow="SatchelOcc" msprop:Generator_ColumnPropNameInTable="SatchelOccColumn" msprop:Generator_UserColumnName="SatchelOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SatchelCap" msprop:Generator_ColumnVarNameInTable="columnSatchelCap" msprop:Generator_ColumnPropNameInRow="SatchelCap" msprop:Generator_ColumnPropNameInTable="SatchelCapColumn" msprop:Generator_UserColumnName="SatchelCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SackOcc" msprop:Generator_ColumnVarNameInTable="columnSackOcc" msprop:Generator_ColumnPropNameInRow="SackOcc" msprop:Generator_ColumnPropNameInTable="SackOccColumn" msprop:Generator_UserColumnName="SackOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SackCap" msprop:Generator_ColumnVarNameInTable="columnSackCap" msprop:Generator_ColumnPropNameInRow="SackCap" msprop:Generator_ColumnPropNameInTable="SackCapColumn" msprop:Generator_UserColumnName="SackCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="CaseOcc" msprop:Generator_ColumnVarNameInTable="columnCaseOcc" msprop:Generator_ColumnPropNameInRow="CaseOcc" msprop:Generator_ColumnPropNameInTable="CaseOccColumn" msprop:Generator_UserColumnName="CaseOcc" type="xs:unsignedByte" default="0" />
+              <xs:element name="CaseCap" msprop:Generator_ColumnVarNameInTable="columnCaseCap" msprop:Generator_ColumnPropNameInRow="CaseCap" msprop:Generator_ColumnPropNameInTable="CaseCapColumn" msprop:Generator_UserColumnName="CaseCap" type="xs:unsignedByte" default="30" />
+              <xs:element name="SafeOcc" msprop:Generator_ColumnVarNameInTable="columnSafeOcc" msprop:Generator_ColumnPropNameInRow="SafeOcc" msprop:Generator_ColumnPropNameInTable="SafeOccColumn" msprop:Generator_UserColumnName="SafeOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SafeCap" msprop:Generator_ColumnVarNameInTable="columnSafeCap" msprop:Generator_ColumnPropNameInRow="SafeCap" msprop:Generator_ColumnPropNameInTable="SafeCapColumn" msprop:Generator_UserColumnName="SafeCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="StorageOcc" msprop:Generator_ColumnVarNameInTable="columnStorageOcc" msprop:Generator_ColumnPropNameInRow="StorageOcc" msprop:Generator_ColumnPropNameInTable="StorageOccColumn" msprop:Generator_UserColumnName="StorageOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="StorageCap" msprop:Generator_ColumnVarNameInTable="columnStorageCap" msprop:Generator_ColumnPropNameInRow="StorageCap" msprop:Generator_ColumnPropNameInTable="StorageCapColumn" msprop:Generator_UserColumnName="StorageCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="LockerOcc" msprop:Generator_ColumnVarNameInTable="columnLockerOcc" msprop:Generator_ColumnPropNameInRow="LockerOcc" msprop:Generator_ColumnPropNameInTable="LockerOccColumn" msprop:Generator_UserColumnName="LockerOcc" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="LockerCap" msprop:Generator_ColumnVarNameInTable="columnLockerCap" msprop:Generator_ColumnPropNameInRow="LockerCap" msprop:Generator_ColumnPropNameInTable="LockerCapColumn" msprop:Generator_UserColumnName="LockerCap" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="WardrobeOcc" msprop:Generator_ColumnVarNameInTable="columnWardrobeOcc" msprop:Generator_ColumnPropNameInRow="WardrobeOcc" msprop:Generator_ColumnPropNameInTable="WardrobeOccColumn" msprop:Generator_UserColumnName="WardrobeOcc" type="xs:unsignedByte" default="0" />
+              <xs:element name="WardrobeCap" msprop:Generator_ColumnVarNameInTable="columnWardrobeCap" msprop:Generator_ColumnPropNameInRow="WardrobeCap" msprop:Generator_ColumnPropNameInTable="WardrobeCapColumn" msprop:Generator_UserColumnName="WardrobeCap" type="xs:unsignedByte" default="30" />
+              <xs:element name="DateSaved" msprop:Generator_ColumnVarNameInTable="columnDateSaved" msprop:Generator_ColumnPropNameInRow="DateSaved" msprop:Generator_ColumnPropNameInTable="DateSavedColumn" msprop:Generator_UserColumnName="DateSaved" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Items" msprop:Generator_TableClassName="ItemsDataTable" msprop:Generator_RowEvArgName="ItemsRowChangeEvent" msprop:Generator_TableVarName="tableItems" msprop:Generator_TablePropName="Items" msprop:Generator_RowDeletingName="ItemsRowDeleting" msprop:Generator_RowChangingName="ItemsRowChanging" msprop:Generator_RowEvHandlerName="ItemsRowChangeEventHandler" msprop:Generator_RowDeletedName="ItemsRowDeleted" msprop:Generator_UserTableName="Items" msprop:Generator_RowChangedName="ItemsRowChanged" msprop:Generator_RowClassName="ItemsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Character" msprop:Generator_ColumnVarNameInTable="columnCharacter" msprop:Generator_ColumnPropNameInRow="Character" msprop:Generator_ColumnPropNameInTable="CharacterColumn" msprop:Generator_UserColumnName="Character" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_UserColumnName="Quantity" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

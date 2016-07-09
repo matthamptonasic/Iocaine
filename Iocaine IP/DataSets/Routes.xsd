@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Routes" targetNamespace="http://tempuri.org/UserRoutes.xsd" xmlns:mstns="http://tempuri.org/UserRoutes.xsd" xmlns="http://tempuri.org/UserRoutes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Routes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Routes" msprop:Generator_UserDSName="Routes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UserRoutes" msdata:CaseSensitive="False" msprop:Generator_TableClassName="UserRoutesDataTable" msprop:Generator_TableVarName="tableUserRoutes" msprop:Generator_TablePropName="_UserRoutes" msprop:Generator_RowDeletingName="UserRoutesRowDeleting" msprop:Generator_UserTableName="UserRoutes" msprop:Generator_RowChangingName="UserRoutesRowChanging" msprop:Generator_RowEvHandlerName="UserRoutesRowChangeEventHandler" msprop:Generator_RowDeletedName="UserRoutesRowDeleted" msprop:Generator_RowEvArgName="UserRoutesRowChangeEvent" msprop:Generator_RowChangedName="UserRoutesRowChanged" msprop:Generator_RowClassName="UserRoutesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RouteID" msprop:Generator_ColumnVarNameInTable="columnRouteID" msprop:Generator_ColumnPropNameInRow="RouteID" msprop:Generator_ColumnPropNameInTable="RouteIDColumn" msprop:Generator_UserColumnName="RouteID" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="RouteName" msprop:Generator_ColumnVarNameInTable="columnRouteName" msprop:Generator_ColumnPropNameInRow="RouteName" msprop:Generator_ColumnPropNameInTable="RouteNameColumn" msprop:Generator_UserColumnName="RouteName" type="xs:string" minOccurs="0" />
+              <xs:element name="RouteStartName" msprop:Generator_ColumnVarNameInTable="columnRouteStartName" msprop:Generator_ColumnPropNameInRow="RouteStartName" msprop:Generator_ColumnPropNameInTable="RouteStartNameColumn" msprop:Generator_UserColumnName="RouteStartName" type="xs:string" minOccurs="0" />
+              <xs:element name="RouteEndName" msprop:Generator_ColumnVarNameInTable="columnRouteEndName" msprop:Generator_ColumnPropNameInRow="RouteEndName" msprop:Generator_ColumnPropNameInTable="RouteEndNameColumn" msprop:Generator_UserColumnName="RouteEndName" type="xs:string" minOccurs="0" />
+              <xs:element name="RouteTags" msprop:Generator_ColumnVarNameInTable="columnRouteTags" msprop:Generator_ColumnPropNameInRow="RouteTags" msprop:Generator_ColumnPropNameInTable="RouteTagsColumn" msprop:Generator_UserColumnName="RouteTags" type="xs:string" minOccurs="0" />
+              <xs:element name="NodeID" msprop:Generator_ColumnVarNameInTable="columnNodeID" msprop:Generator_ColumnPropNameInRow="NodeID" msprop:Generator_ColumnPropNameInTable="NodeIDColumn" msprop:Generator_UserColumnName="NodeID" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="NodeType" msprop:Generator_ColumnVarNameInTable="columnNodeType" msprop:Generator_ColumnPropNameInRow="NodeType" msprop:Generator_ColumnPropNameInTable="NodeTypeColumn" msprop:Generator_UserColumnName="NodeType" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="NodeData" msprop:Generator_ColumnVarNameInTable="columnNodeData" msprop:Generator_ColumnPropNameInRow="NodeData" msprop:Generator_ColumnPropNameInTable="NodeDataColumn" msprop:Generator_UserColumnName="NodeData" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="NodeDetail" msprop:Generator_ColumnVarNameInTable="columnNodeDetail" msprop:Generator_ColumnPropNameInRow="NodeDetail" msprop:Generator_ColumnPropNameInTable="NodeDetailColumn" msprop:Generator_UserColumnName="NodeDetail" type="xs:string" minOccurs="0" />
+              <xs:element name="NodePosX" msprop:Generator_ColumnVarNameInTable="columnNodePosX" msprop:Generator_ColumnPropNameInRow="NodePosX" msprop:Generator_ColumnPropNameInTable="NodePosXColumn" msprop:Generator_UserColumnName="NodePosX" type="xs:float" minOccurs="0" />
+              <xs:element name="NodePosY" msprop:Generator_ColumnVarNameInTable="columnNodePosY" msprop:Generator_ColumnPropNameInRow="NodePosY" msprop:Generator_ColumnPropNameInTable="NodePosYColumn" msprop:Generator_UserColumnName="NodePosY" type="xs:float" minOccurs="0" />
+              <xs:element name="NodePosHeading" msprop:Generator_ColumnVarNameInTable="columnNodePosHeading" msprop:Generator_ColumnPropNameInRow="NodePosHeading" msprop:Generator_ColumnPropNameInTable="NodePosHeadingColumn" msprop:Generator_UserColumnName="NodePosHeading" type="xs:float" minOccurs="0" />
+              <xs:element name="NodeZoneID" msprop:Generator_ColumnVarNameInTable="columnNodeZoneID" msprop:Generator_ColumnPropNameInRow="NodeZoneID" msprop:Generator_ColumnPropNameInTable="NodeZoneIDColumn" msprop:Generator_UserColumnName="NodeZoneID" type="xs:unsignedShort" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UserTrips" msprop:Generator_TableClassName="UserTripsDataTable" msprop:Generator_TableVarName="tableUserTrips" msprop:Generator_TablePropName="UserTrips" msprop:Generator_RowDeletingName="UserTripsRowDeleting" msprop:Generator_UserTableName="UserTrips" msprop:Generator_RowChangingName="UserTripsRowChanging" msprop:Generator_RowEvHandlerName="UserTripsRowChangeEventHandler" msprop:Generator_RowDeletedName="UserTripsRowDeleted" msprop:Generator_RowEvArgName="UserTripsRowChangeEvent" msprop:Generator_RowChangedName="UserTripsRowChanged" msprop:Generator_RowClassName="UserTripsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TripID" msprop:Generator_ColumnVarNameInTable="columnTripID" msprop:Generator_ColumnPropNameInRow="TripID" msprop:Generator_ColumnPropNameInTable="TripIDColumn" msprop:Generator_UserColumnName="TripID" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="TripName" msprop:Generator_ColumnVarNameInTable="columnTripName" msprop:Generator_ColumnPropNameInRow="TripName" msprop:Generator_ColumnPropNameInTable="TripNameColumn" msprop:Generator_UserColumnName="TripName" type="xs:string" minOccurs="0" />
+              <xs:element name="TripTags" msprop:Generator_ColumnVarNameInTable="columnTripTags" msprop:Generator_ColumnPropNameInRow="TripTags" msprop:Generator_ColumnPropNameInTable="TripTagsColumn" msprop:Generator_UserColumnName="TripTags" type="xs:string" minOccurs="0" />
+              <xs:element name="RouteSequenceID" msprop:Generator_ColumnVarNameInTable="columnRouteSequenceID" msprop:Generator_ColumnPropNameInRow="RouteSequenceID" msprop:Generator_ColumnPropNameInTable="RouteSequenceIDColumn" msprop:Generator_UserColumnName="RouteSequenceID" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="RouteID" msprop:Generator_ColumnVarNameInTable="columnRouteID" msprop:Generator_ColumnPropNameInRow="RouteID" msprop:Generator_ColumnPropNameInTable="RouteIDColumn" msprop:Generator_UserColumnName="RouteID" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="Direction" msprop:Generator_ColumnVarNameInTable="columnDirection" msprop:Generator_ColumnPropNameInRow="Direction" msprop:Generator_ColumnPropNameInTable="DirectionColumn" msprop:Generator_UserColumnName="Direction" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

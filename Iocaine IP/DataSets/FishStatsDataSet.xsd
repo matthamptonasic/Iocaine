@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FishStatsDataSet" targetNamespace="http://tempuri.org/FishStatsDataSet.xsd" xmlns:mstns="http://tempuri.org/FishStatsDataSet.xsd" xmlns="http://tempuri.org/FishStatsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FishStatsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FishStatsDataSet" msprop:Generator_UserDSName="FishStatsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ZoneCatchTable" msprop:Generator_UserTableName="ZoneCatchTable" msprop:Generator_RowEvArgName="ZoneCatchTableRowChangeEvent" msprop:Generator_TableVarName="tableZoneCatchTable" msprop:Generator_TablePropName="ZoneCatchTable" msprop:Generator_RowDeletingName="ZoneCatchTableRowDeleting" msprop:Generator_RowChangingName="ZoneCatchTableRowChanging" msprop:Generator_RowDeletedName="ZoneCatchTableRowDeleted" msprop:Generator_RowEvHandlerName="ZoneCatchTableRowChangeEventHandler" msprop:Generator_TableClassName="ZoneCatchTableDataTable" msprop:Generator_RowChangedName="ZoneCatchTableRowChanged" msprop:Generator_RowClassName="ZoneCatchTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:string" minOccurs="0" />
+              <xs:element name="Rod" msprop:Generator_ColumnVarNameInTable="columnRod" msprop:Generator_ColumnPropNameInRow="Rod" msprop:Generator_ColumnPropNameInTable="RodColumn" msprop:Generator_UserColumnName="Rod" type="xs:string" minOccurs="0" />
+              <xs:element name="Bait" msprop:Generator_ColumnVarNameInTable="columnBait" msprop:Generator_ColumnPropNameInRow="Bait" msprop:Generator_ColumnPropNameInTable="BaitColumn" msprop:Generator_UserColumnName="Bait" type="xs:string" minOccurs="0" />
+              <xs:element name="Hits" msprop:Generator_ColumnVarNameInTable="columnHits" msprop:Generator_ColumnPropNameInRow="Hits" msprop:Generator_ColumnPropNameInTable="HitsColumn" msprop:Generator_UserColumnName="Hits" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:int" minOccurs="0" />
+              <xs:element name="BiteRate" msprop:Generator_ColumnVarNameInTable="columnBiteRate" msprop:Generator_ColumnPropNameInRow="BiteRate" msprop:Generator_ColumnPropNameInTable="BiteRateColumn" msprop:Generator_UserColumnName="BiteRate" type="xs:float" minOccurs="0" />
+              <xs:element name="FishRate" msprop:Generator_ColumnVarNameInTable="columnFishRate" msprop:Generator_ColumnPropNameInRow="FishRate" msprop:Generator_ColumnPropNameInTable="FishRateColumn" msprop:Generator_UserColumnName="FishRate" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LocalZoneCatchTable" msprop:Generator_UserTableName="LocalZoneCatchTable" msprop:Generator_RowEvArgName="LocalZoneCatchTableRowChangeEvent" msprop:Generator_TableVarName="tableLocalZoneCatchTable" msprop:Generator_TablePropName="LocalZoneCatchTable" msprop:Generator_RowDeletingName="LocalZoneCatchTableRowDeleting" msprop:Generator_RowChangingName="LocalZoneCatchTableRowChanging" msprop:Generator_RowDeletedName="LocalZoneCatchTableRowDeleted" msprop:Generator_RowEvHandlerName="LocalZoneCatchTableRowChangeEventHandler" msprop:Generator_TableClassName="LocalZoneCatchTableDataTable" msprop:Generator_RowChangedName="LocalZoneCatchTableRowChanged" msprop:Generator_RowClassName="LocalZoneCatchTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:string" minOccurs="0" />
+              <xs:element name="Rod" msprop:Generator_ColumnVarNameInTable="columnRod" msprop:Generator_ColumnPropNameInRow="Rod" msprop:Generator_ColumnPropNameInTable="RodColumn" msprop:Generator_UserColumnName="Rod" type="xs:string" minOccurs="0" />
+              <xs:element name="Bait" msprop:Generator_ColumnVarNameInTable="columnBait" msprop:Generator_ColumnPropNameInRow="Bait" msprop:Generator_ColumnPropNameInTable="BaitColumn" msprop:Generator_UserColumnName="Bait" type="xs:string" minOccurs="0" />
+              <xs:element name="Hits" msprop:Generator_ColumnVarNameInTable="columnHits" msprop:Generator_ColumnPropNameInRow="Hits" msprop:Generator_ColumnPropNameInTable="HitsColumn" msprop:Generator_UserColumnName="Hits" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:int" minOccurs="0" />
+              <xs:element name="BiteRate" msprop:Generator_ColumnVarNameInTable="columnBiteRate" msprop:Generator_ColumnPropNameInRow="BiteRate" msprop:Generator_ColumnPropNameInTable="BiteRateColumn" msprop:Generator_UserColumnName="BiteRate" type="xs:float" minOccurs="0" />
+              <xs:element name="FishRate" msprop:Generator_ColumnVarNameInTable="columnFishRate" msprop:Generator_ColumnPropNameInRow="FishRate" msprop:Generator_ColumnPropNameInTable="FishRateColumn" msprop:Generator_UserColumnName="FishRate" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RodResultsTable" msprop:Generator_UserTableName="RodResultsTable" msprop:Generator_RowEvArgName="RodResultsTableRowChangeEvent" msprop:Generator_TableVarName="tableRodResultsTable" msprop:Generator_TablePropName="RodResultsTable" msprop:Generator_RowDeletingName="RodResultsTableRowDeleting" msprop:Generator_RowChangingName="RodResultsTableRowChanging" msprop:Generator_RowDeletedName="RodResultsTableRowDeleted" msprop:Generator_RowEvHandlerName="RodResultsTableRowChangeEventHandler" msprop:Generator_TableClassName="RodResultsTableDataTable" msprop:Generator_RowChangedName="RodResultsTableRowChanged" msprop:Generator_RowClassName="RodResultsTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rod" msprop:Generator_ColumnVarNameInTable="columnRod" msprop:Generator_ColumnPropNameInRow="Rod" msprop:Generator_ColumnPropNameInTable="RodColumn" msprop:Generator_UserColumnName="Rod" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakCount" msprop:Generator_ColumnVarNameInTable="columnRodBreakCount" msprop:Generator_ColumnPropNameInRow="RodBreakCount" msprop:Generator_ColumnPropNameInTable="RodBreakCountColumn" msprop:Generator_UserColumnName="RodBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakPerc" msprop:Generator_ColumnVarNameInTable="columnRodBreakPerc" msprop:Generator_ColumnPropNameInRow="RodBreakPerc" msprop:Generator_ColumnPropNameInTable="RodBreakPercColumn" msprop:Generator_UserColumnName="RodBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="LineBreakCount" msprop:Generator_ColumnVarNameInTable="columnLineBreakCount" msprop:Generator_ColumnPropNameInRow="LineBreakCount" msprop:Generator_ColumnPropNameInTable="LineBreakCountColumn" msprop:Generator_UserColumnName="LineBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="LineBreakPerc" msprop:Generator_ColumnVarNameInTable="columnLineBreakPerc" msprop:Generator_ColumnPropNameInRow="LineBreakPerc" msprop:Generator_ColumnPropNameInTable="LineBreakPercColumn" msprop:Generator_UserColumnName="LineBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooSmallCount" msprop:Generator_ColumnVarNameInTable="columnTooSmallCount" msprop:Generator_ColumnPropNameInRow="TooSmallCount" msprop:Generator_ColumnPropNameInTable="TooSmallCountColumn" msprop:Generator_UserColumnName="TooSmallCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooSmallPerc" msprop:Generator_ColumnVarNameInTable="columnTooSmallPerc" msprop:Generator_ColumnPropNameInRow="TooSmallPerc" msprop:Generator_ColumnPropNameInTable="TooSmallPercColumn" msprop:Generator_UserColumnName="TooSmallPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooLargeCount" msprop:Generator_ColumnVarNameInTable="columnTooLargeCount" msprop:Generator_ColumnPropNameInRow="TooLargeCount" msprop:Generator_ColumnPropNameInTable="TooLargeCountColumn" msprop:Generator_UserColumnName="TooLargeCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooLargePerc" msprop:Generator_ColumnVarNameInTable="columnTooLargePerc" msprop:Generator_ColumnPropNameInRow="TooLargePerc" msprop:Generator_ColumnPropNameInTable="TooLargePercColumn" msprop:Generator_UserColumnName="TooLargePerc" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LocalRodResultsTable" msprop:Generator_UserTableName="LocalRodResultsTable" msprop:Generator_RowEvArgName="LocalRodResultsTableRowChangeEvent" msprop:Generator_TableVarName="tableLocalRodResultsTable" msprop:Generator_TablePropName="LocalRodResultsTable" msprop:Generator_RowDeletingName="LocalRodResultsTableRowDeleting" msprop:Generator_RowChangingName="LocalRodResultsTableRowChanging" msprop:Generator_RowDeletedName="LocalRodResultsTableRowDeleted" msprop:Generator_RowEvHandlerName="LocalRodResultsTableRowChangeEventHandler" msprop:Generator_TableClassName="LocalRodResultsTableDataTable" msprop:Generator_RowChangedName="LocalRodResultsTableRowChanged" msprop:Generator_RowClassName="LocalRodResultsTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rod" msprop:Generator_ColumnVarNameInTable="columnRod" msprop:Generator_ColumnPropNameInRow="Rod" msprop:Generator_ColumnPropNameInTable="RodColumn" msprop:Generator_UserColumnName="Rod" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakCount" msprop:Generator_ColumnVarNameInTable="columnRodBreakCount" msprop:Generator_ColumnPropNameInRow="RodBreakCount" msprop:Generator_ColumnPropNameInTable="RodBreakCountColumn" msprop:Generator_UserColumnName="RodBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakPerc" msprop:Generator_ColumnVarNameInTable="columnRodBreakPerc" msprop:Generator_ColumnPropNameInRow="RodBreakPerc" msprop:Generator_ColumnPropNameInTable="RodBreakPercColumn" msprop:Generator_UserColumnName="RodBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="LineBreakCount" msprop:Generator_ColumnVarNameInTable="columnLineBreakCount" msprop:Generator_ColumnPropNameInRow="LineBreakCount" msprop:Generator_ColumnPropNameInTable="LineBreakCountColumn" msprop:Generator_UserColumnName="LineBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="LineBreakPerc" msprop:Generator_ColumnVarNameInTable="columnLineBreakPerc" msprop:Generator_ColumnPropNameInRow="LineBreakPerc" msprop:Generator_ColumnPropNameInTable="LineBreakPercColumn" msprop:Generator_UserColumnName="LineBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooSmallCount" msprop:Generator_ColumnVarNameInTable="columnTooSmallCount" msprop:Generator_ColumnPropNameInRow="TooSmallCount" msprop:Generator_ColumnPropNameInTable="TooSmallCountColumn" msprop:Generator_UserColumnName="TooSmallCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooSmallPerc" msprop:Generator_ColumnVarNameInTable="columnTooSmallPerc" msprop:Generator_ColumnPropNameInRow="TooSmallPerc" msprop:Generator_ColumnPropNameInTable="TooSmallPercColumn" msprop:Generator_UserColumnName="TooSmallPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooLargeCount" msprop:Generator_ColumnVarNameInTable="columnTooLargeCount" msprop:Generator_ColumnPropNameInRow="TooLargeCount" msprop:Generator_ColumnPropNameInTable="TooLargeCountColumn" msprop:Generator_UserColumnName="TooLargeCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooLargePerc" msprop:Generator_ColumnVarNameInTable="columnTooLargePerc" msprop:Generator_ColumnPropNameInRow="TooLargePerc" msprop:Generator_ColumnPropNameInTable="TooLargePercColumn" msprop:Generator_UserColumnName="TooLargePerc" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ZoneTable" msprop:Generator_UserTableName="ZoneTable" msprop:Generator_RowEvArgName="ZoneTableRowChangeEvent" msprop:Generator_TableVarName="tableZoneTable" msprop:Generator_TablePropName="ZoneTable" msprop:Generator_RowDeletingName="ZoneTableRowDeleting" msprop:Generator_RowChangingName="ZoneTableRowChanging" msprop:Generator_RowDeletedName="ZoneTableRowDeleted" msprop:Generator_RowEvHandlerName="ZoneTableRowChangeEventHandler" msprop:Generator_TableClassName="ZoneTableDataTable" msprop:Generator_RowChangedName="ZoneTableRowChanged" msprop:Generator_RowClassName="ZoneTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:string" minOccurs="0" />
+              <xs:element name="Checked" msprop:Generator_ColumnVarNameInTable="columnChecked" msprop:Generator_ColumnPropNameInRow="Checked" msprop:Generator_ColumnPropNameInTable="CheckedColumn" msprop:Generator_UserColumnName="Checked" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitTable" msprop:Generator_UserTableName="BaitTable" msprop:Generator_RowEvArgName="BaitTableRowChangeEvent" msprop:Generator_TableVarName="tableBaitTable" msprop:Generator_TablePropName="BaitTable" msprop:Generator_RowDeletingName="BaitTableRowDeleting" msprop:Generator_RowChangingName="BaitTableRowChanging" msprop:Generator_RowDeletedName="BaitTableRowDeleted" msprop:Generator_RowEvHandlerName="BaitTableRowChangeEventHandler" msprop:Generator_TableClassName="BaitTableDataTable" msprop:Generator_RowChangedName="BaitTableRowChanged" msprop:Generator_RowClassName="BaitTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Bait" msprop:Generator_ColumnVarNameInTable="columnBait" msprop:Generator_ColumnPropNameInRow="Bait" msprop:Generator_ColumnPropNameInTable="BaitColumn" msprop:Generator_UserColumnName="Bait" type="xs:string" minOccurs="0" />
+              <xs:element name="Checked" msprop:Generator_ColumnVarNameInTable="columnChecked" msprop:Generator_ColumnPropNameInRow="Checked" msprop:Generator_ColumnPropNameInTable="CheckedColumn" msprop:Generator_UserColumnName="Checked" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RodsFishTable" msprop:Generator_UserTableName="RodsFishTable" msprop:Generator_RowEvArgName="RodsFishTableRowChangeEvent" msprop:Generator_TableVarName="tableRodsFishTable" msprop:Generator_TablePropName="RodsFishTable" msprop:Generator_RowDeletingName="RodsFishTableRowDeleting" msprop:Generator_RowChangingName="RodsFishTableRowChanging" msprop:Generator_RowDeletedName="RodsFishTableRowDeleted" msprop:Generator_RowEvHandlerName="RodsFishTableRowChangeEventHandler" msprop:Generator_TableClassName="RodsFishTableDataTable" msprop:Generator_RowChangedName="RodsFishTableRowChanged" msprop:Generator_RowClassName="RodsFishTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fish" msdata:Caption="Rod" msprop:Generator_ColumnVarNameInTable="columnFish" msprop:Generator_ColumnPropNameInRow="Fish" msprop:Generator_ColumnPropNameInTable="FishColumn" msprop:Generator_UserColumnName="Fish" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakCount" msprop:Generator_ColumnVarNameInTable="columnRodBreakCount" msprop:Generator_ColumnPropNameInRow="RodBreakCount" msprop:Generator_ColumnPropNameInTable="RodBreakCountColumn" msprop:Generator_UserColumnName="RodBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="RodBreakPerc" msprop:Generator_ColumnVarNameInTable="columnRodBreakPerc" msprop:Generator_ColumnPropNameInRow="RodBreakPerc" msprop:Generator_ColumnPropNameInTable="RodBreakPercColumn" msprop:Generator_UserColumnName="RodBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="LineBreakCount" msprop:Generator_ColumnVarNameInTable="columnLineBreakCount" msprop:Generator_ColumnPropNameInRow="LineBreakCount" msprop:Generator_ColumnPropNameInTable="LineBreakCountColumn" msprop:Generator_UserColumnName="LineBreakCount" type="xs:int" minOccurs="0" />
+              <xs:element name="LineBreakPerc" msprop:Generator_ColumnVarNameInTable="columnLineBreakPerc" msprop:Generator_ColumnPropNameInRow="LineBreakPerc" msprop:Generator_ColumnPropNameInTable="LineBreakPercColumn" msprop:Generator_UserColumnName="LineBreakPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooSmallCount" msprop:Generator_ColumnVarNameInTable="columnTooSmallCount" msprop:Generator_ColumnPropNameInRow="TooSmallCount" msprop:Generator_ColumnPropNameInTable="TooSmallCountColumn" msprop:Generator_UserColumnName="TooSmallCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooSmallPerc" msprop:Generator_ColumnVarNameInTable="columnTooSmallPerc" msprop:Generator_ColumnPropNameInRow="TooSmallPerc" msprop:Generator_ColumnPropNameInTable="TooSmallPercColumn" msprop:Generator_UserColumnName="TooSmallPerc" type="xs:float" minOccurs="0" />
+              <xs:element name="TooLargeCount" msprop:Generator_ColumnVarNameInTable="columnTooLargeCount" msprop:Generator_ColumnPropNameInRow="TooLargeCount" msprop:Generator_ColumnPropNameInTable="TooLargeCountColumn" msprop:Generator_UserColumnName="TooLargeCount" type="xs:int" minOccurs="0" />
+              <xs:element name="TooLargePerc" msprop:Generator_ColumnVarNameInTable="columnTooLargePerc" msprop:Generator_ColumnPropNameInRow="TooLargePerc" msprop:Generator_ColumnPropNameInTable="TooLargePercColumn" msprop:Generator_UserColumnName="TooLargePerc" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitFishWillCatch" msprop:Generator_UserTableName="BaitFishWillCatch" msprop:Generator_RowEvArgName="BaitFishWillCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitFishWillCatch" msprop:Generator_TablePropName="BaitFishWillCatch" msprop:Generator_RowDeletingName="BaitFishWillCatchRowDeleting" msprop:Generator_RowChangingName="BaitFishWillCatchRowChanging" msprop:Generator_RowDeletedName="BaitFishWillCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitFishWillCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitFishWillCatchDataTable" msprop:Generator_RowChangedName="BaitFishWillCatchRowChanged" msprop:Generator_RowClassName="BaitFishWillCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FishName" msprop:Generator_ColumnVarNameInTable="columnFishName" msprop:Generator_ColumnPropNameInRow="FishName" msprop:Generator_ColumnPropNameInTable="FishNameColumn" msprop:Generator_UserColumnName="FishName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitZoneWillCatch" msprop:Generator_UserTableName="BaitZoneWillCatch" msprop:Generator_RowEvArgName="BaitZoneWillCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitZoneWillCatch" msprop:Generator_TablePropName="BaitZoneWillCatch" msprop:Generator_RowDeletingName="BaitZoneWillCatchRowDeleting" msprop:Generator_RowChangingName="BaitZoneWillCatchRowChanging" msprop:Generator_RowDeletedName="BaitZoneWillCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitZoneWillCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitZoneWillCatchDataTable" msprop:Generator_RowChangedName="BaitZoneWillCatchRowChanged" msprop:Generator_RowClassName="BaitZoneWillCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneName" msdata:Caption="FishID" msprop:Generator_ColumnVarNameInTable="columnZoneName" msprop:Generator_ColumnPropNameInRow="ZoneName" msprop:Generator_ColumnPropNameInTable="ZoneNameColumn" msprop:Generator_UserColumnName="ZoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitFishWontCatch" msprop:Generator_UserTableName="BaitFishWontCatch" msprop:Generator_RowEvArgName="BaitFishWontCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitFishWontCatch" msprop:Generator_TablePropName="BaitFishWontCatch" msprop:Generator_RowDeletingName="BaitFishWontCatchRowDeleting" msprop:Generator_RowChangingName="BaitFishWontCatchRowChanging" msprop:Generator_RowDeletedName="BaitFishWontCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitFishWontCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitFishWontCatchDataTable" msprop:Generator_RowChangedName="BaitFishWontCatchRowChanged" msprop:Generator_RowClassName="BaitFishWontCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FishName" msprop:Generator_ColumnVarNameInTable="columnFishName" msprop:Generator_ColumnPropNameInRow="FishName" msprop:Generator_ColumnPropNameInTable="FishNameColumn" msprop:Generator_UserColumnName="FishName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitFishMayCatch" msprop:Generator_UserTableName="BaitFishMayCatch" msprop:Generator_RowEvArgName="BaitFishMayCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitFishMayCatch" msprop:Generator_TablePropName="BaitFishMayCatch" msprop:Generator_RowDeletingName="BaitFishMayCatchRowDeleting" msprop:Generator_RowChangingName="BaitFishMayCatchRowChanging" msprop:Generator_RowDeletedName="BaitFishMayCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitFishMayCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitFishMayCatchDataTable" msprop:Generator_RowChangedName="BaitFishMayCatchRowChanged" msprop:Generator_RowClassName="BaitFishMayCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FishName" msprop:Generator_ColumnVarNameInTable="columnFishName" msprop:Generator_ColumnPropNameInRow="FishName" msprop:Generator_ColumnPropNameInTable="FishNameColumn" msprop:Generator_UserColumnName="FishName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitZoneWontCatch" msprop:Generator_UserTableName="BaitZoneWontCatch" msprop:Generator_RowEvArgName="BaitZoneWontCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitZoneWontCatch" msprop:Generator_TablePropName="BaitZoneWontCatch" msprop:Generator_RowDeletingName="BaitZoneWontCatchRowDeleting" msprop:Generator_RowChangingName="BaitZoneWontCatchRowChanging" msprop:Generator_RowDeletedName="BaitZoneWontCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitZoneWontCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitZoneWontCatchDataTable" msprop:Generator_RowChangedName="BaitZoneWontCatchRowChanged" msprop:Generator_RowClassName="BaitZoneWontCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneName" msdata:Caption="FishID" msprop:Generator_ColumnVarNameInTable="columnZoneName" msprop:Generator_ColumnPropNameInRow="ZoneName" msprop:Generator_ColumnPropNameInTable="ZoneNameColumn" msprop:Generator_UserColumnName="ZoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BaitZoneMayCatch" msprop:Generator_UserTableName="BaitZoneMayCatch" msprop:Generator_RowEvArgName="BaitZoneMayCatchRowChangeEvent" msprop:Generator_TableVarName="tableBaitZoneMayCatch" msprop:Generator_TablePropName="BaitZoneMayCatch" msprop:Generator_RowDeletingName="BaitZoneMayCatchRowDeleting" msprop:Generator_RowChangingName="BaitZoneMayCatchRowChanging" msprop:Generator_RowDeletedName="BaitZoneMayCatchRowDeleted" msprop:Generator_RowEvHandlerName="BaitZoneMayCatchRowChangeEventHandler" msprop:Generator_TableClassName="BaitZoneMayCatchDataTable" msprop:Generator_RowChangedName="BaitZoneMayCatchRowChanged" msprop:Generator_RowClassName="BaitZoneMayCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneName" msdata:Caption="FishID" msprop:Generator_ColumnVarNameInTable="columnZoneName" msprop:Generator_ColumnPropNameInRow="ZoneName" msprop:Generator_ColumnPropNameInTable="ZoneNameColumn" msprop:Generator_UserColumnName="ZoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+              <xs:element name="Bites" msprop:Generator_ColumnVarNameInTable="columnBites" msprop:Generator_ColumnPropNameInRow="Bites" msprop:Generator_ColumnPropNameInTable="BitesColumn" msprop:Generator_UserColumnName="Bites" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ZoneTableFull" msprop:Generator_UserTableName="ZoneTableFull" msprop:Generator_RowEvArgName="ZoneTableFullRowChangeEvent" msprop:Generator_TableVarName="tableZoneTableFull" msprop:Generator_TablePropName="ZoneTableFull" msprop:Generator_RowDeletingName="ZoneTableFullRowDeleting" msprop:Generator_RowChangingName="ZoneTableFullRowChanging" msprop:Generator_RowDeletedName="ZoneTableFullRowDeleted" msprop:Generator_RowEvHandlerName="ZoneTableFullRowChangeEventHandler" msprop:Generator_TableClassName="ZoneTableFullDataTable" msprop:Generator_RowChangedName="ZoneTableFullRowChanged" msprop:Generator_RowClassName="ZoneTableFullRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ZoneName" msprop:Generator_ColumnVarNameInTable="columnZoneName" msprop:Generator_ColumnPropNameInRow="ZoneName" msprop:Generator_ColumnPropNameInTable="ZoneNameColumn" msprop:Generator_UserColumnName="ZoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="ZoneID" msprop:Generator_ColumnVarNameInTable="columnZoneID" msprop:Generator_ColumnPropNameInRow="ZoneID" msprop:Generator_ColumnPropNameInTable="ZoneIDColumn" msprop:Generator_UserColumnName="ZoneID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="MultiAreas" msprop:Generator_ColumnVarNameInTable="columnMultiAreas" msprop:Generator_ColumnPropNameInRow="MultiAreas" msprop:Generator_ColumnPropNameInTable="MultiAreasColumn" msprop:Generator_UserColumnName="MultiAreas" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" type="xs:string" minOccurs="0" />
+              <xs:element name="AreaID" msprop:Generator_ColumnVarNameInTable="columnAreaID" msprop:Generator_ColumnPropNameInRow="AreaID" msprop:Generator_ColumnPropNameInTable="AreaIDColumn" msprop:Generator_UserColumnName="AreaID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="AliasID" msprop:Generator_ColumnVarNameInTable="columnAliasID" msprop:Generator_ColumnPropNameInRow="AliasID" msprop:Generator_ColumnPropNameInTable="AliasIDColumn" msprop:Generator_UserColumnName="AliasID" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="XMin" msprop:Generator_ColumnVarNameInTable="columnXMin" msprop:Generator_ColumnPropNameInRow="XMin" msprop:Generator_ColumnPropNameInTable="XMinColumn" msprop:Generator_UserColumnName="XMin" type="xs:short" minOccurs="0" />
+              <xs:element name="XMax" msprop:Generator_ColumnVarNameInTable="columnXMax" msprop:Generator_ColumnPropNameInRow="XMax" msprop:Generator_ColumnPropNameInTable="XMaxColumn" msprop:Generator_UserColumnName="XMax" type="xs:short" minOccurs="0" />
+              <xs:element name="YMin" msprop:Generator_ColumnVarNameInTable="columnYMin" msprop:Generator_ColumnPropNameInRow="YMin" msprop:Generator_ColumnPropNameInTable="YMinColumn" msprop:Generator_UserColumnName="YMin" type="xs:short" minOccurs="0" />
+              <xs:element name="YMax" msprop:Generator_ColumnVarNameInTable="columnYMax" msprop:Generator_ColumnPropNameInRow="YMax" msprop:Generator_ColumnPropNameInTable="YMaxColumn" msprop:Generator_UserColumnName="YMax" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ZoneTabCatchTable" msprop:Generator_UserTableName="ZoneTabCatchTable" msprop:Generator_RowEvArgName="ZoneTabCatchTableRowChangeEvent" msprop:Generator_TableVarName="tableZoneTabCatchTable" msprop:Generator_TablePropName="ZoneTabCatchTable" msprop:Generator_RowDeletingName="ZoneTabCatchTableRowDeleting" msprop:Generator_RowChangingName="ZoneTabCatchTableRowChanging" msprop:Generator_RowDeletedName="ZoneTabCatchTableRowDeleted" msprop:Generator_RowEvHandlerName="ZoneTabCatchTableRowChangeEventHandler" msprop:Generator_TableClassName="ZoneTabCatchTableDataTable" msprop:Generator_RowChangedName="ZoneTabCatchTableRowChanged" msprop:Generator_RowClassName="ZoneTabCatchTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fish" msprop:Generator_ColumnVarNameInTable="columnFish" msprop:Generator_ColumnPropNameInRow="Fish" msprop:Generator_ColumnPropNameInTable="FishColumn" msprop:Generator_UserColumnName="Fish" type="xs:string" minOccurs="0" />
+              <xs:element name="BiteRate" msprop:Generator_ColumnVarNameInTable="columnBiteRate" msprop:Generator_ColumnPropNameInRow="BiteRate" msprop:Generator_ColumnPropNameInTable="BiteRateColumn" msprop:Generator_UserColumnName="BiteRate" type="xs:float" minOccurs="0" />
+              <xs:element name="Attempts" msprop:Generator_ColumnVarNameInTable="columnAttempts" msprop:Generator_ColumnPropNameInRow="Attempts" msprop:Generator_ColumnPropNameInTable="AttemptsColumn" msprop:Generator_UserColumnName="Attempts" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ZoneTabCatchTableUnfiltered" msprop:Generator_UserTableName="ZoneTabCatchTableUnfiltered" msprop:Generator_RowEvArgName="ZoneTabCatchTableUnfilteredRowChangeEvent" msprop:Generator_TableVarName="tableZoneTabCatchTableUnfiltered" msprop:Generator_TablePropName="ZoneTabCatchTableUnfiltered" msprop:Generator_RowDeletingName="ZoneTabCatchTableUnfilteredRowDeleting" msprop:Generator_RowChangingName="ZoneTabCatchTableUnfilteredRowChanging" msprop:Generator_RowDeletedName="ZoneTabCatchTableUnfilteredRowDeleted" msprop:Generator_RowEvHandlerName="ZoneTabCatchTableUnfilteredRowChangeEventHandler" msprop:Generator_TableClassName="ZoneTabCatchTableUnfilteredDataTable" msprop:Generator_RowChangedName="ZoneTabCatchTableUnfilteredRowChanged" msprop:Generator_RowClassName="ZoneTabCatchTableUnfilteredRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fish" msprop:Generator_ColumnVarNameInTable="columnFish" msprop:Generator_ColumnPropNameInRow="Fish" msprop:Generator_ColumnPropNameInTable="FishColumn" msprop:Generator_UserColumnName="Fish" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:unsignedByte" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PositionCatch" msprop:Generator_TableClassName="PositionCatchDataTable" msprop:Generator_TableVarName="tablePositionCatch" msprop:Generator_TablePropName="PositionCatch" msprop:Generator_RowDeletingName="PositionCatchRowDeleting" msprop:Generator_RowChangingName="PositionCatchRowChanging" msprop:Generator_RowEvHandlerName="PositionCatchRowChangeEventHandler" msprop:Generator_RowDeletedName="PositionCatchRowDeleted" msprop:Generator_UserTableName="PositionCatch" msprop:Generator_RowChangedName="PositionCatchRowChanged" msprop:Generator_RowEvArgName="PositionCatchRowChangeEvent" msprop:Generator_RowClassName="PositionCatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Zone" msprop:Generator_ColumnVarNameInTable="columnZone" msprop:Generator_ColumnPropNameInRow="Zone" msprop:Generator_ColumnPropNameInTable="ZoneColumn" msprop:Generator_UserColumnName="Zone" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="Fish" msprop:Generator_ColumnVarNameInTable="columnFish" msprop:Generator_ColumnPropNameInRow="Fish" msprop:Generator_ColumnPropNameInTable="FishColumn" msprop:Generator_UserColumnName="Fish" type="xs:unsignedShort" minOccurs="0" />
+              <xs:element name="PosX" msprop:Generator_ColumnVarNameInTable="columnPosX" msprop:Generator_ColumnPropNameInRow="PosX" msprop:Generator_ColumnPropNameInTable="PosXColumn" msprop:Generator_UserColumnName="PosX" type="xs:short" minOccurs="0" />
+              <xs:element name="PosY" msprop:Generator_ColumnVarNameInTable="columnPosY" msprop:Generator_ColumnPropNameInRow="PosY" msprop:Generator_ColumnPropNameInTable="PosYColumn" msprop:Generator_UserColumnName="PosY" type="xs:short" minOccurs="0" />
+              <xs:element name="Record" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnRecord" msprop:Generator_ColumnPropNameInRow="Record" msprop:Generator_ColumnPropNameInTable="RecordColumn" msprop:Generator_UserColumnName="Record" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
