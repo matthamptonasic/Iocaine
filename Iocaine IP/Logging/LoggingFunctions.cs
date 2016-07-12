@@ -362,6 +362,32 @@ namespace Iocaine2.Logging
         }
         #endregion Error
         #endregion Logging
+        #region IO Utilities
+        public static void WriteToFile(List<String> iBuffer, String iFilename, bool iOpenFile)
+        {
+            iFilename = iFilename.Replace(" ", "");
+            iFilename = iFilename.Replace("/", "");
+            iFilename = iFilename.Replace("\'", "");
+            iFilename = iFilename.Replace("\\", "");
+            iFilename = iFilename.Replace("\"", "");
+            iFilename = iFilename.Replace("?", "");
+            iFilename = iFilename.Replace("<", "");
+            iFilename = iFilename.Replace(">", "");
+            iFilename = iFilename.Replace("|", "");
+            iFilename = iFilename.Replace("*", "");
+            StreamWriter logFile = new StreamWriter(iFilename);
+            foreach (String str in iBuffer)
+            {
+                logFile.WriteLine(str);
+            }
+            logFile.Flush();
+            logFile.Close();
+            if (iOpenFile)
+            {
+                Process.Start("wordpad.exe", iFilename);
+            }
+        }
+        #endregion IO Utilities
         #endregion Public Methods
     }
 }
