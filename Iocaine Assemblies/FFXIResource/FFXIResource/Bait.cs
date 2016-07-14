@@ -18,15 +18,15 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct BAIT_INFO
         {
-            public String BaitName;
-            public String BaitNameShort;
-            public UInt16 ItemID;
+            public string BaitName;
+            public string BaitNameShort;
+            public ushort ItemID;
         }
         #endregion Structures
         #region Member Variables
         private static bool initDone = false;
-        private static string invalidName = "Unknown";
-        private static ushort invalidID = 0;
+        private const string invalidName = "Unknown";
+        private const ushort invalidID = 0;
         public static string InvalidName
         {
             get
@@ -53,10 +53,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static BAIT_INFO GetBaitInfo(UInt16 iItemId)
+        public static BAIT_INFO GetBaitInfo(ushort iItemId)
         {
             FfxiResource.init();
-            String filter = "ItemID = " + iItemId;
+            string filter = "ItemID = " + iItemId;
             MainDatabase.BaitRow[] baitRows = (MainDatabase.BaitRow[])FfxiResource.mainDb.Bait.Select(filter);
             BAIT_INFO info = new BAIT_INFO();
             if (baitRows.Length == 0)
@@ -72,10 +72,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static BAIT_INFO GetBaitInfo(String iBaitName)
+        public static BAIT_INFO GetBaitInfo(string iBaitName)
         {
             FfxiResource.init();
-            String filter = "BaitName = '" + iBaitName + "'";
+            string filter = "BaitName = '" + iBaitName + "'";
             MainDatabase.BaitRow[] baitRows = (MainDatabase.BaitRow[])FfxiResource.mainDb.Bait.Select(filter);
             BAIT_INFO info = new BAIT_INFO();
             if (baitRows.Length == 0)
@@ -91,12 +91,12 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static String GetBaitName(UInt16 iBaitId)
+        public static string GetBaitName(ushort iBaitId)
         {
             BAIT_INFO info = GetBaitInfo(iBaitId);
             return info.BaitName;
         }
-        public static String GetBaitNameShort(UInt16 iBaitId)
+        public static String GetBaitNameShort(ushort iBaitId)
         {
             BAIT_INFO info = GetBaitInfo(iBaitId);
             return info.BaitNameShort;
@@ -105,8 +105,8 @@ namespace Iocaine2.Data.Client
         {
             List<BAIT_INFO> infoList = new List<BAIT_INFO>();
             FfxiResource.init();
-            String filter = "";
-            String orderBy = "";
+            string filter = "";
+            string orderBy = "";
             if (iOrderBy == INFO_ORDER.NAME)
             {
                 orderBy = "BaitName";
