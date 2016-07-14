@@ -11,8 +11,8 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct ELEMENTS_INFO
         {
-            public Int16 ID;
-            public String Name;
+            public short ID;
+            public string Name;
         }
         #endregion Structures
         #region Member Variables
@@ -35,14 +35,14 @@ namespace Iocaine2.Data.Client
         /// <param name="iName">Name of the status effect to look up.
         /// Do NOT use quotation marks around the name.</param>
         /// <returns>ID of the element with the given name.</returns>
-        public static Int16 GetElementID(String iName)
+        public static short GetElementID(string iName)
         {
             FfxiResource.init();
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
             MainDatabase.ElementsRow[] elementRows = (MainDatabase.ElementsRow[])FfxiResource.mainDb.Elements.Select(filterString);
             if (elementRows.Length == 0)
             {
-                return (Int16)FFXIEnums.ELEMENT.UNKNOWN;
+                return (short)FFXIEnums.ELEMENT.UNKNOWN;
             }
             else
             {
@@ -54,10 +54,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iId">Element ID. Physical is -1, unknown is 8.</param>
         /// <returns>Name of element.</returns>
-        public static String GetElementName(Int16 iId)
+        public static string GetElementName(short iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.ElementsRow[] elementRows = (MainDatabase.ElementsRow[])FfxiResource.mainDb.Elements.Select(filterString);
             if (elementRows.Length == 0)
             {
