@@ -1,3 +1,5 @@
 *.suo
 \bin
 \obj
+\IocaineEvents
+\IocaineInits
