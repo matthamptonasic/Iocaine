@@ -1,5 +1,5 @@
 *.suo
 \bin
 \obj
-\IocaineServer
-\IocaineInits
+/Iocaine Assemblies/IocaineServer
+/Iocaine Assemblies/IocaineInits
