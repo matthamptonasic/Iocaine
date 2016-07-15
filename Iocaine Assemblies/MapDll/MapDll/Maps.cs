@@ -125,11 +125,6 @@ namespace Iocaine2.Data.Client
             loadData();
             isInitialized = true;
         }
-        //public static void init()
-        //{
-        //    loadData();
-        //    isInitialized = true;
-        //}
         private static void loadDictionaries()
         {
             zoneNbMaps = new Dictionary<ushort, byte>();
