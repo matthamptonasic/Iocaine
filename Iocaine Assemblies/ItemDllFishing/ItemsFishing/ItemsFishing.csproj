@@ -821,16 +821,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Applications\IocaineCore\IocaineCore.csproj">
-      <Project>{B76C45E2-E307-406F-BAEA-C8288B5737C0}</Project>
-      <Name>IocaineCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FFXIResource\FFXIResource\FFXIResource.csproj">
-      <Project>{CB437CB5-9269-4571-A925-E80868F76342}</Project>
-      <Name>FFXIResource</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Large_MMM_Ball_Full.jpg">
       <Link>Images\Large_MMM_Ball_Full.jpg</Link>
     </EmbeddedResource>
@@ -921,6 +911,16 @@
     <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Item_Images\Fishing_Bait\Slice_of_Carp_Full.jpg">
       <Link>Images\Slice_of_Carp_Full.jpg</Link>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FFXIResource\FFXIResource\FFXIResource.csproj">
+      <Project>{cb437cb5-9269-4571-a925-e80868f76342}</Project>
+      <Name>FFXIResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IocaineCore\IocaineCore\IocaineCore.csproj">
+      <Project>{b76c45e2-e307-406f-baea-c8288b5737c0}</Project>
+      <Name>IocaineCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
