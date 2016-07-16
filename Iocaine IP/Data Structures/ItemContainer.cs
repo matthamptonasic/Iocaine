@@ -464,7 +464,7 @@ namespace Iocaine2.Inventory
                     capacityMax = MemReads.Self.Inventory.get_max_sack();
                     break;
                 case STORAGE_TYPE.CASE:
-                    capacityMax = MemReads.Self.Inventory.get_max_bag(); //todo mahampto
+                    capacityMax = MemReads.Self.Inventory.get_max_bag(); //TBD
                     break;
                 default:
                     capacityMax = MemReads.Self.Inventory.get_max_bag();
@@ -495,7 +495,7 @@ namespace Iocaine2.Inventory
                     cap = MemReads.Self.Inventory.get_max_sack();
                     break;
                 case STORAGE_TYPE.CASE:
-                    cap = MemReads.Self.Inventory.get_max_bag(); //todo mahampto
+                    cap = MemReads.Self.Inventory.get_max_bag(); //TBD
                     break;
                 default:
                     cap = MemReads.Self.Inventory.get_max_bag();
