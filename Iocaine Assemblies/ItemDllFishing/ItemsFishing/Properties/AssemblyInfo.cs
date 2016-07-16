@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ItemsFishing")]
-[assembly: AssemblyDescription("Exports fishing item images and details for Final Fantasy XI. Initially written for Iocaine2 multi-functional application, but may be used in other applications with the consent of hammy025 @ www.ffxiscripting.com.")]
+[assembly: AssemblyDescription("Exports fishing item images and details for Final Fantasy XI. Initially written for Iocaine2 multi-functional application, but may be used in other applications with the consent of matthamptonasic@gmail.com.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Iocaine2")]
 [assembly: AssemblyProduct("ItemsFishing")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.3.0")]
-[assembly: AssemblyFileVersion("1.0.3.0")]
+[assembly: AssemblyVersion("1.0.4.0")]
+[assembly: AssemblyFileVersion("1.0.4.0")]
