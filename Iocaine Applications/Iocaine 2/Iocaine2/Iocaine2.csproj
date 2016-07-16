@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F1256C53-6DA9-4EF4-AE18-25F5BB7D1B09}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Iocaine2</RootNamespace>
+    <AssemblyName>Main</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ManifestCertificateThumbprint>A83A6004D7DA9AD1F8D49C7091B2E6DBC2BC8629</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Iocaine2_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>Iocaine2.Program</StartupObject>
+    <SignAssembly>false</SignAssembly>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon>IocaineIcon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>C:\Documents and Settings\Matt\Desktop\Iocaine2\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IocaineInits">
+      <HintPath>..\..\..\Binary Releases\General Release\IocaineInits.dll</HintPath>
+    </Reference>
+    <Reference Include="IocaineServer">
+      <HintPath>..\..\..\Binary Releases\General Release\IocaineServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\..\Binary Releases\General Release\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Buyer_Script.cs">
+      <Link>Buyer_Script.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\Buyer_Scripts_DS.Designer.cs">
+      <Link>Buyer_Scripts_DS.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Buyer_Scripts_DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\Seller_Scripts_DS.Designer.cs">
+      <Link>Seller_Scripts_DS.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Seller_Scripts_DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\DataSets\WMSDataSet.Designer.cs">
+      <Link>WMSDataSet.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WMSDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Fisher_Settings_Form.cs">
+      <Link>Fisher\Fisher_Settings_Form.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Fisher_Settings_Form.Designer.cs">
+      <DependentUpon>Fisher_Settings_Form.cs</DependentUpon>
+      <Link>Fisher\Fisher_Settings_Form.Designer.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Helpers_Settings_Form.cs">
+      <Link>Helpers_Settings_Form.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Helpers_Settings_Form.designer.cs">
+      <Link>Helpers_Settings_Form.designer.cs</Link>
+      <DependentUpon>Helpers_Settings_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Nav_Settings_Form.cs">
+      <Link>Nav_Settings_Form.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Nav_Settings_Form.designer.cs">
+      <Link>Nav_Settings_Form.designer.cs</Link>
+      <DependentUpon>Nav_Settings_Form.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Bot.cs" />
+    <Compile Include="BotController.cs" />
+    <Compile Include="BotParameters.cs" />
+    <Compile Include="Buyer.cs" />
+    <Compile Include="Crafter.cs" />
+    <Compile Include="CraftingTracker.cs" />
+    <Compile Include="Fisher\Fisher.cs" />
+    <Compile Include="Fisher\Fisher_GUI.cs" />
+    <Compile Include="Fisher\FishStatsTable.cs" />
+    <Compile Include="Fisher\FishStatsTableLoad.cs" />
+    <Compile Include="Fisher_Form_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1.Designer.cs">
+      <DependentUpon>Fisher_Form_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fisher_Form_1_ALR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_Buyer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_Crafter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_FS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_Nav.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_PL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_POS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_Seller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_SkillUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_TA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_Trader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisher_Form_1_WMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Navigation.cs" />
+    <Compile Include="PowerLevel\PowerLevelBGThread.cs" />
+    <Compile Include="PowerLevel\PowerLevel_GUI.cs" />
+    <Compile Include="PowerLevel\PowerLevel_Threading.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Seller.cs" />
+    <Compile Include="..\..\..\Iocaine IP\Data Structures\Seller_Script.cs">
+      <Link>Seller_Script.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\Stats_Form.cs">
+      <Link>Stats_Form.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\Stats_Form.Designer.cs">
+      <DependentUpon>Stats_Form.cs</DependentUpon>
+      <Link>Stats_Form.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\PL_Settings_Form.cs">
+      <Link>PL_Settings_Form.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\PL_Settings_Form.Designer.cs">
+      <DependentUpon>PL_Settings_Form.cs</DependentUpon>
+      <Link>PL_Settings_Form.Designer.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </Compile>
+    <Compile Include="PowerLevel\PowerLevel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SkillUp.cs" />
+    <Compile Include="Synergy\RecipeRequirementsOverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Synergy\RecipeRequirementsOverviewControl.Designer.cs">
+      <DependentUpon>RecipeRequirementsOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Synergy\SyneRecipe.cs" />
+    <Compile Include="Synergy\Synergizer.cs" />
+    <Compile Include="Synergy\SynergyDlg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Synergy\SynergyDlg.Designer.cs">
+      <DependentUpon>SynergyDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Synergy\ElementalOverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Synergy\ElementalOverviewControl.Designer.cs">
+      <DependentUpon>ElementalOverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeachersAssistant.cs" />
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Top_Settings_Form.cs">
+      <Link>Top_Settings_Form.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\Top_Settings_Form.Designer.cs">
+      <DependentUpon>Top_Settings_Form.cs</DependentUpon>
+      <Link>Top_Settings_Form.Designer.cs</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Trader.cs" />
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\TriggerForm.cs">
+      <Link>TriggerForm.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Other Forms\TriggerForm.Designer.cs">
+      <DependentUpon>TriggerForm.cs</DependentUpon>
+      <Link>TriggerForm.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\WMS_Settings_Form.cs">
+      <Link>WMS_Settings_Form.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\Iocaine IP\Forms\Settings Forms\WMS_Settings_Form.Designer.cs">
+      <DependentUpon>WMS_Settings_Form.cs</DependentUpon>
+      <Link>WMS_Settings_Form.Designer.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\Fisher_Settings_Form.resx">
+      <DependentUpon>Fisher_Settings_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <Link>Fisher\Fisher_Settings_Form.resx</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\Helpers_Settings_Form.resx">
+      <Link>Helpers_Settings_Form.resx</Link>
+      <DependentUpon>Helpers_Settings_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\Nav_Settings_Form.resx">
+      <Link>Nav_Settings_Form.resx</Link>
+      <DependentUpon>Nav_Settings_Form.cs</DependentUpon>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fisher_Form_1.resx">
+      <DependentUpon>Fisher_Form_1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Other Forms\Stats_Form.resx">
+      <DependentUpon>Stats_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <Link>Stats_Form.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\PL_Settings_Form.resx">
+      <DependentUpon>PL_Settings_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <Link>PL_Settings_Form.resx</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\Top_Settings_Form.resx">
+      <DependentUpon>Top_Settings_Form.cs</DependentUpon>
+      <Link>Top_Settings_Form.resx</Link>
+      <CustomToolNamespace>Iocaine2.Settings</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Other Forms\TriggerForm.resx">
+      <DependentUpon>TriggerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <Link>TriggerForm.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Forms\Settings Forms\WMS_Settings_Form.resx">
+      <DependentUpon>WMS_Settings_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+      <Link>WMS_Settings_Form.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Synergy\RecipeRequirementsOverviewControl.resx">
+      <DependentUpon>RecipeRequirementsOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Synergy\SynergyDlg.resx">
+      <DependentUpon>SynergyDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Synergy\ElementalOverviewControl.resx">
+      <DependentUpon>ElementalOverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Iocaine IP\Images\Form_Images\ExtendRightArrow.jpg">
+      <Link>Resources\ExtendRightArrow.jpg</Link>
+    </None>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Form_Images\MapCenter.png">
+      <Link>Resources\MapCenter.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Form_Images\MapCenterLock.png">
+      <Link>Resources\MapCenterLock.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\Iocaine IP\Images\Form_Images\MapExtents.png">
+      <Link>Resources\MapExtents.png</Link>
+    </EmbeddedResource>
+    <None Include="Resources\Red_Light_On.png" />
+    <None Include="Resources\Red_Light_Off.png" />
+    <Content Include="Synergy\Images\Trans_Dark.gif" />
+    <Content Include="Synergy\Images\Trans_Earth.gif" />
+    <Content Include="Synergy\Images\Trans_Fire.gif" />
+    <Content Include="Synergy\Images\Trans_Ice.gif" />
+    <Content Include="Synergy\Images\Trans_Light.gif" />
+    <Content Include="Synergy\Images\Trans_Lightning.gif" />
+    <Content Include="Synergy\Images\Trans_Water.gif" />
+    <Content Include="Synergy\Images\Trans_Wind.gif" />
+    <None Include="..\..\..\Iocaine IP\DataSets\Buyer_Scripts_DS.xsc">
+      <DependentUpon>Buyer_Scripts_DS.xsd</DependentUpon>
+      <Link>Buyer_Scripts_DS.xsc</Link>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Buyer_Scripts_DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <Link>Buyer_Scripts_DS.xsd</Link>
+      <LastGenOutput>Buyer_Scripts_DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Buyer_Scripts_DS.xss">
+      <DependentUpon>Buyer_Scripts_DS.xsd</DependentUpon>
+      <Link>Buyer_Scripts_DS.xss</Link>
+    </None>
+    <None Include="Resources\RefreshArrow.jpg" />
+    <None Include="..\..\..\Iocaine IP\DataSets\Seller_Scripts_DS.xsc">
+      <Link>Seller_Scripts_DS.xsc</Link>
+      <DependentUpon>Seller_Scripts_DS.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Seller_Scripts_DS.xsd">
+      <Link>Seller_Scripts_DS.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Seller_Scripts_DS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\Seller_Scripts_DS.xss">
+      <Link>Seller_Scripts_DS.xss</Link>
+      <DependentUpon>Seller_Scripts_DS.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\WMSDataSet.xsc">
+      <Link>WMSDataSet.xsc</Link>
+      <DependentUpon>WMSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\WMSDataSet.xsd">
+      <Link>WMSDataSet.xsd</Link>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WMSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\..\Iocaine IP\DataSets\WMSDataSet.xss">
+      <Link>WMSDataSet.xss</Link>
+      <DependentUpon>WMSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\Wind_Crystal.jpg" />
+    <None Include="Resources\Water_Crystal.jpg" />
+    <None Include="Resources\Lightning_Crystal.jpg" />
+    <None Include="Resources\Light_Crystal.jpg" />
+    <None Include="Resources\Ice_Crystal.jpg" />
+    <None Include="Resources\Fire_Crystal.jpg" />
+    <None Include="Resources\Earth_Crystal.jpg" />
+    <None Include="Resources\Dark_Crystal.jpg" />
+    <None Include="Resources\Leathercraft_Inverted.jpg" />
+    <None Include="Resources\Leathercraft.jpg" />
+    <None Include="Resources\Goldsmithing_Inverted.jpg" />
+    <None Include="Resources\Goldsmithing.jpg" />
+    <None Include="Resources\Fishing_Inverted.jpg" />
+    <None Include="Resources\Fishing.jpg" />
+    <None Include="Resources\Cooking_Inverted.jpg" />
+    <None Include="Resources\Cooking.jpg" />
+    <None Include="Resources\Clothcraft_Inverted.jpg" />
+    <None Include="Resources\Clothcraft.jpg" />
+    <None Include="Resources\Bonecraft_Inverted.jpg" />
+    <None Include="Resources\Bonecraft.jpg" />
+    <None Include="Resources\Alchemy_Inverted.jpg" />
+    <None Include="Resources\Alchemy.jpg" />
+    <None Include="Resources\Woodworking_Inverted.jpg" />
+    <None Include="Resources\Woodworking.jpg" />
+    <None Include="Resources\Smithing_Inverted.jpg" />
+    <None Include="Resources\Smithing.jpg" />
+    <None Include="Resources\BlueArrow.bmp" />
+    <None Include="Resources\RedX.bmp" />
+    <None Include="Resources\Blank.bmp" />
+    <None Include="Resources\GreenCheck.bmp" />
+    <None Include="Fisher\Right arrow go.JPG" />
+    <None Include="Fisher\Left arrow go.JPG" />
+    <None Include="Fisher\Left arrow.JPG" />
+    <None Include="Fisher\Right arrow.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\FFXIResource\FFXIResource\FFXIResource.csproj">
+      <Project>{CB437CB5-9269-4571-A925-E80868F76342}</Project>
+      <Name>FFXIResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\FFXIThingsDll\FFXIThings\FFXIThings.csproj">
+      <Project>{DECE4A8B-8C02-4162-82CE-97B058DF0CE1}</Project>
+      <Name>FFXIThings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\IocaineCore\IocaineCore\IocaineCore.csproj">
+      <Project>{b76c45e2-e307-406f-baea-c8288b5737c0}</Project>
+      <Name>IocaineCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\IocaineEvents\IocaineEvents\IocaineEvents.csproj">
+      <Project>{999d02d3-2128-43a9-90cd-fd3e2fa883b0}</Project>
+      <Name>IocaineEvents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\ItemDllFishing\ItemsFishing\ItemsFishing.csproj">
+      <Project>{F21096D0-F5B2-4C39-9B0F-E76EEC72B467}</Project>
+      <Name>ItemsFishing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\MapDll\MapDll\MapDll.csproj">
+      <Project>{CED60FAA-E309-43E9-B055-F362DA87D2E7}</Project>
+      <Name>MapDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\FFXINpcs\FFXINpcs\FFXINpcs.csproj">
+      <Project>{34A07D26-85C6-41A3-A474-D7C30E248A8E}</Project>
+      <Name>FFXINpcs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(SolutionDir)..\..\Binary Releases\General Release\WindowerHelper.dll" "$(TargetDir)WindowerHelper.dll"
+copy /Y "$(ProjectDir)Build Help\NO_UPDATE.txt" "$(TargetDir)NO_UPDATE.txt"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
