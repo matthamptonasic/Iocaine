@@ -917,10 +917,6 @@
       <Project>{cb437cb5-9269-4571-a925-e80868f76342}</Project>
       <Name>FFXIResource</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IocaineCore\IocaineCore\IocaineCore.csproj">
-      <Project>{b76c45e2-e307-406f-baea-c8288b5737c0}</Project>
-      <Name>IocaineCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
