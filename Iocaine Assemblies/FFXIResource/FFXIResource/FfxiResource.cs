@@ -14,7 +14,7 @@ namespace Iocaine2.Data.Client
         #region Member Variables
         #region Private/Internal Members
         private static bool initDone = false;
-        internal static String apostrophy = "&apst";
+        internal static string apostrophy = "&apst";
         internal static MainDatabase mainDb;
         #endregion Private/Internal Members
 
@@ -53,7 +53,7 @@ namespace Iocaine2.Data.Client
         #endregion Init
 
         #region Apostrophies
-        public static String EncodeApostrophy(String str)
+        public static string EncodeApostrophy(string str)
         {
             if (str.Contains("'"))
             {
@@ -64,7 +64,7 @@ namespace Iocaine2.Data.Client
                 return str;
             }
         }
-        public static String DecodeApostrophy(String str)
+        public static string DecodeApostrophy(string str)
         {
             if (str.Contains(apostrophy))
             {

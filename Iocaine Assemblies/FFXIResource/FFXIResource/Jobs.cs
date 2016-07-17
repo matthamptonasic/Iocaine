@@ -11,9 +11,9 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct JOBS_INFO
         {
-            public Byte ID;
-            public String Name;
-            public String Abbr;
+            public byte ID;
+            public string Name;
+            public string Abbr;
         }
         #endregion Structures
         #region Member Variables
@@ -30,10 +30,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static JOBS_INFO GetJobInfo(Byte iId)
+        public static JOBS_INFO GetJobInfo(byte iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select(filterString);
             JOBS_INFO info = new JOBS_INFO();
             if (jobsRows.Length == 0)
@@ -50,10 +50,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static Byte GetJobId(String iName, Boolean iAbbreviationPassed)
+        public static byte GetJobId(string iName, bool iAbbreviationPassed)
         {
             FfxiResource.init();
-            String filterString = "";
+            string filterString = "";
             if(iAbbreviationPassed)
             {
                 filterString += "Abbreviation = '";
@@ -73,10 +73,10 @@ namespace Iocaine2.Data.Client
                 return jobsRows[0].ID;
             }
         }
-        public static String GetJobName(Byte iId)
+        public static string GetJobName(byte iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select(filterString);
             if (jobsRows.Length == 0)
             {
@@ -87,10 +87,10 @@ namespace Iocaine2.Data.Client
                 return jobsRows[0].Name;
             }
         }
-        public static String GetJobName(String iAbbreviation)
+        public static string GetJobName(string iAbbreviation)
         {
             FfxiResource.init();
-            String filterString = "Abbreviation = '" + iAbbreviation + "'";
+            string filterString = "Abbreviation = '" + iAbbreviation + "'";
             MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select(filterString);
             if (jobsRows.Length == 0)
             {
@@ -101,10 +101,10 @@ namespace Iocaine2.Data.Client
                 return jobsRows[0].Name;
             }
         }
-        public static String GetJobAbbr(Byte iId)
+        public static string GetJobAbbr(byte iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select(filterString);
             if (jobsRows.Length == 0)
             {
@@ -115,10 +115,10 @@ namespace Iocaine2.Data.Client
                 return jobsRows[0].Abbreviation;
             }
         }
-        public static String GetJobAbbr(String iName)
+        public static string GetJobAbbr(string iName)
         {
             FfxiResource.init();
-            String filterString = "iName = '" + iName + "'";
+            string filterString = "iName = '" + iName + "'";
             MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select(filterString);
             if (jobsRows.Length == 0)
             {

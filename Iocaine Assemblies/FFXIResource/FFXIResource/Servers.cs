@@ -11,8 +11,8 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct SERVER_INFO
         {
-            public String ServerName;
-            public Byte ServerID;
+            public string ServerName;
+            public byte ServerID;
         }
         #endregion Structures
         #region Member Variables
@@ -29,10 +29,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static SERVER_INFO GetServerInfo(Byte iServerId)
+        public static SERVER_INFO GetServerInfo(byte iServerId)
         {
             FfxiResource.init();
-            String filter = "ServerID = " + iServerId;
+            string filter = "ServerID = " + iServerId;
             MainDatabase.ServersRow[] serverRows = (MainDatabase.ServersRow[])FfxiResource.mainDb.Servers.Select(filter);
             SERVER_INFO info = new SERVER_INFO();
             if (serverRows.Length == 0)
@@ -47,10 +47,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static SERVER_INFO GetServerInfo(String iServerName)
+        public static SERVER_INFO GetServerInfo(string iServerName)
         {
             FfxiResource.init();
-            String filter = "ServerName = '" + iServerName + "'";
+            string filter = "ServerName = '" + iServerName + "'";
             MainDatabase.ServersRow[] serverRows = (MainDatabase.ServersRow[])FfxiResource.mainDb.Servers.Select(filter);
             SERVER_INFO info = new SERVER_INFO();
             if (serverRows.Length == 0)
@@ -65,12 +65,12 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static String GetServerName(Byte iServerID)
+        public static string GetServerName(byte iServerID)
         {
             SERVER_INFO info = GetServerInfo(iServerID);
             return info.ServerName;
         }
-        public static Byte GetServerID(String iServerName)
+        public static byte GetServerID(string iServerName)
         {
             SERVER_INFO info = GetServerInfo(iServerName);
             return info.ServerID;
@@ -79,7 +79,7 @@ namespace Iocaine2.Data.Client
         {
             List<SERVER_INFO> infoList = new List<SERVER_INFO>();
             FfxiResource.init();
-            String filter = "";
+            string filter = "";
             MainDatabase.ServersRow[] serverRows = (MainDatabase.ServersRow[])FfxiResource.mainDb.Servers.Select(filter);
             if (serverRows.Length == 0)
             {

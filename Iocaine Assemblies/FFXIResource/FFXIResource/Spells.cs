@@ -22,42 +22,42 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct SPELL_INFO
         {
-            public UInt16 ID;
-            public String Name;
-            public String Type;
-            public Byte Skill;
-            public String Command;
-            public Int16 Element;
-            public UInt16 MP;
-            public UInt16 RecastID;
-            public Single CastTime;
-            public UInt32 Duration;
-            public UInt16 Range;
-            public Int16 Targets;
-            public Boolean AsSub;
-            public Byte LevelJob1;
-            public Byte LevelJob2;
-            public Byte LevelJob3;
-            public Byte LevelJob4;
-            public Byte LevelJob5;
-            public Byte LevelJob6;
-            public Byte LevelJob7;
-            public Byte LevelJob8;
-            public Byte LevelJob9;
-            public Byte LevelJob10;
-            public Byte LevelJob11;
-            public Byte LevelJob12;
-            public Byte LevelJob13;
-            public Byte LevelJob14;
-            public Byte LevelJob15;
-            public Byte LevelJob16;
-            public Byte LevelJob17;
-            public Byte LevelJob18;
-            public Byte LevelJob19;
-            public Byte LevelJob20;
-            public Byte LevelJob21;
-            public Byte LevelJob22;
-            public Byte LevelJob23;
+            public ushort ID;
+            public string Name;
+            public string Type;
+            public byte Skill;
+            public string Command;
+            public short Element;
+            public ushort MP;
+            public ushort RecastID;
+            public float CastTime;
+            public uint Duration;
+            public ushort Range;
+            public short Targets;
+            public bool AsSub;
+            public byte LevelJob1;
+            public byte LevelJob2;
+            public byte LevelJob3;
+            public byte LevelJob4;
+            public byte LevelJob5;
+            public byte LevelJob6;
+            public byte LevelJob7;
+            public byte LevelJob8;
+            public byte LevelJob9;
+            public byte LevelJob10;
+            public byte LevelJob11;
+            public byte LevelJob12;
+            public byte LevelJob13;
+            public byte LevelJob14;
+            public byte LevelJob15;
+            public byte LevelJob16;
+            public byte LevelJob17;
+            public byte LevelJob18;
+            public byte LevelJob19;
+            public byte LevelJob20;
+            public byte LevelJob21;
+            public byte LevelJob22;
+            public byte LevelJob23;
         }
         #endregion Structures
         #region Member Variables
@@ -80,10 +80,10 @@ namespace Iocaine2.Data.Client
         /// <param name="iName">Name of the spell to look up.
         /// Do NOT use quotation marks around the name.</param>
         /// <returns>Index of the spell with the given name.</returns>
-        public static UInt16 GetSpellID(String iName)
+        public static ushort GetSpellID(string iName)
         {
             FfxiResource.init();
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString);
             if (spellRows.Length == 0)
             {
@@ -99,13 +99,13 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iId">Index of the spell to look up.</param>
         /// <returns>Data structure with all of the stored info for the given spell.</returns>
-        public static SPELL_INFO GetSpellInfo(UInt16 iId)
+        public static SPELL_INFO GetSpellInfo(ushort iId)
         {
             FfxiResource.init();
             SPELL_INFO info = new SPELL_INFO();
 
-            String filterString = "ID = " + iId.ToString();
-            String sortString = "ID";
+            string filterString = "ID = " + iId.ToString();
+            string sortString = "ID";
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             if (spellRows.Length == 0)
             {
@@ -192,7 +192,7 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iName">Name of the spell to look up.</param>
         /// <returns>Data structure with all of the stored info for the given spell.</returns>
-        public static SPELL_INFO GetSpellInfo(String iName)
+        public static SPELL_INFO GetSpellInfo(string iName)
         {
             return GetSpellInfo(GetSpellID(iName));
         }
@@ -204,12 +204,12 @@ namespace Iocaine2.Data.Client
         /// <param name="iSubJob">Sub job (pass 0 if none).</param>
         /// <param name="iJobLevel">Main job level.</param>
         /// <returns></returns>
-        public static List<SPELL_INFO> GetSpellInfo(Byte iJob, Byte iSubJob, Byte iJobLevel)
+        public static List<SPELL_INFO> GetSpellInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
-            Byte subJobLevel = (iJobLevel == 1) ? (Byte)1 : (Byte)(iJobLevel / 2);
+            string filterString;
+            string sortString;
+            byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
             filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
             if (iSubJob != 0)
             {
@@ -227,47 +227,47 @@ namespace Iocaine2.Data.Client
         public static List<SPELL_INFO> GetSpellInfo()
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
+            string filterString;
+            string sortString;
             filterString = "";
             sortString = "Name";
 
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
-        public static List<SPELL_INFO> GetCuresInfo(Byte iJob, Byte iSubJob, Byte iJobLevel)
+        public static List<SPELL_INFO> GetCuresInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
-            Byte subJobLevel = (iJobLevel == 1) ? (Byte)1 : (Byte)(iJobLevel / 2);
+            string filterString;
+            string sortString;
+            byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
             filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
                 filterString += " OR (LevelJob" + iSubJob.ToString() + " <> 0 AND LevelJob" + iSubJob.ToString() + " <= " + subJobLevel.ToString() + "))";
             }
-            filterString += " AND (Targets = " + (UInt16)TARGETS.ANY_PC_NPC + " AND Skill = 33)"; //TBD - make skill based on Skill table.
+            filterString += " AND (Targets = " + (ushort)TARGETS.ANY_PC_NPC + " AND Skill = 33)"; //TBD - make skill based on Skill table.
             //TBD - Add BLU curing.
             sortString = "Name";
 
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
-        public static List<SPELL_INFO> GetPartyBuffsInfo(Byte iJob, Byte iSubJob, Byte iJobLevel)
+        public static List<SPELL_INFO> GetPartyBuffsInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
-            Byte subJobLevel = (iJobLevel == 1) ? (Byte)1 : (Byte)(iJobLevel / 2);
+            string filterString;
+            string sortString;
+            byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
             filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
                 filterString += " OR (LevelJob" + iSubJob.ToString() + " <> 0 AND LevelJob" + iSubJob.ToString() + " <= " + subJobLevel.ToString() + "))";
             }
-            filterString += " AND (Targets = " + (UInt16)TARGETS.PARTY;
-            filterString += " OR Targets = " + (UInt16)TARGETS.ANY_PC + ")";
+            filterString += " AND (Targets = " + (ushort)TARGETS.PARTY;
+            filterString += " OR Targets = " + (ushort)TARGETS.ANY_PC + ")";
             filterString += " AND Type <> 'Trust'";
             filterString += " AND Skill <> 33"; //TBD - make skill based on Skill table.
             filterString += " AND Name <> 'Erase'";
@@ -282,21 +282,21 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
-        public static List<SPELL_INFO> GetSelfBuffsInfo(Byte iJob, Byte iSubJob, Byte iJobLevel)
+        public static List<SPELL_INFO> GetSelfBuffsInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
-            Byte subJobLevel = (iJobLevel == 1) ? (Byte)1 : (Byte)(iJobLevel / 2);
+            string filterString;
+            string sortString;
+            byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
             filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
                 filterString += " OR (LevelJob" + iSubJob.ToString() + " <> 0 AND LevelJob" + iSubJob.ToString() + " <= " + subJobLevel.ToString() + "))";
             }
-            filterString += " AND (Targets = " + (UInt16)TARGETS.ME_ONLY;
-            filterString += " OR Targets = " + (UInt16)TARGETS.PARTY;
-            filterString += " OR Targets = " + (UInt16)TARGETS.ANY_PC + ")";
+            filterString += " AND (Targets = " + (ushort)TARGETS.ME_ONLY;
+            filterString += " OR Targets = " + (ushort)TARGETS.PARTY;
+            filterString += " OR Targets = " + (ushort)TARGETS.ANY_PC + ")";
             filterString += " AND Type <> 'Trust'";
             filterString += " AND (Skill <> 33 OR Name LIKE 'Reraise%')"; //TBD - make skill based on Skill table.
             filterString += " AND Name <> 'Hastega'";
@@ -315,20 +315,20 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
-        public static List<SPELL_INFO> GetHealingInfo(Byte iJob, Byte iSubJob, Byte iJobLevel)
+        public static List<SPELL_INFO> GetHealingInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
-            String filterString;
-            String sortString;
-            Byte subJobLevel = (iJobLevel == 1) ? (Byte)1 : (Byte)(iJobLevel / 2);
+            string filterString;
+            string sortString;
+            byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
             filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
                 filterString += " OR (LevelJob" + iSubJob.ToString() + " <> 0 AND LevelJob" + iSubJob.ToString() + " <= " + subJobLevel.ToString() + "))";
             }
-            filterString += " AND ((Targets = " + (UInt16)TARGETS.ANY_PC + " AND Skill = 33)"; //TBD - make skill based on Skill table.
-            filterString += " OR Targets = " + (UInt16)TARGETS.DEAD_PC; //Raise, arise, tractor.
+            filterString += " AND ((Targets = " + (ushort)TARGETS.ANY_PC + " AND Skill = 33)"; //TBD - make skill based on Skill table.
+            filterString += " OR Targets = " + (ushort)TARGETS.DEAD_PC; //Raise, arise, tractor.
             filterString += " OR Name = 'Esuna'";
             filterString += " OR Name = 'Sacrifice'";
             filterString += " OR Name = 'Erase'";

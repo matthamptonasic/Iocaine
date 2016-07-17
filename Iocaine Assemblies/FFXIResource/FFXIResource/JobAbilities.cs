@@ -11,19 +11,19 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct JA_INFO
         {
-            public String Name;
-            public UInt16 ID;
-            public String Command;
-            public Int16 Targets;
-            public Byte Job;
-            public Byte JobLevel;
+            public string Name;
+            public ushort ID;
+            public string Command;
+            public short Targets;
+            public byte Job;
+            public byte JobLevel;
             public bool AsSub;
-            public UInt16 MP;
-            public UInt16 TP;
-            public UInt32 Duration;
-            public Int16 Element;
-            public UInt16 RecastID;
-            public String Type;
+            public ushort MP;
+            public ushort TP;
+            public uint Duration;
+            public short Element;
+            public ushort RecastID;
+            public string Type;
         }
         #endregion Structures
         #region Member Variables
@@ -47,17 +47,17 @@ namespace Iocaine2.Data.Client
         /// <param name="subJob">Sub job (pass 0 if none).</param>
         /// <param name="level">Main job level.</param>
         /// <returns>List of JA_INFO structures that contain the relevant information.</returns>
-        public static List<JA_INFO> GetAbilityInfo(Byte job, Byte subJob, Byte level)
+        public static List<JA_INFO> GetAbilityInfo(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+                string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
                 filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
-                String sortString = "Name";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -77,7 +77,7 @@ namespace Iocaine2.Data.Client
         /// <param name="job">Main job.</param>
         /// <param name="subJob">Sub job (pass 0 if none).</param>
         /// <returns>List of JA_INFO structures that contain the relevant information.</returns>
-        public static List<JA_INFO> GetAbilityInfo(Byte job, Byte subJob)
+        public static List<JA_INFO> GetAbilityInfo(byte job, byte subJob)
         {
             return GetAbilityInfo(job, subJob, 100);
         }
@@ -91,8 +91,8 @@ namespace Iocaine2.Data.Client
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "Job <> 0 AND JobLevel < 100";
-                String sortString = "Name";
+                string filterString = "Job <> 0 AND JobLevel < 100";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -106,19 +106,19 @@ namespace Iocaine2.Data.Client
             }
             return jaInfoList;
         }
-        public static List<JA_INFO> GetAbilityInfo_Cures(Byte job, Byte subJob, Byte level)
+        public static List<JA_INFO> GetAbilityInfo_Cures(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "(((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+                string filterString = "(((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
                 filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
                 filterString += " AND (Targets = " + ((short)Spells.TARGETS.ANY_PC_NPC).ToString() + ")";
                 filterString += ")";
-                String sortString = "Name";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -132,13 +132,13 @@ namespace Iocaine2.Data.Client
             }
             return jaInfoList;
         }
-        public static List<JA_INFO> GetAbilityInfo_PartyAbility(Byte job, Byte subJob, Byte level)
+        public static List<JA_INFO> GetAbilityInfo_PartyAbility(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+                string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
                 filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
@@ -151,7 +151,7 @@ namespace Iocaine2.Data.Client
                 filterString += " OR (Name = 'Cutting Cards')";
                 filterString += " OR (Name = 'Caper Emissarius')";
                 filterString += "    )";
-                String sortString = "Name";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -165,13 +165,13 @@ namespace Iocaine2.Data.Client
             }
             return jaInfoList;
         }
-        public static List<JA_INFO> GetAbilityInfo_SelfBuffs(Byte job, Byte subJob, Byte level)
+        public static List<JA_INFO> GetAbilityInfo_SelfBuffs(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+                string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
                 filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
@@ -188,7 +188,7 @@ namespace Iocaine2.Data.Client
                 filterString += " AND (Name <> 'Elemental Siphon')";
                 filterString += " AND (Name NOT LIKE 'Flourishes%')";
                 filterString += " AND (Name <> 'Steps')";
-                String sortString = "Name";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -202,13 +202,13 @@ namespace Iocaine2.Data.Client
             }
             return jaInfoList;
         }
-        public static List<JA_INFO> GetAbilityInfo_HealingAbility(Byte job, Byte subJob, Byte level)
+        public static List<JA_INFO> GetAbilityInfo_HealingAbility(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
             List<JA_INFO> jaInfoList = new List<JA_INFO>();
             try
             {
-                String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+                string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
                 filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
@@ -216,7 +216,7 @@ namespace Iocaine2.Data.Client
                 filterString += "     (Name = 'Healing Waltz')";
                 filterString += " OR  (Name = 'Unused Option')";
                 filterString += "     )";
-                String sortString = "Name";
+                string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
                 {
@@ -235,13 +235,13 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iName">Name of the ability.</param>
         /// <returns>The filled JA_INFO structure for the given job ability.</returns>
-        public static JA_INFO GetAbilityInfo(String iName)
+        public static JA_INFO GetAbilityInfo(string iName)
         {
             FfxiResource.init();
             JA_INFO info = new JA_INFO();
             try
             {
-                String filterString = "Name = '" + iName + "'";
+                string filterString = "Name = '" + iName + "'";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString);
                 if (jaRows.Length == 0)
                 {
@@ -289,19 +289,19 @@ namespace Iocaine2.Data.Client
         /// <param name="subJob">Sub job (pass 0 for none).</param>
         /// <param name="level">Main job level.</param>
         /// <returns>Dictionary (map) of each ability recast timer (key) and ability names (value).</returns>
-        public static Dictionary<UInt16, List<String>> GetAbilityMap(Byte job, Byte subJob, Byte level)
+        public static Dictionary<ushort, List<String>> GetAbilityMap(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
-            Dictionary<UInt16, List<String>> jaMap = new Dictionary<UInt16, List<String>>();
-            String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+            Dictionary<ushort, List<String>> jaMap = new Dictionary<ushort, List<String>>();
+            string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
             filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
             filterString += " AND AsSub = 'true'))";
             filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
-            String sortString = "RecastId";
+            string sortString = "RecastId";
             MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
             foreach (MainDatabase.JARow row in jaRows)
             {
-                String name = FfxiResource.DecodeApostrophy(row.Name);
+                string name = FfxiResource.DecodeApostrophy(row.Name);
                 if (!jaMap.ContainsKey(row.RecastID))
                 {
                     List<String> localList = new List<String>();
@@ -323,7 +323,7 @@ namespace Iocaine2.Data.Client
         /// <param name="job">Main job.</param>
         /// <param name="subJob">Sub job (pass 0 for none).</param>
         /// <returns>Dictionary (map) of each ability index (key) and ability name (value).</returns>
-        public static Dictionary<UInt16, List<String>> GetAbilityMap(Byte job, Byte subJob)
+        public static Dictionary<ushort, List<String>> GetAbilityMap(byte job, byte subJob)
         {
             return GetAbilityMap(job, subJob, 100);
         }
@@ -334,15 +334,15 @@ namespace Iocaine2.Data.Client
         /// <param name="subJob">Sub job as a byte. If no sub job, pass 0.</param>
         /// <param name="level">Main job level.</param>
         /// <returns></returns>
-        public static List<UInt16> GetRecastTimerIDs(Byte job, Byte subJob, Byte level)
+        public static List<ushort> GetRecastTimerIDs(byte job, byte subJob, byte level)
         {
             FfxiResource.init();
-            List<UInt16> jaList = new List<UInt16>();
-            String filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
+            List<ushort> jaList = new List<ushort>();
+            string filterString = "((Job = " + job.ToString() + " AND JobLevel <= " + level.ToString() + ")";
             filterString += " OR (Job = " + subJob.ToString() + " AND JobLevel <= " + (level / 2).ToString();
             filterString += " AND AsSub = 'true'))";
             filterString += " AND (RecastID <> 0 OR (RecastID = 0 AND JobLevel = 1))";
-            String sortString = "RecastID";
+            string sortString = "RecastID";
             MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
             foreach (MainDatabase.JARow row in jaRows)
             {
@@ -359,7 +359,7 @@ namespace Iocaine2.Data.Client
         /// <param name="job">Main job as a byte.</param>
         /// <param name="subJob">Sub job as a byte. If no sub job, pass 0.</param>
         /// <returns></returns>
-        public static List<UInt16> GetRecastTimerIDs(Byte job, Byte subJob)
+        public static List<ushort> GetRecastTimerIDs(byte job, byte subJob)
         {
             return GetRecastTimerIDs(job, subJob, 100);
         }
@@ -368,10 +368,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="abilityName">Ability Name to find the index for.</param>
         /// <returns>Index of the job ability with the given name.</returns>
-        public static UInt16 GetAbilityIndex(String abilityName)
+        public static ushort GetAbilityIndex(string abilityName)
         {
             FfxiResource.init();
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(abilityName) + "'";
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(abilityName) + "'";
             MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString);
             if (jaRows.Length == 0)
             {

@@ -11,17 +11,17 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct ZONE_INFO
         {
-            public String Zone;
-            public UInt16 ZoneID;
-            public Byte MultiAreas;
-            public String AreaName;
-            public Byte AreaID;
-            public UInt16 AliasID;
-            public Int16 XMin;
-            public Int16 XMax;
-            public Int16 YMin;
-            public Int16 YMax;
-            public String ShortName;
+            public string Zone;
+            public ushort ZoneID;
+            public byte MultiAreas;
+            public string AreaName;
+            public byte AreaID;
+            public ushort AliasID;
+            public short XMin;
+            public short XMax;
+            public short YMin;
+            public short YMax;
+            public string ShortName;
         }
         #endregion Structures
         #region Member Variables
@@ -38,10 +38,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static ZONE_INFO GetZoneInfo(UInt16 iAliasId)
+        public static ZONE_INFO GetZoneInfo(ushort iAliasId)
         {
             FfxiResource.init();
-            String filter = "AliasID = " + iAliasId;
+            string filter = "AliasID = " + iAliasId;
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter);
             ZONE_INFO info = new ZONE_INFO();
             if (zonesRows.Length == 0)
@@ -65,10 +65,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static ZONE_INFO GetZoneInfo(String iZoneName)
+        public static ZONE_INFO GetZoneInfo(string iZoneName)
         {
             FfxiResource.init();
-            String filter = "Zone = '" + iZoneName + "' AND AreaID = 0";
+            string filter = "Zone = '" + iZoneName + "' AND AreaID = 0";
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter);
             ZONE_INFO info = new ZONE_INFO();
             if (zonesRows.Length == 0)
@@ -92,10 +92,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static List<ZONE_INFO> GetAllZoneInfo(UInt16 iZoneId)
+        public static List<ZONE_INFO> GetAllZoneInfo(ushort iZoneId)
         {
             FfxiResource.init();
-            String filter = "ZoneID = " + iZoneId;
+            string filter = "ZoneID = " + iZoneId;
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter);
             List<ZONE_INFO> infoList = new List<ZONE_INFO>();
             if (zonesRows.Length == 0)
@@ -124,10 +124,10 @@ namespace Iocaine2.Data.Client
             }
             return infoList;
         }
-        public static List<ZONE_INFO> GetAllZoneInfo(String iOrderBy = "Zone, AreaID")
+        public static List<ZONE_INFO> GetAllZoneInfo(string iOrderBy = "Zone, AreaID")
         {
             FfxiResource.init();
-            String filter = "";
+            string filter = "";
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter, iOrderBy);
             List<ZONE_INFO> infoList = new List<ZONE_INFO>();
             if (zonesRows.Length == 0)
@@ -156,10 +156,10 @@ namespace Iocaine2.Data.Client
             }
             return infoList;
         }
-        public static ZONE_INFO GetZoneInfo(UInt16 iZoneID, Single iXPos, Single iYPos)
+        public static ZONE_INFO GetZoneInfo(ushort iZoneID, float iXPos, float iYPos)
         {
             FfxiResource.init();
-            String filter = "ZoneID = " + iZoneID;
+            string filter = "ZoneID = " + iZoneID;
             filter += " AND XMin <= " + ((short)iXPos).ToString();
             filter += " AND XMax >= " + ((short)iXPos).ToString();
             filter += " AND YMin <= " + ((short)iYPos).ToString();
@@ -188,10 +188,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static String GetZoneName(UInt16 iZoneId)
+        public static string GetZoneName(ushort iZoneId)
         {
             FfxiResource.init();
-            String filter = "AliasID = " + iZoneId;
+            string filter = "AliasID = " + iZoneId;
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter);
             if (zonesRows.Length == 0)
             {
@@ -203,10 +203,10 @@ namespace Iocaine2.Data.Client
                 return zonesRow.Zone;
             }
         }
-        public static String GetZoneShortName(UInt16 iZoneId)
+        public static string GetZoneShortName(ushort iZoneId)
         {
             FfxiResource.init();
-            String filter = "AliasID = " + iZoneId;
+            string filter = "AliasID = " + iZoneId;
             MainDatabase.ZonesRow[] zonesRows = (MainDatabase.ZonesRow[])FfxiResource.mainDb.Zones.Select(filter);
             if (zonesRows.Length == 0)
             {
@@ -218,10 +218,10 @@ namespace Iocaine2.Data.Client
                 return zonesRow.ShortName;
             }
         }
-        public static UInt16 GetZoneID(String iZoneName, Boolean iParamIsShortName = false)
+        public static ushort GetZoneID(string iZoneName, bool iParamIsShortName = false)
         {
             FfxiResource.init();
-            String filter = "";
+            string filter = "";
             if(iParamIsShortName)
             {
                 filter = "ShortName='";

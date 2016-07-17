@@ -11,17 +11,17 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct WS_INFO
         {
-            public UInt16 ID;
-            public String Name;
-            public String Command;
-            public Byte SkillType;
-            public UInt16 SkillLevel;
-            public String Special;
-            public UInt32 Jobs;
-            public UInt32 SubJobs;
-            public String AttributeA;
-            public String AttributeB;
-            public String AttributeC;
+            public ushort ID;
+            public string Name;
+            public string Command;
+            public byte SkillType;
+            public ushort SkillLevel;
+            public string Special;
+            public uint Jobs;
+            public uint SubJobs;
+            public string AttributeA;
+            public string AttributeB;
+            public string AttributeC;
         }
         #endregion Structures
         #region Member Variables
@@ -46,10 +46,10 @@ namespace Iocaine2.Data.Client
         /// <param name="iSubJob">Sub job. Pass 0 if no sub job used.</param>
         /// <param name="iSkillLevel">Weapon skill level.</param>
         /// <returns></returns>
-        public static List<UInt16> GetWeaponSkillIDs(Byte iSkillType, Byte iJob, Byte iSubJob, UInt16 iSkillLevel)
+        public static List<ushort> GetWeaponSkillIDs(byte iSkillType, byte iJob, byte iSubJob, ushort iSkillLevel)
         {
             FfxiResource.init();
-            List<UInt16> idList = new List<UInt16>();
+            List<ushort> idList = new List<ushort>();
             MainDatabase.WSRow[] wsRows = selectWsRows(iSkillType, iSkillLevel);
             foreach (MainDatabase.WSRow row in wsRows)
             {
@@ -67,10 +67,10 @@ namespace Iocaine2.Data.Client
         /// <param name="iSkillType">Skill type (ie Sword, Axe, etc).</param>
         /// <param name="iSkillLevel">Weapon skill level.</param>
         /// <returns></returns>
-        public static List<UInt16> GetWeaponSkillIDs(Byte iSkillType, UInt16 iSkillLevel)
+        public static List<ushort> GetWeaponSkillIDs(byte iSkillType, ushort iSkillLevel)
         {
             FfxiResource.init();
-            List<UInt16> idList = new List<UInt16>();
+            List<ushort> idList = new List<ushort>();
             MainDatabase.WSRow[] wsRows = selectWsRows(iSkillType, iSkillLevel);
             foreach (MainDatabase.WSRow row in wsRows)
             {
@@ -83,10 +83,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iSkillType"></param>
         /// <returns></returns>
-        public static List<UInt16> GetWeaponSkillIDs(Byte iSkillType)
+        public static List<ushort> GetWeaponSkillIDs(byte iSkillType)
         {
             FfxiResource.init();
-            List<UInt16> idList = new List<UInt16>();
+            List<ushort> idList = new List<ushort>();
             MainDatabase.WSRow[] wsRows = selectWsRows(iSkillType, 1000);
             foreach (MainDatabase.WSRow row in wsRows)
             {
@@ -99,10 +99,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iName">Name to get the ID of.</param>
         /// <returns>Returns 0xFFFF if not found.</returns>
-        public static UInt16 GetWeaponSkillID(String iName)
+        public static ushort GetWeaponSkillID(string iName)
         {
             FfxiResource.init();
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -118,10 +118,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iWsId">ID to get the corresponding name for.</param>
         /// <returns></returns>
-        public static String GetWeaponSkillName(UInt16 iWsId)
+        public static string GetWeaponSkillName(ushort iWsId)
         {
             FfxiResource.init();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -137,10 +137,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iWsId">ID to get the corresponding command for.</param>
         /// <returns></returns>
-        public static String GetWeaponSkillCommand(UInt16 iWsId)
+        public static string GetWeaponSkillCommand(ushort iWsId)
         {
             FfxiResource.init();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -156,10 +156,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iWsId">ID to get the corresponding level for.</param>
         /// <returns></returns>
-        public static UInt16 GetWeaponSkillLevel(UInt16 iWsId)
+        public static ushort GetWeaponSkillLevel(ushort iWsId)
         {
             FfxiResource.init();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -178,10 +178,10 @@ namespace Iocaine2.Data.Client
         /// ex. If bit 1 is set, the WAR job can use this weapon skill. Bit 0 is always 0.</param>
         /// <param name="oSubJobs">Output bitvector of sub jobs that can use the weapon skill with the given ID.
         /// ex. If bit 2 is set, the MNK job can use this weapon skill. Bit 0 is always 0.</param>
-        public static void GetWeaponSkillJobs(UInt16 iWsId, ref UInt32 oJobs, ref UInt32 oSubJobs)
+        public static void GetWeaponSkillJobs(ushort iWsId, ref uint oJobs, ref uint oSubJobs)
         {
             FfxiResource.init();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -201,10 +201,10 @@ namespace Iocaine2.Data.Client
         /// <param name="oAttrA">Skill chain attribute A (0 if none).</param>
         /// <param name="oAttrB">Skill chain attribute B (0 if none).</param>
         /// <param name="oAttrC">Skill chain attribute C (0 if none).</param>
-        public static void GetWeaponSkillAttributes(UInt16 iWsId, out String oAttrA, out String oAttrB, out String oAttrC)
+        public static void GetWeaponSkillAttributes(ushort iWsId, out string oAttrA, out string oAttrB, out string oAttrC)
         {
             FfxiResource.init();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -224,11 +224,11 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iWsId">ID of the weapon skill for which to get the information.</param>
         /// <returns>A structure with all stored information for the given weapon skill.</returns>
-        public static WS_INFO GetWeaponSkillInfo(UInt16 iWsId)
+        public static WS_INFO GetWeaponSkillInfo(ushort iWsId)
         {
             FfxiResource.init();
             WS_INFO info = new WS_INFO();
-            String filterString = "ID=" + iWsId.ToString();
+            string filterString = "ID=" + iWsId.ToString();
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             if (wsRows.Length == 0)
             {
@@ -265,16 +265,16 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iName">Name of the weapon skill for which to get the information.</param>
         /// <returns>A structure with all stored information for the given weapon skill.</returns>
-        public static WS_INFO GetWeaponSkillInfo(String iName)
+        public static WS_INFO GetWeaponSkillInfo(string iName)
         {
-            UInt16 wsId = GetWeaponSkillID(iName);
+            ushort wsId = GetWeaponSkillID(iName);
             return GetWeaponSkillInfo(wsId);
         }
         public static List<WS_INFO> GetWeaponSkillInfo()
         {
             FfxiResource.init();
             List<WS_INFO> infoList = new List<WS_INFO>();
-            String filterString = "";
+            string filterString = "";
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             foreach(MainDatabase.WSRow row in wsRows)
             {
@@ -294,11 +294,11 @@ namespace Iocaine2.Data.Client
             }
             return infoList;
         }
-        public static List<WS_INFO> GetWeaponSkillInfo(Byte iSkillType, Byte iJob = 0, Byte iSubJob = 0, UInt16 iSkillLevel = 0)
+        public static List<WS_INFO> GetWeaponSkillInfo(byte iSkillType, byte iJob = 0, byte iSubJob = 0, ushort iSkillLevel = 0)
         {
             FfxiResource.init();
             List<WS_INFO> infoList = new List<WS_INFO>();
-            String filterString = "SkillType = " + iSkillType;
+            string filterString = "SkillType = " + iSkillType;
             if(iSkillLevel > 0)
             {
                 filterString += " AND SkillLevel = " + iSkillLevel;
@@ -306,8 +306,8 @@ namespace Iocaine2.Data.Client
             MainDatabase.WSRow[] wsRows = (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString);
             foreach (MainDatabase.WSRow row in wsRows)
             {
-                Boolean jobOk = false;
-                Boolean subOk = false;
+                bool jobOk = false;
+                bool subOk = false;
                 if(iJob > 0)
                 {
                     if(((row.Jobs >> iJob) & 1) == 1)
@@ -348,10 +348,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Get Functions
         #region Private Functions
-        private static MainDatabase.WSRow[] selectWsRows(Byte iSkillType, ushort iSkillLevel)
+        private static MainDatabase.WSRow[] selectWsRows(byte iSkillType, ushort iSkillLevel)
         {
-            String filterString = "SkillType = " + iSkillType.ToString() + " AND SkillLevel <= " + iSkillLevel.ToString();
-            String sortString = "SkillLevel";
+            string filterString = "SkillType = " + iSkillType.ToString() + " AND SkillLevel <= " + iSkillLevel.ToString();
+            string sortString = "SkillLevel";
             return (MainDatabase.WSRow[])FfxiResource.mainDb.WS.Select(filterString, sortString);
         }
         #endregion Private Functions

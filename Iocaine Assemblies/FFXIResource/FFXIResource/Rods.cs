@@ -18,8 +18,8 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct ROD_INFO
         {
-            public String RodName;
-            public UInt16 ItemID;
+            public string RodName;
+            public ushort ItemID;
         }
         #endregion Structures
         #region Member Variables
@@ -52,10 +52,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static ROD_INFO GetRodInfo(UInt16 iItemId)
+        public static ROD_INFO GetRodInfo(ushort iItemId)
         {
             FfxiResource.init();
-            String filter = "ItemID = " + iItemId;
+            string filter = "ItemID = " + iItemId;
             MainDatabase.RodsRow[] rodRows = (MainDatabase.RodsRow[])FfxiResource.mainDb.Rods.Select(filter);
             ROD_INFO info = new ROD_INFO();
             if (rodRows.Length == 0)
@@ -70,10 +70,10 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static ROD_INFO GetRodInfo(String iRodName)
+        public static ROD_INFO GetRodInfo(string iRodName)
         {
             FfxiResource.init();
-            String filter = "RodName = '" + iRodName + "'";
+            string filter = "RodName = '" + iRodName + "'";
             MainDatabase.RodsRow[] rodRows = (MainDatabase.RodsRow[])FfxiResource.mainDb.Rods.Select(filter);
             ROD_INFO info = new ROD_INFO();
             if (rodRows.Length == 0)
@@ -88,7 +88,7 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static String GetRodName(UInt16 iRodId)
+        public static string GetRodName(ushort iRodId)
         {
             ROD_INFO info = GetRodInfo(iRodId);
             return info.RodName;
@@ -97,8 +97,8 @@ namespace Iocaine2.Data.Client
         {
             List<ROD_INFO> infoList = new List<ROD_INFO>();
             FfxiResource.init();
-            String filter = "";
-            String orderBy = "";
+            string filter = "";
+            string orderBy = "";
             if (iOrderBy == INFO_ORDER.NAME)
             {
                 orderBy = "RodName";

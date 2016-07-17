@@ -11,8 +11,8 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct STATUS_EFFECT_INFO
         {
-            public UInt16 Index;
-            public String Name;
+            public ushort Index;
+            public string Name;
         }
         #endregion Structures
         #region Member Variables
@@ -35,20 +35,20 @@ namespace Iocaine2.Data.Client
         /// <param name="iName">Name of the status effect to look up.
         /// Do NOT use quotation marks around the name.</param>
         /// <returns>Index of the status effect with the given name.</returns>
-        public static UInt16[] GetStatusEffectID(String iName)
+        public static ushort[] GetStatusEffectID(string iName)
         {
             FfxiResource.init();
-            UInt16[] tempArray;
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            ushort[] tempArray;
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
             MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString);
             if (statusEffectRows.Length == 0)
             {
-                tempArray = new UInt16[1] { 0xFFFF };
+                tempArray = new ushort[1] { 0xFFFF };
                 return tempArray;
             }
             else
             {
-                tempArray = new UInt16[statusEffectRows.Length];
+                tempArray = new ushort[statusEffectRows.Length];
                 for (int ii = 0; ii < statusEffectRows.Length; ii++)
                 {
                     tempArray[ii] = statusEffectRows[ii].ID;
@@ -61,13 +61,13 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iID">Index of the status effect to look up.</param>
         /// <returns>Data structure with all of the stored info for the given status effect.</returns>
-        public static STATUS_EFFECT_INFO GetStatusEffectInfo(UInt16 iID)
+        public static STATUS_EFFECT_INFO GetStatusEffectInfo(ushort iID)
         {
             FfxiResource.init();
             STATUS_EFFECT_INFO info = new STATUS_EFFECT_INFO();
 
-            String filterString = "ID = " + iID.ToString();
-            String sortString = "ID";
+            string filterString = "ID = " + iID.ToString();
+            string sortString = "ID";
             MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString, sortString);
             if (statusEffectRows.Length == 0)
             {

@@ -11,15 +11,15 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct TARGETS_INFO
         {
-            public Int16 ID;
-            public Boolean Self;
-            public Boolean Party;
-            public Boolean Alliance;
-            public Boolean Anyone;
-            public Boolean Monster;
-            public Boolean Trust;
-            public Boolean Fellow;
-            public Boolean Dead;
+            public short ID;
+            public bool Self;
+            public bool Party;
+            public bool Alliance;
+            public bool Anyone;
+            public bool Monster;
+            public bool Trust;
+            public bool Fellow;
+            public bool Dead;
         }
         #endregion Structures
         #region Member Variables
@@ -36,10 +36,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static TARGETS_INFO GetTargetInfo(Int16 iId)
+        public static TARGETS_INFO GetTargetInfo(short iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.TargetsRow[] targetsRows = (MainDatabase.TargetsRow[])FfxiResource.mainDb.Targets.Select(filterString);
             TARGETS_INFO info = new TARGETS_INFO();
             if (targetsRows.Length == 0)

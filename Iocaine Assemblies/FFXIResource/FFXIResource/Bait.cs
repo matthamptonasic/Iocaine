@@ -96,7 +96,7 @@ namespace Iocaine2.Data.Client
             BAIT_INFO info = GetBaitInfo(iBaitId);
             return info.BaitName;
         }
-        public static String GetBaitNameShort(ushort iBaitId)
+        public static string GetBaitNameShort(ushort iBaitId)
         {
             BAIT_INFO info = GetBaitInfo(iBaitId);
             return info.BaitNameShort;

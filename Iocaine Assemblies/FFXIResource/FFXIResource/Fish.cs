@@ -24,11 +24,11 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct FISH_INFO
         {
-            public String FishName;
-            public Boolean Large;
-            public Byte Type;
-            public Byte DropType;
-            public UInt16 ItemID;
+            public string FishName;
+            public bool Large;
+            public byte Type;
+            public byte DropType;
+            public ushort ItemID;
         }
         #endregion Structures
         #region Member Variables
@@ -61,10 +61,10 @@ namespace Iocaine2.Data.Client
         }
         #endregion Init
         #region Get Functions
-        public static FISH_INFO GetFishInfo(UInt16 iItemId)
+        public static FISH_INFO GetFishInfo(ushort iItemId)
         {
             FfxiResource.init();
-            String filter = "ItemID = " + iItemId;
+            string filter = "ItemID = " + iItemId;
             MainDatabase.FishRow[] fishRows = (MainDatabase.FishRow[])FfxiResource.mainDb.Fish.Select(filter);
             FISH_INFO info = new FISH_INFO();
             if (fishRows.Length == 0)
@@ -82,7 +82,7 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static FISH_INFO GetFishInfo(String iFishName)
+        public static FISH_INFO GetFishInfo(string iFishName)
         {
             FfxiResource.init();
             String filter = "FishName = '" + iFishName + "'";
@@ -103,16 +103,16 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        public static String GetFishName(UInt16 iFishId)
+        public static string GetFishName(ushort iFishId)
         {
             FISH_INFO info = GetFishInfo(iFishId);
             return info.FishName;
         }
-        public static List<FISH_INFO> GetAllFishInfo(Boolean iOnlyFish = true, INFO_ORDER iOrderBy = INFO_ORDER.NAME)
+        public static List<FISH_INFO> GetAllFishInfo(bool iOnlyFish = true, INFO_ORDER iOrderBy = INFO_ORDER.NAME)
         {
             List<FISH_INFO> infoList = new List<FISH_INFO>();
             FfxiResource.init();
-            String filter = "";
+            string filter = "";
             if (iOnlyFish)
             {
                 filter = "Type = 0";

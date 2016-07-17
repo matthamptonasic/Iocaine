@@ -11,9 +11,9 @@ namespace Iocaine2.Data.Client
         #region Structures
         public struct SKILLS_INFO
         {
-            public UInt16 ID;
-            public String Name;
-            public String Category;
+            public ushort ID;
+            public string Name;
+            public string Category;
         }
         #endregion Structures
         #region Member Variables
@@ -36,10 +36,10 @@ namespace Iocaine2.Data.Client
         /// <param name="iName">Name of the status effect to look up.
         /// Do NOT use quotation marks around the name.</param>
         /// <returns>Index of the status effect with the given name.</returns>
-        public static UInt16 GetSkillId(String iName)
+        public static ushort GetSkillId(string iName)
         {
             FfxiResource.init();
-            String filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
             MainDatabase.SkillsRow[] skillsRows = (MainDatabase.SkillsRow[])FfxiResource.mainDb.Skills.Select(filterString);
             if (skillsRows.Length == 0)
             {
@@ -55,10 +55,10 @@ namespace Iocaine2.Data.Client
         /// </summary>
         /// <param name="iId">Skill ID.</param>
         /// <returns>Name of the skill.</returns>
-        public static String GetSkillName(UInt16 iId)
+        public static string GetSkillName(ushort iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.SkillsRow[] skillsRows = (MainDatabase.SkillsRow[])FfxiResource.mainDb.Skills.Select(filterString);
             if (skillsRows.Length == 0)
             {
@@ -69,10 +69,10 @@ namespace Iocaine2.Data.Client
                 return skillsRows[0].Name;
             }
         }
-        public static String GetSkillCategory(UInt16 iId)
+        public static string GetSkillCategory(ushort iId)
         {
             FfxiResource.init();
-            String filterString = "ID = " + iId;
+            string filterString = "ID = " + iId;
             MainDatabase.SkillsRow[] skillsRows = (MainDatabase.SkillsRow[])FfxiResource.mainDb.Skills.Select(filterString);
             if (skillsRows.Length == 0)
             {
