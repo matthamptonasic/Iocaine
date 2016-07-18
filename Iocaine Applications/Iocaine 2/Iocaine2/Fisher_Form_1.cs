@@ -780,8 +780,6 @@ namespace Iocaine2
         #endregion Set Bot Params
         #endregion Main Form Initialization
 
-
-
         #region Error Alert
         private void TOP_LogHasErrors()
         {
