@@ -11,59 +11,59 @@ namespace Iocaine2.Data.Client
     public static partial class Maps
     {
         #region Position <==> Pixel Related Functions
-        private static void posToPixels(UInt16 iZoneId, UInt16 iMapId, List<Int16> iPosX, List<Int16> iPosY, out List<Int16> oPxlX, out List<Int16> oPxlY)
+        private static void posToPixels(ushort iZoneId, ushort iMapId, List<short> iPosX, List<short> iPosY, out List<short> oPxlX, out List<short> oPxlY)
         {
             oPxlX = new List<short>();
             oPxlY = new List<short>();
 
-            String filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
+            string filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
             MapInfoDS.MapInfoMapsRow[] mapsRows = (MapInfoDS.MapInfoMapsRow[])mapInfoDS.MapInfoMaps.Select(filter);
             if (mapsRows.Length == 0)
             {
                 return;
             }
-            Single offX = mapsRows[0].X;
-            Single offY = mapsRows[0].Y;
+            float offX = mapsRows[0].X;
+            float offY = mapsRows[0].Y;
             //Y is pixel from the top to 0 (which is how the image is drawn, 0,0 is top/left).
             //iPosY gives a y coordinate going up from 0.
             //So iPosY * mult gives number of pixels ABOVE the offY.
             //Our y pixel is offY - (iPosY * mult).
-            Single mult = mapsRows[0].Multiplier;
+            float mult = mapsRows[0].Multiplier;
             for (int ii = 0; ii < iPosX.Count; ii++)
             {
-                oPxlX.Add((Int16)(offX + (iPosX[ii] * mult)));
-                oPxlY.Add((Int16)(offY - (iPosY[ii] * mult)));
+                oPxlX.Add((short)(offX + (iPosX[ii] * mult)));
+                oPxlY.Add((short)(offY - (iPosY[ii] * mult)));
             }
         }
-        private static void posToPixels(UInt16 iZoneId, UInt16 iMapId, Int16 iPosX, Int16 iPosY, out Int16 oPxlX, out Int16 oPxlY)
+        private static void posToPixels(ushort iZoneId, ushort iMapId, short iPosX, short iPosY, out short oPxlX, out short oPxlY)
         {
             oPxlX = 0;
             oPxlY = 0;
-            String filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
+            string filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
             MapInfoDS.MapInfoMapsRow[] mapsRows = (MapInfoDS.MapInfoMapsRow[])mapInfoDS.MapInfoMaps.Select(filter);
             if (mapsRows.Length == 0)
             {
                 return;
             }
-            Single offX = mapsRows[0].X;
-            Single offY = mapsRows[0].Y;
-            Single mult = mapsRows[0].Multiplier;
-            oPxlX = (Int16)(offX + (iPosX * mult));
-            oPxlY = (Int16)(offY - (iPosY * mult));
+            float offX = mapsRows[0].X;
+            float offY = mapsRows[0].Y;
+            float mult = mapsRows[0].Multiplier;
+            oPxlX = (short)(offX + (iPosX * mult));
+            oPxlY = (short)(offY - (iPosY * mult));
         }
-        private static void posToPixels(Single iOffX, Single iOffY, Single iMult, Single iPosX, Single iPosY, out Single oPxlX, out Single oPxlY)
+        private static void posToPixels(float iOffX, float iOffY, float iMult, float iPosX, float iPosY, out float oPxlX, out float oPxlY)
         {
             oPxlX = iOffX + (iPosX * iMult);
             oPxlY = iOffY - (iPosY * iMult);
         }
-        private static void filterPosPerMap(UInt16 iZoneId, UInt16 iMapId, List<Int16> iPosX, List<Int16> iPosY, out List<Int16> oPosX, out List<Int16> oPosY)
+        private static void filterPosPerMap(ushort iZoneId, ushort iMapId, List<short> iPosX, List<short> iPosY, out List<short> oPosX, out List<short> oPosY)
         {
             //This function will parse out any x,y's that do not belong to the specified map.
             oPosX = new List<short>();
             oPosY = new List<short>();
 
             List<mapBox> mapBoxes = new List<mapBox>();
-            String filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
+            string filter = "ZoneID=" + iZoneId + " AND MapID=" + iMapId;
             MapInfoDS.MapInfoBoxesRow[] mapsRows = (MapInfoDS.MapInfoBoxesRow[])mapInfoDS.MapInfoBoxes.Select(filter);
             if (mapsRows.Length == 0)
             {
@@ -116,15 +116,15 @@ namespace Iocaine2.Data.Client
             protected static Pen penTgtPc = new Pen(Color.MediumBlue, 1);
             protected static Pen penTgtMob = new Pen(Color.Red, 1);
             protected static Pen penTgtPet = new Pen(Color.Gold, 1);
-            protected const Single ellipsePxlsFish = 6;
-            protected const Single ellipsePxlsNodePos = 4;
-            protected const Single ellipsePxlsNodeHub = 6;
-            protected const Single ellipsePxlsNodeStart = 8;
-            protected const Single ellipsePxlsNodeEnd = 8;
-            protected const Single ellipsePxlsMob = 5;
-            protected const Single ellipsePxlsNpc = 5;
-            protected const Single ellipsePxlsPc = 5;
-            protected const Single ellipsePxlsPet = 5;
+            protected const float ellipsePxlsFish = 6;
+            protected const float ellipsePxlsNodePos = 4;
+            protected const float ellipsePxlsNodeHub = 6;
+            protected const float ellipsePxlsNodeStart = 8;
+            protected const float ellipsePxlsNodeEnd = 8;
+            protected const float ellipsePxlsMob = 5;
+            protected const float ellipsePxlsNpc = 5;
+            protected const float ellipsePxlsPc = 5;
+            protected const float ellipsePxlsPet = 5;
             public enum ItemType
             {
                 ARROW,
@@ -144,11 +144,11 @@ namespace Iocaine2.Data.Client
                 PC,
                 PET
             }
-            public MapOverlay(Single iPxlX, Single iPxlY, String iText)
+            public MapOverlay(float iPxlX, float iPxlY, string iText)
             {
                 init(iPxlX, iPxlY, iText);
             }
-            public MapOverlay(Single iPxlX, Single iPxlY)
+            public MapOverlay(float iPxlX, float iPxlY)
             {
                 init(iPxlX, iPxlY, "");
             }
@@ -156,20 +156,20 @@ namespace Iocaine2.Data.Client
             {
                 init(0, 0, "");
             }
-            private void init(Single iPxlX, Single iPxlY, String iText)
+            private void init(float iPxlX, float iPxlY, string iText)
             {
                 pxlX = iPxlX;
                 pxlY = iPxlY;
                 text = iText;
             }
             protected ItemType type;
-            protected Single pxlX;
-            protected Single pxlY;
-            protected String text;
-            protected Boolean showText = false;
-            private const Single defScaling = 0.5f;
-            protected Single scale = defScaling;
-            private Single zoom = 1.0f;
+            protected float pxlX;
+            protected float pxlY;
+            protected string text;
+            protected bool showText = false;
+            private const float defScaling = 0.5f;
+            protected float scale = defScaling;
+            private float zoom = 1.0f;
             private PointF mapCenter = new PointF(256, 256);
             public ItemType OLType
             {
@@ -178,7 +178,7 @@ namespace Iocaine2.Data.Client
                     return type;
                 }
             }
-            public Single PxlX
+            public float PxlX
             {
                 get
                 {
@@ -189,7 +189,7 @@ namespace Iocaine2.Data.Client
                     pxlX = value;
                 }
             }
-            public Single PxlY
+            public float PxlY
             {
                 get
                 {
@@ -200,7 +200,7 @@ namespace Iocaine2.Data.Client
                     pxlY = value;
                 }
             }
-            public virtual Single Scale
+            public virtual float Scale
             {
                 get
                 {
@@ -211,7 +211,7 @@ namespace Iocaine2.Data.Client
                     scale = value;
                 }
             }
-            public virtual Single Zoom
+            public virtual float Zoom
             {
                 get
                 {
@@ -233,7 +233,7 @@ namespace Iocaine2.Data.Client
                     mapCenter = value;
                 }
             }
-            public virtual String Text
+            public virtual string Text
             {
                 get
                 {
@@ -244,7 +244,7 @@ namespace Iocaine2.Data.Client
                     text = value;
                 }
             }
-            public virtual Boolean ShowText
+            public virtual bool ShowText
             {
                 get
                 {
@@ -262,23 +262,23 @@ namespace Iocaine2.Data.Client
                 Draw(mapGr);
                 mapGr.Dispose();
             }
-            public void TranslateFullToZoom(Single iX, Single iY, out Single oX, out Single oY)
+            public void TranslateFullToZoom(float iX, float iY, out float oX, out float oY)
             {
-                Single nbMapPxls = 512 / Zoom;
-                Single left = MapCenter.X - nbMapPxls / 2;
-                Single top = MapCenter.Y - nbMapPxls / 2;
+                float nbMapPxls = 512 / Zoom;
+                float left = MapCenter.X - nbMapPxls / 2;
+                float top = MapCenter.Y - nbMapPxls / 2;
                 oX = (iX - left) / nbMapPxls * 512;
                 oY = (iY - top) / nbMapPxls * 512;
             }
         }
         public class EllipseOverlay : MapOverlay
         {
-            public EllipseOverlay(Single iPxlX, Single iPxlY, String iText)
+            public EllipseOverlay(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
                 this.type = ItemType.ELLIPSE;
             }
-            public EllipseOverlay(Single iPxlX, Single iPxlY)
+            public EllipseOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY)
             {
                 this.type = ItemType.ELLIPSE;
@@ -287,8 +287,8 @@ namespace Iocaine2.Data.Client
             {
                 this.type = ItemType.ELLIPSE;
             }
-            protected Single nbPxls = 3;
-            public virtual Single NbPxls
+            protected float nbPxls = 3;
+            public virtual float NbPxls
             {
                 get
                 {
@@ -325,8 +325,8 @@ namespace Iocaine2.Data.Client
             }
             public override void Draw(Graphics iMapGr)
             {
-                Single centerX;
-                Single centerY;
+                float centerX;
+                float centerY;
                 TranslateFullToZoom(pxlX, pxlY, out centerX, out centerY);
                 iMapGr.FillEllipse(brsh, centerX - nbPxls / 2, centerY - nbPxls / 2, nbPxls, nbPxls);
                 if(showText && (text != ""))
@@ -338,12 +338,12 @@ namespace Iocaine2.Data.Client
         }
         public abstract class EllipseOverlayLocked : EllipseOverlay
         {
-            public EllipseOverlayLocked(Single iPxlX, Single iPxlY, String iText)
+            public EllipseOverlayLocked(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
 
             }
-            public EllipseOverlayLocked(Single iPxlX, Single iPxlY)
+            public EllipseOverlayLocked(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY)
             {
                 
@@ -363,7 +363,7 @@ namespace Iocaine2.Data.Client
                     return (Brush)textBrsh.Clone();
                 }
             }
-            public override Single NbPxls
+            public override float NbPxls
             {
                 get
                 {
@@ -374,7 +374,7 @@ namespace Iocaine2.Data.Client
         #region Fish
         public sealed class EllipseAllFishOverlay : EllipseOverlayLocked
         {
-            public EllipseAllFishOverlay(Single iPxlX, Single iPxlY)
+            public EllipseAllFishOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -392,7 +392,7 @@ namespace Iocaine2.Data.Client
         }
         public sealed class EllipseOneFishOverlay : EllipseOverlayLocked
         {
-            public EllipseOneFishOverlay(Single iPxlX, Single iPxlY)
+            public EllipseOneFishOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -412,7 +412,7 @@ namespace Iocaine2.Data.Client
         #region Routes
         public sealed class EllipsePosNodeOverlay : EllipseOverlayLocked
         {
-            public EllipsePosNodeOverlay(Single iPxlX, Single iPxlY)
+            public EllipsePosNodeOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -430,7 +430,7 @@ namespace Iocaine2.Data.Client
         }
         public sealed class EllipseHubNodeOverlay : EllipseOverlayLocked
         {
-            public EllipseHubNodeOverlay(Single iPxlX, Single iPxlY)
+            public EllipseHubNodeOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -448,7 +448,7 @@ namespace Iocaine2.Data.Client
         }
         public sealed class EllipseStartNodeOverlay : EllipseOverlayLocked
         {
-            public EllipseStartNodeOverlay(Single iPxlX, Single iPxlY)
+            public EllipseStartNodeOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -466,7 +466,7 @@ namespace Iocaine2.Data.Client
         }
         public sealed class EllipseEndNodeOverlay : EllipseOverlayLocked
         {
-            public EllipseEndNodeOverlay(Single iPxlX, Single iPxlY)
+            public EllipseEndNodeOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -484,7 +484,7 @@ namespace Iocaine2.Data.Client
         }
         public class LineOverlay : MapOverlay
         {
-            public LineOverlay(Single iStartPxlX, Single iStartPxlY, Single iEndPxlX, Single iEndPxlY)
+            public LineOverlay(float iStartPxlX, float iStartPxlY, float iEndPxlX, float iEndPxlY)
                 : base(iStartPxlX, iStartPxlY, "")
             {
                 this.type = ItemType.LINE;
@@ -495,9 +495,9 @@ namespace Iocaine2.Data.Client
             {
                 this.type = ItemType.LINE;
             }
-            protected Single endPxlX;
-            protected Single endPxlY;
-            public Single EndPxlX
+            protected float endPxlX;
+            protected float endPxlY;
+            public float EndPxlX
             {
                 get
                 {
@@ -508,7 +508,7 @@ namespace Iocaine2.Data.Client
                     endPxlX = value;
                 }
             }
-            public Single EndPxlY
+            public float EndPxlY
             {
                 get
                 {
@@ -535,7 +535,7 @@ namespace Iocaine2.Data.Client
             {
                 if(pn != null)
                 {
-                    Single xStart, yStart, xEnd, yEnd;
+                    float xStart, yStart, xEnd, yEnd;
                     TranslateFullToZoom(pxlX, pxlY, out xStart, out yStart);
                     TranslateFullToZoom(endPxlX, endPxlY, out xEnd, out yEnd);
                     iMapGr.DrawLine(pn, xStart, yStart, xEnd, yEnd);
@@ -544,7 +544,7 @@ namespace Iocaine2.Data.Client
         }
         public abstract class LineOverlayLocked : LineOverlay
         {
-            public LineOverlayLocked(Single iStartPxlX, Single iStartPxlY, Single iEndPxlX, Single iEndPxlY)
+            public LineOverlayLocked(float iStartPxlX, float iStartPxlY, float iEndPxlX, float iEndPxlY)
                 : base(iStartPxlX, iStartPxlY, iEndPxlX, iEndPxlY)
             {
 
@@ -561,7 +561,7 @@ namespace Iocaine2.Data.Client
         }
         public sealed class LineRouteOverlay : LineOverlayLocked
         {
-            public LineRouteOverlay(Single iStartPxlX, Single iStartPxlY, Single iEndPxlX, Single iEndPxlY)
+            public LineRouteOverlay(float iStartPxlX, float iStartPxlY, float iEndPxlX, float iEndPxlY)
                 : base(iStartPxlX, iStartPxlY, iEndPxlX, iEndPxlY)
             {
                 init();
@@ -584,12 +584,12 @@ namespace Iocaine2.Data.Client
         #region NPC/PC's
         public class EllipsePCOverlay : EllipseOverlayLocked
         {
-            public EllipsePCOverlay(Single iPxlX, Single iPxlY, String iText)
+            public EllipsePCOverlay(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
                 init();
             }
-            public EllipsePCOverlay(Single iPxlX, Single iPxlY)
+            public EllipsePCOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -608,12 +608,12 @@ namespace Iocaine2.Data.Client
         }
         public class EllipseNPCOverlay : EllipseOverlayLocked
         {
-            public EllipseNPCOverlay(Single iPxlX, Single iPxlY, String iText)
+            public EllipseNPCOverlay(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
                 init();
             }
-            public EllipseNPCOverlay(Single iPxlX, Single iPxlY)
+            public EllipseNPCOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -639,12 +639,12 @@ namespace Iocaine2.Data.Client
                 Party,
                 Other
             }
-            public EllipseMobOverlay(Single iPxlX, Single iPxlY, String iText)
+            public EllipseMobOverlay(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
                 init();
             }
-            public EllipseMobOverlay(Single iPxlX, Single iPxlY)
+            public EllipseMobOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -696,12 +696,12 @@ namespace Iocaine2.Data.Client
         }
         public class EllipsePetOverlay : EllipseOverlayLocked
         {
-            public EllipsePetOverlay(Single iPxlX, Single iPxlY, String iText)
+            public EllipsePetOverlay(float iPxlX, float iPxlY, string iText)
                 : base(iPxlX, iPxlY, iText)
             {
                 init();
             }
-            public EllipsePetOverlay(Single iPxlX, Single iPxlY)
+            public EllipsePetOverlay(float iPxlX, float iPxlY)
                 : base(iPxlX, iPxlY, "")
             {
                 init();
@@ -728,7 +728,7 @@ namespace Iocaine2.Data.Client
                 Mob,
                 Pet
             }
-            public LineTargetOverlay(Single iStartPxlX, Single iStartPxlY, Single iEndPxlX, Single iEndPxlY)
+            public LineTargetOverlay(float iStartPxlX, float iStartPxlY, float iEndPxlX, float iEndPxlY)
                 : base(iStartPxlX, iStartPxlY, iEndPxlX, iEndPxlY)
             {
                 init();
@@ -774,7 +774,7 @@ namespace Iocaine2.Data.Client
             }
             public override void Draw(Graphics iMapGr)
             {
-                Single zoomX, zoomY;
+                float zoomX, zoomY;
                 TranslateFullToZoom(endPxlX, endPxlY, out zoomX, out zoomY);
                 iMapGr.DrawEllipse(pn, zoomX - 6, zoomY - 6, 12, 12);
                 base.Draw(iMapGr);
@@ -784,7 +784,7 @@ namespace Iocaine2.Data.Client
         #region Circles
         public class CircleOverlay : MapOverlay
         {
-            public CircleOverlay(Single iCenterPxlX, Single iCenterPxlY, Single iTopLeftPxlX, Single iTopLeftPxlY)
+            public CircleOverlay(float iCenterPxlX, float iCenterPxlY, float iTopLeftPxlX, float iTopLeftPxlY)
                 : base(iCenterPxlX, iCenterPxlY, "")
             {
                 topLeftPxlX = iTopLeftPxlX;
@@ -800,9 +800,9 @@ namespace Iocaine2.Data.Client
                 this.type = ItemType.CIRCLE;
                 pn = penRangeCircle;
             }
-            protected Single topLeftPxlX;
-            protected Single topLeftPxlY;
-            public Single EndPxlX
+            protected float topLeftPxlX;
+            protected float topLeftPxlY;
+            public float EndPxlX
             {
                 get
                 {
@@ -813,7 +813,7 @@ namespace Iocaine2.Data.Client
                     topLeftPxlX = value;
                 }
             }
-            public Single EndPxlY
+            public float EndPxlY
             {
                 get
                 {
@@ -840,11 +840,11 @@ namespace Iocaine2.Data.Client
             {
                 if (pn != null)
                 {
-                    Single xCenter, yCenter, xTopLeft, yTopLeft;
+                    float xCenter, yCenter, xTopLeft, yTopLeft;
                     TranslateFullToZoom(pxlX, pxlY, out xCenter, out yCenter);
                     TranslateFullToZoom(topLeftPxlX, topLeftPxlY, out xTopLeft, out yTopLeft);
-                    Single width = 2 * (xCenter - xTopLeft);
-                    Single height = width;
+                    float width = 2 * (xCenter - xTopLeft);
+                    float height = width;
                     iMapGr.DrawEllipse(pn, xTopLeft, yTopLeft, width, height);
                 }
             }
@@ -852,7 +852,7 @@ namespace Iocaine2.Data.Client
         #endregion Circles
         public class ArrowOverlay : MapOverlay
         {
-            public ArrowOverlay(UInt16 iX, UInt16 iY, Single iAngle)
+            public ArrowOverlay(ushort iX, ushort iY, float iAngle)
             {
                 this.pxlX = iX;
                 this.pxlY = iY;
@@ -871,12 +871,12 @@ namespace Iocaine2.Data.Client
                 img = Image.FromStream(file);
                 text = "";
             }
-            private const Int32 xCntrOff = 14;
-            private const Int32 yCntrOff = 15;
-            private const Single xCntrNudge = -1.5f;
-            private const Single yCntrNudge = -1.5f;
-            private Single angle;
-            public Single Angle
+            private const int xCntrOff = 14;
+            private const int yCntrOff = 15;
+            private const float xCntrNudge = -1.5f;
+            private const float yCntrNudge = -1.5f;
+            private float angle;
+            public float Angle
             {
                 get
                 {
@@ -888,7 +888,7 @@ namespace Iocaine2.Data.Client
                     centerSet = false;
                 }
             }
-            public override Single Scale
+            public override float Scale
             {
                 get
                 {
@@ -908,9 +908,9 @@ namespace Iocaine2.Data.Client
                     return rotate();
                 }
             }
-            private Boolean centerSet = false;
-            private Single centerX = 0;
-            public Single CenterX
+            private bool centerSet = false;
+            private float centerX = 0;
+            public float CenterX
             {
                 get
                 {
@@ -921,8 +921,8 @@ namespace Iocaine2.Data.Client
                     return (centerX + xCntrNudge) * scale;
                 }
             }
-            private Single centerY = 0;
-            public Single CenterY
+            private float centerY = 0;
+            public float CenterY
             {
                 get
                 {
@@ -939,13 +939,13 @@ namespace Iocaine2.Data.Client
 
                 Image rotatedArrow = rotate();
 
-                Single zoomX, zoomY;
+                float zoomX, zoomY;
                 TranslateFullToZoom(pxlX, pxlY, out zoomX, out zoomY);
                 iMapGr.DrawImage(rotatedArrow, new PointF(zoomX - CenterX, zoomY - CenterY));
                 iMapGr.FillEllipse(Brushes.Black, zoomX - 1, zoomY - 1, 2, 2);
             }
-            private Single xShiftRot = 0;
-            private Single yShiftRot = 0;
+            private float xShiftRot = 0;
+            private float yShiftRot = 0;
             private void setCenters()
             {
                 if(centerSet)
@@ -954,60 +954,60 @@ namespace Iocaine2.Data.Client
                 }
                 //Move the image based on how much it will be rotated.
                 //This will keep the full image with the top/left at 0,0.
-                Single rc = 0;       //rc is the distance to the pointer center when at 0,0.
-                Single alphac = 0;   //alphac is the original angle from 0,0 to the pointer center.
-                rc = (Single)Math.Sqrt(Math.Pow(xCntrOff, 2) + Math.Pow(yCntrOff, 2));
-                alphac = (Single)Math.Atan((Single)((Single)yCntrOff / (Single)xCntrOff));
-                Single alphacPrime = alphac + angle;
-                Single xRadial = (Single)(rc * Math.Cos(alphacPrime));
-                Single yRadial = (Single)(rc * Math.Sin(alphacPrime));
+                float rc = 0;       //rc is the distance to the pointer center when at 0,0.
+                float alphac = 0;   //alphac is the original angle from 0,0 to the pointer center.
+                rc = (float)Math.Sqrt(Math.Pow(xCntrOff, 2) + Math.Pow(yCntrOff, 2));
+                alphac = (float)Math.Atan((float)((float)yCntrOff / (float)xCntrOff));
+                float alphacPrime = alphac + angle;
+                float xRadial = (float)(rc * Math.Cos(alphacPrime));
+                float yRadial = (float)(rc * Math.Sin(alphacPrime));
 
-                Single xShiftOrth = 0;
-                Single yShiftOrth = 0;
+                float xShiftOrth = 0;
+                float yShiftOrth = 0;
 
                 if ((angle <= 0) && (angle > -Math.PI / 2))
                 {
                     //NE Quadrant
-                    Single L = (Single)(img.Width * Math.Sin(-angle));
-                    xShiftRot = (Single)(-L * Math.Cos(Math.PI / 2 + angle));
-                    yShiftRot = (Single)(L * Math.Cos(angle));
+                    float L = (float)(img.Width * Math.Sin(-angle));
+                    xShiftRot = (float)(-L * Math.Cos(Math.PI / 2 + angle));
+                    yShiftRot = (float)(L * Math.Cos(angle));
                     xShiftOrth = 0;
-                    yShiftOrth = (Single)(-img.Width * Math.Sin(angle));
+                    yShiftOrth = (float)(-img.Width * Math.Sin(angle));
                 }
                 else if (angle <= -Math.PI / 2)
                 {
                     //NW Quadrant
-                    Single beta = (Single)(-Math.PI - angle);
-                    Single L = (Single)(img.Height * Math.Sin(beta));
-                    Single xPrime = (Single)(L * Math.Cos(beta));
+                    float beta = (float)(-Math.PI - angle);
+                    float L = (float)(img.Height * Math.Sin(beta));
+                    float xPrime = (float)(L * Math.Cos(beta));
                     xShiftRot = xPrime - img.Width;
-                    yShiftRot = xPrime / (Single)Math.Tan(-beta);
-                    xShiftOrth = (Single)(img.Width * Math.Cos(Math.PI - angle));
-                    yShiftOrth = (Single)(img.Height * -Math.Sin(angle + Math.PI / 2));
-                    yShiftOrth += (Single)(img.Width * Math.Cos(angle + Math.PI / 2));
+                    yShiftRot = xPrime / (float)Math.Tan(-beta);
+                    xShiftOrth = (float)(img.Width * Math.Cos(Math.PI - angle));
+                    yShiftOrth = (float)(img.Height * -Math.Sin(angle + Math.PI / 2));
+                    yShiftOrth += (float)(img.Width * Math.Cos(angle + Math.PI / 2));
                 }
                 else if ((angle > 0) && (angle < Math.PI / 2))
                 {
                     //SE Quadrant
-                    Single L = (Single)(img.Height * Math.Sin(angle));
-                    xShiftRot = (Single)(L * Math.Cos(angle));
-                    yShiftRot = (Single)(-L * Math.Sin(angle));
+                    float L = (float)(img.Height * Math.Sin(angle));
+                    xShiftRot = (float)(L * Math.Cos(angle));
+                    yShiftRot = (float)(-L * Math.Sin(angle));
 
-                    xShiftOrth = (Single)(Math.Sqrt(Math.Pow(xShiftRot, 2) + Math.Pow(yShiftRot, 2)));
+                    xShiftOrth = (float)(Math.Sqrt(Math.Pow(xShiftRot, 2) + Math.Pow(yShiftRot, 2)));
                     yShiftOrth = 0;
                 }
                 else
                 {
                     //SW Quadrant
-                    Single beta = (Single)(Math.PI - angle);
-                    Single L = (Single)(img.Width / Math.Tan(beta));
-                    Single M = (Single)(L * Math.Cos(beta));
-                    xShiftRot = (Single)(-M * Math.Sin(beta));
-                    Single yPrime = (Single)(xShiftRot * Math.Tan(beta));
+                    float beta = (float)(Math.PI - angle);
+                    float L = (float)(img.Width / Math.Tan(beta));
+                    float M = (float)(L * Math.Cos(beta));
+                    xShiftRot = (float)(-M * Math.Sin(beta));
+                    float yPrime = (float)(xShiftRot * Math.Tan(beta));
                     yShiftRot = yPrime - img.Height;
 
-                    xShiftOrth = (Single)(img.Height * Math.Sin(beta) + img.Width * Math.Cos(beta));
-                    yShiftOrth = (Single)(img.Height * Math.Cos(beta));
+                    xShiftOrth = (float)(img.Height * Math.Sin(beta) + img.Width * Math.Cos(beta));
+                    yShiftOrth = (float)(img.Height * Math.Cos(beta));
                 }
 
                 centerX = xRadial + xShiftOrth;
@@ -1019,12 +1019,12 @@ namespace Iocaine2.Data.Client
             {
                 setCenters();
                 System.Drawing.Imaging.PixelFormat pf = System.Drawing.Imaging.PixelFormat.Format32bppArgb;
-                Bitmap newImg = new Bitmap((Int32)(img.Width*1.5), (Int32)(img.Height * 1.5), pf);
+                Bitmap newImg = new Bitmap((int)(img.Width*1.5), (int)(img.Height * 1.5), pf);
                 Graphics gr = Graphics.FromImage(newImg);
                 gr.Clear(Color.Transparent);
                 gr.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
 
-                gr.RotateTransform((Single)(angle * 180 / Math.PI));
+                gr.RotateTransform((float)(angle * 180 / Math.PI));
                 gr.TranslateTransform(xShiftRot * scale, yShiftRot * scale);
                 gr.DrawImage(img, 0, 0, img.Width * scale, img.Height * scale);
                 gr.Dispose();
