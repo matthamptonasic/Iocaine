@@ -33,9 +33,19 @@ namespace Iocaine2.Inventory
             WARDROBE3 = 10,
             WARDROBE4 = 11
         }
+        public enum CHILD_TYPE : byte
+        {
+            GENERAL,
+            EQUIP,
+            BOTH
+        }
         #endregion Enums
         #region Constructors
         public ItemContainer(STORAGE_TYPE iType)
+        {
+            init(iType);
+        }
+        private void init(STORAGE_TYPE iType)
         {
             fullItemList = new List<Item>();
             fullItemListQuan = new List<ushort>();
@@ -52,6 +62,7 @@ namespace Iocaine2.Inventory
         #region Member Variables
         #region Private Members
         private STORAGE_TYPE type = STORAGE_TYPE.BAG;
+        protected CHILD_TYPE childType = CHILD_TYPE.GENERAL;
         private String typeString = "Bag";
         private String typeStringAbbr = "Bag";
         private List<Item> fullItemList;
@@ -657,5 +668,30 @@ namespace Iocaine2.Inventory
         }
         #endregion Utility Methods
         #endregion Methods/Properties
+    }
+
+    public class EquipmentContainer : ItemContainer
+    {
+        public EquipmentContainer(STORAGE_TYPE iType, byte iEquipLocation)
+            : base(iType)
+        {
+            equipLocation = iEquipLocation;
+            if (iType == STORAGE_TYPE.BAG)
+            {
+                childType = CHILD_TYPE.BOTH;
+            }
+            else
+            {
+                childType = CHILD_TYPE.EQUIP;
+            }
+        }
+        private byte equipLocation = 0;
+        public byte EquipLocation
+        {
+            get
+            {
+                return equipLocation;
+            }
+        }
     }
 }
