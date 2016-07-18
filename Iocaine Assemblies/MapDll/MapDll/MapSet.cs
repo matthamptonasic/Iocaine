@@ -14,7 +14,7 @@ namespace Iocaine2.Data.Client
         {
             //Only this DLL's classes can create an instance of this object.
             //But outside classes can use an instance that's been made available.
-            internal MapSet(Image iBaseMap, UInt16 iZoneId, Byte iMapId)
+            internal MapSet(Image iBaseMap, ushort iZoneId, byte iMapId)
             {
                 cleanMap = iBaseMap;
                 zoneId = iZoneId;
@@ -24,34 +24,34 @@ namespace Iocaine2.Data.Client
                 modMapStatic = new Bitmap(cleanMap, cleanMap.Width, cleanMap.Height);
             }
             #region Private Members
-            public const Single PercZoomPerScroll = 10.0f;
-            private UInt16 zoneId;
-            private Byte mapId;
-            private Single offX = 0;
-            private Single offY = 0;
-            private Single mult = 0.8f;
+            public const float PercZoomPerScroll = 10.0f;
+            private ushort zoneId;
+            private byte mapId;
+            private float offX = 0;
+            private float offY = 0;
+            private float mult = 0.8f;
             private Image cleanMap = null;
             private Image cleanZoomedMap = null;
             private Image modMapStatic = null;
             private Image modMapDynamic = null;
             private List<MapOverlay> overlaysStatic = new List<MapOverlay>();
             private List<MapOverlay> overlaysDynamic = new List<MapOverlay>();
-            private Boolean suppressArrow = false;
+            private bool suppressArrow = false;
             private ArrowOverlay overlayArrow = null;
-            private Single currentZoom = 1.0f;
+            private float currentZoom = 1.0f;
             private PointF currentCenter = new PointF(256, 256);
-            private Boolean showNpcs = true;
-            private Boolean showNpcNames = true;
-            private Boolean showMobs = true;
-            private Boolean showMobNames = true;
-            private Boolean showPets = true;
-            private Boolean showPetNames = true;
-            private Boolean showPcs = true;
-            private Boolean showPcNames = true;
+            private bool showNpcs = true;
+            private bool showNpcNames = true;
+            private bool showMobs = true;
+            private bool showMobNames = true;
+            private bool showPets = true;
+            private bool showPetNames = true;
+            private bool showPcs = true;
+            private bool showPcNames = true;
             #endregion Private Members
             #region Properties
             #region Display Settings
-            public Boolean ShowNpcs
+            public bool ShowNpcs
             {
                 get
                 {
@@ -62,7 +62,7 @@ namespace Iocaine2.Data.Client
                     showNpcs = value;
                 }
             }
-            public Boolean ShowNpcNames
+            public bool ShowNpcNames
             {
                 get
                 {
@@ -73,7 +73,7 @@ namespace Iocaine2.Data.Client
                     showNpcNames = value;
                 }
             }
-            public Boolean ShowMobs
+            public bool ShowMobs
             {
                 get
                 {
@@ -84,7 +84,7 @@ namespace Iocaine2.Data.Client
                     showMobs = value;
                 }
             }
-            public Boolean ShowMobNames
+            public bool ShowMobNames
             {
                 get
                 {
@@ -95,7 +95,7 @@ namespace Iocaine2.Data.Client
                     showMobNames = value;
                 }
             }
-            public Boolean ShowPets
+            public bool ShowPets
             {
                 get
                 {
@@ -106,7 +106,7 @@ namespace Iocaine2.Data.Client
                     showPets = value;
                 }
             }
-            public Boolean ShowPetNames
+            public bool ShowPetNames
             {
                 get
                 {
@@ -117,7 +117,7 @@ namespace Iocaine2.Data.Client
                     showPetNames = value;
                 }
             }
-            public Boolean ShowPcs
+            public bool ShowPcs
             {
                 get
                 {
@@ -128,7 +128,7 @@ namespace Iocaine2.Data.Client
                     showPcs = value;
                 }
             }
-            public Boolean ShowPcNames
+            public bool ShowPcNames
             {
                 get
                 {
@@ -195,7 +195,7 @@ namespace Iocaine2.Data.Client
                     overlaysDynamic = value;
                 }
             }
-            public Boolean SuppressArrow
+            public bool SuppressArrow
             {
                 get
                 {
@@ -206,7 +206,7 @@ namespace Iocaine2.Data.Client
                     suppressArrow = value;
                 }
             }
-            public Single CurrentZoom
+            public float CurrentZoom
             {
                 get
                 {
@@ -236,15 +236,15 @@ namespace Iocaine2.Data.Client
             }
             #endregion Properties
             #region Public Methods
-            public void SetArrowValues(Single iPosX, Single iPosY, Single iAngle)
+            public void SetArrowValues(float iPosX, float iPosY, float iAngle)
             {
                 //The x/y have to be translated to the current map's pixel values.
                 if(overlayArrow == null)
                 {
                     overlayArrow = new ArrowOverlay();
                 }
-                Single pxlX;
-                Single pxlY;
+                float pxlX;
+                float pxlY;
                 Maps.posToPixels(offX, offY, mult, iPosX, iPosY, out pxlX, out pxlY);
                 overlayArrow.PxlX = pxlX;
                 overlayArrow.PxlY = pxlY;
@@ -263,18 +263,18 @@ namespace Iocaine2.Data.Client
                     item.Draw(gr);
                 }
             }
-            public void AddRangeCircle(Single iRadius, Single iCenterX, Single iCenterY)
+            public void AddRangeCircle(float iRadius, float iCenterX, float iCenterY)
             {
-                Single pxlX, pxlY, tlX, tlY;
+                float pxlX, pxlY, tlX, tlY;
                 posToPixels(offX, offY, mult, iCenterX, iCenterY, out pxlX, out pxlY);
                 posToPixels(offX, offY, mult, iCenterX - iRadius, iCenterY + iRadius, out tlX, out tlY);
                 MapOverlay ovl = new Maps.CircleOverlay(pxlX, pxlY, tlX, tlY);
                 overlaysDynamic.Add(ovl);
             }
-            public void AddTarget(Single iMyX, Single iMyY, MemReads.NPCs.NPCInfoStruct iTgtInfo)
+            public void AddTarget(float iMyX, float iMyY, MemReads.NPCs.NPCInfoStruct iTgtInfo)
             {
 
-                Single pxlX, pxlY, tgtPxlX, tgtPxlY;
+                float pxlX, pxlY, tgtPxlX, tgtPxlY;
                 posToPixels(offX, offY, mult, iMyX, iMyY, out pxlX, out pxlY);
                 posToPixels(offX, offY, mult, iTgtInfo.PosX, iTgtInfo.PosY, out tgtPxlX, out tgtPxlY);
                 LineTargetOverlay ovl = new LineTargetOverlay(pxlX, pxlY, tgtPxlX, tgtPxlY);
@@ -299,17 +299,17 @@ namespace Iocaine2.Data.Client
             public void SetNPCPositions(List<MemReads.NPCs.NPCInfoStruct> npcItems)
             {
                 overlaysDynamic.Clear();
-                Single pxlX, pxlY;
+                float pxlX, pxlY;
                 List<MemReads.NPCs.eActive> activeFilter = new List<MemReads.NPCs.eActive>();
                 activeFilter.Add(MemReads.NPCs.eActive.NotFound);
                 activeFilter.Add(MemReads.NPCs.eActive.PCSitNotDrawn);
                 activeFilter.Add(MemReads.NPCs.eActive.CharNotDrawn);
                 activeFilter.Add(MemReads.NPCs.eActive.NPCNotDrawn2);
                 activeFilter.Add(MemReads.NPCs.eActive.MobNotDrawn);
-                Dictionary<UInt32, MemReads.NPCs.NPCInfoStruct> unqIdToInfoMap = new Dictionary<uint, MemReads.NPCs.NPCInfoStruct>();
-                String myName = PlayerCache.Vitals.Name;
-                UInt32 myTargetCode = UInt32.MaxValue;
-                Int16 myIndex = 0;
+                Dictionary<uint, MemReads.NPCs.NPCInfoStruct> unqIdToInfoMap = new Dictionary<uint, MemReads.NPCs.NPCInfoStruct>();
+                string myName = PlayerCache.Vitals.Name;
+                uint myTargetCode = uint.MaxValue;
+                short myIndex = 0;
                 foreach (MemReads.NPCs.NPCInfoStruct npc in npcItems)
                 {
                     if((npc.Type == MemReads.NPCs.eType.Player) || (npc.PetID != 0))
@@ -372,7 +372,7 @@ namespace Iocaine2.Data.Client
                                         }
                                         else
                                         {
-                                            List<String> partyMembers = MemReads.Party.get_members();
+                                            List<string> partyMembers = MemReads.Party.get_members();
                                             if (partyMembers.Contains(MemReads.NPCs.getName(lastClaimer)))
                                             {
                                                 ((EllipseMobOverlay)ovl).HasClaim = EllipseMobOverlay.Claim.Party;
@@ -402,7 +402,7 @@ namespace Iocaine2.Data.Client
                         {
                             if (Statics.Settings.Top.ShowPets)
                             {
-                                String name = "";
+                                string name = "";
                                 if (Statics.Settings.Top.ShowPetNames)
                                 {
                                     name = MemReads.NPCs.getName(npc);
@@ -429,17 +429,17 @@ namespace Iocaine2.Data.Client
                     }
                 }
             }
-            public void AddDotPositions(MapOverlay.ItemType iType, List<Int16> iPosXs, List<Int16> iPosYs)
+            public void AddDotPositions(MapOverlay.ItemType iType, List<short> iPosXs, List<short> iPosYs)
             {
                 if (iPosXs.Count != iPosYs.Count)
                 {
                     return;
                 }
 
-                List<Int16> fltPosXs;
-                List<Int16> fltPosYs;
-                List<Int16> pxlXs;
-                List<Int16> pxlYs;
+                List<short> fltPosXs;
+                List<short> fltPosYs;
+                List<short> pxlXs;
+                List<short> pxlYs;
                 filterPosPerMap(zoneId, mapId, iPosXs, iPosYs, out fltPosXs, out fltPosYs);
                 posToPixels(zoneId, mapId, fltPosXs, fltPosYs, out pxlXs, out pxlYs);
                 for (int ii = 0; ii < pxlXs.Count; ii++)
@@ -460,14 +460,14 @@ namespace Iocaine2.Data.Client
                 }
                 CommitStaticChanges();
             }
-            public void SetZoom(Single iZoom, PointF iCenter)
+            public void SetZoom(float iZoom, PointF iCenter)
             {
                 currentZoom = iZoom;
                 currentCenter = iCenter;
 
-                Single nbOrigImgPxls = (Int32)(512 / currentZoom);
-                Single xStart = currentCenter.X - (nbOrigImgPxls / 2);
-                Single yStart = currentCenter.Y - (nbOrigImgPxls / 2);
+                float nbOrigImgPxls = (int)(512 / currentZoom);
+                float xStart = currentCenter.X - (nbOrigImgPxls / 2);
+                float yStart = currentCenter.Y - (nbOrigImgPxls / 2);
 
                 // Keep map in the window by 10 pixels.
                 if (xStart < ((nbOrigImgPxls - 10) * -1))
@@ -501,21 +501,21 @@ namespace Iocaine2.Data.Client
             {
                 SetZoom(currentZoom, currentCenter);
             }
-            public void CenterPosition(Single iPosX, Single iPosY)
+            public void CenterPosition(float iPosX, float iPosY)
             {
-                Single pxlX, pxlY;
+                float pxlX, pxlY;
                 posToPixels(offX, offY, mult, iPosX, iPosY, out pxlX, out pxlY);
                 currentCenter = new PointF(pxlX, pxlY);
                 Update();
             }
-            public void SetPosWidth(Single iWidth, PointF iCenter)
+            public void SetPosWidth(float iWidth, PointF iCenter)
             {
                 //Sets the map width by position units.
-                Single pxlWidth = iWidth * mult;
-                Single newZoom = 512 / pxlWidth;
+                float pxlWidth = iWidth * mult;
+                float newZoom = 512 / pxlWidth;
                 SetZoom(newZoom, iCenter);
             }
-            public void SetPosWidth(Single iWidth)
+            public void SetPosWidth(float iWidth)
             {
                 SetPosWidth(iWidth, currentCenter);
             }
@@ -523,7 +523,7 @@ namespace Iocaine2.Data.Client
             #region Private Methods
             private void setPosToPxlValues()
             {
-                String filter = "ZoneID=" + zoneId + " AND MapID=" + mapId;
+                string filter = "ZoneID=" + zoneId + " AND MapID=" + mapId;
                 MapInfoDS.MapInfoMapsRow[] mapsRows = (MapInfoDS.MapInfoMapsRow[])mapInfoDS.MapInfoMaps.Select(filter);
                 if (mapsRows.Length == 0)
                 {
@@ -559,7 +559,7 @@ namespace Iocaine2.Data.Client
         {
             //Only this DLL's classes can create an instance of this object.
             //But outside classes can use an instance that's been made available.
-            internal MapSetNoMap(Image iBaseMap, UInt16 iZoneId, Byte iMapId)
+            internal MapSetNoMap(Image iBaseMap, ushort iZoneId, byte iMapId)
                 : base(iBaseMap, iZoneId, iMapId) { }
             #region Properties
             public override Image CleanZoomedMap
