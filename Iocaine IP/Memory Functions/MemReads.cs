@@ -50,7 +50,7 @@ namespace Iocaine2.Memory
             public UInt32 Info_Chatlog;
             public UInt32 Info_ServerList;
             public UInt32 Info_Inv_Bag;
-            private const UInt32 Offset_Inv_Safe = 3564; //0xDEC
+            private const UInt32 Offset_Inv_Safe = 1 * 3564; //0xDEC
             public UInt32 Info_Inv_Safe
             {
                 get
@@ -4578,15 +4578,23 @@ namespace Iocaine2.Memory
                 public static UInt16 get_range_id(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    bool inWardrobe = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 21, 1) == 8;
+                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 21, 1);
                     Byte bagIndex = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 20, 1);
-                    if (!inWardrobe)
+                    if (location == 0)
                     {
                         return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, bagIndex * 44, 2);
                     }
-                    else
+                    else if (location == 8)
                     {
                         return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe, bagIndex * 44, 2);
+                    }
+                    else if (location == 10)
+                    {
+                        return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe2, bagIndex * 44, 2);
+                    }
+                    else
+                    {
+                        return 0;
                     }
                 }
                 public static bool get_range_equipped()
@@ -4608,15 +4616,23 @@ namespace Iocaine2.Memory
                 public static UInt16 get_ammo_id(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    bool inWardrobe = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1) == 8;
+                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1);
                     Byte bagIndex = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 28, 1);
-                    if (!inWardrobe)
+                    if (location == 0)
                     {
                         return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, bagIndex * 44, 2);
                     }
-                    else
+                    else if (location == 8)
                     {
                         return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe, bagIndex * 44, 2);
+                    }
+                    else if (location == 10)
+                    {
+                        return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe2, bagIndex * 44, 2);
+                    }
+                    else
+                    {
+                        return 0;
                     }
                 }
                 public static bool get_ammo_equipped()
@@ -4636,15 +4652,23 @@ namespace Iocaine2.Memory
                 public static byte get_ammo_quan(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    bool inWardrobe = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1) == 8;
+                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1);
                     Byte bagIndex = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 28, 1);
-                    if (!inWardrobe)
+                    if (location == 0)
                     {
                         return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (bagIndex * 44) + 4, 1);
                     }
-                    else
+                    else if (location == 8)
                     {
                         return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe, (bagIndex * 44) + 4, 1);
+                    }
+                    else if (location == 10)
+                    {
+                        return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe2, (bagIndex * 44) + 4, 1);
+                    }
+                    else
+                    {
+                        return 0;
                     }
                 }
                 #endregion Ammo

@@ -14,38 +14,33 @@ namespace Iocaine2.Inventory
     public static class Containers
     {
         #region Enums
-        public enum STORAGE_INDEX : byte
-        {
-            BAG = 0,
-            SATCHEL = 1,
-            SACK = 2,
-            CASE = 3,
-            SAFE = 4,
-            STORAGE = 5,
-            LOCKER = 6,
-            WARDROBE = 7
-        }
         #endregion Enums
         #region Private Members
-        private static ItemContainer bag;
+        private static EquipmentContainer bag;
         private static ItemContainer satchel;
         private static ItemContainer sack;
         private static ItemContainer mcase;
         private static ItemContainer safe;
         private static ItemContainer storage;
         private static ItemContainer locker;
-        private static ItemContainer wardrobe;
-        private static List<ItemContainer> containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe };
-        private static List<ItemContainer> containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe };
-        private static short absMaxBagCount = 80;
-        private static short absMaxSatchelCount = absMaxBagCount;
-        private static short absMaxSackCount = absMaxBagCount;
-        private static short absMaxCaseCount = absMaxBagCount;
-        private static short absMaxSafeCount = 80;
-        private static short absMaxStorageCount = 80;
-        private static short absMaxLockerCount = 80;
-        private static short absMaxWardrobeCount = absMaxBagCount;
-        private static List<short> absMaxCountList = new List<short>() { absMaxBagCount, absMaxSatchelCount, absMaxSackCount, absMaxCaseCount, absMaxSafeCount, absMaxStorageCount, absMaxLockerCount, absMaxWardrobeCount };
+        private static EquipmentContainer wardrobe;
+        private static ItemContainer safe2;
+        private static EquipmentContainer wardrobe2;
+        private static List<ItemContainer> containerList;
+        private static List<ItemContainer> containerListHouse;
+        private static List<ItemContainer> containerListMobile;
+        private static List<EquipmentContainer> containerListEquip;
+        private const byte absMaxBagCount = 80;
+        private const byte absMaxSatchelCount = absMaxBagCount;
+        private const byte absMaxSackCount = absMaxBagCount;
+        private const byte absMaxCaseCount = absMaxBagCount;
+        private const byte absMaxSafeCount = 80;
+        private const byte absMaxStorageCount = 80;
+        private const byte absMaxLockerCount = 80;
+        private const byte absMaxWardrobeCount = absMaxBagCount;
+        private const byte absMaxSafe2Count = absMaxSafeCount;
+        private const byte absMaxWardrobe2Count = absMaxWardrobeCount;
+        private static List<byte> absMaxCountList = new List<byte>() { absMaxBagCount, absMaxSatchelCount, absMaxSackCount, absMaxCaseCount, absMaxSafeCount, absMaxStorageCount, absMaxLockerCount, absMaxWardrobeCount, absMaxSafe2Count, absMaxWardrobe2Count };
         private static List<Item> summaryItemList;
         private static List<ushort> summaryItemListQuan;
         private static List<Item> summaryItemListMobile;
@@ -113,62 +108,118 @@ namespace Iocaine2.Inventory
                 return wardrobe;
             }
         }
+        public static ItemContainer Safe2
+        {
+            get
+            {
+                return safe2;
+            }
+        }
+        public static ItemContainer Wardrobe2
+        {
+            get
+            {
+                return wardrobe2;
+            }
+        }
+        public static List<ItemContainer> All
+        {
+            get
+            {
+                return containerList;
+            }
+        }
+        public static List<ItemContainer> Mobile
+        {
+            get
+            {
+                return containerListMobile;
+            }
+        }
+        public static List<ItemContainer> House
+        {
+            get
+            {
+                return containerListHouse;
+            }
+        }
+        public static List<EquipmentContainer> Equipment
+        {
+            get
+            {
+                return containerListEquip;
+            }
+        }
         #endregion Containers
         #region Absolue Max Counts
-        public static short AbsMaxBagCount
+        public static byte AbsMaxBagCount
         {
             get
             {
                 return absMaxBagCount;
             }
         }
-        public static short AbsMaxSatchelCount
+        public static byte AbsMaxSatchelCount
         {
             get
             {
                 return absMaxSatchelCount;
             }
         }
-        public static short AbsMaxSackCount
+        public static byte AbsMaxSackCount
         {
             get
             {
                 return absMaxSackCount;
             }
         }
-        public static short AbsMaxCaseCount
+        public static byte AbsMaxCaseCount
         {
             get
             {
                 return absMaxCaseCount;
             }
         }
-        public static short AbsMaxSafeCount
+        public static byte AbsMaxSafeCount
         {
             get
             {
                 return absMaxSafeCount;
             }
         }
-        public static short AbsMaxStorageCount
+        public static byte AbsMaxStorageCount
         {
             get
             {
                 return absMaxStorageCount;
             }
         }
-        public static short AbsMaxLockerCount
+        public static byte AbsMaxLockerCount
         {
             get
             {
                 return absMaxLockerCount;
             }
         }
-        public static short AbsMaxWardrobeCount
+        public static byte AbsMaxWardrobeCount
         {
             get
             {
                 return absMaxWardrobeCount;
+            }
+        }
+        public static byte AbsMaxSafe2Count
+        {
+            get
+            {
+                return absMaxSafe2Count;
+            }
+        }
+        public static byte AbsMaxWardrobe2Count
+        {
+            get
+            {
+                return absMaxWardrobe2Count;
             }
         }
         #endregion Absolue Max Counts
@@ -310,14 +361,22 @@ namespace Iocaine2.Inventory
         #region Init
         public static void Init()
         {
-            bag = new ItemContainer(ItemContainer.STORAGE_TYPE.BAG);
+            bag = new EquipmentContainer(ItemContainer.STORAGE_TYPE.BAG, 0);
             satchel = new ItemContainer(ItemContainer.STORAGE_TYPE.SATCHEL);
             sack = new ItemContainer(ItemContainer.STORAGE_TYPE.SACK);
             mcase = new ItemContainer(ItemContainer.STORAGE_TYPE.CASE);
             safe = new ItemContainer(ItemContainer.STORAGE_TYPE.SAFE);
             storage = new ItemContainer(ItemContainer.STORAGE_TYPE.STORAGE);
             locker = new ItemContainer(ItemContainer.STORAGE_TYPE.LOCKER);
-            wardrobe = new ItemContainer(ItemContainer.STORAGE_TYPE.WARDROBE);
+            wardrobe = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE, 1);
+            safe2 = new ItemContainer(ItemContainer.STORAGE_TYPE.SAFE2);
+            wardrobe2 = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE2, 2);
+
+            containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe, safe2, wardrobe2 };
+            containerListHouse = new List<ItemContainer>() { safe, storage, locker, safe2 };
+            containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe, wardrobe2 };
+            containerListEquip = new List<EquipmentContainer>() { bag, wardrobe, wardrobe2 };
+
             summaryItemList = new List<Item>();
             summaryItemListHouse = new List<Item>();
             summaryItemListMobile = new List<Item>();
@@ -609,6 +668,16 @@ namespace Iocaine2.Inventory
                 return id;
             }
             id = locker.GetItemId(iItemName);
+            if (id != 0)
+            {
+                return id;
+            }
+            id = safe2.GetItemId(iItemName);
+            if (id != 0)
+            {
+                return id;
+            }
+            id = wardrobe2.GetItemId(iItemName);
             return id;
         }
         public static String GetItemName(ushort iItemId)
@@ -649,6 +718,16 @@ namespace Iocaine2.Inventory
                 return itemName;
             }
             itemName = locker.GetItemName(iItemId);
+            if (itemName != "")
+            {
+                return itemName;
+            }
+            itemName = safe2.GetItemName(iItemId);
+            if (itemName != "")
+            {
+                return itemName;
+            }
+            itemName = wardrobe2.GetItemName(iItemId);
             return itemName;
         }
         #endregion Get Item ID/Name
@@ -700,152 +779,45 @@ namespace Iocaine2.Inventory
         {
             try
             {
-                bag.RebuildLists();
-                sack.RebuildLists();
-                satchel.RebuildLists();
-                mcase.RebuildLists();
-                wardrobe.RebuildLists();
+                foreach (ItemContainer cntnr in containerListMobile)
+                {
+                    cntnr.RebuildLists();
+                }
 
                 Monitor.Enter(summaryItemListMobile);
                 Monitor.Enter(summaryItemListQuanMobile);
                 summaryItemListMobile.Clear();
                 summaryItemListQuanMobile.Clear();
-                List<Item> bagList = bag.GetSummaryItemList();
-                List<ushort> bagQuanList = bag.GetSummaryItemQuanList();
-                //Go thru each item in the container list and check if it's in our summary list.
-                //If it's in the list, just add the quantity to the existing value.
-                //If it's not in the list, add it to the list.
-                for (int ii = 0; ii < bagList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListMobile)
-                    {
-                        if (itm.ItemID == bagList[ii].ItemID)
-                        {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListMobile.IndexOf(itm);
-                            summaryItemListQuanMobile[idx] += bagQuanList[ii];
-                            foundItem = true;
-                            break;
-                        }
 
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListMobile.Add(bagList[ii]);
-                        summaryItemListQuanMobile.Add(bagQuanList[ii]);
-                    }
-                }
-
-                List<Item> sackList = sack.GetSummaryItemList();
-                List<ushort> sackQuanList = sack.GetSummaryItemQuanList();
-                for (int ii = 0; ii < sackList.Count; ii++)
+                foreach (ItemContainer cntnr in containerListMobile)
                 {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListMobile)
-                    {
-                        if (itm.ItemID == sackList[ii].ItemID)
-                        {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListMobile.IndexOf(itm);
-                            summaryItemListQuanMobile[idx] += sackQuanList[ii];
-                            foundItem = true;
-                            break;
-                        }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListMobile.Add(sackList[ii]);
-                        summaryItemListQuanMobile.Add(sackQuanList[ii]);
-                    }
-                }
+                    List<Item> itemList = cntnr.GetSummaryItemList();
+                    List<ushort> quanList = cntnr.GetSummaryItemQuanList();
 
-                List<Item> satchelList = satchel.GetSummaryItemList();
-                List<ushort> satchelQuanList = satchel.GetSummaryItemQuanList();
-                for (int ii = 0; ii < satchelList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListMobile)
+                    //Go thru each item in the container list and check if it's in our summary list.
+                    //If it's in the list, just add the quantity to the existing value.
+                    //If it's not in the list, add it to the list.
+                    for (int ii = 0; ii < itemList.Count; ii++)
                     {
-                        if (itm.ItemID == satchelList[ii].ItemID)
+                        bool foundItem = false;
+                        foreach (Item itm in summaryItemListMobile)
                         {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListMobile.IndexOf(itm);
-                            summaryItemListQuanMobile[idx] += satchelQuanList[ii];
-                            foundItem = true;
-                            break;
-                        }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListMobile.Add(satchelList[ii]);
-                        summaryItemListQuanMobile.Add(satchelQuanList[ii]);
-                    }
-                }
+                            if (itm.ItemID == itemList[ii].ItemID)
+                            {
+                                //We already have a record of this item, so just add the quantity to the quantity list.
+                                int idx = summaryItemListMobile.IndexOf(itm);
+                                summaryItemListQuanMobile[idx] += quanList[ii];
+                                foundItem = true;
+                                break;
+                            }
 
-                List<Item> caseList = mcase.GetSummaryItemList();
-                List<ushort> caseQuanList = mcase.GetSummaryItemQuanList();
-                for (int ii = 0; ii < caseList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListMobile)
-                    {
-                        if (itm.ItemID == caseList[ii].ItemID)
-                        {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListMobile.IndexOf(itm);
-                            summaryItemListQuanMobile[idx] += caseQuanList[ii];
-                            foundItem = true;
-                            break;
                         }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListMobile.Add(caseList[ii]);
-                        summaryItemListQuanMobile.Add(caseQuanList[ii]);
-                    }
-                }
-
-                List<Item> wardrobeList = wardrobe.GetSummaryItemList();
-                List<ushort> wardrobeQuanList = wardrobe.GetSummaryItemQuanList();
-                for (int ii = 0; ii < wardrobeList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListMobile)
-                    {
-                        if(itm == null)
+                        if (!foundItem)
                         {
-                            LoggingFunctions.Error("Found null item in summary item list mobile.");
-                            continue;
+                            //We do not have this item yet, just add the item and quantity.
+                            summaryItemListMobile.Add(itemList[ii]);
+                            summaryItemListQuanMobile.Add(quanList[ii]);
                         }
-                        else if(wardrobeList == null)
-                        {
-                            LoggingFunctions.Error("Found wardrobe list to be null.");
-                            continue;
-                        }
-                        else if(wardrobeList[ii] == null)
-                        {
-                            LoggingFunctions.Error("Found null wardrobe list item.");
-                            continue;
-                        }
-                        if (itm.ItemID == wardrobeList[ii].ItemID)
-                        {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListMobile.IndexOf(itm);
-                            summaryItemListQuanMobile[idx] += wardrobeQuanList[ii];
-                            foundItem = true;
-                            break;
-                        }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListMobile.Add(wardrobeList[ii]);
-                        summaryItemListQuanMobile.Add(wardrobeQuanList[ii]);
                     }
                 }
             }
@@ -867,83 +839,40 @@ namespace Iocaine2.Inventory
         {
             try
             {
-                safe.RebuildLists();
-                storage.RebuildLists();
-                locker.RebuildLists();
+                foreach (ItemContainer cntnr in containerListHouse)
+                {
+                    cntnr.RebuildLists();
+                }
 
                 Monitor.Enter(summaryItemListHouse);
                 Monitor.Enter(summaryItemListQuanHouse);
                 summaryItemListHouse.Clear();
                 summaryItemListQuanHouse.Clear();
-                List<Item> safeList = safe.GetSummaryItemList();
-                List<ushort> safeQuanList = safe.GetSummaryItemQuanList();
-                for (int ii = 0; ii < safeList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListHouse)
-                    {
-                        if (itm.ItemID == safeList[ii].ItemID)
-                        {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListHouse.IndexOf(itm);
-                            summaryItemListQuanHouse[idx] += safeQuanList[ii];
-                            foundItem = true;
-                            break;
-                        }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListHouse.Add(safeList[ii]);
-                        summaryItemListQuanHouse.Add(safeQuanList[ii]);
-                    }
-                }
 
-                List<Item> storageList = storage.GetSummaryItemList();
-                List<ushort> storageQuanList = storage.GetSummaryItemQuanList();
-                for (int ii = 0; ii < storageList.Count; ii++)
+                foreach (ItemContainer cntnr in containerListHouse)
                 {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListHouse)
+                    List<Item> itemList = cntnr.GetSummaryItemList();
+                    List<ushort> quanList = cntnr.GetSummaryItemQuanList();
+                    for (int ii = 0; ii < itemList.Count; ii++)
                     {
-                        if (itm.ItemID == storageList[ii].ItemID)
+                        bool foundItem = false;
+                        foreach (Item itm in summaryItemListHouse)
                         {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListHouse.IndexOf(itm);
-                            summaryItemListQuanHouse[idx] += storageQuanList[ii];
-                            foundItem = true;
-                            break;
+                            if (itm.ItemID == itemList[ii].ItemID)
+                            {
+                                //We already have a record of this item, so just add the quantity to the quantity list.
+                                int idx = summaryItemListHouse.IndexOf(itm);
+                                summaryItemListQuanHouse[idx] += quanList[ii];
+                                foundItem = true;
+                                break;
+                            }
                         }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListHouse.Add(storageList[ii]);
-                        summaryItemListQuanHouse.Add(storageQuanList[ii]);
-                    }
-                }
-
-                List<Item> lockerList = locker.GetSummaryItemList();
-                List<ushort> lockerQuanList = locker.GetSummaryItemQuanList();
-                for (int ii = 0; ii < lockerList.Count; ii++)
-                {
-                    bool foundItem = false;
-                    foreach (Item itm in summaryItemListHouse)
-                    {
-                        if (itm.ItemID == lockerList[ii].ItemID)
+                        if (!foundItem)
                         {
-                            //We already have a record of this item, so just add the quantity to the quantity list.
-                            int idx = summaryItemListHouse.IndexOf(itm);
-                            summaryItemListQuanHouse[idx] += lockerQuanList[ii];
-                            foundItem = true;
-                            break;
+                            //We do not have this item yet, just add the item and quantity.
+                            summaryItemListHouse.Add(itemList[ii]);
+                            summaryItemListQuanHouse.Add(quanList[ii]);
                         }
-                    }
-                    if (!foundItem)
-                    {
-                        //We do not have this item yet, just add the item and quantity.
-                        summaryItemListHouse.Add(lockerList[ii]);
-                        summaryItemListQuanHouse.Add(lockerQuanList[ii]);
                     }
                 }
             }

@@ -21,8 +21,6 @@ using Iocaine2.Settings;
 using Iocaine2.Threading;
 using Iocaine2.Tools;
 
-#pragma warning disable 618
-
 namespace Iocaine2.Bots
 {
     public sealed partial class Fisher : Bot
@@ -110,6 +108,7 @@ namespace Iocaine2.Bots
         private bool waitForNextDay = false;
         #endregion State Related
         #region Player/Environment Info
+        private ushort rodId = 0;
         private string rodMacroText = "";
         private BaitBoxItem currentBaitItem = null;
         private List<BaitBoxItem> baitList = Statics.Settings.Fisher.BaitBoxItems;
@@ -2025,6 +2024,7 @@ namespace Iocaine2.Bots
                     {
                         rodMacroText = rodInfo.RodName;
                     }
+                    rodId = iNewId;
                 }
             }
             catch(Exception e)
@@ -2056,12 +2056,27 @@ namespace Iocaine2.Bots
         {
             try
             {
-                Statics.FuncPtrs.SetStatusBoxPtr("Equipping new rod", Statics.Fields.Yellow);
-                IocaineFunctions.delay(100);
-                string macro = "/equip range \"" + rodMacroText + "\" 0 <me>";
-                IocaineFunctions.keys(macro);
-                LoggingFunctions.Debug("Fisher::equipRod: Rod equip command is " + macro, LoggingFunctions.DBG_SCOPE.FISHER);
-                IocaineFunctions.delay(100);
+                byte location = 0xff;
+                foreach (EquipmentContainer cntnr in Inventory.Containers.Equipment)
+                {
+                    if (cntnr.Contains((short)rodId))
+                    {
+                        location = cntnr.EquipLocation;
+                    }
+                }
+                if (location != 0xff)
+                {
+                    Statics.FuncPtrs.SetStatusBoxPtr("Equipping new rod", Statics.Fields.Yellow);
+                    IocaineFunctions.delay(100);
+                    string macro = "/equip range \"" + rodMacroText + "\" " + location + " <me>";
+                    IocaineFunctions.keys(macro);
+                    LoggingFunctions.Debug("Fisher::equipRod: Rod equip command is " + macro, LoggingFunctions.DBG_SCOPE.FISHER);
+                    IocaineFunctions.delay(100);
+                }
+                else
+                {
+                    Statics.FuncPtrs.SetStatusBoxPtr("Could not find a '" + Data.Client.Things.GetNameFromId(rodId) + "' to equip.", Statics.Fields.Red);
+                }
             }
             catch(Exception e)
             {
@@ -2146,11 +2161,17 @@ namespace Iocaine2.Bots
                     foundBait = true;
                     baitItem = currentBaitItem;
                 }
-                else if (Statics.Settings.Fisher.MoveInv && (Inventory.Containers.Wardrobe.Contains(currentBaitItem.BaitName)))
+                else if (Inventory.Containers.Wardrobe.Contains(currentBaitItem.BaitName))
                 {
                     foundBait = true;
                     baitItem = currentBaitItem;
-                    baitItem.BaitLocation = 1;
+                    baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe).EquipLocation;
+                }
+                else if (Inventory.Containers.Wardrobe2.Contains(currentBaitItem.BaitName))
+                {
+                    foundBait = true;
+                    baitItem = currentBaitItem;
+                    baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe2).EquipLocation;
                 }
                 else
                 {
@@ -2173,6 +2194,20 @@ namespace Iocaine2.Bots
                         {
                             baitItem = baitList[ii];
                             swapFishAndBait(name, false);
+                            foundBait = true;
+                            break;
+                        }
+                        else if (Inventory.Containers.Wardrobe.Contains(name))
+                        {
+                            baitItem = baitList[ii];
+                            baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe).EquipLocation;
+                            foundBait = true;
+                            break;
+                        }
+                        else if (Inventory.Containers.Wardrobe2.Contains(name))
+                        {
+                            baitItem = baitList[ii];
+                            baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe2).EquipLocation;
                             foundBait = true;
                             break;
                         }
@@ -2256,7 +2291,7 @@ namespace Iocaine2.Bots
                         {
                             continue;
                         }
-                        if (Containers.Bag.Contains(name) || Inventory.Containers.Satchel.Contains(name) || Inventory.Containers.Sack.Contains(name) || Inventory.Containers.MCase.Contains(name) || Inventory.Containers.Wardrobe.Contains(name))
+                        if (Containers.Bag.Contains(name) || Inventory.Containers.Satchel.Contains(name) || Inventory.Containers.Sack.Contains(name) || Inventory.Containers.MCase.Contains(name) || Inventory.Containers.Wardrobe.Contains(name) || Inventory.Containers.Wardrobe2.Contains(name))
                         {
                             currentBaitItem = baitList[ii];
                             foundInList = true;
@@ -2402,7 +2437,6 @@ namespace Iocaine2.Bots
             bool movedSomething = false;
             try
             {
-                //This function assumes that you already have the inventory rebuilt.
                 if (!Statics.Settings.Fisher.MoveInv)
                 {
                     return movedSomething;
