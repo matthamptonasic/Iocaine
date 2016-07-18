@@ -17,7 +17,7 @@ namespace Iocaine2.Data.Structures
             {
 
             }
-            public FfxiEvent(Trigger iTrigger, ActionSequence iSequence, Boolean iEnabled)
+            public FfxiEvent(Trigger iTrigger, ActionSequence iSequence, bool iEnabled)
             {
                 trigger = iTrigger;
                 sequence = iSequence;
@@ -27,7 +27,7 @@ namespace Iocaine2.Data.Structures
             #region Private Members
             private ActionSequence sequence = null;
             private Trigger trigger = null;
-            private Boolean enabled = false;
+            private bool enabled = false;
             #endregion Private Members
             #region Properties
             public ActionSequence Sequence
@@ -52,7 +52,7 @@ namespace Iocaine2.Data.Structures
                     trigger = value;
                 }
             }
-            public Boolean Enabled
+            public bool Enabled
             {
                 get
                 {
