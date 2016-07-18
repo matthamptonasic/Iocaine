@@ -50,7 +50,7 @@ namespace Iocaine2.Memory
             public UInt32 Info_Chatlog;
             public UInt32 Info_ServerList;
             public UInt32 Info_Inv_Bag;
-            private const UInt32 Offset_Inv_Safe = 3564; //0xDEC
+            private const UInt32 Offset_Inv_Safe = 1 * 3564; //0xDEC
             public UInt32 Info_Inv_Safe
             {
                 get
