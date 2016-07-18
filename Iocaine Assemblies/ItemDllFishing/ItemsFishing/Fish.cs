@@ -21,9 +21,9 @@ namespace Iocaine2.Data.Client
         public static void init()
         {
         }
-        public static Image getImageByID(UInt16 iItemID)
+        public static Image getImageByID(ushort iItemID)
         {
-            String itemName = Fish.GetFishName(iItemID);
+            string itemName = Fish.GetFishName(iItemID);
             itemName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName);
             if((itemName.Contains("s 2") || (itemName.Contains("s 3"))) && !itemName.Contains("Quus"))
             {
@@ -38,22 +38,22 @@ namespace Iocaine2.Data.Client
             itemName += "_Full";
             return loadImage(itemName);
         }
-        public static Image getImageByName(String iItemName)
+        public static Image getImageByName(string iItemName)
         {
-            UInt16 itemId = Fish.GetFishInfo(iItemName).ItemID;
+            ushort itemId = Fish.GetFishInfo(iItemName).ItemID;
             return getImageByID(itemId);
         }
 
         //Private Member Functions
-        private static Image loadImage(String fileName)
+        private static Image loadImage(string fileName)
         {
-            String fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
+            string fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
             try
             {
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
                 Stream myStream;
-                //String[] resources = myAssembly.GetManifestResourceNames();
-                //foreach (String str in resources)
+                //string[] resources = myAssembly.GetManifestResourceNames();
+                //foreach (string str in resources)
                 //{
                 //    Console.WriteLine(str);
                 //}
