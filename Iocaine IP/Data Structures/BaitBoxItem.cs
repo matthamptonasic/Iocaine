@@ -14,16 +14,16 @@ namespace Iocaine2
         }
         #endregion Constructors
         #region Private Members
-        private String baitName;
-        private Byte baitLocation = 0;
-        private String baitNameShort;
-        private String equipString;
+        private string baitName;
+        private byte baitLocation = 0;
+        private string baitNameShort;
+        private string equipString;
         private bool use;
         private byte priority;
         private ushort quantity;
         #endregion Private Members
         #region Public Properties
-        public String BaitName
+        public string BaitName
         {
             get
             {
@@ -35,7 +35,7 @@ namespace Iocaine2
                 equipString = "/equip Ammo \"" + baitName + "\" " + baitLocation + " <me>";
             }
         }
-        public Byte BaitLocation
+        public byte BaitLocation
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Iocaine2
                 BaitName = baitName;
             }
         }
-        public String BaitNameShort
+        public string BaitNameShort
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Iocaine2
                 baitNameShort = value;
             }
         }
-        public String EquipString
+        public string EquipString
         {
             get
             {
