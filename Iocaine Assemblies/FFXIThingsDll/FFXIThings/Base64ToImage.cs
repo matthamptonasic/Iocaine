@@ -12,7 +12,7 @@ namespace Iocaine2.Data.Client
         {
             if (ImageText.Length > 0)
             {
-                Byte[] bitmapData = new Byte[ImageText.Length];
+                byte[] bitmapData = new byte[ImageText.Length];
                 bitmapData = Convert.FromBase64String(FixBase64ForImage(ImageText));
 
                 System.IO.MemoryStream streamBitmap = new System.IO.MemoryStream(bitmapData);
@@ -29,9 +29,9 @@ namespace Iocaine2.Data.Client
         {
             System.Text.StringBuilder sbText = new System.Text.StringBuilder(Image, Image.Length);
 
-            sbText.Replace("\r\n", String.Empty);
+            sbText.Replace("\r\n", string.Empty);
 
-            sbText.Replace(" ", String.Empty);
+            sbText.Replace(" ", string.Empty);
 
             return sbText.ToString();
         }
