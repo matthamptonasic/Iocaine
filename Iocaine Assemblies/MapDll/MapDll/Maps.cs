@@ -19,12 +19,12 @@ namespace Iocaine2.Data.Client
         #region Structs
         private struct mapBox
         {
-            public Int16 x1;
-            public Int16 x2;
-            public Int16 y1;
-            public Int16 y2;
-            public Int16 z1;
-            public Int16 z2;
+            public short x1;
+            public short x2;
+            public short y1;
+            public short y2;
+            public short z1;
+            public short z2;
         }
         #endregion Structs
         #region Public Members
@@ -39,8 +39,8 @@ namespace Iocaine2.Data.Client
         public static Brush DotColorAll = Brushes.Blue;
         public static Brush DotColorSingle = Brushes.Magenta;
         #region Function Pointers
-        public delegate Boolean DownloadDirectory(String iPathFromRoot, String iSaveFolder);
-        public delegate void DownloadFile(String iPathFromRoot, String iSaveFolder);
+        public delegate bool DownloadDirectory(string iPathFromRoot, string iSaveFolder);
+        public delegate void DownloadFile(string iPathFromRoot, string iSaveFolder);
         public static DownloadDirectory DownloadDirectoryPtr
         {
             set
@@ -55,7 +55,7 @@ namespace Iocaine2.Data.Client
                 downloadFilePtr = value;
             }
         }
-        public delegate String Decrypt(String iEncryptedString);
+        public delegate string Decrypt(string iEncryptedString);
         public static SetString SetMapsPath
         {
             set
@@ -63,31 +63,30 @@ namespace Iocaine2.Data.Client
                 setMapsPath = value;
             }
         }
-        public delegate void SendString(String iText);
-        public delegate void SendDebug(String iText, UInt32 iDebugScope);
-        public delegate void SetString(String iText);
-        public delegate void SetBool(Boolean iValue);
+        public delegate void SendString(string iText);
+        public delegate void SendDebug(string iText, uint iDebugScope);
+        public delegate void SetString(string iText);
+        public delegate void SetBool(bool iValue);
         #endregion Function Pointers
         #endregion Public Members
         #region Private Members
-        private static Boolean useResourcesNotFiles = false;
-        private static Boolean isInitialized = false;
-        private static String resourcePrefix = "Iocaine2.Images.";
-        private static String noMap = "0_No_Map.png";
-        private static String mapsPath = "";
-        private static String defaultMapsDirFromRoot = "Map_Packs/Default";
-        private static String mapPackZipFile = "IocaineMaps.zip";
-        private const String localMapsDir = @".\Maps\";
-        private const String localMapImagesDir = @".\Maps\Images\";
-        private static Boolean useHexZoneId = false;
-        private static Boolean useHexMapId = false;
-        private static Boolean useApneaPack = false;
-        private const String hexZoneIdFileNameCheck = "0b_0";
-        private const String hexMapIdFileNameCheck = "09_a";
-        private const String apneaZoneFileToCheck = "2bc_0";
-        private static Dictionary<UInt16, Byte> zoneNbMaps;
-        private static Dictionary<UInt16, List<String>> zoneMapList;
-        private static Dictionary<UInt16, Dictionary<Byte, UInt16>> zoneToMapNbToMapId;
+        private static bool useResourcesNotFiles = false;
+        private static bool isInitialized = false;
+        private static string resourcePrefix = "Iocaine2.Images.";
+        private static string noMap = "0_No_Map.png";
+        private static string mapsPath = "";
+        private static string defaultMapsDirFromRoot = "Map_Packs/Default";
+        private const string localMapsDir = @".\Maps\";
+        private const string localMapImagesDir = @".\Maps\Images\";
+        private static bool useHexZoneId = false;
+        private static bool useHexMapId = false;
+        private static bool useApneaPack = false;
+        private const string hexZoneIdFileNameCheck = "0b_0";
+        private const string hexMapIdFileNameCheck = "09_a";
+        private const string apneaZoneFileToCheck = "2bc_0";
+        private static Dictionary<ushort, byte> zoneNbMaps;
+        private static Dictionary<ushort, List<string>> zoneMapList;
+        private static Dictionary<ushort, Dictionary<byte, ushort>> zoneToMapNbToMapId;
         private static MapInfoDS mapInfoDS = new MapInfoDS();
         #region Function Pointers
         private static DownloadDirectory downloadDirectoryPtr;
@@ -102,7 +101,7 @@ namespace Iocaine2.Data.Client
         #region Public Member Functions
         #region Inits
         public delegate void MapsInitTypeDef();
-        public static void SetValues(String iMapsPath,
+        public static void SetValues(string iMapsPath,
                                 DownloadDirectory iDownloadDirectoryPtr,
                                 DownloadFile iDownloadFilePtr,
                                 SendString iTimestampPtr,
@@ -129,29 +128,29 @@ namespace Iocaine2.Data.Client
         {
             zoneNbMaps = new Dictionary<ushort, byte>();
             zoneMapList = new Dictionary<ushort, List<string>>();
-            zoneToMapNbToMapId = new Dictionary<ushort, Dictionary<Byte, UInt16>>();
+            zoneToMapNbToMapId = new Dictionary<ushort, Dictionary<byte, ushort>>();
 
             #region Use Resources
             if (useResourcesNotFiles)
             {
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
-                String[] resources = myAssembly.GetManifestResourceNames();
+                string[] resources = myAssembly.GetManifestResourceNames();
                 count = resources.Length;
-                foreach (String str in resources)
+                foreach (string str in resources)
                 {
                     if (str == resourcePrefix + noMap)
                     {
                         continue;
                     }
                     //Get zone ID
-                    String[] strs = str.Split('_');
-                    String zoneIdStr = strs[0];
+                    string[] strs = str.Split('_');
+                    string zoneIdStr = strs[0];
                     zoneIdStr = zoneIdStr.Replace(resourcePrefix, "");
-                    String fileName = str.Replace(resourcePrefix, "");
-                    UInt16 zoneId = 0;
-                    if (!UInt16.TryParse(zoneIdStr, out zoneId))
+                    string fileName = str.Replace(resourcePrefix, "");
+                    ushort zoneId = 0;
+                    if (!ushort.TryParse(zoneIdStr, out zoneId))
                         {
-                            MessageBox.Show("Could not parse a UInt16 from '" + zoneIdStr + "'");
+                            MessageBox.Show("Could not parse a ushort from '" + zoneIdStr + "'");
                         }
                     if (zoneNbMaps.ContainsKey(zoneId))
                     {
@@ -178,11 +177,11 @@ namespace Iocaine2.Data.Client
                 }
                 else
                 {
-                    //String[] files = Directory.GetFiles(mapsPath, "*.png");
-                    String[] files = Directory.GetFiles(mapsPath, "*.*", SearchOption.TopDirectoryOnly);
-                    foreach(String file in files)
+                    //string[] files = Directory.GetFiles(mapsPath, "*.png");
+                    string[] files = Directory.GetFiles(mapsPath, "*.*", SearchOption.TopDirectoryOnly);
+                    foreach(string file in files)
                     {
-                        String fileName = Path.GetFileName(file);
+                        string fileName = Path.GetFileName(file);
                         if (fileName.ToLower().Contains(hexZoneIdFileNameCheck))
                         {
                             useHexZoneId = true;
@@ -202,16 +201,16 @@ namespace Iocaine2.Data.Client
                         }
                     }
 
-                    foreach(String file in files)
+                    foreach(string file in files)
                     {
-                        String fileName = Path.GetFileName(file);
+                        string fileName = Path.GetFileName(file);
                         //Get zone ID
-                        String[] strs = fileName.Split('_');
-                        String zoneIdStr = strs[0];
-                        UInt16 zoneId = 0;
-                        String mapIdStr = "";
-                        UInt16 mapId = 0;
-                        String[] rmdrStrs;
+                        string[] strs = fileName.Split('_');
+                        string zoneIdStr = strs[0];
+                        ushort zoneId = 0;
+                        string mapIdStr = "";
+                        ushort mapId = 0;
+                        string[] rmdrStrs;
                         if(strs.Length < 2)
                         {
                             if(errorPtr != null)
@@ -257,9 +256,9 @@ namespace Iocaine2.Data.Client
                             mapIdStyle = System.Globalization.NumberStyles.Integer;
                         }
 
-                        if (!UInt16.TryParse(zoneIdStr, zoneIdStyle, System.Globalization.CultureInfo.InvariantCulture, out zoneId))
+                        if (!ushort.TryParse(zoneIdStr, zoneIdStyle, System.Globalization.CultureInfo.InvariantCulture, out zoneId))
                         {
-                            //MessageBox.Show("Could not parse a UInt16 (zoneID) from '" + zoneIdStr + "'");
+                            //MessageBox.Show("Could not parse a ushort (zoneID) from '" + zoneIdStr + "'");
                             continue;
                         }
                         if (useApneaPack)
@@ -274,9 +273,9 @@ namespace Iocaine2.Data.Client
                                 zoneId -= 444;
                             }
                         }
-                        if (!UInt16.TryParse(mapIdStr, mapIdStyle, System.Globalization.CultureInfo.InvariantCulture, out mapId))
+                        if (!ushort.TryParse(mapIdStr, mapIdStyle, System.Globalization.CultureInfo.InvariantCulture, out mapId))
                         {
-                            //MessageBox.Show("Could not parse a Byte (MapID) from '" + mapIdStr + "'");
+                            //MessageBox.Show("Could not parse a byte (MapID) from '" + mapIdStr + "'");
                             continue;
                         }
 
@@ -295,12 +294,12 @@ namespace Iocaine2.Data.Client
                         //Set the zone ID to Map number to Map ID maps.
                         if(zoneToMapNbToMapId.ContainsKey(zoneId))
                         {
-                            Int32 nbMapsSoFar = zoneToMapNbToMapId[zoneId].Count;
-                            zoneToMapNbToMapId[zoneId][(Byte)nbMapsSoFar] = mapId;
+                            int nbMapsSoFar = zoneToMapNbToMapId[zoneId].Count;
+                            zoneToMapNbToMapId[zoneId][(byte)nbMapsSoFar] = mapId;
                         }
                         else
                         {
-                            zoneToMapNbToMapId[zoneId] = new Dictionary<Byte, UInt16>();
+                            zoneToMapNbToMapId[zoneId] = new Dictionary<byte, ushort>();
                             zoneToMapNbToMapId[zoneId][0] = mapId;
                         }
                     }
@@ -310,7 +309,7 @@ namespace Iocaine2.Data.Client
         }
         #endregion Inits
         #region Get Functions
-        public static MapSet GetMap(UInt16 iZoneID)
+        public static MapSet GetMap(ushort iZoneID)
         {
             if (!isInitialized)
             {
@@ -324,17 +323,17 @@ namespace Iocaine2.Data.Client
             }
             else
             {
-                UInt16 mapId = 0;
+                ushort mapId = 0;
                 if(zoneToMapNbToMapId.ContainsKey(iZoneID))
                 {
                     mapId = zoneToMapNbToMapId[iZoneID][0];
                 }
                 //filterPosPerMap(iZoneID, mapIdx, iPosXs, iPosYs, out fltPosXs, out fltPosYs);
                 //posToPixels(iZoneID, mapIdx, fltPosXs, fltPosYs, out pxlXs, out pxlYs);
-                return new MapSet(loadImageFile(zoneMapList[iZoneID][0]), iZoneID, (Byte)mapId);
+                return new MapSet(loadImageFile(zoneMapList[iZoneID][0]), iZoneID, (byte)mapId);
             }
         }
-        public static MapSet GetMap(UInt16 iZoneID, Byte iMapIdx)
+        public static MapSet GetMap(ushort iZoneID, byte iMapIdx)
         {
             if (!isInitialized)
             {
@@ -344,14 +343,14 @@ namespace Iocaine2.Data.Client
             {
                 if(zoneNbMaps[iZoneID] > iMapIdx)
                 {
-                    UInt16 mapId = 0;
-                    if (zoneToMapNbToMapId.ContainsKey(iZoneID) && zoneToMapNbToMapId[iZoneID].ContainsKey((Byte)(iMapIdx)))
+                    ushort mapId = 0;
+                    if (zoneToMapNbToMapId.ContainsKey(iZoneID) && zoneToMapNbToMapId[iZoneID].ContainsKey((byte)(iMapIdx)))
                     {
-                        mapId = zoneToMapNbToMapId[iZoneID][(Byte)(iMapIdx)];
+                        mapId = zoneToMapNbToMapId[iZoneID][(byte)(iMapIdx)];
                     }
                     //filterPosPerMap(iZoneID, mapId, iPosXs, iPosYs, out fltPosXs, out fltPosYs);
                     //posToPixels(iZoneID, mapId, fltPosXs, fltPosYs, out pxlXs, out pxlYs);
-                    return new MapSet(loadImageFile(zoneMapList[iZoneID][iMapIdx]), iZoneID, (Byte)mapId);
+                    return new MapSet(loadImageFile(zoneMapList[iZoneID][iMapIdx]), iZoneID, (byte)mapId);
                 }
                 else
                 {
@@ -367,7 +366,7 @@ namespace Iocaine2.Data.Client
                 return ms;
             }
         }
-        public static Byte GetNumberOfMapsByID(UInt16 zoneID)
+        public static byte GetNumberOfMapsByID(ushort zoneID)
         {
             if (!isInitialized)
             {
@@ -382,13 +381,13 @@ namespace Iocaine2.Data.Client
                 return 0;
             }
         }
-        public static Boolean GetMapId(UInt16 iZoneId, Int16 iX, Int16 iY, Int16 iZ, out Byte oMapID)
+        public static bool GetMapId(ushort iZoneId, short iX, short iY, short iZ, out byte oMapID)
         {
             if (!isInitialized)
             {
                 init();
             }
-            String filter = "ZoneID=" + iZoneId + " ";
+            string filter = "ZoneID=" + iZoneId + " ";
             filter += "AND X1<=" + iX + " ";
             filter += "AND X2>=" + iX + " ";
             filter += "AND Y1<=" + iY + " ";
@@ -399,8 +398,8 @@ namespace Iocaine2.Data.Client
             MapInfoDS.MapInfoBoxesRow[] boxRows = (MapInfoDS.MapInfoBoxesRow[])mapInfoDS.MapInfoBoxes.Select(filter);
             if(boxRows.Length == 0)
             {
-                //The X,Y given does not exist inside any of the defined boxes. Return Byte.MaxValue
-                oMapID = Byte.MaxValue;
+                //The X,Y given does not exist inside any of the defined boxes. Return byte.MaxValue
+                oMapID = byte.MaxValue;
                 return false;
             }
             else
@@ -411,23 +410,23 @@ namespace Iocaine2.Data.Client
                 return true;
             }
         }
-        public static Byte GetMapId(UInt16 iZoneId, Byte iMapIdx)
+        public static byte GetMapId(ushort iZoneId, byte iMapIdx)
         {
             if (zoneMapList.ContainsKey(iZoneId))
             {
                 if (zoneNbMaps[iZoneId] > iMapIdx)
                 {
-                    UInt16 mapId = 0;
-                    if (zoneToMapNbToMapId.ContainsKey(iZoneId) && zoneToMapNbToMapId[iZoneId].ContainsKey((Byte)(iMapIdx)))
+                    ushort mapId = 0;
+                    if (zoneToMapNbToMapId.ContainsKey(iZoneId) && zoneToMapNbToMapId[iZoneId].ContainsKey((byte)(iMapIdx)))
                     {
-                        mapId = zoneToMapNbToMapId[iZoneId][(Byte)(iMapIdx)];
+                        mapId = zoneToMapNbToMapId[iZoneId][(byte)(iMapIdx)];
                     }
-                    return (Byte)mapId;
+                    return (byte)mapId;
                 }
             }
-            return Byte.MaxValue;
+            return byte.MaxValue;
         }
-        public static Boolean GetMapIndex(UInt16 iZoneId, Byte iMapId, out Byte oMapIdx)
+        public static bool GetMapIndex(ushort iZoneId, byte iMapId, out byte oMapIdx)
         {
             oMapIdx = 0;
             if (!isInitialized)
@@ -438,8 +437,8 @@ namespace Iocaine2.Data.Client
             {
                 if (zoneToMapNbToMapId.ContainsKey(iZoneId) && zoneToMapNbToMapId[iZoneId].ContainsValue(iMapId))
                 {
-                    Dictionary<Byte, UInt16> thisZone = zoneToMapNbToMapId[iZoneId];
-                    foreach (KeyValuePair<Byte, UInt16> kvp in thisZone)
+                    Dictionary<byte, ushort> thisZone = zoneToMapNbToMapId[iZoneId];
+                    foreach (KeyValuePair<byte, ushort> kvp in thisZone)
                     {
                         if (kvp.Value == iMapId)
                         {
@@ -455,17 +454,17 @@ namespace Iocaine2.Data.Client
         #endregion Public Member Functions
 
         #region Private Member Functions
-        //private static Image loadImageFile(String fileName, int mapNb, List<Int16> iPosXs, List<Int16> iPosYs, Brush iColor)
+        //private static Image loadImageFile(string fileName, int mapNb, List<short> iPosXs, List<short> iPosYs, Brush iColor)
         //{
         //    fileName += "_" + mapNb.ToString();
         //    return loadImageFile(fileName, iPosXs, iPosYs, iColor);
         //}
-        private static Image loadImageFile(String fileName)
+        private static Image loadImageFile(string fileName)
         {
-            String fullPath;
+            string fullPath;
             if (!System.IO.Path.IsPathRooted(mapsPath))
             {
-                String exePath = Path.GetDirectoryName(Application.ExecutablePath);
+                string exePath = Path.GetDirectoryName(Application.ExecutablePath);
                 fullPath = exePath + mapsPath;
                 fullPath = Path.GetFullPath(fullPath);
             }
@@ -499,14 +498,14 @@ namespace Iocaine2.Data.Client
                 return tempBitmap;
             }
         }
-        private static Image loadImageResource(String fileName)
+        private static Image loadImageResource(string fileName)
         {
-            String fullFileName = "Iocaine2.Images." + fileName;
+            string fullFileName = "Iocaine2.Images." + fileName;
             try
             {
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
-                String[] resources = myAssembly.GetManifestResourceNames();
-                //foreach (String str in resources)
+                string[] resources = myAssembly.GetManifestResourceNames();
+                //foreach (string str in resources)
                 //{
                 //    Console.WriteLine(str);
                 //}
@@ -543,7 +542,7 @@ namespace Iocaine2.Data.Client
             {
                 Directory.CreateDirectory(localMapImagesDir);
             }
-            Boolean prompt = false;
+            bool prompt = false;
             if (!Directory.Exists(mapsPath))
             {
                 prompt = true;
@@ -559,7 +558,7 @@ namespace Iocaine2.Data.Client
                 //or point to another location.
                 //If another location, save that as a setting for next time.
                 DialogResult result = DialogResult.Cancel;
-                String message = "Iocaine now includes a map pack for 'Fish Stats' and\n";
+                string message = "Iocaine now includes a map pack for 'Fish Stats' and\n";
                 message += "possibly a radar section later on. The map pack doesn't appear\n";
                 message += "to be downloaded here yet. Click Yes to download it now.\n\n";
                 message += "Or, if you have it saved somewhere else already, click No to\n";
@@ -578,12 +577,12 @@ namespace Iocaine2.Data.Client
                 else if (result == DialogResult.No)
                 {
                     FolderBrowserDialog fbd = new FolderBrowserDialog();
-                    String exePath = Path.GetDirectoryName(Application.ExecutablePath);
+                    string exePath = Path.GetDirectoryName(Application.ExecutablePath);
                     exePath = Path.GetFullPath(exePath);
                     fbd.SelectedPath = exePath;
                     fbd.ShowDialog();
 
-                    String selFolder = fbd.SelectedPath;
+                    string selFolder = fbd.SelectedPath;
                     mapsPath = selFolder;
                     setMapsPath(selFolder);
                 }
