@@ -16,19 +16,20 @@ namespace Iocaine2.Inventory
         #region Enums
         #endregion Enums
         #region Private Members
-        private static ItemContainer bag;
+        private static EquipmentContainer bag;
         private static ItemContainer satchel;
         private static ItemContainer sack;
         private static ItemContainer mcase;
         private static ItemContainer safe;
         private static ItemContainer storage;
         private static ItemContainer locker;
-        private static ItemContainer wardrobe;
+        private static EquipmentContainer wardrobe;
         private static ItemContainer safe2;
-        private static ItemContainer wardrobe2;
-        private static List<ItemContainer> containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe, safe2, wardrobe2 };
-        private static List<ItemContainer> containerListHouse = new List<ItemContainer>() { safe, storage, locker, safe2 };
-        private static List<ItemContainer> containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe, wardrobe2 };
+        private static EquipmentContainer wardrobe2;
+        private static List<ItemContainer> containerList;
+        private static List<ItemContainer> containerListHouse;
+        private static List<ItemContainer> containerListMobile;
+        private static List<EquipmentContainer> containerListEquip;
         private const byte absMaxBagCount = 80;
         private const byte absMaxSatchelCount = absMaxBagCount;
         private const byte absMaxSackCount = absMaxBagCount;
@@ -119,6 +120,34 @@ namespace Iocaine2.Inventory
             get
             {
                 return wardrobe2;
+            }
+        }
+        public static List<ItemContainer> All
+        {
+            get
+            {
+                return containerList;
+            }
+        }
+        public static List<ItemContainer> Mobile
+        {
+            get
+            {
+                return containerListMobile;
+            }
+        }
+        public static List<ItemContainer> House
+        {
+            get
+            {
+                return containerListHouse;
+            }
+        }
+        public static List<EquipmentContainer> Equipment
+        {
+            get
+            {
+                return containerListEquip;
             }
         }
         #endregion Containers
@@ -332,16 +361,22 @@ namespace Iocaine2.Inventory
         #region Init
         public static void Init()
         {
-            bag = new ItemContainer(ItemContainer.STORAGE_TYPE.BAG);
+            bag = new EquipmentContainer(ItemContainer.STORAGE_TYPE.BAG, 0);
             satchel = new ItemContainer(ItemContainer.STORAGE_TYPE.SATCHEL);
             sack = new ItemContainer(ItemContainer.STORAGE_TYPE.SACK);
             mcase = new ItemContainer(ItemContainer.STORAGE_TYPE.CASE);
             safe = new ItemContainer(ItemContainer.STORAGE_TYPE.SAFE);
             storage = new ItemContainer(ItemContainer.STORAGE_TYPE.STORAGE);
             locker = new ItemContainer(ItemContainer.STORAGE_TYPE.LOCKER);
-            wardrobe = new ItemContainer(ItemContainer.STORAGE_TYPE.WARDROBE);
+            wardrobe = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE, 1);
             safe2 = new ItemContainer(ItemContainer.STORAGE_TYPE.SAFE2);
-            wardrobe2 = new ItemContainer(ItemContainer.STORAGE_TYPE.WARDROBE2);
+            wardrobe2 = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE2, 2);
+
+            containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe, safe2, wardrobe2 };
+            containerListHouse = new List<ItemContainer>() { safe, storage, locker, safe2 };
+            containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe, wardrobe2 };
+            containerListEquip = new List<EquipmentContainer>() { bag, wardrobe, wardrobe2 };
+
             summaryItemList = new List<Item>();
             summaryItemListHouse = new List<Item>();
             summaryItemListMobile = new List<Item>();
