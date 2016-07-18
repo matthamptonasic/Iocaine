@@ -20,9 +20,9 @@ namespace Iocaine2.Data.Client
         {
             loadRepairRecipes();
         }
-        public static Image getImageByID(UInt16 itemID)
+        public static Image getImageByID(ushort itemID)
         {
-            String rodName = Data.Client.Rods.GetRodName(itemID);
+            string rodName = Data.Client.Rods.GetRodName(itemID);
             //Translations for old values of file names that I didn't want to change.
             if (rodName == "Ebisu F. Rod +1")
             {
@@ -42,9 +42,9 @@ namespace Iocaine2.Data.Client
         }
 
         //Private Member Functions
-        private static Image loadImage(String fileName)
+        private static Image loadImage(string fileName)
         {
-            String fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
+            string fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
             try
             {
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
@@ -68,12 +68,12 @@ namespace Iocaine2.Data.Client
         }
         private static void loadRepairRecipes()
         {
-            //List<UInt16> itemIDs;
-            //List<String> itemNames;
-            //List<Byte> itemQuantities;
-            //List<UInt16> itemResultIDs;
-            //List<String> itemResultNames;
-            //List<Byte> itemResultQuantities;
+            //List<ushort> itemIDs;
+            //List<string> itemNames;
+            //List<byte> itemQuantities;
+            //List<ushort> itemResultIDs;
+            //List<string> itemResultNames;
+            //List<byte> itemResultQuantities;
 
             //itemIDs = new List<ushort>();
             //itemNames = new List<string>();

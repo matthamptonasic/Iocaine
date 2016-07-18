@@ -21,9 +21,9 @@ namespace Iocaine2.Data.Client
         public static void init()
         {
         }
-        public static Image getImageByID(UInt16 iItemID)
+        public static Image getImageByID(ushort iItemID)
         {
-            String baitName = Bait.GetBaitInfo(iItemID).BaitName;
+            string baitName = Bait.GetBaitInfo(iItemID).BaitName;
 
             baitName = baitName.Replace(" ", "_");
             baitName = baitName.Replace(".", "");
@@ -32,9 +32,9 @@ namespace Iocaine2.Data.Client
         }
 
         //Private Member Functions
-        private static Image loadImage(String fileName)
+        private static Image loadImage(string fileName)
         {
-            String fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
+            string fullFileName = "Iocaine2.Data.Client.Images." + fileName + ".jpg";
             try
             {
                 Assembly myAssembly = Assembly.GetExecutingAssembly();
