@@ -167,6 +167,19 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
+            private const UInt32 Offset_Inv_Wardrobe3 = 11 * 3564;
+            public UInt32 Info_Inv_Wardrobe3
+            {
+                get
+                {
+                    UInt32 info_bag = Info_Inv_Bag;
+                    if (info_bag != 0)
+                    {
+                        return info_bag + Offset_Inv_Wardrobe3;
+                    }
+                    return 0;
+                }
+            }
             private const UInt32 Offset_Inv_Max = 47757;
             //Pre 04.04.16  37065; (2nd wardrobe added)
             //Pre 05.13.15  33501; (2nd safe added)
@@ -3439,6 +3452,23 @@ namespace Iocaine2.Memory
                         return 0;
                     }
                 }
+                public static byte get_max_wardrobe3()
+                {
+                    return get_max_wardrobe3(processIndex);
+                }
+                public static byte get_max_wardrobe3(int iProcIndex)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    byte value = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Max, 11, 1);
+                    if (value > 0)
+                    {
+                        return (byte)(value - 1);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
                 #endregion Capacity Counts
                 #region Gil
                 public static UInt32 get_gil(int iProcIndex)
@@ -4507,6 +4537,117 @@ namespace Iocaine2.Memory
                     return get_wardrobe2_occupancy(processIndex);
                 }
                 #endregion Wardrobe2 info
+                #region Wardrobe3_info
+                /// <summary>
+                /// Returns the item ID in the given index of the wardrobe3.
+                /// </summary>
+                /// <param name="iStructIndex">The index of the wardrobe3 structure. Not the index of the wardrobe3 as
+                /// shown in game. Index starts at 1 and goes to max quantity.</param>
+                /// <returns>The item ID as a ushort.</returns>
+                public static ushort get_wardrobe3_item_id(int iProcIndex, short iStructIndex)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe3, (iStructIndex * 44), 2);
+                }
+                public static ushort get_wardrobe3_item_id(short iStructIndex)
+                {
+                    return get_wardrobe3_item_id(processIndex, iStructIndex);
+                }
+                /// <summary>
+                /// Returns the quantity of an item in the given index of the wardrobe3.
+                /// </summary>
+                /// <param name="iStructIndex">The index of the wardrobe3 structure. Not the index of the wardrobe3 as
+                /// shown in game. Index starts at 1 and goes to max quantity.</param>
+                /// <returns>Quantity in this slot as a byte (0-99).</returns>
+                public static byte get_wardrobe3_item_quan(int iProcIndex, short iStructIndex)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe3, (iStructIndex * 44) + 4, 1);
+                }
+                public static byte get_wardrobe3_item_quan(short iStructIndex)
+                {
+                    return get_wardrobe3_item_quan(processIndex, iStructIndex);
+                }
+                /// <summary>
+                /// Returns a bool indicating whether the item at the given index in the wardrobe3
+                /// is currently equipped or not.
+                /// </summary>
+                /// <param name="structIndex">The index of the wardrobe3 structure. Not the index of the wardrobe3 as
+                /// shown in game. Index starts at 1 and goes to max quantity.</param>
+                /// <returns>Quantity in this slot as a byte (0-99).</param>
+                /// <returns></returns>
+                public static bool get_wardrobe3_item_equipped(int iProcIndex, short iStructIndex)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    byte equ = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe3, (iStructIndex * 44) + 8, 1);
+                    return (equ == 5) ? true : false;
+                }
+                public static bool get_wardrobe3_item_equipped(short iStructIndex)
+                {
+                    return get_wardrobe3_item_equipped(processIndex, iStructIndex);
+                }
+                /// <summary>
+                /// Returns the first available (currently unused or equipped) inventory index of the given item
+                /// that has at least the given quantity available.
+                /// </summary>
+                /// <param name="iItemID">The item ID of the item in question.</param>
+                /// <param name="iQuantity">The minimum quantity required.</param>
+                /// <returns>First available index as a byte.</returns>
+                public static byte get_wardrobe3_index(int iProcIndex, ushort iItemID, byte iQuantity)
+                {
+                    return get_wardrobe3_index(iProcIndex, iItemID, iQuantity, 1);
+                }
+                public static byte get_wardrobe3_index(ushort iItemID, byte iQuantity)
+                {
+                    return get_wardrobe3_index(processIndex, iItemID, iQuantity, 1);
+                }
+                /// <summary>
+                /// Returns the first available (currently unused or equipped) inventory index of the given item
+                /// that has at least the given quantity available.
+                /// </summary>
+                /// <param name="iItemID">The item ID of the item in question.</param>
+                /// <param name="iQuantity">The minimum quantity required.</param>
+                /// <param name="iStartIndex">Wardrobe3 index to start looking at (1 if not given).</param>
+                /// <returns>First available index after the start index as a byte.</returns>
+                public static byte get_wardrobe3_index(int iProcIndex, ushort iItemID, byte iQuantity, byte iStartIndex)
+                {
+                    byte maxCount = get_max_wardrobe3(iProcIndex);
+                    for (byte ii = iStartIndex; ii <= maxCount; ii++)
+                    {
+                        ushort readID = get_wardrobe3_item_id(iProcIndex, ii);
+                        if (readID == iItemID)
+                        {
+                            byte readQuan = get_wardrobe3_item_quan(iProcIndex, ii);
+                            if (readQuan >= iQuantity)
+                            {
+                                return ii;
+                            }
+                        }
+                    }
+                    return 0;
+                }
+                public static byte get_wardrobe3_index(ushort iItemID, byte iQuantity, byte iStartIndex)
+                {
+                    return get_wardrobe3_index(processIndex, iItemID, iQuantity, iStartIndex);
+                }
+                public static byte get_wardrobe3_occupancy(int iProcIndex)
+                {
+                    byte count = 0;
+                    byte maxCount = get_max_wardrobe3(iProcIndex);
+                    for (byte ii = 1; ii <= maxCount; ii++)
+                    {
+                        if (get_wardrobe3_item_id(iProcIndex, ii) != 0)
+                        {
+                            count++;
+                        }
+                    }
+                    return count;
+                }
+                public static byte get_wardrobe3_occupancy()
+                {
+                    return get_wardrobe3_occupancy(processIndex);
+                }
+                #endregion Wardrobe3 info
             }
             public static class Equipment
             {

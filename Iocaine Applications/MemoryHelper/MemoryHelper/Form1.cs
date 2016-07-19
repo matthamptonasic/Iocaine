@@ -589,6 +589,9 @@ namespace IocaineOffsetHelper
                             AppendText("\n=== Wardrobe 2 ===");
                             AppendText("\n        cnt: " + MemReads.Self.Inventory.get_wardrobe2_occupancy());
                             AppendText("\n        max: " + MemReads.Self.Inventory.get_max_wardrobe2());
+                            AppendText("\n=== Wardrobe 3 ===");
+                            AppendText("\n        cnt: " + MemReads.Self.Inventory.get_wardrobe3_occupancy());
+                            AppendText("\n        max: " + MemReads.Self.Inventory.get_max_wardrobe3());
                             if (showSackData)
                             {
                                 byte maxSackCnt = MemReads.Self.Inventory.get_max_sack();
