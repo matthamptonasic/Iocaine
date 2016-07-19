@@ -536,7 +536,7 @@ namespace Iocaine2
             #endregion Helpers Inits / Load Settings
             #region WMS Inits / Load Settings
             LoggingFunctions.Debug("Initializing the WMS", LoggingFunctions.DBG_SCOPE.WMS);
-            TOP_Init_wms();
+            WMS_Init_LoggedIn();
             #endregion WMS Inits / Load Settings
             #region Fish Stats Inits / Load Settings
             loadFishStatsSettings();
@@ -594,21 +594,6 @@ namespace Iocaine2
             }
         }
         #endregion ChangeMon Inits
-        #region WMS Inits
-        private void TOP_Init_wms()
-        {
-            WMS_createDelegates();
-            doWMSDatasetInits();
-            doWMSGuiInits();
-            doWMSInits();
-            if (m_TOP_Thread_wms == null)
-            {
-                m_TOP_Thread_wms = new IocaineThread("wmsThread");
-                m_TOP_Thread_wms.__RunMethod = WMS_BackgroundScanThreadFunction;
-            }
-            m_TOP_Thread_wms.Start();
-        }
-        #endregion WMS Inits
         #region Tool Tips
         private void TOP_Init_createToolTips()
         {
