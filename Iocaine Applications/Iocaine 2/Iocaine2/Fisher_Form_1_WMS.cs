@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -17,8 +8,8 @@ using Iocaine2.Inventory;
 using Iocaine2.Logging;
 using Iocaine2.Memory;
 using Iocaine2.Memory.Interface;
-using Iocaine2.Properties;
 using Iocaine2.Settings;
+using Iocaine2.Threading;
 
 namespace Iocaine2
 {
@@ -27,15 +18,6 @@ namespace Iocaine2
     {
         #region Member Variables
         private bool WMS_objectsCreated = false;
-        private ItemContainer WMS_bag;
-        private ItemContainer WMS_satchel;
-        private ItemContainer WMS_sack;
-        private ItemContainer WMS_case;
-        private ItemContainer WMS_safe;
-        private ItemContainer WMS_storage;
-        private ItemContainer WMS_locker;
-        private ItemContainer WMS_wardrobe;
-        private List<ItemContainer> WMS_allContainers;
         private WMSDataSet WMS_dataset;
         private WMSDataSet WMS_dataset_temp;
         private bool WMS_poolInventory = true;
@@ -45,7 +27,7 @@ namespace Iocaine2
         private String WMS_dataFile = "WMS_Dataset";
         private String WMS_selectedChar = "";
         private String WMS_lastCharOnRebuild = "";
-        private List<String> WMS_inventoryTypes = new List<string>(new string[] { "Bag", "Satchel", "Sack", "Case", "Safe", "Storage", "Locker", "Wardrobe" });
+        private List<String> WMS_inventoryTypes = new List<string>(new string[] { "Bag", "Satchel", "Sack", "Case", "Safe", "Safe2", "Storage", "Locker", "Wardrobe", "Wardrobe2", "Wardrobe3", "Wardrobe4" });
         private bool WMS_initialLBUpdateDone = false;
         private int WMS_pooledColumnWidthLow = 175;
         private int WMS_pooledColumnWidthHi = 225;
@@ -74,23 +56,23 @@ namespace Iocaine2
         {
             if (WMS_updateSingleLBPtr == null)
             {
-                WMS_updateSingleLBPtr = new WMS_updateSingleLBDelegate(WMS_updateSingleLBCallBackFunction);
+                WMS_updateSingleLBPtr = new WMS_updateSingleLBDelegate(WMS_updateSingleLB_CBF);
             }
             if (WMS_updatePooledLBPtr == null)
             {
-                WMS_updatePooledLBPtr = new WMS_updatePooledLBDelegate(WMS_updatePooledLBCallBackFunction);
+                WMS_updatePooledLBPtr = new WMS_updatePooledLBDelegate(WMS_updatePooledLB_CBF);
             }
             if (WMS_updateLabelTextPtr == null)
             {
-                WMS_updateLabelTextPtr = new WMS_updateLabelTextDelegate(WMS_updateLabelTextCallBackFunction);
+                WMS_updateLabelTextPtr = new WMS_updateLabelTextDelegate(WMS_updateLabelText_CBF);
             }
             if (WMS_updateControlVisibilityPtr == null)
             {
-                WMS_updateControlVisibilityPtr = new WMS_updateControlVisibilityDelegate(WMS_updateControlVisibilityCallBackFunction);
+                WMS_updateControlVisibilityPtr = new WMS_updateControlVisibilityDelegate(WMS_updateControlVisibility_CBF);
             }
             if (WMS_sendControlToPtr == null)
             {
-                WMS_sendControlToPtr = new WMS_sendControlToDelegate(WMS_sendControlToCallBackFunction);
+                WMS_sendControlToPtr = new WMS_sendControlToDelegate(WMS_sendControlTo_CBF);
             }
             if (WMS_loadCharacterCBPtr == null)
             {
@@ -98,12 +80,12 @@ namespace Iocaine2
             }
             if (WMS_setFirstInventoryLocationPtr == null)
             {
-                WMS_setFirstInventoryLocationPtr = new WMS_setFirstInventoryLocationDelegate(WMS_setFirstInventoryLocationCallBackFunction);
+                WMS_setFirstInventoryLocationPtr = new WMS_setFirstInventoryLocationDelegate(WMS_setFirstInventoryLocation_CBF);
             }
         }
         #endregion Delegate instantiations
         #region Call Back Functions
-        private void WMS_updateSingleLBCallBackFunction(ItemContainer container, WMSDataSet.ItemsRow[] itemRows)
+        private void WMS_updateSingleLB_CBF(ItemContainer container, WMSDataSet.ItemsRow[] itemRows)
         {
             try
             {
@@ -145,11 +127,11 @@ namespace Iocaine2
                 Monitor.Exit(container);
             }
         }
-        private void WMS_updatePooledLBCallBackFunction(WMSDataSet.ItemsRow[] itemRows)
+        private void WMS_updatePooledLB_CBF(WMSDataSet.ItemsRow[] itemRows)
         {
             try
             {
-                foreach (ItemContainer container in WMS_allContainers)
+                foreach (ItemContainer container in Containers.All)
                 {
                     Monitor.Enter(container);
                 }
@@ -162,14 +144,14 @@ namespace Iocaine2
                     lb.Items.Clear();
                     lb.Sorted = true;
                     lb.ColumnWidth = WMS_pooledColumnWidthLow;
-                    foreach (ItemContainer container in WMS_allContainers)
+                    foreach (ItemContainer container in Containers.All)
                     {
                         itemList = container.GetSummaryItemList();
                         itemQuan = container.GetSummaryItemQuanList();
                         int cnt = itemList.Count;
                         for (int ii = 0; ii < cnt; ii++)
                         {
-                            lb.Items.Add(itemList[ii].Name + " (" + itemQuan[ii] + ") [" + container.TypeString + "]");
+                            lb.Items.Add(itemList[ii].Name + " (" + itemQuan[ii] + ") [" + container.TypeStringAbbr + "]");
                         }
                     }
                     lb.EndUpdate();
@@ -208,21 +190,21 @@ namespace Iocaine2
             }
             finally
             {
-                foreach (ItemContainer container in WMS_allContainers)
+                foreach (ItemContainer container in Containers.All)
                 {
                     Monitor.Exit(container);
                 }
             }
         }
-        private void WMS_updateLabelTextCallBackFunction(Label iLabel, String iText)
+        private void WMS_updateLabelText_CBF(Label iLabel, String iText)
         {
             iLabel.Text = iText;
         }
-        private void WMS_updateControlVisibilityCallBackFunction(Control iControl, bool iVisible)
+        private void WMS_updateControlVisibility_CBF(Control iControl, bool iVisible)
         {
             iControl.Visible = iVisible;
         }
-        private void WMS_sendControlToCallBackFunction(Control iControl, bool iToFront)
+        private void WMS_sendControlTo_CBF(Control iControl, bool iToFront)
         {
             if (iToFront)
             {
@@ -233,7 +215,7 @@ namespace Iocaine2
                 iControl.SendToBack();
             }
         }
-        private void WMS_setFirstInventoryLocationCallBackFunction(Int32 iPosX)
+        private void WMS_setFirstInventoryLocation_CBF(Int32 iPosX)
         {
             WMS_BagOccLabel.Left = iPosX;
         }
@@ -250,7 +232,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_updateSingleLBCallBackFunction(container, itemRows);
+                    WMS_updateSingleLB_CBF(container, itemRows);
                 }
             }
             catch (Exception ex)
@@ -268,7 +250,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_updatePooledLBCallBackFunction(itemRows);
+                    WMS_updatePooledLB_CBF(itemRows);
                 }
             }
             catch (Exception ex)
@@ -286,7 +268,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_updateLabelTextCallBackFunction(iLabel, iText);
+                    WMS_updateLabelText_CBF(iLabel, iText);
                 }
             }
             catch (Exception ex)
@@ -304,7 +286,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_updateControlVisibilityCallBackFunction(iControl, iVisibile);
+                    WMS_updateControlVisibility_CBF(iControl, iVisibile);
                 }
             }
             catch (Exception ex)
@@ -322,7 +304,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_sendControlToCallBackFunction(iControl, iToFront);
+                    WMS_sendControlTo_CBF(iControl, iToFront);
                 }
             }
             catch (Exception ex)
@@ -340,7 +322,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    WMS_setFirstInventoryLocationCallBackFunction(iPosX);
+                    WMS_setFirstInventoryLocation_CBF(iPosX);
                 }
             }
             catch (Exception ex)
@@ -351,38 +333,16 @@ namespace Iocaine2
         #endregion Update Wrapper Functions
         #endregion Thread Synchronization
         #region Initialization
-        private bool doWMSInits()
+        private bool WMS_Init_LoggedIn()
         {
+            WMS_createDelegates();
+            WMS_Init_Dataset();
+            WMS_Init_GUI();
+
             if (ChangeMonitor.MainProc != null && ChangeMonitor.MainModule != null)
             {
                 WMS_LoadSettings();
-                if (WMS_allContainers != null)
-                {
-                    WMS_allContainers.Clear();
-                    WMS_allContainers = null;
-                }
-                WMS_bag = Inventory.Containers.Bag;
-                WMS_satchel = Inventory.Containers.Satchel;
-                WMS_sack = Inventory.Containers.Sack;
-                WMS_case = Inventory.Containers.MCase;
-                WMS_safe = Inventory.Containers.Safe;
-                WMS_storage = Inventory.Containers.Storage;
-                WMS_locker = Inventory.Containers.Locker;
-                WMS_wardrobe = Inventory.Containers.Wardrobe;
-                WMS_allContainers = new List<ItemContainer>();
-                WMS_allContainers.Add(WMS_bag);
-                WMS_allContainers.Add(WMS_satchel);
-                WMS_allContainers.Add(WMS_sack);
-                WMS_allContainers.Add(WMS_case);
-                WMS_allContainers.Add(WMS_safe);
-                WMS_allContainers.Add(WMS_storage);
-                WMS_allContainers.Add(WMS_locker);
-                WMS_allContainers.Add(WMS_wardrobe);
                 WMS_objectsCreated = true;
-            }
-            else
-            {
-                return false;
             }
             if (PlayerCache.Vitals.Name != "")
             {
@@ -396,6 +356,14 @@ namespace Iocaine2
                     Statics.Settings.WMS.SaveThisCharOffline = true;
                 }
             }
+
+            if (m_TOP_Thread_wms == null)
+            {
+                m_TOP_Thread_wms = new IocaineThread("wmsThread");
+                m_TOP_Thread_wms.__RunMethod = WMS_BackgroundScanThreadFunction;
+            }
+            m_TOP_Thread_wms.Start();
+
             return true;
         }
         private void WMS_LoadSettings()
@@ -403,7 +371,7 @@ namespace Iocaine2
             Statics.Settings.WMS.BackgroundUpdate = Convert.ToBoolean(UserSettings.GetValue(UserSettings.BOT.WMS, "WMSBackgroundUpdate"));
             Statics.Settings.WMS.BackgroundScanPeriod = Convert.ToUInt32(UserSettings.GetValue(UserSettings.BOT.WMS, "WMSBackgroundScanPeriod"));
         }
-        private void doWMSGuiInits()
+        private void WMS_Init_GUI()
         {
             if (m_TOP_wmsGuiInitDone)
             {
@@ -417,9 +385,13 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_SackOccLabel, false);
                 WMS_updateControlVisibility(WMS_CaseOccLabel, false);
                 WMS_updateControlVisibility(WMS_SafeOccLabel, false);
+                WMS_updateControlVisibility(WMS_Safe2OccLabel, false);
                 WMS_updateControlVisibility(WMS_StorageOccLabel, false);
                 WMS_updateControlVisibility(WMS_LockerOccLabel, false);
                 WMS_updateControlVisibility(WMS_WardrobeOccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2OccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3OccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4OccLabel, false);
             }
             else
             {
@@ -427,7 +399,7 @@ namespace Iocaine2
             }
             return;
         }
-        private void doWMSDatasetInits()
+        private void WMS_Init_Dataset()
         {
             //Save settings if this isn't the first time doing the inits (we've been logged in already)
             LoggingFunctions.Debug("TopWMS::doWMSDatasetInits: wms char = " + PlayerCache.Vitals.Name + ".", LoggingFunctions.DBG_SCOPE.TOP);
@@ -473,12 +445,21 @@ namespace Iocaine2
                         charRow.CaseCap = row.CaseCap;
                         charRow.SafeOcc = row.SafeOcc;
                         charRow.SafeCap = row.SafeCap;
+                        charRow.Safe2Occ = row.Safe2Occ;
+                        charRow.Safe2Cap = row.Safe2Cap;
                         charRow.StorageOcc = row.StorageOcc;
                         charRow.StorageCap = row.StorageCap;
                         charRow.LockerOcc = row.LockerOcc;
                         charRow.LockerCap = row.LockerCap;
                         charRow.WardrobeOcc = row.WardrobeOcc;
                         charRow.WardrobeCap = row.WardrobeCap;
+                        charRow.Wardrobe2Occ = row.Wardrobe2Occ;
+                        charRow.Wardrobe2Cap = row.Wardrobe2Cap;
+                        // TBD
+                        //charRow.Wardrobe3Occ = row.Wardrobe3Occ;
+                        //charRow.Wardrobe3Cap = row.Wardrobe3Cap;
+                        //charRow.Wardrobe4Occ = row.Wardrobe4Occ;
+                        //charRow.Wardrobe4Cap = row.Wardrobe4Cap;
                         charRow.DateSaved = row.DateSaved;
                         WMS_dataset.CharacterInfo.Rows.Add(charRow);
                     }
@@ -521,7 +502,7 @@ namespace Iocaine2
             {
                 return;
             }
-            String currChar = MemReads.Self.get_name(true);
+            String currChar = PlayerCache.Vitals.Name;
             if (WMS_dataset != null)
             {
                 //If we're pooling all characters inventory, select everything.
@@ -559,7 +540,7 @@ namespace Iocaine2
             {
                 return;
             }
-            foreach (ItemContainer container in WMS_allContainers)
+            foreach (ItemContainer container in Containers.All)
             {
                 WMS_updateSingleLB(container, null);
             }
@@ -574,7 +555,7 @@ namespace Iocaine2
                 {
                     return;
                 }
-                foreach (ItemContainer container in WMS_allContainers)
+                foreach (ItemContainer container in Containers.All)
                 {
                     Monitor.Enter(container);
                 }
@@ -584,22 +565,31 @@ namespace Iocaine2
                 {
                     WMSDataSet.CharacterInfoRow rowToAdd = WMS_dataset.CharacterInfo.NewCharacterInfoRow();
                     rowToAdd.Name = currChar;
-                    rowToAdd.BagOcc = WMS_bag.Occupancy;
-                    rowToAdd.BagCap = WMS_bag.Capacity;
-                    rowToAdd.SatchelOcc = WMS_satchel.Occupancy;
-                    rowToAdd.SatchelCap = WMS_satchel.Capacity;
-                    rowToAdd.SackOcc = WMS_sack.Occupancy;
-                    rowToAdd.SackCap = WMS_sack.Capacity;
-                    rowToAdd.CaseOcc = WMS_case.Occupancy;
-                    rowToAdd.CaseCap = WMS_case.Capacity;
-                    rowToAdd.SafeOcc = WMS_safe.Occupancy;
-                    rowToAdd.SafeCap = WMS_safe.Capacity;
-                    rowToAdd.StorageOcc = WMS_storage.Occupancy;
-                    rowToAdd.StorageCap = WMS_storage.Capacity;
-                    rowToAdd.LockerOcc = WMS_locker.Occupancy;
-                    rowToAdd.LockerCap = WMS_locker.Capacity;
-                    rowToAdd.WardrobeOcc = WMS_wardrobe.Occupancy;
-                    rowToAdd.WardrobeCap = WMS_wardrobe.Capacity;
+                    rowToAdd.BagOcc = Containers.Bag.Occupancy;
+                    rowToAdd.BagCap = Containers.Bag.Capacity;
+                    rowToAdd.SatchelOcc = Containers.Satchel.Occupancy;
+                    rowToAdd.SatchelCap = Containers.Satchel.Capacity;
+                    rowToAdd.SackOcc = Containers.Sack.Occupancy;
+                    rowToAdd.SackCap = Containers.Sack.Capacity;
+                    rowToAdd.CaseOcc = Containers.MCase.Occupancy;
+                    rowToAdd.CaseCap = Containers.MCase.Capacity;
+                    rowToAdd.SafeOcc = Containers.Safe.Occupancy;
+                    rowToAdd.SafeCap = Containers.Safe.Capacity;
+                    rowToAdd.Safe2Occ = Containers.Safe2.Occupancy;
+                    rowToAdd.Safe2Cap = Containers.Safe2.Capacity;
+                    rowToAdd.StorageOcc = Containers.Storage.Occupancy;
+                    rowToAdd.StorageCap = Containers.Storage.Capacity;
+                    rowToAdd.LockerOcc = Containers.Locker.Occupancy;
+                    rowToAdd.LockerCap = Containers.Locker.Capacity;
+                    rowToAdd.WardrobeOcc = Containers.Wardrobe.Occupancy;
+                    rowToAdd.WardrobeCap = Containers.Wardrobe.Capacity;
+                    rowToAdd.Wardrobe2Occ = Containers.Wardrobe2.Occupancy;
+                    rowToAdd.Wardrobe2Cap = Containers.Wardrobe2.Capacity;
+                    // TBD
+                    //rowToAdd.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
+                    //rowToAdd.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
+                    //rowToAdd.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
+                    //rowToAdd.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
                     rowToAdd.DateSaved = DateTime.Now;
                     WMS_dataset.CharacterInfo.Rows.Add(rowToAdd);
                     WMS_dataset.CharacterInfo.AcceptChanges();
@@ -607,22 +597,31 @@ namespace Iocaine2
                 else
                 {
                     WMSDataSet.CharacterInfoRow rowToUpdate = localCharRows[0];
-                    rowToUpdate.BagOcc = WMS_bag.Occupancy;
-                    rowToUpdate.BagCap = WMS_bag.Capacity;
-                    rowToUpdate.SatchelOcc = WMS_satchel.Occupancy;
-                    rowToUpdate.SatchelCap = WMS_satchel.Capacity;
-                    rowToUpdate.SackOcc = WMS_sack.Occupancy;
-                    rowToUpdate.SackCap = WMS_sack.Capacity;
-                    rowToUpdate.CaseOcc = WMS_case.Occupancy;
-                    rowToUpdate.CaseCap = WMS_case.Capacity;
-                    rowToUpdate.SafeOcc = WMS_safe.Occupancy;
-                    rowToUpdate.SafeCap = WMS_safe.Capacity;
-                    rowToUpdate.StorageOcc = WMS_storage.Occupancy;
-                    rowToUpdate.StorageCap = WMS_storage.Capacity;
-                    rowToUpdate.LockerOcc = WMS_locker.Occupancy;
-                    rowToUpdate.LockerCap = WMS_locker.Capacity;
-                    rowToUpdate.WardrobeOcc = WMS_wardrobe.Occupancy;
-                    rowToUpdate.WardrobeCap = WMS_wardrobe.Capacity;
+                    rowToUpdate.BagOcc = Containers.Bag.Occupancy;
+                    rowToUpdate.BagCap = Containers.Bag.Capacity;
+                    rowToUpdate.SatchelOcc = Containers.Satchel.Occupancy;
+                    rowToUpdate.SatchelCap = Containers.Satchel.Capacity;
+                    rowToUpdate.SackOcc = Containers.Sack.Occupancy;
+                    rowToUpdate.SackCap = Containers.Sack.Capacity;
+                    rowToUpdate.CaseOcc = Containers.MCase.Occupancy;
+                    rowToUpdate.CaseCap = Containers.MCase.Capacity;
+                    rowToUpdate.SafeOcc = Containers.Safe.Occupancy;
+                    rowToUpdate.SafeCap = Containers.Safe.Capacity;
+                    rowToUpdate.Safe2Occ = Containers.Safe2.Occupancy;
+                    rowToUpdate.Safe2Cap = Containers.Safe2.Capacity;
+                    rowToUpdate.StorageOcc = Containers.Storage.Occupancy;
+                    rowToUpdate.StorageCap = Containers.Storage.Capacity;
+                    rowToUpdate.LockerOcc = Containers.Locker.Occupancy;
+                    rowToUpdate.LockerCap = Containers.Locker.Capacity;
+                    rowToUpdate.WardrobeOcc = Containers.Wardrobe.Occupancy;
+                    rowToUpdate.WardrobeCap = Containers.Wardrobe.Capacity;
+                    rowToUpdate.Wardrobe2Occ = Containers.Wardrobe2.Occupancy;
+                    rowToUpdate.Wardrobe2Cap = Containers.Wardrobe2.Capacity;
+                    // TBD
+                    //rowToUpdate.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
+                    //rowToUpdate.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
+                    //rowToUpdate.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
+                    //rowToUpdate.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
                     rowToUpdate.DateSaved = DateTime.Now;
                     WMS_dataset.CharacterInfo.AcceptChanges();
                 }
@@ -631,7 +630,7 @@ namespace Iocaine2
                 {
                     WMS_dataset.Items.RemoveItemsRow(rowToRemove);
                 }
-                foreach (ItemContainer container in WMS_allContainers)
+                foreach (ItemContainer container in Containers.All)
                 {
                     List<Item> itemList = container.GetSummaryItemList();
                     List<ushort> itemQuan = container.GetSummaryItemQuanList();
@@ -656,7 +655,7 @@ namespace Iocaine2
             }
             finally
             {
-                foreach (ItemContainer container in WMS_allContainers)
+                foreach (ItemContainer container in Containers.All)
                 {
                     Monitor.Exit(container);
                 }
@@ -678,12 +677,20 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_CaseLabel, false);
                 WMS_updateControlVisibility(WMS_SafeLB, false);
                 WMS_updateControlVisibility(WMS_SafeLabel, false);
+                WMS_updateControlVisibility(WMS_Safe2LB, false);
+                WMS_updateControlVisibility(WMS_Safe2Label, false);
                 WMS_updateControlVisibility(WMS_StorageLB, false);
                 WMS_updateControlVisibility(WMS_StorageLabel, false);
                 WMS_updateControlVisibility(WMS_LockerLB, false);
                 WMS_updateControlVisibility(WMS_LockerLabel, false);
                 WMS_updateControlVisibility(WMS_WardrobeLB, false);
                 WMS_updateControlVisibility(WMS_WardrobeLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4Label, false);
                 WMS_updateLabelText(WMS_BagLabel, "Pooled Inventory");
                 WMS_updateControlVisibility(WMS_PooledLB, true);
                 WMS_rebuildLists();
@@ -735,12 +742,20 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_CaseLabel, true);
                 WMS_updateControlVisibility(WMS_SafeLB, true);
                 WMS_updateControlVisibility(WMS_SafeLabel, true);
+                WMS_updateControlVisibility(WMS_Safe2LB, true);
+                WMS_updateControlVisibility(WMS_Safe2Label, true);
                 WMS_updateControlVisibility(WMS_StorageLB, true);
                 WMS_updateControlVisibility(WMS_StorageLabel, true);
                 WMS_updateControlVisibility(WMS_LockerLB, true);
                 WMS_updateControlVisibility(WMS_LockerLabel, true);
                 WMS_updateControlVisibility(WMS_WardrobeLB, true);
                 WMS_updateControlVisibility(WMS_WardrobeLabel, true);
+                WMS_updateControlVisibility(WMS_Wardrobe2LB, true);
+                WMS_updateControlVisibility(WMS_Wardrobe2Label, true);
+                WMS_updateControlVisibility(WMS_Wardrobe3LB, true);
+                WMS_updateControlVisibility(WMS_Wardrobe3Label, true);
+                WMS_updateControlVisibility(WMS_Wardrobe4LB, true);
+                WMS_updateControlVisibility(WMS_Wardrobe4Label, true);
                 WMS_rebuildLists();
                 WMS_UpdateListboxes();
                 if ((WMS_CharacterCB.Text != "") && (WMS_selectedChar != PlayerCache.Vitals.Name))
@@ -787,12 +802,20 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_CaseLabel, false);
                 WMS_updateControlVisibility(WMS_SafeLB, false);
                 WMS_updateControlVisibility(WMS_SafeLabel, false);
+                WMS_updateControlVisibility(WMS_Safe2LB, false);
+                WMS_updateControlVisibility(WMS_Safe2Label, false);
                 WMS_updateControlVisibility(WMS_StorageLB, false);
                 WMS_updateControlVisibility(WMS_StorageLabel, false);
                 WMS_updateControlVisibility(WMS_LockerLB, false);
                 WMS_updateControlVisibility(WMS_LockerLabel, false);
                 WMS_updateControlVisibility(WMS_WardrobeLB, false);
                 WMS_updateControlVisibility(WMS_WardrobeLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4LB, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4Label, false);
                 WMS_updateLabelText(WMS_BagLabel, "All Inventory");
                 WMS_updateControlVisibility(WMS_PooledLB, true);
                 WMS_rebuildLists();
@@ -916,6 +939,9 @@ namespace Iocaine2
                     case ItemContainer.STORAGE_TYPE.SAFE:
                         lb = WMS_SafeLB;
                         break;
+                    case ItemContainer.STORAGE_TYPE.SAFE2:
+                        lb = WMS_Safe2LB;
+                        break;
                     case ItemContainer.STORAGE_TYPE.STORAGE:
                         lb = WMS_StorageLB;
                         break;
@@ -924,6 +950,15 @@ namespace Iocaine2
                         break;
                     case ItemContainer.STORAGE_TYPE.WARDROBE:
                         lb = WMS_WardrobeLB;
+                        break;
+                    case ItemContainer.STORAGE_TYPE.WARDROBE2:
+                        lb = WMS_Wardrobe2LB;
+                        break;
+                    case ItemContainer.STORAGE_TYPE.WARDROBE3:
+                        lb = WMS_Wardrobe3LB;
+                        break;
+                    case ItemContainer.STORAGE_TYPE.WARDROBE4:
+                        lb = WMS_Wardrobe4LB;
                         break;
                     default:
                         lb = WMS_BagLB;
@@ -950,6 +985,9 @@ namespace Iocaine2
                     case "Safe":
                         lb = WMS_SafeLB;
                         break;
+                    case "Safe2":
+                        lb = WMS_Safe2LB;
+                        break;
                     case "Storage":
                         lb = WMS_StorageLB;
                         break;
@@ -958,6 +996,15 @@ namespace Iocaine2
                         break;
                     case "Wardrobe":
                         lb = WMS_WardrobeLB;
+                        break;
+                    case "Wardrobe2":
+                        lb = WMS_Wardrobe2LB;
+                        break;
+                    case "Wardrobe3":
+                        lb = WMS_Wardrobe3LB;
+                        break;
+                    case "Wardrobe4":
+                        lb = WMS_Wardrobe4LB;
                         break;
                     default:
                         lb = WMS_BagLB;
@@ -976,12 +1023,7 @@ namespace Iocaine2
             {
                 return;
             }
-            foreach (ItemContainer container in WMS_allContainers)
-            {
-                Monitor.Enter(container);
-                container.RebuildLists();
-                Monitor.Exit(container);
-            }
+            Containers.RebuildLists();
         }
         private void WMS_setOccLabels(WMSDataSet.CharacterInfoRow charRow)
         {
@@ -991,13 +1033,19 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_SackOccLabel, false);
                 WMS_updateControlVisibility(WMS_CaseOccLabel, false);
                 WMS_updateControlVisibility(WMS_SafeOccLabel, false);
+                WMS_updateControlVisibility(WMS_Safe2OccLabel, false);
                 WMS_updateControlVisibility(WMS_StorageOccLabel, false);
                 WMS_updateControlVisibility(WMS_LockerOccLabel, false);
                 WMS_updateControlVisibility(WMS_WardrobeLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3Label, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4Label, false);
                 if (charRow != null)
                 {
-                    int totalOcc = charRow.BagOcc + charRow.SatchelOcc + charRow.SackOcc + charRow.CaseOcc + charRow.SafeOcc + charRow.StorageOcc + charRow.LockerOcc + charRow.WardrobeOcc;
-                    int totalSpace = charRow.BagCap + charRow.SatchelCap + charRow.SackCap + charRow.CaseCap + charRow.SafeCap + charRow.StorageCap + charRow.LockerCap + charRow.WardrobeCap;
+                    int totalOcc = charRow.BagOcc + charRow.SatchelOcc + charRow.SackOcc + charRow.CaseOcc + charRow.SafeOcc + charRow.Safe2Occ;
+                    totalOcc += charRow.StorageOcc + charRow.LockerOcc + charRow.WardrobeOcc + charRow.Wardrobe2Occ + charRow.Wardrobe3Occ + charRow.Wardrobe4Occ;
+                    int totalSpace = charRow.BagCap + charRow.SatchelCap + charRow.SackCap + charRow.CaseCap + charRow.SafeCap + charRow.Safe2Cap;
+                    totalSpace += charRow.StorageCap + charRow.LockerCap + charRow.WardrobeCap + charRow.Wardrobe2Cap + charRow.Wardrobe3Cap + charRow.Wardrobe4Cap;
                     WMS_updateLabelText(WMS_BagOccLabel, totalOcc.ToString() + " / " + totalSpace.ToString());
                 }
                 else if (ChangeMonitor.MainProc == null || ChangeMonitor.MainModule == null)
@@ -1007,15 +1055,19 @@ namespace Iocaine2
                     WMS_updateLabelText(WMS_SackOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_CaseOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_SafeOccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Safe2OccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_StorageOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_LockerOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_WardrobeOccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe2OccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe3OccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe4OccLabel, "0 / 0");
                 }
                 else
                 {
                     int totalOcc = 0;
                     int totalSpace = 0;
-                    foreach (ItemContainer container in WMS_allContainers)
+                    foreach (ItemContainer container in Containers.All)
                     {
                         Monitor.Enter(container);
                         totalOcc += container.Occupancy;
@@ -1031,9 +1083,13 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_SackOccLabel, true);
                 WMS_updateControlVisibility(WMS_CaseOccLabel, true);
                 WMS_updateControlVisibility(WMS_SafeOccLabel, true);
+                WMS_updateControlVisibility(WMS_Safe2OccLabel, true);
                 WMS_updateControlVisibility(WMS_StorageOccLabel, true);
                 WMS_updateControlVisibility(WMS_LockerOccLabel, true);
                 WMS_updateControlVisibility(WMS_WardrobeOccLabel, true);
+                WMS_updateControlVisibility(WMS_Wardrobe2OccLabel, true);
+                WMS_updateControlVisibility(WMS_Wardrobe3OccLabel, true);
+                WMS_updateControlVisibility(WMS_Wardrobe4OccLabel, true);
                 if (charRow != null)
                 {
                     WMS_updateLabelText(WMS_BagOccLabel, charRow.BagOcc + " / " + charRow.BagCap);
@@ -1041,9 +1097,13 @@ namespace Iocaine2
                     WMS_updateLabelText(WMS_SackOccLabel, charRow.SackOcc + " / " + charRow.SackCap);
                     WMS_updateLabelText(WMS_CaseOccLabel, charRow.CaseOcc + " / " + charRow.CaseCap);
                     WMS_updateLabelText(WMS_SafeOccLabel, charRow.SafeOcc + " / " + charRow.SafeCap);
+                    WMS_updateLabelText(WMS_Safe2OccLabel, charRow.Safe2Occ + " / " + charRow.Safe2Cap);
                     WMS_updateLabelText(WMS_StorageOccLabel, charRow.StorageOcc + " / " + charRow.StorageCap);
                     WMS_updateLabelText(WMS_LockerOccLabel, charRow.LockerOcc + " / " + charRow.LockerCap);
                     WMS_updateLabelText(WMS_WardrobeOccLabel, charRow.WardrobeOcc + " / " + charRow.WardrobeCap);
+                    WMS_updateLabelText(WMS_Wardrobe2OccLabel, charRow.Wardrobe2Occ + " / " + charRow.Wardrobe2Cap);
+                    WMS_updateLabelText(WMS_Wardrobe3OccLabel, charRow.Wardrobe3Occ + " / " + charRow.Wardrobe3Cap);
+                    WMS_updateLabelText(WMS_Wardrobe4OccLabel, charRow.Wardrobe4Occ + " / " + charRow.Wardrobe4Cap);
                 }
                 else if (ChangeMonitor.MainProc == null || ChangeMonitor.MainModule == null)
                 {
@@ -1052,20 +1112,29 @@ namespace Iocaine2
                     WMS_updateLabelText(WMS_SackOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_CaseOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_SafeOccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Safe2OccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_StorageOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_LockerOccLabel, "0 / 0");
                     WMS_updateLabelText(WMS_WardrobeOccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe2OccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe3OccLabel, "0 / 0");
+                    WMS_updateLabelText(WMS_Wardrobe4OccLabel, "0 / 0");
                 }
                 else
                 {
-                    WMS_updateLabelText(WMS_BagOccLabel, WMS_bag.Occupancy + " / " + WMS_bag.Capacity);
-                    WMS_updateLabelText(WMS_SatchelOccLabel, WMS_satchel.Occupancy + " / " + WMS_satchel.Capacity);
-                    WMS_updateLabelText(WMS_SackOccLabel, WMS_sack.Occupancy + " / " + WMS_sack.Capacity);
-                    WMS_updateLabelText(WMS_CaseOccLabel, WMS_case.Occupancy + " / " + WMS_case.Capacity);
-                    WMS_updateLabelText(WMS_SafeOccLabel, WMS_safe.Occupancy + " / " + WMS_safe.Capacity);
-                    WMS_updateLabelText(WMS_StorageOccLabel, WMS_storage.Occupancy + " / " + WMS_storage.Capacity);
-                    WMS_updateLabelText(WMS_LockerOccLabel, WMS_locker.Occupancy + " / " + WMS_locker.Capacity);
-                    WMS_updateLabelText(WMS_WardrobeOccLabel, WMS_wardrobe.Occupancy + " / " + WMS_wardrobe.Capacity);
+                    WMS_updateLabelText(WMS_BagOccLabel, Containers.Bag.Occupancy + " / " + Containers.Bag.Capacity);
+                    WMS_updateLabelText(WMS_SatchelOccLabel, Containers.Satchel.Occupancy + " / " + Containers.Satchel.Capacity);
+                    WMS_updateLabelText(WMS_SackOccLabel, Containers.Sack.Occupancy + " / " + Containers.Sack.Capacity);
+                    WMS_updateLabelText(WMS_CaseOccLabel, Containers.MCase.Occupancy + " / " + Containers.MCase.Capacity);
+                    WMS_updateLabelText(WMS_SafeOccLabel, Containers.Safe.Occupancy + " / " + Containers.Safe.Capacity);
+                    WMS_updateLabelText(WMS_SafeOccLabel, Containers.Safe2.Occupancy + " / " + Containers.Safe2.Capacity);
+                    WMS_updateLabelText(WMS_StorageOccLabel, Containers.Storage.Occupancy + " / " + Containers.Storage.Capacity);
+                    WMS_updateLabelText(WMS_LockerOccLabel, Containers.Locker.Occupancy + " / " + Containers.Locker.Capacity);
+                    WMS_updateLabelText(WMS_WardrobeOccLabel, Containers.Wardrobe.Occupancy + " / " + Containers.Wardrobe.Capacity);
+                    WMS_updateLabelText(WMS_Wardrobe2OccLabel, Containers.Wardrobe2.Occupancy + " / " + Containers.Wardrobe2.Capacity);
+                    // TBD
+                    //WMS_updateLabelText(WMS_Wardrobe3OccLabel, Containers.Wardrobe3.Occupancy + " / " + Containers.Wardrobe3.Capacity);
+                    //WMS_updateLabelText(WMS_Wardrobe4OccLabel, Containers.Wardrobe4.Occupancy + " / " + Containers.Wardrobe4.Capacity);
                 }
             }
             else if (WMS_allCharacters)
@@ -1074,9 +1143,13 @@ namespace Iocaine2
                 WMS_updateControlVisibility(WMS_SackOccLabel, false);
                 WMS_updateControlVisibility(WMS_CaseOccLabel, false);
                 WMS_updateControlVisibility(WMS_SafeOccLabel, false);
+                WMS_updateControlVisibility(WMS_Safe2OccLabel, false);
                 WMS_updateControlVisibility(WMS_StorageOccLabel, false);
                 WMS_updateControlVisibility(WMS_LockerOccLabel, false);
                 WMS_updateControlVisibility(WMS_WardrobeOccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe2OccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe3OccLabel, false);
+                WMS_updateControlVisibility(WMS_Wardrobe4OccLabel, false);
                 if (WMS_dataset != null)
                 {
                     WMSDataSet.CharacterInfoRow[] charRows = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select();
@@ -1084,8 +1157,10 @@ namespace Iocaine2
                     int totalSpace = 0;
                     foreach (WMSDataSet.CharacterInfoRow row in charRows)
                     {
-                        totalOcc += row.BagOcc + row.SatchelOcc + row.SackOcc + row.CaseOcc + row.SafeOcc + row.StorageOcc + row.LockerOcc + row.WardrobeOcc;
-                        totalSpace += row.BagCap + row.SatchelCap + row.SackCap + row.CaseCap + row.SafeCap + row.StorageCap + row.LockerCap + row.WardrobeCap;
+                        totalOcc += row.BagOcc + row.SatchelOcc + row.SackOcc + row.CaseOcc + row.SafeOcc + row.Safe2Occ;
+                        totalOcc += row.StorageOcc + row.LockerOcc + row.WardrobeOcc + row.Wardrobe2Occ + row.Wardrobe3Occ + row.Wardrobe4Occ;
+                        totalSpace += row.BagCap + row.SatchelCap + row.SackCap + row.CaseCap + row.SafeCap + row.Safe2Cap;
+                        totalSpace += row.StorageCap + row.LockerCap + row.WardrobeCap + row.Wardrobe2Cap + row.Wardrobe3Cap + row.Wardrobe4Cap;
                         WMS_updateLabelText(WMS_BagOccLabel, totalOcc.ToString() + " / " + totalSpace.ToString());
                     }
                 }
@@ -1130,12 +1205,20 @@ namespace Iocaine2
                         charRow.CaseCap = row.CaseCap;
                         charRow.SafeOcc = row.SafeOcc;
                         charRow.SafeCap = row.SafeCap;
+                        charRow.Safe2Occ = row.Safe2Occ;
+                        charRow.Safe2Cap = row.Safe2Cap;
                         charRow.StorageOcc = row.StorageOcc;
                         charRow.StorageCap = row.StorageCap;
                         charRow.LockerOcc = row.LockerOcc;
                         charRow.LockerCap = row.LockerCap;
                         charRow.WardrobeOcc = row.WardrobeOcc;
                         charRow.WardrobeCap = row.WardrobeCap;
+                        charRow.Wardrobe2Occ = row.Wardrobe2Occ;
+                        charRow.Wardrobe2Cap = row.Wardrobe2Cap;
+                        charRow.Wardrobe3Occ = row.Wardrobe3Occ;
+                        charRow.Wardrobe3Cap = row.Wardrobe3Cap;
+                        charRow.Wardrobe4Occ = row.Wardrobe4Occ;
+                        charRow.Wardrobe4Cap = row.Wardrobe4Cap;
                         charRow.DateSaved = row.DateSaved;
                         WMS_dataset_temp.CharacterInfo.Rows.Add(charRow);
                     }
@@ -1255,42 +1338,47 @@ namespace Iocaine2
                 else
                 {
                     //Logged into same character, do inventory checks to make sure we're not zoning.
-                    byte bagCap = WMS_bag.LiveCapacity;
+                    byte bagCap = Containers.Bag.LiveCapacity;
                     if ((bagCap < 30) || (bagCap > Containers.AbsMaxBagCount))
                     {
                         return true;
                     }
-                    byte satchelCap = WMS_satchel.LiveCapacity;
+                    byte satchelCap = Containers.Satchel.LiveCapacity;
                     if (satchelCap > Containers.AbsMaxSatchelCount)
                     {
                         return true;
                     }
-                    byte sackCap = WMS_sack.LiveCapacity;
+                    byte sackCap = Containers.Sack.LiveCapacity;
                     if (sackCap > Containers.AbsMaxSackCount)
                     {
                         return true;
                     }
-                    byte caseCap = WMS_case.LiveCapacity;
+                    byte caseCap = Containers.MCase.LiveCapacity;
                     if (caseCap > Containers.AbsMaxCaseCount)
                     {
                         return true;
                     }
-                    byte safeCap = WMS_safe.LiveCapacity;
+                    byte safeCap = Containers.Safe.LiveCapacity;
                     if ((safeCap < 30) || (safeCap > Containers.AbsMaxSafeCount))
                     {
                         return true;
                     }
-                    byte storageCap = WMS_storage.LiveCapacity;
+                    byte safe2Cap = Containers.Safe2.LiveCapacity;
+                    if ((safe2Cap < 30) || (safe2Cap > Containers.AbsMaxSafeCount))
+                    {
+                        return true;
+                    }
+                    byte storageCap = Containers.Storage.LiveCapacity;
                     if (storageCap > Containers.AbsMaxStorageCount)
                     {
                         return true;
                     }
-                    byte lockerCap = WMS_locker.LiveCapacity;
+                    byte lockerCap = Containers.Locker.LiveCapacity;
                     if (lockerCap > Containers.AbsMaxLockerCount)
                     {
                         return true;
                     }
-                    byte wardrobeCap = WMS_wardrobe.LiveCapacity;
+                    byte wardrobeCap = Containers.Wardrobe.LiveCapacity;
                     if (wardrobeCap > Containers.AbsMaxWardrobeCount)
                     {
                         return true;
@@ -1305,7 +1393,6 @@ namespace Iocaine2
         }
         #endregion Utility Functions
         #region Background Scanning
-        
         private void WMS_BackgroundScanThreadFunction()
         {
             uint loopCnt = 0;
