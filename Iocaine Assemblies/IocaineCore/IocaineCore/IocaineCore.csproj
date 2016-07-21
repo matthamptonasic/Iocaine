@@ -68,17 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Iocaine IP\Data Structures\Actions.cs">
-      <Link>Actions.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Iocaine IP\Data Structures\Character.cs">
       <Link>Character.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Data Structures\ChatLine.cs">
       <Link>ChatLine.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Iocaine IP\Data Structures\Command.cs">
-      <Link>Command.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Data Structures\Nav_Route.cs">
       <Link>Nav_Route.cs</Link>
@@ -200,9 +194,6 @@
     <Compile Include="..\..\..\Iocaine IP\Tools\ChatLogManager.cs">
       <Link>ChatLogManager.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Iocaine IP\Tools\CommandManager.cs">
-      <Link>CommandManager.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\InventoryMovement.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\JAManager.cs">
       <Link>JAManager.cs</Link>
@@ -237,6 +228,18 @@
     <Compile Include="..\..\..\Iocaine IP\Tools\WSManager.cs">
       <Link>WSManager.cs</Link>
     </Compile>
+    <Compile Include="Actions\Action.cs" />
+    <Compile Include="Actions\ActionSequence.cs" />
+    <Compile Include="Actions\ActionUnion.cs" />
+    <Compile Include="Actions\ActionWait.cs" />
+    <Compile Include="Actions\Commands\Command.cs" />
+    <Compile Include="Actions\Commands\CommandManager.cs" />
+    <Compile Include="Actions\Commands\JobAbilCommand.cs" />
+    <Compile Include="Actions\Commands\RawCommand.cs" />
+    <Compile Include="Actions\Commands\SpellCommand.cs" />
+    <Compile Include="Actions\Commands\WeaponSkillCommand.cs" />
+    <Compile Include="Actions\Conditions\Condition.cs" />
+    <Compile Include="Actions\Conditions\InventoryItem.cs" />
     <Compile Include="IocaineThreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\Toolbox.cs">
@@ -331,6 +334,7 @@
   <ItemGroup>
     <Content Include="IocaineIcon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
