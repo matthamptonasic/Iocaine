@@ -1524,6 +1524,11 @@ namespace Iocaine2.Bots
                 {
                     return "Monster";
                 }
+                if (fishIdsRows == null)
+                {
+                    fishItemID = 0;
+                    return "Error - No Fish Found";
+                }
                 FishStatsDataSet.FishIDsLocalRow localFishIdsRow = null;
                 foreach (FishStatsDataSet.FishIDsLocalRow row in fishIdsRows)
                 {
@@ -2025,6 +2030,7 @@ namespace Iocaine2.Bots
                         rodMacroText = rodInfo.RodName;
                     }
                     rodId = iNewId;
+                    LoggingFunctions.Debug("Fisher::updateRod: Finished rod update.", LoggingFunctions.DBG_SCOPE.TOP);
                 }
             }
             catch(Exception e)
