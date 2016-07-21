@@ -56,6 +56,7 @@ namespace Iocaine2.Data.Structures
 
             #region Constructor(s)
             public JobLevel(Client.Jobs.JOBS_INFO iInfo, byte iLevelMin = 1, byte iLevelMax = 99, MAIN_SUB iMainSub = MAIN_SUB.EITHER)
+                : base(CONDITION_TYPE.JOB_LVL)
             {
                 m_job = iInfo;
                 m_levelMin = iLevelMin;
