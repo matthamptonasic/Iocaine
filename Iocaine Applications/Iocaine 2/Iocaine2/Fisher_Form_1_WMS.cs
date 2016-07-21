@@ -89,7 +89,7 @@ namespace Iocaine2
         {
             try
             {
-                Monitor.Enter(container);
+                Monitor.Enter(Inventory.Containers.Padlock);
                 ListBox lb = WMS_getListbox(container, itemRows);
                 if (container != null)
                 {
@@ -124,17 +124,14 @@ namespace Iocaine2
             }
             finally
             {
-                Monitor.Exit(container);
+                Monitor.Exit(Inventory.Containers.Padlock);
             }
         }
         private void WMS_updatePooledLB_CBF(WMSDataSet.ItemsRow[] itemRows)
         {
             try
             {
-                foreach (ItemContainer container in Containers.All)
-                {
-                    Monitor.Enter(container);
-                }
+                Monitor.Enter(Inventory.Containers.Padlock);
                 ListBox lb = WMS_PooledLB;
                 if (itemRows == null)
                 {
@@ -190,10 +187,7 @@ namespace Iocaine2
             }
             finally
             {
-                foreach (ItemContainer container in Containers.All)
-                {
-                    Monitor.Exit(container);
-                }
+                Monitor.Exit(Inventory.Containers.Padlock);
             }
         }
         private void WMS_updateLabelText_CBF(Label iLabel, String iText)
@@ -554,10 +548,7 @@ namespace Iocaine2
                 {
                     return;
                 }
-                foreach (ItemContainer container in Containers.All)
-                {
-                    Monitor.Enter(container);
-                }
+                Monitor.Enter(Inventory.Containers.Padlock);
                 String currChar = MemReads.Self.get_name(true);
                 WMSDataSet.CharacterInfoRow[] localCharRows = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select("Name='" + currChar + "'");
                 if (localCharRows.Length == 0)
@@ -652,10 +643,7 @@ namespace Iocaine2
             }
             finally
             {
-                foreach (ItemContainer container in Containers.All)
-                {
-                    Monitor.Exit(container);
-                }
+                Monitor.Exit(Inventory.Containers.Padlock);
             }
         }
         private void WMS_PoolInventoryRB_CheckedChanged(object sender, EventArgs e)
@@ -1064,13 +1052,13 @@ namespace Iocaine2
                 {
                     int totalOcc = 0;
                     int totalSpace = 0;
+                    Monitor.Enter(Inventory.Containers.Padlock);
                     foreach (ItemContainer container in Containers.All)
                     {
-                        Monitor.Enter(container);
                         totalOcc += container.Occupancy;
                         totalSpace += container.Capacity;
-                        Monitor.Exit(container);
                     }
+                    Monitor.Exit(Inventory.Containers.Padlock);
                     WMS_updateLabelText(WMS_BagOccLabel, totalOcc.ToString() + " / " + totalSpace.ToString());
                 }
             }
