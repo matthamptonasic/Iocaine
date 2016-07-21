@@ -190,7 +190,7 @@ namespace Iocaine2.Memory
                     UInt32 info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
-                        return info_bag + Offset_Inv_Wardrobe3;
+                        return info_bag + Offset_Inv_Wardrobe4;
                     }
                     return 0;
                 }
