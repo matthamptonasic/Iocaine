@@ -490,6 +490,12 @@ namespace Iocaine2.Inventory
                 case STORAGE_TYPE.WARDROBE2:
                     capacityMax = MemReads.Self.Inventory.get_max_wardrobe2();
                     break;
+                case STORAGE_TYPE.WARDROBE3:
+                    capacityMax = MemReads.Self.Inventory.get_max_wardrobe3();
+                    break;
+                case STORAGE_TYPE.WARDROBE4:
+                    capacityMax = MemReads.Self.Inventory.get_max_wardrobe4();
+                    break;
                 default:
                     capacityMax = MemReads.Self.Inventory.get_max_bag();
                     break;
@@ -529,6 +535,12 @@ namespace Iocaine2.Inventory
                     break;
                 case STORAGE_TYPE.WARDROBE2:
                     cap = MemReads.Self.Inventory.get_max_wardrobe2();
+                    break;
+                case STORAGE_TYPE.WARDROBE3:
+                    cap = MemReads.Self.Inventory.get_max_wardrobe3();
+                    break;
+                case STORAGE_TYPE.WARDROBE4:
+                    cap = MemReads.Self.Inventory.get_max_wardrobe4();
                     break;
                 default:
                     cap = MemReads.Self.Inventory.get_max_bag();
@@ -580,6 +592,14 @@ namespace Iocaine2.Inventory
                     typeString = "Wardrobe2";
                     typeStringAbbr = "Wrd2";
                     break;
+                case STORAGE_TYPE.WARDROBE3:
+                    typeString = "Wardrobe3";
+                    typeStringAbbr = "Wrd3";
+                    break;
+                case STORAGE_TYPE.WARDROBE4:
+                    typeString = "Wardrobe4";
+                    typeStringAbbr = "Wrd4";
+                    break;
                 default:
                     typeString = "Bag";
                     typeStringAbbr = "Bag";
@@ -629,6 +649,14 @@ namespace Iocaine2.Inventory
                 case STORAGE_TYPE.WARDROBE2:
                     info_item_id_ptr = new info_item_id_delegate(MemReads.Self.Inventory.get_wardrobe2_item_id);
                     info_item_quan_ptr = new info_item_quan_delegate(MemReads.Self.Inventory.get_wardrobe2_item_quan);
+                    break;
+                case STORAGE_TYPE.WARDROBE3:
+                    info_item_id_ptr = new info_item_id_delegate(MemReads.Self.Inventory.get_wardrobe3_item_id);
+                    info_item_quan_ptr = new info_item_quan_delegate(MemReads.Self.Inventory.get_wardrobe3_item_quan);
+                    break;
+                case STORAGE_TYPE.WARDROBE4:
+                    info_item_id_ptr = new info_item_id_delegate(MemReads.Self.Inventory.get_wardrobe4_item_id);
+                    info_item_quan_ptr = new info_item_quan_delegate(MemReads.Self.Inventory.get_wardrobe4_item_quan);
                     break;
                 default:
                     info_item_id_ptr = new info_item_id_delegate(MemReads.Self.Inventory.get_wardrobe_item_id);

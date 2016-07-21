@@ -455,11 +455,10 @@ namespace Iocaine2
                         charRow.WardrobeCap = row.WardrobeCap;
                         charRow.Wardrobe2Occ = row.Wardrobe2Occ;
                         charRow.Wardrobe2Cap = row.Wardrobe2Cap;
-                        // TBD
-                        //charRow.Wardrobe3Occ = row.Wardrobe3Occ;
-                        //charRow.Wardrobe3Cap = row.Wardrobe3Cap;
-                        //charRow.Wardrobe4Occ = row.Wardrobe4Occ;
-                        //charRow.Wardrobe4Cap = row.Wardrobe4Cap;
+                        charRow.Wardrobe3Occ = row.Wardrobe3Occ;
+                        charRow.Wardrobe3Cap = row.Wardrobe3Cap;
+                        charRow.Wardrobe4Occ = row.Wardrobe4Occ;
+                        charRow.Wardrobe4Cap = row.Wardrobe4Cap;
                         charRow.DateSaved = row.DateSaved;
                         WMS_dataset.CharacterInfo.Rows.Add(charRow);
                     }
@@ -585,11 +584,10 @@ namespace Iocaine2
                     rowToAdd.WardrobeCap = Containers.Wardrobe.Capacity;
                     rowToAdd.Wardrobe2Occ = Containers.Wardrobe2.Occupancy;
                     rowToAdd.Wardrobe2Cap = Containers.Wardrobe2.Capacity;
-                    // TBD
-                    //rowToAdd.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
-                    //rowToAdd.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
-                    //rowToAdd.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
-                    //rowToAdd.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
+                    rowToAdd.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
+                    rowToAdd.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
+                    rowToAdd.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
+                    rowToAdd.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
                     rowToAdd.DateSaved = DateTime.Now;
                     WMS_dataset.CharacterInfo.Rows.Add(rowToAdd);
                     WMS_dataset.CharacterInfo.AcceptChanges();
@@ -617,11 +615,10 @@ namespace Iocaine2
                     rowToUpdate.WardrobeCap = Containers.Wardrobe.Capacity;
                     rowToUpdate.Wardrobe2Occ = Containers.Wardrobe2.Occupancy;
                     rowToUpdate.Wardrobe2Cap = Containers.Wardrobe2.Capacity;
-                    // TBD
-                    //rowToUpdate.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
-                    //rowToUpdate.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
-                    //rowToUpdate.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
-                    //rowToUpdate.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
+                    rowToUpdate.Wardrobe3Occ = Containers.Wardrobe3.Occupancy;
+                    rowToUpdate.Wardrobe3Cap = Containers.Wardrobe3.Capacity;
+                    rowToUpdate.Wardrobe4Occ = Containers.Wardrobe4.Occupancy;
+                    rowToUpdate.Wardrobe4Cap = Containers.Wardrobe4.Capacity;
                     rowToUpdate.DateSaved = DateTime.Now;
                     WMS_dataset.CharacterInfo.AcceptChanges();
                 }
@@ -1127,14 +1124,13 @@ namespace Iocaine2
                     WMS_updateLabelText(WMS_SackOccLabel, Containers.Sack.Occupancy + " / " + Containers.Sack.Capacity);
                     WMS_updateLabelText(WMS_CaseOccLabel, Containers.MCase.Occupancy + " / " + Containers.MCase.Capacity);
                     WMS_updateLabelText(WMS_SafeOccLabel, Containers.Safe.Occupancy + " / " + Containers.Safe.Capacity);
-                    WMS_updateLabelText(WMS_SafeOccLabel, Containers.Safe2.Occupancy + " / " + Containers.Safe2.Capacity);
+                    WMS_updateLabelText(WMS_Safe2OccLabel, Containers.Safe2.Occupancy + " / " + Containers.Safe2.Capacity);
                     WMS_updateLabelText(WMS_StorageOccLabel, Containers.Storage.Occupancy + " / " + Containers.Storage.Capacity);
                     WMS_updateLabelText(WMS_LockerOccLabel, Containers.Locker.Occupancy + " / " + Containers.Locker.Capacity);
                     WMS_updateLabelText(WMS_WardrobeOccLabel, Containers.Wardrobe.Occupancy + " / " + Containers.Wardrobe.Capacity);
                     WMS_updateLabelText(WMS_Wardrobe2OccLabel, Containers.Wardrobe2.Occupancy + " / " + Containers.Wardrobe2.Capacity);
-                    // TBD
-                    //WMS_updateLabelText(WMS_Wardrobe3OccLabel, Containers.Wardrobe3.Occupancy + " / " + Containers.Wardrobe3.Capacity);
-                    //WMS_updateLabelText(WMS_Wardrobe4OccLabel, Containers.Wardrobe4.Occupancy + " / " + Containers.Wardrobe4.Capacity);
+                    WMS_updateLabelText(WMS_Wardrobe3OccLabel, Containers.Wardrobe3.Occupancy + " / " + Containers.Wardrobe3.Capacity);
+                    WMS_updateLabelText(WMS_Wardrobe4OccLabel, Containers.Wardrobe4.Occupancy + " / " + Containers.Wardrobe4.Capacity);
                 }
             }
             else if (WMS_allCharacters)
@@ -1409,7 +1405,8 @@ namespace Iocaine2
                     {
                         loopCnt = 0;
                         WMS_rebuildLists();
-                        if ((TOP_getMainTabSelectionName() != TAB_KEYS_MAIN.WMS_Tab.ToString()) || !WMS_initialLBUpdateDone)
+                        string selectedTab = TOP_getMainTabSelectionName();
+                        if ((selectedTab != TAB_KEYS_MAIN.WMS_Tab.ToString()) || !WMS_initialLBUpdateDone)
                         {
                             WMS_UpdateListboxes();
                             WMS_initialLBUpdateDone = true;

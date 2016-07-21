@@ -26,6 +26,8 @@ namespace Iocaine2.Inventory
         private static EquipmentContainer wardrobe;
         private static ItemContainer safe2;
         private static EquipmentContainer wardrobe2;
+        private static EquipmentContainer wardrobe3;
+        private static EquipmentContainer wardrobe4;
         private static List<ItemContainer> containerList;
         private static List<ItemContainer> containerListHouse;
         private static List<ItemContainer> containerListMobile;
@@ -40,7 +42,9 @@ namespace Iocaine2.Inventory
         private const byte absMaxWardrobeCount = absMaxBagCount;
         private const byte absMaxSafe2Count = absMaxSafeCount;
         private const byte absMaxWardrobe2Count = absMaxWardrobeCount;
-        private static List<byte> absMaxCountList = new List<byte>() { absMaxBagCount, absMaxSatchelCount, absMaxSackCount, absMaxCaseCount, absMaxSafeCount, absMaxStorageCount, absMaxLockerCount, absMaxWardrobeCount, absMaxSafe2Count, absMaxWardrobe2Count };
+        private const byte absMaxWardrobe3Count = absMaxWardrobeCount;
+        private const byte absMaxWardrobe4Count = absMaxWardrobeCount;
+        private static List<byte> absMaxCountList = new List<byte>() { absMaxBagCount, absMaxSatchelCount, absMaxSackCount, absMaxCaseCount, absMaxSafeCount, absMaxStorageCount, absMaxLockerCount, absMaxWardrobeCount, absMaxSafe2Count, absMaxWardrobe2Count, absMaxWardrobe3Count, absMaxWardrobe4Count };
         private static List<Item> summaryItemList;
         private static List<ushort> summaryItemListQuan;
         private static List<Item> summaryItemListMobile;
@@ -120,6 +124,20 @@ namespace Iocaine2.Inventory
             get
             {
                 return wardrobe2;
+            }
+        }
+        public static ItemContainer Wardrobe3
+        {
+            get
+            {
+                return wardrobe3;
+            }
+        }
+        public static ItemContainer Wardrobe4
+        {
+            get
+            {
+                return wardrobe4;
             }
         }
         public static List<ItemContainer> All
@@ -220,6 +238,20 @@ namespace Iocaine2.Inventory
             get
             {
                 return absMaxWardrobe2Count;
+            }
+        }
+        public static byte AbsMaxWardrobe3Count
+        {
+            get
+            {
+                return absMaxWardrobe3Count;
+            }
+        }
+        public static byte AbsMaxWardrobe4Count
+        {
+            get
+            {
+                return absMaxWardrobe4Count;
             }
         }
         #endregion Absolue Max Counts
@@ -371,11 +403,13 @@ namespace Iocaine2.Inventory
             wardrobe = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE, 1);
             safe2 = new ItemContainer(ItemContainer.STORAGE_TYPE.SAFE2);
             wardrobe2 = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE2, 2);
+            wardrobe3 = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE3, 3);
+            wardrobe4 = new EquipmentContainer(ItemContainer.STORAGE_TYPE.WARDROBE4, 4);
 
-            containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe, safe2, wardrobe2 };
+            containerList = new List<ItemContainer>() { bag, satchel, sack, mcase, safe, storage, locker, wardrobe, safe2, wardrobe2, wardrobe3, wardrobe4 };
             containerListHouse = new List<ItemContainer>() { safe, storage, locker, safe2 };
-            containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe, wardrobe2 };
-            containerListEquip = new List<EquipmentContainer>() { bag, wardrobe, wardrobe2 };
+            containerListMobile = new List<ItemContainer>() { bag, satchel, sack, mcase, wardrobe, wardrobe2, wardrobe3, wardrobe4 };
+            containerListEquip = new List<EquipmentContainer>() { bag, wardrobe, wardrobe2, wardrobe3, wardrobe4 };
 
             summaryItemList = new List<Item>();
             summaryItemListHouse = new List<Item>();
