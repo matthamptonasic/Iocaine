@@ -28,20 +28,14 @@ namespace Iocaine2.Data.Structures
     #endregion Enums
     public abstract partial class Action
     {
-        #region Constructor
-        public Action(bool iIsBlocking, ACTN_TYPE iType)
-        {
-            isBlocking = iIsBlocking;
-            type = iType;
-        }
-        #endregion Constructor
-        #region Members
+        #region Private Members
         private bool isBlocking = false;
         private ACTN_TYPE type = ACTN_TYPE.Unknown;
         private List<Condition> m_orConditions;
         private List<Condition> m_andConditions;
-        #endregion Members
-        #region Properties
+        #endregion Private Members
+
+        #region Public Properties
         public bool IsBlocking
         {
             get
@@ -56,8 +50,17 @@ namespace Iocaine2.Data.Structures
                 return type;
             }
         }
-        #endregion Properties
-        #region Functions
+        #endregion Public Properties
+
+        #region Constructor
+        public Action(bool iIsBlocking, ACTN_TYPE iType)
+        {
+            isBlocking = iIsBlocking;
+            type = iType;
+        }
+        #endregion Constructor
+        
+        #region Public Methods
         public abstract void Show();
         public abstract new String SaveString();
         public bool Compare(Data.Structures.Action iAction)
@@ -72,48 +75,6 @@ namespace Iocaine2.Data.Structures
             }
             return true;
         }
-        #endregion Functions
-    }
-    
-    public class ActionWait : Data.Structures.Action
-    {
-        #region Constructors
-        public ActionWait(UInt32 iWaitTimeMs = 1000)
-            : base(true, ACTN_TYPE.Wait)
-        {
-            waitTime = iWaitTimeMs;
-        }
-        public ActionWait(ActionWait iAction)
-            : base(true, ACTN_TYPE.Wait)
-        {
-            waitTime = iAction.waitTime;
-        }
-        #endregion Constructors
-        #region Members
-        private UInt32 waitTime = 0;
-        #endregion Members
-        #region Properties
-        public UInt32 WaitTime
-        {
-            get
-            {
-                return waitTime;
-            }
-        }
-        #endregion Properties
-        #region Methods
-        override public void Show()
-        {
-            MessageBox.Show(this.ToString(), "ActionWait::" + waitTime, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        public override string SaveString()
-        {
-            return "ActionWait;" + waitTime;
-        }
-        public override string ToString()
-        {
-            return waitTime.ToString();
-        }
-        #endregion Methods
+        #endregion Public Methods
     }
 }
