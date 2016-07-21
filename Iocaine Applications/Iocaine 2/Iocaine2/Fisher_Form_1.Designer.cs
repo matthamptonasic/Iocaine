@@ -512,8 +512,19 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
+            this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
+            this.WMS_Safe2Label = new System.Windows.Forms.Label();
+            this.WMS_Safe2OccLabel = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe4Label = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe4OccLabel = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe4LB = new System.Windows.Forms.ListBox();
+            this.WMS_Wardrobe3Label = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe3OccLabel = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe3LB = new System.Windows.Forms.ListBox();
+            this.WMS_Wardrobe2Label = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe2OccLabel = new System.Windows.Forms.Label();
+            this.WMS_Wardrobe2LB = new System.Windows.Forms.ListBox();
             this.WMS_WardrobeLabel = new System.Windows.Forms.Label();
             this.WMS_WardrobeOccLabel = new System.Windows.Forms.Label();
             this.WMS_WardrobeLB = new System.Windows.Forms.ListBox();
@@ -663,6 +674,7 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6764,17 +6776,21 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
             // WMS_Tab
             // 
+            this.WMS_Tab.AutoScroll = true;
+            this.WMS_Tab.Controls.Add(this.WMS_Safe2LB);
+            this.WMS_Tab.Controls.Add(this.WMS_Safe2Label);
+            this.WMS_Tab.Controls.Add(this.WMS_Safe2OccLabel);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe4Label);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe4OccLabel);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe4LB);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe3Label);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe3OccLabel);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe3LB);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe2Label);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe2OccLabel);
+            this.WMS_Tab.Controls.Add(this.WMS_Wardrobe2LB);
             this.WMS_Tab.Controls.Add(this.WMS_WardrobeLabel);
             this.WMS_Tab.Controls.Add(this.WMS_WardrobeOccLabel);
             this.WMS_Tab.Controls.Add(this.WMS_WardrobeLB);
@@ -6813,10 +6829,126 @@
             this.WMS_Tab.Text = "WMS";
             this.WMS_Tab.UseVisualStyleBackColor = true;
             // 
+            // WMS_Safe2LB
+            // 
+            this.WMS_Safe2LB.FormattingEnabled = true;
+            this.WMS_Safe2LB.Location = new System.Drawing.Point(126, 418);
+            this.WMS_Safe2LB.Name = "WMS_Safe2LB";
+            this.WMS_Safe2LB.Size = new System.Drawing.Size(124, 173);
+            this.WMS_Safe2LB.TabIndex = 39;
+            this.WMS_Safe2LB.Visible = false;
+            // 
+            // WMS_Safe2Label
+            // 
+            this.WMS_Safe2Label.AutoSize = true;
+            this.WMS_Safe2Label.Location = new System.Drawing.Point(129, 404);
+            this.WMS_Safe2Label.Name = "WMS_Safe2Label";
+            this.WMS_Safe2Label.Size = new System.Drawing.Size(35, 13);
+            this.WMS_Safe2Label.TabIndex = 40;
+            this.WMS_Safe2Label.Text = "Safe2";
+            this.WMS_Safe2Label.Visible = false;
+            // 
+            // WMS_Safe2OccLabel
+            // 
+            this.WMS_Safe2OccLabel.AutoSize = true;
+            this.WMS_Safe2OccLabel.Location = new System.Drawing.Point(168, 404);
+            this.WMS_Safe2OccLabel.Name = "WMS_Safe2OccLabel";
+            this.WMS_Safe2OccLabel.Size = new System.Drawing.Size(24, 13);
+            this.WMS_Safe2OccLabel.TabIndex = 41;
+            this.WMS_Safe2OccLabel.Text = "0/0";
+            this.WMS_Safe2OccLabel.Visible = false;
+            // 
+            // WMS_Wardrobe4Label
+            // 
+            this.WMS_Wardrobe4Label.AutoSize = true;
+            this.WMS_Wardrobe4Label.Location = new System.Drawing.Point(381, 214);
+            this.WMS_Wardrobe4Label.Name = "WMS_Wardrobe4Label";
+            this.WMS_Wardrobe4Label.Size = new System.Drawing.Size(60, 13);
+            this.WMS_Wardrobe4Label.TabIndex = 37;
+            this.WMS_Wardrobe4Label.Text = "Wardrobe4";
+            this.WMS_Wardrobe4Label.Visible = false;
+            // 
+            // WMS_Wardrobe4OccLabel
+            // 
+            this.WMS_Wardrobe4OccLabel.AutoSize = true;
+            this.WMS_Wardrobe4OccLabel.Location = new System.Drawing.Point(446, 214);
+            this.WMS_Wardrobe4OccLabel.Name = "WMS_Wardrobe4OccLabel";
+            this.WMS_Wardrobe4OccLabel.Size = new System.Drawing.Size(24, 13);
+            this.WMS_Wardrobe4OccLabel.TabIndex = 38;
+            this.WMS_Wardrobe4OccLabel.Text = "0/0";
+            this.WMS_Wardrobe4OccLabel.Visible = false;
+            // 
+            // WMS_Wardrobe4LB
+            // 
+            this.WMS_Wardrobe4LB.FormattingEnabled = true;
+            this.WMS_Wardrobe4LB.Location = new System.Drawing.Point(378, 228);
+            this.WMS_Wardrobe4LB.Name = "WMS_Wardrobe4LB";
+            this.WMS_Wardrobe4LB.Size = new System.Drawing.Size(124, 173);
+            this.WMS_Wardrobe4LB.TabIndex = 36;
+            this.WMS_Wardrobe4LB.Visible = false;
+            // 
+            // WMS_Wardrobe3Label
+            // 
+            this.WMS_Wardrobe3Label.AutoSize = true;
+            this.WMS_Wardrobe3Label.Location = new System.Drawing.Point(255, 214);
+            this.WMS_Wardrobe3Label.Name = "WMS_Wardrobe3Label";
+            this.WMS_Wardrobe3Label.Size = new System.Drawing.Size(60, 13);
+            this.WMS_Wardrobe3Label.TabIndex = 34;
+            this.WMS_Wardrobe3Label.Text = "Wardrobe3";
+            this.WMS_Wardrobe3Label.Visible = false;
+            // 
+            // WMS_Wardrobe3OccLabel
+            // 
+            this.WMS_Wardrobe3OccLabel.AutoSize = true;
+            this.WMS_Wardrobe3OccLabel.Location = new System.Drawing.Point(320, 214);
+            this.WMS_Wardrobe3OccLabel.Name = "WMS_Wardrobe3OccLabel";
+            this.WMS_Wardrobe3OccLabel.Size = new System.Drawing.Size(24, 13);
+            this.WMS_Wardrobe3OccLabel.TabIndex = 35;
+            this.WMS_Wardrobe3OccLabel.Text = "0/0";
+            this.WMS_Wardrobe3OccLabel.Visible = false;
+            // 
+            // WMS_Wardrobe3LB
+            // 
+            this.WMS_Wardrobe3LB.FormattingEnabled = true;
+            this.WMS_Wardrobe3LB.Location = new System.Drawing.Point(252, 228);
+            this.WMS_Wardrobe3LB.Name = "WMS_Wardrobe3LB";
+            this.WMS_Wardrobe3LB.Size = new System.Drawing.Size(124, 173);
+            this.WMS_Wardrobe3LB.TabIndex = 33;
+            this.WMS_Wardrobe3LB.Visible = false;
+            // 
+            // WMS_Wardrobe2Label
+            // 
+            this.WMS_Wardrobe2Label.AutoSize = true;
+            this.WMS_Wardrobe2Label.Location = new System.Drawing.Point(129, 214);
+            this.WMS_Wardrobe2Label.Name = "WMS_Wardrobe2Label";
+            this.WMS_Wardrobe2Label.Size = new System.Drawing.Size(60, 13);
+            this.WMS_Wardrobe2Label.TabIndex = 31;
+            this.WMS_Wardrobe2Label.Text = "Wardrobe2";
+            this.WMS_Wardrobe2Label.Visible = false;
+            // 
+            // WMS_Wardrobe2OccLabel
+            // 
+            this.WMS_Wardrobe2OccLabel.AutoSize = true;
+            this.WMS_Wardrobe2OccLabel.Location = new System.Drawing.Point(194, 214);
+            this.WMS_Wardrobe2OccLabel.Name = "WMS_Wardrobe2OccLabel";
+            this.WMS_Wardrobe2OccLabel.Size = new System.Drawing.Size(24, 13);
+            this.WMS_Wardrobe2OccLabel.TabIndex = 32;
+            this.WMS_Wardrobe2OccLabel.Text = "0/0";
+            this.WMS_Wardrobe2OccLabel.Visible = false;
+            // 
+            // WMS_Wardrobe2LB
+            // 
+            this.WMS_Wardrobe2LB.FormattingEnabled = true;
+            this.WMS_Wardrobe2LB.Location = new System.Drawing.Point(126, 228);
+            this.WMS_Wardrobe2LB.Name = "WMS_Wardrobe2LB";
+            this.WMS_Wardrobe2LB.Size = new System.Drawing.Size(124, 173);
+            this.WMS_Wardrobe2LB.TabIndex = 30;
+            this.WMS_Wardrobe2LB.Visible = false;
+            // 
             // WMS_WardrobeLabel
             // 
             this.WMS_WardrobeLabel.AutoSize = true;
-            this.WMS_WardrobeLabel.Location = new System.Drawing.Point(402, 214);
+            this.WMS_WardrobeLabel.Location = new System.Drawing.Point(3, 214);
             this.WMS_WardrobeLabel.Name = "WMS_WardrobeLabel";
             this.WMS_WardrobeLabel.Size = new System.Drawing.Size(54, 13);
             this.WMS_WardrobeLabel.TabIndex = 28;
@@ -6826,7 +6958,7 @@
             // WMS_WardrobeOccLabel
             // 
             this.WMS_WardrobeOccLabel.AutoSize = true;
-            this.WMS_WardrobeOccLabel.Location = new System.Drawing.Point(462, 214);
+            this.WMS_WardrobeOccLabel.Location = new System.Drawing.Point(63, 214);
             this.WMS_WardrobeOccLabel.Name = "WMS_WardrobeOccLabel";
             this.WMS_WardrobeOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_WardrobeOccLabel.TabIndex = 29;
@@ -6836,16 +6968,16 @@
             // WMS_WardrobeLB
             // 
             this.WMS_WardrobeLB.FormattingEnabled = true;
-            this.WMS_WardrobeLB.Location = new System.Drawing.Point(399, 228);
+            this.WMS_WardrobeLB.Location = new System.Drawing.Point(0, 228);
             this.WMS_WardrobeLB.Name = "WMS_WardrobeLB";
-            this.WMS_WardrobeLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_WardrobeLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_WardrobeLB.TabIndex = 27;
             this.WMS_WardrobeLB.Visible = false;
             // 
             // WMS_CaseLabel
             // 
             this.WMS_CaseLabel.AutoSize = true;
-            this.WMS_CaseLabel.Location = new System.Drawing.Point(403, 22);
+            this.WMS_CaseLabel.Location = new System.Drawing.Point(382, 22);
             this.WMS_CaseLabel.Name = "WMS_CaseLabel";
             this.WMS_CaseLabel.Size = new System.Drawing.Size(31, 13);
             this.WMS_CaseLabel.TabIndex = 25;
@@ -6855,7 +6987,7 @@
             // WMS_CaseOccLabel
             // 
             this.WMS_CaseOccLabel.AutoSize = true;
-            this.WMS_CaseOccLabel.Location = new System.Drawing.Point(441, 22);
+            this.WMS_CaseOccLabel.Location = new System.Drawing.Point(420, 22);
             this.WMS_CaseOccLabel.Name = "WMS_CaseOccLabel";
             this.WMS_CaseOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_CaseOccLabel.TabIndex = 26;
@@ -6865,16 +6997,17 @@
             // WMS_CaseLB
             // 
             this.WMS_CaseLB.FormattingEnabled = true;
-            this.WMS_CaseLB.Location = new System.Drawing.Point(399, 38);
+            this.WMS_CaseLB.Location = new System.Drawing.Point(378, 38);
             this.WMS_CaseLB.Name = "WMS_CaseLB";
-            this.WMS_CaseLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_CaseLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_CaseLB.TabIndex = 24;
             this.WMS_CaseLB.Visible = false;
             // 
             // WMS_CharacterCB
             // 
+            this.WMS_CharacterCB.Enabled = false;
             this.WMS_CharacterCB.FormattingEnabled = true;
-            this.WMS_CharacterCB.Location = new System.Drawing.Point(389, 1);
+            this.WMS_CharacterCB.Location = new System.Drawing.Point(371, 1);
             this.WMS_CharacterCB.Name = "WMS_CharacterCB";
             this.WMS_CharacterCB.Size = new System.Drawing.Size(134, 21);
             this.WMS_CharacterCB.TabIndex = 23;
@@ -6884,6 +7017,7 @@
             // WMS_AllCharactersRB
             // 
             this.WMS_AllCharactersRB.AutoSize = true;
+            this.WMS_AllCharactersRB.Enabled = false;
             this.WMS_AllCharactersRB.Location = new System.Drawing.Point(148, 4);
             this.WMS_AllCharactersRB.Name = "WMS_AllCharactersRB";
             this.WMS_AllCharactersRB.Size = new System.Drawing.Size(90, 17);
@@ -6906,45 +7040,45 @@
             // WMS_LockerLB
             // 
             this.WMS_LockerLB.FormattingEnabled = true;
-            this.WMS_LockerLB.Location = new System.Drawing.Point(266, 228);
+            this.WMS_LockerLB.Location = new System.Drawing.Point(378, 418);
             this.WMS_LockerLB.Name = "WMS_LockerLB";
-            this.WMS_LockerLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_LockerLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_LockerLB.TabIndex = 7;
             this.WMS_LockerLB.Visible = false;
             // 
             // WMS_StorageLB
             // 
             this.WMS_StorageLB.FormattingEnabled = true;
-            this.WMS_StorageLB.Location = new System.Drawing.Point(133, 228);
+            this.WMS_StorageLB.Location = new System.Drawing.Point(252, 418);
             this.WMS_StorageLB.Name = "WMS_StorageLB";
-            this.WMS_StorageLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_StorageLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_StorageLB.TabIndex = 6;
             this.WMS_StorageLB.Visible = false;
             // 
             // WMS_SafeLB
             // 
             this.WMS_SafeLB.FormattingEnabled = true;
-            this.WMS_SafeLB.Location = new System.Drawing.Point(0, 228);
+            this.WMS_SafeLB.Location = new System.Drawing.Point(0, 418);
             this.WMS_SafeLB.Name = "WMS_SafeLB";
-            this.WMS_SafeLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_SafeLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_SafeLB.TabIndex = 5;
             this.WMS_SafeLB.Visible = false;
             // 
             // WMS_SackLB
             // 
             this.WMS_SackLB.FormattingEnabled = true;
-            this.WMS_SackLB.Location = new System.Drawing.Point(266, 38);
+            this.WMS_SackLB.Location = new System.Drawing.Point(252, 38);
             this.WMS_SackLB.Name = "WMS_SackLB";
-            this.WMS_SackLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_SackLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_SackLB.TabIndex = 4;
             this.WMS_SackLB.Visible = false;
             // 
             // WMS_SatchelLB
             // 
             this.WMS_SatchelLB.FormattingEnabled = true;
-            this.WMS_SatchelLB.Location = new System.Drawing.Point(133, 38);
+            this.WMS_SatchelLB.Location = new System.Drawing.Point(126, 38);
             this.WMS_SatchelLB.Name = "WMS_SatchelLB";
-            this.WMS_SatchelLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_SatchelLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_SatchelLB.TabIndex = 3;
             this.WMS_SatchelLB.Visible = false;
             // 
@@ -6953,7 +7087,7 @@
             this.WMS_BagLB.FormattingEnabled = true;
             this.WMS_BagLB.Location = new System.Drawing.Point(0, 38);
             this.WMS_BagLB.Name = "WMS_BagLB";
-            this.WMS_BagLB.Size = new System.Drawing.Size(127, 173);
+            this.WMS_BagLB.Size = new System.Drawing.Size(124, 173);
             this.WMS_BagLB.TabIndex = 2;
             this.WMS_BagLB.Visible = false;
             // 
@@ -6985,7 +7119,7 @@
             // WMS_LockerLabel
             // 
             this.WMS_LockerLabel.AutoSize = true;
-            this.WMS_LockerLabel.Location = new System.Drawing.Point(269, 214);
+            this.WMS_LockerLabel.Location = new System.Drawing.Point(381, 404);
             this.WMS_LockerLabel.Name = "WMS_LockerLabel";
             this.WMS_LockerLabel.Size = new System.Drawing.Size(40, 13);
             this.WMS_LockerLabel.TabIndex = 13;
@@ -6995,7 +7129,7 @@
             // WMS_StorageLabel
             // 
             this.WMS_StorageLabel.AutoSize = true;
-            this.WMS_StorageLabel.Location = new System.Drawing.Point(136, 214);
+            this.WMS_StorageLabel.Location = new System.Drawing.Point(255, 404);
             this.WMS_StorageLabel.Name = "WMS_StorageLabel";
             this.WMS_StorageLabel.Size = new System.Drawing.Size(44, 13);
             this.WMS_StorageLabel.TabIndex = 12;
@@ -7005,7 +7139,7 @@
             // WMS_SafeLabel
             // 
             this.WMS_SafeLabel.AutoSize = true;
-            this.WMS_SafeLabel.Location = new System.Drawing.Point(3, 214);
+            this.WMS_SafeLabel.Location = new System.Drawing.Point(3, 404);
             this.WMS_SafeLabel.Name = "WMS_SafeLabel";
             this.WMS_SafeLabel.Size = new System.Drawing.Size(29, 13);
             this.WMS_SafeLabel.TabIndex = 11;
@@ -7015,7 +7149,7 @@
             // WMS_SackLabel
             // 
             this.WMS_SackLabel.AutoSize = true;
-            this.WMS_SackLabel.Location = new System.Drawing.Point(269, 24);
+            this.WMS_SackLabel.Location = new System.Drawing.Point(255, 24);
             this.WMS_SackLabel.Name = "WMS_SackLabel";
             this.WMS_SackLabel.Size = new System.Drawing.Size(32, 13);
             this.WMS_SackLabel.TabIndex = 10;
@@ -7025,7 +7159,7 @@
             // WMS_SatchelLabel
             // 
             this.WMS_SatchelLabel.AutoSize = true;
-            this.WMS_SatchelLabel.Location = new System.Drawing.Point(136, 24);
+            this.WMS_SatchelLabel.Location = new System.Drawing.Point(129, 24);
             this.WMS_SatchelLabel.Name = "WMS_SatchelLabel";
             this.WMS_SatchelLabel.Size = new System.Drawing.Size(43, 13);
             this.WMS_SatchelLabel.TabIndex = 9;
@@ -7044,7 +7178,7 @@
             // WMS_LockerOccLabel
             // 
             this.WMS_LockerOccLabel.AutoSize = true;
-            this.WMS_LockerOccLabel.Location = new System.Drawing.Point(315, 214);
+            this.WMS_LockerOccLabel.Location = new System.Drawing.Point(427, 404);
             this.WMS_LockerOccLabel.Name = "WMS_LockerOccLabel";
             this.WMS_LockerOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_LockerOccLabel.TabIndex = 21;
@@ -7054,7 +7188,7 @@
             // WMS_StorageOccLabel
             // 
             this.WMS_StorageOccLabel.AutoSize = true;
-            this.WMS_StorageOccLabel.Location = new System.Drawing.Point(186, 214);
+            this.WMS_StorageOccLabel.Location = new System.Drawing.Point(305, 404);
             this.WMS_StorageOccLabel.Name = "WMS_StorageOccLabel";
             this.WMS_StorageOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_StorageOccLabel.TabIndex = 20;
@@ -7064,7 +7198,7 @@
             // WMS_SafeOccLabel
             // 
             this.WMS_SafeOccLabel.AutoSize = true;
-            this.WMS_SafeOccLabel.Location = new System.Drawing.Point(38, 214);
+            this.WMS_SafeOccLabel.Location = new System.Drawing.Point(38, 404);
             this.WMS_SafeOccLabel.Name = "WMS_SafeOccLabel";
             this.WMS_SafeOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_SafeOccLabel.TabIndex = 19;
@@ -7074,7 +7208,7 @@
             // WMS_SackOccLabel
             // 
             this.WMS_SackOccLabel.AutoSize = true;
-            this.WMS_SackOccLabel.Location = new System.Drawing.Point(307, 24);
+            this.WMS_SackOccLabel.Location = new System.Drawing.Point(293, 24);
             this.WMS_SackOccLabel.Name = "WMS_SackOccLabel";
             this.WMS_SackOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_SackOccLabel.TabIndex = 18;
@@ -7084,7 +7218,7 @@
             // WMS_SatchelOccLabel
             // 
             this.WMS_SatchelOccLabel.AutoSize = true;
-            this.WMS_SatchelOccLabel.Location = new System.Drawing.Point(185, 24);
+            this.WMS_SatchelOccLabel.Location = new System.Drawing.Point(178, 24);
             this.WMS_SatchelOccLabel.Name = "WMS_SatchelOccLabel";
             this.WMS_SatchelOccLabel.Size = new System.Drawing.Size(24, 13);
             this.WMS_SatchelOccLabel.TabIndex = 17;
@@ -8408,6 +8542,15 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9217,5 +9360,17 @@
         private System.Windows.Forms.CheckBox StatsThisZoneOnlyChkB;
         private System.Windows.Forms.PictureBox ServerConnectionLightPB;
         private System.Windows.Forms.Label ServerConnectionLabel;
+        private System.Windows.Forms.Label WMS_Wardrobe4Label;
+        private System.Windows.Forms.Label WMS_Wardrobe4OccLabel;
+        private System.Windows.Forms.ListBox WMS_Wardrobe4LB;
+        private System.Windows.Forms.Label WMS_Wardrobe3Label;
+        private System.Windows.Forms.Label WMS_Wardrobe3OccLabel;
+        private System.Windows.Forms.ListBox WMS_Wardrobe3LB;
+        private System.Windows.Forms.Label WMS_Wardrobe2Label;
+        private System.Windows.Forms.Label WMS_Wardrobe2OccLabel;
+        private System.Windows.Forms.ListBox WMS_Wardrobe2LB;
+        private System.Windows.Forms.ListBox WMS_Safe2LB;
+        private System.Windows.Forms.Label WMS_Safe2Label;
+        private System.Windows.Forms.Label WMS_Safe2OccLabel;
     }
 }
