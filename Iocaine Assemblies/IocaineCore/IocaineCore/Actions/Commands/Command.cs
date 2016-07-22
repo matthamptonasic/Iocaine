@@ -12,7 +12,7 @@ using Iocaine2.Memory.Interface;
 
 namespace Iocaine2.Data.Structures
 {
-    abstract public class Command : Action
+    public abstract class Command : Action
     {
         #region Enums
         public enum CMD_TYPE : byte
