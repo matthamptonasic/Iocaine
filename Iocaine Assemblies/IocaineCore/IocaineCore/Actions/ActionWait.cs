@@ -12,7 +12,7 @@ namespace Iocaine2.Data.Structures
     public class ActionWait : Data.Structures.Action
     {
         #region Private Members
-        private uint waitTime = 0;
+        private uint m_waitTime = 0;
         #endregion Private Members
         
         #region Public Properties
@@ -20,7 +20,7 @@ namespace Iocaine2.Data.Structures
         {
             get
             {
-                return waitTime;
+                return m_waitTime;
             }
         }
         #endregion Public Properties
@@ -29,28 +29,36 @@ namespace Iocaine2.Data.Structures
         public ActionWait(uint iWaitTimeMs = 1000)
             : base(true, ACTN_TYPE.Wait)
         {
-            waitTime = iWaitTimeMs;
+            m_waitTime = iWaitTimeMs;
         }
         public ActionWait(ActionWait iAction)
             : base(true, ACTN_TYPE.Wait)
         {
-            waitTime = iAction.waitTime;
+            m_waitTime = iAction.m_waitTime;
         }
         #endregion Constructors
-        
+
         #region Public Methods
-        override public void Show()
+        public override bool Execute(string iTarget = "")
         {
-            MessageBox.Show(this.ToString(), "ActionWait::" + waitTime, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (m_waitTime > 0)
+            {
+                Memory.Interface.IocaineFunctions.delay(m_waitTime);
+            }
+            return true;
+        }
+        public override void Show()
+        {
+            MessageBox.Show(this.ToString(), "ActionWait::" + m_waitTime, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         public override string SaveString()
         {
-            return "ActionWait;" + waitTime;
+            return "ActionWait;" + m_waitTime;
         }
         public override string ToString()
         {
-            return waitTime.ToString();
+            return m_waitTime.ToString() + "ms";
         }
-        #endregion Methods
+        #endregion Public Methods
     }
 }
