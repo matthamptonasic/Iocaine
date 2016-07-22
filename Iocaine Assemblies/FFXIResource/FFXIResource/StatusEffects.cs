@@ -107,6 +107,26 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
+        public static STATUS_EFFECT_INFO GetStatusEffectInfo(string iName)
+        {
+            FfxiResource.init();
+            STATUS_EFFECT_INFO info = new STATUS_EFFECT_INFO();
+
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string sortString = "ID";
+            MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString, sortString);
+            if (statusEffectRows.Length == 0)
+            {
+                info.Index = 0xFFFF;
+                info.Name = "";
+            }
+            else
+            {
+                info.Index = statusEffectRows[0].ID;
+                info.Name = iName;
+            }
+            return info;
+        }
         #endregion Get Functions
     }
 }
