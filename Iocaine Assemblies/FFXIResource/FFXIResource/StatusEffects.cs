@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Iocaine2.Data.Client
 {
@@ -15,10 +16,23 @@ namespace Iocaine2.Data.Client
             public string Name;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
-        #region Init
+        private static AutoCompleteStringCollection buffNameCollection = new AutoCompleteStringCollection();
+        #endregion Private Members
+
+        #region Public Properties
+        public static AutoCompleteStringCollection StatusEffectNameCollection
+        {
+            get
+            {
+                return buffNameCollection;
+            }
+        }
+        #endregion Public Properties
+
+        #region Inits
         internal static void init()
         {
             if (!initDone)
@@ -27,7 +41,19 @@ namespace Iocaine2.Data.Client
                 initDone = true;
             }
         }
-        #endregion Init
+        private static void init_autoCompleteCollection()
+        {
+            buffNameCollection.Clear();
+            string filterString = "";
+            string sortString = "Name";
+            MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString, sortString);
+            foreach (MainDatabase.StatusEffectsRow row in statusEffectRows)
+            {
+                buffNameCollection.Add(row.Name);
+            }
+        }
+        #endregion Inits
+
         #region Get Functions
         /// <summary>
         /// Gets the status effect index with the given name.
