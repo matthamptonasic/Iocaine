@@ -229,6 +229,8 @@
       <Link>WSManager.cs</Link>
     </Compile>
     <Compile Include="Actions\Action.cs" />
+    <Compile Include="Actions\ActionCancelBuff.cs" />
+    <Compile Include="Actions\ActionManager.cs" />
     <Compile Include="Actions\ActionSequence.cs" />
     <Compile Include="Actions\ActionUnion.cs" />
     <Compile Include="Actions\ActionWait.cs" />
