@@ -46,7 +46,7 @@ namespace Iocaine2.Data.Structures
                 return name;
             }
         }
-        public CMD_TYPE Type
+        public CMD_TYPE CmdType
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Iocaine2.Data.Structures
         }
         #endregion Member Properties
         #region Functions
-        public abstract Boolean Execute(String iTarget);
+        public override abstract Boolean Execute(String iTarget);
         //{
         //    try
         //    {

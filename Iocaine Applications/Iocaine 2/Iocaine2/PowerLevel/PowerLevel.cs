@@ -648,7 +648,7 @@ namespace Iocaine2.Bots
                 Task localTask = (Task)sender;
                 Queue localQ = (Queue)QList[localTask.Priority - 1];
                 LoggingFunctions.Debug("Timer elapsed for task " + localTask.CmdName, LoggingFunctions.DBG_SCOPE.PL);
-                if (localTask.Cmd.Type == Command.CMD_TYPE.RAW_CMD)
+                if (localTask.Cmd.CmdType == Command.CMD_TYPE.RAW_CMD)
                 {
                     if (Statics.Settings.PowerLevel.ChatMpReport)
                     {
