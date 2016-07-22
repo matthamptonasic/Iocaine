@@ -64,7 +64,7 @@ namespace Iocaine2.Data.Structures
             }
             else
             {
-                LoggingFunctions.Error("Tried to remove action " + iAction.Type.ToString() + " which was not in the actionList.");
+                LoggingFunctions.Error("Tried to remove action " + iAction.AType.ToString() + " which was not in the actionList.");
             }
         }
         public void RemoveAction(int iIndex)
@@ -94,7 +94,7 @@ namespace Iocaine2.Data.Structures
         {
             foreach (Data.Structures.Action actn in actionList)
             {
-                if (actn.Type == iType)
+                if (actn.AType == iType)
                 {
                     return true;
                 }
@@ -129,7 +129,7 @@ namespace Iocaine2.Data.Structures
             {
                 Data.Structures.Action actn = actionList[iIndex];
                 Data.Structures.Action copyAction = null;
-                switch (actn.Type)
+                switch (actn.AType)
                 {
                     case ACTN_TYPE.Wait:
                         copyAction = new ActionWait((ActionWait)actn);
