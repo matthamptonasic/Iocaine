@@ -9,23 +9,21 @@ using Iocaine2.Logging;
 
 namespace Iocaine2.Data.Structures
 {
-    public class ActionUnion
+    public class ActionUnion : Action
     {
         #region Private Members
         private List<Action> m_actionList;
+        private Action m_setAction = null;
         #endregion Private Members
 
         #region Public Properties
         #endregion Public Properties
 
         #region Constructors
-        public ActionUnion()
+        public ActionUnion(bool iIsBlocking, Action iAction)
+            : base(iIsBlocking, ACTN_TYPE.Union)
         {
-            m_actionList = new List<Action>();
-        }
-        public ActionUnion(List<Action> iActions)
-        {
-            m_actionList = iActions;
+            m_actionList = new List<Action>() { iAction };
         }
         #endregion Constructors
 
@@ -49,11 +47,46 @@ namespace Iocaine2.Data.Structures
                 if (actn.ConditionsMet())
                 {
                     oActn = actn;
+                    m_setAction = actn;
                     return true;
                 }
             }
             oActn = null;
             return false;
+        }
+        public override bool Execute(string iTarget = "")
+        {
+            if (CanPerform(out m_setAction))
+            {
+                return m_setAction.Execute(iTarget);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public override void Show()
+        {
+            string showStr = "";
+            foreach (Action actn in m_actionList)
+            {
+                showStr += actn.ToString() + "\n";
+            }
+            MessageBox.Show(showStr, "ActionUnion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        public override string SaveString()
+        {
+            // TBD
+            throw new NotImplementedException();
+        }
+        public override string ToString()
+        {
+            string str = "";
+            foreach (Action actn in m_actionList)
+            {
+                str += actn.ToString() + "\n";
+            }
+            return str;
         }
         #endregion Public Methods
     }
