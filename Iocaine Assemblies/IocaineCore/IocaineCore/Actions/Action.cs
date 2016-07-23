@@ -12,18 +12,20 @@ namespace Iocaine2.Data.Structures
     #region Enums
     public enum ACTN_TYPE
     {
-        Unknown = 0,
-        Command = 1,
-        Wait = 2,
-        Target = 3,
-        Follow = 4,
-        Trade_Npc_Item = 5,
-        Trade_Npc_Gil = 6,
-        Trade_Pc_Item = 7,
-        Trade_Pc_Gil = 8,
-        Keystroke = 9,
-        ArrowKeystroke = 10,
-        Count = 11
+        Unknown,
+        Command,
+        Wait,
+        Target,
+        Follow,
+        Trade_Npc_Item,
+        Trade_Npc_Gil,
+        Trade_Pc_Item,
+        Trade_Pc_Gil,
+        Keystroke,
+        Keystroke_Arrow,
+        Cancel_Buff,
+        Union,
+        Count
     }
     #endregion Enums
     public abstract partial class Action
@@ -32,7 +34,7 @@ namespace Iocaine2.Data.Structures
         private bool isBlocking = false;
         private ACTN_TYPE type = ACTN_TYPE.Unknown;
         private List<Condition> m_orConditions;
-        private List<Condition> m_andConditions;
+        protected List<Condition> m_andConditions;
         #endregion Private Members
 
         #region Public Properties
@@ -43,7 +45,7 @@ namespace Iocaine2.Data.Structures
                 return isBlocking;
             }
         }
-        public ACTN_TYPE Type
+        public ACTN_TYPE AType
         {
             get
             {
@@ -59,8 +61,9 @@ namespace Iocaine2.Data.Structures
             type = iType;
         }
         #endregion Constructor
-        
+
         #region Public Methods
+        public abstract Boolean Execute(String iTarget = "");
         public abstract void Show();
         public abstract new String SaveString();
         public bool Compare(Data.Structures.Action iAction)
@@ -74,6 +77,28 @@ namespace Iocaine2.Data.Structures
                 return false;
             }
             return true;
+        }
+        public bool ConditionsMet()
+        {
+            if ((m_andConditions != null) && (m_andConditions.Count > 0))
+            {
+                bool met = true;
+                foreach (Condition cndn in m_andConditions)
+                {
+                    met &= cndn.IsSatisfied();
+                }
+                return met;
+            }
+            else if ((m_orConditions != null) && (m_orConditions.Count > 0))
+            {
+                bool met = false;
+                foreach (Condition cndn in m_andConditions)
+                {
+                    met |= cndn.IsSatisfied();
+                }
+                return met;
+            }
+            return false;
         }
         #endregion Public Methods
     }
