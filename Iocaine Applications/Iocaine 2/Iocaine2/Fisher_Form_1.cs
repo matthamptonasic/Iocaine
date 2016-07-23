@@ -476,6 +476,7 @@ namespace Iocaine2
             // This is called after the process has changed and while the
             // background threads are still frozen.
             // If you need to do anything before resuming the IocaineThreads, do it here.
+            PlayerCache.Reset();
         }
         private void TOP_Init_Process_End()
         {
