@@ -856,42 +856,6 @@ namespace Iocaine2
             return localChr;
         }
         #endregion Utility Functions
-        #region Monitor Status
-        //public static MONITOR_STATE State
-        //{
-        //    get
-        //    {
-        //        return state;
-        //    }
-        //}
-        //private static bool checkStatus()
-        //{
-        //    switch(state)
-        //    {
-        //        case MONITOR_STATE.RUNNING:
-        //            return true;
-        //        case MONITOR_STATE.STOPPED:
-        //            return false;
-        //        case MONITOR_STATE.PAUSED_PROG:
-        //        case MONITOR_STATE.PAUSED_USER:
-        //            while(state != MONITOR_STATE.RUNNING)
-        //            {
-        //                if(state == MONITOR_STATE.STOPPED)
-        //                {
-        //                    return false;
-        //                }
-        //                if(mainProc == null)
-        //                {
-        //                    return false;
-        //                }
-        //                IocaineFunctions.delay(1000);
-        //            }
-        //            return true;
-        //        default:
-        //            return false;
-        //    }
-        //}
-        #endregion Monitor Status
         #region Monitor
         private static void runMonitor()
         {
