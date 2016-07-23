@@ -28,6 +28,13 @@ namespace Iocaine2
     /// </summary>
     public static partial class PlayerCache
     {
+        public static void Reset()
+        {
+            Vitals.Reset();
+            Equipment.Reset();
+            Skills.Reset();
+            Environment.Reset();
+        }
         public static class Vitals
         {
             #region Private Members
@@ -94,6 +101,16 @@ namespace Iocaine2
                 }
             }
             #endregion Public Properties
+            #region Public Methods
+            public static void Reset()
+            {
+                name = "";
+                mainJob = 0;
+                mainJobLvl = 1;
+                subJob = 0;
+                subJobLvl = 0;
+            }
+            #endregion Public Methods
         }
         public static class Equipment
         {
@@ -161,6 +178,16 @@ namespace Iocaine2
                 }
             }
             #endregion Public Properties
+            #region Public Methods
+            public static void Reset()
+            {
+                main = 0;
+                sub = 0;
+                range = 0;
+                ammo = 0;
+                ammoQuan = 0;
+        }
+            #endregion Public Methods
         }
         public static class Skills
         {
@@ -192,6 +219,13 @@ namespace Iocaine2
                 }
             }
             #endregion Public Properties
+            #region Public Methods
+            public static void Reset()
+            {
+                combatSkillType = 0;
+                combatSkillCurrentLvl = 0;
+            }
+            #endregion Public Methods
         }
         public static class Environment
         {
@@ -319,6 +353,21 @@ namespace Iocaine2
                 }
             }
             #endregion Public Properties
+            #region Public Methods
+            public static void Reset()
+            {
+                serverId = 0;
+                serverName = "";
+                zoneId = 0;
+                areaId = 0;
+                zoneAlias = 0;
+                zoneName = "";
+                areaName = "";
+                inMogHouse = false;
+                weatherId = 0;
+                weatherName = "";
+        }
+            #endregion Public Methods
         }
     }
 }
