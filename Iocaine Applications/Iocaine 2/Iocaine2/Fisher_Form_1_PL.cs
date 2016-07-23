@@ -2483,57 +2483,65 @@ namespace Iocaine2
             while (true)
             {
                 IocaineFunctions.delay((uint)Statics.Settings.PowerLevel.PlCharActivePollFrequency);
-                if (PL_PauseCheckActiveThread || (PL_CharacterList.Count == 0))
+                try
                 {
-                    continue;
-                }
-                else
-                {
-                    LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: =====================================================", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                    foreach (PLCharacter chr in PL_CharacterList)
+                    if (PL_PauseCheckActiveThread || (PL_CharacterList.Count == 0))
                     {
-                        LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Checking player " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                        int charRow = 0;
-                        foreach (DataGridViewRow row in CharacterGrid.Rows)
-                        {
-                            LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Comparing with grid row #" + row.Index + " w/ value " + (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                            if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value == chr.Name)
-                            {
-                                LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Compare matched. Cell value: " + ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value) + " chr.Name: " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                                charRow = row.Index;
-                                LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: row.Index is " + row.Index + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                                break;
-                            }
-                        }
-                        LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Character: " + chr.Name + " returns checkActive: " + chr.Check_Active().ToString() + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                        bool chrActive = chr.Check_Active();
-                        bool inRange = false;
-                        if (chr.Name != PlayerCache.Vitals.Name)
-                        {
-                            inRange = chr.Distance <= 46;
-                        }
-                        else
-                        {
-                            inRange = true;
-                        }
-                        if (!chrActive)
-                        {
-                            chrActive = chr.Update_Pointer();
-                        }
-                        if (chrActive && inRange)
-                        {
-                            CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.GreenCheck;
-                        }
-                        else if(chrActive && !inRange)
-                        {
-                            CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.BlueArrow;
-                        }
-                        else
-                        {
-                            CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.RedX;
-                        }
-                        LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Character " + chr.Name + " on row " + charRow.ToString() + " is now " + (chr.Active ? "active" : "NOT active") + " and " + (inRange ? "" : "not ") + "in range.", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                        continue;
                     }
+                    else
+                    {
+                        LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: =====================================================", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                        foreach (PLCharacter chr in PL_CharacterList)
+                        {
+                            LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Checking player " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                            int charRow = 0;
+                            foreach (DataGridViewRow row in CharacterGrid.Rows)
+                            {
+                                LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Comparing with grid row #" + row.Index + " w/ value " + (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                                if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value == chr.Name)
+                                {
+                                    LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Compare matched. Cell value: " + ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value) + " chr.Name: " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                                    charRow = row.Index;
+                                    LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: row.Index is " + row.Index + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                                    break;
+                                }
+                            }
+                            LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Character: " + chr.Name + " returns checkActive: " + chr.Check_Active().ToString() + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                            bool chrActive = chr.Check_Active();
+                            bool inRange = false;
+                            if (chr.Name != PlayerCache.Vitals.Name)
+                            {
+                                inRange = chr.Distance <= 46;
+                            }
+                            else
+                            {
+                                inRange = true;
+                            }
+                            if (!chrActive)
+                            {
+                                chrActive = chr.Update_Pointer();
+                            }
+                            if (chrActive && inRange)
+                            {
+                                CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.GreenCheck;
+                            }
+                            else if (chrActive && !inRange)
+                            {
+                                CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.BlueArrow;
+                            }
+                            else
+                            {
+                                CharacterGrid[(int)PL_CHAR_GRID_COL.ACT, charRow].Value = Resources.RedX;
+                            }
+                            LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Character " + chr.Name + " on row " + charRow.ToString() + " is now " + (chr.Active ? "active" : "NOT active") + " and " + (inRange ? "" : "not ") + "in range.", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                    continue;
                 }
             }
         }
