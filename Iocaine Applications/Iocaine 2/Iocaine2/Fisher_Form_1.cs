@@ -465,6 +465,7 @@ namespace Iocaine2
         private void TOP_Init_Process_Begin(Object iPolProc)
         {
             // This is called BEFORE the ChangeMonitor.MainProc is updated to this new process.
+            LoggingFunctions.Debug("TOP_Init_Process_Begin", LoggingFunctions.DBG_SCOPE.TOP);
             Process polProc = (Process)iPolProc;
             if (polProc == null)
             {
@@ -476,6 +477,7 @@ namespace Iocaine2
             // This is called after the process has changed and while the
             // background threads are still frozen.
             // If you need to do anything before resuming the IocaineThreads, do it here.
+            LoggingFunctions.Debug("TOP_Init_Process_ThreadsFrozen", LoggingFunctions.DBG_SCOPE.TOP);
             PlayerCache.Reset();
         }
         private void TOP_Init_Process_End()
@@ -483,6 +485,7 @@ namespace Iocaine2
             // This is called AFTER all other process inits are done.
             // At this point, the background threads are running again and memory reads
             // of the new process may be performed safely.
+            LoggingFunctions.Debug("TOP_Init_Process_End", LoggingFunctions.DBG_SCOPE.TOP);
             Fisher.Access.Init_Process();
             #region TA Inits
             m_TOP_taInitDone = doTAInits();
