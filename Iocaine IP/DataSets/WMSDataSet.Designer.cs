@@ -812,13 +812,21 @@ namespace Iocaine2 {
                 this.columnWardrobeOcc.DefaultValue = ((byte)(0));
                 this.columnWardrobeCap.AllowDBNull = false;
                 this.columnWardrobeCap.DefaultValue = ((byte)(30));
+                this.columnSafe2Occ.AllowDBNull = false;
                 this.columnSafe2Occ.DefaultValue = ((byte)(0));
+                this.columnSafe2Cap.AllowDBNull = false;
                 this.columnSafe2Cap.DefaultValue = ((byte)(30));
+                this.columnWardrobe2Occ.AllowDBNull = false;
                 this.columnWardrobe2Occ.DefaultValue = ((byte)(0));
+                this.columnWardrobe2Cap.AllowDBNull = false;
                 this.columnWardrobe2Cap.DefaultValue = ((byte)(30));
+                this.columnWardrobe3Occ.AllowDBNull = false;
                 this.columnWardrobe3Occ.DefaultValue = ((byte)(0));
+                this.columnWardrobe3Cap.AllowDBNull = false;
                 this.columnWardrobe3Cap.DefaultValue = ((byte)(0));
+                this.columnWardrobe4Occ.AllowDBNull = false;
                 this.columnWardrobe4Occ.DefaultValue = ((byte)(0));
+                this.columnWardrobe4Cap.AllowDBNull = false;
                 this.columnWardrobe4Cap.DefaultValue = ((byte)(0));
             }
             
@@ -1505,12 +1513,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Safe2Occ {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Safe2OccColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Safe2Occ\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Safe2OccColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Safe2OccColumn] = value;
@@ -1521,12 +1524,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Safe2Cap {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Safe2CapColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Safe2Cap\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Safe2CapColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Safe2CapColumn] = value;
@@ -1537,12 +1535,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe2Occ {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe2OccColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe2Occ\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe2OccColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe2OccColumn] = value;
@@ -1553,12 +1546,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe2Cap {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe2CapColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe2Cap\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe2CapColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe2CapColumn] = value;
@@ -1569,12 +1557,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe3Occ {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe3OccColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe3Occ\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe3OccColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe3OccColumn] = value;
@@ -1585,12 +1568,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe3Cap {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe3CapColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe3Cap\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe3CapColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe3CapColumn] = value;
@@ -1601,12 +1579,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe4Occ {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe4OccColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe4Occ\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe4OccColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe4OccColumn] = value;
@@ -1617,12 +1590,7 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte Wardrobe4Cap {
                 get {
-                    try {
-                        return ((byte)(this[this.tableCharacterInfo.Wardrobe4CapColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Wardrobe4Cap\' in table \'CharacterInfo\' is DBNull.", e);
-                    }
+                    return ((byte)(this[this.tableCharacterInfo.Wardrobe4CapColumn]));
                 }
                 set {
                     this[this.tableCharacterInfo.Wardrobe4CapColumn] = value;
@@ -1799,102 +1767,6 @@ namespace Iocaine2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLockerCapNull() {
                 this[this.tableCharacterInfo.LockerCapColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSafe2OccNull() {
-                return this.IsNull(this.tableCharacterInfo.Safe2OccColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSafe2OccNull() {
-                this[this.tableCharacterInfo.Safe2OccColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSafe2CapNull() {
-                return this.IsNull(this.tableCharacterInfo.Safe2CapColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSafe2CapNull() {
-                this[this.tableCharacterInfo.Safe2CapColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe2OccNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe2OccColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe2OccNull() {
-                this[this.tableCharacterInfo.Wardrobe2OccColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe2CapNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe2CapColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe2CapNull() {
-                this[this.tableCharacterInfo.Wardrobe2CapColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe3OccNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe3OccColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe3OccNull() {
-                this[this.tableCharacterInfo.Wardrobe3OccColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe3CapNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe3CapColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe3CapNull() {
-                this[this.tableCharacterInfo.Wardrobe3CapColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe4OccNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe4OccColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe4OccNull() {
-                this[this.tableCharacterInfo.Wardrobe4OccColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWardrobe4CapNull() {
-                return this.IsNull(this.tableCharacterInfo.Wardrobe4CapColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWardrobe4CapNull() {
-                this[this.tableCharacterInfo.Wardrobe4CapColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
