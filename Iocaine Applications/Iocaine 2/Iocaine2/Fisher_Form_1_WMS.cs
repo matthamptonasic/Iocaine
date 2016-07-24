@@ -329,35 +329,41 @@ namespace Iocaine2
         #region Initialization
         private bool WMS_Init_LoggedIn()
         {
-            WMS_createDelegates();
-            WMS_Init_Dataset();
-            WMS_Init_GUI();
+            try
+            {
+                WMS_createDelegates();
+                WMS_Init_Dataset();
+                WMS_Init_GUI();
 
-            if (ChangeMonitor.MainProc != null && ChangeMonitor.MainModule != null)
-            {
-                WMS_LoadSettings();
-                WMS_objectsCreated = true;
-            }
-            if (PlayerCache.Vitals.Name != "")
-            {
-                WMSDataSet.CharacterInfoRow[] localCharRow = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select("Name='" + PlayerCache.Vitals.Name + "'");
-                if (localCharRow.Length == 0)
+                if (ChangeMonitor.MainProc != null && ChangeMonitor.MainModule != null)
                 {
-                    Statics.Settings.WMS.SaveThisCharOffline = false;
+                    WMS_LoadSettings();
+                    WMS_objectsCreated = true;
                 }
-                else
+                if (PlayerCache.Vitals.Name != "")
                 {
-                    Statics.Settings.WMS.SaveThisCharOffline = true;
+                    WMSDataSet.CharacterInfoRow[] localCharRow = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select("Name='" + PlayerCache.Vitals.Name + "'");
+                    if (localCharRow.Length == 0)
+                    {
+                        Statics.Settings.WMS.SaveThisCharOffline = false;
+                    }
+                    else
+                    {
+                        Statics.Settings.WMS.SaveThisCharOffline = true;
+                    }
                 }
-            }
 
-            if (m_TOP_Thread_wms == null)
+                if (m_TOP_Thread_wms == null)
+                {
+                    m_TOP_Thread_wms = new IocaineThread("wmsThread");
+                    m_TOP_Thread_wms.__RunMethod = WMS_BackgroundScanThreadFunction;
+                }
+                m_TOP_Thread_wms.Start();
+            }
+            catch (Exception e)
             {
-                m_TOP_Thread_wms = new IocaineThread("wmsThread");
-                m_TOP_Thread_wms.__RunMethod = WMS_BackgroundScanThreadFunction;
+                LoggingFunctions.Error(e.ToString());
             }
-            m_TOP_Thread_wms.Start();
-
             return true;
         }
         private void WMS_LoadSettings()
@@ -367,111 +373,125 @@ namespace Iocaine2
         }
         private void WMS_Init_GUI()
         {
-            if (m_TOP_wmsGuiInitDone)
+            try
             {
-                return;
+                if (m_TOP_wmsGuiInitDone)
+                {
+                    return;
+                }
+                if (WMS_poolInventory)
+                {
+                    WMS_BagLabel.Text = "Pooled Inventory";
+                    WMS_sendControlTo(WMS_PooledLB, true);
+                    WMS_updateControlVisibility(WMS_SatchelOccLabel, false);
+                    WMS_updateControlVisibility(WMS_SackOccLabel, false);
+                    WMS_updateControlVisibility(WMS_CaseOccLabel, false);
+                    WMS_updateControlVisibility(WMS_SafeOccLabel, false);
+                    WMS_updateControlVisibility(WMS_Safe2OccLabel, false);
+                    WMS_updateControlVisibility(WMS_StorageOccLabel, false);
+                    WMS_updateControlVisibility(WMS_LockerOccLabel, false);
+                    WMS_updateControlVisibility(WMS_WardrobeOccLabel, false);
+                    WMS_updateControlVisibility(WMS_Wardrobe2OccLabel, false);
+                    WMS_updateControlVisibility(WMS_Wardrobe3OccLabel, false);
+                    WMS_updateControlVisibility(WMS_Wardrobe4OccLabel, false);
+                }
+                else
+                {
+                    WMS_updateLabelText(WMS_BagLabel, "Gobbie Bag");
+                }
             }
-            if (WMS_poolInventory)
+            catch (Exception e)
             {
-                WMS_BagLabel.Text = "Pooled Inventory";
-                WMS_sendControlTo(WMS_PooledLB, true);
-                WMS_updateControlVisibility(WMS_SatchelOccLabel, false);
-                WMS_updateControlVisibility(WMS_SackOccLabel, false);
-                WMS_updateControlVisibility(WMS_CaseOccLabel, false);
-                WMS_updateControlVisibility(WMS_SafeOccLabel, false);
-                WMS_updateControlVisibility(WMS_Safe2OccLabel, false);
-                WMS_updateControlVisibility(WMS_StorageOccLabel, false);
-                WMS_updateControlVisibility(WMS_LockerOccLabel, false);
-                WMS_updateControlVisibility(WMS_WardrobeOccLabel, false);
-                WMS_updateControlVisibility(WMS_Wardrobe2OccLabel, false);
-                WMS_updateControlVisibility(WMS_Wardrobe3OccLabel, false);
-                WMS_updateControlVisibility(WMS_Wardrobe4OccLabel, false);
-            }
-            else
-            {
-                WMS_updateLabelText(WMS_BagLabel, "Gobbie Bag");
+                LoggingFunctions.Error(e.ToString());
             }
             return;
         }
         private void WMS_Init_Dataset()
         {
-            //Save settings if this isn't the first time doing the inits (we've been logged in already)
-            LoggingFunctions.Debug("TopWMS::doWMSDatasetInits: wms char = " + PlayerCache.Vitals.Name + ".", LoggingFunctions.DBG_SCOPE.TOP);
-            if (WMS_dataset != null)
+            try
             {
-                LoggingFunctions.Debug("TopWMS::doWMSDatasetInits: nb db rows is " + WMS_dataset.Items.Rows.Count + ".", LoggingFunctions.DBG_SCOPE.TOP);
-            }
-            //WMS_writeDatasetToXML();
-
-            if (WMS_dataset != null)
-            {
-                WMS_dataset.Clear();
-            }
-            WMS_dataset = null;
-            WMS_dataset = new WMSDataSet();
-            if (WMS_dataset_temp != null)
-            {
-                WMS_dataset_temp.Clear();
-            }
-            WMS_dataset_temp = null;
-            WMS_dataset_temp = new WMSDataSet();
-            if (Directory.Exists(WMS_dataDirectory))
-            {
-                //Get a list of the WMS files (per character) and load each one.
-                String[] fileList = Directory.GetFiles(WMS_dataDirectory);
-                foreach (String file in fileList)
+                //Save settings if this isn't the first time doing the inits (we've been logged in already)
+                LoggingFunctions.Debug("TopWMS::doWMSDatasetInits: wms char = " + PlayerCache.Vitals.Name + ".", LoggingFunctions.DBG_SCOPE.TOP);
+                if (WMS_dataset != null)
                 {
-                    LoggingFunctions.Debug("Loading WMS XML file " + file + ".", LoggingFunctions.DBG_SCOPE.WMS);
-                    WMS_dataset_temp.Clear();
-                    WMS_dataset_temp.ReadXml(file);
-                    foreach (WMSDataSet.CharacterInfoRow row in WMS_dataset_temp.CharacterInfo.Rows)
-                    {
-                        LoggingFunctions.Debug("Adding WMS Character " + row["Name"] + " to the main DB.", LoggingFunctions.DBG_SCOPE.WMS);
-                        WMSDataSet.CharacterInfoRow charRow = WMS_dataset.CharacterInfo.NewCharacterInfoRow();
-                        charRow.Name = row.Name;
-                        charRow.BagOcc = row.BagOcc;
-                        charRow.BagCap = row.BagCap;
-                        charRow.SatchelOcc = row.SatchelOcc;
-                        charRow.SatchelCap = row.SatchelCap;
-                        charRow.SackOcc = row.SackOcc;
-                        charRow.SackCap = row.SackCap;
-                        charRow.CaseOcc = row.CaseOcc;
-                        charRow.CaseCap = row.CaseCap;
-                        charRow.SafeOcc = row.SafeOcc;
-                        charRow.SafeCap = row.SafeCap;
-                        charRow.Safe2Occ = row.Safe2Occ;
-                        charRow.Safe2Cap = row.Safe2Cap;
-                        charRow.StorageOcc = row.StorageOcc;
-                        charRow.StorageCap = row.StorageCap;
-                        charRow.LockerOcc = row.LockerOcc;
-                        charRow.LockerCap = row.LockerCap;
-                        charRow.WardrobeOcc = row.WardrobeOcc;
-                        charRow.WardrobeCap = row.WardrobeCap;
-                        charRow.Wardrobe2Occ = row.Wardrobe2Occ;
-                        charRow.Wardrobe2Cap = row.Wardrobe2Cap;
-                        charRow.Wardrobe3Occ = row.Wardrobe3Occ;
-                        charRow.Wardrobe3Cap = row.Wardrobe3Cap;
-                        charRow.Wardrobe4Occ = row.Wardrobe4Occ;
-                        charRow.Wardrobe4Cap = row.Wardrobe4Cap;
-                        charRow.DateSaved = row.DateSaved;
-                        WMS_dataset.CharacterInfo.Rows.Add(charRow);
-                    }
-                    WMS_dataset.CharacterInfo.AcceptChanges();
-
-                    foreach (WMSDataSet.ItemsRow row in WMS_dataset_temp.Items.Rows)
-                    {
-                        LoggingFunctions.Debug("Adding WMS Item " + row["Name"] + " to the main DB.", LoggingFunctions.DBG_SCOPE.WMS);
-                        WMSDataSet.ItemsRow itemRow = WMS_dataset.Items.NewItemsRow();
-                        itemRow.Character = row.Character;
-                        itemRow.Name = row.Name;
-                        itemRow.Quantity = row.Quantity;
-                        itemRow.Location = row.Location;
-                        WMS_dataset.Items.Rows.Add(itemRow);
-                    }
-                    WMS_dataset.Items.AcceptChanges();
+                    LoggingFunctions.Debug("TopWMS::doWMSDatasetInits: nb db rows is " + WMS_dataset.Items.Rows.Count + ".", LoggingFunctions.DBG_SCOPE.TOP);
                 }
+                //WMS_writeDatasetToXML();
+
+                if (WMS_dataset != null)
+                {
+                    WMS_dataset.Clear();
+                }
+                WMS_dataset = null;
+                WMS_dataset = new WMSDataSet();
+                if (WMS_dataset_temp != null)
+                {
+                    WMS_dataset_temp.Clear();
+                }
+                WMS_dataset_temp = null;
+                WMS_dataset_temp = new WMSDataSet();
+                if (Directory.Exists(WMS_dataDirectory))
+                {
+                    //Get a list of the WMS files (per character) and load each one.
+                    String[] fileList = Directory.GetFiles(WMS_dataDirectory);
+                    foreach (String file in fileList)
+                    {
+                        LoggingFunctions.Debug("Loading WMS XML file " + file + ".", LoggingFunctions.DBG_SCOPE.WMS);
+                        WMS_dataset_temp.Clear();
+                        WMS_dataset_temp.ReadXml(file);
+                        foreach (WMSDataSet.CharacterInfoRow row in WMS_dataset_temp.CharacterInfo.Rows)
+                        {
+                            LoggingFunctions.Debug("Adding WMS Character " + row["Name"] + " to the main DB.", LoggingFunctions.DBG_SCOPE.WMS);
+                            WMSDataSet.CharacterInfoRow charRow = WMS_dataset.CharacterInfo.NewCharacterInfoRow();
+                            charRow.Name = row.Name;
+                            charRow.BagOcc = row.BagOcc;
+                            charRow.BagCap = row.BagCap;
+                            charRow.SatchelOcc = row.SatchelOcc;
+                            charRow.SatchelCap = row.SatchelCap;
+                            charRow.SackOcc = row.SackOcc;
+                            charRow.SackCap = row.SackCap;
+                            charRow.CaseOcc = row.CaseOcc;
+                            charRow.CaseCap = row.CaseCap;
+                            charRow.SafeOcc = row.SafeOcc;
+                            charRow.SafeCap = row.SafeCap;
+                            charRow.Safe2Occ = row.Safe2Occ;
+                            charRow.Safe2Cap = row.Safe2Cap;
+                            charRow.StorageOcc = row.StorageOcc;
+                            charRow.StorageCap = row.StorageCap;
+                            charRow.LockerOcc = row.LockerOcc;
+                            charRow.LockerCap = row.LockerCap;
+                            charRow.WardrobeOcc = row.WardrobeOcc;
+                            charRow.WardrobeCap = row.WardrobeCap;
+                            charRow.Wardrobe2Occ = row.Wardrobe2Occ;
+                            charRow.Wardrobe2Cap = row.Wardrobe2Cap;
+                            charRow.Wardrobe3Occ = row.Wardrobe3Occ;
+                            charRow.Wardrobe3Cap = row.Wardrobe3Cap;
+                            charRow.Wardrobe4Occ = row.Wardrobe4Occ;
+                            charRow.Wardrobe4Cap = row.Wardrobe4Cap;
+                            charRow.DateSaved = row.DateSaved;
+                            WMS_dataset.CharacterInfo.Rows.Add(charRow);
+                        }
+                        WMS_dataset.CharacterInfo.AcceptChanges();
+
+                        foreach (WMSDataSet.ItemsRow row in WMS_dataset_temp.Items.Rows)
+                        {
+                            LoggingFunctions.Debug("Adding WMS Item " + row["Name"] + " to the main DB.", LoggingFunctions.DBG_SCOPE.WMS);
+                            WMSDataSet.ItemsRow itemRow = WMS_dataset.Items.NewItemsRow();
+                            itemRow.Character = row.Character;
+                            itemRow.Name = row.Name;
+                            itemRow.Quantity = row.Quantity;
+                            itemRow.Location = row.Location;
+                            WMS_dataset.Items.Rows.Add(itemRow);
+                        }
+                        WMS_dataset.Items.AcceptChanges();
+                    }
+                }
+                WMS_loadCharacterCB();
             }
-            WMS_loadCharacterCB();
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
         }
         #endregion Initialization
         #region Event Handlers
