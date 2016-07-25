@@ -802,7 +802,7 @@ namespace Iocaine2.Data.Structures
         /// <param name="ignoreCrystal">If true, crystals will not be used in the calculation of max synthesis attempts.</param>
         /// <param name="ignoreIngredients">List of ingredients that should be ignored when calculating max synthesis attempts.</param>
         /// <returns>Maximum number of synthesis attempts assuming no lost/broken materials/crystals.</returns>
-        public ushort calculateMaxSynths(ItemContainer container, bool checkAllMobile, bool ignoreCrystal, List<CIngredient> ignoreIngredients)
+        public ushort calculateMaxSynths(ItemContainer container, bool checkAllMobile, bool ignoreCrystal, List<CIngredient> ignoreIngredients, bool ignoreClusters = false)
         {
             if(ignoreIngredients == null)
             {
@@ -831,21 +831,40 @@ namespace Iocaine2.Data.Structures
             }
             int bagCount = bagSummary.Count;
 
+            String clusterString = getClusterString(crystal);
             ushort crystalsFound = 0;
+            ushort clustersFound = 0;
             for (int ii = 0; ii < bagCount; ii++)
             {
                 if (bagSummary[ii].Name == CrystalString)
                 {
                     crystalsFound += bagSumQuan[ii];
                 }
+                if (bagSummary[ii].Name == clusterString)
+                {
+                    clustersFound += bagSumQuan[ii];
+                }
             }
-            if ((crystalsFound == 0) && (ignoreCrystal == false))
+            if (((crystalsFound == 0) && (ignoreCrystal == false)) || ((clustersFound == 0) && (ignoreClusters == false)))
             {
-                LoggingFunctions.Debug("Recipe::calculateMaxSynths: Found no crystals.", LoggingFunctions.DBG_SCOPE.CRAFTER);
+                string msg = "Recipe::calculateMaxSynths: Found no ";
+                if ((crystalsFound == 0) && (ignoreCrystal == false) && (clustersFound == 0) && (ignoreClusters == false))
+                {
+                    msg += "crystals or clusters.";
+                }
+                else if ((crystalsFound == 0) && (ignoreCrystal == false))
+                {
+                    msg += "crystals.";
+                }
+                else
+                {
+                    msg += "clusters.";
+                }
+                LoggingFunctions.Debug(msg, LoggingFunctions.DBG_SCOPE.CRAFTER);
                 return 0;
             }
 
-            LoggingFunctions.Debug("Recipe::calculateMaxSynths: crystalsFound: '" + crystalsFound + "'.", LoggingFunctions.DBG_SCOPE.CRAFTER);
+            LoggingFunctions.Debug("Recipe::calculateMaxSynths: crystalsFound: '" + crystalsFound + "', clustersFound: '" + clustersFound + "'.", LoggingFunctions.DBG_SCOPE.CRAFTER);
 
             // Aggregrate all the ingredients. Some ingredients don't stack and some recipes require multiple of them.
             Dictionary<ushort, ushort> aggregatedIngredientList = new Dictionary<ushort, ushort>();
@@ -863,7 +882,7 @@ namespace Iocaine2.Data.Structures
                     ushort currentcount = 0;
                     if (aggregatedIngredientList.ContainsKey(ingredient.ID) == true)
                     {
-                        currentcount = (ushort)aggregatedIngredientList[ingredient.ID];
+                        currentcount = aggregatedIngredientList[ingredient.ID];
                     }
                     currentcount += ingredient.Quantity;
                     aggregatedIngredientList[ingredient.ID] = currentcount;
@@ -871,7 +890,7 @@ namespace Iocaine2.Data.Structures
             }
 
             // Then determine how much of each ID we have and then determine the maximum amount we can craft
-            ushort maximumamount = crystalsFound; 
+            ushort maximumamount = (ushort)(crystalsFound + clustersFound * 12);
             foreach (ushort key in aggregatedIngredientList.Keys)
             {
                 int bagindex = 0;

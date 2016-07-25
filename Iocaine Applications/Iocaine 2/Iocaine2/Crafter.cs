@@ -40,12 +40,10 @@ namespace Iocaine2.Bots
         #endregion Enums
 
         #region Constructors
-        public Crafter(Process iMainProc, ProcessModule iMainMod, CRAFT_MODE iMode,
+        public Crafter(CRAFT_MODE iMode,
                        Recipe iRecipe, int iNumberOf, Single iSkill, Button iStartButton,
                        Statics.FuncPtrs.TD_Void_String_Color iUpdateCrafterStartButtonCallBack)
         {
-            mainProc = iMainProc;
-            mainMod = iMainMod;
             mode = iMode;
             recipe = iRecipe;
             numberOf = iNumberOf;
@@ -54,13 +52,10 @@ namespace Iocaine2.Bots
             updateCrafterStartButtonCallBack = iUpdateCrafterStartButtonCallBack;
             chatLog = ChatLogManager.Access.GetAsynchronousLogger("Crafter");
             chatLog.Flags = ChatLine.CHAT_FLAGS.LEAVE_ITEM_DELINIATION;
-            commandQueue = new Queue<string>();
         }
         #endregion Constructors
         
         #region Member Variables
-        private Process mainProc;
-        private ProcessModule mainMod;
         private Recipe recipe;
         private CRAFT_MODE mode;
         private int numberOf;
@@ -73,7 +68,6 @@ namespace Iocaine2.Bots
         #endregion Controls
         #region Helper Objects
         private ChatLoggerAsync chatLog;
-        private Queue<String> commandQueue;
         #endregion Helper Objects
         #region State Variables
         private CRAFTER_STATE state;
@@ -134,9 +128,21 @@ namespace Iocaine2.Bots
                     {
                         swapIngredientsAndResults();
                     }
-                    if (!findItem(recipe.CrystalString))
+                    // We should have either a crystal or a cluster.
+                    // If there are no crystals, but clusters, break one.
+                    if (Containers.Bag.GetItemQuan(recipe.CrystalId) == 0)
                     {
+                        if (breakCluster())
+                        {
+                            Inventory.Movement.SortInventory(false);
+                        }
+                    }
+                    if ((Containers.Bag.GetItemQuan(recipe.CrystalId) == 0) || !findItem(recipe.CrystalString))
+                    {
+                        // This should be an exit scenario.
                         swapIngredientsAndResults();
+                        LoggingFunctions.Error("Could not find any crystals or clusters to craft with even though there should be.");
+                        StopCrafter();
                         continue;
                     }
                     maxCountUpdated = false;    // This needs to be true during the swapping ingredients call. Otherwise the checkStatus gets hung.
@@ -230,7 +236,7 @@ namespace Iocaine2.Bots
                                 return false;
                             }
                             IocaineFunctions.delay(1000);
-                            if ((mainProc == null) || (mainProc.HasExited == true))
+                            if ((ChangeMonitor.MainProc == null) || (ChangeMonitor.MainProc.HasExited == true))
                             {
                                 state = CRAFTER_STATE.STOPPED;
                             }
@@ -426,10 +432,6 @@ namespace Iocaine2.Bots
         }
         #endregion general
         #region interaction functions
-        private void closeInventory()
-        {
-            MenuNavigation.CloseCheck();
-        }
         private void goToInventorySpot(byte spot)
         {
             try
@@ -449,7 +451,7 @@ namespace Iocaine2.Bots
                 }
                 else
                 {
-                    //todo - add logic to get to specific slot with the fewest keystrokes
+                    //TBD - add logic to get to specific slot with the fewest keystrokes
                 }
                 IocaineFunctions.delay(500);
             }
@@ -458,7 +460,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Crafter::goToInventorySpot: " + e.ToString());
             }
         }
-        private bool findItem(String item)
+        private bool findItem(string item)
         {
             try
             {
@@ -554,7 +556,7 @@ namespace Iocaine2.Bots
                         return false;
                     }
                 }
-                if (Containers.Bag.GetItemQuan(recipe.CrystalId) == 0)
+                if ((Containers.Bag.GetItemQuan(recipe.CrystalId) == 0) && (Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId)) == 0))
                 {
                     return false;
                 }
@@ -680,7 +682,8 @@ namespace Iocaine2.Bots
                 }
 
                 List<ushort> requiredItemIds = new List<ushort>();
-                requiredItemIds.Add((ushort)recipe.CrystalId);
+                requiredItemIds.Add(recipe.CrystalId);
+                requiredItemIds.Add(Things.CrystalAndClusterExchange(recipe.CrystalId));
                 foreach (Recipe.CIngredient ingr in recipe.mIngredients)
                 {
                     requiredItemIds.Add(ingr.ID);
@@ -707,14 +710,14 @@ namespace Iocaine2.Bots
                     nbSlotsNeededPrev = nbSlotsNeeded;
                     ushort nbItem = Containers.Bag.GetItemQuan(recipe.CrystalId);
                     byte stackSize = Things.GetStackSizeFromId(recipe.CrystalId);
-                    nbSlotsNeeded = (ushort)Math.Ceiling((decimal)(((decimal)ii * 1) / (decimal)Things.GetStackSizeFromId(recipe.CrystalId)));
+                    nbSlotsNeeded = (ushort)Math.Ceiling(((decimal)ii * 1) / Things.GetStackSizeFromId(recipe.CrystalId));
                     if ((nbItem % stackSize) != 0)
                     {
                         nbSlotsNeeded++;
                     }
                     for (int kk = 0; kk < recipe.mIngredients.Count; kk++)
                     {
-                        nbSlotsNeeded += (ushort)Math.Ceiling((decimal)(((decimal)ii * (decimal)recipe.mIngredients[kk].Quantity / (decimal)Things.GetStackSizeFromId(recipe.mIngredients[kk].ID))));
+                        nbSlotsNeeded += (ushort)Math.Ceiling(ii * (decimal)recipe.mIngredients[kk].Quantity / Things.GetStackSizeFromId(recipe.mIngredients[kk].ID));
                         nbItem = Containers.Bag.GetItemQuan(recipe.mIngredients[kk].ID);
                         stackSize = Things.GetStackSizeFromId(recipe.mIngredients[kk].ID);
                         if ((nbItem % stackSize) != 0)
@@ -725,7 +728,7 @@ namespace Iocaine2.Bots
                     //for (int mm = 0; mm < recipe.mResults.Count; mm++)
                     for (int mm = 0; mm < 1; mm++)  // The first result is the NQ which is what we care about.
                     {
-                        nbSlotsNeeded += (ushort)Math.Ceiling((decimal)(((decimal)ii * (decimal)recipe.mResults[mm].Quantity / (decimal)Things.GetStackSizeFromId(recipe.mResults[mm].ID))));
+                        nbSlotsNeeded += (ushort)Math.Ceiling(ii * (decimal)recipe.mResults[mm].Quantity / Things.GetStackSizeFromId(recipe.mResults[mm].ID));
                     }
                     if (nbSlotsNeeded > nonRecipeSlotsOpen)
                     {
@@ -749,11 +752,41 @@ namespace Iocaine2.Bots
                 Dictionary<ushort, ushort> itemsToMoveTotal = new Dictionary<ushort, ushort>();
                 List<ushort> itemsToMoveList = new List<ushort>();
                 ushort localQuanNeeded = nbSynthsPossible;
-                ushort localQuanInBag = Containers.Bag.GetItemQuan(recipe.CrystalId);
-                if (localQuanNeeded > localQuanInBag)
+                ushort localQuanInBag = (ushort)(Containers.Bag.GetItemQuan(recipe.CrystalId) + (Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId)) * 12));
+                if (localQuanNeeded > localQuanInBag) //if total number of synths possible > # crystals + broken clusters in bag, move over more crystals/clusters
                 {
-                    itemsToMoveTotal.Add(recipe.CrystalId, (ushort)(localQuanNeeded - localQuanInBag));
-                    itemsToMoveList.Add(recipe.CrystalId);
+                    //Figure out if we need to move over crystals, clusters, or both.
+                    ushort nbCrystalsShortInBag = (ushort)(localQuanNeeded - localQuanInBag);
+                    ushort nbCrystalsNotInBag = (ushort)(Containers.GetItemQuanMobile(recipe.CrystalId) - localQuanInBag);
+                    bool moveCrystals = ((nbCrystalsShortInBag > 0) && (nbCrystalsNotInBag > 0));
+                    // If we NEED more than we have, move all of them. Otherwise, move only what we need.
+                    if (moveCrystals)
+                    {
+                        ushort nbCrystalsToMove = nbCrystalsShortInBag > nbCrystalsNotInBag ? nbCrystalsNotInBag : nbCrystalsShortInBag;
+
+                        itemsToMoveTotal.Add(recipe.CrystalId, nbCrystalsToMove);
+                        itemsToMoveList.Add(recipe.CrystalId);
+                    }
+
+                    ushort nbCrystalsTotal = Containers.GetItemQuanMobile(recipe.CrystalId);
+                    ushort nbClustersInBag = Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId));
+                    ushort nbCrystalsShortTotal = (ushort)(localQuanNeeded - nbCrystalsTotal);
+                    // If we add in the clusters in the bag already, are we still short crystals?
+                    if (nbCrystalsShortTotal >= (nbClustersInBag * 12))
+                    {
+                        // We still need to move over clusters.
+                        // Move over nbCrystalsShortTotal - nbClustersInBag * 12 , / 12
+                        ushort nbClustersTotal = Containers.GetItemQuanMobile(Things.CrystalAndClusterExchange(recipe.CrystalId));
+                        ushort nbClustersToMove = (ushort)(nbCrystalsShortTotal / 12);
+                        if (nbCrystalsShortTotal % 12 != 0)
+                        {
+                            nbClustersToMove++;
+                        }
+                        nbClustersToMove = nbClustersToMove > nbClustersTotal ? nbClustersTotal : nbClustersToMove;
+
+                        itemsToMoveTotal.Add(Things.CrystalAndClusterExchange(recipe.CrystalId), nbClustersToMove);
+                        itemsToMoveList.Add(Things.CrystalAndClusterExchange(recipe.CrystalId));
+                    }
                 }
                 for (int ii = 0; ii < recipe.mIngredients.Count; ii++)
                 {
@@ -805,6 +838,17 @@ namespace Iocaine2.Bots
             {
                 LoggingFunctions.Error("Crafter::swapIngredientsAndResults: " + e.ToString());
             }
+        }
+        private bool breakCluster()
+        {
+            if (Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId)) > 0)
+            {
+                string cmdStr = "/item \"" + Things.GetNameFromId(Things.CrystalAndClusterExchange(recipe.CrystalId)) + "\" <me>";
+                RawCommand brkCluster = new RawCommand("Break Cluster", cmdStr, true); // Will execute immediately.
+                IocaineFunctions.delay(4000);
+                return true;
+            }
+            return false;
         }
         #endregion interaction functions
         #region control methods
