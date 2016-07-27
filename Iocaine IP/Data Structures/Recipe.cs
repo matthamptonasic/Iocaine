@@ -845,14 +845,34 @@ namespace Iocaine2.Data.Structures
                     clustersFound += bagSumQuan[ii];
                 }
             }
-            if (((crystalsFound == 0) && (ignoreCrystal == false)) || ((clustersFound == 0) && (ignoreClusters == false)))
+            // #cry=0 ignCry  #clu=0  ignClu
+            //  F       F       F       F       have both,                                      break
+            //  F       F       F       T       have crystals,                                  break
+            //  F       F       T       F       have crystals,                                  break
+            //  F       F       T       T       have crystals,                                  break
+            //  F       T       F       F       we have clusters,                               break
+            //  F       T       F       T       don't care about either, return 0
+            //  F       T       T       F       only care about clusters, no clusters, return 0
+            //  F       T       T       T       don't care about either, return 0
+            //  T       F       F       F       we have clusters,                               break
+            //  T       F       F       T       only care about crystals, no crystals, return 0
+            //  T       F       T       F       don't have either, return 0
+            //  T       F       T       T       only care about crystals, no crystals, return 0
+            //  T       T       F       F       we have clusters,                               break
+            //  T       T       F       T       don't care about either, return 0
+            //  T       T       T       F       only care about clusters, no clusters, return 0
+            //  T       T       T       T       don't care about either, return 0
+            if ((ignoreCrystal && ignoreClusters)
+                || (ignoreCrystal && (clustersFound == 0))
+                || ((crystalsFound == 0) && ignoreClusters)
+                || (crystalsFound == 0) && (clustersFound == 0))
             {
                 string msg = "Recipe::calculateMaxSynths: Found no ";
                 if ((crystalsFound == 0) && (ignoreCrystal == false) && (clustersFound == 0) && (ignoreClusters == false))
                 {
                     msg += "crystals or clusters.";
                 }
-                else if ((crystalsFound == 0) && (ignoreCrystal == false))
+                else if ((crystalsFound == 0) && ignoreClusters)
                 {
                     msg += "crystals.";
                 }
