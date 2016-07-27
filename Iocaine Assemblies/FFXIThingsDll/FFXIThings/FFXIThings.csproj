@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64ToImage.cs" />
+    <Compile Include="SpecialCases.cs" />
     <Compile Include="Things.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

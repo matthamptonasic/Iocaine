@@ -937,7 +937,7 @@ namespace ResourceXMLParser
             outputFile.WriteLine("");
             outputFile.WriteLine("namespace Iocaine2.Data.Client");
             outputFile.WriteLine("{");
-            outputFile.WriteLine("    public class Things");
+            outputFile.WriteLine("    public partial class Things");
             outputFile.WriteLine("    {");
             outputFile.WriteLine("        public static ushort invalidID = 0;");
             outputFile.WriteLine("        public static int maxID = " + maxItemID + ";");
