@@ -129,10 +129,10 @@ namespace Iocaine2.Bots
         private ChatLoggerSync chatLog2; // Used for 'nearing xxx' and fishing skill parsing.
         private ChatLoggerAsync chatLog3; // Used for checking if monster is on the line.
         private Random randVal = new Random();
+        private Audio player = new Audio();
         #endregion Data Structures
         #region Datasets
         #endregion Datasets
-        
         #endregion Bot Specific Members
 
         #region Constructor
@@ -755,7 +755,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     if (Statics.Settings.Fisher.GiveLogoutCommand)
                     {
                         IocaineFunctions.delay(10 * 1000);
@@ -772,7 +772,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     waitForNextDay = true;
                     state = Bots.STATE.PAUSED_PROG;    //system pause
                     return true;
@@ -783,7 +783,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     if (Statics.Settings.Fisher.GiveLogoutCommand)
                     {
                         IocaineFunctions.delay(10 * 1000);
@@ -802,7 +802,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     Stop();
                     return true;
                 }

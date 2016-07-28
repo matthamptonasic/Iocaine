@@ -37,6 +37,7 @@ namespace Iocaine2.Bots
         }
         #endregion Structures
         #region Members
+        private static Audio player = new Audio();
         #region Movement
         private static bool releasedForwardKey = false;
         private static float facingMargin = (float)(Math.PI / 8);
@@ -577,7 +578,7 @@ namespace Iocaine2.Bots
                 }
                 if (iParam.PlaySound)
                 {
-                    Audio.PlaySound(iParam.SoundToPlay);
+                    player.PlaySound(iParam.SoundToPlay);
                 }
             }
             catch (Exception e)
