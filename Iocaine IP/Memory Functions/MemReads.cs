@@ -4794,17 +4794,48 @@ namespace Iocaine2.Memory
             }
             public static class Equipment
             {
+                #region Generic Functions
+                private enum SLOT : byte
+                {
+                    MAIN,
+                    SUB,
+                    RANGE,
+                    AMMO,
+                    HEAD,
+                    BODY,
+                    HANDS,
+                    LEGS,
+                    FEET,
+                    NECK,
+                    WAIST,
+                    EARL,
+                    EARR,
+                    RINGL,
+                    RINGR,
+                    BACK
+                }
+                private static ushort get_id(int iProcIndex, SLOT iSlot)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, ((byte)iSlot * 8) + 5, 1);
+                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, ((byte)iSlot * 8) + 4, 1);
+                    return (bagIndex == 0) ? (ushort)0 : (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                }
+                private static bool get_equipped(int iProcIndex, SLOT iSlot)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, ((byte)iSlot * 8) + 4, 1);
+                    return (bagIndex == 0) ? false : true;
+                }
+                #endregion Generic Functions
                 #region Main
                 public static UInt16 get_main_id()
                 {
-                    return get_equ_main_id(processIndex);
+                    return get_main_id(processIndex);
                 }
-                public static UInt16 get_equ_main_id(int iProcIndex)
+                public static UInt16 get_main_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 5, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 4, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.MAIN);
                 }
                 public static bool get_main_equipped()
                 {
@@ -4812,22 +4843,17 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_main_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 4, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.MAIN);
                 }
                 #endregion Main
                 #region Sub
-                public static UInt16 get_sub_id()
+                public static ushort get_sub_id()
                 {
                     return get_sub_id(processIndex);
                 }
-                public static UInt16 get_sub_id(int iProcIndex)
+                public static ushort get_sub_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 13, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 12, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.SUB);
                 }
                 public static bool get_sub_equipped()
                 {
@@ -4835,9 +4861,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_sub_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 12, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.SUB);
                 }
                 #endregion Sub
                 #region Ranged
@@ -4847,10 +4871,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_range_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 21, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 20, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.RANGE);
                 }
                 public static bool get_range_equipped()
                 {
@@ -4858,9 +4879,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_range_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 20, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.RANGE);
                 }
                 #endregion Ranged
                 #region Ammo
@@ -4870,10 +4889,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_ammo_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 28, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.AMMO);
                 }
                 public static bool get_ammo_equipped()
                 {
@@ -4881,9 +4897,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_ammo_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 28, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.AMMO);
                 }
                 public static byte get_ammo_quan()
                 {
@@ -4892,24 +4906,9 @@ namespace Iocaine2.Memory
                 public static byte get_ammo_quan(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 29, 1);
-                    Byte bagIndex = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 28, 1);
-                    if (location == 0)
-                    {
-                        return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (bagIndex * 44) + 4, 1);
-                    }
-                    else if (location == 8)
-                    {
-                        return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe, (bagIndex * 44) + 4, 1);
-                    }
-                    else if (location == 10)
-                    {
-                        return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Wardrobe2, (bagIndex * 44) + 4, 1);
-                    }
-                    else
-                    {
-                        return 0;
-                    }
+                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, ((byte)SLOT.AMMO * 8) + 5, 1);
+                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, ((byte)SLOT.AMMO * 8) + 4, 1);
+                    return (bagIndex == 0) ? (byte)0 : (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44) + 4, 1);
                 }
                 #endregion Ammo
                 #region Head
@@ -4919,10 +4918,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_head_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 37, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 36, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.HEAD);
                 }
                 public static bool get_head_equipped()
                 {
@@ -4930,9 +4926,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_head_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 36, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.HEAD);
                 }
                 #endregion Head
                 #region Neck
@@ -4942,10 +4936,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_neck_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 77, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 76, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.NECK);
                 }
                 public static bool get_neck_equipped()
                 {
@@ -4953,9 +4944,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_neck_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 76, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.NECK);
                 }
                 #endregion Neck
                 #region Left Ear
@@ -4965,10 +4954,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_earL_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 93, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 92, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.EARL);
                 }
                 public static bool get_earL_equipped()
                 {
@@ -4976,9 +4962,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_earL_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 92, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.EARL);
                 }
                 #endregion Left Ear
                 #region Right Ear
@@ -4988,10 +4972,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_earR_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 101, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 100, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.EARR);
                 }
                 public static bool get_earR_equipped()
                 {
@@ -4999,9 +4980,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_earR_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 100, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.EARR);
                 }
                 #endregion Right Ear
                 #region Body
@@ -5011,10 +4990,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_body_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 45, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 44, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.BODY);
                 }
                 public static bool get_body_equipped()
                 {
@@ -5022,9 +4998,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_body_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 44, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.BODY);
                 }
                 #endregion Body
                 #region Hands
@@ -5034,10 +5008,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_hands_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 53, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 52, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.HANDS);
                 }
                 public static bool get_hands_equipped()
                 {
@@ -5045,9 +5016,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_hands_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 52, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.HANDS);
                 }
                 #endregion Hands
                 #region Left Ring
@@ -5057,10 +5026,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_ringL_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 109, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 108, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.RINGL);
                 }
                 public static bool get_ringL_equipped()
                 {
@@ -5068,9 +5034,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_ringL_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 108, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.RINGL);
                 }
                 #endregion Left Ring
                 #region Right Ring
@@ -5080,10 +5044,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_ringR_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 117, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 116, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.RINGR);
                 }
                 public static bool get_ringR_equipped()
                 {
@@ -5091,9 +5052,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_ringR_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 116, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.RINGR);
                 }
                 #endregion Right Ring
                 #region Back
@@ -5103,10 +5062,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_back_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 125, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 124, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.BACK);
                 }
                 public static bool get_back_equipped()
                 {
@@ -5114,9 +5070,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_back_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 124, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.BACK);
                 }
                 #endregion Back
                 #region Waist
@@ -5126,10 +5080,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_waist_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 85, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 84, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.WAIST);
                 }
                 public static bool get_waist_equipped()
                 {
@@ -5137,9 +5088,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_waist_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 84, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.WAIST);
                 }
                 #endregion Waist
                 #region Legs
@@ -5149,10 +5098,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_legs_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 61, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 60, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.LEGS);
                 }
                 public static bool get_legs_equipped()
                 {
@@ -5160,9 +5106,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_legs_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 60, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.LEGS);
                 }
                 #endregion Legs
                 #region Feet
@@ -5172,10 +5116,7 @@ namespace Iocaine2.Memory
                 }
                 public static UInt16 get_feet_id(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    byte location = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 69, 1);
-                    byte bagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 68, 1);
-                    return (bagIndex == 0) ? (UInt16)0 : (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, (int)(location * Pointers.SizeOf_Inv_Container) + (bagIndex * 44), 2);
+                    return get_id(iProcIndex, SLOT.FEET);
                 }
                 public static bool get_feet_equipped()
                 {
@@ -5183,9 +5124,7 @@ namespace Iocaine2.Memory
                 }
                 public static bool get_feet_equipped(int iProcIndex)
                 {
-                    Process proc = processPointerList[iProcIndex].MainProcess;
-                    int bagIndex = MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_EquippedTable, 68, 4);
-                    return (bagIndex == 0) ? false : true;
+                    return get_equipped(iProcIndex, SLOT.FEET);
                 }
                 #endregion Feet
             }
