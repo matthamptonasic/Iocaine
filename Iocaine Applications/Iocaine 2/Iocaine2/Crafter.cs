@@ -141,6 +141,7 @@ namespace Iocaine2.Bots
                         if (breakCluster())
                         {
                             Inventory.Movement.SortInventory(false);
+                            IocaineFunctions.delay(1000);
                         }
                     }
                     if ((Containers.Bag.GetItemQuan(recipe.CrystalId) == 0) || !findItem(recipe.CrystalString))
@@ -847,11 +848,16 @@ namespace Iocaine2.Bots
         }
         private bool breakCluster()
         {
+            if (MemReads.Self.get_in_mog_house())
+            {
+                Statics.FuncPtrs.SetStatusBoxPtr("Cannot break cluster inside mog house.", Statics.Fields.Yellow);
+                return false;
+            }
             if (Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId)) > 0)
             {
                 string cmdStr = "/item \"" + Things.GetNameFromId(Things.CrystalAndClusterExchange(recipe.CrystalId)) + "\" <me>";
                 RawCommand brkCluster = new RawCommand("Break Cluster", cmdStr, true); // Will execute immediately.
-                IocaineFunctions.delay(4000);
+                IocaineFunctions.delay(5000);
                 return true;
             }
             return false;
