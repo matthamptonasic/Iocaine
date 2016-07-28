@@ -5,6 +5,8 @@ IocainCore.dll		-
 	- Added wardrobe 3/4 functionality to the fisher.
 	- Made the Alert "Always Alert" setting unchecked on load so sounds don't go off when logging in.
 	- Added option for the Alert sound to play on a loop.
+	- Fixed Crafter timing issue after breaking clusters.
+	- Added Crafter check to not try to break clusters in mog house.
 
 Main.exe			- 2.10.3.0 - 2016/07/27
 FFXIThings.dll		- 1.2.5.0
