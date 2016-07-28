@@ -2989,6 +2989,7 @@ namespace Iocaine2
                 private static Boolean alwaysAlert = false;
                 private static Boolean playMessage = false;
                 private static String messageText = "";
+                private static bool loopMessage = false;
                 private static Boolean flashTaskBar = false;
                 private static Boolean pauseBots = false;
                 private static List<String> whitelist = new List<string>();
@@ -3036,6 +3037,17 @@ namespace Iocaine2
                     set
                     {
                         messageText = value;
+                    }
+                }
+                public static bool LoopMessage
+                {
+                    get
+                    {
+                        return loopMessage;
+                    }
+                    set
+                    {
+                        loopMessage = value;
                     }
                 }
                 public static Boolean FlashTaskBar
