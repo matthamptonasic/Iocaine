@@ -36,28 +36,28 @@ namespace Iocaine2.Memory
         {
             public Process MainProcess;
             public ProcessModule MainModule;
-            public UInt32 Info_Player1;
-            public UInt32 Info_Player2;
-            public UInt32 Info_Player3;
-            public UInt32 Info_Player5;
-            public UInt32 Info_Target;
-            public UInt32 Info_Fishing;
-            public UInt32 Info_Windows;
-            public UInt32 Info_Windows2;
-            public UInt32 Info_Inventory;
-            public UInt32 Info_InventorySecWnd;
-            public UInt32 Info_InventoryNpcWnd;
-            public UInt32 Info_Chatlog;
-            public UInt32 Info_ServerList;
-            public UInt32 Info_Inv_Bag;
+            public uint Info_Player1;
+            public uint Info_Player2;
+            public uint Info_Player3;
+            public uint Info_Player5;
+            public uint Info_Target;
+            public uint Info_Fishing;
+            public uint Info_Windows;
+            public uint Info_Windows2;
+            public uint Info_Inventory;
+            public uint Info_InventorySecWnd;
+            public uint Info_InventoryNpcWnd;
+            public uint Info_Chatlog;
+            public uint Info_ServerList;
+            public uint Info_Inv_Bag;
             public const uint SizeOf_Inv_Container = 3564; //0xDEC
             public const uint SizeOf_Inv_Item = 44;
-            private const UInt32 Offset_Inv_Safe = 1 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Safe
+            private const uint Offset_Inv_Safe = 1 * SizeOf_Inv_Container;
+            public uint Info_Inv_Safe
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Safe;
@@ -65,12 +65,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Storage = 2 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Storage
+            private const uint Offset_Inv_Storage = 2 * SizeOf_Inv_Container;
+            public uint Info_Inv_Storage
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Storage;
@@ -78,12 +78,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Locker = 4 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Locker
+            private const uint Offset_Inv_Locker = 4 * SizeOf_Inv_Container;
+            public uint Info_Inv_Locker
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Locker;
@@ -91,12 +91,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Satchel = 5 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Satchel
+            private const uint Offset_Inv_Satchel = 5 * SizeOf_Inv_Container;
+            public uint Info_Inv_Satchel
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Satchel;
@@ -104,12 +104,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Sack = 6 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Sack
+            private const uint Offset_Inv_Sack = 6 * SizeOf_Inv_Container;
+            public uint Info_Inv_Sack
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Sack;
@@ -117,12 +117,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Case = 7 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Case
+            private const uint Offset_Inv_Case = 7 * SizeOf_Inv_Container;
+            public uint Info_Inv_Case
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Case;
@@ -130,12 +130,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Wardrobe = 8 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Wardrobe
+            private const uint Offset_Inv_Wardrobe = 8 * SizeOf_Inv_Container;
+            public uint Info_Inv_Wardrobe
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Wardrobe;
@@ -143,12 +143,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Safe2 = 9 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Safe2
+            private const uint Offset_Inv_Safe2 = 9 * SizeOf_Inv_Container;
+            public uint Info_Inv_Safe2
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Safe2;
@@ -156,12 +156,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Wardrobe2 = 10 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Wardrobe2
+            private const uint Offset_Inv_Wardrobe2 = 10 * SizeOf_Inv_Container;
+            public uint Info_Inv_Wardrobe2
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Wardrobe2;
@@ -169,12 +169,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Wardrobe3 = 11 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Wardrobe3
+            private const uint Offset_Inv_Wardrobe3 = 11 * SizeOf_Inv_Container;
+            public uint Info_Inv_Wardrobe3
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Wardrobe3;
@@ -182,12 +182,12 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Wardrobe4 = 12 * SizeOf_Inv_Container;
-            public UInt32 Info_Inv_Wardrobe4
+            private const uint Offset_Inv_Wardrobe4 = 12 * SizeOf_Inv_Container;
+            public uint Info_Inv_Wardrobe4
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Wardrobe4;
@@ -195,16 +195,16 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const UInt32 Offset_Inv_Max = 47757;
+            private const uint Offset_Inv_Max = 47757;
             //Pre 04.04.16  37065; (2nd wardrobe added)
             //Pre 05.13.15  33501; (2nd safe added)
             //Pre 05.14.14  29937;
             //Pre 10.??.13  26373;
-            public UInt32 Info_Inv_Max
+            public uint Info_Inv_Max
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_Inv_Max;
@@ -212,16 +212,16 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            public const UInt32 Offset_EquippedTable = 48188;
+            public const uint Offset_EquippedTable = 48188;
             //Pre 04.04.16  37488; (2nd wardrobe added)
             //Pre 05.13.15  33920; (2nd safe added)
             //Pre 05.14.14  30356;
             //Pre 10.??.13  26788;
-            public UInt32 Info_EquippedTable
+            public uint Info_EquippedTable
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_EquippedTable;
@@ -229,14 +229,14 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            public UInt32 Info_CraftWindow;
-            public UInt32 Info_TradeNpcWindow;
-            private const UInt32 Offset_TradePcWindow = 25404;
-            public UInt32 Info_TradePcWindow
+            public uint Info_CraftWindow;
+            public uint Info_TradeNpcWindow;
+            private const uint Offset_TradePcWindow = 25404;
+            public uint Info_TradePcWindow
             {
                 get
                 {
-                    UInt32 info_bag = Info_Inv_Bag;
+                    uint info_bag = Info_Inv_Bag;
                     if (info_bag != 0)
                     {
                         return info_bag + Offset_TradePcWindow;
@@ -244,20 +244,20 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            public UInt32 Info_MapPcBegin;
-            public UInt32 Info_MapPcEnd;
-            public UInt32 Info_TargetLock;
-            public UInt32 Info_RecastSpell;
-            public UInt32 Info_RecastAbility;
-            public const UInt32 Offset_ShopBuyWindow = 18008;
+            public uint Info_MapPcBegin;
+            public uint Info_MapPcEnd;
+            public uint Info_TargetLock;
+            public uint Info_RecastSpell;
+            public uint Info_RecastAbility;
+            public const uint Offset_ShopBuyWindow = 18008;
             //Pre 09.16.15: 17996;
             //Pre 11.10.14: 17984;
             //Pre 10.06.14: 17976;
             //Pre 08.11.14: 17972
             //Pre 06.17.14: 17932;
             //Pre 12.11.13: 17916; //0x45FC
-            public UInt32 Info_ShopBuyWindowPtr;
-            public UInt32 Info_ShopBuyWindow
+            public uint Info_ShopBuyWindowPtr;
+            public uint Info_ShopBuyWindow
             {
                 get
                 {
@@ -268,20 +268,20 @@ namespace Iocaine2.Memory
                     Info_ShopBuyWindow = value;
                 }
             }
-            public UInt32 Info_Time;
-            public UInt32 Info_Network;
-            public UInt32 Info_Party;
-            public UInt32 Info_MenuBase;
-            public UInt32 Info_MenuBaseTextStyle;
-            public UInt32 Info_MapNpcBegin;
-            public UInt32 Info_MapNpcEnd;
-            public UInt32 Info_Casting;
-            public UInt16 Offset_SpeedValue;
-            public UInt32 Info_SpeedText1Addr;
+            public uint Info_Time;
+            public uint Info_Network;
+            public uint Info_Party;
+            public uint Info_MenuBase;
+            public uint Info_MenuBaseTextStyle;
+            public uint Info_MapNpcBegin;
+            public uint Info_MapNpcEnd;
+            public uint Info_Casting;
+            public ushort Offset_SpeedValue;
+            public uint Info_SpeedText1Addr;
             public byte[] Info_SpeedText1Opcode;
-            public UInt32 Info_SpeedText2Addr;
+            public uint Info_SpeedText2Addr;
             public byte[] Info_SpeedText2Opcode;
-            public UInt32 Info_SpeedText3Addr;
+            public uint Info_SpeedText3Addr;
             public byte[] Info_SpeedText3Opcode;
         }
         internal class Signature
@@ -424,17 +424,17 @@ namespace Iocaine2.Memory
         #region Offsets
         #region Minor Offsets
         #region pc_map
-        private const Int32 off_pc_map_posh = 56;
-        private const Int32 off_pc_map_posx = 68;
-        private const Int32 off_pc_map_posz = 72;
-        private const Int32 off_pc_map_posy = 76;
-        private const Int32 off_pc_map_name = 124;
-        private const Int32 off_pc_map_pos_ptr = 160; //If this pointer is 0, it means the character info is no longer valid
+        private const int off_pc_map_posh = 56;
+        private const int off_pc_map_posx = 68;
+        private const int off_pc_map_posz = 72;
+        private const int off_pc_map_posy = 76;
+        private const int off_pc_map_name = 124;
+        private const int off_pc_map_pos_ptr = 160; //If this pointer is 0, it means the character info is no longer valid
                                                       //Pre 02.17.14:     168 - Change:    -8
                                                       //Pre 12.11.12:     160 - Change:    +8
-        private const Int32 off_pc_map_set_pos_1 = 52;
-        private const Int32 off_pc_map_set_pos_2 = 0x5C4;
-        private const Int32 off_pc_map_dist = 216;
+        private const int off_pc_map_set_pos_1 = 52;
+        private const int off_pc_map_set_pos_2 = 0x5C4;
+        private const int off_pc_map_dist = 216;
         //Pre 06.24.15:     212;
         //Pre 02.18.15:     208; //Distance is actual distance squared
         //Pre 11.10.14:     176
@@ -442,7 +442,7 @@ namespace Iocaine2.Memory
         //Pre 03.26.13:     180 - Change:    +4;
         //Pre 12.11.12:     172 - Change:    +8
         //Pre 12.08.08:     184 - Change:   -12
-        private const Int32 off_pc_map_hp = 236;
+        private const int off_pc_map_hp = 236;
         //Pre 12.09.15:     240;
         //Pre 06.24.15:     236;
         //Pre 02.18.15:     232;
@@ -451,7 +451,7 @@ namespace Iocaine2.Memory
         //Pre 03.26.13:     204 - Change:    +4;
         //Pre 12.11.12:     196 - Change:    +8;
         //Pre 12.08.08:     208 - Change:   -12
-        private const Int32 off_pc_map_status = 360;
+        private const int off_pc_map_status = 360;
         //Pre 12.09.15:     368;
         //Pre 06.24.15:     364;
         //Pre 05.13.15:     360;
@@ -465,14 +465,14 @@ namespace Iocaine2.Memory
         //Pre 12.08.08:     320 - Change:   -12
         #endregion pc_map
         #region Chat
-        private const Int32 off_chat_text_start = 57;
-        private const Int32 off_chat_logical_line_nb = 18;
-        private const Int32 off_chat_logical_line_nb_len = 8;
+        private const int off_chat_text_start = 57;
+        private const int off_chat_logical_line_nb = 18;
+        private const int off_chat_logical_line_nb_len = 8;
         #endregion Chat
         #region general
         //Structure offsets
         //There's an x/y/z pos just before the weather info (about 88 before).
-        private const UInt32 off_weather = 2636;
+        private const uint off_weather = 2636;
         //Pre 02.09.16: 2628;
         //Pre 06.24.15: 2404;
         //Pre 02.18.15: 2276;
@@ -484,10 +484,10 @@ namespace Iocaine2.Memory
         //Pre 05.14.14: 2152
         //Pre 03.17.14: 2056
         //Pre 03.26.13: 2052 - Change:      +4
-        private const UInt32 off_player_struct = 2700;
+        private const uint off_player_struct = 2700;
         //Pre 02.09.16: 2692;
         //Pre 06.24.15: 2116;
-        private const UInt32 off_zoning = 1108;
+        private const uint off_zoning = 1108;
         //Pre 02.09.16  1100;
         //Pre 06.24.15  876;
         //Pre 05.13.15  872;
@@ -496,94 +496,94 @@ namespace Iocaine2.Memory
         //Pre 11.10.14  656;
         //Pre 08.11.14  620
         //Pre 04.08.14  520
-        private const UInt32 off_target_lock = 92;
+        private const uint off_target_lock = 92;
         //Pre 11.10.15  81;
         //Pre 06.24.15  49;
         //Pre 05.13.15  41;
-        private const UInt32 off_pc_map_begin_in_mog_house = 5208;
+        private const uint off_pc_map_begin_in_mog_house = 5208;
         //Pre 11.10.15  4184;
         //Pre 05.13.15  4180;
-        private const UInt32 off_camera_perspective = 160;
+        private const uint off_camera_perspective = 160;
         //Pre 08.05.15  156;
         //Pre 02.18.15  160;
         //Pre 03.17.14  156
         //Pre 02.17.14  148
         //Pre 12.11.13  144
-        private const UInt32 off_map_grid = 332;
+        private const uint off_map_grid = 332;
         #endregion general
         #region Skills, Merits, and Status Effects
         #region Combat Skills
         //All combat skill offsets went up by 2 on 11.10.14.
-        private const Int32 off_skill_h2h = 258;
-        private const Int32 off_skill_dagger = 260;
-        private const Int32 off_skill_sword = 262;
-        private const Int32 off_skill_great_sword = 264;
-        private const Int32 off_skill_axe = 266;
-        private const Int32 off_skill_great_axe = 268;
-        private const Int32 off_skill_scythe = 270;
-        private const Int32 off_skill_polearm = 272;
-        private const Int32 off_skill_katana = 274;
-        private const Int32 off_skill_great_katana = 276;
-        private const Int32 off_skill_club = 278;
-        private const Int32 off_skill_staff = 280;
-        private const Int32 off_skill_archery = 306;
-        private const Int32 off_skill_marksmanship = 308;
-        private const Int32 off_skill_throwing = 310;
-        private const Int32 off_skill_guarding = 312;
-        private const Int32 off_skill_evasion = 314;
-        private const Int32 off_skill_shield = 316;
-        private const Int32 off_skill_parrying = 318;
-        private const Int32 off_skill_divine = 320;
-        private const Int32 off_skill_healing = 322;
-        private const Int32 off_skill_enhancing = 324;
-        private const Int32 off_skill_enfeebling = 326;
-        private const Int32 off_skill_elemental = 328;
-        private const Int32 off_skill_dark = 330;
-        private const Int32 off_skill_summoning = 332;
-        private const Int32 off_skill_ninjutsu = 334;
-        private const Int32 off_skill_singing = 336;
-        private const Int32 off_skill_string = 338;
-        private const Int32 off_skill_wind = 340;
-        private const Int32 off_skill_blue = 342;
-        private const Int32 off_skill_geo = 344;
-        private const Int32 off_skill_bell = 346;
+        private const int off_skill_h2h = 258;
+        private const int off_skill_dagger = 260;
+        private const int off_skill_sword = 262;
+        private const int off_skill_great_sword = 264;
+        private const int off_skill_axe = 266;
+        private const int off_skill_great_axe = 268;
+        private const int off_skill_scythe = 270;
+        private const int off_skill_polearm = 272;
+        private const int off_skill_katana = 274;
+        private const int off_skill_great_katana = 276;
+        private const int off_skill_club = 278;
+        private const int off_skill_staff = 280;
+        private const int off_skill_archery = 306;
+        private const int off_skill_marksmanship = 308;
+        private const int off_skill_throwing = 310;
+        private const int off_skill_guarding = 312;
+        private const int off_skill_evasion = 314;
+        private const int off_skill_shield = 316;
+        private const int off_skill_parrying = 318;
+        private const int off_skill_divine = 320;
+        private const int off_skill_healing = 322;
+        private const int off_skill_enhancing = 324;
+        private const int off_skill_enfeebling = 326;
+        private const int off_skill_elemental = 328;
+        private const int off_skill_dark = 330;
+        private const int off_skill_summoning = 332;
+        private const int off_skill_ninjutsu = 334;
+        private const int off_skill_singing = 336;
+        private const int off_skill_string = 338;
+        private const int off_skill_wind = 340;
+        private const int off_skill_blue = 342;
+        private const int off_skill_geo = 344;
+        private const int off_skill_bell = 346;
         #endregion Combat Skills
         #region Craft Skills
-        private const Int32 off_craft_fish = 352;
+        private const int off_craft_fish = 352;
         //Pre 11.10.14:  350;
-        private const Int32 off_craft_wood = 354;
+        private const int off_craft_wood = 354;
         //Pre 11.10.14:  352;
-        private const Int32 off_craft_smith = 356;
+        private const int off_craft_smith = 356;
         //Pre 11.10.14:  354;
-        private const Int32 off_craft_gold = 358;
+        private const int off_craft_gold = 358;
         //Pre 11.10.14:  356;
-        private const Int32 off_craft_cloth = 360;
+        private const int off_craft_cloth = 360;
         //Pre 11.10.14:  358;
-        private const Int32 off_craft_leather = 362;
+        private const int off_craft_leather = 362;
         //Pre 11.10.14:  360;
-        private const Int32 off_craft_bone = 364;
+        private const int off_craft_bone = 364;
         //Pre 11.10.14:  362;
-        private const Int32 off_craft_alch = 366;
+        private const int off_craft_alch = 366;
         //Pre 11.10.14:  364;
-        private const Int32 off_craft_cook = 368;
+        private const int off_craft_cook = 368;
         //Pre 11.10.14:  366;
-        private const Int32 off_craft_synergy = 370;
+        private const int off_craft_synergy = 370;
         //Pre 11.10.14:  368;
         #endregion Craft Skills
         #region Merits
-        private const Int32 off_merit_merits_current = 664;
+        private const int off_merit_merits_current = 664;
         //Pre 02.09.16  656;
         //Pre 05.13.15  652;
         //Pre 02.18.15  528;
         //Pre 11.10.14  524;
         //Pre 10.06.14  516;
-        private const Int32 off_merit_limit_points = 662;
+        private const int off_merit_limit_points = 662;
         //Pre 02.09.16  654;
         //Pre 05.13.14  650;
         //Pre 02.18.15  526;
         //Pre 11.10.14  522;
         //Pre 10.06.14  514;
-        private const Int32 off_merit_mode = 665;
+        private const int off_merit_mode = 665;
         //Pre 02.09.16  657;
         //Pre 05.13.15  653;
         //Pre 02.18.15  529;
@@ -591,7 +591,7 @@ namespace Iocaine2.Memory
         //Pre 10.06.14  517;
         #endregion Merits
         #region Status Effects
-        private const Int32 off_status_effects = 1180;
+        private const int off_status_effects = 1180;
         //Pre 02.09.16  1172;
         //Pre 06.24.15   948;
         //Pre 02.18.15   820;
@@ -604,104 +604,104 @@ namespace Iocaine2.Memory
         #endregion Skills, Merits, and Status Effects
         #region Item Details
         //Item Details
-        private const Int32 off_item_details_name_ptr = 3272; //max 3318
+        private const int off_item_details_name_ptr = 3272; //max 3318
         //Prior to 04/08/14:                            3188
         //Prior to 10/??/13:                            3140
         //Prior to 7/8/13:                              3144
-        private const Int32 off_item_details_item_id = 44;
-        private const Int32 off_item_details_next_item = 3252;
-        private const Int32 off_item_details_total_items = 100;
+        private const int off_item_details_item_id = 44;
+        private const int off_item_details_next_item = 3252;
+        private const int off_item_details_total_items = 100;
         #endregion Item Details
         #region item details preloaded
-        private const Int32 off_item_details_pre_next_item = 328;
-        private const Int32 off_item_details_pre_total_items = 200;
-        private const Int32 off_item_details_pre_type = 4;
-        private const Int32 off_item_details_pre_flags = 6;
-        private const Int32 off_item_details_pre_stack_sze = 8;
-        private const Int32 off_item_details_pre_vld_targets = 10;
-        private const Int32 off_item_details_pre_skill = 12;
-        private const Int32 off_item_details_pre_level = 14;
-        private const Int32 off_item_details_pre_eqp_slots = 16;
-        private const Int32 off_item_details_pre_races = 18;
-        private const Int32 off_item_details_pre_jobs = 20;
-        private const Int32 off_item_details_pre_resource_id = 24;
-        private const Int32 off_item_details_pre_dmg = 28;
-        private const Int32 off_item_details_pre_dly = 30;
-        private const Int32 off_item_details_pre_cast_time = 34;
-        private const Int32 off_item_details_pre_max_charges = 38;
-        private const Int32 off_item_details_pre_name = 104;
+        private const int off_item_details_pre_next_item = 328;
+        private const int off_item_details_pre_total_items = 200;
+        private const int off_item_details_pre_type = 4;
+        private const int off_item_details_pre_flags = 6;
+        private const int off_item_details_pre_stack_sze = 8;
+        private const int off_item_details_pre_vld_targets = 10;
+        private const int off_item_details_pre_skill = 12;
+        private const int off_item_details_pre_level = 14;
+        private const int off_item_details_pre_eqp_slots = 16;
+        private const int off_item_details_pre_races = 18;
+        private const int off_item_details_pre_jobs = 20;
+        private const int off_item_details_pre_resource_id = 24;
+        private const int off_item_details_pre_dmg = 28;
+        private const int off_item_details_pre_dly = 30;
+        private const int off_item_details_pre_cast_time = 34;
+        private const int off_item_details_pre_max_charges = 38;
+        private const int off_item_details_pre_name = 104;
         #endregion item details preloaded
         #region Inventory
-        private const Int32 off_inv_nb_above = 26;
-        private const Int32 off_inv_nb_of_last_item_on_screen = 28;
-        private const Int32 off_inv_count = 32;
-        private const Int32 off_inv_selected_position = 36;
-        private const Int32 off_inv_sec_wnd_nb_above = 26;
-        private const Int32 off_inv_sec_wnd_nb_of_last_item_on_screen = 28;
-        private const Int32 off_inv_sec_wnd_count = 32;
-        private const Int32 off_inv_sec_wnd_selected_position = 36;
-        private const Int32 off_inv_left_wnd_selected = 70;
+        private const int off_inv_nb_above = 26;
+        private const int off_inv_nb_of_last_item_on_screen = 28;
+        private const int off_inv_count = 32;
+        private const int off_inv_selected_position = 36;
+        private const int off_inv_sec_wnd_nb_above = 26;
+        private const int off_inv_sec_wnd_nb_of_last_item_on_screen = 28;
+        private const int off_inv_sec_wnd_count = 32;
+        private const int off_inv_sec_wnd_selected_position = 36;
+        private const int off_inv_left_wnd_selected = 70;
         #endregion Inventory
         #region NPC Shop
-        private const Int32 off_npc_shop_nxt_item = 56;
+        private const int off_npc_shop_nxt_item = 56;
         //Pre 08.11.14: 52;
         private const byte off_npc_shop_max_items = 16;
-        private const Int16 off_npc_shop_item_price = 4;
-        private const Int32 off_npc_shop_item_id = 16;
+        private const short off_npc_shop_item_price = 4;
+        private const int off_npc_shop_item_id = 16;
         private const byte off_gld_shop_max_items = 255;
-        private const Int32 off_gld_shop_nxt_item = 56;
+        private const int off_gld_shop_nxt_item = 56;
         #endregion NPC Shop
         #region Crafter
-        private const Int32 off_crafter_item_id = 34;
+        private const int off_crafter_item_id = 34;
         //Pre 11.15.14: 170;
-        private const Int32 off_crafter_qty = 54;
+        private const int off_crafter_qty = 54;
         //Pre 11.15.14: 190;
-        private const Int32 off_crafter_bag_idx = 21;
+        private const int off_crafter_bag_idx = 21;
         //Pre 11.15.14: 157;
         #endregion Crafter
         #region Windows
-        private const Int32 off_wind_help_text = 104;
+        private const int off_wind_help_text = 104;
         //Pre 04.04.16: 72
         //Pre 07.11.14: 52
-        private const Int32 off_wind_top_left_text = 204;
+        private const int off_wind_top_left_text = 204;
         //Pre 07.11.14: 184
         #endregion Windows
         #region Shop Window
-        private const Int32 off_shop_item_idx_bot_item = 28;
-        private const Int32 off_shop_item_idx_top_item = 30;
-        private const Int32 off_shop_item_nb_items = 32;
-        private const Int32 off_shop_item_idx_in_wnd = 36;
+        private const int off_shop_item_idx_bot_item = 28;
+        private const int off_shop_item_idx_top_item = 30;
+        private const int off_shop_item_nb_items = 32;
+        private const int off_shop_item_idx_in_wnd = 36;
         #endregion Shop Window
         #region Network
-        private const Int32 off_net_receive = -4;
-        private const Int32 off_net_send = 0;
-        private const Int32 off_net_perc = 4;
+        private const int off_net_receive = -4;
+        private const int off_net_send = 0;
+        private const int off_net_perc = 4;
         #endregion Network
         #region Party
-        private const Int32 off_pty_name = 0;
-        private const Int32 off_pty_hp = 30;
-        private const Int32 off_pty_mp = 34;
-        private const Int32 off_pty_tp = 38;
-        private const Int32 off_pty_hpp = 42;
-        private const Int32 off_pty_mpp = 43;
-        private const Int32 off_pty_zone = 44;
-        private const Int32 off_pty_valid = 116;
-        private const Int32 off_pty_struct_size = 124;
+        private const int off_pty_name = 0;
+        private const int off_pty_hp = 30;
+        private const int off_pty_mp = 34;
+        private const int off_pty_tp = 38;
+        private const int off_pty_hpp = 42;
+        private const int off_pty_mpp = 43;
+        private const int off_pty_zone = 44;
+        private const int off_pty_valid = 116;
+        private const int off_pty_struct_size = 124;
         #endregion Party
         #region Target
-        private const Int32 off_target_dist = 216;
+        private const int off_target_dist = 216;
         //Pre 06.24.15:     212;
         //Pre 02.18.15:     208;
         //Pre 11.10.14:     176;
         //Pre 02.17.14:     184 - Change:    -8
         //Pre 03.26.13:     180 - Change:    +4
         //Pre 12.12.12:     172 - Change:    +8
-        private const Int32 off_target_sta = 360;
+        private const int off_target_sta = 360;
         //Pre 12.09.15:     368;
         //Pre 06.24.15:     308;
         #endregion Target
         #region Fishing
-        private const Int32 off_fishing_rod_pos = 48;
+        private const int off_fishing_rod_pos = 48;
         //Pre 03.17.14  -44 - System changed
         //Pre 02.17.14  -24
         #endregion Fishing
@@ -724,17 +724,17 @@ namespace Iocaine2.Memory
         //NOTE: an index of 0 means nothing equpped
         #endregion Equipment Table Notes
         #region Deprecated Item Details Notes/Pointers
-        //private const UInt32 info_item_details = 0x4DDB18;
+        //private const uint info_item_details = 0x4DDB18;
         /// <summary>
         /// These are items that are in some inventory space that are preloaded. The Name and item ID are there
         /// before even opening your inventory.
         /// </summary>
-        //private const UInt32 info_item_details_preloaded = 0x52D168;
+        //private const uint info_item_details_preloaded = 0x52D168;
         #endregion Deprecated Item Details Notes/Pointers
         #endregion General Notes
         #endregion Offsets
         #region Set Structure Pointers
-        public static Int32 Set_FFXI_Pointers(Process iMainProcess, ProcessModule iMainModule)
+        public static int Set_FFXI_Pointers(Process iMainProcess, ProcessModule iMainModule)
         {
             int addedIndex = Add_FFXI_Pointers(iMainProcess, iMainModule);
             if ((addedIndex == -1) || (addedIndex >= processPointerList.Count))
@@ -752,7 +752,7 @@ namespace Iocaine2.Memory
             }
             return processIndex;
         }
-        public static Int32 Add_FFXI_Pointers(Process iMainProcess, ProcessModule iMainModule)
+        public static int Add_FFXI_Pointers(Process iMainProcess, ProcessModule iMainModule)
         {
             #region Check Existing
             //If we're only adding a set of pointers from this process (not setting the current values)
@@ -848,54 +848,54 @@ namespace Iocaine2.Memory
             }
             #endregion Other calculated pointers
             #region Debug Messages
-            LoggingFunctions.Debug("Final Info_Casting: " + String.Format("{0:X}", pntrStruct.Info_Casting) + " (" + String.Format("{0:X}", pntrStruct.Info_Casting - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Chatlog: " + String.Format("{0:X}", pntrStruct.Info_Chatlog) + " (" + String.Format("{0:X}", pntrStruct.Info_Chatlog - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_CraftWindow: " + String.Format("{0:X}", pntrStruct.Info_CraftWindow) + " (" + String.Format("{0:X}", pntrStruct.Info_CraftWindow - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_EquippedTable: " + String.Format("{0:X}", pntrStruct.Info_EquippedTable) + " (" + String.Format("{0:X}", pntrStruct.Info_EquippedTable - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Fishing: " + String.Format("{0:X}", pntrStruct.Info_Fishing) + " (" + String.Format("{0:X}", pntrStruct.Info_Fishing - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Bag: " + String.Format("{0:X}", pntrStruct.Info_Inv_Bag) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Bag - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Safe: " + String.Format("{0:X}", pntrStruct.Info_Inv_Safe) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Safe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Storage: " + String.Format("{0:X}", pntrStruct.Info_Inv_Storage) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Storage - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Locker: " + String.Format("{0:X}", pntrStruct.Info_Inv_Locker) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Locker - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Satchel: " + String.Format("{0:X}", pntrStruct.Info_Inv_Satchel) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Satchel - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Sack: " + String.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Sack - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Case: " + String.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Case - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Wardrobe: " + String.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Safe2: " + String.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Wardrobe2: " + String.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inv_Max: " + String.Format("{0:X}", pntrStruct.Info_Inv_Max) + " (" + String.Format("{0:X}", pntrStruct.Info_Inv_Max - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Inventory: " + String.Format("{0:X}", pntrStruct.Info_Inventory) + " (" + String.Format("{0:X}", pntrStruct.Info_Inventory - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_InventorySecWnd: " + String.Format("{0:X}", pntrStruct.Info_InventorySecWnd) + " (" + String.Format("{0:X}", pntrStruct.Info_InventorySecWnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_InventoryNpcWnd: " + String.Format("{0:X}", pntrStruct.Info_InventoryNpcWnd) + " (" + String.Format("{0:X}", pntrStruct.Info_InventoryNpcWnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_MapNpcBegin: " + String.Format("{0:X}", pntrStruct.Info_MapNpcBegin) + " (" + String.Format("{0:X}", pntrStruct.Info_MapNpcBegin - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_MapNpcEnd: " + String.Format("{0:X}", pntrStruct.Info_MapNpcEnd) + " (" + String.Format("{0:X}", pntrStruct.Info_MapNpcEnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_MapPcBegin: " + String.Format("{0:X}", pntrStruct.Info_MapPcBegin) + " (" + String.Format("{0:X}", pntrStruct.Info_MapPcBegin - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_MapPcEnd: " + String.Format("{0:X}", pntrStruct.Info_MapPcEnd) + " (" + String.Format("{0:X}", pntrStruct.Info_MapPcEnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Menu: " + String.Format("{0:X}", pntrStruct.Info_MenuBase) + " (" + String.Format("{0:X}", pntrStruct.Info_MenuBase - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Network: " + String.Format("{0:X}", pntrStruct.Info_Network) + " (" + String.Format("{0:X}", pntrStruct.Info_Network - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Party: " + String.Format("{0:X}", pntrStruct.Info_Party) + " (" + String.Format("{0:X}", pntrStruct.Info_Party - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Player1: " + String.Format("{0:X}", pntrStruct.Info_Player1) + " (" + String.Format("{0:X}", pntrStruct.Info_Player1 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Player2: " + String.Format("{0:X}", pntrStruct.Info_Player2) + " (" + String.Format("{0:X}", pntrStruct.Info_Player2 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Player3: " + String.Format("{0:X}", pntrStruct.Info_Player3) + " (" + String.Format("{0:X}", pntrStruct.Info_Player3 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Player5: " + String.Format("{0:X}", pntrStruct.Info_Player5) + " (" + String.Format("{0:X}", pntrStruct.Info_Player5 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_RecastAbility: " + String.Format("{0:X}", pntrStruct.Info_RecastAbility) + " (" + String.Format("{0:X}", pntrStruct.Info_RecastAbility - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_RecastSpell: " + String.Format("{0:X}", pntrStruct.Info_RecastSpell) + " (" + String.Format("{0:X}", pntrStruct.Info_RecastSpell - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_ServerList: " + String.Format("{0:X}", pntrStruct.Info_ServerList) + " (" + String.Format("{0:X}", pntrStruct.Info_ServerList - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_ShopBuyWindow: " + String.Format("{0:X}", pntrStruct.Info_ShopBuyWindow) + " (" + String.Format("{0:X}", pntrStruct.Info_ShopBuyWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText1Addr: " + String.Format("{0:X}", pntrStruct.Info_SpeedText1Addr) + " (" + String.Format("{0:X}", pntrStruct.Info_SpeedText1Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText1Opcode: " + String.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText1Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Addr: " + String.Format("{0:X}", pntrStruct.Info_SpeedText2Addr) + " (" + String.Format("{0:X}", pntrStruct.Info_SpeedText2Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Opcode: " + String.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText2Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText3Addr: " + String.Format("{0:X}", pntrStruct.Info_SpeedText3Addr) + " (" + String.Format("{0:X}", pntrStruct.Info_SpeedText3Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText3Opcode: " + String.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText3Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Offset_SpeedValue: " + String.Format("{0:X}", pntrStruct.Offset_SpeedValue) + " (dec=" + pntrStruct.Offset_SpeedValue + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Target: " + String.Format("{0:X}", pntrStruct.Info_Target) + " (" + String.Format("{0:X}", pntrStruct.Info_Target - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_TargetLock: " + String.Format("{0:X}", pntrStruct.Info_TargetLock) + " (" + String.Format("{0:X}", pntrStruct.Info_TargetLock - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Time: " + String.Format("{0:X}", pntrStruct.Info_Time) + " (" + String.Format("{0:X}", pntrStruct.Info_Time - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_TradeNpcWindow: " + String.Format("{0:X}", pntrStruct.Info_TradeNpcWindow) + " (" + String.Format("{0:X}", pntrStruct.Info_TradeNpcWindow - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_TradePcWindow: " + String.Format("{0:X}", pntrStruct.Info_TradePcWindow) + " (" + String.Format("{0:X}", pntrStruct.Info_TradePcWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Windows: " + String.Format("{0:X}", pntrStruct.Info_Windows) + " (" + String.Format("{0:X}", pntrStruct.Info_Windows - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_Windows2: " + String.Format("{0:X}", pntrStruct.Info_Windows2) + " (" + String.Format("{0:X}", pntrStruct.Info_Windows2 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Casting: " + string.Format("{0:X}", pntrStruct.Info_Casting) + " (" + string.Format("{0:X}", pntrStruct.Info_Casting - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Chatlog: " + string.Format("{0:X}", pntrStruct.Info_Chatlog) + " (" + string.Format("{0:X}", pntrStruct.Info_Chatlog - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_CraftWindow: " + string.Format("{0:X}", pntrStruct.Info_CraftWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_CraftWindow - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_EquippedTable: " + string.Format("{0:X}", pntrStruct.Info_EquippedTable) + " (" + string.Format("{0:X}", pntrStruct.Info_EquippedTable - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Fishing: " + string.Format("{0:X}", pntrStruct.Info_Fishing) + " (" + string.Format("{0:X}", pntrStruct.Info_Fishing - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Bag: " + string.Format("{0:X}", pntrStruct.Info_Inv_Bag) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Bag - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Safe: " + string.Format("{0:X}", pntrStruct.Info_Inv_Safe) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Safe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Storage: " + string.Format("{0:X}", pntrStruct.Info_Inv_Storage) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Storage - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Locker: " + string.Format("{0:X}", pntrStruct.Info_Inv_Locker) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Locker - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Satchel: " + string.Format("{0:X}", pntrStruct.Info_Inv_Satchel) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Satchel - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Sack: " + string.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Sack - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Case: " + string.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Case - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Wardrobe: " + string.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Safe2: " + string.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Wardrobe2: " + string.Format("{0:X}", pntrStruct.Info_Inv_Sack) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Wardrobe - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inv_Max: " + string.Format("{0:X}", pntrStruct.Info_Inv_Max) + " (" + string.Format("{0:X}", pntrStruct.Info_Inv_Max - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Inventory: " + string.Format("{0:X}", pntrStruct.Info_Inventory) + " (" + string.Format("{0:X}", pntrStruct.Info_Inventory - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_InventorySecWnd: " + string.Format("{0:X}", pntrStruct.Info_InventorySecWnd) + " (" + string.Format("{0:X}", pntrStruct.Info_InventorySecWnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_InventoryNpcWnd: " + string.Format("{0:X}", pntrStruct.Info_InventoryNpcWnd) + " (" + string.Format("{0:X}", pntrStruct.Info_InventoryNpcWnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_MapNpcBegin: " + string.Format("{0:X}", pntrStruct.Info_MapNpcBegin) + " (" + string.Format("{0:X}", pntrStruct.Info_MapNpcBegin - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_MapNpcEnd: " + string.Format("{0:X}", pntrStruct.Info_MapNpcEnd) + " (" + string.Format("{0:X}", pntrStruct.Info_MapNpcEnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_MapPcBegin: " + string.Format("{0:X}", pntrStruct.Info_MapPcBegin) + " (" + string.Format("{0:X}", pntrStruct.Info_MapPcBegin - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_MapPcEnd: " + string.Format("{0:X}", pntrStruct.Info_MapPcEnd) + " (" + string.Format("{0:X}", pntrStruct.Info_MapPcEnd - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Menu: " + string.Format("{0:X}", pntrStruct.Info_MenuBase) + " (" + string.Format("{0:X}", pntrStruct.Info_MenuBase - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Network: " + string.Format("{0:X}", pntrStruct.Info_Network) + " (" + string.Format("{0:X}", pntrStruct.Info_Network - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Party: " + string.Format("{0:X}", pntrStruct.Info_Party) + " (" + string.Format("{0:X}", pntrStruct.Info_Party - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Player1: " + string.Format("{0:X}", pntrStruct.Info_Player1) + " (" + string.Format("{0:X}", pntrStruct.Info_Player1 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Player2: " + string.Format("{0:X}", pntrStruct.Info_Player2) + " (" + string.Format("{0:X}", pntrStruct.Info_Player2 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Player3: " + string.Format("{0:X}", pntrStruct.Info_Player3) + " (" + string.Format("{0:X}", pntrStruct.Info_Player3 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Player5: " + string.Format("{0:X}", pntrStruct.Info_Player5) + " (" + string.Format("{0:X}", pntrStruct.Info_Player5 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_RecastAbility: " + string.Format("{0:X}", pntrStruct.Info_RecastAbility) + " (" + string.Format("{0:X}", pntrStruct.Info_RecastAbility - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_RecastSpell: " + string.Format("{0:X}", pntrStruct.Info_RecastSpell) + " (" + string.Format("{0:X}", pntrStruct.Info_RecastSpell - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_ServerList: " + string.Format("{0:X}", pntrStruct.Info_ServerList) + " (" + string.Format("{0:X}", pntrStruct.Info_ServerList - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_ShopBuyWindow: " + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText1Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText1Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText1Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText2Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText2Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText2Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText3Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText3Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText3Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_SpeedText3Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText3Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Offset_SpeedValue: " + string.Format("{0:X}", pntrStruct.Offset_SpeedValue) + " (dec=" + pntrStruct.Offset_SpeedValue + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Target: " + string.Format("{0:X}", pntrStruct.Info_Target) + " (" + string.Format("{0:X}", pntrStruct.Info_Target - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_TargetLock: " + string.Format("{0:X}", pntrStruct.Info_TargetLock) + " (" + string.Format("{0:X}", pntrStruct.Info_TargetLock - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Time: " + string.Format("{0:X}", pntrStruct.Info_Time) + " (" + string.Format("{0:X}", pntrStruct.Info_Time - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_TradeNpcWindow: " + string.Format("{0:X}", pntrStruct.Info_TradeNpcWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_TradeNpcWindow - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_TradePcWindow: " + string.Format("{0:X}", pntrStruct.Info_TradePcWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_TradePcWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Windows: " + string.Format("{0:X}", pntrStruct.Info_Windows) + " (" + string.Format("{0:X}", pntrStruct.Info_Windows - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_Windows2: " + string.Format("{0:X}", pntrStruct.Info_Windows2) + " (" + string.Format("{0:X}", pntrStruct.Info_Windows2 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             #endregion Debug Messages
             #region Wrap Up
             checkSpeedOpcodes(pntrStruct);
@@ -920,7 +920,7 @@ namespace Iocaine2.Memory
         /// <returns>Returns true if any of the key pointers are null, false otherwise.</returns>
         private static bool Check_For_Null_Pointers(Pointers iPntr)
         {
-            String errMsg = "";
+            string errMsg = "";
             bool fatalNull = false;
             bool fisher = false;
             bool pl = false;
@@ -1234,7 +1234,7 @@ namespace Iocaine2.Memory
         }
         #endregion Set Structure Pointers
         #region Utility Functions
-        public static Int32 IndexOf(Process iProc)
+        public static int IndexOf(Process iProc)
         {
             for (int ii = 0; ii < processPointerList.Count; ii++)
             {
@@ -1245,18 +1245,18 @@ namespace Iocaine2.Memory
             }
             return -1;
         }
-        public static void logMemoryBlock(ProcessModule iMod, UInt32 iStartAddr, UInt32 iEndAddr, UInt32 iByteWidth, bool iLogHex)
+        public static void logMemoryBlock(ProcessModule iMod, uint iStartAddr, uint iEndAddr, uint iByteWidth, bool iLogHex)
         {
             try
             {
-                UInt32 bytes = iEndAddr - iStartAddr;
+                uint bytes = iEndAddr - iStartAddr;
                 byte[] buffer = new byte[bytes];
                 Process proc = processPointerList[processIndex].MainProcess;
                 buffer = MemoryFunctions.ReadBlock((IntPtr)proc.Handle, iStartAddr, buffer, bytes);
-                LoggingFunctions.Timestamp("StartAddr: " + String.Format("{0:X}", iStartAddr) + ", EndAddr: " + String.Format("{0:X}", iEndAddr));
-                for (UInt32 ii = 0; ii <= bytes; ii += 16)
+                LoggingFunctions.Timestamp("StartAddr: " + string.Format("{0:X}", iStartAddr) + ", EndAddr: " + string.Format("{0:X}", iEndAddr));
+                for (uint ii = 0; ii <= bytes; ii += 16)
                 {
-                    String lineString = String.Format("{0:X}", iStartAddr + (ii));
+                    string lineString = string.Format("{0:X}", iStartAddr + (ii));
                     for (byte kk = 0; kk < 16; kk++)
                     {
                         if (ii + kk >= buffer.Length)
@@ -1284,7 +1284,7 @@ namespace Iocaine2.Memory
                                     {
                                         lineString += " ";
                                     }
-                                    lineString += " " + String.Format("{0:X}", buffer[ii + kk]);
+                                    lineString += " " + string.Format("{0:X}", buffer[ii + kk]);
                                 }
                                 break;
                             case 2:
@@ -1383,7 +1383,7 @@ namespace Iocaine2.Memory
             string ostr = "";
             for (int ii = 0; ii < iOpCode.Length; ii++)
             {
-                ostr += String.Format("{0:X}", iOpCode[ii]);
+                ostr += string.Format("{0:X}", iOpCode[ii]);
                 if (ii != iOpCode.Length - 1)
                 {
                     ostr += " ";
@@ -1398,7 +1398,7 @@ namespace Iocaine2.Memory
             opcode = new byte[split.Length];
             for (int ii = 0; ii < split.Length; ii++)
             {
-                opcode[ii] = Byte.Parse(split[ii], System.Globalization.NumberStyles.HexNumber);
+                opcode[ii] = byte.Parse(split[ii], System.Globalization.NumberStyles.HexNumber);
             }
             return opcode;
         }
@@ -1409,25 +1409,25 @@ namespace Iocaine2.Memory
         {
             #region General
             /// <summary>
-            /// Returns the player's name as a String. Normally a null character
+            /// Returns the player's name as a string. Normally a null character
             /// is also returned as the last byte of the string.
             /// </summary>
             /// <param name="iRemoveNull">If true, will trim the null character from the name before returning</param>
             /// <returns>Player's name</returns>
-            public static String get_name(bool iRemoveNull=true)
+            public static string get_name(bool iRemoveNull=true)
             {
                 return get_name(processIndex, iRemoveNull);
             }
             /// <summary>
-            /// Returns the player's name as a String. Normally a null character
+            /// Returns the player's name as a string. Normally a null character
             /// is also returned as the last byte of the string.
             /// </summary>
             /// <param name="iRemoveNull">If true, will trim the null character from the name before returning</param>
             /// <returns>Player's name</returns>
-            public static String get_name(int iProcIndex, bool iRemoveNull=true)
+            public static string get_name(int iProcIndex, bool iRemoveNull=true)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                String tempString = MemoryFunctions.ReadString((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 0);
+                string tempString = MemoryFunctions.ReadString((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 0);
                 if (iRemoveNull)
                 {
                     if (tempString.Length > 0)
@@ -1444,14 +1444,14 @@ namespace Iocaine2.Memory
                     return tempString;
                 }
             }
-            public static UInt16 get_zone_id()
+            public static ushort get_zone_id()
             {
                 return get_zone_id(processIndex);
             }
-            public static UInt16 get_zone_id(int iProcIndex)
+            public static ushort get_zone_id(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 44, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 44, 2);
             }
             public static bool get_in_mog_house()
             {
@@ -1471,14 +1471,14 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return (1 == (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_zoning, 1));
             }
-            public static UInt32 get_player_struct_ptr()
+            public static uint get_player_struct_ptr()
             {
                 return get_player_struct_ptr(processIndex);
             }
-            public static UInt32 get_player_struct_ptr(int iProcIndex)
+            public static uint get_player_struct_ptr(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_player_struct, 4);
+                return (uint)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_player_struct, 4);
             }
             #endregion General
             #region Player5_info (Status)
@@ -1509,32 +1509,32 @@ namespace Iocaine2.Memory
             #endregion Player5_info (Status)
             public static class Vitals
             {
-                public static UInt16 get_hp_current()
+                public static ushort get_hp_current()
                 {
                     return get_hp_current(processIndex);
                 }
-                public static UInt16 get_hp_current(int iProcIndex)
+                public static ushort get_hp_current(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 30, 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 30, 2);
                 }
-                public static UInt16 get_mp_current()
+                public static ushort get_mp_current()
                 {
                     return get_mp_current(processIndex);
                 }
-                public static UInt16 get_mp_current(int iProcIndex)
+                public static ushort get_mp_current(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 34, 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 34, 2);
                 }
-                public static UInt16 get_tp_current()
+                public static ushort get_tp_current()
                 {
                     return get_tp_current(processIndex);
                 }
-                public static UInt16 get_tp_current(int iProcIndex)
+                public static ushort get_tp_current(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 38, 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 38, 2);
                 }
                 public static byte get_hp_percent()
                 {
@@ -1554,63 +1554,63 @@ namespace Iocaine2.Memory
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player1, 43, 1);
                 }
-                public static UInt16 get_hp_max()
+                public static ushort get_hp_max()
                 {
                     return get_hp_max(processIndex);
                 }
-                public static UInt16 get_hp_max(int iProcIndex)
+                public static ushort get_hp_max(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 180, 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 180, 2);
                 }
-                public static UInt16 get_mp_max()
+                public static ushort get_mp_max()
                 {
                     return get_mp_max(processIndex);
                 }
-                public static UInt16 get_mp_max(int iProcIndex)
+                public static ushort get_mp_max(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 184, 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 184, 2);
                 }
             }
             public static class Position
             {
                 #region Get
-                public static Single get_x()
+                public static float get_x()
                 {
                     return get_x(processIndex);
                 }
-                public static Single get_x(int iProcIndex)
+                public static float get_x(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player3);
                     return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 520);
                 }
-                public static Single get_z()
+                public static float get_z()
                 {
                     return get_z(processIndex);
                 }
-                public static Single get_z(int iProcIndex)
+                public static float get_z(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player3);
                     return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 524);
                 }
-                public static Single get_y()
+                public static float get_y()
                 {
                     return get_y(processIndex);
                 }
-                public static Single get_y(int iProcIndex)
+                public static float get_y(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player3);
                     return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 528);
                 }
-                public static Single get_heading()
+                public static float get_heading()
                 {
                     return get_heading(processIndex);
                 }
-                public static Single get_heading(int iProcIndex)
+                public static float get_heading(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player3);
@@ -1618,11 +1618,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Get
                 #region Set
-                public static void set_x(Single iPosX)
+                public static void set_x(float iPosX)
                 {
                     set_x(processIndex, iPosX);
                 }
-                public static void set_x(int iProcIndex, Single iPosX)
+                public static void set_x(int iProcIndex, float iPosX)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)PCs.get_pointer(iProcIndex, get_name(iProcIndex, true));
@@ -1642,11 +1642,11 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosX, off_pc_map_set_pos_1, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosX, off_pc_map_set_pos_2, 4);
                 }
-                public static void set_z(Single iPosZ)
+                public static void set_z(float iPosZ)
                 {
                     set_z(processIndex, iPosZ);
                 }
-                public static void set_z(int iProcIndex, Single iPosZ)
+                public static void set_z(int iProcIndex, float iPosZ)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)PCs.get_pointer(iProcIndex, get_name(iProcIndex, true));
@@ -1654,11 +1654,11 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosZ, off_pc_map_set_pos_1 + 4, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosZ, off_pc_map_set_pos_2 + 4, 4);
                 }
-                public static void set_z(Single iPosZ, uint iPlayerPtr)
+                public static void set_z(float iPosZ, uint iPlayerPtr)
                 {
                     set_z(processIndex, iPosZ, iPlayerPtr);
                 }
-                public static void set_z(int iProcIndex, Single iPosZ, uint iPlayerPtr)
+                public static void set_z(int iProcIndex, float iPosZ, uint iPlayerPtr)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)iPlayerPtr;
@@ -1666,11 +1666,11 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosZ, off_pc_map_set_pos_1 + 4, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosZ, off_pc_map_set_pos_2 + 4, 4);
                 }
-                public static void set_y(Single iPosY)
+                public static void set_y(float iPosY)
                 {
                     set_y(processIndex, iPosY);
                 }
-                public static void set_y(int iProcIndex, Single iPosY)
+                public static void set_y(int iProcIndex, float iPosY)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)PCs.get_pointer(iProcIndex, get_name(iProcIndex, true));
@@ -1678,11 +1678,11 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosY, off_pc_map_set_pos_1 + 8, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosY, off_pc_map_set_pos_2 + 8, 4);
                 }
-                public static void set_y(Single iPosY, uint iPlayerPtr)
+                public static void set_y(float iPosY, uint iPlayerPtr)
                 {
                     set_y(processIndex, iPosY, iPlayerPtr);
                 }
-                public static void set_y(int iProcIndex, Single iPosY, uint iPlayerPtr)
+                public static void set_y(int iProcIndex, float iPosY, uint iPlayerPtr)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)iPlayerPtr;
@@ -1690,11 +1690,11 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosY, off_pc_map_set_pos_1 + 8, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosY, off_pc_map_set_pos_2 + 8, 4);
                 }
-                public static void set_heading(Single iPosH)
+                public static void set_heading(float iPosH)
                 {
                     set_heading(processIndex, iPosH);
                 }
-                public static void set_heading(int iProcIndex, Single iPosH)
+                public static void set_heading(int iProcIndex, float iPosH)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = (UIntPtr)PCs.get_pointer(iProcIndex, get_name(iProcIndex, true));
@@ -1713,23 +1713,23 @@ namespace Iocaine2.Memory
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosH, off_pc_map_set_pos_1 + 20, 4);
                     MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iPosH, off_pc_map_set_pos_2 + 20, 4);
                 }
-                public static UInt32 get_position_struct_ptr()
+                public static uint get_position_struct_ptr()
                 {
                     return get_position_struct_ptr(processIndex);
                 }
-                public static UInt32 get_position_struct_ptr(int iProcIndex)
+                public static uint get_position_struct_ptr(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    UInt32 ptr = get_player_struct_ptr(iProcIndex);
-                    return (UInt32)MemoryFunctions.GetPointer((IntPtr)proc.Handle, ptr, off_pc_map_pos_ptr);
+                    uint ptr = get_player_struct_ptr(iProcIndex);
+                    return (uint)MemoryFunctions.GetPointer((IntPtr)proc.Handle, ptr, off_pc_map_pos_ptr);
                 }
                 #endregion Set
                 #region Map Grid
-                public static String get_map_grid()
+                public static string get_map_grid()
                 {
                     return get_map_grid(processIndex);
                 }
-                public static String get_map_grid(int iProcIndex)
+                public static string get_map_grid(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return MemoryFunctions.ReadString(proc.Handle, processPointerList[iProcIndex].Info_Player3, (int)off_map_grid);
@@ -1831,20 +1831,20 @@ namespace Iocaine2.Memory
             public static class XP
             {
                 #region XP
-                public static Int32 get_xp_current()
+                public static int get_xp_current()
                 {
                     return get_xp_current(processIndex);
                 }
-                public static Int32 get_xp_current(int iProcIndex)
+                public static int get_xp_current(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 192, 2);
                 }
-                public static Int32 get_xp_max()
+                public static int get_xp_max()
                 {
                     return get_xp_max(processIndex);
                 }
-                public static Int32 get_xp_max(int iProcIndex)
+                public static int get_xp_max(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 194, 2);
@@ -1860,14 +1860,14 @@ namespace Iocaine2.Memory
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_merit_merits_current, 1);
                 }
-                public static Int16 get_mrt_limit_points()
+                public static short get_mrt_limit_points()
                 {
                     return get_mrt_limit_points(processIndex);
                 }
-                public static Int16 get_mrt_limit_points(int iProcIndex)
+                public static short get_mrt_limit_points(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_merit_limit_points, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_merit_limit_points, 2);
                 }
                 #endregion Merits
                 #region Mode
@@ -1890,7 +1890,7 @@ namespace Iocaine2.Memory
                 ////Return Values:
                 ////If skill is > 255, this will wrap around to 0 (ie 0 = 256)
                 #endregion Notes
-                private static Int32 get_skill(int iProcIndex, int iSkillOffset)
+                private static int get_skill(int iProcIndex, int iSkillOffset)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     byte controlInfo = get_control(iProcIndex, iSkillOffset);
@@ -1940,33 +1940,33 @@ namespace Iocaine2.Memory
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, iSkillOffset + 1, 1);
                 }
-                public static Int32 get_skill(UInt16 iSkillType)
+                public static int get_skill(ushort iSkillType)
                 {
                     return get_skill(processIndex, iSkillType);
                 }
-                public static Int32 get_skill(Int32 iProcIndex, UInt16 iSkillType)
+                public static int get_skill(int iProcIndex, ushort iSkillType)
                 {
-                    Int32 skillOffset = off_skill_h2h - 2 + (iSkillType * 2);
+                    int skillOffset = off_skill_h2h - 2 + (iSkillType * 2);
                     return get_skill(iProcIndex, skillOffset);
                 }
-                public static Boolean get_capped(UInt16 iSkillType)
+                public static bool get_capped(ushort iSkillType)
                 {
                     return get_capped(processIndex, iSkillType);
                 }
-                public static Boolean get_capped(int iProcIndex, UInt16 iSkillType)
+                public static bool get_capped(int iProcIndex, ushort iSkillType)
                 {
-                    Int32 skillOffset = off_skill_h2h - 2 + (iSkillType * 2);
+                    int skillOffset = off_skill_h2h - 2 + (iSkillType * 2);
                     return get_capped(iProcIndex, skillOffset);
                 }
                 #endregion Generic Functions
                 public static class Combat
                 {
                     #region Hand to Hand
-                    public static Int32 get_hand_to_hand()
+                    public static int get_hand_to_hand()
                     {
                         return get_hand_to_hand(processIndex);
                     }
-                    public static Int32 get_hand_to_hand(int iProcIndex)
+                    public static int get_hand_to_hand(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_h2h);
                     }
@@ -1980,11 +1980,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Hand to Hand
                     #region Dagger
-                    public static Int32 get_dagger()
+                    public static int get_dagger()
                     {
                         return get_dagger(processIndex);
                     }
-                    public static Int32 get_dagger(int iProcIndex)
+                    public static int get_dagger(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_dagger);
                     }
@@ -1998,11 +1998,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Dagger
                     #region Sword
-                    public static Int32 get_sword()
+                    public static int get_sword()
                     {
                         return get_sword(processIndex);
                     }
-                    public static Int32 get_sword(int iProcIndex)
+                    public static int get_sword(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_sword);
                     }
@@ -2016,11 +2016,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Sword
                     #region Great Sword
-                    public static Int32 get_great_sword()
+                    public static int get_great_sword()
                     {
                         return get_great_sword(processIndex);
                     }
-                    public static Int32 get_great_sword(int iProcIndex)
+                    public static int get_great_sword(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_great_sword);
                     }
@@ -2034,11 +2034,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Great Sword
                     #region Axe
-                    public static Int32 get_axe()
+                    public static int get_axe()
                     {
                         return get_axe(processIndex);
                     }
-                    public static Int32 get_axe(int iProcIndex)
+                    public static int get_axe(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_axe);
                     }
@@ -2052,11 +2052,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Axe
                     #region Great Axe
-                    public static Int32 get_great_axe()
+                    public static int get_great_axe()
                     {
                         return get_great_axe(processIndex);
                     }
-                    public static Int32 get_great_axe(int iProcIndex)
+                    public static int get_great_axe(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_great_axe);
                     }
@@ -2070,11 +2070,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Great Axe
                     #region Scythe
-                    public static Int32 get_scythe()
+                    public static int get_scythe()
                     {
                         return get_scythe(processIndex);
                     }
-                    public static Int32 get_scythe(int iProcIndex)
+                    public static int get_scythe(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_scythe);
                     }
@@ -2088,11 +2088,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Scythe
                     #region Polearm
-                    public static Int32 get_polearm()
+                    public static int get_polearm()
                     {
                         return get_polearm(processIndex);
                     }
-                    public static Int32 get_polearm(int iProcIndex)
+                    public static int get_polearm(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_polearm);
                     }
@@ -2106,11 +2106,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Polearm
                     #region Katana
-                    public static Int32 get_katana()
+                    public static int get_katana()
                     {
                         return get_katana(processIndex);
                     }
-                    public static Int32 get_katana(int iProcIndex)
+                    public static int get_katana(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_katana);
                     }
@@ -2124,11 +2124,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Katana
                     #region Great Katana
-                    public static Int32 get_great_katana()
+                    public static int get_great_katana()
                     {
                         return get_great_katana(processIndex);
                     }
-                    public static Int32 get_great_katana(int iProcIndex)
+                    public static int get_great_katana(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_great_katana);
                     }
@@ -2142,11 +2142,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Great Katana
                     #region Club
-                    public static Int32 get_club()
+                    public static int get_club()
                     {
                         return get_club(processIndex);
                     }
-                    public static Int32 get_club(int iProcIndex)
+                    public static int get_club(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_club);
                     }
@@ -2160,11 +2160,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Club
                     #region Staff
-                    public static Int32 get_staff()
+                    public static int get_staff()
                     {
                         return get_staff(processIndex);
                     }
-                    public static Int32 get_staff(int iProcIndex)
+                    public static int get_staff(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_staff);
                     }
@@ -2178,11 +2178,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Staff
                     #region Archery
-                    public static Int32 get_archery()
+                    public static int get_archery()
                     {
                         return get_archery(processIndex);
                     }
-                    public static Int32 get_archery(int iProcIndex)
+                    public static int get_archery(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_archery);
                     }
@@ -2196,11 +2196,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Archery
                     #region Marksmanship
-                    public static Int32 get_marksmanship()
+                    public static int get_marksmanship()
                     {
                         return get_marksmanship(processIndex);
                     }
-                    public static Int32 get_marksmanship(int iProcIndex)
+                    public static int get_marksmanship(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_marksmanship);
                     }
@@ -2214,11 +2214,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Marksmanship
                     #region Throwing
-                    public static Int32 get_throwing()
+                    public static int get_throwing()
                     {
                         return get_throwing(processIndex);
                     }
-                    public static Int32 get_throwing(int iProcIndex)
+                    public static int get_throwing(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_throwing);
                     }
@@ -2232,11 +2232,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Throwing
                     #region Guarding
-                    public static Int32 get_guarding()
+                    public static int get_guarding()
                     {
                         return get_guarding(processIndex);
                     }
-                    public static Int32 get_guarding(int iProcIndex)
+                    public static int get_guarding(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_guarding);
                     }
@@ -2250,11 +2250,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Guarding
                     #region Evasion
-                    public static Int32 get_evasion()
+                    public static int get_evasion()
                     {
                         return get_evasion(processIndex);
                     }
-                    public static Int32 get_evasion(int iProcIndex)
+                    public static int get_evasion(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_evasion);
                     }
@@ -2268,11 +2268,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Evasion
                     #region Shield
-                    public static Int32 get_shield()
+                    public static int get_shield()
                     {
                         return get_shield(processIndex);
                     }
-                    public static Int32 get_shield(int iProcIndex)
+                    public static int get_shield(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_shield);
                     }
@@ -2286,11 +2286,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Shield
                     #region Parrying
-                    public static Int32 get_parrying()
+                    public static int get_parrying()
                     {
                         return get_parrying(processIndex);
                     }
-                    public static Int32 get_parrying(int iProcIndex)
+                    public static int get_parrying(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_parrying);
                     }
@@ -2307,11 +2307,11 @@ namespace Iocaine2.Memory
                 public static class Magic
                 {
                     #region Divine
-                    public static Int32 get_divine()
+                    public static int get_divine()
                     {
                         return get_divine(processIndex);
                     }
-                    public static Int32 get_divine(int iProcIndex)
+                    public static int get_divine(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_divine);
                     }
@@ -2325,11 +2325,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Divine
                     #region Healing
-                    public static Int32 get_healing()
+                    public static int get_healing()
                     {
                         return get_healing(processIndex);
                     }
-                    public static Int32 get_healing(int iProcIndex)
+                    public static int get_healing(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_healing);
                     }
@@ -2343,11 +2343,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Healing
                     #region Enhancing
-                    public static Int32 get_enhancing()
+                    public static int get_enhancing()
                     {
                         return get_enhancing(processIndex);
                     }
-                    public static Int32 get_enhancing(int iProcIndex)
+                    public static int get_enhancing(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_enhancing);
                     }
@@ -2361,11 +2361,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Enhancing
                     #region Enfeebling
-                    public static Int32 get_enfeebling()
+                    public static int get_enfeebling()
                     {
                         return get_enfeebling(processIndex);
                     }
-                    public static Int32 get_enfeebling(int iProcIndex)
+                    public static int get_enfeebling(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_enfeebling);
                     }
@@ -2379,11 +2379,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Enfeebling
                     #region Elemental
-                    public static Int32 get_elemental()
+                    public static int get_elemental()
                     {
                         return get_elemental(processIndex);
                     }
-                    public static Int32 get_elemental(int iProcIndex)
+                    public static int get_elemental(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_elemental);
                     }
@@ -2397,11 +2397,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Elemental
                     #region Dark
-                    public static Int32 get_dark()
+                    public static int get_dark()
                     {
                         return get_dark(processIndex);
                     }
-                    public static Int32 get_dark(int iProcIndex)
+                    public static int get_dark(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_dark);
                     }
@@ -2415,11 +2415,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Dark
                     #region Summoning
-                    public static Int32 get_summoning()
+                    public static int get_summoning()
                     {
                         return get_summoning(processIndex);
                     }
-                    public static Int32 get_summoning(int iProcIndex)
+                    public static int get_summoning(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_summoning);
                     }
@@ -2433,11 +2433,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Summoning
                     #region Ninjutsu
-                    public static Int32 get_ninjutsu()
+                    public static int get_ninjutsu()
                     {
                         return get_ninjutsu(processIndex);
                     }
-                    public static Int32 get_ninjutsu(int iProcIndex)
+                    public static int get_ninjutsu(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_ninjutsu);
                     }
@@ -2451,11 +2451,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Ninjutsu
                     #region Blue
-                    public static Int32 get_blue()
+                    public static int get_blue()
                     {
                         return get_blue(processIndex);
                     }
-                    public static Int32 get_blue(int iProcIndex)
+                    public static int get_blue(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_blue);
                     }
@@ -2469,11 +2469,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Blue
                     #region Geo
-                    public static Int32 get_geo()
+                    public static int get_geo()
                     {
                         return get_geo(processIndex);
                     }
-                    public static Int32 get_geo(int iProcIndex)
+                    public static int get_geo(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_geo);
                     }
@@ -2487,11 +2487,11 @@ namespace Iocaine2.Memory
                     }
                     #endregion Geo
                     #region Bell
-                    public static Int32 get_bell()
+                    public static int get_bell()
                     {
                         return get_bell(processIndex);
                     }
-                    public static Int32 get_bell(int iProcIndex)
+                    public static int get_bell(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_bell);
                     }
@@ -2508,11 +2508,11 @@ namespace Iocaine2.Memory
                 public static class Musical
                 {
                     #region Singing
-                    public static Int32 get_singing()
+                    public static int get_singing()
                     {
                         return get_singing(processIndex);
                     }
-                    public static Int32 get_singing(int iProcIndex)
+                    public static int get_singing(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_singing);
                     }
@@ -2525,12 +2525,12 @@ namespace Iocaine2.Memory
                         return get_capped(iProcIndex, off_skill_singing);
                     }
                     #endregion Singing
-                    #region String
-                    public static Int32 get_string()
+                    #region string
+                    public static int get_string()
                     {
                         return get_string(processIndex);
                     }
-                    public static Int32 get_string(int iProcIndex)
+                    public static int get_string(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_string);
                     }
@@ -2542,13 +2542,13 @@ namespace Iocaine2.Memory
                     {
                         return get_capped(iProcIndex, off_skill_string);
                     }
-                    #endregion String
+                    #endregion string
                     #region Wind
-                    public static Int32 get_wind()
+                    public static int get_wind()
                     {
                         return get_wind(processIndex);
                     }
-                    public static Int32 get_wind(int iProcIndex)
+                    public static int get_wind(int iProcIndex)
                     {
                         return get_skill(iProcIndex, off_skill_wind);
                     }
@@ -2574,11 +2574,11 @@ namespace Iocaine2.Memory
                     //             When 2nd byte is >= 128, skill is capped
                     //             def: Skill Capped (SkCapd)
                     //             To get skill base (SkBase):
-                    //             SkBase = (SkCapd ? (2nd Byte - 128) : 2nd Byte) * 256
-                    //             SkMod = 1st Byte & 0xF0
+                    //             SkBase = (SkCapd ? (2nd byte - 128) : 2nd byte) * 256
+                    //             SkMod = 1st byte & 0xF0
                     //             Total Skill (SkTot) = SkBase + SkMod
                     //             Skill Level = SkTot / 32
-                    //             Skill Rank = 1st Byte & 0x0F
+                    //             Skill Rank = 1st byte & 0x0F
                     #endregion Notes
                     #region Fishing
                     public static bool get_fish_capped()
@@ -2591,11 +2591,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_fish + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_fish_skill()
+                    public static ushort get_fish_skill()
                     {
                         return get_fish_skill(processIndex);
                     }
-                    public static UInt16 get_fish_skill(int iProcIndex)
+                    public static ushort get_fish_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_fish + 1, 1);
@@ -2605,7 +2605,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_fish_rank_id()
                     {
@@ -2628,11 +2628,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_wood + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_wood_skill()
+                    public static ushort get_wood_skill()
                     {
                         return get_wood_skill(processIndex);
                     }
-                    public static UInt16 get_wood_skill(int iProcIndex)
+                    public static ushort get_wood_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_wood + 1, 1);
@@ -2642,7 +2642,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_wood_rank_id()
                     {
@@ -2665,11 +2665,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_smith + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_smith_skill()
+                    public static ushort get_smith_skill()
                     {
                         return get_smith_skill(processIndex);
                     }
-                    public static UInt16 get_smith_skill(int iProcIndex)
+                    public static ushort get_smith_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_smith + 1, 1);
@@ -2679,7 +2679,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_smith_rank_id()
                     {
@@ -2702,11 +2702,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_gold + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_gold_skill()
+                    public static ushort get_gold_skill()
                     {
                         return get_gold_skill(processIndex);
                     }
-                    public static UInt16 get_gold_skill(int iProcIndex)
+                    public static ushort get_gold_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_gold + 1, 1);
@@ -2716,7 +2716,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_gold_rank_id()
                     {
@@ -2739,11 +2739,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_cloth + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_cloth_skill()
+                    public static ushort get_cloth_skill()
                     {
                         return get_cloth_skill(processIndex);
                     }
-                    public static UInt16 get_cloth_skill(int iProcIndex)
+                    public static ushort get_cloth_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_cloth + 1, 1);
@@ -2753,7 +2753,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_cloth_rank_id()
                     {
@@ -2776,11 +2776,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_leather + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_leather_skill()
+                    public static ushort get_leather_skill()
                     {
                         return get_leather_skill(processIndex);
                     }
-                    public static UInt16 get_leather_skill(int iProcIndex)
+                    public static ushort get_leather_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_leather + 1, 1);
@@ -2790,7 +2790,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_leather_rank_id()
                     {
@@ -2813,11 +2813,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_bone + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_bone_skill()
+                    public static ushort get_bone_skill()
                     {
                         return get_bone_skill(processIndex);
                     }
-                    public static UInt16 get_bone_skill(int iProcIndex)
+                    public static ushort get_bone_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_bone + 1, 1);
@@ -2827,7 +2827,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_bone_rank_id()
                     {
@@ -2850,11 +2850,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_alch + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_alch_skill()
+                    public static ushort get_alch_skill()
                     {
                         return get_alch_skill(processIndex);
                     }
-                    public static UInt16 get_alch_skill(int iProcIndex)
+                    public static ushort get_alch_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_alch + 1, 1);
@@ -2864,7 +2864,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_alch_rank_id()
                     {
@@ -2887,11 +2887,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_cook + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_cook_skill()
+                    public static ushort get_cook_skill()
                     {
                         return get_cook_skill(processIndex);
                     }
-                    public static UInt16 get_cook_skill(int iProcIndex)
+                    public static ushort get_cook_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_cook + 1, 1);
@@ -2901,7 +2901,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_cook_rank_id()
                     {
@@ -2924,11 +2924,11 @@ namespace Iocaine2.Memory
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_synergy + 1, 1);
                         return (baseByte >= 128);
                     }
-                    public static UInt16 get_synergy_skill()
+                    public static ushort get_synergy_skill()
                     {
                         return get_synergy_skill(processIndex);
                     }
-                    public static UInt16 get_synergy_skill(int iProcIndex)
+                    public static ushort get_synergy_skill(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         byte baseByte = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_synergy + 1, 1);
@@ -2938,7 +2938,7 @@ namespace Iocaine2.Memory
                         {
                             baseByte -= 128;
                         }
-                        return (UInt16)(((baseByte * 256) + modByte) / 32);
+                        return (ushort)(((baseByte * 256) + modByte) / 32);
                     }
                     public static FFXIEnums.CRAFT_RANK get_synergy_rank_id()
                     {
@@ -2950,7 +2950,7 @@ namespace Iocaine2.Memory
                         return (FFXIEnums.CRAFT_RANK)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, off_craft_synergy, 1) & 0x0F);
                     }
                     #endregion synergy
-                    public static String get_rank_id_to_string(FFXIEnums.CRAFT_RANK iId)
+                    public static string get_rank_id_to_string(FFXIEnums.CRAFT_RANK iId)
                     {
                         switch (iId)
                         {
@@ -2985,249 +2985,249 @@ namespace Iocaine2.Memory
             public static class Attributes
             {
                 #region Physical
-                public static Int16 get_str_base()
+                public static short get_str_base()
                 {
                     return get_str_base(processIndex);
                 }
-                public static Int16 get_str_base(int iProcIndex)
+                public static short get_str_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 196, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 196, 2);
                 }
-                public static Int16 get_dex_base()
+                public static short get_dex_base()
                 {
                     return get_dex_base(processIndex);
                 }
-                public static Int16 get_dex_base(int iProcIndex)
+                public static short get_dex_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 198, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 198, 2);
                 }
-                public static Int16 get_vit_base()
+                public static short get_vit_base()
                 {
                     return get_vit_base(processIndex);
                 }
-                public static Int16 get_vit_base(int iProcIndex)
+                public static short get_vit_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 200, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 200, 2);
                 }
-                public static Int16 get_agi_base()
+                public static short get_agi_base()
                 {
                     return get_agi_base(processIndex);
                 }
-                public static Int16 get_agi_base(int iProcIndex)
+                public static short get_agi_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 202, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 202, 2);
                 }
-                public static Int16 get_int_base()
+                public static short get_int_base()
                 {
                     return get_int_base(processIndex);
                 }
-                public static Int16 get_int_base(int iProcIndex)
+                public static short get_int_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 204, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 204, 2);
                 }
-                public static Int16 get_mnd_base()
+                public static short get_mnd_base()
                 {
                     return get_mnd_base(processIndex);
                 }
-                public static Int16 get_mnd_base(int iProcIndex)
+                public static short get_mnd_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 206, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 206, 2);
                 }
-                public static Int16 get_chr_base()
+                public static short get_chr_base()
                 {
                     return get_chr_base(processIndex);
                 }
-                public static Int16 get_chr_base(int iProcIndex)
+                public static short get_chr_base(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 208, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 208, 2);
                 }
-                public static Int16 get_str_bonus()
+                public static short get_str_bonus()
                 {
                     return get_str_bonus(processIndex);
                 }
-                public static Int16 get_str_bonus(int iProcIndex)
+                public static short get_str_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 210, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 210, 2);
                 }
-                public static Int16 get_dex_bonus()
+                public static short get_dex_bonus()
                 {
                     return get_dex_bonus(processIndex);
                 }
-                public static Int16 get_dex_bonus(int iProcIndex)
+                public static short get_dex_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 212, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 212, 2);
                 }
-                public static Int16 get_vit_bonus()
+                public static short get_vit_bonus()
                 {
                     return get_vit_bonus(processIndex);
                 }
-                public static Int16 get_vit_bonus(int iProcIndex)
+                public static short get_vit_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 214, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 214, 2);
                 }
-                public static Int16 get_agi_bonus()
+                public static short get_agi_bonus()
                 {
                     return get_agi_bonus(processIndex);
                 }
-                public static Int16 get_agi_bonus(int iProcIndex)
+                public static short get_agi_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 216, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 216, 2);
                 }
-                public static Int16 get_int_bonus()
+                public static short get_int_bonus()
                 {
                     return get_int_bonus(processIndex);
                 }
-                public static Int16 get_int_bonus(int iProcIndex)
+                public static short get_int_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 218, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 218, 2);
                 }
-                public static Int16 get_mnd_bonus()
+                public static short get_mnd_bonus()
                 {
                     return get_mnd_bonus(processIndex);
                 }
-                public static Int16 get_mnd_bonus(int iProcIndex)
+                public static short get_mnd_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 220, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 220, 2);
                 }
-                public static Int16 get_chr_bonus()
+                public static short get_chr_bonus()
                 {
                     return get_chr_bonus(processIndex);
                 }
-                public static Int16 get_chr_bonus(int iProcIndex)
+                public static short get_chr_bonus(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 222, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 222, 2);
                 }
                 #endregion Physical
                 #region Combat
-                public static Int16 get_attack()
+                public static short get_attack()
                 {
                     return get_attack(processIndex);
                 }
-                public static Int16 get_attack(int iProcIndex)
+                public static short get_attack(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 224, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 224, 2);
                 }
-                public static Int16 get_defence()
+                public static short get_defence()
                 {
                     return get_defence(processIndex);
                 }
-                public static Int16 get_defence(int iProcIndex)
+                public static short get_defence(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 226, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 226, 2);
                 }
                 #endregion Combat
                 #region Elemental
-                public static Int16 get_def_fire()
+                public static short get_def_fire()
                 {
                     return get_def_fire(processIndex);
                 }
-                public static Int16 get_def_fire(int iProcIndex)
+                public static short get_def_fire(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 228, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 228, 2);
                 }
-                public static Int16 get_def_ice()
+                public static short get_def_ice()
                 {
                     return get_def_ice(processIndex);
                 }
-                public static Int16 get_def_ice(int iProcIndex)
+                public static short get_def_ice(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 230, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 230, 2);
                 }
-                public static Int16 get_def_wind()
+                public static short get_def_wind()
                 {
                     return get_def_wind(processIndex);
                 }
-                public static Int16 get_def_wind(int iProcIndex)
+                public static short get_def_wind(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 232, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 232, 2);
                 }
-                public static Int16 get_def_earth()
+                public static short get_def_earth()
                 {
                     return get_def_earth(processIndex);
                 }
-                public static Int16 get_def_earth(int iProcIndex)
+                public static short get_def_earth(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 234, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 234, 2);
                 }
-                public static Int16 get_def_lightning()
+                public static short get_def_lightning()
                 {
                     return get_def_lightning(processIndex);
                 }
-                public static Int16 get_def_lightning(int iProcIndex)
+                public static short get_def_lightning(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 236, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 236, 2);
                 }
-                public static Int16 get_def_water()
+                public static short get_def_water()
                 {
                     return get_def_water(processIndex);
                 }
-                public static Int16 get_def_water(int iProcIndex)
+                public static short get_def_water(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 238, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 238, 2);
                 }
-                public static Int16 get_def_light()
+                public static short get_def_light()
                 {
                     return get_def_light(processIndex);
                 }
-                public static Int16 get_def_light(int iProcIndex)
+                public static short get_def_light(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 240, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 240, 2);
                 }
-                public static Int16 get_def_dark()
+                public static short get_def_dark()
                 {
                     return get_def_dark(processIndex);
                 }
-                public static Int16 get_def_dark(int iProcIndex)
+                public static short get_def_dark(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 242, 2);
+                    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, 242, 2);
                 }
                 #endregion Elemental
             }
             public static class StatusEffects
             {
-                public static void get_effects(ref UInt16[] oStatusArray)
+                public static void get_effects(ref ushort[] oStatusArray)
                 {
                     get_effects(processIndex, ref oStatusArray);
                 }
-                public static void get_effects(int iProcIndex, ref UInt16[] oStatusArray)
+                public static void get_effects(int iProcIndex, ref ushort[] oStatusArray)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     if (oStatusArray == null)
                     {
-                        oStatusArray = new UInt16[32];
+                        oStatusArray = new ushort[32];
                     }
                     else if (oStatusArray.Length < 32)
                     {
-                        oStatusArray = new UInt16[32];
+                        oStatusArray = new ushort[32];
                     }
                     int tempOffset = off_status_effects;
                     for (int ii = 0; ii < 32; ii++)
                     {
-                        oStatusArray[ii] = (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, tempOffset, 2);
+                        oStatusArray[ii] = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, tempOffset, 2);
                         tempOffset += 2;
                         if (oStatusArray[ii] == 0xFFFF)
                         {
@@ -3256,14 +3256,14 @@ namespace Iocaine2.Memory
             {
                 public static class Magic
                 {
-                    public static UInt16 get_time_remaining(Int16 iSpellId)
+                    public static ushort get_time_remaining(short iSpellId)
                     {
                         return get_time_remaining(processIndex, iSpellId);
                     }
-                    public static UInt16 get_time_remaining(int iProcIndex, Int16 iSpellId)
+                    public static ushort get_time_remaining(int iProcIndex, short iSpellId)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        return (UInt16)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastSpell, iSpellId * 2, 2) / 60);
+                        return (ushort)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastSpell, iSpellId * 2, 2) / 60);
                     }
                 }
                 public static class Abilities
@@ -3281,19 +3281,19 @@ namespace Iocaine2.Memory
                      *    Addr: Ptr + 124       Ptr + 128       Ptr + 132
                      *    Val:  1-hr timer      Timer for A     Timer for B  etc...
                     */
-                    public static List<UInt16> get_ability_indices()
+                    public static List<ushort> get_ability_indices()
                     {
                         return get_ability_indices(processIndex);
                     }
-                    public static List<UInt16> get_ability_indices(int iProcIndex)
+                    public static List<ushort> get_ability_indices(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        List<UInt16> abilityIndexList = new List<UInt16>();
+                        List<ushort> abilityIndexList = new List<ushort>();
                         abilityIndexList.Add(0);
-                        Byte nextIndex = 0;
-                        for (Byte ii = 11; ii <= 120; ii += 8)
+                        byte nextIndex = 0;
+                        for (byte ii = 11; ii <= 120; ii += 8)
                         {
-                            nextIndex = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastAbility, ii, 2);
+                            nextIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastAbility, ii, 2);
                             if (nextIndex != 0)
                             {
                                 abilityIndexList.Add(nextIndex);
@@ -3305,15 +3305,15 @@ namespace Iocaine2.Memory
                         }
                         return abilityIndexList;
                     }
-                    public static UInt32 get_time_remaining(Byte iStructureIndex)
+                    public static uint get_time_remaining(byte iStructureIndex)
                     {
                         return get_time_remaining(processIndex, iStructureIndex);
                     }
-                    public static UInt32 get_time_remaining(int iProcIndex, Byte iStructureIndex)
+                    public static uint get_time_remaining(int iProcIndex, byte iStructureIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         LoggingFunctions.Debug("Recast.Abilities.get_time_remaining: Trying to read from address: " + (processPointerList[processIndex].Info_RecastAbility + 248 + (iStructureIndex * 4)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-                        return (UInt32)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastAbility, 248 + (iStructureIndex * 4), 4) / 60);
+                        return (uint)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastAbility, 248 + (iStructureIndex * 4), 4) / 60);
                     }
                 }
             }
@@ -3327,7 +3327,7 @@ namespace Iocaine2.Memory
                 public static byte get_max_bag(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    //LoggingFunctions.Timestamp("Max bag: " + (byte)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_InventoryMax, 0, 1) - 1) + " from address: " + String.Format("{0:X}", processPointerList[processIndex].Info_InventoryMax));
+                    //LoggingFunctions.Timestamp("Max bag: " + (byte)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_InventoryMax, 0, 1) - 1) + " from address: " + string.Format("{0:X}", processPointerList[processIndex].Info_InventoryMax));
                     return (byte)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Max, 0, 1) - 1);
                 }
                 public static byte get_max_safe()
@@ -3503,12 +3503,12 @@ namespace Iocaine2.Memory
                 }
                 #endregion Capacity Counts
                 #region Gil
-                public static UInt32 get_gil(int iProcIndex)
+                public static uint get_gil(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
-                    return (UInt32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, 4, 4);
+                    return (uint)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Inv_Bag, 4, 4);
                 }
-                public static UInt32 get_gil()
+                public static uint get_gil()
                 {
                     return get_gil(processIndex);
                 }
@@ -4829,11 +4829,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Generic Functions
                 #region Main
-                public static UInt16 get_main_id()
+                public static ushort get_main_id()
                 {
                     return get_main_id(processIndex);
                 }
-                public static UInt16 get_main_id(int iProcIndex)
+                public static ushort get_main_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.MAIN);
                 }
@@ -4865,11 +4865,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Sub
                 #region Ranged
-                public static UInt16 get_range_id()
+                public static ushort get_range_id()
                 {
                     return get_range_id(processIndex);
                 }
-                public static UInt16 get_range_id(int iProcIndex)
+                public static ushort get_range_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.RANGE);
                 }
@@ -4883,11 +4883,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Ranged
                 #region Ammo
-                public static UInt16 get_ammo_id()
+                public static ushort get_ammo_id()
                 {
                     return get_ammo_id(processIndex);
                 }
-                public static UInt16 get_ammo_id(int iProcIndex)
+                public static ushort get_ammo_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.AMMO);
                 }
@@ -4912,11 +4912,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Ammo
                 #region Head
-                public static UInt16 get_head_id()
+                public static ushort get_head_id()
                 {
                     return get_head_id(processIndex);
                 }
-                public static UInt16 get_head_id(int iProcIndex)
+                public static ushort get_head_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.HEAD);
                 }
@@ -4930,11 +4930,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Head
                 #region Neck
-                public static UInt16 get_neck_id()
+                public static ushort get_neck_id()
                 {
                     return get_neck_id(processIndex);
                 }
-                public static UInt16 get_neck_id(int iProcIndex)
+                public static ushort get_neck_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.NECK);
                 }
@@ -4948,11 +4948,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Neck
                 #region Left Ear
-                public static UInt16 get_earL_id()
+                public static ushort get_earL_id()
                 {
                     return get_earL_id(processIndex);
                 }
-                public static UInt16 get_earL_id(int iProcIndex)
+                public static ushort get_earL_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.EARL);
                 }
@@ -4966,11 +4966,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Left Ear
                 #region Right Ear
-                public static UInt16 get_earR_id()
+                public static ushort get_earR_id()
                 {
                     return get_earR_id(processIndex);
                 }
-                public static UInt16 get_earR_id(int iProcIndex)
+                public static ushort get_earR_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.EARR);
                 }
@@ -4984,11 +4984,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Right Ear
                 #region Body
-                public static UInt16 get_body_id()
+                public static ushort get_body_id()
                 {
                     return get_body_id(processIndex);
                 }
-                public static UInt16 get_body_id(int iProcIndex)
+                public static ushort get_body_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.BODY);
                 }
@@ -5002,11 +5002,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Body
                 #region Hands
-                public static UInt16 get_hands_id()
+                public static ushort get_hands_id()
                 {
                     return get_hands_id(processIndex);
                 }
-                public static UInt16 get_hands_id(int iProcIndex)
+                public static ushort get_hands_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.HANDS);
                 }
@@ -5020,11 +5020,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Hands
                 #region Left Ring
-                public static UInt16 get_ringL_id()
+                public static ushort get_ringL_id()
                 {
                     return get_ringL_id(processIndex);
                 }
-                public static UInt16 get_ringL_id(int iProcIndex)
+                public static ushort get_ringL_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.RINGL);
                 }
@@ -5038,11 +5038,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Left Ring
                 #region Right Ring
-                public static UInt16 get_ringR_id()
+                public static ushort get_ringR_id()
                 {
                     return get_ringR_id(processIndex);
                 }
-                public static UInt16 get_ringR_id(int iProcIndex)
+                public static ushort get_ringR_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.RINGR);
                 }
@@ -5056,11 +5056,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Right Ring
                 #region Back
-                public static UInt16 get_back_id()
+                public static ushort get_back_id()
                 {
                     return get_back_id(processIndex);
                 }
-                public static UInt16 get_back_id(int iProcIndex)
+                public static ushort get_back_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.BACK);
                 }
@@ -5074,11 +5074,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Back
                 #region Waist
-                public static UInt16 get_waist_id()
+                public static ushort get_waist_id()
                 {
                     return get_waist_id(processIndex);
                 }
-                public static UInt16 get_waist_id(int iProcIndex)
+                public static ushort get_waist_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.WAIST);
                 }
@@ -5092,11 +5092,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Waist
                 #region Legs
-                public static UInt16 get_legs_id()
+                public static ushort get_legs_id()
                 {
                     return get_legs_id(processIndex);
                 }
-                public static UInt16 get_legs_id(int iProcIndex)
+                public static ushort get_legs_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.LEGS);
                 }
@@ -5110,11 +5110,11 @@ namespace Iocaine2.Memory
                 }
                 #endregion Legs
                 #region Feet
-                public static UInt16 get_feet_id()
+                public static ushort get_feet_id()
                 {
                     return get_feet_id(processIndex);
                 }
-                public static UInt16 get_feet_id(int iProcIndex)
+                public static ushort get_feet_id(int iProcIndex)
                 {
                     return get_id(iProcIndex, SLOT.FEET);
                 }
@@ -5201,7 +5201,7 @@ namespace Iocaine2.Memory
                 return true;
             }
 
-            public static UInt16 get_id()
+            public static ushort get_id()
             {
                 return get_id(processIndex);
             }
@@ -5211,23 +5211,23 @@ namespace Iocaine2.Memory
             /// </summary>
             /// <param name="iProcIndex"></param>
             /// <returns>Index into the NPC table for the target.</returns>
-            public static UInt16 get_id(int iProcIndex)
+            public static ushort get_id(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_TargetLock);
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 0, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 0, 2);
                 // +4 more is a 4-byte value that is in the NPC structure.
             }
-            public static String get_name()
+            public static string get_name()
             {
                 return get_name(processIndex);
             }
-            public static String get_name(int iProcIndex)
+            public static string get_name(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
-                LoggingFunctions.Debug("Target::get_name: target ptr = " + String.Format("{0:X}", (UInt32)temp), LoggingFunctions.DBG_SCOPE.MEMREADS);
-                String tempString = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)temp, 20);
+                LoggingFunctions.Debug("Target::get_name: target ptr = " + string.Format("{0:X}", (uint)temp), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                string tempString = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)temp, 20);
                 return tempString.Substring(0, tempString.Length - 1);
             }
             public static byte get_hp_perc()
@@ -5240,62 +5240,62 @@ namespace Iocaine2.Memory
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 100, 1);
             }
-            public static Single get_position_x()
+            public static float get_position_x()
             {
                 return get_position_x(processIndex);
             }
-            public static Single get_position_x(int iProcIndex)
+            public static float get_position_x(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)temp, 72);
                 return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 4);
             }
-            public static Single get_position_z()
+            public static float get_position_z()
             {
                 return get_position_z(processIndex);
             }
-            public static Single get_position_z(int iProcIndex)
+            public static float get_position_z(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)temp, 72);
                 return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 8);
             }
-            public static Single get_position_y()
+            public static float get_position_y()
             {
                 return get_position_y(processIndex);
             }
-            public static Single get_position_y(int iProcIndex)
+            public static float get_position_y(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)temp, 72);
                 return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 12);
             }
-            public static Single get_position_angle()
+            public static float get_position_angle()
             {
                 return get_position_angle(processIndex);
             }
-            public static Single get_position_angle(int iProcIndex)
+            public static float get_position_angle(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)temp, 72);
                 return MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, 24);
             }
-            public static Single get_distance()
+            public static float get_distance()
             {
                 return get_distance(processIndex);
             }
-            public static Single get_distance(int iProcIndex)
+            public static float get_distance(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Target);
                 temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)temp, 72);
-                LoggingFunctions.Debug("Target::get_distance: target ptr = " + String.Format("{0:X}", (UInt32)temp), LoggingFunctions.DBG_SCOPE.MEMREADS);
-                Single distSqrd = MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, off_target_dist);
-                return (Single)Math.Sqrt(distSqrd);
+                LoggingFunctions.Debug("Target::get_distance: target ptr = " + string.Format("{0:X}", (uint)temp), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                float distSqrd = MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, off_target_dist);
+                return (float)Math.Sqrt(distSqrd);
             }
             public static byte get_status()
             {
@@ -5316,8 +5316,8 @@ namespace Iocaine2.Memory
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr temp = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_TargetLock);
-                Byte lockValue = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, (int)off_target_lock, 1);
-                Byte odd = (Byte)(lockValue % 2);
+                byte lockValue = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)temp, (int)off_target_lock, 1);
+                byte odd = (byte)(lockValue % 2);
                 return ((odd == 1) ? true : false);
             }
         }
@@ -5328,71 +5328,71 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[processIndex].MainProcess;
                 return MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
             }
-            public static Int32 get_id1()
+            public static int get_id1()
             {
                 return get_id1(processIndex);
             }
-            public static Int32 get_id1(int iProcIndex)
+            public static int get_id1(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 20, 4);//16, 4);
+                return (int)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 20, 4);//16, 4);
             }
-            public static Int32 get_id2()
+            public static int get_id2()
             {
                 return get_id2(processIndex);
             }
-            public static Int32 get_id2(int iProcIndex)
+            public static int get_id2(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 24, 4);//20, 4);
+                return (int)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 24, 4);//20, 4);
             }
-            public static Int32 get_id3()
+            public static int get_id3()
             {
                 return get_id3(processIndex);
             }
-            public static Int32 get_id3(int iProcIndex)
+            public static int get_id3(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 28, 4);//24, 4);
+                return (int)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 28, 4);//24, 4);
             }
-            public static Int32 get_large()
+            public static int get_large()
             {
                 return get_large(processIndex);
             }
-            public static Int32 get_large(int iProcIndex)
+            public static int get_large(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 40, 4);//36, 4);
+                return (int)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 40, 4);//36, 4);
             }
-            public static Int16 get_max_hp()
+            public static short get_max_hp()
             {
                 return get_max_hp(processIndex);
             }
-            public static Int16 get_max_hp(int iProcIndex)
+            public static short get_max_hp(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 0, 2);
+                return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 0, 2);
             }
-            public static Int16 get_cur_hp()
+            public static short get_cur_hp()
             {
                 return get_cur_hp(processIndex);
             }
-            public static Int16 get_cur_hp(int iProcIndex)
+            public static short get_cur_hp(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 4, 2);
+                return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 4, 2);
             }
-            public static bool set_cur_hp(Int16 iData)
+            public static bool set_cur_hp(short iData)
             {
                 return set_cur_hp(processIndex, iData);
             }
-            public static bool set_cur_hp(int iProcIndex, Int16 iData)
+            public static bool set_cur_hp(int iProcIndex, short iData)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
@@ -5457,7 +5457,7 @@ namespace Iocaine2.Memory
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                Byte data = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 48, 1);
+                byte data = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 48, 1);
                 if (data == 0)
                 {
                     return FISHING_ARROW_DIR.RIGHT;
@@ -5475,7 +5475,7 @@ namespace Iocaine2.Memory
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                UInt16 data = (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 52, 2);
+                ushort data = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 52, 2);
                 if (data == 0)
                 {
                     return true;
@@ -5485,36 +5485,36 @@ namespace Iocaine2.Memory
                     return false;
                 }
             }
-            public static UInt16 get_arrow_timer_value()
+            public static ushort get_arrow_timer_value()
             {
                 return get_arrow_timer_value(processIndex);
             }
-            public static UInt16 get_arrow_timer_value(int iProcIndex)
+            public static ushort get_arrow_timer_value(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Fishing + 8, 0);
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 52, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 52, 2);
             }
-            public static String get_last_catch()
+            public static string get_last_catch()
             {
                 return get_last_catch(processIndex, "");
             }
-            public static String get_last_catch(int iProcIndex)
+            public static string get_last_catch(int iProcIndex)
             {
                 return get_last_catch(iProcIndex, "");
             }
-            public static String get_last_catch(String iFisherName)
+            public static string get_last_catch(string iFisherName)
             {
                 return get_last_catch(processIndex, iFisherName);
             }
-            public static String get_last_catch(int iProcIndex, String iFisherName)
+            public static string get_last_catch(int iProcIndex, string iFisherName)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 const int maxLoopCnt = 4;   //max number of lines to recurse backwards in chat log
                 int loopCnt = 1;
-                String tempResult;
-                String temp;
-                String dummyLogLineNb = "";
+                string tempResult;
+                string temp;
+                string dummyLogLineNb = "";
                 FFXIEnums.CHAT_MODE dummyCode = 0;
                 do
                 {
@@ -5533,7 +5533,7 @@ namespace Iocaine2.Memory
                             hit_index++;
                         }
                         int temp_len = temp.Length - hit_index - 1;  //hit index is beginning of fish name, -1 to remove the '!'
-                        String name = temp.Substring(hit_index, temp_len);
+                        string name = temp.Substring(hit_index, temp_len);
                         if (temp.Contains("caught 2"))
                         {
                             name = name + " 2";
@@ -5603,7 +5603,7 @@ namespace Iocaine2.Memory
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Chatlog);
-                LoggingFunctions.Debug("Chat.get_index(): ptr = 0x" + String.Format("{0:X}", ((UInt32)ptr)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Chat.get_index(): ptr = 0x" + string.Format("{0:X}", ((uint)ptr)), LoggingFunctions.DBG_SCOPE.MEMREADS);
                 int off_to_index = 0;
                 if (OS_Version == (int)FFXIEnums.OSVersion.XP)
                 {
@@ -5618,11 +5618,11 @@ namespace Iocaine2.Memory
                 LoggingFunctions.Debug("Chat.get_index(): line nb: " + lastLineNumber + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                 return lastLineNumber;
             }
-            public static String get_lineX(int iNbFromEnd, ref FFXIEnums.CHAT_MODE oCode, ref String oLogicalLineNb)
+            public static string get_lineX(int iNbFromEnd, ref FFXIEnums.CHAT_MODE oCode, ref string oLogicalLineNb)
             {
                 return get_lineX(processIndex, iNbFromEnd, ref oCode, ref oLogicalLineNb);
             }
-            public static String get_lineX(int iProcIndex, int iNbFromEnd, ref FFXIEnums.CHAT_MODE oCode, ref String oLogicalLineNb)
+            public static string get_lineX(int iProcIndex, int iNbFromEnd, ref FFXIEnums.CHAT_MODE oCode, ref string oLogicalLineNb)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (iNbFromEnd > 50)
@@ -5633,7 +5633,7 @@ namespace Iocaine2.Memory
                 else
                 {
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Chatlog, 4);
-                    LoggingFunctions.Debug("Chat.get_lineX: ptr_a: 0x " + String.Format("{0:x}", (UInt32)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Chat.get_lineX: ptr_a: 0x " + string.Format("{0:x}", (uint)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     int lastLineNumber = 0;
                     int off_to_index = 0;
                     if (OS_Version == (int)FFXIEnums.OSVersion.XP)
@@ -5646,7 +5646,7 @@ namespace Iocaine2.Memory
                         lastLineNumber = MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_to_index, 4);
                         ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)ptr, 4);
                     }
-                    LoggingFunctions.Debug("Chat.get_lineX: ptr_b: 0x " + String.Format("{0:x}", (UInt32)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Chat.get_lineX: ptr_b: 0x " + string.Format("{0:x}", (uint)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     LoggingFunctions.Debug("Chat.get_lineX: off_to_index " + off_to_index, LoggingFunctions.DBG_SCOPE.MEMREADS);
                     if (OS_Version == (int)FFXIEnums.OSVersion.XP)
                     {
@@ -5694,16 +5694,16 @@ namespace Iocaine2.Memory
                     }
                     LoggingFunctions.Debug("Chat.get_lineX: off_to_offset    " + off_to_offset, LoggingFunctions.DBG_SCOPE.MEMREADS);
                     LoggingFunctions.Debug("Chat.get_lineX: off_to_first_ptr " + off_to_first_ptr, LoggingFunctions.DBG_SCOPE.MEMREADS);
-                    LoggingFunctions.Debug("Chat.get_lineX: ptr_c: 0x " + String.Format("{0:x}", (UInt32)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Chat.get_lineX: ptr_c: 0x " + string.Format("{0:x}", (uint)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     int lineOffset = MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_to_offset, 2);
                     //lineOffset += 60;
-                    LoggingFunctions.Debug("Chat.get_lineX: lineOffset: 0x " + String.Format("{0:x}", lineOffset), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Chat.get_lineX: lineOffset: 0x " + string.Format("{0:x}", lineOffset), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     uint blockBegin = (uint)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, (off_to_first_ptr + whichBlock), 4);
-                    LoggingFunctions.Debug("Chat.get_lineX: blockBegin: 0x " + String.Format("{0:x}", blockBegin), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Chat.get_lineX: blockBegin: 0x " + string.Format("{0:x}", blockBegin), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     /////////////////////////////
                     //This is the additional part
                     /////////////////////////////
-                    String codeWord = "";
+                    string codeWord = "";
                     codeWord += (char)MemoryFunctions.ReadMem((IntPtr)proc.Handle, blockBegin, lineOffset, 1);
                     codeWord += (char)MemoryFunctions.ReadMem((IntPtr)proc.Handle, blockBegin, lineOffset + 1, 1);
                     //codeWord(2, (char)MemoryFunctions.ReadMem((IntPtr)proc.Handle, blockBegin, 0, (lineOffset + 1), 1));
@@ -5732,7 +5732,7 @@ namespace Iocaine2.Memory
                     LoggingFunctions.Debug("Chat.get_lineX: oLogicalLineNb: " + oLogicalLineNb + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                     LoggingFunctions.Debug("Chat.get_lineX: Char: " + codeWord.ToString() + ", code: " + codeInt + ", enum: " + oCode.ToString() + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
 
-                    String result = MemoryFunctions.ReadStringChatFFXI((IntPtr)proc.Handle, blockBegin, (off_chat_text_start + lineOffset));
+                    string result = MemoryFunctions.ReadStringChatFFXI((IntPtr)proc.Handle, blockBegin, (off_chat_text_start + lineOffset));
                     return result;
                 }
             }
@@ -5741,15 +5741,15 @@ namespace Iocaine2.Memory
         {
             public static class BannerText
             {
-                public static String get_help_text()
+                public static string get_help_text()
                 {
                     return get_help_text(processIndex);
                 }
-                public static String get_help_text(int iProcIndex)
+                public static string get_help_text(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Windows);
-                    LoggingFunctions.Debug("get_help_text: help ptr1 = " + String.Format("{0:x}", ptr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("get_help_text: help ptr1 = " + string.Format("{0:x}", ptr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                     if ((int)ptr == 0)
                     {
                         return "N/A";
@@ -5759,8 +5759,8 @@ namespace Iocaine2.Memory
                     {
                         return "N/A";
                     }
-                    LoggingFunctions.Debug("get_help_text: help ptr2 = " + String.Format("{0:x}", ptr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
-                    String text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
+                    LoggingFunctions.Debug("get_help_text: help ptr2 = " + string.Format("{0:x}", ptr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    string text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
                     LoggingFunctions.Debug("get_help_text: help text = " + text + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                     if ((text != null) && (text.Length > 0))
                     {
@@ -5788,7 +5788,7 @@ namespace Iocaine2.Memory
                     {
                         return "N/A";
                     }
-                    String text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
+                    string text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
                     if (text.Length > 0)
                     {
                         return text.Substring(0, text.Length - 1);
@@ -5832,11 +5832,11 @@ namespace Iocaine2.Memory
                     }
                     return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 35, 1);
                 }
-                public static String get_selected_item_name()
+                public static string get_selected_item_name()
                 {
                     return get_selected_item_name(processIndex);
                 }
-                public static String get_selected_item_name(int iProcIndex)
+                public static string get_selected_item_name(int iProcIndex)
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Windows, 12);
@@ -5854,7 +5854,7 @@ namespace Iocaine2.Memory
                     {
                         return "N/A";
                     }
-                    String text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
+                    string text = MemoryFunctions.ReadString((IntPtr)proc.Handle, (uint)ptr, 0);
                     if (text.Length > 0)
                     {
                         return text.Substring(0, text.Length - 1);
@@ -6060,7 +6060,7 @@ namespace Iocaine2.Memory
                 //{
                 //    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, info_item_details, (index * info_item_details_next_item) + info_item_details_item_id, 2);
                 //}
-                //public static short info_item_details_get_itemID(int iProcIndex, String itemName)
+                //public static short info_item_details_get_itemID(int iProcIndex, string itemName)
                 //{
                 //    byte count = 0;
                 //    uint addr = (uint)mod.BaseAddress + info_item_details;
@@ -6068,7 +6068,7 @@ namespace Iocaine2.Memory
                 //    while (count < 80)
                 //    {
                 //        ptrToName = (uint)MemoryFunctions.GetPointer((IntPtr)proc.Handle, addr, info_item_details_name_ptr);
-                //        String temp = MemoryFunctions.ReadString((IntPtr)proc.Handle, ptrToName, 0, 0);
+                //        string temp = MemoryFunctions.ReadString((IntPtr)proc.Handle, ptrToName, 0, 0);
                 //        temp = temp.Substring(0, temp.Length-1);
                 //        if (temp == itemName)
                 //        {
@@ -6082,7 +6082,7 @@ namespace Iocaine2.Memory
                 //    }
                 //    return 0;
                 //}
-                //public static void info_item_details_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref String itemName)
+                //public static void info_item_details_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref string itemName)
                 //{
                 //    uint itemPtr = (uint)mod.BaseAddress + info_item_details + (uint)(index * info_item_details_next_item);
                 //    itemID = (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, itemPtr, 0, info_item_details_item_id, 2);
@@ -6100,13 +6100,13 @@ namespace Iocaine2.Memory
                 //}
                 #endregion Item_Details_info
                 #region Item_Details_info_preloaded
-                //public static void info_item_details_pre_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref String itemName)
+                //public static void info_item_details_pre_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref string itemName)
                 //{
                 //    itemID = (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, info_item_details_preloaded, (index * info_item_details_pre_next_item), 2);
                 //    itemName = MemoryFunctions.ReadString((IntPtr)proc.Handle, info_item_details_preloaded, ((index * info_item_details_pre_next_item) + info_item_details_pre_name));
                 //    itemName = itemName.Substring(0, itemName.Length - 1);
                 //}
-                //public static void info_item_details_pre_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref String itemName, ref byte itemType)
+                //public static void info_item_details_pre_get_itemID_Name(int iProcIndex, byte index, ref short itemID, ref string itemName, ref byte itemType)
                 //{
                 //    itemID = (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, info_item_details_preloaded, (index * info_item_details_pre_next_item), 2);
                 //    itemName = MemoryFunctions.ReadString((IntPtr)proc.Handle, info_item_details_preloaded, ((index * info_item_details_pre_next_item) + info_item_details_pre_name));
@@ -6117,9 +6117,9 @@ namespace Iocaine2.Memory
                 //{
                 //    return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, info_item_details_preloaded, (index * info_item_details_pre_next_item), 2);
                 //}
-                //public static String info_item_details_pre_get_item_name(int iProcIndex, byte index)
+                //public static string info_item_details_pre_get_item_name(int iProcIndex, byte index)
                 //{
-                //    String itemName = MemoryFunctions.ReadString((IntPtr)proc.Handle, info_item_details_preloaded, ((index * info_item_details_pre_next_item) + info_item_details_pre_name));
+                //    string itemName = MemoryFunctions.ReadString((IntPtr)proc.Handle, info_item_details_preloaded, ((index * info_item_details_pre_next_item) + info_item_details_pre_name));
                 //    return itemName.Substring(0, itemName.Length - 1);
                 //}
                 //public static byte info_item_details_pre_get_type(int iProcIndex, byte index)
@@ -6141,51 +6141,51 @@ namespace Iocaine2.Memory
             {
                 public static class TextStyle
                 {
-                    public static List<String> get_items()
+                    public static List<string> get_items()
                     {
                         return get_items(processIndex);
                     }
-                    public static List<String> get_items(int iProcIndex)
+                    public static List<string> get_items(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        List<String> strList = new List<string>();
+                        List<string> strList = new List<string>();
                         if(!is_open(iProcIndex))
                         {
                             return strList;
                         }
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_items: menuStructPtr = " + String.Format("{0:X}", (UInt32)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_items: menuStructPtr = " + string.Format("{0:X}", (uint)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (menuStructPtr == (UIntPtr)0)
                         {
                             return strList;
                         }
                         UIntPtr itemsStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)menuStructPtr, 12);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_items: itemsStructPtr = " + String.Format("{0:X}", (UInt32)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_items: itemsStructPtr = " + string.Format("{0:X}", (uint)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (itemsStructPtr == (UIntPtr)0)
                         {
                             return strList;
                         }
                         UIntPtr linkPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)itemsStructPtr, 20);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_items: linkPtr = " + String.Format("{0:X}", (UInt32)linkPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
-                        while ((UInt32)linkPtr != 0)
+                        LoggingFunctions.Debug("Menus.TextStyle.get_items: linkPtr = " + string.Format("{0:X}", (uint)linkPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        while ((uint)linkPtr != 0)
                         {
                             UIntPtr strPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)linkPtr, 16);
-                            String str = MemoryFunctions.ReadStringUniFfxi((IntPtr)proc.Handle, (uint)strPtr, 4, 262);
+                            string str = MemoryFunctions.ReadStringUniFfxi((IntPtr)proc.Handle, (uint)strPtr, 4, 262);
                             if (str != "")
                             {
                                 strList.Add(str);
                             }
                             linkPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)linkPtr, 0);
                             LoggingFunctions.Debug("Menus.TextStyle.get_items: str '" + str + "'.", LoggingFunctions.DBG_SCOPE.MEMREADS);
-                            LoggingFunctions.Debug("Menus.TextStyle.get_items: linkPtr = " + String.Format("{0:X}", (UInt32)linkPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                            LoggingFunctions.Debug("Menus.TextStyle.get_items: linkPtr = " + string.Format("{0:X}", (uint)linkPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         }
                         return strList;
                     }
-                    public static String get_top_text()
+                    public static string get_top_text()
                     {
                         return get_top_text(processIndex);
                     }
-                    public static String get_top_text(int iProcIndex)
+                    public static string get_top_text(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         if(!is_open(iProcIndex))
@@ -6193,26 +6193,26 @@ namespace Iocaine2.Memory
                             return "";
                         }
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_top_text: menuStructPtr = " + String.Format("{0:X}", (UInt32)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_top_text: menuStructPtr = " + string.Format("{0:X}", (uint)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (menuStructPtr == (UIntPtr)0)
                         {
                             return "";
                         }
                         UIntPtr itemsStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)menuStructPtr, 12);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_top_text: itemsStructPtr = " + String.Format("{0:X}", (UInt32)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_top_text: itemsStructPtr = " + string.Format("{0:X}", (uint)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (itemsStructPtr == (UIntPtr)0)
                         {
                             return "";
                         }
-                        String topText = MemoryFunctions.ReadStringUniFfxi((IntPtr)proc.Handle, (uint)itemsStructPtr, 56, 54); //54 prior to 8/11/14
+                        string topText = MemoryFunctions.ReadStringUniFfxi((IntPtr)proc.Handle, (uint)itemsStructPtr, 56, 54); //54 prior to 8/11/14
                         LoggingFunctions.Debug("Menus.TextStyle.get_top_text: topText = '" + topText + "'.", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         return topText;
                     }
-                    public static Int16 get_curr_index()
+                    public static short get_curr_index()
                     {
                         return get_curr_index(processIndex);
                     }
-                    public static Int16 get_curr_index(int iProcIndex)
+                    public static short get_curr_index(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         if(!is_open(iProcIndex))
@@ -6220,26 +6220,26 @@ namespace Iocaine2.Memory
                             return -1;
                         }
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_curr_index: menuStructPtr = " + String.Format("{0:X}", (UInt32)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_curr_index: menuStructPtr = " + string.Format("{0:X}", (uint)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (menuStructPtr == (UIntPtr)0)
                         {
                             return -1;
                         }
                         UIntPtr itemsStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)menuStructPtr, 12);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_curr_index: itemsStructPtr = " + String.Format("{0:X}", (UInt32)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_curr_index: itemsStructPtr = " + string.Format("{0:X}", (uint)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (itemsStructPtr == (UIntPtr)0)
                         {
                             return -1;
                         }
-                        Int16 currIdx = (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)itemsStructPtr, 48, 2);
+                        short currIdx = (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)itemsStructPtr, 48, 2);
                         LoggingFunctions.Debug("Menus.TextStyle.get_curr_index: currIdx = " + currIdx + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         return currIdx;
                     }
-                    public static Int16 get_item_count()
+                    public static short get_item_count()
                     {
                         return get_item_count(processIndex);
                     }
-                    public static Int16 get_item_count(int iProcIndex)
+                    public static short get_item_count(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         if(!is_open(iProcIndex))
@@ -6247,18 +6247,18 @@ namespace Iocaine2.Memory
                             return 0;
                         }
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_item_count: menuStructPtr = " + String.Format("{0:X}", (UInt32)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_item_count: menuStructPtr = " + string.Format("{0:X}", (uint)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (menuStructPtr == (UIntPtr)0)
                         {
                             return -1;
                         }
                         UIntPtr itemsStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, (uint)menuStructPtr, 12);
-                        LoggingFunctions.Debug("Menus.TextStyle.get_item_count: itemsStructPtr = " + String.Format("{0:X}", (UInt32)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.TextStyle.get_item_count: itemsStructPtr = " + string.Format("{0:X}", (uint)itemsStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (itemsStructPtr == (UIntPtr)0)
                         {
                             return -1;
                         }
-                        Int16 nbItems = (Int16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)itemsStructPtr, 40, 2);
+                        short nbItems = (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)itemsStructPtr, 40, 2);
                         LoggingFunctions.Debug("Menus.TextStyle.get_item_count: nbItems = " + nbItems + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         return nbItems;
                     }
@@ -6270,7 +6270,7 @@ namespace Iocaine2.Memory
                     public static bool is_open(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        Byte val = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)processPointerList[processIndex].Info_MenuBaseTextStyle, 0, 1);
+                        byte val = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)processPointerList[processIndex].Info_MenuBaseTextStyle, 0, 1);
                         return val != 0;
                     }
                 }
@@ -6280,28 +6280,28 @@ namespace Iocaine2.Memory
                     /// Gets the zero-based index of the currently selected button menu item.
                     /// </summary>
                     /// <returns>Zero-based index.</returns>
-                    public static Int16 get_curr_index()
+                    public static short get_curr_index()
                     {
                         return get_curr_index(processIndex);
                     }
-                    public static Int16 get_curr_index(int iProcIndex)
+                    public static short get_curr_index(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
-                        LoggingFunctions.Debug("Menus.ButtonStyle.get_curr_index: menuStructPtr = " + String.Format("{0:X}", (UInt32)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                        LoggingFunctions.Debug("Menus.ButtonStyle.get_curr_index: menuStructPtr = " + string.Format("{0:X}", (uint)menuStructPtr) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         if (menuStructPtr == (UIntPtr)0)
                         {
                             return -1;
                         }
-                        Int16 selIndex = (Int16)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)menuStructPtr, 76, 2) - 1);
+                        short selIndex = (short)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)menuStructPtr, 76, 2) - 1);
                         LoggingFunctions.Debug("Menus.ButtonStyle.get_curr_index: selIndex = " + selIndex + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                         return selIndex;
                     }
-                    public static void set_curr_index(UInt16 iIndex)
+                    public static void set_curr_index(ushort iIndex)
                     {
                         set_curr_index(processIndex, iIndex);
                     }
-                    public static void set_curr_index(int iProcIndex, UInt16 iIndex)
+                    public static void set_curr_index(int iProcIndex, ushort iIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         UIntPtr menuStructPtr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_MenuBase, 0);
@@ -6317,11 +6317,11 @@ namespace Iocaine2.Memory
             {
                 public static class NPC
                 {
-                    public static void get_buy_id_to_price_map(ref Dictionary<UInt16, UInt32> oPriceMap, ref Dictionary<UInt16, UInt16> oIndexMap)
+                    public static void get_buy_id_to_price_map(ref Dictionary<ushort, uint> oPriceMap, ref Dictionary<ushort, ushort> oIndexMap)
                     {
                         get_buy_id_to_price_map(processIndex, ref oPriceMap, ref oIndexMap);
                     }
-                    public static Dictionary<UInt16, UInt32> get_buy_id_to_price_map(int iProcIndex, ref Dictionary<UInt16, UInt32> oPriceMap, ref Dictionary<UInt16, UInt16> oIndexMap)
+                    public static Dictionary<ushort, uint> get_buy_id_to_price_map(int iProcIndex, ref Dictionary<ushort, uint> oPriceMap, ref Dictionary<ushort, ushort> oIndexMap)
                     {
                         #region Map Inits
                         if (oPriceMap == null)
@@ -6334,7 +6334,7 @@ namespace Iocaine2.Memory
                         }
                         if (oIndexMap == null)
                         {
-                            oIndexMap = new Dictionary<UInt16, UInt16>();
+                            oIndexMap = new Dictionary<ushort, ushort>();
                         }
                         else
                         {
@@ -6342,8 +6342,8 @@ namespace Iocaine2.Memory
                         }
                         #endregion Map Inits
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        UInt16 itemId = 0;
-                        UInt32 itemPrice = 0;
+                        ushort itemId = 0;
+                        uint itemPrice = 0;
                         byte index = 0;
                         byte indexContinuous = 0;
                         while ((itemId != 1) && (index < off_npc_shop_max_items))
@@ -6351,8 +6351,8 @@ namespace Iocaine2.Memory
                             //go thru the struct reading id's.
                             //only add the entry if the id is not 0.
                             //check to make sure that the last entry is always 1.
-                            itemPrice = (UInt32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (index * off_npc_shop_nxt_item) + off_npc_shop_item_price, 4);
-                            itemId = (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (index * off_npc_shop_nxt_item) + off_npc_shop_item_id, 2); //Was +8 prior to 6/17/14
+                            itemPrice = (uint)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (index * off_npc_shop_nxt_item) + off_npc_shop_item_price, 4);
+                            itemId = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (index * off_npc_shop_nxt_item) + off_npc_shop_item_id, 2); //Was +8 prior to 6/17/14
                             if ((itemId != 0) && (itemPrice != 0))
                             {
                                 oPriceMap.Add(itemId, itemPrice);
@@ -6368,22 +6368,22 @@ namespace Iocaine2.Memory
                 {
                     #region Prices
                     //Price of item in the list.
-                    public static UInt32 get_buy_price(UInt32 iIndex)
+                    public static uint get_buy_price(uint iIndex)
                     {
                         return get_buy_price(processIndex, iIndex);
                     }
-                    public static UInt32 get_buy_price(int iProcIndex, UInt32 iIndex)
+                    public static uint get_buy_price(int iProcIndex, uint iIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        return (UInt32)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[iProcIndex].Info_ShopBuyWindow, (int)((iIndex * off_gld_shop_nxt_item) + off_npc_shop_item_price), 4);
+                        return (uint)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[iProcIndex].Info_ShopBuyWindow, (int)((iIndex * off_gld_shop_nxt_item) + off_npc_shop_item_price), 4);
                     }
-                    public static UInt32 get_buy_price_from_id(UInt16 iItemId)
+                    public static uint get_buy_price_from_id(ushort iItemId)
                     {
                         return get_buy_price(processIndex, iItemId);
                     }
-                    public static UInt32 get_buy_price_from_id(int iProcIndex, UInt16 iItemId)
+                    public static uint get_buy_price_from_id(int iProcIndex, ushort iItemId)
                     {
-                        List<UInt16> itemIds = get_buy_item_ids(iProcIndex);
+                        List<ushort> itemIds = get_buy_item_ids(iProcIndex);
                         int idx = itemIds.IndexOf(iItemId);
                         if (idx < 0)
                         {
@@ -6391,32 +6391,32 @@ namespace Iocaine2.Memory
                         }
                         else
                         {
-                            return get_buy_price(iProcIndex, (UInt32)idx);
+                            return get_buy_price(iProcIndex, (uint)idx);
                         }
                     }
                     #endregion Prices
                     #region Item IDs
                     //Item ID(s) from the list.
-                    public static UInt16 get_buy_item_id(UInt32 iIndex)
+                    public static ushort get_buy_item_id(uint iIndex)
                     {
                         return get_buy_item_id(processIndex, iIndex);
                     }
-                    public static UInt16 get_buy_item_id(int iProcIndex, UInt32 iIndex)
+                    public static ushort get_buy_item_id(int iProcIndex, uint iIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
-                        return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (int)((iIndex * off_gld_shop_nxt_item) + off_npc_shop_item_id), 2);
+                        return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_ShopBuyWindow, (int)((iIndex * off_gld_shop_nxt_item) + off_npc_shop_item_id), 2);
                     }
-                    public static List<UInt16> get_buy_item_ids()
+                    public static List<ushort> get_buy_item_ids()
                     {
                         return get_buy_item_ids(processIndex);
                     }
-                    public static List<UInt16> get_buy_item_ids(int iProcIndex)
+                    public static List<ushort> get_buy_item_ids(int iProcIndex)
                     {
-                        //Int32 nbItems = get_buy_nb_listed_items(iProcIndex);
-                        List<UInt16> itemIds = new List<ushort>();
+                        //int nbItems = get_buy_nb_listed_items(iProcIndex);
+                        List<ushort> itemIds = new List<ushort>();
                         for (uint ii = 0; ii <= off_gld_shop_max_items; ii++)
                         {
-                            UInt16 id = get_buy_item_id(iProcIndex, ii);
+                            ushort id = get_buy_item_id(iProcIndex, ii);
                             if (id != 0)
                             {
                                 itemIds.Add(id);
@@ -6431,11 +6431,11 @@ namespace Iocaine2.Memory
                     #endregion Item IDs
                     #region Maps
                     //Get a full map of ID to price and ID to stock.
-                    public static void get_buy_maps(ref Dictionary<UInt16, UInt32> oPriceMap, ref Dictionary<UInt16, Byte> oStockMap, ref Dictionary<UInt16, UInt16> oIndexMap)
+                    public static void get_buy_maps(ref Dictionary<ushort, uint> oPriceMap, ref Dictionary<ushort, byte> oStockMap, ref Dictionary<ushort, ushort> oIndexMap)
                     {
                         get_buy_maps(processIndex, ref oPriceMap, ref oStockMap, ref oIndexMap);
                     }
-                    public static void get_buy_maps(int iProcIndex, ref Dictionary<UInt16, UInt32> oPriceMap, ref Dictionary<UInt16, Byte> oStockMap, ref Dictionary<UInt16, UInt16> oIndexMap)
+                    public static void get_buy_maps(int iProcIndex, ref Dictionary<ushort, uint> oPriceMap, ref Dictionary<ushort, byte> oStockMap, ref Dictionary<ushort, ushort> oIndexMap)
                     {
                         #region Map Inits
                         if (oPriceMap == null)
@@ -6456,17 +6456,17 @@ namespace Iocaine2.Memory
                         }
                         if (oIndexMap == null)
                         {
-                            oIndexMap = new Dictionary<ushort, UInt16>();
+                            oIndexMap = new Dictionary<ushort, ushort>();
                         }
                         else
                         {
                             oIndexMap.Clear();
                         }
                         #endregion Map Inits
-                        UInt32 price = 0;
-                        for (UInt16 ii = 0; ii < off_gld_shop_max_items; ii++)
+                        uint price = 0;
+                        for (ushort ii = 0; ii < off_gld_shop_max_items; ii++)
                         {
-                            UInt16 id = get_buy_item_id(iProcIndex, ii);
+                            ushort id = get_buy_item_id(iProcIndex, ii);
                             if (id != 0)
                             {
                                 price = get_buy_price(iProcIndex, ii);
@@ -6487,21 +6487,21 @@ namespace Iocaine2.Memory
                 }
                 public static class ItemWindow
                 {
-                    public static UInt16 get_nb_listed_items()
+                    public static ushort get_nb_listed_items()
                     {
                         return get_nb_listed_items(processIndex);
                     }
-                    public static UInt16 get_nb_listed_items(int iProcIndex)
+                    public static ushort get_nb_listed_items(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_InventoryNpcWnd, 0);
-                        return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_nb_items, 2);
+                        return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_nb_items, 2);
                     }
                     /// <summary>
                     /// Gets the current index starting at 1 in the NPC buy/sell menu.
                     /// </summary>
                     /// <returns></returns>
-                    public static UInt16 get_cur_idx()
+                    public static ushort get_cur_idx()
                     {
                         return get_cur_idx(processIndex);
                     }
@@ -6509,24 +6509,24 @@ namespace Iocaine2.Memory
                     /// Gets the current index starting at 1 in the NPC buy/sell menu.
                     /// </summary>
                     /// <returns></returns>
-                    public static UInt16 get_cur_idx(int iProcIndex)
+                    public static ushort get_cur_idx(int iProcIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_InventoryNpcWnd, 0);
-                        UInt16 topIdx = (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_idx_top_item, 2);
-                        UInt16 curIdx = (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_idx_in_wnd, 2);
-                        return (UInt16)(topIdx + curIdx);
+                        ushort topIdx = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_idx_top_item, 2);
+                        ushort curIdx = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, off_shop_item_idx_in_wnd, 2);
+                        return (ushort)(topIdx + curIdx);
                     }
-                    public static void set_cur_idx(UInt16 iIndex)
+                    public static void set_cur_idx(ushort iIndex)
                     {
                         set_cur_idx(processIndex, iIndex);
                     }
-                    public static void set_cur_idx(int iProcIndex, UInt16 iIndex)
+                    public static void set_cur_idx(int iProcIndex, ushort iIndex)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_InventoryNpcWnd, 0);
                         //All of the indexes are 1-based except topIdx (0-based). topIdx can also be thought of as the number of items above the visible window.
-                        UInt16 nbItems = get_nb_listed_items(iProcIndex);
+                        ushort nbItems = get_nb_listed_items(iProcIndex);
                         if (nbItems == 0)
                         {
                             return;
@@ -6537,7 +6537,7 @@ namespace Iocaine2.Memory
                         }
                         if (iIndex <= 10)
                         {
-                            LoggingFunctions.Timestamp("Writing to ptr: " + String.Format("{0:X}", (uint)ptr));
+                            LoggingFunctions.Timestamp("Writing to ptr: " + string.Format("{0:X}", (uint)ptr));
                             //Simplest case, just set the topIdx to 0, botIdx to 10 or nbItems, and curIdx to iIndex.
                             MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, 0, off_shop_item_idx_top_item, 2);
                             //MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iIndex, off_guild_shop_buy_idx_in_wnd, 2);
@@ -6563,8 +6563,8 @@ namespace Iocaine2.Memory
                 {
                     Process proc = processPointerList[iProcIndex].MainProcess;
                     UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_CraftWindow, 0);
-                    LoggingFunctions.Debug("Crafter pointer: " + String.Format("{0:X}", (uint)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
-                    LoggingFunctions.Debug("Final ID address is: " + String.Format("{0:X}", ((uint)ptr + off_crafter_item_id + (2 * iIndex))), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Crafter pointer: " + string.Format("{0:X}", (uint)ptr), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                    LoggingFunctions.Debug("Final ID address is: " + string.Format("{0:X}", ((uint)ptr + off_crafter_item_id + (2 * iIndex))), LoggingFunctions.DBG_SCOPE.MEMREADS);
                     oItemID = (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, (off_crafter_item_id + (2 * iIndex)), 2);
                     oQuantity = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, (off_crafter_qty + iIndex), 1);
                     oBagIndex = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, (off_crafter_bag_idx + iIndex), 1);
@@ -6669,14 +6669,14 @@ namespace Iocaine2.Memory
         public static class Party
         {
             #region Get Members
-            private static Boolean is_valid(int iProcIndex, Byte iMemberIndex)
+            private static bool is_valid(int iProcIndex, byte iMemberIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (iMemberIndex > 6)
                 {
                     return false;
                 }
-                Byte isValid = (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_valid + (off_pty_struct_size * iMemberIndex), 1);
+                byte isValid = (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_valid + (off_pty_struct_size * iMemberIndex), 1);
                 if (isValid != 0)
                 {
                     return true;
@@ -6686,45 +6686,45 @@ namespace Iocaine2.Memory
                     return false;
                 }
             }
-            public static Byte get_member_index(String iName)
+            public static byte get_member_index(string iName)
             {
                 return get_member_index(processIndex, iName);
             }
-            public static Byte get_member_index(int iProcIndex, String iName)
+            public static byte get_member_index(int iProcIndex, string iName)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                List<String> memberList = get_members(iProcIndex);
+                List<string> memberList = get_members(iProcIndex);
                 for (int ii = 0; ii < memberList.Count; ii++)
                 {
                     if (memberList[ii] == iName)
                     {
-                        return (Byte)(ii + 1);
+                        return (byte)(ii + 1);
                     }
                 }
                 return 0xff;
             }
-            public static String get_member_name(Byte iIndex)
+            public static string get_member_name(byte iIndex)
             {
                 return get_member_name(processIndex, iIndex);
             }
-            public static String get_member_name(int iProcIndex, Byte iIndex)
+            public static string get_member_name(int iProcIndex, byte iIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return MemoryFunctions.ReadString((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_struct_size * iIndex);
             }
-            public static List<String> get_members()
+            public static List<string> get_members()
             {
                 return get_members(processIndex);
             }
-            public static List<String> get_members(int iProcIndex)
+            public static List<string> get_members(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                List<String> memberList = new List<string>();
-                for (Byte ii = 1; ii <= 6; ii++)
+                List<string> memberList = new List<string>();
+                for (byte ii = 1; ii <= 6; ii++)
                 {
                     if (is_valid(iProcIndex, ii))
                     {
-                        String name = MemoryFunctions.ReadString((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_struct_size * ii);
+                        string name = MemoryFunctions.ReadString((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_struct_size * ii);
                         if (name.Length > 0)
                         {
                             name = name.Substring(0, name.Length - 1);
@@ -6734,22 +6734,22 @@ namespace Iocaine2.Memory
                 }
                 return memberList;
             }
-            public static Byte get_member_count()
+            public static byte get_member_count()
             {
                 return get_member_count(processIndex);
             }
-            public static Byte get_member_count(int iProcIndex)
+            public static byte get_member_count(int iProcIndex)
             {
-                List<String> members = get_members(iProcIndex);
-                return (Byte)(members.Count + 1);
+                List<string> members = get_members(iProcIndex);
+                return (byte)(members.Count + 1);
             }
             #endregion Get Members
             #region Get HP
-            public static UInt16 get_member_hp(Byte iMemberIndex)
+            public static ushort get_member_hp(byte iMemberIndex)
             {
                 return get_member_hp(processIndex, iMemberIndex);
             }
-            public static UInt16 get_member_hp(int iProcIndex, Byte iMemberIndex)
+            public static ushort get_member_hp(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6758,17 +6758,17 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_hp + (off_pty_struct_size * iMemberIndex), 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_hp + (off_pty_struct_size * iMemberIndex), 2);
                 }
                 return 0xffff;
             }
             #endregion Get HP
             #region Get MP
-            public static UInt16 get_member_mp(Byte iMemberIndex)
+            public static ushort get_member_mp(byte iMemberIndex)
             {
                 return get_member_mp(processIndex, iMemberIndex);
             }
-            public static UInt16 get_member_mp(int iProcIndex, Byte iMemberIndex)
+            public static ushort get_member_mp(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6777,17 +6777,17 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_mp + (off_pty_struct_size * iMemberIndex), 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_mp + (off_pty_struct_size * iMemberIndex), 2);
                 }
                 return 0xffff;
             }
             #endregion Get MP
             #region Get TP
-            public static UInt16 get_member_tp(Byte iMemberIndex)
+            public static ushort get_member_tp(byte iMemberIndex)
             {
                 return get_member_tp(processIndex, iMemberIndex);
             }
-            public static UInt16 get_member_tp(int iProcIndex, Byte iMemberIndex)
+            public static ushort get_member_tp(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6796,17 +6796,17 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_tp + (off_pty_struct_size * iMemberIndex), 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_tp + (off_pty_struct_size * iMemberIndex), 2);
                 }
                 return 0xffff;
             }
             #endregion Get TP
             #region Get HPP
-            public static Byte get_member_hpp(Byte iMemberIndex)
+            public static byte get_member_hpp(byte iMemberIndex)
             {
                 return get_member_hpp(processIndex, iMemberIndex);
             }
-            public static Byte get_member_hpp(int iProcIndex, Byte iMemberIndex)
+            public static byte get_member_hpp(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6815,17 +6815,17 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_hpp + (off_pty_struct_size * iMemberIndex), 1);
+                    return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_hpp + (off_pty_struct_size * iMemberIndex), 1);
                 }
                 return 0xff;
             }
             #endregion Get HPP
             #region Get MPP
-            public static Byte get_member_mpp(Byte iMemberIndex)
+            public static byte get_member_mpp(byte iMemberIndex)
             {
                 return get_member_mpp(processIndex, iMemberIndex);
             }
-            public static Byte get_member_mpp(int iProcIndex, Byte iMemberIndex)
+            public static byte get_member_mpp(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6834,17 +6834,17 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (Byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_mpp + (off_pty_struct_size * iMemberIndex), 1);
+                    return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_mpp + (off_pty_struct_size * iMemberIndex), 1);
                 }
                 return 0xff;
             }
             #endregion Get MPP
             #region Get Zone
-            public static UInt16 get_member_zone(Byte iMemberIndex)
+            public static ushort get_member_zone(byte iMemberIndex)
             {
                 return get_member_zone(processIndex, iMemberIndex);
             }
-            public static UInt16 get_member_zone(int iProcIndex, Byte iMemberIndex)
+            public static ushort get_member_zone(int iProcIndex, byte iMemberIndex)
             {
                 if ((iMemberIndex > 6) || (iMemberIndex < 0))
                 {
@@ -6853,7 +6853,7 @@ namespace Iocaine2.Memory
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 if (is_valid(iProcIndex, iMemberIndex))
                 {
-                    return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_zone + (off_pty_struct_size * iMemberIndex), 2);
+                    return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Party, off_pty_zone + (off_pty_struct_size * iMemberIndex), 2);
                 }
                 return 0xffff;
             }
@@ -6861,29 +6861,29 @@ namespace Iocaine2.Memory
         }
         public static class PCs
         {
-            public static UInt32 get_pointer(String iPlayer)
+            public static uint get_pointer(string iPlayer)
             {
                 return get_pointer(processIndex, iPlayer);
             }
-            public static UInt32 get_pointer(String iPlayer, out UInt32 oIndex, out UInt32 oIndexAddress)
+            public static uint get_pointer(string iPlayer, out uint oIndex, out uint oIndexAddress)
             {
                 return get_pointer(processIndex, iPlayer, out oIndex, out oIndexAddress);
             }
-            public static UInt32 get_pointer(int iProcIndex, String iPlayer)
+            public static uint get_pointer(int iProcIndex, string iPlayer)
             {
-                UInt32 oIndex = 0;
-                UInt32 oIndexAddress = 0;
+                uint oIndex = 0;
+                uint oIndexAddress = 0;
                 return get_pointer(iProcIndex, iPlayer, out oIndex, out oIndexAddress);
             }
-            public static UInt32 get_pointer(int iProcIndex, String iPlayer, out UInt32 oIndex, out UInt32 oIndexAddress)
+            public static uint get_pointer(int iProcIndex, string iPlayer, out uint oIndex, out uint oIndexAddress)
             {
                 oIndex = 0;
                 oIndexAddress = 0;
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                UInt32 curMapAddress = processPointerList[processIndex].Info_MapPcBegin;
-                UInt32 endMapAddress = processPointerList[processIndex].Info_MapPcEnd;
+                uint curMapAddress = processPointerList[processIndex].Info_MapPcBegin;
+                uint endMapAddress = processPointerList[processIndex].Info_MapPcEnd;
                 LoggingFunctions.Debug("PCs.get_pointer: Looking for player '" + iPlayer + "'.", LoggingFunctions.DBG_SCOPE.MEMREADS);
-                LoggingFunctions.Debug("PCs.get_pointer: PC Map resides between addresses " + String.Format("{0:X}", curMapAddress) + " and " + String.Format("{0:X}", endMapAddress) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("PCs.get_pointer: PC Map resides between addresses " + string.Format("{0:X}", curMapAddress) + " and " + string.Format("{0:X}", endMapAddress) + ".", LoggingFunctions.DBG_SCOPE.MEMREADS);
                 UIntPtr ptrAddress = (UIntPtr)0;
                 bool found = false;
                 while (!found && (curMapAddress <= endMapAddress))
@@ -6893,7 +6893,7 @@ namespace Iocaine2.Memory
                     ptrAddress = MemoryFunctions.GetPointer(proc.Handle, curMapAddress, 0);
                     if (ptrAddress != (UIntPtr)0)
                     {
-                        String tempName = MemoryFunctions.ReadString(proc.Handle, (uint)ptrAddress, (int)off_pc_map_name);
+                        string tempName = MemoryFunctions.ReadString(proc.Handle, (uint)ptrAddress, (int)off_pc_map_name);
                         if (tempName.Length > 3)
                         {
                             tempName = tempName.Substring(0, tempName.Length - 1);
@@ -6908,7 +6908,7 @@ namespace Iocaine2.Memory
                         }
                         if (found)
                         {
-                            LoggingFunctions.Debug("PCs.get_pointer: Map pos: " + String.Format("{0:X}", curMapAddress) + "  Pointer: " + String.Format("{0:X}", (uint)ptrAddress) + "  Name: '" + tempName + "'.", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                            LoggingFunctions.Debug("PCs.get_pointer: Map pos: " + string.Format("{0:X}", curMapAddress) + "  Pointer: " + string.Format("{0:X}", (uint)ptrAddress) + "  Name: '" + tempName + "'.", LoggingFunctions.DBG_SCOPE.MEMREADS);
                             return (uint)ptrAddress;
                         }
                     }
@@ -6919,156 +6919,156 @@ namespace Iocaine2.Memory
                 }
                 return (uint)0;
             }
-            public static String get_name(UInt32 iPointer)
+            public static string get_name(uint iPointer)
             {
                 return get_name(processIndex, iPointer);
             }
-            public static String get_name(int iProcIndex, UInt32 iPointer)
+            public static string get_name(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                String tempName = MemoryFunctions.ReadString(proc.Handle, iPointer, (int)off_pc_map_name);
+                string tempName = MemoryFunctions.ReadString(proc.Handle, iPointer, (int)off_pc_map_name);
                 if (tempName.Length > 3)
                 {
                     tempName = tempName.Substring(0, tempName.Length - 1);
                 }
                 return tempName;
             }
-            public static float get_posx(String iPlayer, ref UInt32 oPointer)
+            public static float get_posx(string iPlayer, ref uint oPointer)
             {
                 return get_posx(processIndex, iPlayer, ref oPointer);
             }
-            public static float get_posx(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static float get_posx(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_posx(iProcIndex, oPointer);
             }
-            public static float get_posx(UInt32 iPointer)
+            public static float get_posx(uint iPointer)
             {
                 return get_posx(processIndex, iPointer);
             }
-            public static float get_posx(int iProcIndex, UInt32 iPointer)
+            public static float get_posx(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return MemoryFunctions.ReadMem(proc.Handle, (uint)iPointer, (int)off_pc_map_posx);
             }
-            public static float get_posz(String iPlayer, ref UInt32 oPointer)
+            public static float get_posz(string iPlayer, ref uint oPointer)
             {
                 return get_posz(processIndex, iPlayer, ref oPointer);
             }
-            public static float get_posz(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static float get_posz(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_posz(iProcIndex, oPointer);
             }
-            public static float get_posz(UInt32 iPointer)
+            public static float get_posz(uint iPointer)
             {
                 return get_posz(processIndex, iPointer);
             }
-            public static float get_posz(int iProcIndex, UInt32 iPointer)
+            public static float get_posz(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return MemoryFunctions.ReadMem(proc.Handle, (uint)iPointer, (int)off_pc_map_posz);
             }
-            public static float get_posy(String iPlayer, ref UInt32 oPointer)
+            public static float get_posy(string iPlayer, ref uint oPointer)
             {
                 return get_posy(processIndex, iPlayer, ref oPointer);
             }
-            public static float get_posy(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static float get_posy(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_posy(iProcIndex, oPointer);
             }
-            public static float get_posy(UInt32 iPointer)
+            public static float get_posy(uint iPointer)
             {
                 return get_posy(processIndex, iPointer);
             }
-            public static float get_posy(int iProcIndex, UInt32 iPointer)
+            public static float get_posy(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return MemoryFunctions.ReadMem(proc.Handle, (uint)iPointer, (int)off_pc_map_posy);
             }
-            public static float get_posh(String iPlayer, ref UInt32 oPointer)
+            public static float get_posh(string iPlayer, ref uint oPointer)
             {
                 return get_posh(processIndex, iPlayer, ref oPointer);
             }
-            public static float get_posh(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static float get_posh(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_posh(iProcIndex, oPointer);
             }
-            public static float get_posh(UInt32 iPointer)
+            public static float get_posh(uint iPointer)
             {
                 return get_posh(processIndex, iPointer);
             }
-            public static float get_posh(int iProcIndex, UInt32 iPointer)
+            public static float get_posh(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return MemoryFunctions.ReadMem(proc.Handle, (uint)iPointer, (int)off_pc_map_posh);
             }
-            public static float get_distance(String iPlayer, ref UInt32 oPointer)
+            public static float get_distance(string iPlayer, ref uint oPointer)
             {
                 return get_distance(processIndex, iPlayer, ref oPointer);
             }
-            public static float get_distance(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static float get_distance(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_distance(iProcIndex, oPointer);
             }
-            public static float get_distance(UInt32 iPointer)
+            public static float get_distance(uint iPointer)
             {
                 return get_distance(processIndex, iPointer);
             }
-            public static float get_distance(int iProcIndex, UInt32 iPointer)
+            public static float get_distance(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 float temp = MemoryFunctions.ReadMem(proc.Handle, (uint)iPointer, (int)off_pc_map_dist);
                 return (float)Math.Sqrt((double)temp);
             }
-            public static byte get_hp_perc(String iPlayer, ref UInt32 oPointer)
+            public static byte get_hp_perc(string iPlayer, ref uint oPointer)
             {
                 return get_hp_perc(processIndex, iPlayer, ref oPointer);
             }
-            public static byte get_hp_perc(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static byte get_hp_perc(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_hp_perc(iProcIndex, oPointer);
             }
-            public static byte get_hp_perc(UInt32 iPointer)
+            public static byte get_hp_perc(uint iPointer)
             {
                 return get_hp_perc(processIndex, iPointer);
             }
-            public static byte get_hp_perc(int iProcIndex, UInt32 iPointer)
+            public static byte get_hp_perc(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return (byte)MemoryFunctions.ReadMem(proc.Handle, iPointer, (int)off_pc_map_hp, 1);
             }
-            public static byte get_status(String iPlayer, ref UInt32 oPointer)
+            public static byte get_status(string iPlayer, ref uint oPointer)
             {
                 return get_status(processIndex, iPlayer, ref oPointer);
             }
-            public static byte get_status(int iProcIndex, String iPlayer, ref UInt32 oPointer)
+            public static byte get_status(int iProcIndex, string iPlayer, ref uint oPointer)
             {
                 oPointer = get_pointer(iProcIndex, iPlayer);
                 return get_status(iProcIndex, oPointer);
             }
-            public static byte get_status(UInt32 iPointer)
+            public static byte get_status(uint iPointer)
             {
                 return get_status(processIndex, iPointer);
             }
-            public static byte get_status(int iProcIndex, UInt32 iPointer)
+            public static byte get_status(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return (byte)MemoryFunctions.ReadMem(proc.Handle, iPointer, (int)off_pc_map_status, 1);
             }
-            public static bool get_pointer_valid(UInt32 iPointer)
+            public static bool get_pointer_valid(uint iPointer)
             {
                 return get_pointer_valid(processIndex, iPointer);
             }
-            public static bool get_pointer_valid(int iProcIndex, UInt32 iPointer)
+            public static bool get_pointer_valid(int iProcIndex, uint iPointer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return ((Int32)MemoryFunctions.ReadMem(proc.Handle, iPointer, (int)off_pc_map_pos_ptr, 4) != 0);
+                return ((int)MemoryFunctions.ReadMem(proc.Handle, iPointer, (int)off_pc_map_pos_ptr, 4) != 0);
             }
         }
         public static class NPCs
@@ -7209,13 +7209,13 @@ namespace Iocaine2.Memory
             //Zone NPCs are between 0x00 and 0x400 and dynamic NPCs (pets, trusts, fellows, etc.) are between 0x700 and 0x800 iirc
             //PCs are 0x400-0x6ff?
 
-            public static List<UInt32> get_NPCMap_Pointers()
+            public static List<uint> get_NPCMap_Pointers()
             {
-                List<UInt32> ptrList = new List<UInt32>();
+                List<uint> ptrList = new List<uint>();
                 Process proc = processPointerList[processIndex].MainProcess;
                 for (uint ii = processPointerList[processIndex].Info_MapNpcBegin; ii < processPointerList[processIndex].Info_MapNpcEnd; ii += 4)
                 {
-                    UInt32 ptr = (UInt32)MemoryFunctions.GetPointer(proc.Handle, ii);
+                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, ii);
                     if(ptr != 0)
                     {
                         ptrList.Add(ptr);
@@ -7239,11 +7239,11 @@ namespace Iocaine2.Memory
                     return idxList[0];
                 }
             }
-            public static List<NPCInfoStruct> get_NPCInfoStructList(Boolean iNoFilter = false, int iProcIndex = -1)
+            public static List<NPCInfoStruct> get_NPCInfoStructList(bool iNoFilter = false, int iProcIndex = -1)
             {
                 return get_NPCInfoStructList(get_NPCMap_Pointers(), iNoFilter, iProcIndex);
             }
-            public static List<NPCInfoStruct> get_NPCInfoStructList(List<UInt32> iPtrList, Boolean iNoFilter = false, int iProcIndex = -1)
+            public static List<NPCInfoStruct> get_NPCInfoStructList(List<uint> iPtrList, bool iNoFilter = false, int iProcIndex = -1)
             {
                 int procindex = processIndex;
                 if (iProcIndex != -1)
@@ -7261,7 +7261,7 @@ namespace Iocaine2.Memory
                     filterList.Add(eActive.MobUnk);
                     filterList.Add(eActive.PCWarped);
                 }
-                foreach (UInt32 ptr in iPtrList)
+                foreach (uint ptr in iPtrList)
                 {
                     if(ptr != 0)
                     {
@@ -7277,7 +7277,7 @@ namespace Iocaine2.Memory
                 }
                 return infoList;
             }
-            private static UInt16 get_NPCMap_count(int iProcIndex = -1)
+            private static ushort get_NPCMap_count(int iProcIndex = -1)
             {
                 //int procindex = processIndex;
                 //if (iProcIndex != -1)
@@ -7285,12 +7285,12 @@ namespace Iocaine2.Memory
                 //    procindex = iProcIndex;
                 //}
                 //Process proc = processPointerList[procindex].MainProcess;
-                //UInt16 count = (UInt16)MemoryFunctions.ReadMem(proc.Handle, processPointerList[procindex].Info_NPCMapCount, 0, 2);
+                //ushort count = (ushort)MemoryFunctions.ReadMem(proc.Handle, processPointerList[procindex].Info_NPCMapCount, 0, 2);
 
                 //return count;
                 return 0x1fff / 4;
             }
-            public static bool get_NPCInfoStruct(ref NPCInfoStruct NPCInfo, UInt32 iNpcInfoPtr, int iProcIndex = -1)
+            public static bool get_NPCInfoStruct(ref NPCInfoStruct NPCInfo, uint iNpcInfoPtr, int iProcIndex = -1)
             {
                 int datasize = Marshal.SizeOf(typeof(NPCInfoStruct));
                 byte[] buffer = new byte[datasize];
@@ -7339,9 +7339,9 @@ namespace Iocaine2.Memory
 
                 UIntPtr npcInfoPtr = MemoryFunctions.GetPointer(proc.Handle, processPointerList[procindex].Info_MapNpcBegin, 4 * index);
 
-                return get_NPCInfoStruct(ref NPCInfo, (UInt32)npcInfoPtr, iProcIndex);
+                return get_NPCInfoStruct(ref NPCInfo, (uint)npcInfoPtr, iProcIndex);
             }
-            public static List<ushort> get_NPCIndex(String name, int iProcIndex = -1)
+            public static List<ushort> get_NPCIndex(string name, int iProcIndex = -1)
             {
                 List<ushort> indices = new List<ushort>();
 
@@ -7372,7 +7372,7 @@ namespace Iocaine2.Memory
 
                 return indices;
             }
-            public static String getName(NPCInfoStruct iInfo)
+            public static string getName(NPCInfoStruct iInfo)
             {
                 System.Text.ASCIIEncoding textEncoding = new System.Text.ASCIIEncoding();
                 if(iInfo.Name == null)
@@ -7392,7 +7392,7 @@ namespace Iocaine2.Memory
             /// <param name="name">Name of the NPC</param>
             /// <param name="iProcIndex">Optional process Id</param>
             /// <returns>KeyValuePair of the NPC index (0x00 if invalid) and the distance.</returns>
-            public static KeyValuePair<ushort, double> get_NPCIndexClosest(String name, int iProcIndex = -1)
+            public static KeyValuePair<ushort, double> get_NPCIndexClosest(string name, int iProcIndex = -1)
             {
                 float playerPosX = MemReads.Self.Position.get_x();
                 float playerPosY = MemReads.Self.Position.get_y();
@@ -7442,14 +7442,14 @@ namespace Iocaine2.Memory
         public static class Environment
         {
             #region Server_info
-            public static String get_server(String iPlayer)
+            public static string get_server(string iPlayer)
             {
                 return get_server(processIndex, iPlayer);
             }
-            public static String get_server(int iProcIndex, String iPlayer)
+            public static string get_server(int iProcIndex, string iPlayer)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                String tempPlayer;
+                string tempPlayer;
                 int offset = 0;
                 do
                 {
@@ -7473,63 +7473,63 @@ namespace Iocaine2.Memory
             }
             #endregion
             #region Time
-            public static UInt64 get_time()
+            public static ulong get_time()
             {
                 return get_time(processIndex);
             }
-            public static UInt64 get_time(int iProcIndex)
+            public static ulong get_time(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt64)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Time, 0, 8);
+                return (ulong)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Time, 0, 8);
             }
             #endregion Time
             #region Network
             //Receive
-            public static UInt16 info_network_receive()
+            public static ushort info_network_receive()
             {
                 return info_network_receive(processIndex);
             }
-            public static UInt16 info_network_receive(int iProcIndex)
+            public static ushort info_network_receive(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_receive, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_receive, 2);
             }
             //Send
-            public static UInt16 info_network_send()
+            public static ushort info_network_send()
             {
                 return info_network_send(processIndex);
             }
-            public static UInt16 info_network_send(int iProcIndex)
+            public static ushort info_network_send(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_send, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_send, 2);
             }
             //Percentage
-            public static UInt16 info_network_perc()
+            public static ushort info_network_perc()
             {
                 return info_network_perc(processIndex);
             }
-            public static UInt16 info_network_perc(int iProcIndex)
+            public static ushort info_network_perc(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
-                return (UInt16)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_perc, 2);
+                return (ushort)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Network, off_net_perc, 2);
             }
             #endregion Network
             #region Weather
-            public static Int16 get_weather_id()
+            public static short get_weather_id()
             {
                 return get_weather_id(processIndex);
             }
-            public static Int16 get_weather_id(int iProcIndex)
+            public static short get_weather_id(int iProcIndex)
             {
                 Process proc = processPointerList[iProcIndex].MainProcess;
                 return (short)MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_Player2, (int)off_weather, 2);
             }
-            public static String get_weather_name()
+            public static string get_weather_name()
             {
                 return get_weather_name(processIndex);
             }
-            public static String get_weather_name(int iProcIndex)
+            public static string get_weather_name(int iProcIndex)
             {
                 short weatherID = get_weather_id(iProcIndex);
                 switch (weatherID)
