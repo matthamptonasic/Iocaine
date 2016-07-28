@@ -2151,33 +2151,40 @@ namespace Iocaine2.Bots
             try
             {
                 //Rebuild our mobile inventory lists.
-                Inventory.Containers.RebuildListsMobileOnly();
+                Containers.RebuildListsMobileOnly();
 
                 //First check if we have the currentBaitItem in our inventory.
                 bool foundBait = false;
                 BaitBoxItem baitItem = null;
+                bool inEquipable = false;
+                byte location = 0;
+                foreach (EquipmentContainer cntnr in Containers.Equipment)
+                {
+                    if (cntnr.Contains(currentBaitItem.BaitName))
+                    {
+                        inEquipable = true;
+                        location = cntnr.EquipLocation;
+                        break;
+                    }
+                }
                 if (Containers.Bag.Contains(currentBaitItem.BaitName))
                 {
                     foundBait = true;
                     baitItem = currentBaitItem;
                 }
-                else if (Statics.Settings.Fisher.MoveInv && (Inventory.Containers.Satchel.Contains(currentBaitItem.BaitName) || Inventory.Containers.Sack.Contains(currentBaitItem.BaitName) || Inventory.Containers.MCase.Contains(currentBaitItem.BaitName)))
+                else if (Statics.Settings.Fisher.MoveInv && (Containers.Satchel.Contains(currentBaitItem.BaitName)
+                                                          || Containers.Sack.Contains(currentBaitItem.BaitName)
+                                                          || Containers.MCase.Contains(currentBaitItem.BaitName)))
                 {
                     swapFishAndBait(currentBaitItem.BaitName, false);
                     foundBait = true;
                     baitItem = currentBaitItem;
                 }
-                else if (Inventory.Containers.Wardrobe.Contains(currentBaitItem.BaitName))
+                else if (inEquipable)
                 {
                     foundBait = true;
                     baitItem = currentBaitItem;
-                    baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe).EquipLocation;
-                }
-                else if (Inventory.Containers.Wardrobe2.Contains(currentBaitItem.BaitName))
-                {
-                    foundBait = true;
-                    baitItem = currentBaitItem;
-                    baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe2).EquipLocation;
+                    baitItem.BaitLocation = location;
                 }
                 else
                 {
@@ -2189,31 +2196,33 @@ namespace Iocaine2.Bots
                         {
                             continue;
                         }
-                        String name = baitList[ii].BaitName;
+                        string name = baitList[ii].BaitName;
+                        foreach (EquipmentContainer cntnr in Containers.Equipment)
+                        {
+                            if (cntnr.Contains(name))
+                            {
+                                inEquipable = true;
+                                location = cntnr.EquipLocation;
+                                break;
+                            }
+                        }
                         if (Containers.Bag.Contains(name))
                         {
                             baitItem = baitList[ii];
                             foundBait = true;
                             break;
                         }
-                        else if (Statics.Settings.Fisher.MoveInv && (Inventory.Containers.Satchel.Contains(name) || Inventory.Containers.Sack.Contains(name) || Inventory.Containers.MCase.Contains(name)))
+                        else if (Statics.Settings.Fisher.MoveInv && (Containers.Satchel.Contains(name) || Containers.Sack.Contains(name) || Containers.MCase.Contains(name)))
                         {
                             baitItem = baitList[ii];
                             swapFishAndBait(name, false);
                             foundBait = true;
                             break;
                         }
-                        else if (Inventory.Containers.Wardrobe.Contains(name))
+                        else if (inEquipable)
                         {
                             baitItem = baitList[ii];
-                            baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe).EquipLocation;
-                            foundBait = true;
-                            break;
-                        }
-                        else if (Inventory.Containers.Wardrobe2.Contains(name))
-                        {
-                            baitItem = baitList[ii];
-                            baitItem.BaitLocation = ((EquipmentContainer)Inventory.Containers.Wardrobe2).EquipLocation;
+                            baitItem.BaitLocation = location;
                             foundBait = true;
                             break;
                         }
@@ -2246,7 +2255,7 @@ namespace Iocaine2.Bots
                 //2. If nothing's equipped, based on the highest priority in the bait list (and what we have).
                 if (iRebuildInventory)
                 {
-                    Inventory.Containers.RebuildListsMobileOnly();
+                    Containers.RebuildListsMobileOnly();
                 }
                 c_baitLB_Refresh(false, false);
                 //First check whether we have a bait/lure equipped.
@@ -2297,11 +2306,23 @@ namespace Iocaine2.Bots
                         {
                             continue;
                         }
-                        if (Containers.Bag.Contains(name) || Inventory.Containers.Satchel.Contains(name) || Inventory.Containers.Sack.Contains(name) || Inventory.Containers.MCase.Contains(name) || Inventory.Containers.Wardrobe.Contains(name) || Inventory.Containers.Wardrobe2.Contains(name))
+                        if (Containers.Bag.Contains(name) || Inventory.Containers.Satchel.Contains(name) || Inventory.Containers.Sack.Contains(name) || Inventory.Containers.MCase.Contains(name))
                         {
                             currentBaitItem = baitList[ii];
                             foundInList = true;
                             break;
+                        }
+                        else
+                        {
+                            foreach (EquipmentContainer cntnr in Containers.Equipment)
+                            {
+                                if (cntnr.Contains(currentBaitItem.BaitName))
+                                {
+                                    currentBaitItem = baitList[ii];
+                                    foundInList = true;
+                                    break;
+                                }
+                            }
                         }
                     }
                     if (!foundInList)
