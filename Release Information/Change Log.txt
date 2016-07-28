@@ -1,5 +1,9 @@
 Iocaine Change Notes:
 
+Main.exe			- 
+IocainCore.dll		- 
+	- Added wardrobe 3/4 functionality to the fisher.
+
 Main.exe			- 2.10.3.0 - 2016/07/27
 FFXIThings.dll		- 1.2.5.0
 IocainCore.dll		- 1.3.11.0
