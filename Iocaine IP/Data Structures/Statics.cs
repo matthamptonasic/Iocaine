@@ -49,13 +49,14 @@ namespace Iocaine2
             public delegate String TD_String_Void();
             #endregion Native Types
             #region Dot-Net Types
-            public delegate void TD_Void_String_Color(String iText, Color iColor);
+            public delegate void TD_Void_ChkB_Boolean(CheckBox iChkB, Boolean iBool);
             public delegate void TD_Void_Color(Color iColor);
+            public delegate void TD_Void_DateTime(DateTime iDate);
             public delegate void TD_Void_Image(Image iImage);
-            public delegate void TD_Void_TabControl_TabPage(TabControl iTabControl, TabPage iTabPage);
+            public delegate void TD_Void_String_Color(String iText, Color iColor);
             public delegate void TD_Void_TabControl_Int32_TabPage(TabControl iTabControl, Int32 iIndex, TabPage iPageToAdd);
             public delegate void TD_Void_TabControl_String(TabControl iControl, String iKey);
-            public delegate void TD_Void_ChkB_Boolean(CheckBox iChkB, Boolean iBool);
+            public delegate void TD_Void_TabControl_TabPage(TabControl iTabControl, TabPage iTabPage);
             #endregion Dot-Net Types
             #region Custom Types
             public delegate void TD_Void_BaitBoxItemList_Int32(List<BaitBoxItem> iBaitItems, Int32 iSelectIndex);
