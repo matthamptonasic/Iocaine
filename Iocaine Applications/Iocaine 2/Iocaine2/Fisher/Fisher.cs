@@ -64,7 +64,7 @@ namespace Iocaine2.Bots
 
         #region Bot Specific Members
         private DateTime fisherStartTimeStamp;
-        private DateTime m_lastJpMidnight;
+        private bool m_jpMidnightChanged = false;
         private List<string> m_ServerInitDone = new List<string>();
         private Statics.Enums.ONLINE_MODE m_onlineStatus = Statics.Enums.ONLINE_MODE.UNKNOWN;
         #region Fish Stats Related
@@ -221,6 +221,8 @@ namespace Iocaine2.Bots
                 ChangeMonitor._equ_RangeChanged += updateRod;
                 ChangeMonitor._equ_AmmoChanged += updateBait;
                 ChangeMonitor._equ_AmmoQuanChanged += updateBaitQuan;
+                ChangeMonitor._time_JpMidnightPassed -= updateJpMidnight;
+                ChangeMonitor._time_JpMidnightPassed += updateJpMidnight;
                 startVanaTimeThread();
             }
             catch(Exception e)
@@ -282,7 +284,6 @@ namespace Iocaine2.Bots
                 chatLog.Reset();
                 chatLog2.Reset();
                 chatLog3.Reset();
-                m_lastJpMidnight = VanaTime.LastJapaneseMidnightUTC;
             }
             catch (Exception e)
             {
@@ -476,15 +477,6 @@ namespace Iocaine2.Bots
         {
             try
             {
-                if (VanaTime.LastJapaneseMidnightUTC > m_lastJpMidnight)
-                {
-                    if (Statics.Settings.Top.AutoReset)
-                    {
-                        filterFishStatsRows();
-                        c_StatsBoxLoad();
-                    }
-                    m_lastJpMidnight = VanaTime.LastJapaneseMidnightUTC;
-                }
                 switch (state)
                 {
                     case Bots.STATE.STOPPED:
@@ -888,6 +880,21 @@ namespace Iocaine2.Bots
         private void updateWeather()
         {
             c_weatherTB_Update(PlayerCache.Environment.WeatherName);
+        }
+        private void updateJpMidnight(DateTime iNewDate)
+        {
+            if (state == STATE.RUNNING)
+            {
+                m_jpMidnightChanged = true;
+            }
+            else
+            {
+                if (Statics.Settings.Top.AutoReset)
+                {
+                    filterFishStatsRows();
+                    c_StatsBoxLoad();
+                }
+            }
         }
         #endregion Time & Weather
 
@@ -1812,6 +1819,7 @@ namespace Iocaine2.Bots
                 statsRow.YPos = iFishStatEntry.yPos;
                 statsRow.Zone = iFishStatEntry.zone;
                 fishStatsRows.Add(statsRow);
+                fishStatsRows_master.Add(statsRow);
                 FishStatsDataSet.Access.AddFishStats(statsRow);
 
                 LoggingFunctions.Debug("Fisher::addFishStat: =====================", LoggingFunctions.DBG_SCOPE.FISHER);
