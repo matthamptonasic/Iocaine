@@ -21,6 +21,7 @@ using Iocaine2.Memory;
 using Iocaine2.Memory.Interface;
 using Iocaine2.Properties;
 using Iocaine2.Settings;
+using Iocaine2.Threading;
 using Iocaine2.Tools;
 
 namespace Iocaine2
@@ -92,8 +93,7 @@ namespace Iocaine2
         #region Threads
         private Thread PL_EnqueueThread = null;
         private Thread PL_DequeueThread = null;
-        private Thread PL_CheckActiveThread = null;
-        private bool PL_PauseCheckActiveThread = false;
+        private IocaineThread PL_CheckActiveThread = null;
         #endregion Threads
         #region Containers
         private List<PLCharacter> PL_CharacterList = new List<PLCharacter>();
@@ -228,21 +228,20 @@ namespace Iocaine2
                 PL_AddMe();    //after PL is initialized, need to add yourself to char grid
                 CharacterGrid.ClearSelection();
                 CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, 1].Selected = true;
-                PL_CheckActiveThread = new Thread(new ThreadStart(PL_CheckPlayerActivityThreadRun));
-                PL_CheckActiveThread.Name = "PLCheckActiveThread";
-                PL_CheckActiveThread.IsBackground = true;
+                PL_CheckActiveThread = new IocaineThread("PLCheckActiveThread");
+                PL_CheckActiveThread.__RunMethod = PL_CheckPlayerActivityThreadRun;
                 PL_CheckActiveThread.Start();
             }
             else
             {
                 if (MemReads.Self.get_name(true) == PL_CharacterSticky)
                 {
-                    TOP_Thread_resumePlThreads();
+                    PL_CheckActiveThread.Thaw();
                     PL_RefreshLists();
                 }
                 else
                 {
-                    TOP_Thread_pausePlThreads();
+                    PL_CheckActiveThread.Freeze();
                 }
             }
             PL_ReloadGrids();
@@ -2480,12 +2479,12 @@ namespace Iocaine2
         #region Threads Section
         private void PL_CheckPlayerActivityThreadRun()
         {
-            while (true)
+            while (PL_CheckActiveThread.__CheckState())
             {
                 IocaineFunctions.delay((uint)Statics.Settings.PowerLevel.PlCharActivePollFrequency);
                 try
                 {
-                    if (PL_PauseCheckActiveThread || (PL_CharacterList.Count == 0))
+                    if (PL_CharacterList.Count == 0)
                     {
                         continue;
                     }

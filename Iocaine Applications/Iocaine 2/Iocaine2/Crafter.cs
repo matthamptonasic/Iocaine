@@ -39,6 +39,41 @@ namespace Iocaine2.Bots
         }
         #endregion Enums
 
+        #region Private Members
+        private Recipe recipe;
+        private CRAFT_MODE mode;
+        private int numberOf;
+        private int counter;
+        private Single skill;
+        private bool maxCountUpdated = false;
+        #region Controls
+        private Button StartButton;
+        private Statics.FuncPtrs.TD_Void_String_Color updateCrafterStartButtonCallBack;
+        #endregion Controls
+        #region Helper Objects
+        private ChatLoggerAsync chatLog;
+        private Audio player;
+        #endregion Helper Objects
+        #region State Variables
+        private CRAFTER_STATE state;
+        #endregion State Variables
+        #endregion Private Members
+
+        #region Public Properties
+        public CRAFTER_STATE State
+        {
+            get
+            {
+                return state;
+            }
+        }
+        #endregion Public Properties
+
+        #region Public Events/Delegates
+        public delegate void CraftDoneEvent(Recipe recipe, int numberSoFar, RecipeLog.RESULT_TYPE result, List<ushort> lostItems, List<ushort> lostQuan);
+        public event CraftDoneEvent CraftDone;
+        #endregion Public Events/Delegates
+
         #region Constructors
         public Crafter(CRAFT_MODE iMode,
                        Recipe iRecipe, int iNumberOf, Single iSkill, Button iStartButton,
@@ -52,38 +87,9 @@ namespace Iocaine2.Bots
             updateCrafterStartButtonCallBack = iUpdateCrafterStartButtonCallBack;
             chatLog = ChatLogManager.Access.GetAsynchronousLogger("Crafter");
             chatLog.Flags = ChatLine.CHAT_FLAGS.LEAVE_ITEM_DELINIATION;
+            player = new Audio();
         }
         #endregion Constructors
-        
-        #region Member Variables
-        private Recipe recipe;
-        private CRAFT_MODE mode;
-        private int numberOf;
-        private int counter;
-        private Single skill;
-        private bool maxCountUpdated = false;
-        #region Controls
-        private Button StartButton;
-        private Statics.FuncPtrs.TD_Void_String_Color updateCrafterStartButtonCallBack;
-        #endregion Controls
-        #region Helper Objects
-        private ChatLoggerAsync chatLog;
-        #endregion Helper Objects
-        #region State Variables
-        private CRAFTER_STATE state;
-        public CRAFTER_STATE State
-        {
-            get
-            {
-                return state;
-            }
-        }
-        #endregion State Variables
-        #region Delegates and Events
-        public delegate void CraftDoneEvent(Recipe recipe, int numberSoFar, RecipeLog.RESULT_TYPE result, List<ushort> lostItems, List<ushort> lostQuan);
-        public event CraftDoneEvent CraftDone;
-        #endregion Delegates and Events
-        #endregion Member Variables
 
         #region Member Functions
         public void doInits()
@@ -135,6 +141,7 @@ namespace Iocaine2.Bots
                         if (breakCluster())
                         {
                             Inventory.Movement.SortInventory(false);
+                            IocaineFunctions.delay(1000);
                         }
                     }
                     if ((Containers.Bag.GetItemQuan(recipe.CrystalId) == 0) || !findItem(recipe.CrystalString))
@@ -277,7 +284,7 @@ namespace Iocaine2.Bots
                             {
                                 updateStartButton("S&tart", Statics.Buttons.Green);
                                 Statics.FuncPtrs.SetStatusBoxPtr("Inventory full, stopping...", Statics.Fields.Blue);
-                                Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                                player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                                 state = CRAFTER_STATE.STOPPED;
                                 return false;
                             }
@@ -286,7 +293,7 @@ namespace Iocaine2.Bots
                         {
                             updateStartButton("S&tart", Statics.Buttons.Green);
                             Statics.FuncPtrs.SetStatusBoxPtr("Finished crafting " + counter + " items. Stopping...", Statics.Fields.Blue);
-                            Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                            player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                             state = CRAFTER_STATE.STOPPED;
                             return false;
                         }
@@ -308,7 +315,7 @@ namespace Iocaine2.Bots
                             {
                                 updateStartButton("S&tart", Statics.Buttons.Green);
                                 Statics.FuncPtrs.SetStatusBoxPtr("Inventory full, stopping...", Statics.Fields.Blue);
-                                Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                                player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                                 state = CRAFTER_STATE.STOPPED;
                                 return false;
                             }
@@ -317,7 +324,7 @@ namespace Iocaine2.Bots
                         {
                             updateStartButton("S&tart", Statics.Buttons.Green);
                             Statics.FuncPtrs.SetStatusBoxPtr("Finished crafting " + counter + " items. Stopping...", Statics.Fields.Blue);
-                            Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                            player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                             state = CRAFTER_STATE.STOPPED;
                             return false;
                         }
@@ -340,7 +347,7 @@ namespace Iocaine2.Bots
                             {
                                 updateStartButton("S&tart", Statics.Buttons.Green);
                                 Statics.FuncPtrs.SetStatusBoxPtr("Inventory full, stopping...", Statics.Fields.Blue);
-                                Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                                player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                                 state = CRAFTER_STATE.STOPPED;
                                 return false;
                             }
@@ -349,7 +356,7 @@ namespace Iocaine2.Bots
                         {
                             updateStartButton("S&tart", Statics.Buttons.Green);
                             Statics.FuncPtrs.SetStatusBoxPtr("Finished crafting to skill " + skill + ". Stopping...", Statics.Fields.Blue);
-                            Audio.PlaySound(Statics.Settings.Crafter.DonePlaySound);
+                            player.PlaySound(Statics.Settings.Crafter.DonePlaySound);
                             state = CRAFTER_STATE.STOPPED;
                             return false;
                         }
@@ -841,11 +848,16 @@ namespace Iocaine2.Bots
         }
         private bool breakCluster()
         {
+            if (MemReads.Self.get_in_mog_house())
+            {
+                Statics.FuncPtrs.SetStatusBoxPtr("Cannot break cluster inside mog house.", Statics.Fields.Yellow);
+                return false;
+            }
             if (Containers.Bag.GetItemQuan(Things.CrystalAndClusterExchange(recipe.CrystalId)) > 0)
             {
                 string cmdStr = "/item \"" + Things.GetNameFromId(Things.CrystalAndClusterExchange(recipe.CrystalId)) + "\" <me>";
                 RawCommand brkCluster = new RawCommand("Break Cluster", cmdStr, true); // Will execute immediately.
-                IocaineFunctions.delay(4000);
+                IocaineFunctions.delay(5000);
                 return true;
             }
             return false;

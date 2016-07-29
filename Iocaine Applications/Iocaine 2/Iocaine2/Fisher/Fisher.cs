@@ -64,7 +64,7 @@ namespace Iocaine2.Bots
 
         #region Bot Specific Members
         private DateTime fisherStartTimeStamp;
-        private DateTime m_lastJpMidnight;
+        private bool m_jpMidnightChanged = false;
         private List<string> m_ServerInitDone = new List<string>();
         private Statics.Enums.ONLINE_MODE m_onlineStatus = Statics.Enums.ONLINE_MODE.UNKNOWN;
         #region Fish Stats Related
@@ -129,10 +129,10 @@ namespace Iocaine2.Bots
         private ChatLoggerSync chatLog2; // Used for 'nearing xxx' and fishing skill parsing.
         private ChatLoggerAsync chatLog3; // Used for checking if monster is on the line.
         private Random randVal = new Random();
+        private Audio player = new Audio();
         #endregion Data Structures
         #region Datasets
         #endregion Datasets
-        
         #endregion Bot Specific Members
 
         #region Constructor
@@ -221,6 +221,8 @@ namespace Iocaine2.Bots
                 ChangeMonitor._equ_RangeChanged += updateRod;
                 ChangeMonitor._equ_AmmoChanged += updateBait;
                 ChangeMonitor._equ_AmmoQuanChanged += updateBaitQuan;
+                ChangeMonitor._time_JpMidnightPassed -= updateJpMidnight;
+                ChangeMonitor._time_JpMidnightPassed += updateJpMidnight;
                 startVanaTimeThread();
             }
             catch(Exception e)
@@ -282,7 +284,6 @@ namespace Iocaine2.Bots
                 chatLog.Reset();
                 chatLog2.Reset();
                 chatLog3.Reset();
-                m_lastJpMidnight = VanaTime.LastJapaneseMidnightUTC;
             }
             catch (Exception e)
             {
@@ -476,15 +477,6 @@ namespace Iocaine2.Bots
         {
             try
             {
-                if (VanaTime.LastJapaneseMidnightUTC > m_lastJpMidnight)
-                {
-                    if (Statics.Settings.Top.AutoReset)
-                    {
-                        filterFishStatsRows();
-                        c_StatsBoxLoad();
-                    }
-                    m_lastJpMidnight = VanaTime.LastJapaneseMidnightUTC;
-                }
                 switch (state)
                 {
                     case Bots.STATE.STOPPED:
@@ -755,7 +747,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     if (Statics.Settings.Fisher.GiveLogoutCommand)
                     {
                         IocaineFunctions.delay(10 * 1000);
@@ -772,7 +764,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     waitForNextDay = true;
                     state = Bots.STATE.PAUSED_PROG;    //system pause
                     return true;
@@ -783,7 +775,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     if (Statics.Settings.Fisher.GiveLogoutCommand)
                     {
                         IocaineFunctions.delay(10 * 1000);
@@ -802,7 +794,7 @@ namespace Iocaine2.Bots
                     statusBoxText = statusBoxAction + statusBoxReason;
                     Statics.FuncPtrs.SetStatusBoxPtr(statusBoxText, Statics.Fields.Blue);
                     LoggingFunctions.Timestamp(statusBoxText);
-                    Audio.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
+                    player.PlaySound(Statics.Settings.Fisher.FisherDonePlaySound);
                     Stop();
                     return true;
                 }
@@ -888,6 +880,21 @@ namespace Iocaine2.Bots
         private void updateWeather()
         {
             c_weatherTB_Update(PlayerCache.Environment.WeatherName);
+        }
+        private void updateJpMidnight(DateTime iNewDate)
+        {
+            if (state == STATE.RUNNING)
+            {
+                m_jpMidnightChanged = true;
+            }
+            else
+            {
+                if (Statics.Settings.Top.AutoReset)
+                {
+                    filterFishStatsRows();
+                    c_StatsBoxLoad();
+                }
+            }
         }
         #endregion Time & Weather
 
@@ -1812,6 +1819,7 @@ namespace Iocaine2.Bots
                 statsRow.YPos = iFishStatEntry.yPos;
                 statsRow.Zone = iFishStatEntry.zone;
                 fishStatsRows.Add(statsRow);
+                fishStatsRows_master.Add(statsRow);
                 FishStatsDataSet.Access.AddFishStats(statsRow);
 
                 LoggingFunctions.Debug("Fisher::addFishStat: =====================", LoggingFunctions.DBG_SCOPE.FISHER);

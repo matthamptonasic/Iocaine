@@ -20,6 +20,12 @@ namespace Iocaine2.Tools
         private static UInt32 vanaTimeMultiplier = 25; //Vana time runs 25x faster than earth time.
         private double vanaSeconds;
         private int day;
+        #region Testing
+        private const bool testJpMidnight = false;
+        private const int testMinutesToReset = 1;
+        private static DateTime testTimeStarted;
+        private static bool testTimeStartedSet = false;
+        #endregion Testing
         #endregion Members
         #region Constructor
         public VanaTime(double vanaSecs) {
@@ -281,7 +287,24 @@ namespace Iocaine2.Tools
             get
             {
                 DateTime localJpTime = JapanTime;
-                return new DateTime(localJpTime.Year, localJpTime.Month, localJpTime.Day, 0, 0, 0);
+                if (!testJpMidnight)
+                {
+                    return new DateTime(localJpTime.Year, localJpTime.Month, localJpTime.Day, 0, 0, 0);
+                }
+                if (!testTimeStartedSet)
+                {
+                    testTimeStarted = Now.ToEarth().AddHours(9);
+                    testTimeStartedSet = true;
+                }
+                TimeSpan sinceStart = localJpTime - testTimeStarted;
+                if (sinceStart.TotalMinutes < testMinutesToReset)
+                {
+                    return new DateTime(localJpTime.Year, localJpTime.Month, localJpTime.Day, 0, 0, 0);
+                }
+                else
+                {
+                    return testTimeStarted.AddMinutes(testMinutesToReset);
+                }
             }
         }
         public static DateTime LastJapaneseMidnightUTC

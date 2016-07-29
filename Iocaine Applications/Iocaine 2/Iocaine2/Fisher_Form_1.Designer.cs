@@ -512,6 +512,7 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -674,7 +675,7 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
+            this.ALR_LoopMessageChkB = new System.Windows.Forms.CheckBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -1767,6 +1768,7 @@
             // 
             // Alert_Tab
             // 
+            this.Alert_Tab.Controls.Add(this.ALR_LoopMessageChkB);
             this.Alert_Tab.Controls.Add(this.ALR_AlwaysAlertChkB);
             this.Alert_Tab.Controls.Add(this.textBox1);
             this.Alert_Tab.Controls.Add(this.ALR_PCInRangeLabel);
@@ -6776,6 +6778,15 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -8542,14 +8553,16 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SynergizerDlg
+            // ALR_LoopMessageChkB
             // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
+            this.ALR_LoopMessageChkB.AutoSize = true;
+            this.ALR_LoopMessageChkB.Location = new System.Drawing.Point(458, 25);
+            this.ALR_LoopMessageChkB.Name = "ALR_LoopMessageChkB";
+            this.ALR_LoopMessageChkB.Size = new System.Drawing.Size(50, 17);
+            this.ALR_LoopMessageChkB.TabIndex = 45;
+            this.ALR_LoopMessageChkB.Text = "Loop";
+            this.ALR_LoopMessageChkB.UseVisualStyleBackColor = true;
+            this.ALR_LoopMessageChkB.CheckedChanged += new System.EventHandler(this.ALR_LoopMessageChkB_CheckedChanged);
             // 
             // Iocaine_2_Form
             // 
@@ -9372,5 +9385,6 @@
         private System.Windows.Forms.ListBox WMS_Safe2LB;
         private System.Windows.Forms.Label WMS_Safe2Label;
         private System.Windows.Forms.Label WMS_Safe2OccLabel;
+        private System.Windows.Forms.CheckBox ALR_LoopMessageChkB;
     }
 }

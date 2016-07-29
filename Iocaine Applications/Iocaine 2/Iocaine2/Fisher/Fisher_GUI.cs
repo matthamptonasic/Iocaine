@@ -1142,6 +1142,13 @@ namespace Iocaine2.Bots
         {
             try
             {
+                if (m_jpMidnightChanged && Statics.Settings.Top.AutoReset)
+                {
+                    filterFishStatsRows();
+                    c_StatsBoxLoad();
+                    m_jpMidnightChanged = false;
+                    return;
+                }
                 if (c_statsLB == null)
                 {
                     return;

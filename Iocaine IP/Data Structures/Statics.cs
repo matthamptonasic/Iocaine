@@ -49,13 +49,14 @@ namespace Iocaine2
             public delegate String TD_String_Void();
             #endregion Native Types
             #region Dot-Net Types
-            public delegate void TD_Void_String_Color(String iText, Color iColor);
+            public delegate void TD_Void_ChkB_Boolean(CheckBox iChkB, Boolean iBool);
             public delegate void TD_Void_Color(Color iColor);
+            public delegate void TD_Void_DateTime(DateTime iDate);
             public delegate void TD_Void_Image(Image iImage);
-            public delegate void TD_Void_TabControl_TabPage(TabControl iTabControl, TabPage iTabPage);
+            public delegate void TD_Void_String_Color(String iText, Color iColor);
             public delegate void TD_Void_TabControl_Int32_TabPage(TabControl iTabControl, Int32 iIndex, TabPage iPageToAdd);
             public delegate void TD_Void_TabControl_String(TabControl iControl, String iKey);
-            public delegate void TD_Void_ChkB_Boolean(CheckBox iChkB, Boolean iBool);
+            public delegate void TD_Void_TabControl_TabPage(TabControl iTabControl, TabPage iTabPage);
             #endregion Dot-Net Types
             #region Custom Types
             public delegate void TD_Void_BaitBoxItemList_Int32(List<BaitBoxItem> iBaitItems, Int32 iSelectIndex);
@@ -2989,6 +2990,7 @@ namespace Iocaine2
                 private static Boolean alwaysAlert = false;
                 private static Boolean playMessage = false;
                 private static String messageText = "";
+                private static bool loopMessage = false;
                 private static Boolean flashTaskBar = false;
                 private static Boolean pauseBots = false;
                 private static List<String> whitelist = new List<string>();
@@ -3036,6 +3038,17 @@ namespace Iocaine2
                     set
                     {
                         messageText = value;
+                    }
+                }
+                public static bool LoopMessage
+                {
+                    get
+                    {
+                        return loopMessage;
+                    }
+                    set
+                    {
+                        loopMessage = value;
                     }
                 }
                 public static Boolean FlashTaskBar
