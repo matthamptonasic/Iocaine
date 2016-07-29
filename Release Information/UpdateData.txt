@@ -1,8 +1,8 @@
-Main.exe,2.10.3.0
+Main.exe,2.10.3.1
 FFXINpcs.dll,1.0.3.1
 FFXIResource.dll,1.2.6.1
 FFXIThings.dll,1.2.5.0
-IocaineCore.dll,1.3.11.0
+IocaineCore.dll,1.3.11.1
 IocaineEvents.dll,1.0.1.1
 IocaineInits.dll,1.0.0.1
 IocaineServer.dll,1.0.2.0
