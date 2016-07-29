@@ -14,6 +14,7 @@ using Iocaine2.Logging;
 using Iocaine2.Memory;
 using Iocaine2.Memory.Interface;
 using Iocaine2.Threading;
+using Iocaine2.Tools;
 
 namespace Iocaine2
 {
@@ -48,7 +49,7 @@ namespace Iocaine2
                 __checkStatus = value;
             }
         }
-        private static UInt32 loopDelay = 1000;
+        private const uint loopDelay = 1000; //DO NOT change this!
         #endregion Process & Settings
         #region POL Related
         private static Boolean firstPolFound = false;
@@ -64,8 +65,12 @@ namespace Iocaine2
         private static Boolean forceMapUpdate = false;
         #endregion Zone Related
         #region Inventory Related
-        public static UInt32 nbSecondsPerInventoryUpdate = 1;
+        public const uint nbSecondsPerInventoryUpdate = 1;
         #endregion Inventory Related
+        #region Time Related
+        private const uint nbSecondsPerJpMidnightCheck = 60;
+        private static DateTime lastJpMidnight;
+        #endregion Time Related
         #region Misc Info
         #endregion Misc Info
         #region Character Info Related
@@ -113,6 +118,9 @@ namespace Iocaine2
         #endregion Zone Related
         #region Inventory Related
         #endregion Inventory Related
+        #region Time Related
+        public static event Statics.FuncPtrs.TD_Void_DateTime _time_JpMidnightPassed;
+        #endregion Time Related
         #region Gear Related
         public delegate void CM_Delegate_Equ_CombatSkillChanged();
         public static event CM_Delegate_Equ_CombatSkillChanged _equ_CombatSkillChanged;
@@ -204,10 +212,6 @@ namespace Iocaine2
             get
             {
                 return loopDelay;
-            }
-            set
-            {
-                loopDelay = value;
             }
         }
         /// <summary>
@@ -332,7 +336,6 @@ namespace Iocaine2
         }
         private static bool loggedInCheck()
         {
-            //Monitor.Enter(Padlock);
             try
             {
                 bool localLoggedIn = false;
@@ -399,6 +402,7 @@ namespace Iocaine2
                             PlayerCache.Environment.ServerId = Data.Client.Servers.GetServerID(PlayerCache.Environment.ServerName);
                             LoggingFunctions.Debug("Firing login changed event (login).", LoggingFunctions.DBG_SCOPE.CH_MON);
                             _polLoginChanged(localLoggedIn, loggedInName);
+                            lastJpMidnight = VanaTime.LastJapaneseMidnightUTC;
                         }
                         catch (Exception e)
                         {
@@ -417,10 +421,6 @@ namespace Iocaine2
             {
                 LoggingFunctions.Error("In loggedInCheck: " + e.ToString());
                 loggedIn = false;
-            }
-            finally
-            {
-                //Monitor.Exit(Padlock);
             }
             return loggedIn;
         }
@@ -666,6 +666,29 @@ namespace Iocaine2
             }
         }
         #endregion Zone Change Functions
+        #region Time Functions
+        private static void checkJpDateChange()
+        {
+            try
+            {
+                DateTime localJpMidnight = VanaTime.LastJapaneseMidnightUTC;
+                if (localJpMidnight > lastJpMidnight)
+                {
+                    LoggingFunctions.Debug("Detected Japanese day change from " + lastJpMidnight.ToShortDateString() + " to " + localJpMidnight.ToShortDateString(), LoggingFunctions.DBG_SCOPE.CH_MON);
+                    lastJpMidnight = localJpMidnight;
+                    if (_time_JpMidnightPassed != null)
+                    {
+                        _time_JpMidnightPassed(lastJpMidnight);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error("Trying to new Japanese midnight from change monitor: " + e.ToString());
+                return;
+            }
+        }
+        #endregion Time Functions
         #region Gear Update Functions
         private static void checkEquCombatSkillChange(ushort iNewID, ushort iOldID)
         {
@@ -909,6 +932,12 @@ namespace Iocaine2
                     Inventory.Containers.RebuildLists();
                 }
                 #endregion Inventory Related
+                #region Time Related
+                if (loopCnt % nbSecondsPerJpMidnightCheck == 0)
+                {
+                    checkJpDateChange();
+                }
+                #endregion Time Related
                 #region Gear Related
                 checkEquMainChange();
                 checkEquRangedChange();

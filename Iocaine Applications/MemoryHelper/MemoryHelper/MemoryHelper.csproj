@@ -8,8 +8,8 @@
     <ProjectGuid>{156ACC66-A956-4AA7-B3F8-972FB00900E9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IocaineOffsetHelper</RootNamespace>
-    <AssemblyName>IocaineOffsetHelper</AssemblyName>
+    <RootNamespace>MemoryHelper</RootNamespace>
+    <AssemblyName>MemoryHelper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NoWin32Manifest>true</NoWin32Manifest>

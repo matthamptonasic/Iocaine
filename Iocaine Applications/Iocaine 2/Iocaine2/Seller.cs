@@ -30,6 +30,7 @@ namespace Iocaine2.Bots
         private static STATE state = STATE.STOPPED;
         private static Thread runThread = null;
         private static Seller_Script script = null;
+        private static Audio player = new Audio();
         private static String soundOnDone = "";
         private static byte nbSellingRetries = 3;
         //Master lists
@@ -155,7 +156,7 @@ namespace Iocaine2.Bots
                 MenuNavigation.CloseCheck();
                 if (soundOnDone != "")
                 {
-                    Audio.PlaySound(soundOnDone);
+                    player.PlaySound(soundOnDone);
                 }
                 Stop();
                 gilAtEnd = MemReads.Self.Inventory.get_gil();

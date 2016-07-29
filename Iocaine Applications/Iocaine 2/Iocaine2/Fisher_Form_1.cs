@@ -1262,12 +1262,12 @@ namespace Iocaine2
         private void TOP_Thread_pausePlThreads()
         {
             LoggingFunctions.Debug("Top::pausePlThreads: Pausing the PL check active thread.", LoggingFunctions.DBG_SCOPE.TOP);
-            PL_PauseCheckActiveThread = true;
+            PL_CheckActiveThread.Freeze();
         }
         private void TOP_Thread_resumePlThreads()
         {
             LoggingFunctions.Debug("Top::resumePlThreads: Resuming the PL check active thread.", LoggingFunctions.DBG_SCOPE.TOP);
-            PL_PauseCheckActiveThread = false;
+            PL_CheckActiveThread.Thaw();
         }
         private void TOP_vitalsOrAnyJobChangedHandler()
         {

@@ -26,6 +26,7 @@ namespace Iocaine2
         #region Private Members
         private const String ALR_whitelistTBDefText = "Type Name, Hit Enter to Add";
         private const String ALR_playMessageTBDefText = "Text to Say or File to Play";
+        private static Iocaine2.Tools.Audio player = new Tools.Audio();
         private static Boolean ALR_loadingSettings = false;
         private static BindingSource ALR_whitelistSavedBS;
         private static List<String> ALR_whitelistTemp = new List<string>();
@@ -55,8 +56,9 @@ namespace Iocaine2
         private void ALR_loadUserSettings()
         {
             Statics.Settings.Alert.Enable = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_Enable");
-            Statics.Settings.Alert.AlwaysAlert = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_AlwaysAlert");
+            Statics.Settings.Alert.AlwaysAlert = false;
             Statics.Settings.Alert.PlayMessage = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PlayMessage");
+            Statics.Settings.Alert.LoopMessage = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_LoopMessage");
             Statics.Settings.Alert.MessageText = (String)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_MessageText");
             Statics.Settings.Alert.FlashTaskBar = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_FlashTaskBar");
             Statics.Settings.Alert.PauseBots = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PauseBots");
@@ -64,9 +66,12 @@ namespace Iocaine2
             ALR_setEnabledChkB(Statics.Settings.Alert.Enable);
             ALR_setAlwaysAlertChkB(Statics.Settings.Alert.AlwaysAlert);
             ALR_setPlayMessageChkB(Statics.Settings.Alert.PlayMessage);
+            ALR_setLoopMessageChkB(Statics.Settings.Alert.LoopMessage);
             ALR_setMessageTextTB(Statics.Settings.Alert.MessageText);
             ALR_setFlashTaskbarChkB(Statics.Settings.Alert.FlashTaskBar);
             ALR_setPauseBotsChkB(Statics.Settings.Alert.PauseBots);
+            player.Enabled = Statics.Settings.Alert.Enable;
+            player.Loop = Statics.Settings.Alert.LoopMessage;
 
             Statics.Settings.Alert.Whitelist.Clear();
             List<List<Object>> whitelistSettings = UserSettings.GetList(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST);
@@ -166,8 +171,9 @@ namespace Iocaine2
             {
                 if (!ALR_EnableAlertsChkB.Checked)
                 {
-                    Tools.Audio.StopSound();
+                    player.StopSound();
                 }
+                player.Enabled = ALR_EnableAlertsChkB.Checked;
                 Statics.Settings.Alert.Enable = ALR_EnableAlertsChkB.Checked;
                 UserSettings.SetValue(UserSettings.BOT.TOP, "ALR_Enable", Statics.Settings.Alert.Enable.ToString());
                 UserSettings.SaveSettings();
@@ -177,6 +183,10 @@ namespace Iocaine2
         {
             if (!ALR_loadingSettings)
             {
+                if (ALR_AlwaysAlertChkB.Checked && ALR_EnableAlertsChkB.Checked)
+                {
+                    player.Enabled = true;
+                }
                 Statics.Settings.Alert.AlwaysAlert = ALR_AlwaysAlertChkB.Checked;
                 UserSettings.SetValue(UserSettings.BOT.TOP, "ALR_AlwaysAlert", Statics.Settings.Alert.AlwaysAlert.ToString());
                 UserSettings.SaveSettings();
@@ -190,8 +200,23 @@ namespace Iocaine2
         {
             if (!ALR_loadingSettings)
             {
+                if (!ALR_PlayMessageChkB.Checked)
+                {
+                    player.StopSound();
+                }
+                player.Enabled &= ALR_PlayMessageChkB.Checked;
                 Statics.Settings.Alert.PlayMessage = ALR_PlayMessageChkB.Checked;
                 UserSettings.SetValue(UserSettings.BOT.TOP, "ALR_PlayMessage", Statics.Settings.Alert.PlayMessage.ToString());
+                UserSettings.SaveSettings();
+            }
+        }
+        private void ALR_LoopMessageChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!ALR_loadingSettings)
+            {
+                player.Loop = ALR_LoopMessageChkB.Checked;
+                Statics.Settings.Alert.LoopMessage = ALR_LoopMessageChkB.Checked;
+                UserSettings.SetValue(UserSettings.BOT.TOP, "ALR_LoopMessage", Statics.Settings.Alert.LoopMessage.ToString());
                 UserSettings.SaveSettings();
             }
         }
@@ -373,7 +398,7 @@ namespace Iocaine2
                 LoggingFunctions.Timestamp("Alerting due to PC '" + pcName + "' coming into range.");
                 if(Statics.Settings.Alert.PlayMessage)
                 {
-                    Tools.Audio.PlaySound(Statics.Settings.Alert.MessageText);
+                    player.PlaySound(Statics.Settings.Alert.MessageText);
                     ALR_alerting = true;
                 }
                 if (Statics.Settings.Alert.FlashTaskBar)
@@ -467,6 +492,28 @@ namespace Iocaine2
         public void ALR_setPlayMessageChkBCBF(Boolean iValue)
         {
             ALR_PlayMessageChkB.Checked = iValue;
+        }
+        public void ALR_setLoopMessageChkB(Boolean iValue)
+        {
+            try
+            {
+                if (ALR_LoopMessageChkB.InvokeRequired)
+                {
+                    ALR_LoopMessageChkB.Invoke(new Statics.FuncPtrs.TD_Void_Bool(ALR_setLoopMessageChkBCBF), new object[] { iValue });
+                }
+                else
+                {
+                    ALR_setLoopMessageChkBCBF(iValue);
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
+        }
+        public void ALR_setLoopMessageChkBCBF(Boolean iValue)
+        {
+            ALR_LoopMessageChkB.Checked = iValue;
         }
         public void ALR_setFlashTaskbarChkB(Boolean iValue)
         {

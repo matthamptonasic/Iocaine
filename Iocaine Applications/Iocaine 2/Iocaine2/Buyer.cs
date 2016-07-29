@@ -32,12 +32,14 @@ namespace Iocaine2.Bots
             LEAVE_NUMBER_SLOTS_OPEN = 3
         }
         #endregion Enums
+
         #region Private Members
         private static STATE state = STATE.STOPPED;
         private static Thread runThread = null;
         private static Buyer_Script script = null;
         private static String soundOnDone = "";
         private static ChatLoggerAsync chatLog = null;
+        private static Audio player = null;
         private static bool isGuild = false;
         private static bool isGuildSet = false;
         private static float nbGameMinPerItemMove = 1.0f;
@@ -66,7 +68,8 @@ namespace Iocaine2.Bots
         private static UInt32 gilAtStart = 0;
         private static UInt32 gilAtEnd = 0;
         #endregion Private Members
-        #region Public Members/Properties
+
+        #region Public Properties
         public static STATE State
         {
             get
@@ -74,7 +77,80 @@ namespace Iocaine2.Bots
                 return state;
             }
         }
-        #endregion Public Members/Properties
+        #endregion Public Properties
+
+        #region Inits
+        public static void Init_Iocaine()
+        {
+            player = new Audio();
+        }
+        #endregion Inits
+
+        #region Public Methods
+        #region State
+        public static void Start(Buyer_Script iScript, String iAudioOnDone)
+        {
+            try
+            {
+                if ((state != STATE.STOPPED) || (iScript == null))
+                {
+                    return;
+                }
+                if (iScript.ItemList.Count == 0)
+                {
+                    String errMsg = "There were no items set in the list to buy. Stopping now.";
+                    LoggingFunctions.Error(errMsg);
+                    MessageBox.Show(errMsg);
+                    return;
+                }
+                Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
+                Statics.FuncPtrs.SetStatusBoxPtr("Starting the Buyer.", Statics.Fields.Green);
+                state = STATE.RUNNING;
+                script = new Buyer_Script(iScript);
+                scriptItemList = script.ItemList;
+                scriptQuanList = script.ItemQuanList;
+                scriptPriceList = script.PricePerItemList;
+                initStaticValues();
+                setQuantities();
+                soundOnDone = iAudioOnDone;
+                isGuildSet = false;
+                Inventory.Containers.RebuildListsMobileOnly();
+                //Do any pre-run organization.
+
+                //Start the script.
+                runThread = new Thread(new ThreadStart(runThreadFunction));
+                runThread.Name = "Buyer";
+                runThread.IsBackground = true;
+                runThread.Start();
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error("Buyer::Start: " + e.ToString());
+            }
+        }
+        public static void Start(Buyer_Script iScript)
+        {
+            Start(iScript, "");
+            Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
+        }
+        public static void Stop()
+        {
+            state = STATE.STOPPED;
+            Statics.FuncPtrs.SetBuyerButtonPtr("S&tart", Statics.Buttons.Green);
+        }
+        public static void Pause()
+        {
+            state = STATE.PAUSED_USER;
+            Statics.FuncPtrs.SetBuyerButtonPtr("&Resume", Statics.Buttons.Green);
+        }
+        public static void Resume()
+        {
+            state = STATE.RUNNING;
+            Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
+        }
+        #endregion State
+        #endregion Public Methods
+
         #region Private Methods
         #region Main Run Thread
         private static void runThreadFunction()
@@ -241,7 +317,7 @@ namespace Iocaine2.Bots
                 MenuNavigation.CloseCheck();
                 if (soundOnDone != "")
                 {
-                    Audio.PlaySound(soundOnDone);
+                    player.PlaySound(soundOnDone);
                 }
                 Stop();
                 gilAtEnd = MemReads.Self.Inventory.get_gil();
@@ -259,7 +335,7 @@ namespace Iocaine2.Bots
             }
         }
         #endregion Main Run Thread
-        #region Status
+        #region State
         private static bool checkState()
         {
             try
@@ -1299,69 +1375,6 @@ namespace Iocaine2.Bots
         }
         #endregion Guild Related
         #endregion Private Methods
-        #region Public Methods
-        #region Status
-        public static void Start(Buyer_Script iScript, String iAudioOnDone)
-        {
-            try
-            {
-                if ((state != STATE.STOPPED) || (iScript == null))
-                {
-                    return;
-                }
-                if (iScript.ItemList.Count == 0)
-                {
-                    String errMsg = "There were no items set in the list to buy. Stopping now.";
-                    LoggingFunctions.Error(errMsg);
-                    MessageBox.Show(errMsg);
-                    return;
-                }
-                Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
-                Statics.FuncPtrs.SetStatusBoxPtr("Starting the Buyer.", Statics.Fields.Green);
-                state = STATE.RUNNING;
-                script = new Buyer_Script(iScript);
-                scriptItemList = script.ItemList;
-                scriptQuanList = script.ItemQuanList;
-                scriptPriceList = script.PricePerItemList;
-                initStaticValues();
-                setQuantities();
-                soundOnDone = iAudioOnDone;
-                isGuildSet = false;
-                Inventory.Containers.RebuildListsMobileOnly();
-                //Do any pre-run organization.
-
-                //Start the script.
-                runThread = new Thread(new ThreadStart(runThreadFunction));
-                runThread.Name = "Buyer";
-                runThread.IsBackground = true;
-                runThread.Start();
-            }
-            catch(Exception e)
-            {
-                LoggingFunctions.Error("Buyer::Start: " + e.ToString());
-            }
-        }
-        public static void Start(Buyer_Script iScript)
-        {
-            Start(iScript, "");
-            Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
-        }
-        public static void Stop()
-        {
-            state = STATE.STOPPED;
-            Statics.FuncPtrs.SetBuyerButtonPtr("S&tart", Statics.Buttons.Green);
-        }
-        public static void Pause()
-        {
-            state = STATE.PAUSED_USER;
-            Statics.FuncPtrs.SetBuyerButtonPtr("&Resume", Statics.Buttons.Green);
-        }
-        public static void Resume()
-        {
-            state = STATE.RUNNING;
-            Statics.FuncPtrs.SetBuyerButtonPtr("&Pause", Statics.Buttons.Yellow);
-        }
-        #endregion Status
-        #endregion Public Methods
+        
     }
 }

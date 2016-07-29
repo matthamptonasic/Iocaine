@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IocaineOffsetHelper")]
+[assembly: AssemblyTitle("MemoryHelper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Cisco Systems, Inc.")]
-[assembly: AssemblyProduct("IocaineOffsetHelper")]
-[assembly: AssemblyCopyright("Copyright © Cisco Systems, Inc. 2009")]
+[assembly: AssemblyCompany("NA")]
+[assembly: AssemblyProduct("MemoryHelper")]
+[assembly: AssemblyCopyright("Copyright © SHInteriors, Inc. 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

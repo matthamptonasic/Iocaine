@@ -133,6 +133,7 @@ namespace Iocaine2
             BY_LoadScriptsListFromDb();
             BY_loadScriptCB();
             BY_setNpcNameAutoComplete();
+            Buyer.Init_Iocaine();
             BY_doingInits = false;
         }
         private void BY_Login_inits()

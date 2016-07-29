@@ -1905,7 +1905,7 @@ namespace Iocaine2
                     LoggingFunctions.Debug("TopCR::CB_Start_Button_Click: Skill: " + skill + ".", LoggingFunctions.DBG_SCOPE.TOP);
                     updateQuantities(loadedRecipe, 0, false);
                     CB_statsAddRecipe(loadedRecipe, CB_Stats_DGV, CB_Stats_Recipe_Label, CB_Stats_Recipe_Number_Label, CB_Stats_Recipe_Max_Label);
-                    Crafter1 = new Bots.Crafter(ChangeMonitor.MainProc, ChangeMonitor.MainModule, mode, loadedRecipe, nbOf, skill, CB_Start_Button, new Statics.FuncPtrs.TD_Void_String_Color(updateCrafterStartButtonCBF));
+                    Crafter1 = new Bots.Crafter(mode, loadedRecipe, nbOf, skill, CB_Start_Button, new Statics.FuncPtrs.TD_Void_String_Color(updateCrafterStartButtonCBF));
                     Crafter1.doInits();
                     Crafter1.CraftDone += new Bots.Crafter.CraftDoneEvent(Crafter1_CraftDone);
 
