@@ -32,9 +32,10 @@ namespace Iocaine2.Data.Structures
     {
         #region Private Members
         private bool isBlocking = false;
-        private ACTN_TYPE type = ACTN_TYPE.Unknown;
+        private ACTN_TYPE aType = ACTN_TYPE.Unknown;
         private List<Condition> m_orConditions;
         protected List<Condition> m_andConditions;
+        private string conditionExpression = "";
         #endregion Private Members
 
         #region Public Properties
@@ -49,7 +50,7 @@ namespace Iocaine2.Data.Structures
         {
             get
             {
-                return type;
+                return aType;
             }
         }
         #endregion Public Properties
@@ -58,17 +59,17 @@ namespace Iocaine2.Data.Structures
         public Action(bool iIsBlocking, ACTN_TYPE iType)
         {
             isBlocking = iIsBlocking;
-            type = iType;
+            aType = iType;
         }
         #endregion Constructor
 
         #region Public Methods
         public abstract Boolean Execute(String iTarget = "");
         public abstract void Show();
-        public abstract new String SaveString();
+        public abstract string SaveString();
         public bool Compare(Data.Structures.Action iAction)
         {
-            if(iAction.type != this.type)
+            if(iAction.aType != this.aType)
             {
                 return false;
             }
