@@ -24,14 +24,23 @@ namespace Iocaine2.Data.Structures
 
             #region Private Members
             protected CONDITION_TYPE m_conditionType;
+            private string m_name;
             #endregion Private Members
 
             #region Public Properties
+            public string Name
+            {
+                get
+                {
+                    return m_name;
+                }
+            }
             #endregion Public Properties
 
-            public Condition(CONDITION_TYPE iType)
+            public Condition(CONDITION_TYPE iType, string iName)
             {
                 m_conditionType = iType;
+                m_name = iName;
             }
 
             #region Public Methods

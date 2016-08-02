@@ -47,8 +47,8 @@ namespace Iocaine2.Data.Structures
             #endregion Public Properties
 
             #region Constructor(s)
-            public InventoryItem(ushort iItemId, bool iAnyMobile = false)
-                : base(CONDITION_TYPE.INV_ITEM)
+            public InventoryItem(string iName, ushort iItemId, bool iAnyMobile = false)
+                : base(CONDITION_TYPE.INV_ITEM, iName)
             {
                 m_itemId = iItemId;
                 m_anyMobile = iAnyMobile;
