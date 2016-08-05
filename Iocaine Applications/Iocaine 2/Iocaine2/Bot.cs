@@ -77,7 +77,7 @@ namespace Iocaine2.Bots
                 return state;
             }
         }
-        public String Name
+        public string Name
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Iocaine2.Bots
             }
         }
         protected abstract bool checkStatus();
-        protected void setStartButton(String iText, System.Drawing.Color iColor)
+        protected void setStartButton(string iText, System.Drawing.Color iColor)
         {
             try
             {
@@ -158,7 +158,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Bot[" + name + "]::setStartButton: " + e.ToString());
             }
         }
-        private void setStartButtonCBF(String iText, System.Drawing.Color iColor)
+        private void setStartButtonCBF(string iText, System.Drawing.Color iColor)
         {
             try
             {
@@ -247,7 +247,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Bot[" + name + "]::Stop: " + e.ToString());
             }
         }
-        public virtual void Pause(Boolean iNow = false)
+        public virtual void Pause(bool iNow = false)
         {
             try
             {
