@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Media;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Speech.Synthesis;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
