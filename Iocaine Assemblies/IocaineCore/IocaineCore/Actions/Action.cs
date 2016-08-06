@@ -33,9 +33,10 @@ namespace Iocaine2.Data.Structures
         #region Private Members
         private bool isBlocking = false;
         private ACTN_TYPE aType = ACTN_TYPE.Unknown;
-        private List<Condition> m_orConditions;
-        protected List<Condition> m_andConditions;
-        private string conditionExpression = "";
+        private ConditionTree m_conditionsStatic;
+        private string m_conditionsStaticStr = "";
+        private ConditionTree m_conditionsDynamic;
+        private string m_conditionsDynamicStr = "";
         #endregion Private Members
 
         #region Public Properties
@@ -56,10 +57,19 @@ namespace Iocaine2.Data.Structures
         #endregion Public Properties
 
         #region Constructor
-        public Action(bool iIsBlocking, ACTN_TYPE iType)
+        public Action(bool iIsBlocking, ACTN_TYPE iType, ConditionTree iStaticConditions, ConditionTree iDynamicConditions)
         {
             isBlocking = iIsBlocking;
             aType = iType;
+            m_conditionsStatic = iStaticConditions;
+            m_conditionsDynamic = iDynamicConditions;
+        }
+        public Action(bool iIsBlocking, ACTN_TYPE iType, string iStaticConditionsExpression, string iDynamicConditionsExpression)
+        {
+            isBlocking = iIsBlocking;
+            aType = iType;
+            m_conditionsStaticStr = iStaticConditionsExpression;
+            m_conditionsDynamicStr = iDynamicConditionsExpression;
         }
         #endregion Constructor
 
@@ -79,25 +89,29 @@ namespace Iocaine2.Data.Structures
             }
             return true;
         }
-        public bool ConditionsMet()
+        public bool CanPerform()
         {
-            if ((m_andConditions != null) && (m_andConditions.Count > 0))
+            if ((m_conditionsDynamic == null) && (m_conditionsDynamicStr == ""))
             {
-                bool met = true;
-                foreach (Condition cndn in m_andConditions)
-                {
-                    met &= cndn.IsSatisfied();
-                }
-                return met;
+                return true;
             }
-            else if ((m_orConditions != null) && (m_orConditions.Count > 0))
+            else if (m_conditionsDynamic == null)
             {
-                bool met = false;
-                foreach (Condition cndn in m_andConditions)
-                {
-                    met |= cndn.IsSatisfied();
-                }
-                return met;
+                // TBD
+                // Parse the conditionExpression and create the conditionRoot structure.
+            }
+            return false;
+        }
+        public bool IsCapable()
+        {
+            if ((m_conditionsStatic == null) && (m_conditionsStaticStr == ""))
+            {
+                return true;
+            }
+            else if (m_conditionsStatic == null)
+            {
+                // TBD
+                // Parse the conditionExpression and create the conditionRoot structure.
             }
             return false;
         }
