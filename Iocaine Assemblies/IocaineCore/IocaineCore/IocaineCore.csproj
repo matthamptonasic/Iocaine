@@ -241,6 +241,7 @@
     <Compile Include="Actions\Commands\SpellCommand.cs" />
     <Compile Include="Actions\Commands\WeaponSkillCommand.cs" />
     <Compile Include="Actions\Conditions\Condition.cs" />
+    <Compile Include="Actions\Conditions\ConditionTree.cs" />
     <Compile Include="Actions\Conditions\InventoryItem.cs" />
     <Compile Include="IocaineThreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
