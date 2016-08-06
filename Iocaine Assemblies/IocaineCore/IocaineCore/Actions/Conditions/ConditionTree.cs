@@ -31,7 +31,14 @@ namespace Iocaine2.Data.Structures
             #region Public Methods
             public bool Evaluate()
             {
-                return true;
+                if (m_root == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return m_root.Evaluate();
+                }
             }
             #endregion Public Methods
         }
