@@ -44,7 +44,7 @@ namespace Iocaine2.Data.Structures
             }
 
             #region Public Methods
-            public abstract bool IsSatisfied();
+            public abstract bool Evaluate();
             #endregion Public Methods
         }
     }

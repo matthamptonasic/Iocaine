@@ -56,7 +56,7 @@ namespace Iocaine2.Data.Structures
             #endregion Constructor(s)
 
             #region Public Methods
-            public override bool IsSatisfied()
+            public override bool Evaluate()
             {
                 if (m_anyMobile)
                 {
