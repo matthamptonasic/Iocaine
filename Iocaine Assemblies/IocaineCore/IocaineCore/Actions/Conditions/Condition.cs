@@ -18,13 +18,16 @@ namespace Iocaine2.Data.Structures
             {
                 JOB_LVL,
                 INV_ITEM,
-                KEY_ITEM
+                KEY_ITEM,
+                AND,
+                OR
             }
             #endregion Enums
 
             #region Private Members
             protected CONDITION_TYPE m_conditionType;
             private string m_name;
+            private bool m_not;
             #endregion Private Members
 
             #region Public Properties
@@ -35,12 +38,20 @@ namespace Iocaine2.Data.Structures
                     return m_name;
                 }
             }
+            protected bool Not
+            {
+                get
+                {
+                    return m_not;
+                }
+            }
             #endregion Public Properties
 
-            public Condition(CONDITION_TYPE iType, string iName)
+            public Condition(CONDITION_TYPE iType, string iName, bool iInvert = false)
             {
                 m_conditionType = iType;
                 m_name = iName;
+                m_not = iInvert;
             }
 
             #region Public Methods
