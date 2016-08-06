@@ -27,12 +27,12 @@ namespace Iocaine2.Data.Structures
 
         #region Constructors
         public ActionWait(uint iWaitTimeMs = 1000)
-            : base(true, ACTN_TYPE.Wait)
+            : base(true, ACTN_TYPE.Wait, "", "")
         {
             m_waitTime = iWaitTimeMs;
         }
         public ActionWait(ActionWait iAction)
-            : base(true, ACTN_TYPE.Wait)
+            : base(true, ACTN_TYPE.Wait, "", "")
         {
             m_waitTime = iAction.m_waitTime;
         }

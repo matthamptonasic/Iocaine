@@ -28,17 +28,17 @@ namespace Iocaine2.Data.Structures
 
         #region Constructors
         public ActionCancelBuff(ushort iBuffId)
-            : base(true, ACTN_TYPE.Cancel_Buff)
+            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
         {
             m_buff = StatusEffects.GetStatusEffectInfo(iBuffId);
         }
         public ActionCancelBuff(string iBuffName)
-            : base(true, ACTN_TYPE.Cancel_Buff)
+            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
         {
             m_buff = StatusEffects.GetStatusEffectInfo(iBuffName);
         }
         public ActionCancelBuff(ActionCancelBuff iAction)
-            : base(true, ACTN_TYPE.Cancel_Buff)
+            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
         {
             m_buff = iAction.Buff;
         }
