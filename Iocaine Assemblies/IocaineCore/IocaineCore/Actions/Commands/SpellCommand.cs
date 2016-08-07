@@ -135,7 +135,7 @@ namespace Iocaine2.Data.Structures
             }
             try
             {
-                if (Ready)
+                if (Ready && CanPerform())
                 {
                     IocaineFunctions.keys(_SpellInfo.Command + " " + iTarget);
                     LoggingFunctions.Debug(_SpellInfo.Command + " " + iTarget, LoggingFunctions.DBG_SCOPE.COMMANDS);
@@ -185,18 +185,25 @@ namespace Iocaine2.Data.Structures
         {
             ConditionTree treeStatic = new ConditionTree();
             ConditionTree treeDynamic = new ConditionTree();
-            for (byte ii = Client.Jobs.MinID; ii <= Client.Jobs.MaxID; ii++)
+            try
             {
-                if (_SpellInfo.JobLevels[ii] != 0)
+                for (byte ii = Client.Jobs.MinID; ii <= Client.Jobs.MaxID; ii++)
                 {
-                    treeStatic.PushOr(new JobLevel(Client.Jobs.InfoMap[ii], _SpellInfo.JobLevels[ii], 99, _SpellInfo.AsSub ? JobLevel.MAIN_SUB.EITHER : JobLevel.MAIN_SUB.MAIN_ONLY));
+                    if (_SpellInfo.JobLevels[ii] != 0)
+                    {
+                        treeStatic.PushOr(new JobLevel(Client.Jobs.InfoMap[ii], _SpellInfo.JobLevels[ii], 99, _SpellInfo.AsSub ? JobLevel.MAIN_SUB.EITHER : JobLevel.MAIN_SUB.MAIN_ONLY));
+                    }
                 }
+
+                // TBD - Add dynamic conditions here.
+                //  - MP, recast, range, target, eventually check whether we know the spell...
+
+                setConditions(treeStatic, treeDynamic);
             }
-
-            // TBD - Add dynamic conditions here.
-            //  - MP, recast, range, target, eventually check whether we know the spell...
-
-            setConditions(treeStatic, treeDynamic);
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
         }
         private void setDummyInfo()
         {
