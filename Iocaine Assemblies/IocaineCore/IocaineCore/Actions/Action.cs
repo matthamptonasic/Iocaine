@@ -34,9 +34,9 @@ namespace Iocaine2.Data.Structures
         private bool isBlocking = false;
         private ACTN_TYPE aType = ACTN_TYPE.Unknown;
         private ConditionTree m_conditionsStatic;
-        private string m_conditionsStaticStr = "";
+        //private string m_conditionsStaticStr = "";
         private ConditionTree m_conditionsDynamic;
-        private string m_conditionsDynamicStr = "";
+        //private string m_conditionsDynamicStr = "";
         #endregion Private Members
 
         #region Public Properties
@@ -82,29 +82,23 @@ namespace Iocaine2.Data.Structures
         }
         public bool CanPerform()
         {
-            if ((m_conditionsDynamic == null) && (m_conditionsDynamicStr == ""))
+            if (!IsCapable())
+            {
+                return false;
+            }
+            if (m_conditionsDynamic == null)
             {
                 return true;
             }
-            else if (m_conditionsDynamic == null)
-            {
-                // TBD
-                // Parse the conditionExpression and create the conditionRoot structure.
-            }
-            return false;
+            return m_conditionsDynamic.Evaluate();
         }
         public bool IsCapable()
         {
-            if ((m_conditionsStatic == null) && (m_conditionsStaticStr == ""))
+            if (m_conditionsStatic == null)
             {
                 return true;
             }
-            else if (m_conditionsStatic == null)
-            {
-                // TBD
-                // Parse the conditionExpression and create the conditionRoot structure.
-            }
-            return false;
+            return m_conditionsStatic.Evaluate();
         }
         #endregion Public Methods
 
@@ -114,11 +108,11 @@ namespace Iocaine2.Data.Structures
             m_conditionsStatic = iStaticConditions;
             m_conditionsDynamic = iDynamicConditions;
         }
-        protected void setConditions(string iStaticConditions, string iDynamicConditions)
-        {
-            m_conditionsStaticStr = iStaticConditions;
-            m_conditionsDynamicStr = iDynamicConditions;
-        }
+        //protected void setConditions(string iStaticConditions, string iDynamicConditions)
+        //{
+        //    m_conditionsStaticStr = iStaticConditions;
+        //    m_conditionsDynamicStr = iDynamicConditions;
+        //}
         #endregion Private Methods
     }
 }
