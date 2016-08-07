@@ -1,5 +1,10 @@
 Iocaine Change Notes:
 
+Main.exe            - 
+IocainCore.dll      - 
+FFXIResource.dll    - 
+	- Added "invalid" properties to several classes in FFXIResource.
+
 IocaineInits.dll	- 1.0.0.2  - 2016/08/02
 IocaineServer.dll	- 1.0.2.1
 Iocaine2.exe		- 1.4.0.0
