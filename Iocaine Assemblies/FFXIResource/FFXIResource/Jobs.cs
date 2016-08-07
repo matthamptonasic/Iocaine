@@ -54,7 +54,7 @@ namespace Iocaine2.Data.Client
             if (!initDone)
             {
                 loadData();
-
+                loadInfoMap();
                 initDone = true;
             }
         }
