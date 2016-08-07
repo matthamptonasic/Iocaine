@@ -196,10 +196,10 @@
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\InventoryMovement.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\JAManager.cs">
-      <Link>JAManager.cs</Link>
+      <Link>Actions\Commands\Management\JAManager.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\SpellsManager.cs">
-      <Link>SpellsManager.cs</Link>
+      <Link>Actions\Commands\Management\SpellsManager.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\UserSettings.cs">
       <Link>UserSettings.cs</Link>
@@ -226,13 +226,14 @@
       <Link>BaitBoxItem.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\WSManager.cs">
-      <Link>WSManager.cs</Link>
+      <Link>Actions\Commands\Management\WSManager.cs</Link>
     </Compile>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\ActionCancelBuff.cs" />
+    <Compile Include="Actions\Conditions\JobLevel.cs" />
+    <Compile Include="Actions\IExecutableAction.cs" />
     <Compile Include="Actions\ActionManager.cs" />
     <Compile Include="Actions\ActionSequence.cs" />
-    <Compile Include="Actions\ActionUnion.cs" />
     <Compile Include="Actions\ActionWait.cs" />
     <Compile Include="Actions\Commands\Command.cs" />
     <Compile Include="Actions\Commands\CommandManager.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Actions\Commands\RawCommand.cs" />
     <Compile Include="Actions\Commands\SpellCommand.cs" />
     <Compile Include="Actions\Commands\WeaponSkillCommand.cs" />
+    <Compile Include="Actions\ActionSequenceUnion.cs" />
     <Compile Include="Actions\Conditions\Condition.cs" />
     <Compile Include="Actions\Conditions\ConditionAnd.cs" />
     <Compile Include="Actions\Conditions\ConditionOr.cs" />
