@@ -40,8 +40,22 @@ namespace Iocaine2.Data.Structures
         #endregion Public Properties
 
         #region Constructors
-        public RawCommand(String iName = "", String iText = "", Boolean iSendNow = false)
+        public RawCommand(string iName = "", string iText = "", bool iSendNow = false)
             : base(iName, CMD_TYPE.RAW_CMD, false)
+        {
+            setConditions(new ConditionTree(), new ConditionTree());
+            init(iText, iSendNow);
+        }
+        public RawCommand(ConditionTree iStaticConditions, ConditionTree iDynamicConditions, string iName = "", string iText = "", bool iSendNow = false)
+            : base(iName, CMD_TYPE.RAW_CMD, false)
+        {
+            setConditions(iStaticConditions, iDynamicConditions);
+            init(iText, iSendNow);
+        }
+        #endregion Constructors
+
+        #region Inits
+        private void init(string iText, bool iSendNow)
         {
             text = iText;
             if (iSendNow)
@@ -50,8 +64,8 @@ namespace Iocaine2.Data.Structures
                 Execute();
             }
         }
-        #endregion Constructors
-        
+        #endregion Inits
+
         #region Public Methods
         public override Boolean Execute(String iTarget = "")
         {
