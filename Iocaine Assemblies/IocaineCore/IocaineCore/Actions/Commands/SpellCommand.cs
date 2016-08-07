@@ -16,11 +16,11 @@ namespace Iocaine2.Data.Structures
     {
         #region Private Members
         private Client.Spells.SPELL_INFO _SpellInfo;
-        private Boolean available = false;
+        private bool available = false;
         #endregion Private Members
 
         #region Public Properties
-        public override Boolean Available
+        public override bool Available
         {
             get
             {
@@ -31,21 +31,21 @@ namespace Iocaine2.Data.Structures
                 available = value;
             }
         }
-        public override Boolean Ready
+        public override bool Ready
         {
             get
             {
                 return (TimeRemaining == 0) && available;
             }
         }
-        public UInt32 TimeRemaining
+        public uint TimeRemaining
         {
             get
             {
                 return MemReads.Self.Recast.Magic.get_time_remaining((Int16)_SpellInfo.ID);
             }
         }
-        public override UInt16 MP
+        public override ushort MP
         {
             get
             {
@@ -59,42 +59,42 @@ namespace Iocaine2.Data.Structures
                 return (Client.Spells.TARGETS)_SpellInfo.Targets;
             }
         }
-        public Byte Skill
+        public byte Skill
         {
             get
             {
                 return _SpellInfo.Skill;
             }
         }
-        public Int16 Element
+        public short Element
         {
             get
             {
                 return _SpellInfo.Element;
             }
         }
-        public UInt16 Range
+        public ushort Range
         {
             get
             {
                 return _SpellInfo.Range;
             }
         }
-        public override UInt32 ExecTime
+        public override uint ExecTime
         {
             get
             {
-                return (UInt32)Math.Ceiling(_SpellInfo.CastTime);
+                return (uint)Math.Ceiling(_SpellInfo.CastTime);
             }
         }
-        public override UInt32 Duration
+        public override uint Duration
         {
             get
             {
                 return _SpellInfo.Duration;
             }
         }
-        public String SpellType
+        public string SpellType
         {
             get
             {
@@ -104,13 +104,13 @@ namespace Iocaine2.Data.Structures
         #endregion Public Properties
 
         #region Constructors
-        public SpellCommand(String iName)
+        public SpellCommand(string iName)
             : base(iName, CMD_TYPE.SPELL, true)
         {
             if (iName != "Dummy")
             {
-                UInt16 Id = Iocaine2.Data.Client.Spells.GetSpellID(iName);
-                _SpellInfo = Iocaine2.Data.Client.Spells.GetSpellInfo(Id);
+                ushort Id = Client.Spells.GetSpellID(iName);
+                _SpellInfo = Client.Spells.GetSpellInfo(Id);
                 setConditionTrees();
             }
             else
@@ -127,7 +127,7 @@ namespace Iocaine2.Data.Structures
         #endregion Constructors
         
         #region Public Methods
-        public override Boolean Execute(String iTarget)
+        public override bool Execute(string iTarget)
         {
             if (MemReads.Self.Casting.is_casting())
             {
@@ -155,11 +155,12 @@ namespace Iocaine2.Data.Structures
             }
             catch (Exception e)
             {
-                LoggingFunctions.Error("SpellCommand.doCommand caught exception!");
-                LoggingFunctions.Error("Command: '" + _SpellInfo.Command + "'");
-                LoggingFunctions.Error("Target: '" + iTarget + "'");
-                LoggingFunctions.Error("Name: '" + _SpellInfo.Name + "'");
-                LoggingFunctions.Error("Exception:\n" + e.ToString());
+                string msg = "SpellCommand.Execute caught an exception!";
+                msg += " Command: '" + _SpellInfo.Command + "'";
+                msg += ", Target: '" + iTarget + "'";
+                msg += ", Name: '" + _SpellInfo.Name + "'";
+                msg += "\n" + e.ToString();
+                LoggingFunctions.Error(msg);
                 return false;
             }
             return true;
@@ -169,11 +170,11 @@ namespace Iocaine2.Data.Structures
         {
             MessageBox.Show(this.ToString(), "SpellCommand::" + Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        public override String SaveString()
+        public override string SaveString()
         {
             return "SpellCommand;" + _SpellInfo.Name;
         }
-        public override String ToString()
+        public override string ToString()
         {
             return _SpellInfo.Name;
         }
