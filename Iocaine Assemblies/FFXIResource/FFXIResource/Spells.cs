@@ -19,6 +19,7 @@ namespace Iocaine2.Data.Client
             DEAD_PC = 157
         }
         #endregion Enums
+
         #region Structures
         public struct SPELL_INFO
         {
@@ -35,34 +36,49 @@ namespace Iocaine2.Data.Client
             public ushort Range;
             public short Targets;
             public bool AsSub;
-            public byte LevelJob1;
-            public byte LevelJob2;
-            public byte LevelJob3;
-            public byte LevelJob4;
-            public byte LevelJob5;
-            public byte LevelJob6;
-            public byte LevelJob7;
-            public byte LevelJob8;
-            public byte LevelJob9;
-            public byte LevelJob10;
-            public byte LevelJob11;
-            public byte LevelJob12;
-            public byte LevelJob13;
-            public byte LevelJob14;
-            public byte LevelJob15;
-            public byte LevelJob16;
-            public byte LevelJob17;
-            public byte LevelJob18;
-            public byte LevelJob19;
-            public byte LevelJob20;
-            public byte LevelJob21;
-            public byte LevelJob22;
-            public byte LevelJob23;
+            public Dictionary<byte, byte> JobLevels;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
+        private const ushort invalidId = 0xffff;
+        private const string invalidName = "Unknown";
+        private const string invalidType = "Unknown";
+        private const byte invalidSkill = 0xff;
+        #endregion Private Members
+
+        #region Public Properties
+        private static ushort InvalidId
+        {
+            get
+            {
+                return invalidId;
+            }
+        }
+        private static string InvalidName
+        {
+            get
+            {
+                return invalidName;
+            }
+        }
+        private static string InvalidType
+        {
+            get
+            {
+                return invalidType;
+            }
+        }
+        private static byte InvalidSkill
+        {
+            get
+            {
+                return invalidSkill;
+            }
+        }
+        #endregion Public Properties
+
         #region Init
         internal static void init()
         {
@@ -73,7 +89,8 @@ namespace Iocaine2.Data.Client
             }
         }
         #endregion Init
-        #region Get Functions
+
+        #region Public Methods
         /// <summary>
         /// Gets the spell index with the given name.
         /// </summary>
@@ -87,7 +104,7 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString);
             if (spellRows.Length == 0)
             {
-                return 0xFFFF;
+                return invalidId;
             }
             else
             {
@@ -109,42 +126,7 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             if (spellRows.Length == 0)
             {
-                info.ID = 0xFFFF;
-                info.Name = "";
-                info.Type = "";
-                info.Skill = 0;
-                info.Command = "";
-                info.Element = 0;
-                info.MP = 0;
-                info.RecastID = 0;
-                info.CastTime = 0;
-                info.Duration = 0;
-                info.Range = 0;
-                info.Targets = 0;
-                info.AsSub = false;
-                info.LevelJob1 = 0;
-                info.LevelJob2 = 0;
-                info.LevelJob3 = 0;
-                info.LevelJob4 = 0;
-                info.LevelJob5 = 0;
-                info.LevelJob6 = 0;
-                info.LevelJob7 = 0;
-                info.LevelJob8 = 0;
-                info.LevelJob9 = 0;
-                info.LevelJob10 = 0;
-                info.LevelJob11 = 0;
-                info.LevelJob12 = 0;
-                info.LevelJob13 = 0;
-                info.LevelJob14 = 0;
-                info.LevelJob15 = 0;
-                info.LevelJob16 = 0;
-                info.LevelJob17 = 0;
-                info.LevelJob18 = 0;
-                info.LevelJob19 = 0;
-                info.LevelJob20 = 0;
-                info.LevelJob21 = 0;
-                info.LevelJob22 = 0;
-                info.LevelJob23 = 0;
+                getNullInfo(ref info);
             }
             else
             {
@@ -161,29 +143,7 @@ namespace Iocaine2.Data.Client
                 info.Range = spellRows[0].Range;
                 info.Targets = spellRows[0].Targets;
                 info.AsSub = spellRows[0].AsSub;
-                info.LevelJob1 = spellRows[0].LevelJob1;
-                info.LevelJob2 = spellRows[0].LevelJob2;
-                info.LevelJob3 = spellRows[0].LevelJob3;
-                info.LevelJob4 = spellRows[0].LevelJob4;
-                info.LevelJob5 = spellRows[0].LevelJob5;
-                info.LevelJob6 = spellRows[0].LevelJob6;
-                info.LevelJob7 = spellRows[0].LevelJob7;
-                info.LevelJob8 = spellRows[0].LevelJob8;
-                info.LevelJob9 = spellRows[0].LevelJob9;
-                info.LevelJob10 = spellRows[0].LevelJob10;
-                info.LevelJob11 = spellRows[0].LevelJob11;
-                info.LevelJob12 = spellRows[0].LevelJob12;
-                info.LevelJob13 = spellRows[0].LevelJob13;
-                info.LevelJob14 = spellRows[0].LevelJob14;
-                info.LevelJob15 = spellRows[0].LevelJob15;
-                info.LevelJob16 = spellRows[0].LevelJob16;
-                info.LevelJob17 = spellRows[0].LevelJob17;
-                info.LevelJob18 = spellRows[0].LevelJob18;
-                info.LevelJob19 = spellRows[0].LevelJob19;
-                info.LevelJob20 = spellRows[0].LevelJob20;
-                info.LevelJob21 = spellRows[0].LevelJob21;
-                info.LevelJob22 = spellRows[0].LevelJob22;
-                info.LevelJob23 = spellRows[0].LevelJob23;
+                setJobLevels(spellRows[0], ref info);
             }
             return info;
         }
@@ -338,6 +298,9 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
+        #endregion Public Methods
+
+        #region Private Methods
         private static List<SPELL_INFO> wrapRows(MainDatabase.SpellsRow[] iSpellRows)
         {
             List<SPELL_INFO> infoList = new List<SPELL_INFO>();
@@ -357,33 +320,89 @@ namespace Iocaine2.Data.Client
                 info.Range = row.Range;
                 info.Targets = row.Targets;
                 info.AsSub = row.AsSub;
-                info.LevelJob1 = row.LevelJob1;
-                info.LevelJob2 = row.LevelJob2;
-                info.LevelJob3 = row.LevelJob3;
-                info.LevelJob4 = row.LevelJob4;
-                info.LevelJob5 = row.LevelJob5;
-                info.LevelJob6 = row.LevelJob6;
-                info.LevelJob7 = row.LevelJob7;
-                info.LevelJob8 = row.LevelJob8;
-                info.LevelJob9 = row.LevelJob9;
-                info.LevelJob10 = row.LevelJob10;
-                info.LevelJob11 = row.LevelJob11;
-                info.LevelJob12 = row.LevelJob12;
-                info.LevelJob13 = row.LevelJob13;
-                info.LevelJob14 = row.LevelJob14;
-                info.LevelJob15 = row.LevelJob15;
-                info.LevelJob16 = row.LevelJob16;
-                info.LevelJob17 = row.LevelJob17;
-                info.LevelJob18 = row.LevelJob18;
-                info.LevelJob19 = row.LevelJob19;
-                info.LevelJob20 = row.LevelJob20;
-                info.LevelJob21 = row.LevelJob21;
-                info.LevelJob22 = row.LevelJob22;
-                info.LevelJob23 = row.LevelJob23;
+                setJobLevels(row, ref info);
                 infoList.Add(info);
             }
             return infoList;
         }
-        #endregion Get Functions
+        private static void setJobLevels(MainDatabase.SpellsRow iRow, ref SPELL_INFO oInfo)
+        {
+            oInfo.JobLevels = new Dictionary<byte, byte>();
+            oInfo.JobLevels.Add(1, iRow.LevelJob1);
+            oInfo.JobLevels.Add(2, iRow.LevelJob2);
+            oInfo.JobLevels.Add(3, iRow.LevelJob3);
+            oInfo.JobLevels.Add(4, iRow.LevelJob4);
+            oInfo.JobLevels.Add(5, iRow.LevelJob5);
+            oInfo.JobLevels.Add(6, iRow.LevelJob6);
+            oInfo.JobLevels.Add(7, iRow.LevelJob7);
+            oInfo.JobLevels.Add(8, iRow.LevelJob8);
+            oInfo.JobLevels.Add(9, iRow.LevelJob9);
+            oInfo.JobLevels.Add(10, iRow.LevelJob10);
+            oInfo.JobLevels.Add(11, iRow.LevelJob11);
+            oInfo.JobLevels.Add(12, iRow.LevelJob12);
+            oInfo.JobLevels.Add(13, iRow.LevelJob13);
+            oInfo.JobLevels.Add(14, iRow.LevelJob14);
+            oInfo.JobLevels.Add(15, iRow.LevelJob15);
+            oInfo.JobLevels.Add(16, iRow.LevelJob16);
+            oInfo.JobLevels.Add(17, iRow.LevelJob17);
+            oInfo.JobLevels.Add(18, iRow.LevelJob18);
+            oInfo.JobLevels.Add(19, iRow.LevelJob19);
+            oInfo.JobLevels.Add(20, iRow.LevelJob20);
+            oInfo.JobLevels.Add(21, iRow.LevelJob21);
+            oInfo.JobLevels.Add(22, iRow.LevelJob22);
+            oInfo.JobLevels.Add(23, iRow.LevelJob23);
+        }
+        private static SPELL_INFO getNullInfo()
+        {
+            SPELL_INFO info = new SPELL_INFO();
+            info.ID = invalidId;
+            info.Name = invalidName;
+            info.Type = invalidType;
+            info.Skill = Skills.InvalidSkill;
+            info.Command = "";
+            info.Element = Elements.InvalidElement;
+            info.MP = 0;
+            info.RecastID = 0;
+            info.CastTime = 0;
+            info.Duration = 0;
+            info.Range = 0;
+            info.Targets = Targets.InvalidId;
+            info.AsSub = false;
+            info.JobLevels = getNullDictionary();
+            return info;
+        }
+        private static void getNullInfo(ref SPELL_INFO oInfo)
+        {
+            oInfo.ID = invalidId;
+            oInfo.Name = invalidName;
+            oInfo.Type = invalidType;
+            oInfo.Skill = Skills.InvalidSkill;
+            oInfo.Command = "";
+            oInfo.Element = Elements.InvalidElement;
+            oInfo.MP = 0;
+            oInfo.RecastID = 0;
+            oInfo.CastTime = 0;
+            oInfo.Duration = 0;
+            oInfo.Range = 0;
+            oInfo.Targets = Targets.InvalidId;
+            oInfo.AsSub = false;
+            oInfo.JobLevels = getNullDictionary();
+        }
+        private static Dictionary<byte, byte> getNullDictionary()
+        {
+            return new Dictionary<byte, byte>() { { 1, 0 }, { 2, 0 },
+                                                  { 3, 0 }, { 4, 0 },
+                                                  { 5, 0 }, { 6, 0 },
+                                                  { 7, 0 }, { 8, 0 },
+                                                  { 9, 0 }, { 10, 0 },
+                                                  { 11, 0 }, { 12, 0 },
+                                                  { 13, 0 }, { 14, 0 },
+                                                  { 15, 0 }, { 16, 0 },
+                                                  { 17, 0 }, { 18, 0 },
+                                                  { 19, 0 }, { 20, 0 },
+                                                  { 21, 0 }, { 22, 0 },
+                                                  { 23, 0 } };
+        }
+        #endregion Private Methods
     }
 }
