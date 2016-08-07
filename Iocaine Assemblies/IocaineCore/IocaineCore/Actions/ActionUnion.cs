@@ -21,7 +21,7 @@ namespace Iocaine2.Data.Structures
 
         #region Constructors
         public ActionUnion(bool iIsBlocking, Action iAction)
-            : base(iIsBlocking, ACTN_TYPE.Union)
+            : base(iIsBlocking, ACTN_TYPE.Union, "", "") // TBD - fix how union conditions are set/updated.
         {
             m_actionList = new List<Action>() { iAction };
         }
@@ -44,7 +44,7 @@ namespace Iocaine2.Data.Structures
         {
             foreach (Action actn in m_actionList)
             {
-                if (actn.ConditionsMet())
+                if (actn.CanPerform())
                 {
                     oActn = actn;
                     m_setAction = actn;
