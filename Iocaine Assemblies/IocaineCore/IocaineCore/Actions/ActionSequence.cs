@@ -9,55 +9,62 @@ using Iocaine2.Logging;
 
 namespace Iocaine2.Data.Structures
 {
-    public class ActionSequence
+    public class ActionSequence : IExecutableAction
     {
-        public ActionSequence()
-        {
-            isBlocking = false;
-            actionList = new List<Data.Structures.Action>();
-        }
-        private bool isBlocking;
-        private List<Data.Structures.Action> actionList;
+        #region Private Members
+        private bool m_isBlocking;
+        private List<Action> m_actionList;
+        #endregion Private Members
+
+        #region Public Properties
         public bool IsBlocking
         {
             get
             {
-                return isBlocking;
+                return m_isBlocking;
             }
         }
         public int ActionCount
         {
             get
             {
-                return actionList.Count;
+                return m_actionList.Count;
             }
         }
-        public Data.Structures.Action GetAction(int index)
+        #endregion Public Properties
+
+        #region Constructor(s)
+        public ActionSequence()
         {
-            return actionList[index];
+            m_isBlocking = false;
+            m_actionList = new List<Action>();
         }
-        public void AddAction(Data.Structures.Action iAction)
+        #endregion Constructor(s)
+
+        #region Public Methods
+        #region List Manipulation
+        public void AddAction(Action iAction)
         {
             if (iAction != null)
             {
-                actionList.Add(iAction);
+                m_actionList.Add(iAction);
                 if (iAction.IsBlocking)
                 {
-                    isBlocking = true;
+                    m_isBlocking = true;
                 }
             }
         }
         public void RemoveAction(Data.Structures.Action iAction)
         {
-            if (actionList.Contains(iAction))
+            if (m_actionList.Contains(iAction))
             {
-                actionList.Remove(iAction);
-                isBlocking = false;
-                foreach (Data.Structures.Action actn in actionList)
+                m_actionList.Remove(iAction);
+                m_isBlocking = false;
+                foreach (Data.Structures.Action actn in m_actionList)
                 {
                     if (actn.IsBlocking)
                     {
-                        isBlocking = true;
+                        m_isBlocking = true;
                         break;
                     }
                 }
@@ -70,29 +77,25 @@ namespace Iocaine2.Data.Structures
         public void RemoveAction(int iIndex)
         {
             Data.Structures.Action actn = null;
-            if (actionList.Count >= iIndex + 1)
+            if (m_actionList.Count >= iIndex + 1)
             {
-                actn = actionList[iIndex];
+                actn = m_actionList[iIndex];
                 RemoveAction(actn);
             }
             else
             {
-                LoggingFunctions.Error("Tried to remove action index " + iIndex + " which was out of range. Count is: " + actionList.Count);
+                LoggingFunctions.Error("Tried to remove action index " + iIndex + " which was out of range. Count is: " + m_actionList.Count);
             }
         }
-        public void ShowActions()
+        #endregion List Manipulation
+        #region List Checking
+        public Action GetAction(int index)
         {
-            int nbActions = actionList.Count;
-            String display = "";
-            for (int ii = 0; ii < nbActions; ii++)
-            {
-                display += "[" + ii + "] " + actionList[ii].ToString() + "\n";
-            }
-            MessageBox.Show(display, "Action Sequence:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return m_actionList[index];
         }
         public bool Contains(ACTN_TYPE iType)
         {
-            foreach (Data.Structures.Action actn in actionList)
+            foreach (Data.Structures.Action actn in m_actionList)
             {
                 if (actn.AType == iType)
                 {
@@ -111,7 +114,7 @@ namespace Iocaine2.Data.Structures
             {
                 for (int ii = 0; ii < this.ActionCount; ii++)
                 {
-                    if (!this.actionList[ii].Compare(seq.GetAction(ii)))
+                    if (!this.m_actionList[ii].Compare(seq.GetAction(ii)))
                     {
                         return false;
                     }
@@ -119,16 +122,28 @@ namespace Iocaine2.Data.Structures
                 return true;
             }
         }
-        public Data.Structures.Action GetActionCopy(int iIndex)
+        public void ShowActions()
         {
-            if (iIndex > actionList.Count)
+            int nbActions = m_actionList.Count;
+            String display = "";
+            for (int ii = 0; ii < nbActions; ii++)
+            {
+                display += "[" + ii + "] " + m_actionList[ii].ToString() + "\n";
+            }
+            MessageBox.Show(display, "Action Sequence:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        #endregion List Checking
+        #region Duplication
+        public Action GetActionCopy(int iIndex)
+        {
+            if (iIndex > m_actionList.Count)
             {
                 return null;
             }
             else
             {
-                Data.Structures.Action actn = actionList[iIndex];
-                Data.Structures.Action copyAction = null;
+                Action actn = m_actionList[iIndex];
+                Action copyAction = null;
                 switch (actn.AType)
                 {
                     case ACTN_TYPE.Wait:
@@ -142,13 +157,51 @@ namespace Iocaine2.Data.Structures
         public ActionSequence GetSequenceCopy()
         {
             ActionSequence copySeq = new ActionSequence();
-            copySeq.isBlocking = this.isBlocking;
-            int nbActions = this.actionList.Count;
+            copySeq.m_isBlocking = this.m_isBlocking;
+            int nbActions = this.m_actionList.Count;
             for (int ii = 0; ii < nbActions; ii++)
             {
-                copySeq.actionList.Add(this.GetActionCopy(ii));
+                copySeq.m_actionList.Add(this.GetActionCopy(ii));
             }
             return copySeq;
         }
+        #endregion Duplication
+        #region IExecutableAction
+        public bool IsCapable()
+        {
+            foreach (Action actn in m_actionList)
+            {
+                if (!actn.IsCapable())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool CanPerform()
+        {
+            foreach (Action actn in m_actionList)
+            {
+                if (!actn.CanPerform())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool Execute(string iTarget = "")
+        {
+            bool retVal = true;
+            foreach (Action actn in m_actionList)
+            {
+                retVal &= actn.Execute(iTarget);
+            }
+            return retVal;
+        }
+        #endregion IExecutableAction
+        #endregion Public Methods
+
+        #region Private Methods
+        #endregion Private Methods
     }
 }
