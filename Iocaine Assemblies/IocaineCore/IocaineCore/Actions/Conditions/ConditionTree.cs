@@ -23,10 +23,12 @@ namespace Iocaine2.Data.Structures
             #region Public Properties
             #endregion Public Properties
 
+            #region Constructor
             public ConditionTree()
             {
                 m_root = null;
             }
+            #endregion Constructor
 
             #region Public Methods
             public bool Evaluate()
@@ -40,7 +42,38 @@ namespace Iocaine2.Data.Structures
                     return m_root.Evaluate();
                 }
             }
+            public void PushAnd(Condition iCondition, bool iInvert = false)
+            {
+                if (m_root == null)
+                {
+                    pushRoot(iCondition);
+                }
+                else
+                {
+                    ConditionAnd and = new ConditionAnd(m_root, iCondition, iCondition.Name + "_AND", iInvert);
+                    m_root = and;
+                }
+            }
+            public void PushOr(Condition iCondition, bool iInvert = false)
+            {
+                if (m_root == null)
+                {
+                    pushRoot(iCondition);
+                }
+                else
+                {
+                    ConditionOr and = new ConditionOr(m_root, iCondition, iCondition.Name + "_OR", iInvert);
+                    m_root = and;
+                }
+            }
             #endregion Public Methods
+
+            #region Private Methods
+            private void pushRoot(Condition iCondition)
+            {
+                m_root = iCondition;
+            }
+            #endregion Private Methods
         }
     }
 }
