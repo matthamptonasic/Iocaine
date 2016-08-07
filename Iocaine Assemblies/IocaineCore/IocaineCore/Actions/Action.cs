@@ -57,19 +57,10 @@ namespace Iocaine2.Data.Structures
         #endregion Public Properties
 
         #region Constructor
-        public Action(bool iIsBlocking, ACTN_TYPE iType, ConditionTree iStaticConditions, ConditionTree iDynamicConditions)
+        public Action(bool iIsBlocking, ACTN_TYPE iType)
         {
             isBlocking = iIsBlocking;
             aType = iType;
-            m_conditionsStatic = iStaticConditions;
-            m_conditionsDynamic = iDynamicConditions;
-        }
-        public Action(bool iIsBlocking, ACTN_TYPE iType, string iStaticConditionsExpression, string iDynamicConditionsExpression)
-        {
-            isBlocking = iIsBlocking;
-            aType = iType;
-            m_conditionsStaticStr = iStaticConditionsExpression;
-            m_conditionsDynamicStr = iDynamicConditionsExpression;
         }
         #endregion Constructor
 
@@ -116,5 +107,18 @@ namespace Iocaine2.Data.Structures
             return false;
         }
         #endregion Public Methods
+
+        #region Private Methods
+        protected void setConditions(ConditionTree iStaticConditions, ConditionTree iDynamicConditions)
+        {
+            m_conditionsStatic = iStaticConditions;
+            m_conditionsDynamic = iDynamicConditions;
+        }
+        protected void setConditions(string iStaticConditions, string iDynamicConditions)
+        {
+            m_conditionsStaticStr = iStaticConditions;
+            m_conditionsDynamicStr = iDynamicConditions;
+        }
+        #endregion Private Methods
     }
 }
