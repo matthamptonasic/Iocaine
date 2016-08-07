@@ -195,12 +195,6 @@
       <Link>ChatLogManager.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\InventoryMovement.cs" />
-    <Compile Include="..\..\..\Iocaine IP\Tools\JAManager.cs">
-      <Link>Actions\Commands\Management\JAManager.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Iocaine IP\Tools\SpellsManager.cs">
-      <Link>Actions\Commands\Management\SpellsManager.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Iocaine IP\Tools\UserSettings.cs">
       <Link>UserSettings.cs</Link>
     </Compile>
@@ -225,11 +219,11 @@
     <Compile Include="..\..\..\Iocaine IP\Data Structures\BaitBoxItem.cs">
       <Link>BaitBoxItem.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Iocaine IP\Tools\WSManager.cs">
-      <Link>Actions\Commands\Management\WSManager.cs</Link>
-    </Compile>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\ActionCancelBuff.cs" />
+    <Compile Include="Actions\Commands\Management\JAManager.cs" />
+    <Compile Include="Actions\Commands\Management\SpellsManager.cs" />
+    <Compile Include="Actions\Commands\Management\WSManager.cs" />
     <Compile Include="Actions\Conditions\JobLevel.cs" />
     <Compile Include="Actions\IExecutableAction.cs" />
     <Compile Include="Actions\ActionManager.cs" />
