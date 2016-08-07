@@ -22,9 +22,22 @@ namespace Iocaine2.Data.Client
             public bool Dead;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
+        private const short invalidId = 0x7fff;
+        #endregion Private Members
+
+        #region Public Properties
+        public static short InvalidId
+        {
+            get
+            {
+                return invalidId;
+            }
+        }
+        #endregion Public Properties
+
         #region Init
         internal static void init()
         {
@@ -35,7 +48,8 @@ namespace Iocaine2.Data.Client
             }
         }
         #endregion Init
-        #region Get Functions
+
+        #region Public Methods
         public static TARGETS_INFO GetTargetInfo(short iId)
         {
             FfxiResource.init();
@@ -68,6 +82,6 @@ namespace Iocaine2.Data.Client
             }
             return info;
         }
-        #endregion Get Functions
+        #endregion Public Methods
     }
 }

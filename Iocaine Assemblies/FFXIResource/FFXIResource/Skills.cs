@@ -16,9 +16,21 @@ namespace Iocaine2.Data.Client
             public string Category;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
+        private const byte invalidSkill = 0xff;
+        #endregion Private Members
+
+        #region Public Properties
+        public static byte InvalidSkill
+        {
+            get
+            {
+                return invalidSkill;
+            }
+        }
+        #endregion Public Properties
         #region Init
         internal static void init()
         {

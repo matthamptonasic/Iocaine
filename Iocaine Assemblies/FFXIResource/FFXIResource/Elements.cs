@@ -15,9 +15,22 @@ namespace Iocaine2.Data.Client
             public string Name;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
+        private const short invalidElement = 0x7fff;
+        #endregion Private Members
+
+        #region Public Properties
+        public static short InvalidElement
+        {
+            get
+            {
+                return invalidElement;
+            }
+        }
+        #endregion Public Properties
+
         #region Init
         internal static void init()
         {
@@ -28,7 +41,8 @@ namespace Iocaine2.Data.Client
             }
         }
         #endregion Init
-        #region Get Functions
+
+        #region Public Methods
         /// <summary>
         /// Gets the element ID of the given name.
         /// </summary>
@@ -68,6 +82,6 @@ namespace Iocaine2.Data.Client
                 return elementRows[0].Name;
             }
         }
-        #endregion Get Functions
+        #endregion Public Methods
     }
 }
