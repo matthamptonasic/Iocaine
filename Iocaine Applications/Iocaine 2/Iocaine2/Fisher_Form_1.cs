@@ -1265,11 +1265,18 @@ namespace Iocaine2
             //The order of these is crutial since refresh lists invokes onto the GUI thread.
             //So if they were all assigned to the same event (as was previously done),
             //and the event called the PL_RefreshLists first, it would cause errors.
-            Data.Structures.CommandManager.SpellsManager.Init();
-            Data.Structures.CommandManager.JAManager.Init();
-            Data.Structures.CommandManager.WSManager.Init();
-            Data.Structures.CommandManager.Init();
-            PL_RefreshLists();
+            try
+            {
+                Data.Structures.CommandManager.SpellsManager.Init();
+                Data.Structures.CommandManager.JAManager.Init();
+                Data.Structures.CommandManager.WSManager.Init();
+                Data.Structures.CommandManager.Init();
+                PL_RefreshLists();
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
         }
         #region Fisher Event Handlers
         private void Fisher_OnDoneHandler()
