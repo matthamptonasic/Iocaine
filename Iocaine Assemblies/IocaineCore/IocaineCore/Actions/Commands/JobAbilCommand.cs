@@ -102,11 +102,13 @@ namespace Iocaine2.Data.Structures
             : base(iName, CMD_TYPE.JOB_ABIL, true)
         {
             _AbilityInfo = Client.JobAbilities.GetAbilityInfo(iName);
+            setConditionTrees();
         }
         public JobAbilCommand(Client.JobAbilities.JA_INFO iInfo)
             : base(iInfo.Name, CMD_TYPE.JOB_ABIL, true)
         {
             _AbilityInfo = iInfo;
+            setConditionTrees();
         }
         #endregion Constructors
         
@@ -155,5 +157,24 @@ namespace Iocaine2.Data.Structures
             return _AbilityInfo.Name;
         }
         #endregion Public Methods
+
+        #region Private Methods
+        private void setConditionTrees()
+        {
+            // Static:
+            //  - Job + level + asSub
+            ConditionTree treeStatic = new ConditionTree();
+            ConditionTree treeDynamic = new ConditionTree();
+            if ((_AbilityInfo.Job >= Client.Jobs.MinID) && (_AbilityInfo.Job <= Client.Jobs.MaxID))
+            {
+                treeStatic.PushOr(new JobLevel(Client.Jobs.InfoMap[_AbilityInfo.Job], _AbilityInfo.JobLevel, 99, _AbilityInfo.AsSub ? JobLevel.MAIN_SUB.EITHER : JobLevel.MAIN_SUB.MAIN_ONLY));
+            }
+
+            // Dynamic:
+            //  - Target, MP, TP, Recast
+
+            setConditions(treeStatic, treeDynamic);
+        }
+        #endregion Private Methods
     }
 }
