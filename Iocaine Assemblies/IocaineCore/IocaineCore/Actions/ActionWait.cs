@@ -27,14 +27,16 @@ namespace Iocaine2.Data.Structures
 
         #region Constructors
         public ActionWait(uint iWaitTimeMs = 1000)
-            : base(true, ACTN_TYPE.Wait, "", "")
+            : base(true, ACTN_TYPE.Wait)
         {
             m_waitTime = iWaitTimeMs;
+            setConditionTrees();
         }
         public ActionWait(ActionWait iAction)
-            : base(true, ACTN_TYPE.Wait, "", "")
+            : base(true, ACTN_TYPE.Wait)
         {
             m_waitTime = iAction.m_waitTime;
+            setConditionTrees();
         }
         #endregion Constructors
 
@@ -60,5 +62,12 @@ namespace Iocaine2.Data.Structures
             return m_waitTime.ToString() + "ms";
         }
         #endregion Public Methods
+
+        #region Private Methods
+        private void setConditionTrees()
+        {
+            setConditions(new ConditionTree(), new ConditionTree());
+        }
+        #endregion Private Methods
     }
 }

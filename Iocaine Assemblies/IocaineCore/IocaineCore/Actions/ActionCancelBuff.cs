@@ -28,19 +28,22 @@ namespace Iocaine2.Data.Structures
 
         #region Constructors
         public ActionCancelBuff(ushort iBuffId)
-            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
+            : base(true, ACTN_TYPE.Cancel_Buff)
         {
             m_buff = StatusEffects.GetStatusEffectInfo(iBuffId);
+            setConditionTrees();
         }
         public ActionCancelBuff(string iBuffName)
-            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
+            : base(true, ACTN_TYPE.Cancel_Buff)
         {
             m_buff = StatusEffects.GetStatusEffectInfo(iBuffName);
+            setConditionTrees();
         }
         public ActionCancelBuff(ActionCancelBuff iAction)
-            : base(true, ACTN_TYPE.Cancel_Buff, "", "")
+            : base(true, ACTN_TYPE.Cancel_Buff)
         {
             m_buff = iAction.Buff;
+            setConditionTrees();
         }
         #endregion Constructors
 
@@ -69,5 +72,12 @@ namespace Iocaine2.Data.Structures
             return m_buff.Index.ToString();
         }
         #endregion Public Methods
+
+        #region Private Methods
+        private void setConditionTrees()
+        {
+            setConditions(new ConditionTree(), new ConditionTree());
+        }
+        #endregion Private Methods
     }
 }
