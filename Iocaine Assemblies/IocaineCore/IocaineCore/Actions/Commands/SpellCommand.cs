@@ -111,6 +111,7 @@ namespace Iocaine2.Data.Structures
             {
                 UInt16 Id = Iocaine2.Data.Client.Spells.GetSpellID(iName);
                 _SpellInfo = Iocaine2.Data.Client.Spells.GetSpellInfo(Id);
+                setConditionTrees();
             }
             else
             {
@@ -121,6 +122,7 @@ namespace Iocaine2.Data.Structures
             : base(iInfo.Name, CMD_TYPE.SPELL, true)
         {
             _SpellInfo = Iocaine2.Data.Client.Spells.GetSpellInfo(iInfo.ID);
+            setConditionTrees();
         }
         #endregion Constructors
         
@@ -178,6 +180,23 @@ namespace Iocaine2.Data.Structures
         #endregion Public Methods
 
         #region Private Methods
+        private void setConditionTrees()
+        {
+            ConditionTree treeStatic = new ConditionTree();
+            ConditionTree treeDynamic = new ConditionTree();
+            for (byte ii = Client.Jobs.MinID; ii <= Client.Jobs.MaxID; ii++)
+            {
+                if (_SpellInfo.JobLevels[ii] != 0)
+                {
+                    treeStatic.PushOr(new JobLevel(Client.Jobs.InfoMap[ii], _SpellInfo.JobLevels[ii], 99, _SpellInfo.AsSub ? JobLevel.MAIN_SUB.EITHER : JobLevel.MAIN_SUB.MAIN_ONLY));
+                }
+            }
+
+            // TBD - Add dynamic conditions here.
+            //  - MP, recast, range, target, eventually check whether we know the spell...
+
+            setConditions(treeStatic, treeDynamic);
+        }
         private void setDummyInfo()
         {
             _SpellInfo = new Client.Spells.SPELL_INFO();
@@ -187,29 +206,18 @@ namespace Iocaine2.Data.Structures
             _SpellInfo.Duration = 0;
             _SpellInfo.Element = 0;
             _SpellInfo.ID = 0;
-            _SpellInfo.LevelJob1 = 0;
-            _SpellInfo.LevelJob2 = 0;
-            _SpellInfo.LevelJob3 = 0;
-            _SpellInfo.LevelJob4 = 0;
-            _SpellInfo.LevelJob5 = 0;
-            _SpellInfo.LevelJob6 = 0;
-            _SpellInfo.LevelJob7 = 0;
-            _SpellInfo.LevelJob8 = 0;
-            _SpellInfo.LevelJob9 = 0;
-            _SpellInfo.LevelJob10 = 0;
-            _SpellInfo.LevelJob11 = 0;
-            _SpellInfo.LevelJob12 = 0;
-            _SpellInfo.LevelJob13 = 0;
-            _SpellInfo.LevelJob14 = 0;
-            _SpellInfo.LevelJob15 = 0;
-            _SpellInfo.LevelJob16 = 0;
-            _SpellInfo.LevelJob17 = 0;
-            _SpellInfo.LevelJob18 = 0;
-            _SpellInfo.LevelJob19 = 0;
-            _SpellInfo.LevelJob20 = 0;
-            _SpellInfo.LevelJob21 = 0;
-            _SpellInfo.LevelJob22 = 0;
-            _SpellInfo.LevelJob23 = 0;
+            _SpellInfo.JobLevels = new Dictionary<byte, byte>() { { 1, 0 }, { 2, 0 },
+                                                                  { 3, 0 }, { 4, 0 },
+                                                                  { 5, 0 }, { 6, 0 },
+                                                                  { 7, 0 }, { 8, 0 },
+                                                                  { 9, 0 }, { 10, 0 },
+                                                                  { 11, 0 }, { 12, 0 },
+                                                                  { 13, 0 }, { 14, 0 },
+                                                                  { 15, 0 }, { 16, 0 },
+                                                                  { 17, 0 }, { 18, 0 },
+                                                                  { 19, 0 }, { 20, 0 },
+                                                                  { 21, 0 }, { 22, 0 },
+                                                                  { 23, 0 } };
             _SpellInfo.MP = 0;
             _SpellInfo.Name = "Dummy";
             _SpellInfo.Range = 0;
