@@ -26,7 +26,7 @@ namespace Iocaine2.Data.Structures
         #endregion Enums
         #region Constructor
         public Command(String iName, CMD_TYPE iType, Boolean iIsBlocking)
-            : base(iIsBlocking, ACTN_TYPE.Command, "", "") // TBD - This must be updated for each command type.
+            : base(iIsBlocking, ACTN_TYPE.Command)
         {
             name = iName;
             type = iType;
