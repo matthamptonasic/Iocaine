@@ -42,7 +42,7 @@ namespace Iocaine2.Data.Structures
         {
             get
             {
-                return MemReads.Self.Recast.Magic.get_time_remaining((Int16)_SpellInfo.ID);
+                return MemReads.Self.Recast.Magic.get_time_remaining(_SpellInfo.ID);
             }
         }
         public override ushort MP
