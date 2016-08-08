@@ -121,7 +121,7 @@ namespace Iocaine2.Data.Structures
             }
             try
             {
-                if (Ready)
+                if (Ready && CanPerform())
                 {
                     IocaineFunctions.keys(_AbilityInfo.Command + " " + iTarget);
                     LoggingFunctions.Debug(_AbilityInfo.Command + " " + iTarget, LoggingFunctions.DBG_SCOPE.COMMANDS);
