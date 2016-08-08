@@ -16,11 +16,12 @@ namespace Iocaine2.Data.Structures
             #region Enums
             public enum CONDITION_TYPE : uint
             {
+                AND,
+                OR,
                 JOB_LVL,
                 INV_ITEM,
                 KEY_ITEM,
-                AND,
-                OR
+                MP_CURR_MIN
             }
             #endregion Enums
 
