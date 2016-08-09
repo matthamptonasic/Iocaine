@@ -16,19 +16,20 @@ namespace Iocaine2.Data.Structures
     {
         #region Private Members
         private Client.JobAbilities.JA_INFO _AbilityInfo;
-        private Byte recastStructIndex = 0;
-        private Boolean available = false;
+        private byte recastStructIndex = 0;
+        private bool available = false;
         #endregion Private Members
 
         #region Public Properties
-        public Byte RecastStructIndex
+        public byte RecastStructIndex
         {
             set
             {
                 recastStructIndex = value;
+                setDynamicConditionTree();
             }
         }
-        public override Boolean Available
+        public override bool Available
         {
             get
             {
@@ -53,28 +54,28 @@ namespace Iocaine2.Data.Structures
                 }
             }
         }
-        public UInt32 TimeRemaining
+        public uint TimeRemaining
         {
             get
             {
                 return MemReads.Self.Recast.Abilities.get_time_remaining(recastStructIndex);
             }
         }
-        public override UInt32 Duration
+        public override uint Duration
         {
             get
             {
                 return _AbilityInfo.Duration;
             }
         }
-        public override UInt16 MP
+        public override ushort MP
         {
             get
             {
                 return _AbilityInfo.MP;
             }
         }
-        public override UInt16 TP
+        public override ushort TP
         {
             get
             {
@@ -88,7 +89,7 @@ namespace Iocaine2.Data.Structures
                 return (Client.Spells.TARGETS)_AbilityInfo.Targets;
             }
         }
-        public Int16 Element
+        public short Element
         {
             get
             {
@@ -98,22 +99,22 @@ namespace Iocaine2.Data.Structures
         #endregion Public Properties
 
         #region Constructors
-        public JobAbilCommand(String iName)
+        public JobAbilCommand(string iName)
             : base(iName, CMD_TYPE.JOB_ABIL, true)
         {
             _AbilityInfo = Client.JobAbilities.GetAbilityInfo(iName);
-            setConditionTrees();
+            setStaticConditionTree();
         }
         public JobAbilCommand(Client.JobAbilities.JA_INFO iInfo)
             : base(iInfo.Name, CMD_TYPE.JOB_ABIL, true)
         {
             _AbilityInfo = iInfo;
-            setConditionTrees();
+            setStaticConditionTree();
         }
         #endregion Constructors
         
         #region Public Methods
-        public override Boolean Execute(String iTarget)
+        public override bool Execute(string iTarget)
         {
             if (MemReads.Self.Casting.is_casting())
             {
@@ -152,28 +153,34 @@ namespace Iocaine2.Data.Structures
         {
             return "JobAbilCommand;" + _AbilityInfo.Name;
         }
-        public override String ToString()
+        public override string ToString()
         {
             return _AbilityInfo.Name;
         }
         #endregion Public Methods
 
         #region Private Methods
-        private void setConditionTrees()
+        private void setStaticConditionTree()
         {
             // Static:
             //  - Job + level + asSub
             ConditionTree treeStatic = new ConditionTree();
-            ConditionTree treeDynamic = new ConditionTree();
             if ((_AbilityInfo.Job >= Client.Jobs.MinID) && (_AbilityInfo.Job <= Client.Jobs.MaxID))
             {
                 treeStatic.PushOr(new JobLevel(Client.Jobs.InfoMap[_AbilityInfo.Job], _AbilityInfo.JobLevel, 99, _AbilityInfo.AsSub ? JobLevel.MAIN_SUB.EITHER : JobLevel.MAIN_SUB.MAIN_ONLY));
             }
-
+            setConditions(treeStatic, null);
+        }
+        private void setDynamicConditionTree()
+        {
+            ConditionTree treeDynamic = new ConditionTree();
             // Dynamic:
-            //  - Target, MP, TP, Recast
+            //  - MP, TP, Recast
+            treeDynamic.PushAnd(new MPCurrentMin(_AbilityInfo.MP));
+            treeDynamic.PushAnd(new TPMin(_AbilityInfo.TP));
+            treeDynamic.PushAnd(new RecastReadyAbility(recastStructIndex));
 
-            setConditions(treeStatic, treeDynamic);
+            setConditions(treeDynamic);
         }
         #endregion Private Methods
     }
