@@ -43,7 +43,7 @@ namespace Iocaine2.Data.Structures
         public RawCommand(string iName = "", string iText = "", bool iSendNow = false)
             : base(iName, CMD_TYPE.RAW_CMD, false)
         {
-            setConditions(new ConditionTree(), new ConditionTree());
+            setConditions(null, null);
             init(iText, iSendNow);
         }
         public RawCommand(ConditionTree iStaticConditions, ConditionTree iDynamicConditions, string iName = "", string iText = "", bool iSendNow = false)

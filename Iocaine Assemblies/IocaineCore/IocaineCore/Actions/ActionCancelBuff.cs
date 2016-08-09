@@ -76,7 +76,7 @@ namespace Iocaine2.Data.Structures
         #region Private Methods
         private void setConditionTrees()
         {
-            setConditions(new ConditionTree(), new ConditionTree());
+            setConditions(null, null);
         }
         #endregion Private Methods
     }
