@@ -224,6 +224,7 @@
     <Compile Include="Actions\Commands\Management\JAManager.cs" />
     <Compile Include="Actions\Commands\Management\SpellsManager.cs" />
     <Compile Include="Actions\Commands\Management\WSManager.cs" />
+    <Compile Include="Actions\Commands\UseItem.cs" />
     <Compile Include="Actions\Conditions\JobLevel.cs" />
     <Compile Include="Actions\Conditions\MPCurrentMin.cs" />
     <Compile Include="Actions\Conditions\RecastAbility.cs" />
