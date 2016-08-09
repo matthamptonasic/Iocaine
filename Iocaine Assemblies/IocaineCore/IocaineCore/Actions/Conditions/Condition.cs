@@ -22,6 +22,8 @@ namespace Iocaine2.Data.Structures
                 INV_ITEM,
                 KEY_ITEM,
                 MP_CURR_MIN,
+                TP_MIN,
+                RECAST_ABILITY,
                 RECAST_SPELL
             }
             #endregion Enums
