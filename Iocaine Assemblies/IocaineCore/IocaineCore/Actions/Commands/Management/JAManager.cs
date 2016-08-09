@@ -33,8 +33,9 @@ namespace Iocaine2.Data.Structures
          * 1. Name to Structure Index
         */
             #endregion Notes
-            #region Member Variables
-            private static Boolean jaTimersInitDone;
+
+            #region Private Members
+            private static bool jaTimersInitDone;
             private static List<JobAbilCommand> allCommands = new List<JobAbilCommand>();
             private static List<JobAbilCommand> curCommands = new List<JobAbilCommand>();
             private static List<JobAbilCommand> pl_cureCommands = new List<JobAbilCommand>();
@@ -42,11 +43,12 @@ namespace Iocaine2.Data.Structures
             private static List<JobAbilCommand> pl_selfBuffsCommands = new List<JobAbilCommand>();
             private static List<JobAbilCommand> pl_healingCommands = new List<JobAbilCommand>();
             private static List<JobAbilities.JA_INFO> infoList;
-            private static List<UInt16> RecastIDsList; //Holds current JA's in order of mem-reads.
-            private static Dictionary<String, Byte> nameToStrctIndexMap; //Holds the recast timer structure ID for each JA name.
-            private static Dictionary<String, UInt16> nameToRecastIDMap; //Holds the list of recasts ID's for each JA name (build time).
-            #endregion Member Variables
-            #region Properties
+            private static List<ushort> RecastIDsList; //Holds current JA's in order of mem-reads.
+            private static Dictionary<string, byte> nameToStrctIndexMap; //Holds the recast timer structure ID for each JA name.
+            private static Dictionary<string, ushort> nameToRecastIDMap; //Holds the list of recasts ID's for each JA name (build time).
+            #endregion Private Members
+
+            #region Public/Internal Properties
             internal static List<JobAbilCommand> AllCommands
             {
                 get
@@ -89,8 +91,9 @@ namespace Iocaine2.Data.Structures
                     return pl_healingCommands;
                 }
             }
-            #endregion Properties
-            #region Interface Functions
+            #endregion Public/Internal Properties
+
+            #region Inits
             public static void Init()
             {
                 if (!ChangeMonitor.LoggedIn)
@@ -110,6 +113,47 @@ namespace Iocaine2.Data.Structures
                     Monitor.Exit(padlock);
                 }
             }
+            #endregion Inits
+
+            #region Public Methods
+            public static uint GetRecastTime(string AbilityName)
+            {
+                if (ChangeMonitor.LoggedIn)
+                {
+                    Init();
+                    return MemReads.Self.Recast.Abilities.get_time_remaining((byte)nameToStrctIndexMap[AbilityName]);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            public static uint GetRecastTime(ushort RecastID)
+            {
+                if (ChangeMonitor.LoggedIn)
+                {
+                    Init();
+                    return MemReads.Self.Recast.Abilities.get_time_remaining((byte)RecastIDsList.IndexOf(RecastID));
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            public static JobAbilCommand GetCommand(string iName)
+            {
+                foreach (JobAbilCommand cmd in allCommands)
+                {
+                    if (iName == cmd.Name)
+                    {
+                        return cmd;
+                    }
+                }
+                return null;
+            }
+            #endregion Public Methods
+
+            #region Private Methods
             private static void loadAllCommands()
             {
                 List<JobAbilities.JA_INFO> allJaInfo = JobAbilities.GetAbilityInfo();
@@ -162,7 +206,7 @@ namespace Iocaine2.Data.Structures
                     }
                 }
             }
-            private static void SetAbilities(Byte Job, Byte SubJob, Byte JobLevel)
+            private static void SetAbilities(byte Job, byte SubJob, byte JobLevel)
             {
                 FfxiResource.init();
                 if (infoList == null)
@@ -176,7 +220,7 @@ namespace Iocaine2.Data.Structures
                 infoList = JobAbilities.GetAbilityInfo(Job, SubJob, JobLevel);
                 if (nameToRecastIDMap == null)
                 {
-                    nameToRecastIDMap = new Dictionary<String, UInt16>();
+                    nameToRecastIDMap = new Dictionary<string, ushort>();
                 }
                 else
                 {
@@ -184,7 +228,7 @@ namespace Iocaine2.Data.Structures
                 }
                 foreach (JobAbilities.JA_INFO info in infoList)
                 {
-                    nameToRecastIDMap.Add(info.Name, (UInt16)info.RecastID);
+                    nameToRecastIDMap.Add(info.Name, (ushort)info.RecastID);
                 }
                 if (ChangeMonitor.LoggedIn)
                 {
@@ -196,7 +240,7 @@ namespace Iocaine2.Data.Structures
                 }
                 if (nameToStrctIndexMap == null)
                 {
-                    nameToStrctIndexMap = new Dictionary<String, Byte>();
+                    nameToStrctIndexMap = new Dictionary<string, byte>();
                 }
                 else
                 {
@@ -204,7 +248,7 @@ namespace Iocaine2.Data.Structures
                 }
                 foreach (JobAbilities.JA_INFO info in infoList)
                 {
-                    nameToStrctIndexMap.Add(info.Name, (Byte)RecastIDsList.IndexOf((UInt16)info.RecastID));
+                    nameToStrctIndexMap.Add(info.Name, (byte)RecastIDsList.IndexOf((ushort)info.RecastID));
                 }
                 curCommands.Clear();
                 foreach (JobAbilCommand cmd in allCommands)
@@ -218,42 +262,7 @@ namespace Iocaine2.Data.Structures
                     }
                 }
             }
-            public static UInt32 GetRecastTime(String AbilityName)
-            {
-                if (ChangeMonitor.LoggedIn)
-                {
-                    Init();
-                    return MemReads.Self.Recast.Abilities.get_time_remaining((Byte)nameToStrctIndexMap[AbilityName]);
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            public static UInt32 GetRecastTime(UInt16 RecastID)
-            {
-                if (ChangeMonitor.LoggedIn)
-                {
-                    Init();
-                    return MemReads.Self.Recast.Abilities.get_time_remaining((Byte)RecastIDsList.IndexOf(RecastID));
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            public static JobAbilCommand GetCommand(String iName)
-            {
-                foreach (JobAbilCommand cmd in allCommands)
-                {
-                    if (iName == cmd.Name)
-                    {
-                        return cmd;
-                    }
-                }
-                return null;
-            }
-            #endregion Interface Functions
+            #endregion Private Methods
         }
     }
 }
