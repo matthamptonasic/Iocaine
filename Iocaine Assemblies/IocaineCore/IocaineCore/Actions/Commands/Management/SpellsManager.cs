@@ -299,6 +299,17 @@ namespace Iocaine2.Data.Structures
                     #endregion SU Lists
                 }
             }
+            public static SpellCommand GetCommand(string iName)
+            {
+                foreach (SpellCommand cmd in allCommands)
+                {
+                    if (iName == cmd.Name)
+                    {
+                        return cmd;
+                    }
+                }
+                return null;
+            }
             #endregion Public Methods
 
             #region Private Methods
