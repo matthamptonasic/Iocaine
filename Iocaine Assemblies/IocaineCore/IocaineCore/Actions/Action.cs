@@ -28,7 +28,7 @@ namespace Iocaine2.Data.Structures
         Count
     }
     #endregion Enums
-    public abstract partial class Action
+    public abstract partial class Action : IExecutableAction
     {
         #region Private Members
         private bool isBlocking = false;
@@ -65,7 +65,7 @@ namespace Iocaine2.Data.Structures
         #endregion Constructor
 
         #region Public Methods
-        public abstract Boolean Execute(String iTarget = "");
+        public abstract bool Execute(string iTarget = "");
         public abstract void Show();
         public abstract string SaveString();
         public bool Compare(Data.Structures.Action iAction)
