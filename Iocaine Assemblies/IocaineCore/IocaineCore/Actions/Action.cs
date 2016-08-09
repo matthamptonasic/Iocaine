@@ -108,6 +108,10 @@ namespace Iocaine2.Data.Structures
             m_conditionsStatic = iStaticConditions;
             m_conditionsDynamic = iDynamicConditions;
         }
+        protected void setConditions(ConditionTree iDynamicConditions)
+        {
+            m_conditionsDynamic = iDynamicConditions;
+        }
         //protected void setConditions(string iStaticConditions, string iDynamicConditions)
         //{
         //    m_conditionsStaticStr = iStaticConditions;
