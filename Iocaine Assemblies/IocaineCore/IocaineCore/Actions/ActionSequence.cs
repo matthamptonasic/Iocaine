@@ -13,7 +13,8 @@ namespace Iocaine2.Data.Structures
     {
         #region Private Members
         private bool m_isBlocking;
-        private List<Action> m_actionList;
+        private List<IExecutableAction> m_actionList;
+        private string m_sequenceName;
         #endregion Private Members
 
         #region Public Properties
@@ -24,26 +25,27 @@ namespace Iocaine2.Data.Structures
                 return m_isBlocking;
             }
         }
-        public int ActionCount
+        public string SequenceName
         {
             get
             {
-                return m_actionList.Count;
+                return m_sequenceName;
             }
         }
         #endregion Public Properties
 
         #region Constructor(s)
-        public ActionSequence()
+        public ActionSequence(string iSequenceName = "")
         {
             m_isBlocking = false;
-            m_actionList = new List<Action>();
+            m_actionList = new List<IExecutableAction>();
+            m_sequenceName = iSequenceName;
         }
         #endregion Constructor(s)
 
         #region Public Methods
         #region List Manipulation
-        public void AddAction(Action iAction)
+        public void AddAction(IExecutableAction iAction)
         {
             if (iAction != null)
             {
@@ -54,7 +56,7 @@ namespace Iocaine2.Data.Structures
                 }
             }
         }
-        public void RemoveAction(Data.Structures.Action iAction)
+        public void RemoveAction(IExecutableAction iAction)
         {
             if (m_actionList.Contains(iAction))
             {
@@ -71,12 +73,12 @@ namespace Iocaine2.Data.Structures
             }
             else
             {
-                LoggingFunctions.Error("Tried to remove action " + iAction.AType.ToString() + " which was not in the actionList.");
+                LoggingFunctions.Error("Tried to remove action " + iAction.ToString() + " which was not in the actionList.");
             }
         }
         public void RemoveAction(int iIndex)
         {
-            Data.Structures.Action actn = null;
+            IExecutableAction actn = null;
             if (m_actionList.Count >= iIndex + 1)
             {
                 actn = m_actionList[iIndex];
@@ -89,43 +91,14 @@ namespace Iocaine2.Data.Structures
         }
         #endregion List Manipulation
         #region List Checking
-        public Action GetAction(int index)
+        public IExecutableAction GetAction(int index)
         {
             return m_actionList[index];
-        }
-        public bool Contains(ACTN_TYPE iType)
-        {
-            foreach (Data.Structures.Action actn in m_actionList)
-            {
-                if (actn.AType == iType)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public bool Compare(ActionSequence seq)
-        {
-            if (seq.ActionCount != this.ActionCount)
-            {
-                return false;
-            }
-            else
-            {
-                for (int ii = 0; ii < this.ActionCount; ii++)
-                {
-                    if (!this.m_actionList[ii].Compare(seq.GetAction(ii)))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
         }
         public void ShowActions()
         {
             int nbActions = m_actionList.Count;
-            String display = "";
+            string display = "";
             for (int ii = 0; ii < nbActions; ii++)
             {
                 display += "[" + ii + "] " + m_actionList[ii].ToString() + "\n";
@@ -134,42 +107,11 @@ namespace Iocaine2.Data.Structures
         }
         #endregion List Checking
         #region Duplication
-        public Action GetActionCopy(int iIndex)
-        {
-            if (iIndex > m_actionList.Count)
-            {
-                return null;
-            }
-            else
-            {
-                Action actn = m_actionList[iIndex];
-                Action copyAction = null;
-                switch (actn.AType)
-                {
-                    case ACTN_TYPE.Wait:
-                        copyAction = new ActionWait((ActionWait)actn);
-                        return copyAction;
-                    default:
-                        return null;
-                }
-            }
-        }
-        public ActionSequence GetSequenceCopy()
-        {
-            ActionSequence copySeq = new ActionSequence();
-            copySeq.m_isBlocking = this.m_isBlocking;
-            int nbActions = this.m_actionList.Count;
-            for (int ii = 0; ii < nbActions; ii++)
-            {
-                copySeq.m_actionList.Add(this.GetActionCopy(ii));
-            }
-            return copySeq;
-        }
         #endregion Duplication
         #region IExecutableAction
         public bool IsCapable()
         {
-            foreach (Action actn in m_actionList)
+            foreach (IExecutableAction actn in m_actionList)
             {
                 if (!actn.IsCapable())
                 {
@@ -180,7 +122,7 @@ namespace Iocaine2.Data.Structures
         }
         public bool CanPerform()
         {
-            foreach (Action actn in m_actionList)
+            foreach (IExecutableAction actn in m_actionList)
             {
                 if (!actn.CanPerform())
                 {
@@ -192,7 +134,7 @@ namespace Iocaine2.Data.Structures
         public bool Execute(string iTarget = "")
         {
             bool retVal = true;
-            foreach (Action actn in m_actionList)
+            foreach (IExecutableAction actn in m_actionList)
             {
                 retVal &= actn.Execute(iTarget);
             }
