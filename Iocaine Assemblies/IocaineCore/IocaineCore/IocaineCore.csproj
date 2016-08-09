@@ -226,7 +226,9 @@
     <Compile Include="Actions\Commands\Management\WSManager.cs" />
     <Compile Include="Actions\Conditions\JobLevel.cs" />
     <Compile Include="Actions\Conditions\MPCurrentMin.cs" />
+    <Compile Include="Actions\Conditions\RecastAbility.cs" />
     <Compile Include="Actions\Conditions\RecastSpell.cs" />
+    <Compile Include="Actions\Conditions\TPMin.cs" />
     <Compile Include="Actions\IExecutableAction.cs" />
     <Compile Include="Actions\ActionManager.cs" />
     <Compile Include="Actions\ActionSequence.cs" />
