@@ -234,7 +234,7 @@
     <Compile Include="Actions\ActionSequence.cs" />
     <Compile Include="Actions\ActionWait.cs" />
     <Compile Include="Actions\Commands\Command.cs" />
-    <Compile Include="Actions\Commands\CommandManager.cs" />
+    <Compile Include="Actions\Commands\Management\CommandManager.cs" />
     <Compile Include="Actions\Commands\JobAbilCommand.cs" />
     <Compile Include="Actions\Commands\RawCommand.cs" />
     <Compile Include="Actions\Commands\SpellCommand.cs" />
