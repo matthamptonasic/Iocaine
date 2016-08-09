@@ -135,7 +135,7 @@ namespace Iocaine2.Data.Structures
             }
             try
             {
-                if (Ready && CanPerform())
+                if (CanPerform())
                 {
                     IocaineFunctions.keys(_SpellInfo.Command + " " + iTarget);
                     LoggingFunctions.Debug(_SpellInfo.Command + " " + iTarget, LoggingFunctions.DBG_SCOPE.COMMANDS);
@@ -195,8 +195,8 @@ namespace Iocaine2.Data.Structures
                     }
                 }
 
-                // TBD - Add dynamic conditions here.
-                //  - MP, recast, range, target, eventually check whether we know the spell...
+                treeDynamic.PushAnd(new MPCurrentMin(_SpellInfo.MP));
+                treeDynamic.PushAnd(new RecastReadySpell(_SpellInfo.ID));
 
                 setConditions(treeStatic, treeDynamic);
             }
