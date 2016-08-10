@@ -11,19 +11,28 @@ namespace Iocaine2.Data.Structures
 {
     #region Enums
     #endregion Enums
-    public static class ActionManager
+    public static partial class ActionManager
     {
         #region Private Members
-        private static List<ActionSequence> m_sequences = new List<ActionSequence>();
+        private static Dictionary<ushort, ActionSequence> m_idToSequenceMap = new Dictionary<ushort, ActionSequence>();
+        private static Dictionary<string, ushort> m_nameToIdMap = new Dictionary<string, ushort>();
+        private static Dictionary<string, ActionSequence> m_nameToSequenceMap = new Dictionary<string, ActionSequence>();
         #endregion Private Members
 
         #region Public Properties
+        public static List<ActionSequence> AllSequences
+        {
+            get
+            {
+                return m_idToSequenceMap.Values.ToList();
+            }
+        }
         #endregion Public Properties
 
         #region Inits
         public static void Init_Iocaine()
         {
-
+            load_sequences();
         }
         public static void Init_Process()
         {
@@ -38,60 +47,29 @@ namespace Iocaine2.Data.Structures
         #region Public Methods
         public static ActionSequence GetSequence(string iSequenceName)
         {
-            foreach (ActionSequence seq in m_sequences)
+            if (m_nameToSequenceMap.ContainsKey(iSequenceName))
             {
-                if (seq.SequenceName == iSequenceName)
-                {
-                    return seq;
-                }
+                return m_nameToSequenceMap[iSequenceName];
             }
-            return null;
+            else
+            {
+                return null;
+            }
+        }
+        public static ActionSequence GetSequence(ushort iSequenceId)
+        {
+            if (m_idToSequenceMap.ContainsKey(iSequenceId))
+            {
+                return m_idToSequenceMap[iSequenceId];
+            }
+            else
+            {
+                return null;
+            }
         }
         #endregion Public Methods
 
         #region Private Methods
-        private static void load_sneak_inv()
-        {
-            ActionSequence seq = new ActionSequence("Sneak_Invisible");
-
-            // Cancel segment
-            seq.AddAction(new ActionCancelBuff("invisible"));
-            seq.AddAction(new ActionCancelBuff("sneak"));
-            seq.AddAction(new ActionWait());
-
-            // Snk/Inv choices
-            ActionSequenceUnion snkInvUnion = new ActionSequenceUnion();
-            ActionSequence jig = new ActionSequence();
-            jig.AddAction(CommandManager.JAManager.GetCommand("Spectral Jig"));
-
-            ActionSequence magic = new ActionSequence();
-            magic.AddAction(CommandManager.SpellsManager.GetCommand("Sneak"));
-            magic.AddAction(new ActionWait());
-            magic.AddAction(CommandManager.SpellsManager.GetCommand("Invisible"));
-            magic.AddAction(new ActionWait());
-
-            ActionSequence item = new ActionSequence();
-            Action.ConditionTree staticConditions = new Action.ConditionTree();
-            item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
-            item.AddAction(new UseItem("Prism Powder", "<me>", 2000));
-
-            snkInvUnion.AddSequence(jig);
-            snkInvUnion.AddSequence(magic);
-            snkInvUnion.AddSequence(item);
-
-            seq.AddAction(snkInvUnion);
-
-            m_sequences.Add(seq);
-        }
-        private static bool run_sneak_inv()
-        {
-            ActionSequence seq = GetSequence("Sneak_Invisible");
-            if ((seq != null) && (seq.CanPerform()))
-            {
-                return seq.Execute("<me>");
-            }
-            return false;
-        }
         #endregion Private Methods
     }
 }
