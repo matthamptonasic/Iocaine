@@ -221,6 +221,7 @@
     </Compile>
     <Compile Include="Actions\Action.cs" />
     <Compile Include="Actions\ActionCancelBuff.cs" />
+    <Compile Include="Actions\ActionSequenceLibraryLoad.cs" />
     <Compile Include="Actions\Commands\Management\JAManager.cs" />
     <Compile Include="Actions\Commands\Management\SpellsManager.cs" />
     <Compile Include="Actions\Commands\Management\WSManager.cs" />
