@@ -530,6 +530,7 @@ namespace Iocaine2.Bots
                     {
                         LoggingFunctions.Error("In ProcessTrip, route[" + ii + "]: " + trip.TripRoutes[ii].ToString() + " returned false.");
                         StopProcessing();
+                        Statics.FuncPtrs.SetNavButtonPtr("S&tart", Statics.Buttons.Green);
                         return;
                     }
                 }
@@ -557,6 +558,7 @@ namespace Iocaine2.Bots
                                 {
                                     LoggingFunctions.Error("In ProcessTrip, route[" + ii + "]: " + localSubTrip.TripRoutes[ii].ToString() + " returned false.");
                                     StopProcessing();
+                                    Statics.FuncPtrs.SetNavButtonPtr("S&tart", Statics.Buttons.Green);
                                     return;
                                 }
                             }
