@@ -686,11 +686,9 @@ namespace Iocaine2
         }
         private bool Nav_formatRoute(Nav_Route iRoute,
                                      String iRouteName,
-                                     String iRouteStartName,
-                                     String iRouteEndName,
                                      String iRouteTags)
         {
-            return Nav_formatRoute(iRoute, iRouteName, iRouteStartName, iRouteEndName, iRouteTags, false, false);
+            return Nav_formatRoute(iRoute, iRouteName, iRouteTags, false, false);
         }
         private bool Nav_formatRoute(Nav_Route iRoute, bool iReverseTypes, bool iFlipHeadings)
         {
@@ -703,12 +701,10 @@ namespace Iocaine2
             {
                 tags = iRoute.RouteNodes[0].RouteTags;
             }
-            return Nav_formatRoute(iRoute, iRoute.RouteName, iRoute.RouteNodes[0].RouteStartName, iRoute.RouteNodes[0].RouteEndName, tags, iReverseTypes, iFlipHeadings);
+            return Nav_formatRoute(iRoute, iRoute.RouteName, tags, iReverseTypes, iFlipHeadings);
         }
         private bool Nav_formatRoute(Nav_Route iRoute,
                                      String iRouteName,
-                                     String iRouteStartName,
-                                     String iRouteEndName,
                                      String iRouteTags,
                                      bool iReverseTypes,
                                      bool iFlipHeadings)
@@ -752,8 +748,8 @@ namespace Iocaine2
             //1. The first point has the strings saved to it.
             iRoute.RouteName = iRouteName;
             routeNodes[0].RouteName = iRouteName;
-            routeNodes[0].RouteStartName = iRouteStartName;
-            routeNodes[0].RouteEndName = iRouteEndName;
+            routeNodes[0].RouteStartName = "";
+            routeNodes[0].RouteEndName = "";
             routeNodes[0].RouteTags = iRouteTags;
             
             //2. Each beginning position node in a position string needs to be set as a start node.
@@ -3662,8 +3658,6 @@ namespace Iocaine2
         #endregion Misc
         #region Default Values
         private String Nav_Rec_RouteNameTBDefText = "Route Name";
-        private String Nav_Rec_RouteStartNameTBDefText = "Start Point Name";
-        private String Nav_Rec_RouteEndNameTBDefText = "End Point Name";
         private String Nav_Rec_RouteTagsTBDefText = "Comma Separated Tags";
         private String Nav_Rec_NpcNameTBDefText = "NPC Name";
         private String Nav_Rec_CommandTBDefText = "Command Text";
@@ -3677,14 +3671,10 @@ namespace Iocaine2
         #endregion Default Values
         #region GUI Value Parallels
         private String Nav_Rec_RouteName = "";
-        private String Nav_Rec_RouteStartName = "";
-        private String Nav_Rec_RouteEndName = "";
         private String Nav_Rec_RouteTags = "";
         private String Nav_Rec_NpcName = "";
         private String Nav_Rec_CommandText = "";
         private String Nav_Rec_ItemName = "";
-        private double Nav_Rec_Interval;
-        private double Nav_Rec_MinDist;
         private double Nav_Rec_Wait;
         private double Nav_Rec_ItemQuan;
         private double Nav_Rec_GilQuan;
@@ -3701,14 +3691,10 @@ namespace Iocaine2
         #endregion Current Route Values
         #region Delegates
         private delegate void Nav_Rec_setRouteNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setRouteStartNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setRouteEndNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
         private delegate void Nav_Rec_setNpcNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setCommandTextTBTextDelegate(String iText);
         private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setIntervalValueDelegate(double iValue);
-        private delegate void Nav_Rec_setMinDistValueDelegate(double iValue);
         private delegate void Nav_Rec_setWaitValueDelegate(double iValue);
         private delegate void Nav_Rec_setItemQuanValueDelegate(double iValue);
         private delegate void Nav_Rec_setGilQuanValueDelegate(double iValue);
@@ -3731,14 +3717,10 @@ namespace Iocaine2
         #endregion Delegates
         #region Function Pointers
         private Nav_Rec_setRouteNameTBTextDelegate Nav_Rec_setRouteNameTBTextPtr;
-        private Nav_Rec_setRouteStartNameTBTextDelegate Nav_Rec_setRouteStartNameTBTextPtr;
-        private Nav_Rec_setRouteEndNameTBTextDelegate Nav_Rec_setRouteEndNameTBTextPtr;
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
         private Nav_Rec_setNpcNameTBTextDelegate Nav_Rec_setNpcNameTBTextPtr;
         private Nav_Rec_setCommandTextTBTextDelegate Nav_Rec_setCommandTextTBTextPtr;
         private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
-        private Nav_Rec_setIntervalValueDelegate Nav_Rec_setIntervalValuePtr;
-        private Nav_Rec_setMinDistValueDelegate Nav_Rec_setMinDistValuePtr;
         private Nav_Rec_setWaitValueDelegate Nav_Rec_setWaitValuePtr;
         private Nav_Rec_setItemQuanValueDelegate Nav_Rec_setItemQuanValuePtr;
         private Nav_Rec_setGilQuanValueDelegate Nav_Rec_setGilQuanValuePtr;
@@ -3778,14 +3760,10 @@ namespace Iocaine2
             if (Nav_Rec_setRouteNameTBTextPtr == null)
             {
                 Nav_Rec_setRouteNameTBTextPtr = new Nav_Rec_setRouteNameTBTextDelegate(Nav_Rec_setRouteNameTBTextCallBackFunction);
-                Nav_Rec_setRouteStartNameTBTextPtr = new Nav_Rec_setRouteStartNameTBTextDelegate(Nav_Rec_setRouteStartNameTBTextCallBackFunction);
-                Nav_Rec_setRouteEndNameTBTextPtr = new Nav_Rec_setRouteEndNameTBTextDelegate(Nav_Rec_setRouteEndNameTBTextCallBackFunction);
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
                 Nav_Rec_setNpcNameTBTextPtr = new Nav_Rec_setNpcNameTBTextDelegate(Nav_Rec_setNpcNameTBTextCallBackFunction);
                 Nav_Rec_setCommandTextTBTextPtr = new Nav_Rec_setCommandTextTBTextDelegate(Nav_Rec_setCommandTextTBTextCallBackFunction);
                 Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
-                Nav_Rec_setIntervalValuePtr = new Nav_Rec_setIntervalValueDelegate(Nav_Rec_setIntervalValueCallBackFunction);
-                Nav_Rec_setMinDistValuePtr = new Nav_Rec_setMinDistValueDelegate(Nav_Rec_setMinDistValueCallBackFunction);
                 Nav_Rec_setWaitValuePtr = new Nav_Rec_setWaitValueDelegate(Nav_Rec_setWaitValueCallBackFunction);
                 Nav_Rec_setItemQuanValuePtr = new Nav_Rec_setItemQuanValueDelegate(Nav_Rec_setItemQuanValueCallBackFunction);
                 Nav_Rec_setGilQuanValuePtr = new Nav_Rec_setGilQuanValueDelegate(Nav_Rec_setGilQuanValueCallBackFunction);
@@ -3817,8 +3795,6 @@ namespace Iocaine2
         private void Nav_Rec_loadTextBoxDefText()
         {
             Nav_Rec_setRouteNameTBText(Nav_Rec_RouteNameTBDefText);
-            Nav_Rec_setRouteStartNameTBText(Nav_Rec_RouteStartNameTBDefText);
-            Nav_Rec_setRouteEndNameTBText(Nav_Rec_RouteEndNameTBDefText);
             Nav_Rec_setRouteTagsTBText(Nav_Rec_RouteTagsTBDefText);
             Nav_Rec_setNpcNameTBText(Nav_Rec_NpcNameTBDefText);
             Nav_Rec_setCommandTextTBText(Nav_Rec_CommandTBDefText);
@@ -3826,8 +3802,6 @@ namespace Iocaine2
         }
         private void Nav_Rec_loadUpDnDefValues()
         {
-            Nav_Rec_setIntervalValue(Statics.Settings.Navigation.IntervalDefValue);
-            Nav_Rec_setMinDistValue(Statics.Settings.Navigation.MinDistDefValue);
             Nav_Rec_setWaitValue(Statics.Settings.Navigation.WaitDefValue);
             Nav_Rec_setItemQuanValue(Nav_Rec_ItemQuanDefValue);
             Nav_Rec_setGilQuanValue(Nav_Rec_GilQuanDefValue);
@@ -3839,14 +3813,10 @@ namespace Iocaine2
         private void Nav_Rec_clearGuiParallelValues()
         {
             Nav_Rec_RouteName = "";
-            Nav_Rec_RouteStartName = "";
-            Nav_Rec_RouteEndName = "";
             Nav_Rec_RouteTags = "";
             Nav_Rec_NpcName = "";
             Nav_Rec_CommandText = "";
             Nav_Rec_ItemName = "";
-            Nav_Rec_Interval = Statics.Settings.Navigation.IntervalDefValue;
-            Nav_Rec_MinDist = Statics.Settings.Navigation.MinDistDefValue;
             Nav_Rec_Wait = Statics.Settings.Navigation.WaitDefValue;
             Nav_Rec_ItemQuan = Nav_Rec_ItemQuanDefValue;
             Nav_Rec_GilQuan = Nav_Rec_GilQuanDefValue;
@@ -3887,66 +3857,6 @@ namespace Iocaine2
             else
             {
                 Nav_Rec_Route_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setRouteStartNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Route_Start_Name_TB.InvokeRequired)
-                {
-                    Nav_Rec_Route_Start_Name_TB.Invoke(Nav_Rec_setRouteStartNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setRouteStartNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setRouteStartNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setRouteStartNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Route_Start_Name_TB.Text = iText;
-            if (iText != Nav_Rec_RouteStartNameTBDefText)
-            {
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setRouteEndNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Route_End_Name_TB.InvokeRequired)
-                {
-                    Nav_Rec_Route_End_Name_TB.Invoke(Nav_Rec_setRouteEndNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setRouteEndNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setRouteEndNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setRouteEndNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Route_End_Name_TB.Text = iText;
-            if (iText != Nav_Rec_RouteEndNameTBDefText)
-            {
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Gray;
             }
         }
         private void Nav_Rec_setRouteTagsTBText(String iText)
@@ -4071,50 +3981,6 @@ namespace Iocaine2
         }
         #endregion Text Box Updates
         #region UpDown Value Updates
-        private void Nav_Rec_setIntervalValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Interval_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Interval_UpDn.Invoke(Nav_Rec_setIntervalValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setIntervalValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setIntervalValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setIntervalValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Interval_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setMinDistValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Min_Dist_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Min_Dist_UpDn.Invoke(Nav_Rec_setMinDistValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setMinDistValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setMinDistValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setMinDistValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Min_Dist_UpDn.Value = (decimal)iValue;
-        }
         private void Nav_Rec_setWaitValue(double iValue)
         {
             try
@@ -4608,16 +4474,6 @@ namespace Iocaine2
                 MessageBox.Show("Please enter a Route Name");
                 return false;
             }
-            if (Nav_Rec_RouteStartName == Nav_Rec_RouteStartNameTBDefText)
-            {
-                MessageBox.Show("Please enter a Route Start Point Name");
-                return false;
-            }
-            if (Nav_Rec_RouteEndName == Nav_Rec_RouteEndNameTBDefText)
-            {
-                MessageBox.Show("Please enter a Route End Point Name");
-                return false;
-            }
             return true;
         }
         private bool Nav_Rec_checkNameExists()
@@ -5072,8 +4928,6 @@ namespace Iocaine2
                 if (Nav_Rec_CurrentRoute.RouteNodes.Count > 0)
                 {
                     Nav_Rec_setRouteNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteName);
-                    Nav_Rec_setRouteStartNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteStartName);
-                    Nav_Rec_setRouteEndNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteEndName);
                     //Since we added tags after initial beta release, we need to check for a null value first.
                     if (Nav_Rec_CurrentRoute.RouteNodes[0].IsRouteTagsNull())
                     {
@@ -5120,7 +4974,7 @@ namespace Iocaine2
                 MessageBox.Show("Tags cannot contain the ' (apostrophe) character.");
                 return false;
             }
-            if (Nav_formatRoute(Nav_Rec_CurrentRoute, Nav_Rec_RouteName, Nav_Rec_RouteStartName, Nav_Rec_RouteEndName, tagsParam))
+            if (Nav_formatRoute(Nav_Rec_CurrentRoute, Nav_Rec_RouteName, tagsParam))
             {
                 Nav_Rec_refreshRouteLB();
                 return true;
@@ -5297,7 +5151,7 @@ namespace Iocaine2
         {
             //d = sqrt ( ( x1 - x0 )^2 + ( y1 - y0 )^2 )
             double dist = Math.Sqrt(Math.Pow(Nav_Rec_PosX - iLastX, 2) + Math.Pow(Nav_Rec_PosY - iLastY, 2));
-            if (dist >= Nav_Rec_MinDist)
+            if (dist >= Statics.Settings.Navigation.MinDistDefValue)
             {
                 if ((Nav_Rec_PosX == 0) && (Nav_Rec_PosY == 0) && (Nav_Rec_PosH == 0))
                 {
@@ -5346,7 +5200,7 @@ namespace Iocaine2
             //a new point after the whole interval.
             //So we'll have an outter loop that runs every 100ms and a counter
             //that is checked to see if we want to record this time thru.
-            uint loopsPerRecording = (uint)Nav_Rec_Interval / Nav_Rec_xyhUpdatePeriod;
+            uint loopsPerRecording = (uint)Statics.Settings.Navigation.IntervalDefValue / Nav_Rec_xyhUpdatePeriod;
             uint loopCounter = 0;
             bool firstTimeThru = true;
             float lastX = MemReads.Self.Position.get_x();
@@ -5453,50 +5307,6 @@ namespace Iocaine2
             Nav_Rec_RouteName = Nav_Rec_Route_Name_TB.Text;
         }
         #endregion Route Name TB
-        #region Route Start Name TB
-        private void Nav_Rec_Route_Start_Name_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_Start_Name_TB.Text == Nav_Rec_RouteStartNameTBDefText)
-            {
-                Nav_Rec_Route_Start_Name_TB.Text = "";
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Route_Start_Name_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_Start_Name_TB.Text == "")
-            {
-                Nav_Rec_Route_Start_Name_TB.Text = Nav_Rec_RouteStartNameTBDefText;
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Route_Start_Name_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_RouteStartName = Nav_Rec_Route_Start_Name_TB.Text;
-        }
-        #endregion Route Start Name TB
-        #region Route End Name TB
-        private void Nav_Rec_Route_End_Name_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_End_Name_TB.Text == Nav_Rec_RouteEndNameTBDefText)
-            {
-                Nav_Rec_Route_End_Name_TB.Text = "";
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Route_End_Name_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_End_Name_TB.Text == "")
-            {
-                Nav_Rec_Route_End_Name_TB.Text = Nav_Rec_RouteEndNameTBDefText;
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Route_End_Name_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_RouteEndName = Nav_Rec_Route_End_Name_TB.Text;
-        }
-        #endregion Route End Name TB
         #region Route Tags TB
         private void Nav_Rec_Route_Tags_TB_TextChanged(object sender, EventArgs e)
         {
@@ -5608,14 +5418,6 @@ namespace Iocaine2
         #endregion Trade Item TB
         #endregion Text Boxes
         #region UpDn Boxes
-        private void Nav_Rec_Interval_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_Interval = (double)Nav_Rec_Interval_UpDn.Value;
-        }
-        private void Nav_Rec_Min_Dist_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_MinDist = (double)Nav_Rec_Min_Dist_UpDn.Value;
-        }
         private void Nav_Rec_Wait_UpDn_ValueChanged(object sender, EventArgs e)
         {
             Nav_Rec_Wait = (double)Nav_Rec_Wait_UpDn.Value;
