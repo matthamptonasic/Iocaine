@@ -114,6 +114,7 @@
             this.POS_NE_Button = new System.Windows.Forms.Button();
             this.POS_N_Button = new System.Windows.Forms.Button();
             this.Alert_Tab = new System.Windows.Forms.TabPage();
+            this.ALR_LoopMessageChkB = new System.Windows.Forms.CheckBox();
             this.ALR_AlwaysAlertChkB = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ALR_PCInRangeLabel = new System.Windows.Forms.Label();
@@ -189,17 +190,9 @@
             this.Nav_Rec_Wait_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Target_NPC_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Target_NPC_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Min_Dist_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Interval_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Route_End_Name_TB = new System.Windows.Forms.TextBox();
-            this.Nav_Rec_Route_Start_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Wait_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Min_Dist_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Interval_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Route_End_Name_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Route_Start_Name_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Route_Name_Label = new System.Windows.Forms.Label();
             this.Helpers_Tab = new System.Windows.Forms.TabPage();
             this.Helpers_Tab_Control = new System.Windows.Forms.TabControl();
@@ -512,7 +505,6 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -675,7 +667,7 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.ALR_LoopMessageChkB = new System.Windows.Forms.CheckBox();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -697,8 +689,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Min_Dist_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Interval_UpDn)).BeginInit();
             this.Helpers_Tab.SuspendLayout();
             this.Helpers_Tab_Control.SuspendLayout();
             this.Trader_Tab.SuspendLayout();
@@ -1793,6 +1783,17 @@
             this.Alert_Tab.Text = "Alert";
             this.Alert_Tab.UseVisualStyleBackColor = true;
             // 
+            // ALR_LoopMessageChkB
+            // 
+            this.ALR_LoopMessageChkB.AutoSize = true;
+            this.ALR_LoopMessageChkB.Location = new System.Drawing.Point(458, 25);
+            this.ALR_LoopMessageChkB.Name = "ALR_LoopMessageChkB";
+            this.ALR_LoopMessageChkB.Size = new System.Drawing.Size(50, 17);
+            this.ALR_LoopMessageChkB.TabIndex = 45;
+            this.ALR_LoopMessageChkB.Text = "Loop";
+            this.ALR_LoopMessageChkB.UseVisualStyleBackColor = true;
+            this.ALR_LoopMessageChkB.CheckedChanged += new System.EventHandler(this.ALR_LoopMessageChkB_CheckedChanged);
+            // 
             // ALR_AlwaysAlertChkB
             // 
             this.ALR_AlwaysAlertChkB.AutoSize = true;
@@ -2321,17 +2322,9 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Min_Dist_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Interval_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_End_Name_TB);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Start_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Min_Dist_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Interval_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_End_Name_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Start_Name_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_Label);
             this.Nav_User_Sub_Tab.Location = new System.Drawing.Point(4, 25);
             this.Nav_User_Sub_Tab.Name = "Nav_User_Sub_Tab";
@@ -2344,7 +2337,7 @@
             // Nav_Rec_Route_Tags_TB
             // 
             this.Nav_Rec_Route_Tags_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_Tags_TB.Location = new System.Drawing.Point(0, 84);
+            this.Nav_Rec_Route_Tags_TB.Location = new System.Drawing.Point(0, 32);
             this.Nav_Rec_Route_Tags_TB.Name = "Nav_Rec_Route_Tags_TB";
             this.Nav_Rec_Route_Tags_TB.Size = new System.Drawing.Size(137, 20);
             this.Nav_Rec_Route_Tags_TB.TabIndex = 5;
@@ -2356,7 +2349,7 @@
             // Nav_Rec_Route_Tags_Label
             // 
             this.Nav_Rec_Route_Tags_Label.AutoSize = true;
-            this.Nav_Rec_Route_Tags_Label.Location = new System.Drawing.Point(138, 87);
+            this.Nav_Rec_Route_Tags_Label.Location = new System.Drawing.Point(138, 35);
             this.Nav_Rec_Route_Tags_Label.Name = "Nav_Rec_Route_Tags_Label";
             this.Nav_Rec_Route_Tags_Label.Size = new System.Drawing.Size(31, 13);
             this.Nav_Rec_Route_Tags_Label.TabIndex = 42;
@@ -2764,91 +2757,6 @@
             this.Nav_Rec_Target_NPC_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Target_NPC_Button.Click += new System.EventHandler(this.Nav_Rec_Target_NPC_Button_Click);
             // 
-            // Nav_Rec_Min_Dist_UpDn
-            // 
-            this.Nav_Rec_Min_Dist_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Min_Dist_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Min_Dist_UpDn.Location = new System.Drawing.Point(0, 136);
-            this.Nav_Rec_Min_Dist_UpDn.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.Name = "Nav_Rec_Min_Dist_UpDn";
-            this.Nav_Rec_Min_Dist_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Min_Dist_UpDn.TabIndex = 8;
-            this.Nav_Rec_Min_Dist_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Min_Dist_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Min_Dist_UpDn.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Min_Dist_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Interval_UpDn
-            // 
-            this.Nav_Rec_Interval_UpDn.Increment = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Location = new System.Drawing.Point(0, 110);
-            this.Nav_Rec_Interval_UpDn.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Name = "Nav_Rec_Interval_UpDn";
-            this.Nav_Rec_Interval_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Interval_UpDn.TabIndex = 6;
-            this.Nav_Rec_Interval_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Interval_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Interval_UpDn.Value = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Interval_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Route_End_Name_TB
-            // 
-            this.Nav_Rec_Route_End_Name_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_End_Name_TB.Location = new System.Drawing.Point(0, 58);
-            this.Nav_Rec_Route_End_Name_TB.Name = "Nav_Rec_Route_End_Name_TB";
-            this.Nav_Rec_Route_End_Name_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Route_End_Name_TB.TabIndex = 4;
-            this.Nav_Rec_Route_End_Name_TB.Text = "End Point Name";
-            this.Nav_Rec_Route_End_Name_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_TextChanged);
-            this.Nav_Rec_Route_End_Name_TB.Enter += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_Enter);
-            this.Nav_Rec_Route_End_Name_TB.Leave += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_Leave);
-            // 
-            // Nav_Rec_Route_Start_Name_TB
-            // 
-            this.Nav_Rec_Route_Start_Name_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_Start_Name_TB.Location = new System.Drawing.Point(0, 32);
-            this.Nav_Rec_Route_Start_Name_TB.Name = "Nav_Rec_Route_Start_Name_TB";
-            this.Nav_Rec_Route_Start_Name_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Route_Start_Name_TB.TabIndex = 2;
-            this.Nav_Rec_Route_Start_Name_TB.Text = "Start Point Name";
-            this.Nav_Rec_Route_Start_Name_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_TextChanged);
-            this.Nav_Rec_Route_Start_Name_TB.Enter += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_Enter);
-            this.Nav_Rec_Route_Start_Name_TB.Leave += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_Leave);
-            // 
             // Nav_Rec_Route_Name_TB
             // 
             this.Nav_Rec_Route_Name_TB.ForeColor = System.Drawing.Color.Gray;
@@ -2878,42 +2786,6 @@
             this.Nav_Rec_Wait_Label.Size = new System.Drawing.Size(79, 13);
             this.Nav_Rec_Wait_Label.TabIndex = 14;
             this.Nav_Rec_Wait_Label.Text = "Time (seconds)";
-            // 
-            // Nav_Rec_Min_Dist_Label
-            // 
-            this.Nav_Rec_Min_Dist_Label.AutoSize = true;
-            this.Nav_Rec_Min_Dist_Label.Location = new System.Drawing.Point(66, 138);
-            this.Nav_Rec_Min_Dist_Label.Name = "Nav_Rec_Min_Dist_Label";
-            this.Nav_Rec_Min_Dist_Label.Size = new System.Drawing.Size(128, 13);
-            this.Nav_Rec_Min_Dist_Label.TabIndex = 9;
-            this.Nav_Rec_Min_Dist_Label.Text = "Min. Dist. Between Points";
-            // 
-            // Nav_Rec_Interval_Label
-            // 
-            this.Nav_Rec_Interval_Label.AutoSize = true;
-            this.Nav_Rec_Interval_Label.Location = new System.Drawing.Point(66, 112);
-            this.Nav_Rec_Interval_Label.Name = "Nav_Rec_Interval_Label";
-            this.Nav_Rec_Interval_Label.Size = new System.Drawing.Size(94, 13);
-            this.Nav_Rec_Interval_Label.TabIndex = 7;
-            this.Nav_Rec_Interval_Label.Text = "Recording Interval";
-            // 
-            // Nav_Rec_Route_End_Name_Label
-            // 
-            this.Nav_Rec_Route_End_Name_Label.AutoSize = true;
-            this.Nav_Rec_Route_End_Name_Label.Location = new System.Drawing.Point(138, 61);
-            this.Nav_Rec_Route_End_Name_Label.Name = "Nav_Rec_Route_End_Name_Label";
-            this.Nav_Rec_Route_End_Name_Label.Size = new System.Drawing.Size(84, 13);
-            this.Nav_Rec_Route_End_Name_Label.TabIndex = 5;
-            this.Nav_Rec_Route_End_Name_Label.Text = "End Point Name";
-            // 
-            // Nav_Rec_Route_Start_Name_Label
-            // 
-            this.Nav_Rec_Route_Start_Name_Label.AutoSize = true;
-            this.Nav_Rec_Route_Start_Name_Label.Location = new System.Drawing.Point(138, 35);
-            this.Nav_Rec_Route_Start_Name_Label.Name = "Nav_Rec_Route_Start_Name_Label";
-            this.Nav_Rec_Route_Start_Name_Label.Size = new System.Drawing.Size(87, 13);
-            this.Nav_Rec_Route_Start_Name_Label.TabIndex = 3;
-            this.Nav_Rec_Route_Start_Name_Label.Text = "Start Point Name";
             // 
             // Nav_Rec_Route_Name_Label
             // 
@@ -6778,15 +6650,6 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -8553,16 +8416,14 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ALR_LoopMessageChkB
+            // SynergizerDlg
             // 
-            this.ALR_LoopMessageChkB.AutoSize = true;
-            this.ALR_LoopMessageChkB.Location = new System.Drawing.Point(458, 25);
-            this.ALR_LoopMessageChkB.Name = "ALR_LoopMessageChkB";
-            this.ALR_LoopMessageChkB.Size = new System.Drawing.Size(50, 17);
-            this.ALR_LoopMessageChkB.TabIndex = 45;
-            this.ALR_LoopMessageChkB.Text = "Loop";
-            this.ALR_LoopMessageChkB.UseVisualStyleBackColor = true;
-            this.ALR_LoopMessageChkB.CheckedChanged += new System.EventHandler(this.ALR_LoopMessageChkB_CheckedChanged);
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
             // 
             // Iocaine_2_Form
             // 
@@ -8637,8 +8498,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Min_Dist_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Interval_UpDn)).EndInit();
             this.Helpers_Tab.ResumeLayout(false);
             this.Helpers_Tab_Control.ResumeLayout(false);
             this.Trader_Tab.ResumeLayout(false);
@@ -9095,17 +8954,9 @@
         private System.Windows.Forms.Button Nav_Rec_Wait_Button;
         private System.Windows.Forms.TextBox Nav_Rec_Target_NPC_TB;
         private System.Windows.Forms.Button Nav_Rec_Target_NPC_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Min_Dist_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Interval_UpDn;
-        private System.Windows.Forms.TextBox Nav_Rec_Route_End_Name_TB;
-        private System.Windows.Forms.TextBox Nav_Rec_Route_Start_Name_TB;
         private System.Windows.Forms.TextBox Nav_Rec_Route_Name_TB;
         private System.Windows.Forms.Label Nav_Rec_Route_Label;
         private System.Windows.Forms.Label Nav_Rec_Wait_Label;
-        private System.Windows.Forms.Label Nav_Rec_Min_Dist_Label;
-        private System.Windows.Forms.Label Nav_Rec_Interval_Label;
-        private System.Windows.Forms.Label Nav_Rec_Route_End_Name_Label;
-        private System.Windows.Forms.Label Nav_Rec_Route_Start_Name_Label;
         private System.Windows.Forms.Label Nav_Rec_Route_Name_Label;
         private System.Windows.Forms.Button Nav_Rec_Start_Stop_Button;
         private System.Windows.Forms.NumericUpDown Nav_Rec_Position_Y_UpDn;
