@@ -247,7 +247,10 @@
     <Compile Include="Actions\Conditions\ConditionOr.cs" />
     <Compile Include="Actions\Conditions\ConditionTree.cs" />
     <Compile Include="Actions\Conditions\InventoryItem.cs" />
+    <Compile Include="Data Entry\ComboBoxParameter.cs" />
+    <Compile Include="Data Entry\ComboBoxReturn.cs" />
     <Compile Include="Data Entry\ControlParameter.cs" />
+    <Compile Include="Data Entry\ControlReturn.cs" />
     <Compile Include="Data Entry\DataEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,7 +259,9 @@
       <CustomToolNamespace>Iocaine2.Data.Entry</CustomToolNamespace>
     </Compile>
     <Compile Include="Data Entry\TextboxParameter.cs" />
+    <Compile Include="Data Entry\TextboxReturn.cs" />
     <Compile Include="Data Entry\UpDownParameter.cs" />
+    <Compile Include="Data Entry\UpDownReturn.cs" />
     <Compile Include="IocaineThreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\Toolbox.cs">
