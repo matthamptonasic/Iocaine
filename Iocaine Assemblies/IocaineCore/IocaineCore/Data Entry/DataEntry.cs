@@ -12,14 +12,16 @@ namespace Iocaine2.Data.Entry
     public partial class DataEntry : Form
     {
         #region Private Members
+        private List<ControlParameter> m_controlParams;
         #endregion Private Members
 
         #region Public Properties
         #endregion Public Properties
 
         #region Constructor
-        public DataEntry()
+        public DataEntry(List<ControlParameter> iControlParams)
         {
+            m_controlParams = iControlParams;
             InitializeComponent();
         }
         #endregion Constructor
