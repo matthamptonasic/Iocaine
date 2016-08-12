@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Iocaine2.Data.Entry
 {
-    public class ComboBoxReturn<T> : ControlReturn
+    public class ComboBoxReturn : ControlReturn
     {
         #region Private Members
-        private T m_value;
+        private object m_value;
         #endregion Private Members
 
         #region Public Properties
-        public T Value
+        public object Value
         {
             get
             {
@@ -22,7 +22,7 @@ namespace Iocaine2.Data.Entry
         #endregion Public Properties
 
         #region Constructor
-        public ComboBoxReturn(T iValue)
+        public ComboBoxReturn(object iValue)
         {
             m_value = iValue;
         }

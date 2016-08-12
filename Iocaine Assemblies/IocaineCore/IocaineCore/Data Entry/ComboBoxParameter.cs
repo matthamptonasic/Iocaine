@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Iocaine2.Data.Entry
 {
-    public class ComboBoxParameter<T> : ControlParameter
+    public class ComboBoxParameter : ControlParameter
     {
         #region Private Members
-        private List<T> m_items;
+        private List<object> m_items;
         #endregion Private Members
 
         #region Public Properties
-        public List<T> Items
+        public List<object> Items
         {
             get
             {
@@ -22,7 +22,7 @@ namespace Iocaine2.Data.Entry
         #endregion Public Properties
 
         #region Constructor
-        public ComboBoxParameter(string iLabelText, List<T> iItems)
+        public ComboBoxParameter(string iLabelText, List<object> iItems)
             : base(iLabelText)
         {
             m_items = iItems;
