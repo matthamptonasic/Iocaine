@@ -111,6 +111,10 @@ namespace Iocaine2.Data.Structures
         #region IExecutableAction
         public bool IsCapable()
         {
+            if (!ChangeMonitor.LoggedIn)
+            {
+                return false;
+            }
             foreach (IExecutableAction actn in m_actionList)
             {
                 if (!actn.IsCapable())
@@ -122,6 +126,10 @@ namespace Iocaine2.Data.Structures
         }
         public bool CanPerform()
         {
+            if (!ChangeMonitor.LoggedIn)
+            {
+                return false;
+            }
             foreach (IExecutableAction actn in m_actionList)
             {
                 if (!actn.CanPerform())
@@ -133,6 +141,10 @@ namespace Iocaine2.Data.Structures
         }
         public bool Execute(string iTarget = "")
         {
+            if (!ChangeMonitor.LoggedIn)
+            {
+                return false;
+            }
             bool retVal = true;
             foreach (IExecutableAction actn in m_actionList)
             {
