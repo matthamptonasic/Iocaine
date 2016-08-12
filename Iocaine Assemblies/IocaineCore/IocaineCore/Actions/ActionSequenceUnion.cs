@@ -14,7 +14,6 @@ namespace Iocaine2.Data.Structures
         #region Private Members
         private bool m_isBlocking;
         private List<ActionSequence> m_sequenceList;
-        private ActionSequence m_setSequence;
         #endregion Private Members
 
         #region Public Properties
@@ -49,7 +48,11 @@ namespace Iocaine2.Data.Structures
             if (iSequence != null)
             {
                 m_sequenceList.Add(iSequence);
-                setSequence();
+                if (ChangeMonitor.LoggedIn)
+                {
+                    // Setting the active sequence only makes sense if we're logged in.
+                    setSequence();
+                }
             }
         }
         public void RemoveAction(ActionSequence iSequence)
@@ -86,65 +89,62 @@ namespace Iocaine2.Data.Structures
         }
         public ActionSequence GetSetSequence()
         {
-            return m_setSequence;
+            return setSequence();
         }
         #endregion List Checking
         #region IExecutableAction
         public bool IsCapable()
         {
-            if (m_setSequence == null)
+            if (!ChangeMonitor.LoggedIn)
             {
-                setSequence();
+                return false;
             }
-            if (m_setSequence != null)
+            foreach (ActionSequence seq in m_sequenceList)
             {
-                return m_setSequence.IsCapable();
+                if (seq.IsCapable())
+                {
+                    return true;
+                }
             }
             return false;
         }
         public bool CanPerform()
         {
-            if (m_setSequence == null)
+            if (!ChangeMonitor.LoggedIn)
             {
-                setSequence();
+                return false;
             }
-            if (m_setSequence != null)
+            if (setSequence() == null)
             {
-                return m_setSequence.CanPerform();
+                return false;
             }
-            return false;
+            return true;
         }
         public bool Execute(string iTarget = "")
         {
-            if (m_setSequence != null)
+            ActionSequence aseq = setSequence();
+            if (aseq == null)
             {
-                return m_setSequence.Execute(iTarget);
+                return false;
             }
-            return false;
+            return aseq.Execute(iTarget);
         }
         #endregion IExecutableAction
         #endregion Public Methods
 
         #region Private Methods
-        private void setSequence()
+        private ActionSequence setSequence()
         {
             m_isBlocking = false;
-            m_setSequence = null;
             foreach (ActionSequence seq in m_sequenceList)
             {
                 if (seq.IsCapable() && seq.CanPerform())
                 {
                     m_isBlocking = seq.IsBlocking;
-                    m_setSequence = seq;
-                    return;
-                }
-                if (seq.IsCapable() && (m_setSequence == null))
-                {
-                    // The null check makes sure we assign the first sequence where IsCapable is true.
-                    m_isBlocking = seq.IsBlocking;
-                    m_setSequence = seq;
+                    return seq;
                 }
             }
+            return null;
         }
         #endregion Private Methods
     }
