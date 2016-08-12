@@ -32,7 +32,6 @@ namespace Iocaine2.Data.Structures
             private static UInt16 sk_Handbell = Skills.GetSkillId("Handbell");
             #endregion Skill Types
             #region Flags
-            private static Boolean allSpellsSet = false;
             #endregion Flags
             #region Command Lists
             private static SpellCommand dummyCommand = new SpellCommand("Dummy");
@@ -170,7 +169,23 @@ namespace Iocaine2.Data.Structures
             #endregion Public Properties
 
             #region Inits
-            public static void Init()
+            internal static void Init_Iocaine()
+            {
+                Monitor.Enter(padlock);
+                try
+                {
+                    loadAllCommands();
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
+            }
+            internal static void Init_JobChange()
             {
                 if (!ChangeMonitor.LoggedIn)
                 {
@@ -181,12 +196,6 @@ namespace Iocaine2.Data.Structures
                     Monitor.Enter(padlock);
                     try
                     {
-                        if (!allSpellsSet)
-                        {
-                            loadAllCommands();
-                            allSpellsSet = true;
-                        }
-
                         SetSpells();
                     }
                     catch (Exception e)

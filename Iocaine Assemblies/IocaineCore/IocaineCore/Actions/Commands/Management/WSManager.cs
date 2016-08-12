@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 
 using Iocaine2.Data;
+using Iocaine2.Logging;
 using Iocaine2.Memory;
 
 namespace Iocaine2.Data.Structures
@@ -14,7 +15,6 @@ namespace Iocaine2.Data.Structures
         public static class WSManager
         {
             #region Member Variables
-            private static Boolean allWeaponSkillsSet = false;
             private static List<WeaponSkillCommand> allCommands = new List<WeaponSkillCommand>();
             private static List<WeaponSkillCommand> curCommands = new List<WeaponSkillCommand>();
             private static List<Client.WeaponSkills.WS_INFO> infoList = new List<Client.WeaponSkills.WS_INFO>();
@@ -37,34 +37,30 @@ namespace Iocaine2.Data.Structures
             }
             #endregion Properties
             #region Interface Functions
-            public static void Init()
+            internal static void Init_Iocaine()
+            {
+                Monitor.Enter(padlock);
+                try
+                {
+                    loadAllCommands();
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
+            }
+            internal static void Init_JobChange()
             {
                 if (ChangeMonitor.LoggedIn)
                 {
                     Monitor.Enter(padlock);
-                    if (!allWeaponSkillsSet)
-                    {
-                        loadAllCommands();
-                        allWeaponSkillsSet = true;
-                    }
-
-                    //if (!curWeaponSkillsSet ||
-                    //    (Statics.MyData.MainJob != MemReads.Self.Job.get_main()) ||
-                    //    (Statics.MyData.MainJobLvl != MemReads.Self.Job.get_main_lvl()) ||
-                    //    (Statics.MyData.SubJob != MemReads.Self.Job.get_sub()) ||
-                    //    (Statics.MyData.SubJobLvl != MemReads.Self.Job.get_sub_lvl()) ||
-                    //    (Statics.MyData.EquipMain != MemReads.Self.Equipment.get_main_id()) ||
-                    //    (Statics.MyData.CombatSkillCurrentLvl != MemReads.Self.Skills.get_skill(currentWeaponType)))
-                    //{
-                    //    Statics.MyData.MainJob = MemReads.Self.Job.get_main();
-                    //    Statics.MyData.MainJobLvl = MemReads.Self.Job.get_main_lvl();
-                    //    Statics.MyData.SubJob = MemReads.Self.Job.get_sub();
-                    //    Statics.MyData.SubJobLvl = MemReads.Self.Job.get_sub_lvl();
-                    //    Statics.MyData.EquipMain = MemReads.Self.Equipment.get_main_id();
                     currentWeaponType = Client.Things.GetSkillFromId(PlayerCache.Equipment.Main);
                     PlayerCache.Skills.CombatSkillCurrentLvl = MemReads.Self.Skills.get_skill(currentWeaponType);
                     SetWeaponSkills();
-                    //}
                     Monitor.Exit(padlock);
                 }
             }

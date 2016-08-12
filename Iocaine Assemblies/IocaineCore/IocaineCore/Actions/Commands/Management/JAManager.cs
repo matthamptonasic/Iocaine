@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 
 using Iocaine2.Data.Client;
+using Iocaine2.Logging;
 using Iocaine2.Memory;
 
 namespace Iocaine2.Data.Structures
@@ -35,7 +36,6 @@ namespace Iocaine2.Data.Structures
             #endregion Notes
 
             #region Private Members
-            private static bool jaTimersInitDone;
             private static List<JobAbilCommand> allCommands = new List<JobAbilCommand>();
             private static List<JobAbilCommand> curCommands = new List<JobAbilCommand>();
             private static List<JobAbilCommand> pl_cureCommands = new List<JobAbilCommand>();
@@ -94,7 +94,23 @@ namespace Iocaine2.Data.Structures
             #endregion Public/Internal Properties
 
             #region Inits
-            public static void Init()
+            internal static void Init_Iocaine()
+            {
+                Monitor.Enter(padlock);
+                try
+                {
+                    loadAllCommands();
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
+            }
+            internal static void Init_JobChange()
             {
                 if (!ChangeMonitor.LoggedIn)
                 {
@@ -103,11 +119,6 @@ namespace Iocaine2.Data.Structures
                 else
                 {
                     Monitor.Enter(padlock);
-                    if (!jaTimersInitDone)
-                    {
-                        loadAllCommands();
-                        jaTimersInitDone = true;
-                    }
                     SetAbilities(PlayerCache.Vitals.MainJob, PlayerCache.Vitals.SubJob, PlayerCache.Vitals.MainJobLvl);
                     load_subSets();
                     Monitor.Exit(padlock);
@@ -120,7 +131,7 @@ namespace Iocaine2.Data.Structures
             {
                 if (ChangeMonitor.LoggedIn)
                 {
-                    Init();
+                    Init_JobChange();
                     return MemReads.Self.Recast.Abilities.get_time_remaining((byte)nameToStrctIndexMap[AbilityName]);
                 }
                 else
@@ -132,7 +143,7 @@ namespace Iocaine2.Data.Structures
             {
                 if (ChangeMonitor.LoggedIn)
                 {
-                    Init();
+                    Init_JobChange();
                     return MemReads.Self.Recast.Abilities.get_time_remaining((byte)RecastIDsList.IndexOf(RecastID));
                 }
                 else
