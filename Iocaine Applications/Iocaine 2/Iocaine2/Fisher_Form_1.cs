@@ -444,6 +444,10 @@ namespace Iocaine2
             // Add any Iocaine Form level inits to be done after the main function is run.
             // Bot form level inits should go here.
             // If any fatal errors occur, set the retValue to false.
+
+            Data.Structures.CommandManager.Init_Iocaine();
+            Data.Structures.ActionManager.Init_Iocaine();
+
             retValue &= Fisher.Access.Init_Iocaine();   //Fisher inits
             SL_Prc_inits();                             //Seller inits
             BY_Prc_inits();                             //Buyer inits
@@ -575,7 +579,7 @@ namespace Iocaine2
             ChangeMonitor._polLoginChanged += new ChangeMonitor.CM_Delegate_POLLoginChanged(TOP_updateTitlebarText);
             ChangeMonitor._polWindowTitleChanged += new ChangeMonitor.CM_Delegate_POLWindowTitleChanged(TOP_changeProcessWindowTitleText);
             #region Command Management
-            ChangeMonitor._equ_CombatSkillChanged += new ChangeMonitor.CM_Delegate_Equ_CombatSkillChanged(Data.Structures.CommandManager.WSManager.Init);
+            ChangeMonitor._equ_CombatSkillChanged += new ChangeMonitor.CM_Delegate_Equ_CombatSkillChanged(Data.Structures.CommandManager.Init_CombatSkillChange);
             ChangeMonitor._vitals_AnyJobChanged += new ChangeMonitor.CM_Delegate_Vitals_AnyJobChanged(TOP_vitalsOrAnyJobChangedHandler);
             #endregion Command Management
             Inventory.Containers._CurrentCapacityValuesUpdated += new Inventory.Containers.CurrentCapcityValuesUpdated(TOP_setTopInvCurLabelText);
@@ -1262,15 +1266,12 @@ namespace Iocaine2
         }
         private void TOP_vitalsOrAnyJobChangedHandler()
         {
-            //The order of these is crutial since refresh lists invokes onto the GUI thread.
+            //The order of these is crutial since PL_RefreshLists invokes onto the GUI thread.
             //So if they were all assigned to the same event (as was previously done),
             //and the event called the PL_RefreshLists first, it would cause errors.
             try
             {
-                Data.Structures.CommandManager.SpellsManager.Init();
-                Data.Structures.CommandManager.JAManager.Init();
-                Data.Structures.CommandManager.WSManager.Init();
-                Data.Structures.CommandManager.Init();
+                Data.Structures.CommandManager.Init_JobChange();
                 PL_RefreshLists();
             }
             catch (Exception e)
