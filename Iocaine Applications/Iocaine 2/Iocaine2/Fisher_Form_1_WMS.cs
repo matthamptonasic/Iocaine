@@ -23,11 +23,11 @@ namespace Iocaine2
         private bool WMS_poolInventory = true;
         private bool WMS_separateInventory = false;
         private bool WMS_allCharacters = false;
-        private String WMS_dataDirectory = ".\\WMS_Data";
-        private String WMS_dataFile = "WMS_Dataset";
-        private String WMS_selectedChar = "";
-        private String WMS_lastCharOnRebuild = "";
-        private List<String> WMS_inventoryTypes = new List<string>(new string[] { "Bag", "Satchel", "Sack", "Case", "Safe", "Safe2", "Storage", "Locker", "Wardrobe", "Wardrobe2", "Wardrobe3", "Wardrobe4" });
+        private string WMS_dataDirectory = ".\\WMS_Data";
+        private string WMS_dataFile = "WMS_Dataset";
+        private string WMS_selectedChar = "";
+        private string WMS_lastCharOnRebuild = "";
+        private List<string> WMS_inventoryTypes = new List<string>(new string[] { "Bag", "Satchel", "Sack", "Case", "Safe", "Safe2", "Storage", "Locker", "Wardrobe", "Wardrobe2", "Wardrobe3", "Wardrobe4" });
         private bool WMS_initialLBUpdateDone = false;
         private int WMS_pooledColumnWidthLow = 175;
         private int WMS_pooledColumnWidthHi = 225;
@@ -36,11 +36,11 @@ namespace Iocaine2
         #region Delegate declarations
         private delegate void WMS_updateSingleLBDelegate(ItemContainer container, WMSDataSet.ItemsRow[] itemRows);
         private delegate void WMS_updatePooledLBDelegate(WMSDataSet.ItemsRow[] itemRows);
-        private delegate void WMS_updateLabelTextDelegate(Label iLabel, String iText);
+        private delegate void WMS_updateLabelTextDelegate(Label iLabel, string iText);
         private delegate void WMS_updateControlVisibilityDelegate(Control iControl, bool iVisible);
         private delegate void WMS_sendControlToDelegate(Control iControl, bool iToFront);
         private delegate void WMS_loadCharacterCBDelegate();
-        private delegate void WMS_setFirstInventoryLocationDelegate(Int32 iPosX);
+        private delegate void WMS_setFirstInventoryLocationDelegate(int iPosX);
         #endregion Delegate declarations
         #region Delegate instances
         private WMS_updateSingleLBDelegate WMS_updateSingleLBPtr;
@@ -190,7 +190,7 @@ namespace Iocaine2
                 Monitor.Exit(Inventory.Containers.Padlock);
             }
         }
-        private void WMS_updateLabelText_CBF(Label iLabel, String iText)
+        private void WMS_updateLabelText_CBF(Label iLabel, string iText)
         {
             iLabel.Text = iText;
         }
@@ -209,7 +209,7 @@ namespace Iocaine2
                 iControl.SendToBack();
             }
         }
-        private void WMS_setFirstInventoryLocation_CBF(Int32 iPosX)
+        private void WMS_setFirstInventoryLocation_CBF(int iPosX)
         {
             WMS_BagOccLabel.Left = iPosX;
         }
@@ -252,7 +252,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Trying to update the Pooled Listbox : " + ex.ToString());
             }
         }
-        private void WMS_updateLabelText(Label iLabel, String iText)
+        private void WMS_updateLabelText(Label iLabel, string iText)
         {
             try
             {
@@ -306,7 +306,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Trying to update the " + iControl.Name + " control to front/back : " + ex.ToString());
             }
         }
-        private void WMS_setFirstInventoryLocation(Int32 iPosX)
+        private void WMS_setFirstInventoryLocation(int iPosX)
         {
             try
             {
@@ -433,8 +433,8 @@ namespace Iocaine2
                 if (Directory.Exists(WMS_dataDirectory))
                 {
                     //Get a list of the WMS files (per character) and load each one.
-                    String[] fileList = Directory.GetFiles(WMS_dataDirectory);
-                    foreach (String file in fileList)
+                    string[] fileList = Directory.GetFiles(WMS_dataDirectory);
+                    foreach (string file in fileList)
                     {
                         LoggingFunctions.Debug("Loading WMS XML file " + file + ".", LoggingFunctions.DBG_SCOPE.WMS);
                         WMS_dataset_temp.Clear();
@@ -515,7 +515,7 @@ namespace Iocaine2
             {
                 return;
             }
-            String currChar = PlayerCache.Vitals.Name;
+            string currChar = PlayerCache.Vitals.Name;
             if (WMS_dataset != null)
             {
                 //If we're pooling all characters inventory, select everything.
@@ -530,7 +530,7 @@ namespace Iocaine2
                 else if ((WMS_selectedChar != "") && (currChar != WMS_selectedChar))
                 {
                     WMSDataSet.ItemsRow[] itemRows;
-                    foreach (String invType in WMS_inventoryTypes)
+                    foreach (string invType in WMS_inventoryTypes)
                     {
                         itemRows = (WMSDataSet.ItemsRow[])WMS_dataset.Items.Select("Character='" + WMS_selectedChar + "' AND Location='" + invType + "'");
                         if (itemRows.Length > 0)
@@ -569,7 +569,7 @@ namespace Iocaine2
                     return;
                 }
                 Monitor.Enter(Inventory.Containers.Padlock);
-                String currChar = MemReads.Self.get_name(true);
+                string currChar = MemReads.Self.get_name(true);
                 WMSDataSet.CharacterInfoRow[] localCharRows = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select("Name='" + currChar + "'");
                 if (localCharRows.Length == 0)
                 {
@@ -845,20 +845,20 @@ namespace Iocaine2
         }
         private void WMS_Form_ResizeEnd(object sender, EventArgs e)
         {
-            Int32 wms_tab_x_diff = 549 - 525;
-            Int32 wms_tab_y_diff = 535 - 403;
-            Int32 pooled_lb_x_diff = 549 - 525;
-            Int32 pooled_lb_y_diff = 535 - 355;
-            UInt32 nb_boxes_wide = 4;
-            UInt32 nb_boxes_high = 2;
-            Int32 buffer_between_x = 6;
-            Int32 buffer_between_y = 17;
-            Int32 buffer_left = 0;
-            Int32 buffer_right = 0;
-            Int32 buffer_top = 38;
-            Int32 buffer_bottom = 10;
-            Int32 new_box_width = (m_TOP_Form_currentWidth - wms_tab_x_diff - buffer_left - buffer_right - (((Int32)nb_boxes_wide - 1) * buffer_between_x)) / (Int32)nb_boxes_wide;
-            Int32 new_box_height = (m_TOP_Form_currentWidth - wms_tab_y_diff - buffer_top - buffer_bottom - (((Int32)nb_boxes_high - 1) * buffer_between_y)) / (Int32)nb_boxes_high;
+            int wms_tab_x_diff = 549 - 525;
+            int wms_tab_y_diff = 535 - 403;
+            int pooled_lb_x_diff = 549 - 525;
+            int pooled_lb_y_diff = 535 - 355;
+            uint nb_boxes_wide = 4;
+            uint nb_boxes_high = 2;
+            int buffer_between_x = 6;
+            int buffer_between_y = 17;
+            int buffer_left = 0;
+            int buffer_right = 0;
+            int buffer_top = 38;
+            int buffer_bottom = 10;
+            int new_box_width = (m_TOP_Form_currentWidth - wms_tab_x_diff - buffer_left - buffer_right - (((int)nb_boxes_wide - 1) * buffer_between_x)) / (int)nb_boxes_wide;
+            int new_box_height = (m_TOP_Form_currentWidth - wms_tab_y_diff - buffer_top - buffer_bottom - (((int)nb_boxes_high - 1) * buffer_between_y)) / (int)nb_boxes_high;
 
             WMS_Tab.Width = m_TOP_Form_currentWidth - wms_tab_x_diff;
             WMS_Tab.Height = m_TOP_Form_currentWidth - wms_tab_y_diff;
@@ -1188,8 +1188,8 @@ namespace Iocaine2
                     WMS_dataset_temp.AcceptChanges();
                     LoggingFunctions.Debug("WMS dataset_temp char rows after clearing: " + WMS_dataset_temp.CharacterInfo.Rows.Count + ".", LoggingFunctions.DBG_SCOPE.WMS);
                     LoggingFunctions.Debug("WMS dataset_temp item rows after clearing: " + WMS_dataset_temp.Items.Rows.Count + ".", LoggingFunctions.DBG_SCOPE.WMS);
-                    String myName = MemReads.Self.get_name(true);
-                    String filter = "Name='" + myName + "'";
+                    string myName = MemReads.Self.get_name(true);
+                    string filter = "Name='" + myName + "'";
                     WMSDataSet.CharacterInfoRow[] topCharRow = (WMSDataSet.CharacterInfoRow[])WMS_dataset.CharacterInfo.Select(filter);
                     LoggingFunctions.Debug("WMS_writeDatasetToXML: temp DB select string for char info table is " + filter + ".", LoggingFunctions.DBG_SCOPE.WMS);
                     LoggingFunctions.Debug("WMS_writeDataSetToXML: CharacterInfo row count: " + WMS_dataset.CharacterInfo.Rows.Count + ".", LoggingFunctions.DBG_SCOPE.WMS);
@@ -1318,7 +1318,7 @@ namespace Iocaine2
             //else, if it's valid and the new one is valid but different,
             //then we'll reload cause it's a different character.
             //if it's valid and the same, we'll go thru our checks below.
-            String newName = "";
+            string newName = "";
             bool wndNameValid = WMS_checkWindowNameValid();
             if (!wndNameValid)
             {
