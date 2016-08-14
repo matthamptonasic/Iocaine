@@ -258,6 +258,9 @@
       <DependentUpon>DataEntry.cs</DependentUpon>
       <CustomToolNamespace>Iocaine2.Data.Entry</CustomToolNamespace>
     </Compile>
+    <Compile Include="Data Entry\IocaineTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data Entry\TextboxParameter.cs" />
     <Compile Include="Data Entry\TextboxReturn.cs" />
     <Compile Include="Data Entry\UpDownParameter.cs" />
