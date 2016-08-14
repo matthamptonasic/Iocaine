@@ -3692,7 +3692,6 @@ namespace Iocaine2
         #region Delegates
         private delegate void Nav_Rec_setRouteNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setNpcNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setCommandTextTBTextDelegate(String iText);
         private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setWaitValueDelegate(double iValue);
@@ -3718,7 +3717,6 @@ namespace Iocaine2
         #region Function Pointers
         private Nav_Rec_setRouteNameTBTextDelegate Nav_Rec_setRouteNameTBTextPtr;
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
-        private Nav_Rec_setNpcNameTBTextDelegate Nav_Rec_setNpcNameTBTextPtr;
         private Nav_Rec_setCommandTextTBTextDelegate Nav_Rec_setCommandTextTBTextPtr;
         private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
         private Nav_Rec_setWaitValueDelegate Nav_Rec_setWaitValuePtr;
@@ -3761,7 +3759,6 @@ namespace Iocaine2
             {
                 Nav_Rec_setRouteNameTBTextPtr = new Nav_Rec_setRouteNameTBTextDelegate(Nav_Rec_setRouteNameTBTextCallBackFunction);
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
-                Nav_Rec_setNpcNameTBTextPtr = new Nav_Rec_setNpcNameTBTextDelegate(Nav_Rec_setNpcNameTBTextCallBackFunction);
                 Nav_Rec_setCommandTextTBTextPtr = new Nav_Rec_setCommandTextTBTextDelegate(Nav_Rec_setCommandTextTBTextCallBackFunction);
                 Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
                 Nav_Rec_setWaitValuePtr = new Nav_Rec_setWaitValueDelegate(Nav_Rec_setWaitValueCallBackFunction);
@@ -3796,7 +3793,6 @@ namespace Iocaine2
         {
             Nav_Rec_setRouteNameTBText(Nav_Rec_RouteNameTBDefText);
             Nav_Rec_setRouteTagsTBText(Nav_Rec_RouteTagsTBDefText);
-            Nav_Rec_setNpcNameTBText(Nav_Rec_NpcNameTBDefText);
             Nav_Rec_setCommandTextTBText(Nav_Rec_CommandTBDefText);
             Nav_Rec_setItemNametTBText(Nav_Rec_ItemNameTBDefText);
         }
@@ -3887,36 +3883,6 @@ namespace Iocaine2
             else
             {
                 Nav_Rec_Route_Tags_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setNpcNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Target_NPC_TB.InvokeRequired)
-                {
-                    Nav_Rec_Target_NPC_TB.Invoke(Nav_Rec_setNpcNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setNpcNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setNpcNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setNpcNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Target_NPC_TB.Text = iText;
-            if (iText != Nav_Rec_NpcNameTBDefText)
-            {
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Gray;
             }
         }
         private void Nav_Rec_setCommandTextTBText(String iText)
@@ -4530,8 +4496,20 @@ namespace Iocaine2
             {
                 return;
             }
-            String targetName = MemReads.Target.get_name();
-            if (((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != "")) || (targetName != ""))
+
+            Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("NPC To Target", Nav_Rec_NpcNameTBDefText, true, true);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_NpcName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
+            if ((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != ""))
             {
                 if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
                 {
@@ -4554,14 +4532,7 @@ namespace Iocaine2
                 Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
                 Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
                 Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                if ((Nav_Rec_NpcName == Nav_Rec_NpcNameTBDefText) || (Nav_Rec_NpcName == ""))
-                {
-                    Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(targetName);
-                }
-                else
-                {
-                    Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
-                }
+                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
                 Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_scrollRouteLB();
@@ -4569,7 +4540,7 @@ namespace Iocaine2
             }
             else
             {
-                MessageBox.Show("Please enter an NPC name");
+                MessageBox.Show("Please enter an NPC name.");
             }
         }
         private void Nav_Rec_addNpcTradeItemNode()
@@ -4744,6 +4715,7 @@ namespace Iocaine2
         }
         private void Nav_Rec_loadFormWithNodeData(int iIdx)
         {
+            // TBD - This all needs to be updated.
             if (iIdx < 0)
             {
                 return;
@@ -4764,15 +4736,6 @@ namespace Iocaine2
                 {
                     Nav_Rec_setKeystrokesCBIndex(index);
                 }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
-            {
-                String npcName = "";
-                if (!Nav_decodeStringToNpcName(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref npcName))
-                {
-                    return;
-                }
-                Nav_Rec_setNpcNameTBText(npcName);
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
@@ -4839,6 +4802,7 @@ namespace Iocaine2
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
             {
+                // TBD - This needs to be updated.
                 if ((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != ""))
                 {
                     Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
@@ -5329,35 +5293,6 @@ namespace Iocaine2
             }
         }
         #endregion Route Tags TB
-        #region Target NPC TB
-        private void Nav_Rec_Target_NPC_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Target_NPC_TB.Text == Nav_Rec_NpcNameTBDefText)
-            {
-                Nav_Rec_Target_NPC_TB.Text = "";
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Target_NPC_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Target_NPC_TB.Text == "")
-            {
-                Nav_Rec_Target_NPC_TB.Text = Nav_Rec_NpcNameTBDefText;
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Target_NPC_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_NpcName = Nav_Rec_Target_NPC_TB.Text;
-        }
-        private void Nav_Rec_Target_NPC_TB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTargetNode();
-            }
-        }
-        #endregion Target NPC TB
         #region Command Text TB
         private void Nav_Rec_Command_TB_Enter(object sender, EventArgs e)
         {
