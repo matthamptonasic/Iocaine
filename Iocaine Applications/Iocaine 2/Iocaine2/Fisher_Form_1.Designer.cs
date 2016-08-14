@@ -188,7 +188,6 @@
             this.Nav_Rec_Command_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Wait_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Wait_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Target_NPC_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Target_NPC_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Label = new System.Windows.Forms.Label();
@@ -2320,7 +2319,6 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Label);
@@ -2733,19 +2731,6 @@
             this.Nav_Rec_Wait_Button.Text = "Wait";
             this.Nav_Rec_Wait_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Wait_Button.Click += new System.EventHandler(this.Nav_Rec_Wait_Button_Click);
-            // 
-            // Nav_Rec_Target_NPC_TB
-            // 
-            this.Nav_Rec_Target_NPC_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Target_NPC_TB.Location = new System.Drawing.Point(81, 161);
-            this.Nav_Rec_Target_NPC_TB.Name = "Nav_Rec_Target_NPC_TB";
-            this.Nav_Rec_Target_NPC_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Target_NPC_TB.TabIndex = 11;
-            this.Nav_Rec_Target_NPC_TB.Text = "NPC Name";
-            this.Nav_Rec_Target_NPC_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_TextChanged);
-            this.Nav_Rec_Target_NPC_TB.Enter += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_Enter);
-            this.Nav_Rec_Target_NPC_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Target_NPC_TB_KeyPress);
-            this.Nav_Rec_Target_NPC_TB.Leave += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_Leave);
             // 
             // Nav_Rec_Target_NPC_Button
             // 
@@ -8952,7 +8937,6 @@
         private System.Windows.Forms.Button Nav_Rec_Command_Button;
         private System.Windows.Forms.NumericUpDown Nav_Rec_Wait_UpDn;
         private System.Windows.Forms.Button Nav_Rec_Wait_Button;
-        private System.Windows.Forms.TextBox Nav_Rec_Target_NPC_TB;
         private System.Windows.Forms.Button Nav_Rec_Target_NPC_Button;
         private System.Windows.Forms.TextBox Nav_Rec_Route_Name_TB;
         private System.Windows.Forms.Label Nav_Rec_Route_Label;
