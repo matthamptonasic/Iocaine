@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Iocaine2.Data.Entry
 {
@@ -9,6 +10,7 @@ namespace Iocaine2.Data.Entry
     {
         #region Private Members
         private string m_labelText;
+        private Control m_control;
         #endregion Private Members
 
         #region Public Properties
@@ -17,6 +19,17 @@ namespace Iocaine2.Data.Entry
             get
             {
                 return m_labelText;
+            }
+        }
+        public Control Control
+        {
+            get
+            {
+                return m_control;
+            }
+            set
+            {
+                m_control = value;
             }
         }
         #endregion Public Properties
