@@ -177,6 +177,11 @@ namespace Iocaine2.Data.Entry
             {
                 tb._DataEntered += dataSet;
             }
+            if (iParam.SaveOnEnter)
+            {
+                tb.OnEnterFireEvent = true;
+                tb._DataEntered += performOkClick;
+            }
             tb.OnEnterSetTarget = iParam.OnEnterSetTarget;
             tb.Width = m_textboxWidth;
             tb.Location = new Point(m_lastX, m_lastY);
