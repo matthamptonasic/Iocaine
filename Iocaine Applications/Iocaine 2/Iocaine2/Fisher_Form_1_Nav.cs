@@ -3663,7 +3663,7 @@ namespace Iocaine2
         private String Nav_Rec_CommandTBDefText = "Command Text";
         private String Nav_Rec_ItemNameTBDefText = "Item Name";
         private double Nav_Rec_ItemQuanDefValue = 1D;
-        private double Nav_Rec_GilQuanDefValue = 300D;
+        private decimal Nav_Rec_GilQuanDefValue = 300;
         private double Nav_Rec_PosXDefValue = 999.9D;
         private double Nav_Rec_PosYDefValue = 999.9D;
         private float Nav_Rec_PosHDefValue = 0.0f;
@@ -3694,7 +3694,6 @@ namespace Iocaine2
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
         private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setItemQuanValueDelegate(double iValue);
-        private delegate void Nav_Rec_setGilQuanValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosXValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosYValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosHValueDelegate(float iValue);
@@ -3715,7 +3714,6 @@ namespace Iocaine2
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
         private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
         private Nav_Rec_setItemQuanValueDelegate Nav_Rec_setItemQuanValuePtr;
-        private Nav_Rec_setGilQuanValueDelegate Nav_Rec_setGilQuanValuePtr;
         private Nav_Rec_setPosXValueDelegate Nav_Rec_setPosXValuePtr;
         private Nav_Rec_setPosYValueDelegate Nav_Rec_setPosYValuePtr;
         private Nav_Rec_setPosHValueDelegate Nav_Rec_setPosHValuePtr;
@@ -3752,7 +3750,6 @@ namespace Iocaine2
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
                 Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
                 Nav_Rec_setItemQuanValuePtr = new Nav_Rec_setItemQuanValueDelegate(Nav_Rec_setItemQuanValueCallBackFunction);
-                Nav_Rec_setGilQuanValuePtr = new Nav_Rec_setGilQuanValueDelegate(Nav_Rec_setGilQuanValueCallBackFunction);
                 Nav_Rec_setPosXValuePtr = new Nav_Rec_setPosXValueDelegate(Nav_Rec_setPosXValueCallBackFunction);
                 Nav_Rec_setPosYValuePtr = new Nav_Rec_setPosYValueDelegate(Nav_Rec_setPosYValueCallBackFunction);
                 Nav_Rec_setPosHValuePtr = new Nav_Rec_setPosHValueDelegate(Nav_Rec_setPosHValueCallBackFunction);
@@ -3785,7 +3782,6 @@ namespace Iocaine2
         private void Nav_Rec_loadUpDnDefValues()
         {
             Nav_Rec_setItemQuanValue(Nav_Rec_ItemQuanDefValue);
-            Nav_Rec_setGilQuanValue(Nav_Rec_GilQuanDefValue);
             Nav_Rec_setPosXValue(Nav_Rec_PosXDefValue);
             Nav_Rec_setPosYValue(Nav_Rec_PosYDefValue);
             Nav_Rec_setPosHValue(Nav_Rec_PosHDefValue);
@@ -3800,7 +3796,7 @@ namespace Iocaine2
             Nav_Rec_ItemName = "";
             Nav_Rec_Wait = (decimal)Statics.Settings.Navigation.WaitDefValue;
             Nav_Rec_ItemQuan = Nav_Rec_ItemQuanDefValue;
-            Nav_Rec_GilQuan = Nav_Rec_GilQuanDefValue;
+            Nav_Rec_GilQuan = (uint)Nav_Rec_GilQuanDefValue;
             Nav_Rec_PosX = Nav_Rec_PosXDefValue;
             Nav_Rec_PosY = Nav_Rec_PosYDefValue;
             Nav_Rec_PosH = Nav_Rec_PosHDefValue;
@@ -3923,28 +3919,6 @@ namespace Iocaine2
         private void Nav_Rec_setItemQuanValueCallBackFunction(double iValue)
         {
             Nav_Rec_Trade_Item_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setGilQuanValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Gil_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Gil_UpDn.Invoke(Nav_Rec_setGilQuanValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setGilQuanValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setGilQuanValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setGilQuanValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Trade_Gil_UpDn.Value = (decimal)iValue;
         }
         private void Nav_Rec_setPosXValue(double iValue)
         {
@@ -4463,6 +4437,18 @@ namespace Iocaine2
         }
         private void Nav_Rec_addNpcTradeGilNode()
         {
+            Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Trade Gil (NPC)", Nav_Rec_GilQuanDefValue, 0, 1, 10000, 1);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_GilQuan = (uint)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
             if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
             {
                 String message = "This route is part of a trip in the reverse direction.\n";
@@ -4654,8 +4640,8 @@ namespace Iocaine2
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
-                uint gilQuan = Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
-                Nav_Rec_setGilQuanValue((double)gilQuan);
+                //uint gilQuan = Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
+                //Nav_Rec_setGilQuanValue((double)gilQuan);
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
             {
@@ -5250,17 +5236,6 @@ namespace Iocaine2
             if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
             {
                 Nav_Rec_addNpcTradeItemNode();
-            }
-        }
-        private void Nav_Rec_Trade_Gil_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_GilQuan = (double)Nav_Rec_Trade_Gil_UpDn.Value;
-        }
-        private void Nav_Rec_Trade_Gil_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeGilNode();
             }
         }
         private void Nav_Rec_Position_X_UpDn_ValueChanged(object sender, EventArgs e)

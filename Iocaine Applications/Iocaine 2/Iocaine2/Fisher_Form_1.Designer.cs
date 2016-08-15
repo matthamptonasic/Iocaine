@@ -177,7 +177,6 @@
             this.Nav_Rec_Delete_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Clear_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Save_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Trade_Gil_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Trade_Gil_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Trade_Item_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Trade_Item_TB = new System.Windows.Forms.TextBox();
@@ -681,7 +680,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).BeginInit();
             this.Helpers_Tab.SuspendLayout();
             this.Helpers_Tab_Control.SuspendLayout();
@@ -2303,7 +2301,6 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Clear_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Save_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Gil_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Gil_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_TB);
@@ -2553,32 +2550,6 @@
             this.Nav_Rec_Save_Button.Text = "Save";
             this.Nav_Rec_Save_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Save_Button.Click += new System.EventHandler(this.Nav_Rec_Save_Button_Click);
-            // 
-            // Nav_Rec_Trade_Gil_UpDn
-            // 
-            this.Nav_Rec_Trade_Gil_UpDn.Location = new System.Drawing.Point(81, 305);
-            this.Nav_Rec_Trade_Gil_UpDn.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.Name = "Nav_Rec_Trade_Gil_UpDn";
-            this.Nav_Rec_Trade_Gil_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Trade_Gil_UpDn.TabIndex = 23;
-            this.Nav_Rec_Trade_Gil_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Trade_Gil_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Trade_Gil_UpDn.Value = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Trade_Gil_UpDn_ValueChanged);
-            this.Nav_Rec_Trade_Gil_UpDn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Trade_Gil_UpDn_KeyPress);
             // 
             // Nav_Rec_Trade_Gil_Button
             // 
@@ -8408,7 +8379,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).EndInit();
             this.Helpers_Tab.ResumeLayout(false);
             this.Helpers_Tab_Control.ResumeLayout(false);
@@ -8853,7 +8823,6 @@
         private System.Windows.Forms.Button Nav_Rec_Delete_Button;
         private System.Windows.Forms.Button Nav_Rec_Clear_Button;
         private System.Windows.Forms.Button Nav_Rec_Save_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Trade_Gil_UpDn;
         private System.Windows.Forms.Button Nav_Rec_Trade_Gil_Button;
         private System.Windows.Forms.NumericUpDown Nav_Rec_Trade_Item_UpDn;
         private System.Windows.Forms.TextBox Nav_Rec_Trade_Item_TB;
