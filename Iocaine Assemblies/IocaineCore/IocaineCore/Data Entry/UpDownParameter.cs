@@ -12,6 +12,8 @@ namespace Iocaine2.Data.Entry
         private int m_nbDecimals;
         private decimal m_min;
         private decimal m_max;
+        private decimal m_increment;
+        private bool m_saveOnEnter;
         #endregion Private Members
 
         #region Public Properties
@@ -43,16 +45,32 @@ namespace Iocaine2.Data.Entry
                 return m_max;
             }
         }
+        public decimal Increment
+        {
+            get
+            {
+                return m_increment;
+            }
+        }
+        public bool SaveOnEnter
+        {
+            get
+            {
+                return m_saveOnEnter;
+            }
+        }
         #endregion Public Properties
 
         #region Constructor
-        public UpDownParameter(string iLabelText, decimal iDefaultValue, int iNbDecimals, decimal iMin, decimal iMax)
+        public UpDownParameter(string iLabelText, decimal iDefaultValue, int iNbDecimals, decimal iMin, decimal iMax, decimal iIncrement, bool iSaveOnEnter = true)
             : base(iLabelText)
         {
             m_defaultValue = iDefaultValue;
             m_nbDecimals = iNbDecimals;
             m_min = iMin;
             m_max = iMax;
+            m_increment = iIncrement;
+            m_saveOnEnter = iSaveOnEnter;
         }
         #endregion Constructor
 
