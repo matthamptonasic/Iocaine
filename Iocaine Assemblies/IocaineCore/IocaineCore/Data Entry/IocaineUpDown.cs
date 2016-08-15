@@ -38,7 +38,8 @@ namespace Iocaine2.Data.Entry
         {
             Click += IocaineUpDown_Click;
             Enter += IocaineUpDown_Enter;
-            KeyPress += IocaineUpDown_KeyPress;
+            KeyDown += IocaineUpDown_KeyDown;
+            KeyUp += IocaineUpDown_KeyUp;
             TextAlign = HorizontalAlignment.Center;
         }
         #endregion Constructor
@@ -55,11 +56,20 @@ namespace Iocaine2.Data.Entry
         {
             this.Select(0, this.Text.Length);
         }
-        private void IocaineUpDown_KeyPress(object sender, KeyPressEventArgs e)
+        private void IocaineUpDown_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Return))
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
+        private void IocaineUpDown_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Return))
             {
                 fireDataEnteredEvent();
+                e.SuppressKeyPress = true;
                 e.Handled = true;
             }
         }
