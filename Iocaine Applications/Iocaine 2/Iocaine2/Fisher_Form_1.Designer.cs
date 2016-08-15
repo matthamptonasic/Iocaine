@@ -183,7 +183,6 @@
             this.Nav_Rec_Trade_Item_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Trade_Item_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Key_Stroke_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Command_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Command_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Wait_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Target_NPC_Button = new System.Windows.Forms.Button();
@@ -2310,7 +2309,6 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_Button);
@@ -2650,19 +2648,6 @@
             this.Nav_Rec_Key_Stroke_Button.Text = "Key Stroke";
             this.Nav_Rec_Key_Stroke_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Key_Stroke_Button.Click += new System.EventHandler(this.Nav_Rec_Key_Stroke_Button_Click);
-            // 
-            // Nav_Rec_Command_TB
-            // 
-            this.Nav_Rec_Command_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Command_TB.Location = new System.Drawing.Point(81, 219);
-            this.Nav_Rec_Command_TB.Name = "Nav_Rec_Command_TB";
-            this.Nav_Rec_Command_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Command_TB.TabIndex = 16;
-            this.Nav_Rec_Command_TB.Text = "Command Text";
-            this.Nav_Rec_Command_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Command_TB_TextChanged);
-            this.Nav_Rec_Command_TB.Enter += new System.EventHandler(this.Nav_Rec_Command_TB_Enter);
-            this.Nav_Rec_Command_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Command_TB_KeyPress);
-            this.Nav_Rec_Command_TB.Leave += new System.EventHandler(this.Nav_Rec_Command_TB_Leave);
             // 
             // Nav_Rec_Command_Button
             // 
@@ -8874,7 +8859,6 @@
         private System.Windows.Forms.TextBox Nav_Rec_Trade_Item_TB;
         private System.Windows.Forms.Button Nav_Rec_Trade_Item_Button;
         private System.Windows.Forms.Button Nav_Rec_Key_Stroke_Button;
-        private System.Windows.Forms.TextBox Nav_Rec_Command_TB;
         private System.Windows.Forms.Button Nav_Rec_Command_Button;
         private System.Windows.Forms.Button Nav_Rec_Wait_Button;
         private System.Windows.Forms.Button Nav_Rec_Target_NPC_Button;
