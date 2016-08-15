@@ -3692,8 +3692,6 @@ namespace Iocaine2
         #region Delegates
         private delegate void Nav_Rec_setRouteNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setItemQuanValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosXValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosYValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosHValueDelegate(float iValue);
@@ -3712,8 +3710,6 @@ namespace Iocaine2
         #region Function Pointers
         private Nav_Rec_setRouteNameTBTextDelegate Nav_Rec_setRouteNameTBTextPtr;
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
-        private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
-        private Nav_Rec_setItemQuanValueDelegate Nav_Rec_setItemQuanValuePtr;
         private Nav_Rec_setPosXValueDelegate Nav_Rec_setPosXValuePtr;
         private Nav_Rec_setPosYValueDelegate Nav_Rec_setPosYValuePtr;
         private Nav_Rec_setPosHValueDelegate Nav_Rec_setPosHValuePtr;
@@ -3748,8 +3744,6 @@ namespace Iocaine2
             {
                 Nav_Rec_setRouteNameTBTextPtr = new Nav_Rec_setRouteNameTBTextDelegate(Nav_Rec_setRouteNameTBTextCallBackFunction);
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
-                Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
-                Nav_Rec_setItemQuanValuePtr = new Nav_Rec_setItemQuanValueDelegate(Nav_Rec_setItemQuanValueCallBackFunction);
                 Nav_Rec_setPosXValuePtr = new Nav_Rec_setPosXValueDelegate(Nav_Rec_setPosXValueCallBackFunction);
                 Nav_Rec_setPosYValuePtr = new Nav_Rec_setPosYValueDelegate(Nav_Rec_setPosYValueCallBackFunction);
                 Nav_Rec_setPosHValuePtr = new Nav_Rec_setPosHValueDelegate(Nav_Rec_setPosHValueCallBackFunction);
@@ -3777,11 +3771,9 @@ namespace Iocaine2
         {
             Nav_Rec_setRouteNameTBText(Nav_Rec_RouteNameTBDefText);
             Nav_Rec_setRouteTagsTBText(Nav_Rec_RouteTagsTBDefText);
-            Nav_Rec_setItemNametTBText(Nav_Rec_ItemNameTBDefText);
         }
         private void Nav_Rec_loadUpDnDefValues()
         {
-            Nav_Rec_setItemQuanValue(Nav_Rec_ItemQuanDefValue);
             Nav_Rec_setPosXValue(Nav_Rec_PosXDefValue);
             Nav_Rec_setPosYValue(Nav_Rec_PosYDefValue);
             Nav_Rec_setPosHValue(Nav_Rec_PosHDefValue);
@@ -3866,60 +3858,8 @@ namespace Iocaine2
                 Nav_Rec_Route_Tags_TB.ForeColor = Color.Gray;
             }
         }
-        private void Nav_Rec_setItemNametTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Item_TB.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Item_TB.Invoke(Nav_Rec_setItemNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setItemNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setItemNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setItemNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Trade_Item_TB.Text = iText;
-            if (iText != Nav_Rec_ItemNameTBDefText)
-            {
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Gray;
-            }
-        }
         #endregion Text Box Updates
         #region UpDown Value Updates
-        private void Nav_Rec_setItemQuanValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Item_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Item_UpDn.Invoke(Nav_Rec_setItemQuanValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setItemQuanValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setItemQuanValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setItemQuanValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Trade_Item_UpDn.Value = (decimal)iValue;
-        }
         private void Nav_Rec_setPosXValue(double iValue)
         {
             try
@@ -4401,39 +4341,52 @@ namespace Iocaine2
         }
         private void Nav_Rec_addNpcTradeItemNode()
         {
-            if ((Nav_Rec_ItemName != Nav_Rec_ItemNameTBDefText) && (Nav_Rec_ItemName != ""))
+            Data.Entry.TextboxParameter param_tb = new Data.Entry.TextboxParameter("Trade Item", Nav_Rec_ItemNameTBDefText);
+            Data.Entry.UpDownParameter param_ud = new Data.Entry.UpDownParameter("Item Quantity", 1, 0, 1, 99, 1);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param_tb, param_ud });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
             {
-                if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+                Nav_Rec_ItemName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                Nav_Rec_ItemQuan = (byte)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                if (Nav_Rec_ItemName == Nav_Rec_ItemNameTBDefText)
                 {
-                    String message = "This route is part of a trip in the reverse direction.\n";
-                    message += "You cannot use a route in reverse that contains Trade Item nodes.\n";
-                    message += "Please either remove the route from the trip or change the direction to forward.";
-                    MessageBox.Show(message);
+                    MessageBox.Show("Please enter an Item name");
                     return;
                 }
-                Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
-                Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
-                Nav_Rec_CurrentNode.RouteName = "";
-                Nav_Rec_CurrentNode.RouteStartName = "";
-                Nav_Rec_CurrentNode.RouteEndName = "";
-                Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.NPC_TRADE_ITEM;
-                Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_ItemQuan;
-                Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (Byte)Nav_Rec_ItemQuan);
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
-                Nav_Rec_modified = true;
             }
             else
             {
-                MessageBox.Show("Please enter an Item name");
+                return;
             }
+
+
+            if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+            {
+                String message = "This route is part of a trip in the reverse direction.\n";
+                message += "You cannot use a route in reverse that contains Trade Item nodes.\n";
+                message += "Please either remove the route from the trip or change the direction to forward.";
+                MessageBox.Show(message);
+                return;
+            }
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.NPC_TRADE_ITEM;
+            Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_ItemQuan;
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (Byte)Nav_Rec_ItemQuan);
+            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_scrollRouteLB();
+            Nav_Rec_modified = true;
         }
         private void Nav_Rec_addNpcTradeGilNode()
         {
@@ -4484,10 +4437,14 @@ namespace Iocaine2
             if (rslt == DialogResult.OK)
             {
                 Nav_Rec_CommandText = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                if (Nav_Rec_CommandText == Nav_Rec_CommandTBDefText)
+                {
+                    MessageBox.Show("Please enter the Command text");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show("Please enter the Command text");
                 return;
             }
 
@@ -4651,8 +4608,8 @@ namespace Iocaine2
                 {
                     return;
                 }
-                Nav_Rec_setItemNametTBText(itemName);
-                Nav_Rec_setItemQuanValue((double)itemQuan);
+                //Nav_Rec_setItemNametTBText(itemName);
+                //Nav_Rec_setItemQuanValue((double)itemQuan);
             }
             else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
@@ -5189,35 +5146,6 @@ namespace Iocaine2
             }
         }
         #endregion Route Tags TB
-        #region Trade Item TB
-        private void Nav_Rec_Trade_Item_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Trade_Item_TB.Text == Nav_Rec_ItemNameTBDefText)
-            {
-                Nav_Rec_Trade_Item_TB.Text = "";
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Trade_Item_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Trade_Item_TB.Text == "")
-            {
-                Nav_Rec_Trade_Item_TB.Text = Nav_Rec_ItemNameTBDefText;
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Trade_Item_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_ItemName = Nav_Rec_Trade_Item_TB.Text;
-        }
-        private void Nav_Rec_Trade_Item_TB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeItemNode();
-            }
-        }
-        #endregion Trade Item TB
         #endregion Text Boxes
         #region UpDn Boxes
         private void Nav_Rec_Wait_UpDn_KeyPress(object sender, KeyPressEventArgs e)
@@ -5225,17 +5153,6 @@ namespace Iocaine2
             if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
             {
                 Nav_Rec_addWaitNode();
-            }
-        }
-        private void Nav_Rec_Trade_Item_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_ItemQuan = (double)Nav_Rec_Trade_Item_UpDn.Value;
-        }
-        private void Nav_Rec_Trade_Item_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeItemNode();
             }
         }
         private void Nav_Rec_Position_X_UpDn_ValueChanged(object sender, EventArgs e)
