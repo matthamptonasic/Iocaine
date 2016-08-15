@@ -46,7 +46,7 @@ namespace Iocaine2.Data.Entry
         #endregion Buttons
         #region Labels
         private const int m_labelHeight = 20;
-        private const int m_labelWidth = 130;
+        private const int m_labelWidth = 175;
         private const int m_labelStartX = 25;
         #endregion Labels
         #region Textboxes
