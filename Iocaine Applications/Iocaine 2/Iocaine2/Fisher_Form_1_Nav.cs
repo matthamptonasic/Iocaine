@@ -511,7 +511,7 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeWaitToString(double iTime)
+        internal static String Nav_encodeWaitToString(decimal iTime)
         {
             return "Wait " + iTime.ToString() + " seconds";
         }
@@ -3675,7 +3675,7 @@ namespace Iocaine2
         private String Nav_Rec_NpcName = "";
         private String Nav_Rec_CommandText = "";
         private String Nav_Rec_ItemName = "";
-        private double Nav_Rec_Wait;
+        private decimal Nav_Rec_Wait;
         private double Nav_Rec_ItemQuan;
         private double Nav_Rec_GilQuan;
         private double Nav_Rec_PosX;
@@ -3694,7 +3694,6 @@ namespace Iocaine2
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
         private delegate void Nav_Rec_setCommandTextTBTextDelegate(String iText);
         private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setWaitValueDelegate(double iValue);
         private delegate void Nav_Rec_setItemQuanValueDelegate(double iValue);
         private delegate void Nav_Rec_setGilQuanValueDelegate(double iValue);
         private delegate void Nav_Rec_setPosXValueDelegate(double iValue);
@@ -3719,7 +3718,6 @@ namespace Iocaine2
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
         private Nav_Rec_setCommandTextTBTextDelegate Nav_Rec_setCommandTextTBTextPtr;
         private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
-        private Nav_Rec_setWaitValueDelegate Nav_Rec_setWaitValuePtr;
         private Nav_Rec_setItemQuanValueDelegate Nav_Rec_setItemQuanValuePtr;
         private Nav_Rec_setGilQuanValueDelegate Nav_Rec_setGilQuanValuePtr;
         private Nav_Rec_setPosXValueDelegate Nav_Rec_setPosXValuePtr;
@@ -3761,7 +3759,6 @@ namespace Iocaine2
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
                 Nav_Rec_setCommandTextTBTextPtr = new Nav_Rec_setCommandTextTBTextDelegate(Nav_Rec_setCommandTextTBTextCallBackFunction);
                 Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
-                Nav_Rec_setWaitValuePtr = new Nav_Rec_setWaitValueDelegate(Nav_Rec_setWaitValueCallBackFunction);
                 Nav_Rec_setItemQuanValuePtr = new Nav_Rec_setItemQuanValueDelegate(Nav_Rec_setItemQuanValueCallBackFunction);
                 Nav_Rec_setGilQuanValuePtr = new Nav_Rec_setGilQuanValueDelegate(Nav_Rec_setGilQuanValueCallBackFunction);
                 Nav_Rec_setPosXValuePtr = new Nav_Rec_setPosXValueDelegate(Nav_Rec_setPosXValueCallBackFunction);
@@ -3798,7 +3795,6 @@ namespace Iocaine2
         }
         private void Nav_Rec_loadUpDnDefValues()
         {
-            Nav_Rec_setWaitValue(Statics.Settings.Navigation.WaitDefValue);
             Nav_Rec_setItemQuanValue(Nav_Rec_ItemQuanDefValue);
             Nav_Rec_setGilQuanValue(Nav_Rec_GilQuanDefValue);
             Nav_Rec_setPosXValue(Nav_Rec_PosXDefValue);
@@ -3813,7 +3809,7 @@ namespace Iocaine2
             Nav_Rec_NpcName = "";
             Nav_Rec_CommandText = "";
             Nav_Rec_ItemName = "";
-            Nav_Rec_Wait = Statics.Settings.Navigation.WaitDefValue;
+            Nav_Rec_Wait = (decimal)Statics.Settings.Navigation.WaitDefValue;
             Nav_Rec_ItemQuan = Nav_Rec_ItemQuanDefValue;
             Nav_Rec_GilQuan = Nav_Rec_GilQuanDefValue;
             Nav_Rec_PosX = Nav_Rec_PosXDefValue;
@@ -3947,28 +3943,6 @@ namespace Iocaine2
         }
         #endregion Text Box Updates
         #region UpDown Value Updates
-        private void Nav_Rec_setWaitValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Wait_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Wait_UpDn.Invoke(Nav_Rec_setWaitValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setWaitValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setWaitValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setWaitValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Wait_UpDn.Value = (decimal)iValue;
-        }
         private void Nav_Rec_setItemQuanValue(double iValue)
         {
             try
@@ -4670,6 +4644,18 @@ namespace Iocaine2
         }
         private void Nav_Rec_addWaitNode()
         {
+            Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Wait Time (seconds)", (decimal)Statics.Settings.Navigation.WaitDefValue, 1, 0.1m, 600, 0.5m);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_Wait = ((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
             Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
             Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
             Nav_Rec_CurrentNode.RouteName = "";
@@ -4752,10 +4738,6 @@ namespace Iocaine2
                 }
                 Nav_Rec_setItemNametTBText(itemName);
                 Nav_Rec_setItemQuanValue((double)itemQuan);
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.WAIT)
-            {
-                Nav_Rec_setWaitValue((double)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData / (double)1000);
             }
             else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
@@ -5353,10 +5335,6 @@ namespace Iocaine2
         #endregion Trade Item TB
         #endregion Text Boxes
         #region UpDn Boxes
-        private void Nav_Rec_Wait_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_Wait = (double)Nav_Rec_Wait_UpDn.Value;
-        }
         private void Nav_Rec_Wait_UpDn_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))

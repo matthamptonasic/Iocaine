@@ -186,12 +186,10 @@
             this.Nav_Rec_Key_Stroke_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Command_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Command_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Wait_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Wait_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Target_NPC_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Wait_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Route_Name_Label = new System.Windows.Forms.Label();
             this.Helpers_Tab = new System.Windows.Forms.TabPage();
             this.Helpers_Tab_Control = new System.Windows.Forms.TabControl();
@@ -687,7 +685,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).BeginInit();
             this.Helpers_Tab.SuspendLayout();
             this.Helpers_Tab_Control.SuspendLayout();
             this.Trader_Tab.SuspendLayout();
@@ -2317,12 +2314,10 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_Label);
             this.Nav_User_Sub_Tab.Location = new System.Drawing.Point(4, 25);
             this.Nav_User_Sub_Tab.Name = "Nav_User_Sub_Tab";
@@ -2690,38 +2685,6 @@
             this.Nav_Rec_Command_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Command_Button.Click += new System.EventHandler(this.Nav_Rec_Command_Button_Click);
             // 
-            // Nav_Rec_Wait_UpDn
-            // 
-            this.Nav_Rec_Wait_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Wait_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Wait_UpDn.Location = new System.Drawing.Point(81, 190);
-            this.Nav_Rec_Wait_UpDn.Maximum = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Wait_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Wait_UpDn.Name = "Nav_Rec_Wait_UpDn";
-            this.Nav_Rec_Wait_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Wait_UpDn.TabIndex = 13;
-            this.Nav_Rec_Wait_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Wait_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Wait_UpDn.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Wait_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Wait_UpDn_ValueChanged);
-            this.Nav_Rec_Wait_UpDn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Wait_UpDn_KeyPress);
-            // 
             // Nav_Rec_Wait_Button
             // 
             this.Nav_Rec_Wait_Button.Location = new System.Drawing.Point(0, 188);
@@ -2762,15 +2725,6 @@
             this.Nav_Rec_Route_Label.Size = new System.Drawing.Size(70, 13);
             this.Nav_Rec_Route_Label.TabIndex = 29;
             this.Nav_Rec_Route_Label.Text = "Route Nodes";
-            // 
-            // Nav_Rec_Wait_Label
-            // 
-            this.Nav_Rec_Wait_Label.AutoSize = true;
-            this.Nav_Rec_Wait_Label.Location = new System.Drawing.Point(147, 193);
-            this.Nav_Rec_Wait_Label.Name = "Nav_Rec_Wait_Label";
-            this.Nav_Rec_Wait_Label.Size = new System.Drawing.Size(79, 13);
-            this.Nav_Rec_Wait_Label.TabIndex = 14;
-            this.Nav_Rec_Wait_Label.Text = "Time (seconds)";
             // 
             // Nav_Rec_Route_Name_Label
             // 
@@ -8482,7 +8436,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).EndInit();
             this.Helpers_Tab.ResumeLayout(false);
             this.Helpers_Tab_Control.ResumeLayout(false);
             this.Trader_Tab.ResumeLayout(false);
@@ -8935,12 +8888,10 @@
         private System.Windows.Forms.Button Nav_Rec_Key_Stroke_Button;
         private System.Windows.Forms.TextBox Nav_Rec_Command_TB;
         private System.Windows.Forms.Button Nav_Rec_Command_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Wait_UpDn;
         private System.Windows.Forms.Button Nav_Rec_Wait_Button;
         private System.Windows.Forms.Button Nav_Rec_Target_NPC_Button;
         private System.Windows.Forms.TextBox Nav_Rec_Route_Name_TB;
         private System.Windows.Forms.Label Nav_Rec_Route_Label;
-        private System.Windows.Forms.Label Nav_Rec_Wait_Label;
         private System.Windows.Forms.Label Nav_Rec_Route_Name_Label;
         private System.Windows.Forms.Button Nav_Rec_Start_Stop_Button;
         private System.Windows.Forms.NumericUpDown Nav_Rec_Position_Y_UpDn;
