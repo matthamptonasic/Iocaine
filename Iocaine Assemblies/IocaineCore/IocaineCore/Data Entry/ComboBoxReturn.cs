@@ -8,11 +8,11 @@ namespace Iocaine2.Data.Entry
     public class ComboBoxReturn : ControlReturn
     {
         #region Private Members
-        private object m_value;
+        private string m_value;
         #endregion Private Members
 
         #region Public Properties
-        public object Value
+        public string Value
         {
             get
             {
@@ -22,7 +22,7 @@ namespace Iocaine2.Data.Entry
         #endregion Public Properties
 
         #region Constructor
-        public ComboBoxReturn(object iValue)
+        public ComboBoxReturn(string iValue)
         {
             m_value = iValue;
         }
