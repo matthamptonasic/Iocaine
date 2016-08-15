@@ -11,6 +11,7 @@ namespace Iocaine2.Data.Entry
         private string m_defaultText;
         private bool m_textGreyed;
         private bool m_onEnterSetTarget;
+        private bool m_saveOnEnter;
         #endregion Private Members
 
         #region Public Properties
@@ -35,15 +36,31 @@ namespace Iocaine2.Data.Entry
                 return m_onEnterSetTarget;
             }
         }
+        public bool SaveOnEnter
+        {
+            get
+            {
+                return m_saveOnEnter;
+            }
+        }
         #endregion Public Properties
 
         #region Constructor
-        public TextboxParameter(string iLabelText, string iDefaultText, bool iTextGreyed = true, bool iOnEnterSetTarget = false)
+        public TextboxParameter(string iLabelText, string iDefaultText, bool iTextGreyed = true, bool iSaveOnEnter = true, bool iOnEnterSetTarget = false)
             : base(iLabelText)
         {
             m_defaultText = iDefaultText;
             m_textGreyed = iTextGreyed;
             m_onEnterSetTarget = iOnEnterSetTarget;
+            if (iOnEnterSetTarget && iSaveOnEnter)
+            {
+                // OnEnterSetTarget takes priority.
+                m_saveOnEnter = false;
+            }
+            else
+            {
+                m_saveOnEnter = iSaveOnEnter;
+            }
         }
         #endregion Constructor
 

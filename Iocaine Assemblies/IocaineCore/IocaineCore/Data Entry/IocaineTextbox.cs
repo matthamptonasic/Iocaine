@@ -15,6 +15,7 @@ namespace Iocaine2.Data.Entry
         private string m_defaultText = "Enter Value";
         private bool m_grayTextIfDefault = true;
         private bool m_onEnterSetTarget = false;
+        private bool m_onEnterFireEvent = false;
         #endregion Private Members
 
         #region Public Properties
@@ -51,6 +52,17 @@ namespace Iocaine2.Data.Entry
             {
                 m_onEnterSetTarget = value;
                 checkAndSetTarget();
+            }
+        }
+        public bool OnEnterFireEvent
+        {
+            get
+            {
+                return m_onEnterFireEvent;
+            }
+            set
+            {
+                m_onEnterFireEvent = value;
             }
         }
         #endregion Public Properties
@@ -129,6 +141,13 @@ namespace Iocaine2.Data.Entry
                     {
                         _DataEntered();
                     }
+                }
+            }
+            else if (m_onEnterFireEvent)
+            {
+                if (_DataEntered != null)
+                {
+                    _DataEntered();
                 }
             }
         }
