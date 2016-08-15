@@ -3702,8 +3702,6 @@ namespace Iocaine2
         private delegate void Nav_Rec_setPosZoneValueDelegate(UInt16 iValue);
         private delegate void Nav_Rec_loadDeleteCBDelegate();
         private delegate void Nav_Rec_setDeleteCBIndexDelegate(int iIdx);
-        private delegate void Nav_Rec_loadKeystrokesCBDelegate();
-        private delegate void Nav_Rec_setKeystrokesCBIndexDelegate(int iIdx);
         private delegate void Nav_Rec_setStartButtonDelegate(String iText, Color iColor);
         private delegate void Nav_Rec_addRouteLBItemDelegate(Routes.UserRoutesRow iRow);
         private delegate void Nav_Rec_updateRouteLBItemDelegate(int iIdx, Routes.UserRoutesRow iRow);
@@ -3726,8 +3724,6 @@ namespace Iocaine2
         private Nav_Rec_setPosZoneValueDelegate Nav_Rec_setPosZoneValuePtr;
         private Nav_Rec_loadDeleteCBDelegate Nav_Rec_loadDeleteCBPtr;
         private Nav_Rec_setDeleteCBIndexDelegate Nav_Rec_setDeleteCBIndexPtr;
-        private Nav_Rec_loadKeystrokesCBDelegate Nav_Rec_loadKeystrokesCBPtr;
-        private Nav_Rec_setKeystrokesCBIndexDelegate Nav_Rec_setKeystrokesCBIndexPtr;
         private Nav_Rec_setStartButtonDelegate Nav_Rec_setStartButtonPtr;
         private Nav_Rec_addRouteLBItemDelegate Nav_Rec_addRouteLBItemPtr;
         private Nav_Rec_removeRouteLBItemDelegate Nav_Rec_removeRouteLBItemPtr;
@@ -3744,7 +3740,6 @@ namespace Iocaine2
             Nav_Rec_createDelegates();
             Nav_Rec_CurrentRoute = new Nav_Route();
             Nav_Rec_loadDeleteCB();
-            Nav_Rec_loadKeystrokesCB();
             Nav_Rec_loadTextBoxDefText();
             Nav_Rec_loadUpDnDefValues();
             Nav_Rec_clearGuiParallelValues();
@@ -3767,8 +3762,6 @@ namespace Iocaine2
                 Nav_Rec_setPosZoneValuePtr = new Nav_Rec_setPosZoneValueDelegate(Nav_Rec_setPosZoneValueCallBackFunction);
                 Nav_Rec_loadDeleteCBPtr = new Nav_Rec_loadDeleteCBDelegate(Nav_Rec_loadDeleteCBCallBackFunction);
                 Nav_Rec_setDeleteCBIndexPtr = new Nav_Rec_setDeleteCBIndexDelegate(Nav_Rec_setDeleteCBIndexCallBackFunction);
-                Nav_Rec_loadKeystrokesCBPtr = new Nav_Rec_loadKeystrokesCBDelegate(Nav_Rec_loadKeystrokesCBCallBackFunction);
-                Nav_Rec_setKeystrokesCBIndexPtr = new Nav_Rec_setKeystrokesCBIndexDelegate(Nav_Rec_setKeystrokesCBIndexCallBackFunction);
                 Nav_Rec_setStartButtonPtr = new Nav_Rec_setStartButtonDelegate(Nav_Rec_setStartButtonCallBackFunction);
                 Nav_Rec_addRouteLBItemPtr = new Nav_Rec_addRouteLBItemDelegate(Nav_Rec_addRouteLBItemCallBackFunction);
                 Nav_Rec_removeRouteLBItemPtr = new Nav_Rec_removeRouteLBItemDelegate(Nav_Rec_removeRouteLBItemCallBackFunction);
@@ -4109,57 +4102,6 @@ namespace Iocaine2
             if (iIdx >= 0)
             {
                 Nav_Rec_Delete_CB.SelectedIndex = iIdx;
-            }
-        }
-        private void Nav_Rec_loadKeystrokesCB()
-        {
-            try
-            {
-                if (Nav_Rec_Key_Stroke_CB.InvokeRequired)
-                {
-                    Nav_Rec_Key_Stroke_CB.Invoke(Nav_Rec_loadKeystrokesCBPtr);
-                }
-                else
-                {
-                    Nav_Rec_loadKeystrokesCBCallBackFunction();
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_loadKeystrokesCB: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_loadKeystrokesCBCallBackFunction()
-        {
-
-            foreach (String str in Statics.Constants.Navigation.KeystrokeStrings)
-            {
-                Nav_Rec_Key_Stroke_CB.Items.Add(str);
-            }
-        }
-        private void Nav_Rec_setKeystrokesCBIndex(int iIdx)
-        {
-            try
-            {
-                if (Nav_Rec_Key_Stroke_CB.InvokeRequired)
-                {
-                    Nav_Rec_Key_Stroke_CB.Invoke(Nav_Rec_setKeystrokesCBIndexPtr, new object[] { iIdx });
-                }
-                else
-                {
-                    Nav_Rec_setKeystrokesCBIndexCallBackFunction(iIdx);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setKeystrokesCBIndex: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setKeystrokesCBIndexCallBackFunction(int iIdx)
-        {
-            if (iIdx >= 0)
-            {
-                Nav_Rec_Key_Stroke_CB.SelectedIndex = iIdx;
             }
         }
         #endregion ComboBox Updates
@@ -4612,35 +4554,50 @@ namespace Iocaine2
         }
         private void Nav_Rec_addKeystrokeNode()
         {
-            if (Nav_Rec_Key_Stroke_CB.SelectedIndex >= 0)
+            Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Select Keystroke", Statics.Constants.Navigation.KeystrokeStrings);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            string selected = "";
+            if (rslt == DialogResult.OK)
             {
-                if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+                selected = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                if (selected == "")
                 {
-                    String message = "This route is part of a trip in the reverse direction.\n";
-                    message += "You cannot use a route in reverse that contains Keystroke nodes.\n";
-                    message += "Please either remove the route from the trip or change the direction to forward.";
-                    MessageBox.Show(message);
                     return;
                 }
-                Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
-                Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
-                Nav_Rec_CurrentNode.RouteName = "";
-                Nav_Rec_CurrentNode.RouteStartName = "";
-                Nav_Rec_CurrentNode.RouteEndName = "";
-                Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.KEYSTROKE;
-                Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_Key_Stroke_CB.SelectedIndex;
-                Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
-                Nav_Rec_modified = true;
             }
+            else
+            {
+                return;
+            }
+
+
+            if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+            {
+                String message = "This route is part of a trip in the reverse direction.\n";
+                message += "You cannot use a route in reverse that contains Keystroke nodes.\n";
+                message += "Please either remove the route from the trip or change the direction to forward.";
+                MessageBox.Show(message);
+                return;
+            }
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.KEYSTROKE;
+            Nav_Rec_CurrentNode.NodeData = (UInt32)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeKeystrokeToString(selected);
+            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_scrollRouteLB();
+            Nav_Rec_modified = true;
         }
         private void Nav_Rec_addWaitNode()
         {
@@ -4720,7 +4677,7 @@ namespace Iocaine2
                 int index = Statics.Constants.Navigation.KeystrokeStrings.IndexOf(keystroke);
                 if (index >= 0)
                 {
-                    Nav_Rec_setKeystrokesCBIndex(index);
+                    //Nav_Rec_setKeystrokesCBIndex(index);
                 }
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
@@ -4779,8 +4736,8 @@ namespace Iocaine2
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
             {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Nav_Rec_Key_Stroke_CB.SelectedIndex;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
+                //Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Nav_Rec_Key_Stroke_CB.SelectedIndex;
+                //Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
             {
@@ -5035,7 +4992,6 @@ namespace Iocaine2
                 Nav_Rec_clearGuiParallelValues();
                 Nav_Rec_loadTextBoxDefText();
                 Nav_Rec_loadUpDnDefValues();
-                Nav_Rec_setKeystrokesCBIndex(0);
                 Nav_Rec_CurrentRoute.Clear();
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_existingRouteLoaded = false;
@@ -5465,13 +5421,6 @@ namespace Iocaine2
         }
         #endregion Buttons
         #region ComboBoxes
-        private void Nav_Rec_Key_Stroke_CB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addKeystrokeNode();
-            }
-        }
         private void Nav_Rec_Delete_CB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Nav_Rec_Delete_CB.SelectedIndex >= 0)

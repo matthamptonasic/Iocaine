@@ -182,7 +182,6 @@
             this.Nav_Rec_Trade_Item_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Trade_Item_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Trade_Item_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Key_Stroke_CB = new System.Windows.Forms.ComboBox();
             this.Nav_Rec_Key_Stroke_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Command_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Command_Button = new System.Windows.Forms.Button();
@@ -2310,7 +2309,6 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_CB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_Button);
@@ -2642,15 +2640,6 @@
             this.Nav_Rec_Trade_Item_Button.Text = "Trade Item";
             this.Nav_Rec_Trade_Item_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Trade_Item_Button.Click += new System.EventHandler(this.Nav_Rec_Trade_Item_Button_Click);
-            // 
-            // Nav_Rec_Key_Stroke_CB
-            // 
-            this.Nav_Rec_Key_Stroke_CB.FormattingEnabled = true;
-            this.Nav_Rec_Key_Stroke_CB.Location = new System.Drawing.Point(81, 247);
-            this.Nav_Rec_Key_Stroke_CB.Name = "Nav_Rec_Key_Stroke_CB";
-            this.Nav_Rec_Key_Stroke_CB.Size = new System.Drawing.Size(121, 21);
-            this.Nav_Rec_Key_Stroke_CB.TabIndex = 18;
-            this.Nav_Rec_Key_Stroke_CB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Key_Stroke_CB_KeyPress);
             // 
             // Nav_Rec_Key_Stroke_Button
             // 
@@ -8884,7 +8873,6 @@
         private System.Windows.Forms.NumericUpDown Nav_Rec_Trade_Item_UpDn;
         private System.Windows.Forms.TextBox Nav_Rec_Trade_Item_TB;
         private System.Windows.Forms.Button Nav_Rec_Trade_Item_Button;
-        private System.Windows.Forms.ComboBox Nav_Rec_Key_Stroke_CB;
         private System.Windows.Forms.Button Nav_Rec_Key_Stroke_Button;
         private System.Windows.Forms.TextBox Nav_Rec_Command_TB;
         private System.Windows.Forms.Button Nav_Rec_Command_Button;
