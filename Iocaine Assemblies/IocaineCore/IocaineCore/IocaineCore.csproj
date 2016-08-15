@@ -258,6 +258,9 @@
       <DependentUpon>DataEntry.cs</DependentUpon>
       <CustomToolNamespace>Iocaine2.Data.Entry</CustomToolNamespace>
     </Compile>
+    <Compile Include="Data Entry\IocaineComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data Entry\IocaineTextbox.cs">
       <SubType>Component</SubType>
     </Compile>
