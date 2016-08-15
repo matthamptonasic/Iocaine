@@ -46,6 +46,7 @@ namespace Iocaine2.Data.Entry
         #endregion Buttons
         #region Labels
         private const int m_labelHeight = 20;
+        private const int m_labelWidth = 130;
         private const int m_labelStartX = 25;
         #endregion Labels
         #region Textboxes
@@ -89,6 +90,7 @@ namespace Iocaine2.Data.Entry
                         addTextbox((TextboxParameter)param);
                         break;
                     case "UpDownParameter":
+                        addUpDown((UpDownParameter)param);
                         break;
                     default:
                         break;
@@ -144,12 +146,7 @@ namespace Iocaine2.Data.Entry
         }
         private void addTextbox(TextboxParameter iParam)
         {
-            Label lbl = new Label();
-            lbl.Text = iParam.LabelText;
-            lbl.Location = new Point(m_lastX, m_lastY);
-            this.Controls.Add(lbl);
-            lbl.SendToBack();
-            Ht += m_labelHeight;
+            addLabel(iParam);
 
             IocaineTextbox tb = new IocaineTextbox();
             tb.TabIndex = m_controlCount++;
@@ -173,7 +170,40 @@ namespace Iocaine2.Data.Entry
         }
         private void addUpDown(UpDownParameter iParam)
         {
+            addLabel(iParam);
 
+            IocaineUpDown ud = new IocaineUpDown();
+            ud.TabIndex = m_controlCount++;
+            ud.TabStop = true;
+            ud.Minimum = iParam.Min;
+            ud.Maximum = iParam.Max;
+            ud.DecimalPlaces = iParam.NbDecimals;
+            ud.Value = iParam.DefaultValue;
+            ud.Increment = iParam.Increment;
+            if (iParam.SaveOnEnter)
+            {
+                ud.OnEnterFireEvent = true;
+                ud._DataEntered += performOkClick;
+            }
+            ud.Width = m_upDownWidth;
+            ud.Location = new Point(m_lastX, m_lastY);
+            this.Controls.Add(ud);
+            ud.BringToFront();
+            Ht += m_upDownHeight;
+
+            iParam.Control = ud;
+
+            return;
+        }
+        private void addLabel(ControlParameter iParam)
+        {
+            Label lbl = new Label();
+            lbl.Text = iParam.LabelText;
+            lbl.Width = m_labelWidth;
+            lbl.Location = new Point(m_lastX, m_lastY);
+            this.Controls.Add(lbl);
+            lbl.SendToBack();
+            Ht += m_labelHeight;
         }
         private void dataSet()
         {
@@ -223,12 +253,21 @@ namespace Iocaine2.Data.Entry
                         m_controlReturns.Add(tbRet);
                         break;
                     case "UpDownParameter":
+                        UpDownReturn udRet = new UpDownReturn(((IocaineUpDown)param.Control).Value);
+                        m_controlReturns.Add(udRet);
                         break;
                     default:
                         break;
                 }
             }
             this.DialogResult = DialogResult.OK;
+        }
+        private void performOkClick()
+        {
+            if (m_ok != null)
+            {
+                m_ok.PerformClick();
+            }
         }
         #endregion Private Methods
     }
