@@ -20,11 +20,19 @@ namespace Iocaine2.Data.Structures
         #endregion Private Members
 
         #region Public Properties
+        public const ushort InvalidID = 0xffff;
         public static List<ActionSequence> AllSequences
         {
             get
             {
                 return m_idToSequenceMap.Values.ToList();
+            }
+        }
+        public static List<string> AllSequenceNames
+        {
+            get
+            {
+                return m_nameToSequenceMap.Keys.ToList();
             }
         }
         #endregion Public Properties
@@ -66,6 +74,14 @@ namespace Iocaine2.Data.Structures
             {
                 return null;
             }
+        }
+        public static ushort GetSequenceId(string iSequenceName)
+        {
+            if (m_nameToIdMap.ContainsKey(iSequenceName))
+            {
+                return m_nameToIdMap[iSequenceName];
+            }
+            return InvalidID;
         }
         #endregion Public Methods
 
