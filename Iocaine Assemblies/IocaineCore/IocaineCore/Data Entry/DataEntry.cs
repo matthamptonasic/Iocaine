@@ -85,6 +85,7 @@ namespace Iocaine2.Data.Entry
                 switch (param.GetType().Name)
                 {
                     case "ComboBoxParameter":
+                        addComboBox((ComboBoxParameter)param);
                         break;
                     case "TextboxParameter":
                         addTextbox((TextboxParameter)param);
@@ -140,9 +141,28 @@ namespace Iocaine2.Data.Entry
                 dataSet();
             }
         }
-        private void addComboBox()
+        private void addComboBox(ComboBoxParameter iParam)
         {
+            addLabel(iParam);
 
+            IocaineComboBox cb = new IocaineComboBox();
+            cb.TabIndex = m_controlCount++;
+            cb.TabStop = true;
+            cb.DataSource = iParam.Items;
+            if (iParam.SaveOnEnter)
+            {
+                cb.OnEnterFireEvent = true;
+                cb._DataEntered += performOkClick;
+            }
+            cb.Width = m_comboBoxWidth;
+            cb.Location = new Point(m_lastX, m_lastY);
+            this.Controls.Add(cb);
+            cb.BringToFront();
+            Ht += m_comboBoxHeight;
+
+            iParam.Control = cb;
+
+            return;
         }
         private void addTextbox(TextboxParameter iParam)
         {
@@ -247,6 +267,18 @@ namespace Iocaine2.Data.Entry
                 switch (param.GetType().Name)
                 {
                     case "ComboBoxParameter":
+                        ComboBox cb = (ComboBox)param.Control;
+                        int idx = cb.SelectedIndex;
+                        ComboBoxReturn cbRet;
+                        if ((idx < 0) || (cb.Items.Count == 0))
+                        {
+                            cbRet = new ComboBoxReturn("");
+                        }
+                        else
+                        {
+                            cbRet = new ComboBoxReturn((string)cb.Items[idx]);
+                        }
+                        m_controlReturns.Add(cbRet);
                         break;
                     case "TextboxParameter":
                         TextboxReturn tbRet = new TextboxReturn(((IocaineTextbox)param.Control).Text);
