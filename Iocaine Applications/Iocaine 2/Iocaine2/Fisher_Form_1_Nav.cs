@@ -38,7 +38,8 @@ namespace Iocaine2
             NPC_TRADE_GIL = 6,
             COMMAND = 7,
             KEYSTROKE = 8,
-            WAIT = 9
+            WAIT = 9,
+            IOC_SEQUENCE = 10
         }
         internal enum NAV_KEYSTROKES : byte
         {
@@ -4467,6 +4468,60 @@ namespace Iocaine2
             Nav_Rec_scrollRouteLB();
             Nav_Rec_modified = true;
         }
+        private void Nav_Rec_addSequenceNode()
+        {
+            Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Select Build-In Sequence", ActionManager.AllSequenceNames);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            string name;
+            ActionSequence seq;
+            ushort id;
+            if (rslt == DialogResult.OK)
+            {
+                try
+                {
+                    name = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                    if (name == "")
+                    {
+                        return;
+                    }
+                    seq = ActionManager.GetSequence(name);
+                    id = ActionManager.GetSequenceId(name);
+                    if ((seq == null) || (id == ActionManager.InvalidID))
+                    {
+                        return;
+                    }
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.IOC_SEQUENCE;
+            Nav_Rec_CurrentNode.NodeData = id;
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = "Sequence: " + name;
+            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_scrollRouteLB();
+            Nav_Rec_modified = true;
+        }
         private void Nav_Rec_addKeystrokeNode()
         {
             Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Select Keystroke", Statics.Constants.Navigation.KeystrokeStrings);
@@ -5180,6 +5235,10 @@ namespace Iocaine2
         private void Nav_Rec_Command_Button_Click(object sender, EventArgs e)
         {
             Nav_Rec_addCommandNode();
+        }
+        private void Nav_Rec_Sequence_Button_Click(object sender, EventArgs e)
+        {
+            Nav_Rec_addSequenceNode();
         }
         private void Nav_Rec_Key_Stroke_Button_Click(object sender, EventArgs e)
         {

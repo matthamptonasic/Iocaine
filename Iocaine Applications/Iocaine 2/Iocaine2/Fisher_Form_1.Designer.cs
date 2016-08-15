@@ -660,6 +660,7 @@
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
             this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
+            this.Nav_Rec_Sequence_Button = new System.Windows.Forms.Button();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -2281,6 +2282,7 @@
             // 
             // Nav_User_Sub_Tab
             // 
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Sequence_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Update_Node_Button);
@@ -2548,7 +2550,7 @@
             // 
             // Nav_Rec_Trade_Gil_Button
             // 
-            this.Nav_Rec_Trade_Gil_Button.Location = new System.Drawing.Point(0, 304);
+            this.Nav_Rec_Trade_Gil_Button.Location = new System.Drawing.Point(6, 128);
             this.Nav_Rec_Trade_Gil_Button.Name = "Nav_Rec_Trade_Gil_Button";
             this.Nav_Rec_Trade_Gil_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Trade_Gil_Button.TabIndex = 22;
@@ -2558,7 +2560,7 @@
             // 
             // Nav_Rec_Trade_Item_Button
             // 
-            this.Nav_Rec_Trade_Item_Button.Location = new System.Drawing.Point(0, 275);
+            this.Nav_Rec_Trade_Item_Button.Location = new System.Drawing.Point(6, 99);
             this.Nav_Rec_Trade_Item_Button.Name = "Nav_Rec_Trade_Item_Button";
             this.Nav_Rec_Trade_Item_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Trade_Item_Button.TabIndex = 19;
@@ -2568,7 +2570,7 @@
             // 
             // Nav_Rec_Key_Stroke_Button
             // 
-            this.Nav_Rec_Key_Stroke_Button.Location = new System.Drawing.Point(0, 246);
+            this.Nav_Rec_Key_Stroke_Button.Location = new System.Drawing.Point(168, 70);
             this.Nav_Rec_Key_Stroke_Button.Name = "Nav_Rec_Key_Stroke_Button";
             this.Nav_Rec_Key_Stroke_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Key_Stroke_Button.TabIndex = 17;
@@ -2578,7 +2580,7 @@
             // 
             // Nav_Rec_Command_Button
             // 
-            this.Nav_Rec_Command_Button.Location = new System.Drawing.Point(0, 217);
+            this.Nav_Rec_Command_Button.Location = new System.Drawing.Point(168, 99);
             this.Nav_Rec_Command_Button.Name = "Nav_Rec_Command_Button";
             this.Nav_Rec_Command_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Command_Button.TabIndex = 15;
@@ -2588,7 +2590,7 @@
             // 
             // Nav_Rec_Wait_Button
             // 
-            this.Nav_Rec_Wait_Button.Location = new System.Drawing.Point(0, 188);
+            this.Nav_Rec_Wait_Button.Location = new System.Drawing.Point(87, 70);
             this.Nav_Rec_Wait_Button.Name = "Nav_Rec_Wait_Button";
             this.Nav_Rec_Wait_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Wait_Button.TabIndex = 12;
@@ -2598,7 +2600,7 @@
             // 
             // Nav_Rec_Target_NPC_Button
             // 
-            this.Nav_Rec_Target_NPC_Button.Location = new System.Drawing.Point(0, 159);
+            this.Nav_Rec_Target_NPC_Button.Location = new System.Drawing.Point(6, 70);
             this.Nav_Rec_Target_NPC_Button.Name = "Nav_Rec_Target_NPC_Button";
             this.Nav_Rec_Target_NPC_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Target_NPC_Button.TabIndex = 10;
@@ -8265,6 +8267,16 @@
             this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
             this.SynergizerDlg.TabIndex = 0;
             // 
+            // Nav_Rec_Sequence_Button
+            // 
+            this.Nav_Rec_Sequence_Button.Location = new System.Drawing.Point(168, 128);
+            this.Nav_Rec_Sequence_Button.Name = "Nav_Rec_Sequence_Button";
+            this.Nav_Rec_Sequence_Button.Size = new System.Drawing.Size(75, 23);
+            this.Nav_Rec_Sequence_Button.TabIndex = 43;
+            this.Nav_Rec_Sequence_Button.Text = "Sequence";
+            this.Nav_Rec_Sequence_Button.UseVisualStyleBackColor = true;
+            this.Nav_Rec_Sequence_Button.Click += new System.EventHandler(this.Nav_Rec_Sequence_Button_Click);
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9066,5 +9078,6 @@
         private System.Windows.Forms.Label WMS_Safe2Label;
         private System.Windows.Forms.Label WMS_Safe2OccLabel;
         private System.Windows.Forms.CheckBox ALR_LoopMessageChkB;
+        private System.Windows.Forms.Button Nav_Rec_Sequence_Button;
     }
 }
