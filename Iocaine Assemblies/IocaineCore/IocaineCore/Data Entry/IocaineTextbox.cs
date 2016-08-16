@@ -16,6 +16,7 @@ namespace Iocaine2.Data.Entry
         private bool m_grayTextIfDefault = true;
         private bool m_onEnterSetTarget = false;
         private bool m_onEnterFireEvent = false;
+        private bool m_selectTextOnClick = true;
         #endregion Private Members
 
         #region Public Properties
@@ -65,6 +66,17 @@ namespace Iocaine2.Data.Entry
                 m_onEnterFireEvent = value;
             }
         }
+        public bool SelectTextOnClick
+        {
+            get
+            {
+                return m_selectTextOnClick;
+            }
+            set
+            {
+                m_selectTextOnClick = value;
+            }
+        }
         #endregion Public Properties
 
         #region Events
@@ -88,7 +100,7 @@ namespace Iocaine2.Data.Entry
         #region Private Methods
         private void IocaineTextbox_Click(object sender, EventArgs e)
         {
-            if (Text == m_defaultText)
+            if ((Text == m_defaultText) && m_selectTextOnClick)
             {
                 SelectAll();
             }
@@ -119,7 +131,7 @@ namespace Iocaine2.Data.Entry
         }
         private void IocaineTextbox_TextChanged(object sender, EventArgs e)
         {
-            if (Text == m_defaultText)
+            if ((Text == m_defaultText) && m_grayTextIfDefault)
             {
                 ForeColor = Color.Gray;
             }

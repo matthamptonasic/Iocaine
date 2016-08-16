@@ -12,6 +12,7 @@ namespace Iocaine2.Data.Entry
         private bool m_textGreyed;
         private bool m_onEnterSetTarget;
         private bool m_saveOnEnter;
+        private bool m_selectTextOnClick;
         #endregion Private Members
 
         #region Public Properties
@@ -43,10 +44,17 @@ namespace Iocaine2.Data.Entry
                 return m_saveOnEnter;
             }
         }
+        public bool SelectTextOnClick
+        {
+            get
+            {
+                return m_selectTextOnClick;
+            }
+        }
         #endregion Public Properties
 
         #region Constructor
-        public TextboxParameter(string iLabelText, string iDefaultText, bool iTextGreyed = true, bool iSaveOnEnter = true, bool iOnEnterSetTarget = false)
+        public TextboxParameter(string iLabelText, string iDefaultText, bool iTextGreyed = true, bool iSaveOnEnter = true, bool iOnEnterSetTarget = false, bool iSelectTextOnClick = true)
             : base(iLabelText)
         {
             m_defaultText = iDefaultText;
@@ -61,6 +69,7 @@ namespace Iocaine2.Data.Entry
             {
                 m_saveOnEnter = iSaveOnEnter;
             }
+            m_selectTextOnClick = iSelectTextOnClick;
         }
         #endregion Constructor
 
