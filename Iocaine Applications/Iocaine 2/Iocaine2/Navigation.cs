@@ -38,6 +38,9 @@ namespace Iocaine2.Bots
         #endregion Structures
         #region Members
         private static Audio player = new Audio();
+        private static byte m_nbSequenceTries = 1;
+        private static uint m_delayBetweenSequenceTries = 3000;
+        private static byte m_nbTargetNpcTries = 3;
         #region Movement
         private static bool releasedForwardKey = false;
         private static float facingMargin = (float)(Math.PI / 8);
@@ -727,7 +730,7 @@ namespace Iocaine2.Bots
                             return false;
                         }
                         bool failed = true;
-                        for (int ii = 0; ii < 3; ii++)
+                        for (int ii = 0; ii < m_nbTargetNpcTries; ii++)
                         {
                             if (Interaction.TargetNPC(targetName))
                             {
@@ -787,6 +790,9 @@ namespace Iocaine2.Bots
                         ReleaseAllMovementKeys(true);
                         IocaineFunctions.delay(iNodeCurrent.NodeData);
                         return true;
+                    case (ushort)Iocaine_2_Form.NAV_NODE_TYPE.IOC_SEQUENCE:
+                        ushort id = (ushort)iNodeCurrent.NodeData;
+                        return processSequence(id);
                     default:
                         if ((iNodeCurrent.NodeType == (ushort)Iocaine_2_Form.NAV_NODE_TYPE.POS_START)
                             || (iNodeCurrent.NodeType == (ushort)Iocaine_2_Form.NAV_NODE_TYPE.POS_NODE)
@@ -983,6 +989,30 @@ namespace Iocaine2.Bots
             {
                 LoggingFunctions.Error("Navigation::processOneNode: " + e.ToString());
             }
+        }
+        private static bool processSequence(ushort iSeqId)
+        {
+            ActionSequence seq = ActionManager.GetSequence(iSeqId);
+            if ((seq == null) || !seq.IsCapable())
+            {
+                return false;
+            }
+            byte cnt = 1;
+            while (cnt <= m_nbSequenceTries)
+            {
+                cnt++;
+                if (seq.CanPerform())
+                {
+                    // TBA - Add reason why it cannot be processed and act accordingly.
+                    if (seq.Execute("<me>"))
+                    {
+                        return true;
+                    }
+                }
+                IocaineFunctions.delay(m_delayBetweenSequenceTries);
+                continue;
+            }
+            return false;
         }
         #endregion Main Functions
         #region Time Functions
