@@ -183,6 +183,7 @@ namespace Iocaine2.Data.Entry
                 tb._DataEntered += performOkClick;
             }
             tb.OnEnterSetTarget = iParam.OnEnterSetTarget;
+            tb.SelectTextOnClick = iParam.SelectTextOnClick;
             tb.Width = m_textboxWidth;
             tb.Location = new Point(m_lastX, m_lastY);
             this.Controls.Add(tb);
