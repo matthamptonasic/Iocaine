@@ -4636,6 +4636,24 @@ namespace Iocaine2
             if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
             {
                 //Nav_Rec_setCommandTextTBText(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail);
+                // Launch editor and save the NodeDetail with the updated command.
+                Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("Update Command", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, false, true, false, false);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    Nav_Rec_CommandText = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    if (Nav_Rec_CommandText == Nav_Rec_CommandTBDefText)
+                    {
+                        MessageBox.Show("Please enter the Command text");
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_Rec_CommandText;
+                }
+                else
+                {
+                    return;
+                }
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
             {
@@ -4685,6 +4703,8 @@ namespace Iocaine2
                 Nav_Rec_setPosZoneValue(zone);
                 Nav_Rec_Zone = zone;
             }
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_modified = true;
         }
         private void Nav_Rec_saveNode(int iIdx)
         {
@@ -5324,64 +5344,33 @@ namespace Iocaine2
         }
         #endregion ComboBoxes
         #region List Boxes
+        // 1. Click used to load form with data.
+        //    - Click now does nothing.
+        // 2. Double click used to run the node.
+        //    - Double click now edits the node.
+        // 3. Right click used to do nothing.
+        //    - Right click now runs the node.
+
         private void Nav_Rec_Route_LB_Click(object sender, EventArgs e)
         {
-            //On click we want to see if we're currently recording.
+            // Does nothing here, starts the drag and drop in the MouseDown event.
+        }
+        private void Nav_Rec_Route_LB_DoubleClick(object sender, EventArgs e)
+        {
+            //On double click we want to see if we're currently recording.
             //If not, we'll load the form with the information from
             //the selected node.
             if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
             {
-                Nav_Rec_loadFormWithNodeData(Nav_Rec_Route_LB.SelectedIndex);
+                int topIdx = Nav_Rec_Route_LB.TopIndex;
+                int selIdx = Nav_Rec_Route_LB.SelectedIndex;
+                Nav_Rec_loadFormWithNodeData(selIdx);
+                Nav_Rec_Route_LB.TopIndex = topIdx;
+                Nav_Rec_Route_LB.SelectedIndex = selIdx;
             }
             else
             {
                 MessageBox.Show("Please stop recording to enable route editing.");
-            }
-        }
-        private void Nav_Rec_Route_LB_DoubleClick(object sender, EventArgs e)
-        {
-            //On double click we want to perform the action of the node we
-            //clicked on.  If it's a command we should probably prompt the
-            //user if they actually want to execute the command. Or at least
-            //prompt if it's a teleportation command.
-            //We should also update the status box.
-
-            if (Navigation.ProcessingStatus != Navigation.PROCESSING_STATUS.STOPPED)
-            {
-                MessageBox.Show("You cannot perform that action while a navigation process is running.", "Please stop first", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return;
-            }
-            if (Nav_Rec_Route_LB.SelectedIndex >= 0)
-            {
-                Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_Route_LB.SelectedIndex];
-                if (node.NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
-                {
-                    DialogResult promptResult = MessageBox.Show("Do you really want to perform this command?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (promptResult == System.Windows.Forms.DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                else if ((node.NodeType == (ushort)NAV_NODE_TYPE.POS_END)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_START)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
-                {
-                    UInt16 zoneId = MemReads.Self.get_zone_id();
-                    if (zoneId != node.NodeZoneID)
-                    {
-                        MessageBox.Show("Node was not in this zone.", "Not in Zone.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    float distToNode = (float)Nav_getDistance(node.NodePosX, MemReads.Self.Position.get_x(),
-                                                              node.NodePosY, MemReads.Self.Position.get_y());
-                    if (distToNode > Statics.Constants.Navigation.MaxDistForRouteStart)
-                    {
-                        MessageBox.Show("Node was not within range.", "Not in Range.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                Navigation.ProcessNode(node);
             }
         }
         private void Nav_Rec_Route_LB_MouseDown(object sender, MouseEventArgs e)
@@ -5390,9 +5379,55 @@ namespace Iocaine2
             if (idx >= 0)
             {
                 //An item was selected, start the drag/drop.
-                if (e.Clicks == 1)
+                if ((e.Clicks == 1) && (e.Button == MouseButtons.Left))
                 {
                     Nav_Rec_Route_LB.DoDragDrop(Nav_Rec_Route_LB.SelectedItem, DragDropEffects.Move | DragDropEffects.Scroll);
+                }
+                else if ((e.Clicks == 1) && (e.Button == MouseButtons.Right))
+                {
+                    //On right click we want to perform the action of the node we
+                    //clicked on.  If it's a command we should probably prompt the
+                    //user if they actually want to execute the command. Or at least
+                    //prompt if it's a teleportation command.
+                    //We should also update the status box.
+
+                    if (Navigation.ProcessingStatus != Navigation.PROCESSING_STATUS.STOPPED)
+                    {
+                        MessageBox.Show("You cannot perform that action while a navigation process is running.", "Please stop first", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return;
+                    }
+                    if (Nav_Rec_Route_LB.SelectedIndex >= 0)
+                    {
+                        Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_Route_LB.SelectedIndex];
+                        if (node.NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
+                        {
+                            DialogResult promptResult = MessageBox.Show("Do you really want to perform this command?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (promptResult == System.Windows.Forms.DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                        else if ((node.NodeType == (ushort)NAV_NODE_TYPE.POS_END)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_START)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
+                        {
+                            UInt16 zoneId = MemReads.Self.get_zone_id();
+                            if (zoneId != node.NodeZoneID)
+                            {
+                                MessageBox.Show("Node was not in this zone.", "Not in Zone.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            float distToNode = (float)Nav_getDistance(node.NodePosX, MemReads.Self.Position.get_x(),
+                                                                      node.NodePosY, MemReads.Self.Position.get_y());
+                            if (distToNode > Statics.Constants.Navigation.MaxDistForRouteStart)
+                            {
+                                MessageBox.Show("Node was not within range.", "Not in Range.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                        Navigation.ProcessNode(node);
+                    }
                 }
             }
             else
