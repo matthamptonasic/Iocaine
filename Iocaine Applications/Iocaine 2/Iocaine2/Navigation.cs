@@ -1004,7 +1004,7 @@ namespace Iocaine2.Bots
                 if (seq.CanPerform())
                 {
                     // TBA - Add reason why it cannot be processed and act accordingly.
-                    if (seq.Execute("<me>"))
+                    if (seq.Execute())
                     {
                         return true;
                     }

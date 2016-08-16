@@ -15,6 +15,7 @@ namespace Iocaine2.Data.Structures
         private bool m_isBlocking;
         private List<IExecutableAction> m_actionList;
         private string m_sequenceName;
+        private string m_defaultTarget = "<me>";
         #endregion Private Members
 
         #region Public Properties
@@ -30,6 +31,17 @@ namespace Iocaine2.Data.Structures
             get
             {
                 return m_sequenceName;
+            }
+        }
+        public string DefaultTarget
+        {
+            get
+            {
+                return m_defaultTarget;
+            }
+            set
+            {
+                m_defaultTarget = value;
             }
         }
         #endregion Public Properties
@@ -146,9 +158,10 @@ namespace Iocaine2.Data.Structures
                 return false;
             }
             bool retVal = true;
+            string target = (iTarget == "") ? m_defaultTarget : iTarget;
             foreach (IExecutableAction actn in m_actionList)
             {
-                retVal &= actn.Execute(iTarget);
+                retVal &= actn.Execute(target);
             }
             return retVal;
         }
