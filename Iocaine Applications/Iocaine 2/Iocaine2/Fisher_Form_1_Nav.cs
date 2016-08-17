@@ -546,6 +546,22 @@ namespace Iocaine2
                 return false;
             }
         }
+        internal static String Nav_encodeIocSequenceToString(string iSequenceName)
+        {
+            return "Sequence: " + iSequenceName;
+        }
+        internal static bool Nav_decodeStringToIocSequence(string iText, ref string oName)
+        {
+            if (iText.Contains("Sequence: ") && (iText.Length >= 11))
+            {
+                oName = iText.Substring(10);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion Node Details
         #region Tags
         private List<String> Nav_getTagList(String iTags)
@@ -4516,7 +4532,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-            Nav_Rec_CurrentNode.NodeDetail = "Sequence: " + name;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeIocSequenceToString(name);
             Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
             Nav_Rec_refreshRouteLB();
             Nav_Rec_scrollRouteLB();
@@ -4627,7 +4643,6 @@ namespace Iocaine2
         }
         private void Nav_Rec_loadFormWithNodeData(int iIdx)
         {
-            // TBD - This all needs to be updated.
             if (iIdx < 0)
             {
                 return;
@@ -4660,7 +4675,11 @@ namespace Iocaine2
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.IOC_SEQUENCE)
             {
                 ushort id = (ushort)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
-                string name = ActionManager.GetSequence(id).SequenceName;
+                string name = "";
+                if (!Nav_decodeStringToIocSequence(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref name))
+                {
+                    return;
+                }
                 int idx = ActionManager.AllSequenceNames.IndexOf(name);
                 Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Build-In Sequence", ActionManager.AllSequenceNames, idx);
                 Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
@@ -4682,7 +4701,7 @@ namespace Iocaine2
                             return;
                         }
                         Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = id;
-                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = "Sequence: " + name;
+                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeIocSequenceToString(name);
                     }
                     catch (Exception e)
                     {
@@ -4793,6 +4812,24 @@ namespace Iocaine2
                 }
             }
             #endregion Trade Item
+            #region Wait
+            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.WAIT)
+            {
+                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Updated Time (seconds)", (decimal)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData/1000, 1, 0.1m, 600, 0.5m);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    decimal time = ((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData =  (uint)(time * 1000);
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeWaitToString(time);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            #endregion Wait
             #region Position
             else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
