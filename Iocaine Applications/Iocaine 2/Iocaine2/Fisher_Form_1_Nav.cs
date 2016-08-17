@@ -4719,6 +4719,32 @@ namespace Iocaine2
                 }
             }
             #endregion Keystroke
+            #region NPC Target
+            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
+            {
+                string oldName = "";
+                if (!Nav_decodeStringToNpcName(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref oldName))
+                {
+                    return;
+                }
+                Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("Updated NPC", oldName, true, false, true, false);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    string name = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    if ((name == "") || (name == Nav_Rec_NpcNameTBDefText))
+                    {
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeNameToString(name);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            #endregion NPC Target
             #region Trade Gil
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
@@ -4739,14 +4765,32 @@ namespace Iocaine2
             #region Trade Item
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
             {
-                String itemName = "";
-                byte itemQuan = 0;
-                if (!Nav_decodeStringToItem(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref itemName, ref itemQuan))
+                string oldItemName = "";
+                byte oldItemQuan = 0;
+                if (!Nav_decodeStringToItem(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref oldItemName, ref oldItemQuan))
                 {
                     return;
                 }
-                //Nav_Rec_setItemNametTBText(itemName);
-                //Nav_Rec_setItemQuanValue((double)itemQuan);
+                Data.Entry.TextboxParameter param_tb = new Data.Entry.TextboxParameter("Updated Item", oldItemName, true, true, false, false);
+                Data.Entry.UpDownParameter param_ud = new Data.Entry.UpDownParameter("Updated Quantity", oldItemQuan, 0, 1, 99, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param_tb, param_ud });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    string itemName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    byte itemQuan = (byte)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                    if ((itemName == Nav_Rec_ItemNameTBDefText) || (itemName == ""))
+                    {
+                        MessageBox.Show("Please enter an Item name");
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)itemQuan;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeItemToString(itemName, itemQuan);
+                }
+                else
+                {
+                    return;
+                }
             }
             #endregion Trade Item
             #region Position
