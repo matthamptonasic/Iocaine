@@ -47,7 +47,6 @@ namespace Iocaine2.Data.Structures
             magic.AddAction(new ActionWait());
 
             ActionSequence item = new ActionSequence();
-            Action.ConditionTree staticConditions = new Action.ConditionTree();
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
             item.AddAction(new UseItem("Prism Powder", "<me>", 2000));
 
@@ -62,15 +61,38 @@ namespace Iocaine2.Data.Structures
             m_nameToSequenceMap.Add(name, seq);
             id++;
             #endregion Sneak_Invisible
-        }
-        private static bool run_sneak_inv()
-        {
-            ActionSequence seq = GetSequence("Sneak_Invisible");
-            if ((seq != null) && (seq.CanPerform()))
-            {
-                return seq.Execute("<me>");
-            }
-            return false;
+
+            #region Sneak
+            name = "Sneak";
+            seq = new ActionSequence(name);
+
+            // Cancel segment
+            seq.AddAction(new ActionCancelBuff("sneak"));
+            seq.AddAction(new ActionWait());
+
+            // Snk/Inv choices
+            ActionSequenceUnion snkUnion = new ActionSequenceUnion();
+            jig = new ActionSequence();
+            jig.AddAction(CommandManager.JAManager.GetCommand("Spectral Jig"));
+
+            magic = new ActionSequence();
+            magic.AddAction(CommandManager.SpellsManager.GetCommand("Sneak"));
+            magic.AddAction(new ActionWait());
+
+            item = new ActionSequence();
+            item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
+
+            snkInvUnion.AddSequence(jig);
+            snkInvUnion.AddSequence(magic);
+            snkInvUnion.AddSequence(item);
+
+            seq.AddAction(snkInvUnion);
+
+            m_nameToIdMap.Add(name, id);
+            m_idToSequenceMap.Add(id, seq);
+            m_nameToSequenceMap.Add(name, seq);
+            id++;
+            #endregion Sneak
         }
         #endregion Private Methods
     }
