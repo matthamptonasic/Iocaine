@@ -148,6 +148,7 @@ namespace Iocaine2.Data.Entry
             IocaineComboBox cb = new IocaineComboBox();
             cb.TabIndex = m_controlCount++;
             cb.TabStop = true;
+            cb.BindingContext = new BindingContext();
             cb.DataSource = iParam.Items;
             if (iParam.SaveOnEnter)
             {
@@ -158,6 +159,13 @@ namespace Iocaine2.Data.Entry
             cb.Location = new Point(m_lastX, m_lastY);
             this.Controls.Add(cb);
             cb.BringToFront();
+            if (iParam.InitialIndex > -1)
+            {
+                if (iParam.InitialIndex < cb.Items.Count)
+                {
+                    cb.SelectedIndex = iParam.InitialIndex;
+                }
+            }
             Ht += m_comboBoxHeight;
 
             iParam.Control = cb;
