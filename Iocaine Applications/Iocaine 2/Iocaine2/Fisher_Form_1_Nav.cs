@@ -4541,7 +4541,6 @@ namespace Iocaine2
                 return;
             }
 
-
             if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
             {
                 String message = "This route is part of a trip in the reverse direction.\n";
@@ -4657,16 +4656,26 @@ namespace Iocaine2
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
             {
-                String keystroke = "";
-                if (!Nav_decodeStringToKeystroke(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref keystroke))
+                // TBD - add 'initialIndex' as a param to the combo box.
+                Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Keystroke", Statics.Constants.Navigation.KeystrokeStrings, (int)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                string selected = "";
+                if (rslt == DialogResult.OK)
+                {
+                    selected = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                    if (selected == "")
+                    {
+                        return;
+                    }
+                }
+                else
                 {
                     return;
                 }
-                int index = Statics.Constants.Navigation.KeystrokeStrings.IndexOf(keystroke);
-                if (index >= 0)
-                {
-                    //Nav_Rec_setKeystrokesCBIndex(index);
-                }
+
+                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
+                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(selected);
             }
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
