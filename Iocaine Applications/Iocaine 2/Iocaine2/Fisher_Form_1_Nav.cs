@@ -4681,6 +4681,8 @@ namespace Iocaine2
                         {
                             return;
                         }
+                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = id;
+                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = "Sequence: " + name;
                     }
                     catch (Exception e)
                     {
@@ -4692,9 +4694,6 @@ namespace Iocaine2
                 {
                     return;
                 }
-
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = id;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = "Sequence: " + name;
             }
             #endregion Iocaine Sequence
             #region Keystroke
@@ -4711,21 +4710,30 @@ namespace Iocaine2
                     {
                         return;
                     }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(selected);
                 }
                 else
                 {
                     return;
                 }
-
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(selected);
             }
             #endregion Keystroke
             #region Trade Gil
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
-                //uint gilQuan = Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
-                //Nav_Rec_setGilQuanValue((double)gilQuan);
+                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Update Gil Amount", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData, 0, 1, 10000, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeGilToString(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData);
+                }
+                else
+                {
+                    return;
+                }
             }
             #endregion Trade Gil
             #region Trade Item
