@@ -4767,7 +4767,7 @@ namespace Iocaine2
             #region Trade Gil
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
-                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Update Gil Amount", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData, 0, 1, 10000, 1);
+                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Updated Gil Amount", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData, 0, 1, 10000, 1);
                 Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
                 DialogResult rslt = form.ShowDialog(this);
                 if (rslt == DialogResult.OK)
@@ -4839,16 +4839,33 @@ namespace Iocaine2
                 double posx = 0;
                 double posy = 0;
                 float posh = 0;
-                UInt16 zone = 0;
+                ushort zone = 0;
                 if (!Nav_decodeStringToPos(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref posx, ref posy, ref posh, ref zone))
                 {
                     return;
                 }
-                Nav_Rec_setPosXValue(posx);
-                Nav_Rec_setPosYValue(posy);
-                Nav_Rec_setPosHValue(posh);
-                Nav_Rec_setPosZoneValue(zone);
-                Nav_Rec_Zone = zone;
+                Data.Entry.UpDownParameter paramX = new Data.Entry.UpDownParameter("Updated X Value", (decimal)posx, 1, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramY = new Data.Entry.UpDownParameter("Updated Y Value", (decimal)posy, 1, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramH = new Data.Entry.UpDownParameter("Updated Heading Value", (decimal)posh, 2, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramZone = new Data.Entry.UpDownParameter("Updated Zone ID", (decimal)zone, 0, 1, 511, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { paramX, paramY, paramH, paramZone });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    posx = (double)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    posy = (double)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                    posh = (float)((Data.Entry.UpDownReturn)form.ControlReturns[2]).Value;
+                    zone = (ushort)((Data.Entry.UpDownReturn)form.ControlReturns[3]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosX = (float)posx;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosY = (float)posy;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosHeading = posh;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeZoneID = zone;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodePosToString(posx, posy, posh, zone);
+                }
+                else
+                {
+                    return;
+                }
             }
             #endregion Position
             Nav_Rec_refreshRouteLB();
