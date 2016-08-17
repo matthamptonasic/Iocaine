@@ -4632,6 +4632,7 @@ namespace Iocaine2
             {
                 return;
             }
+            #region Command
             if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
             {
                 //Nav_Rec_setCommandTextTBText(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail);
@@ -4654,9 +4655,51 @@ namespace Iocaine2
                     return;
                 }
             }
+            #endregion Command
+            #region Iocaine Sequence
+            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.IOC_SEQUENCE)
+            {
+                ushort id = (ushort)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
+                string name = ActionManager.GetSequence(id).SequenceName;
+                int idx = ActionManager.AllSequenceNames.IndexOf(name);
+                Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Build-In Sequence", ActionManager.AllSequenceNames, idx);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                ActionSequence seq;
+                if (rslt == DialogResult.OK)
+                {
+                    try
+                    {
+                        name = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                        if (name == "")
+                        {
+                            return;
+                        }
+                        seq = ActionManager.GetSequence(name);
+                        id = ActionManager.GetSequenceId(name);
+                        if ((seq == null) || (id == ActionManager.InvalidID))
+                        {
+                            return;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        LoggingFunctions.Error(e.ToString());
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = id;
+                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = "Sequence: " + name;
+            }
+            #endregion Iocaine Sequence
+            #region Keystroke
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
             {
-                // TBD - add 'initialIndex' as a param to the combo box.
                 Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Keystroke", Statics.Constants.Navigation.KeystrokeStrings, (int)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData);
                 Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
                 DialogResult rslt = form.ShowDialog(this);
@@ -4677,11 +4720,15 @@ namespace Iocaine2
                 Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
                 Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(selected);
             }
+            #endregion Keystroke
+            #region Trade Gil
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
                 //uint gilQuan = Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
                 //Nav_Rec_setGilQuanValue((double)gilQuan);
             }
+            #endregion Trade Gil
+            #region Trade Item
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
             {
                 String itemName = "";
@@ -4693,6 +4740,8 @@ namespace Iocaine2
                 //Nav_Rec_setItemNametTBText(itemName);
                 //Nav_Rec_setItemQuanValue((double)itemQuan);
             }
+            #endregion Trade Item
+            #region Position
             else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_END)
@@ -4712,6 +4761,7 @@ namespace Iocaine2
                 Nav_Rec_setPosZoneValue(zone);
                 Nav_Rec_Zone = zone;
             }
+            #endregion Position
             Nav_Rec_refreshRouteLB();
             Nav_Rec_modified = true;
         }
