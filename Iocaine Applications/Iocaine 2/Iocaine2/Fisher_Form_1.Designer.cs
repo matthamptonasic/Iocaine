@@ -160,16 +160,10 @@
             this.Nav_Prc_Trip_CreationTV_Label = new System.Windows.Forms.Label();
             this.Nav_Prc_RouteTV_Label = new System.Windows.Forms.Label();
             this.Nav_User_Sub_Tab = new System.Windows.Forms.TabPage();
+            this.Nav_Rec_Sequence_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_Tags_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Tags_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Update_Node_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Position_H_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Position_Y_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Position_X_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Start_Stop_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Zone_Text = new System.Windows.Forms.Label();
-            this.Nav_Rec_Zone_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Position_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Delete_Node_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Save_Point_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_LB = new System.Windows.Forms.ListBox();
@@ -497,6 +491,7 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -659,8 +654,6 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
-            this.Nav_Rec_Sequence_Button = new System.Windows.Forms.Button();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -676,9 +669,6 @@
             this.Nav_Nav_Sub_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Prc_Loop_UpDn)).BeginInit();
             this.Nav_User_Sub_Tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).BeginInit();
             this.Helpers_Tab.SuspendLayout();
             this.Helpers_Tab_Control.SuspendLayout();
             this.Trader_Tab.SuspendLayout();
@@ -2285,14 +2275,7 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Sequence_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Update_Node_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_H_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_Y_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_X_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Start_Stop_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Zone_Text);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Zone_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Node_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Save_Point_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_LB);
@@ -2317,6 +2300,16 @@
             this.Nav_User_Sub_Tab.Text = "Recording";
             this.Nav_User_Sub_Tab.UseVisualStyleBackColor = true;
             // 
+            // Nav_Rec_Sequence_Button
+            // 
+            this.Nav_Rec_Sequence_Button.Location = new System.Drawing.Point(168, 128);
+            this.Nav_Rec_Sequence_Button.Name = "Nav_Rec_Sequence_Button";
+            this.Nav_Rec_Sequence_Button.Size = new System.Drawing.Size(75, 23);
+            this.Nav_Rec_Sequence_Button.TabIndex = 43;
+            this.Nav_Rec_Sequence_Button.Text = "Sequence";
+            this.Nav_Rec_Sequence_Button.UseVisualStyleBackColor = true;
+            this.Nav_Rec_Sequence_Button.Click += new System.EventHandler(this.Nav_Rec_Sequence_Button_Click);
+            // 
             // Nav_Rec_Route_Tags_TB
             // 
             this.Nav_Rec_Route_Tags_TB.ForeColor = System.Drawing.Color.Gray;
@@ -2338,104 +2331,6 @@
             this.Nav_Rec_Route_Tags_Label.TabIndex = 42;
             this.Nav_Rec_Route_Tags_Label.Text = "Tags";
             // 
-            // Nav_Rec_Update_Node_Button
-            // 
-            this.Nav_Rec_Update_Node_Button.Location = new System.Drawing.Point(440, 289);
-            this.Nav_Rec_Update_Node_Button.Name = "Nav_Rec_Update_Node_Button";
-            this.Nav_Rec_Update_Node_Button.Size = new System.Drawing.Size(75, 23);
-            this.Nav_Rec_Update_Node_Button.TabIndex = 32;
-            this.Nav_Rec_Update_Node_Button.Text = "Save Edits";
-            this.Nav_Rec_Update_Node_Button.UseVisualStyleBackColor = true;
-            this.Nav_Rec_Update_Node_Button.Click += new System.EventHandler(this.Nav_Rec_Update_Node_Button_Click);
-            // 
-            // Nav_Rec_Position_H_UpDn
-            // 
-            this.Nav_Rec_Position_H_UpDn.DecimalPlaces = 2;
-            this.Nav_Rec_Position_H_UpDn.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.Nav_Rec_Position_H_UpDn.Location = new System.Drawing.Point(370, 318);
-            this.Nav_Rec_Position_H_UpDn.Maximum = new decimal(new int[] {
-            315,
-            0,
-            0,
-            131072});
-            this.Nav_Rec_Position_H_UpDn.Minimum = new decimal(new int[] {
-            315,
-            0,
-            0,
-            -2147352576});
-            this.Nav_Rec_Position_H_UpDn.Name = "Nav_Rec_Position_H_UpDn";
-            this.Nav_Rec_Position_H_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_H_UpDn.TabIndex = 39;
-            this.Nav_Rec_Position_H_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_H_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_H_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_H_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Position_Y_UpDn
-            // 
-            this.Nav_Rec_Position_Y_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Position_Y_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Position_Y_UpDn.Location = new System.Drawing.Point(307, 318);
-            this.Nav_Rec_Position_Y_UpDn.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Position_Y_UpDn.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.Nav_Rec_Position_Y_UpDn.Name = "Nav_Rec_Position_Y_UpDn";
-            this.Nav_Rec_Position_Y_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_Y_UpDn.TabIndex = 38;
-            this.Nav_Rec_Position_Y_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_Y_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_Y_UpDn.Value = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            -2147418112});
-            this.Nav_Rec_Position_Y_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_Y_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Position_X_UpDn
-            // 
-            this.Nav_Rec_Position_X_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Position_X_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Position_X_UpDn.Location = new System.Drawing.Point(244, 318);
-            this.Nav_Rec_Position_X_UpDn.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Position_X_UpDn.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.Nav_Rec_Position_X_UpDn.Name = "Nav_Rec_Position_X_UpDn";
-            this.Nav_Rec_Position_X_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_X_UpDn.TabIndex = 37;
-            this.Nav_Rec_Position_X_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_X_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_X_UpDn.Value = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            -2147418112});
-            this.Nav_Rec_Position_X_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_X_UpDn_ValueChanged);
-            // 
             // Nav_Rec_Start_Stop_Button
             // 
             this.Nav_Rec_Start_Stop_Button.BackColor = System.Drawing.Color.Lime;
@@ -2447,33 +2342,6 @@
             this.Nav_Rec_Start_Stop_Button.Text = "Start";
             this.Nav_Rec_Start_Stop_Button.UseVisualStyleBackColor = false;
             this.Nav_Rec_Start_Stop_Button.Click += new System.EventHandler(this.Nav_Rec_Start_Stop_Button_Click);
-            // 
-            // Nav_Rec_Zone_Text
-            // 
-            this.Nav_Rec_Zone_Text.AutoSize = true;
-            this.Nav_Rec_Zone_Text.Location = new System.Drawing.Point(485, 320);
-            this.Nav_Rec_Zone_Text.Name = "Nav_Rec_Zone_Text";
-            this.Nav_Rec_Zone_Text.Size = new System.Drawing.Size(13, 13);
-            this.Nav_Rec_Zone_Text.TabIndex = 35;
-            this.Nav_Rec_Zone_Text.Text = "0";
-            // 
-            // Nav_Rec_Zone_Label
-            // 
-            this.Nav_Rec_Zone_Label.AutoSize = true;
-            this.Nav_Rec_Zone_Label.Location = new System.Drawing.Point(444, 320);
-            this.Nav_Rec_Zone_Label.Name = "Nav_Rec_Zone_Label";
-            this.Nav_Rec_Zone_Label.Size = new System.Drawing.Size(35, 13);
-            this.Nav_Rec_Zone_Label.TabIndex = 34;
-            this.Nav_Rec_Zone_Label.Text = "Zone:";
-            // 
-            // Nav_Rec_Position_Label
-            // 
-            this.Nav_Rec_Position_Label.AutoSize = true;
-            this.Nav_Rec_Position_Label.Location = new System.Drawing.Point(155, 320);
-            this.Nav_Rec_Position_Label.Name = "Nav_Rec_Position_Label";
-            this.Nav_Rec_Position_Label.Size = new System.Drawing.Size(90, 13);
-            this.Nav_Rec_Position_Label.TabIndex = 32;
-            this.Nav_Rec_Position_Label.Text = "Position ( X,Y,H ):";
             // 
             // Nav_Rec_Delete_Node_Button
             // 
@@ -6492,6 +6360,15 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -8258,25 +8135,6 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
-            // Nav_Rec_Sequence_Button
-            // 
-            this.Nav_Rec_Sequence_Button.Location = new System.Drawing.Point(168, 128);
-            this.Nav_Rec_Sequence_Button.Name = "Nav_Rec_Sequence_Button";
-            this.Nav_Rec_Sequence_Button.Size = new System.Drawing.Size(75, 23);
-            this.Nav_Rec_Sequence_Button.TabIndex = 43;
-            this.Nav_Rec_Sequence_Button.Text = "Sequence";
-            this.Nav_Rec_Sequence_Button.UseVisualStyleBackColor = true;
-            this.Nav_Rec_Sequence_Button.Click += new System.EventHandler(this.Nav_Rec_Sequence_Button_Click);
-            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8344,9 +8202,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Prc_Loop_UpDn)).EndInit();
             this.Nav_User_Sub_Tab.ResumeLayout(false);
             this.Nav_User_Sub_Tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).EndInit();
             this.Helpers_Tab.ResumeLayout(false);
             this.Helpers_Tab_Control.ResumeLayout(false);
             this.Trader_Tab.ResumeLayout(false);
@@ -8780,9 +8635,6 @@
         private System.Windows.Forms.TabControl Nav_Tab_Control;
         private System.Windows.Forms.TabPage Nav_Nav_Sub_Tab;
         private System.Windows.Forms.TabPage Nav_User_Sub_Tab;
-        private System.Windows.Forms.Label Nav_Rec_Zone_Text;
-        private System.Windows.Forms.Label Nav_Rec_Zone_Label;
-        private System.Windows.Forms.Label Nav_Rec_Position_Label;
         private System.Windows.Forms.Button Nav_Rec_Delete_Node_Button;
         private System.Windows.Forms.Button Nav_Rec_Save_Point_Button;
         private System.Windows.Forms.ListBox Nav_Rec_Route_LB;
@@ -8800,10 +8652,6 @@
         private System.Windows.Forms.Label Nav_Rec_Route_Label;
         private System.Windows.Forms.Label Nav_Rec_Route_Name_Label;
         private System.Windows.Forms.Button Nav_Rec_Start_Stop_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_Y_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_X_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_H_UpDn;
-        private System.Windows.Forms.Button Nav_Rec_Update_Node_Button;
         private System.Windows.Forms.Label Nav_Prc_Trip_SelectionTV_Label;
         private System.Windows.Forms.Label Nav_Prc_Trip_CreationTV_Label;
         private System.Windows.Forms.RadioButton Nav_Prc_Reverse_RB;

@@ -3709,10 +3709,6 @@ namespace Iocaine2
         #region Delegates
         private delegate void Nav_Rec_setRouteNameTBTextDelegate(String iText);
         private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setPosXValueDelegate(double iValue);
-        private delegate void Nav_Rec_setPosYValueDelegate(double iValue);
-        private delegate void Nav_Rec_setPosHValueDelegate(float iValue);
-        private delegate void Nav_Rec_setPosZoneValueDelegate(UInt16 iValue);
         private delegate void Nav_Rec_loadDeleteCBDelegate();
         private delegate void Nav_Rec_setDeleteCBIndexDelegate(int iIdx);
         private delegate void Nav_Rec_setStartButtonDelegate(String iText, Color iColor);
@@ -3727,10 +3723,6 @@ namespace Iocaine2
         #region Function Pointers
         private Nav_Rec_setRouteNameTBTextDelegate Nav_Rec_setRouteNameTBTextPtr;
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
-        private Nav_Rec_setPosXValueDelegate Nav_Rec_setPosXValuePtr;
-        private Nav_Rec_setPosYValueDelegate Nav_Rec_setPosYValuePtr;
-        private Nav_Rec_setPosHValueDelegate Nav_Rec_setPosHValuePtr;
-        private Nav_Rec_setPosZoneValueDelegate Nav_Rec_setPosZoneValuePtr;
         private Nav_Rec_loadDeleteCBDelegate Nav_Rec_loadDeleteCBPtr;
         private Nav_Rec_setDeleteCBIndexDelegate Nav_Rec_setDeleteCBIndexPtr;
         private Nav_Rec_setStartButtonDelegate Nav_Rec_setStartButtonPtr;
@@ -3750,7 +3742,6 @@ namespace Iocaine2
             Nav_Rec_CurrentRoute = new Nav_Route();
             Nav_Rec_loadDeleteCB();
             Nav_Rec_loadTextBoxDefText();
-            Nav_Rec_loadUpDnDefValues();
             Nav_Rec_clearGuiParallelValues();
             Nav_Rec_Route_LB.DataSource = Nav_Rec_CurrentRoute.RouteNodes;
             Nav_Rec_Route_LB.DisplayMember = "NodeDetail";
@@ -3761,10 +3752,6 @@ namespace Iocaine2
             {
                 Nav_Rec_setRouteNameTBTextPtr = new Nav_Rec_setRouteNameTBTextDelegate(Nav_Rec_setRouteNameTBTextCallBackFunction);
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
-                Nav_Rec_setPosXValuePtr = new Nav_Rec_setPosXValueDelegate(Nav_Rec_setPosXValueCallBackFunction);
-                Nav_Rec_setPosYValuePtr = new Nav_Rec_setPosYValueDelegate(Nav_Rec_setPosYValueCallBackFunction);
-                Nav_Rec_setPosHValuePtr = new Nav_Rec_setPosHValueDelegate(Nav_Rec_setPosHValueCallBackFunction);
-                Nav_Rec_setPosZoneValuePtr = new Nav_Rec_setPosZoneValueDelegate(Nav_Rec_setPosZoneValueCallBackFunction);
                 Nav_Rec_loadDeleteCBPtr = new Nav_Rec_loadDeleteCBDelegate(Nav_Rec_loadDeleteCBCallBackFunction);
                 Nav_Rec_setDeleteCBIndexPtr = new Nav_Rec_setDeleteCBIndexDelegate(Nav_Rec_setDeleteCBIndexCallBackFunction);
                 Nav_Rec_setStartButtonPtr = new Nav_Rec_setStartButtonDelegate(Nav_Rec_setStartButtonCallBackFunction);
@@ -3782,19 +3769,11 @@ namespace Iocaine2
             Statics.Settings.Navigation.IntervalDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_IntervalDefValue");
             Statics.Settings.Navigation.MinDistDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_MinDistDefValue");
             Statics.Settings.Navigation.WaitDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_WaitDefValue");
-            Nav_Rec_loadUpDnDefValues();
         }
         private void Nav_Rec_loadTextBoxDefText()
         {
             Nav_Rec_setRouteNameTBText(Nav_Rec_RouteNameTBDefText);
             Nav_Rec_setRouteTagsTBText(Nav_Rec_RouteTagsTBDefText);
-        }
-        private void Nav_Rec_loadUpDnDefValues()
-        {
-            Nav_Rec_setPosXValue(Nav_Rec_PosXDefValue);
-            Nav_Rec_setPosYValue(Nav_Rec_PosYDefValue);
-            Nav_Rec_setPosHValue(Nav_Rec_PosHDefValue);
-            Nav_Rec_setPosZoneValue(Nav_Rec_PosZoneDefValue);
         }
         private void Nav_Rec_clearGuiParallelValues()
         {
@@ -3876,74 +3855,6 @@ namespace Iocaine2
             }
         }
         #endregion Text Box Updates
-        #region UpDown Value Updates
-        private void Nav_Rec_setPosXValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_X_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_X_UpDn.Invoke(Nav_Rec_setPosXValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosXValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosXValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosXValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Position_X_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setPosYValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_Y_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_Y_UpDn.Invoke(Nav_Rec_setPosYValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosYValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosYValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosYValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Position_Y_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setPosHValue(float iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_H_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_H_UpDn.Invoke(Nav_Rec_setPosHValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosHValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosHValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosHValueCallBackFunction(float iValue)
-        {
-            Nav_Rec_Position_H_UpDn.Value = (decimal)iValue;
-        }
-        #endregion UpDown Value Updates
         #region ComboBox Updates
         private void Nav_Rec_loadDeleteCB()
         {
@@ -4027,30 +3938,6 @@ namespace Iocaine2
             Nav_Rec_Start_Stop_Button.BackColor = iColor;
         }
         #endregion Button Updates
-        #region Label Updates
-        private void Nav_Rec_setPosZoneValue(UInt16 iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Zone_Text.InvokeRequired)
-                {
-                    Nav_Rec_Zone_Text.Invoke(Nav_Rec_setPosZoneValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosZoneValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosZoneValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosZoneValueCallBackFunction(UInt16 iValue)
-        {
-            Nav_Rec_Zone_Text.Text = iValue.ToString();
-        }
-        #endregion Label Updates
         #region List Box Updates
         private void Nav_Rec_refreshRouteLB()
         {
@@ -5146,7 +5033,6 @@ namespace Iocaine2
             {
                 Nav_Rec_clearGuiParallelValues();
                 Nav_Rec_loadTextBoxDefText();
-                Nav_Rec_loadUpDnDefValues();
                 Nav_Rec_CurrentRoute.Clear();
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_existingRouteLoaded = false;
@@ -5193,16 +5079,16 @@ namespace Iocaine2
         {
             if (ChangeMonitor.LoggedIn == true)
             {
-                Nav_Rec_setPosXValue(MemReads.Self.Position.get_x());
-                Nav_Rec_setPosYValue(MemReads.Self.Position.get_y());
-                Nav_Rec_setPosHValue(MemReads.Self.Position.get_heading());
+                Nav_Rec_PosX = MemReads.Self.Position.get_x();
+                Nav_Rec_PosY = MemReads.Self.Position.get_y();
+                Nav_Rec_PosH = MemReads.Self.Position.get_heading();
             }
         }
         private void Nav_Rec_clearXYHUpDn()
         {
-            Nav_Rec_setPosXValue(0d);
-            Nav_Rec_setPosYValue(0d);
-            Nav_Rec_setPosHValue(0f);
+            Nav_Rec_PosX = 0d;
+            Nav_Rec_PosY = 0d;
+            Nav_Rec_PosH = 0f;
         }
         private bool Nav_Rec_distIsGreater(float iLastX, float iLastY)
         {
@@ -5263,7 +5149,6 @@ namespace Iocaine2
             float lastX = MemReads.Self.Position.get_x();
             float lastY = MemReads.Self.Position.get_y();
             UInt16 lastZone = MemReads.Self.get_zone_id();
-            Nav_Rec_setPosZoneValue(lastZone);
             while (Nav_Rec_State == NAV_REC_STATE.RUNNING)
             {
                 if (ChangeMonitor.LoggedIn == false)
@@ -5276,7 +5161,6 @@ namespace Iocaine2
                     Nav_Rec_clearXYHUpDn();
                     Nav_Rec_Zone = 0;
                     lastZone = 0;
-                    Nav_Rec_setPosZoneValue(0);
                     IocaineFunctions.delay(Nav_Rec_xyhUpdatePeriod);
                     continue;
                 }
@@ -5293,10 +5177,6 @@ namespace Iocaine2
                     {
                         IocaineFunctions.delay(1000);
                         continue;
-                    }
-                    if (Nav_Rec_Zone != lastZone)
-                    {
-                        Nav_Rec_setPosZoneValue(Nav_Rec_Zone);
                     }
                     if (firstTimeThru == true)
                     {
@@ -5329,6 +5209,7 @@ namespace Iocaine2
             }
             //Check the distance from the last point to where we are.
             //If it's greater than the min distance, record a node.
+            Nav_Rec_updateXYHUpDn();
             if (Nav_Rec_distIsGreater(lastX, lastY) == true)
             {
                 Nav_Rec_addPosNode();
@@ -5387,27 +5268,6 @@ namespace Iocaine2
         }
         #endregion Route Tags TB
         #endregion Text Boxes
-        #region UpDn Boxes
-        private void Nav_Rec_Wait_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addWaitNode();
-            }
-        }
-        private void Nav_Rec_Position_X_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosX = (double)Nav_Rec_Position_X_UpDn.Value;
-        }
-        private void Nav_Rec_Position_Y_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosY = (double)Nav_Rec_Position_Y_UpDn.Value;
-        }
-        private void Nav_Rec_Position_H_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosH = (float)Nav_Rec_Position_H_UpDn.Value;
-        }
-        #endregion UpDn Boxes
         #region Buttons
         private void Nav_Rec_Target_NPC_Button_Click(object sender, EventArgs e)
         {
