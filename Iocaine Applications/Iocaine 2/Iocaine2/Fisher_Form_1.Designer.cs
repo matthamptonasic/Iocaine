@@ -165,7 +165,6 @@
             this.Nav_Rec_Route_Tags_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Start_Stop_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Delete_Node_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Save_Point_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_LB = new System.Windows.Forms.ListBox();
             this.Nav_Rec_Delete_CB = new System.Windows.Forms.ComboBox();
             this.Nav_Rec_Delete_Button = new System.Windows.Forms.Button();
@@ -491,7 +490,6 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -654,6 +652,7 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -2277,7 +2276,6 @@
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Start_Stop_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Node_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Save_Point_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_LB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_CB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Button);
@@ -2352,16 +2350,6 @@
             this.Nav_Rec_Delete_Node_Button.Text = "Del Node";
             this.Nav_Rec_Delete_Node_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Delete_Node_Button.Click += new System.EventHandler(this.Nav_Rec_Delete_Node_Button_Click);
-            // 
-            // Nav_Rec_Save_Point_Button
-            // 
-            this.Nav_Rec_Save_Point_Button.Location = new System.Drawing.Point(281, 289);
-            this.Nav_Rec_Save_Point_Button.Name = "Nav_Rec_Save_Point_Button";
-            this.Nav_Rec_Save_Point_Button.Size = new System.Drawing.Size(75, 23);
-            this.Nav_Rec_Save_Point_Button.TabIndex = 30;
-            this.Nav_Rec_Save_Point_Button.Text = "Save Pos.";
-            this.Nav_Rec_Save_Point_Button.UseVisualStyleBackColor = true;
-            this.Nav_Rec_Save_Point_Button.Click += new System.EventHandler(this.Nav_Rec_Save_Point_Button_Click);
             // 
             // Nav_Rec_Route_LB
             // 
@@ -6360,15 +6348,6 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -8135,6 +8114,15 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8636,7 +8624,6 @@
         private System.Windows.Forms.TabPage Nav_Nav_Sub_Tab;
         private System.Windows.Forms.TabPage Nav_User_Sub_Tab;
         private System.Windows.Forms.Button Nav_Rec_Delete_Node_Button;
-        private System.Windows.Forms.Button Nav_Rec_Save_Point_Button;
         private System.Windows.Forms.ListBox Nav_Rec_Route_LB;
         private System.Windows.Forms.ComboBox Nav_Rec_Delete_CB;
         private System.Windows.Forms.Button Nav_Rec_Delete_Button;

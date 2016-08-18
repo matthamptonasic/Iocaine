@@ -5297,10 +5297,6 @@ namespace Iocaine2
         {
             Nav_Rec_addNpcTradeGilNode();
         }
-        private void Nav_Rec_Save_Point_Button_Click(object sender, EventArgs e)
-        {
-            Nav_Rec_addPosNode();
-        }
         private void Nav_Rec_Delete_Node_Button_Click(object sender, EventArgs e)
         {
             Nav_Rec_deleteNode();
@@ -5349,16 +5345,7 @@ namespace Iocaine2
                 Nav_Rec_deleteRoute((String)Nav_Rec_Delete_CB.SelectedItem);
             }
         }
-        private void Nav_Rec_Update_Node_Button_Click(object sender, EventArgs e)
-        {
-            //If we're not recording, update the selected node with the
-            //current data on the form.
-            if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
-            {
-                Nav_Rec_saveNode(Nav_Rec_Route_LB.SelectedIndex);
-            }
-        }
-        #endregion Buttons
+        #   endregion Buttons
         #region ComboBoxes
         private void Nav_Rec_Delete_CB_SelectedIndexChanged(object sender, EventArgs e)
         {
