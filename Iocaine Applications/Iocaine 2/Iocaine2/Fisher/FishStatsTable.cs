@@ -85,10 +85,10 @@ namespace Iocaine2.Bots
             private FishIDsLocalTable fishIDsSelectTable = null;
             private Statics.Enums.ONLINE_MODE onlineStatus = Statics.Enums.ONLINE_MODE.UNKNOWN;
             private bool initIocaineDone = false;
-            private Boolean fishIdsPushed = false;
-            private List<String> fishStatsPushed = new List<string>();
-            private String player = "";
-            private String server = "";
+            private bool fishIdsPushed = false;
+            private List<string> fishStatsPushed = new List<string>();
+            private string player = "";
+            private string server = "";
             private byte serverId = 0;
             private static FishStatsDataSet instance = new FishStatsDataSet();
             private static object padlock = new object();
@@ -665,99 +665,99 @@ namespace Iocaine2.Bots
                 #endregion Constructor
 
                 #region Columns
-                public Byte Result
+                public byte Result
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.ResultColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.ResultColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.ResultColumn] = value;
                     }
                 }
-                public Int32 Player
+                public int Player
                 {
                     get
                     {
-                        return ((Int32)(this[this.tableFishStatsTable.PlayerColumn]));
+                        return ((int)(this[this.tableFishStatsTable.PlayerColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.PlayerColumn] = value;
                     }
                 }
-                public Byte Day
+                public byte Day
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.DayColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.DayColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.DayColumn] = value;
                     }
                 }
-                public Int16 Time
+                public short Time
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.TimeColumn]));
+                        return ((short)(this[this.tableFishStatsTable.TimeColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.TimeColumn] = value;
                     }
                 }
-                public Byte Moon
+                public byte Moon
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.MoonColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.MoonColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.MoonColumn] = value;
                     }
                 }
-                public Byte Weather
+                public byte Weather
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.WeatherColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.WeatherColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.WeatherColumn] = value;
                     }
                 }
-                public Byte Skill
+                public byte Skill
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.SkillColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.SkillColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.SkillColumn] = value;
                     }
                 }
-                public Byte Fatigue
+                public byte Fatigue
                 {
                     get
                     {
-                        return ((Byte)(this[this.tableFishStatsTable.FatigueColumn]));
+                        return ((byte)(this[this.tableFishStatsTable.FatigueColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.FatigueColumn] = value;
                     }
                 }
-                public Int16 FishHP
+                public short FishHP
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.FishHPColumn]));
+                        return ((short)(this[this.tableFishStatsTable.FishHPColumn]));
                     }
                     set
                     {
@@ -775,11 +775,11 @@ namespace Iocaine2.Bots
                         this[this.tableFishStatsTable.RecordColumn] = value;
                     }
                 }
-                public Int16 Zone
+                public short Zone
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.ZoneColumn]));
+                        return ((short)(this[this.tableFishStatsTable.ZoneColumn]));
                     }
                     set
                     {
@@ -797,57 +797,57 @@ namespace Iocaine2.Bots
                         this[this.tableFishStatsTable.DateColumn] = value;
                     }
                 }
-                public Int16 Fish
+                public short Fish
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.FishColumn]));
+                        return ((short)(this[this.tableFishStatsTable.FishColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.FishColumn] = value;
                     }
                 }
-                public Int16 Rod
+                public short Rod
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.RodColumn]));
+                        return ((short)(this[this.tableFishStatsTable.RodColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.RodColumn] = value;
                     }
                 }
-                public Int16 Bait
+                public short Bait
                 {
                     get
                     {
-                        return ((Int16)(this[this.tableFishStatsTable.BaitColumn]));
+                        return ((short)(this[this.tableFishStatsTable.BaitColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.BaitColumn] = value;
                     }
                 }
-                public Int32 Info
+                public int Info
                 {
                     get
                     {
-                        return ((Int32)(this[this.tableFishStatsTable.InfoColumn]));
+                        return ((int)(this[this.tableFishStatsTable.InfoColumn]));
                     }
                     set
                     {
                         this[this.tableFishStatsTable.InfoColumn] = value;
                     }
                 }
-                public Int16 XPos
+                public short XPos
                 {
                     get
                     {
                         try
                         {
-                            return ((Int16)(this[this.tableFishStatsTable.XPosColumn]));
+                            return ((short)(this[this.tableFishStatsTable.XPosColumn]));
                         }
                         catch (System.InvalidCastException e)
                         {
@@ -859,13 +859,13 @@ namespace Iocaine2.Bots
                         this[this.tableFishStatsTable.XPosColumn] = value;
                     }
                 }
-                public Int16 YPos
+                public short YPos
                 {
                     get
                     {
                         try
                         {
-                            return ((Int16)(this[this.tableFishStatsTable.YPosColumn]));
+                            return ((short)(this[this.tableFishStatsTable.YPosColumn]));
                         }
                         catch (System.InvalidCastException e)
                         {
@@ -877,13 +877,13 @@ namespace Iocaine2.Bots
                         this[this.tableFishStatsTable.YPosColumn] = value;
                     }
                 }
-                public Int32 Version
+                public int Version
                 {
                     get
                     {
                         try
                         {
-                            return ((Int32)(this[this.tableFishStatsTable.VersionColumn]));
+                            return ((int)(this[this.tableFishStatsTable.VersionColumn]));
                         }
                         catch (System.InvalidCastException e)
                         {
@@ -898,7 +898,7 @@ namespace Iocaine2.Bots
                 #endregion Columns
 
                 #region Null Checks
-                public Boolean IsXPosNull()
+                public bool IsXPosNull()
                 {
                     return this.IsNull(this.tableFishStatsTable.XPosColumn);
                 }
@@ -906,7 +906,7 @@ namespace Iocaine2.Bots
                 {
                     this[this.tableFishStatsTable.XPosColumn] = System.Convert.DBNull;
                 }
-                public Boolean IsYPosNull()
+                public bool IsYPosNull()
                 {
                     return this.IsNull(this.tableFishStatsTable.YPosColumn);
                 }
@@ -914,7 +914,7 @@ namespace Iocaine2.Bots
                 {
                     this[this.tableFishStatsTable.YPosColumn] = System.Convert.DBNull;
                 }
-                public Boolean IsVersionNull()
+                public bool IsVersionNull()
                 {
                     return this.IsNull(this.tableFishStatsTable.VersionColumn);
                 }
@@ -1279,7 +1279,7 @@ namespace Iocaine2.Bots
                 //  From now on we're offline and we stop trying to save to the server.
 
 
-                //protected Boolean compare(FishStatsLocalRow iLocalRow, FishStatsRow iServerRow)
+                //protected bool compare(FishStatsLocalRow iLocalRow, FishStatsRow iServerRow)
                 //{
                 //    try
                 //    {
@@ -1519,14 +1519,14 @@ namespace Iocaine2.Bots
                 //  This record is now marked as unsynced in the local table.
                 //  From now on we're offline and we stop trying to save to the server.
 
-                public void Load(String iPlayer, String iServer, Boolean iAllFiles = true)
+                public void Load(string iPlayer, string iServer, bool iAllFiles = true)
                 {
                     try
                     {
                         if (iAllFiles)
                         {
-                            List<String> files = getFileList(iPlayer, iServer);
-                            foreach (String file in files)
+                            List<string> files = getFileList(iPlayer, iServer);
+                            foreach (string file in files)
                             {
                                 loadFile(file);
                             }
@@ -1541,7 +1541,7 @@ namespace Iocaine2.Bots
                         LoggingFunctions.Error("FishStatsLocalTable::Load: " + e.ToString());
                     }
                 }
-                public new void Save(String iPlayer, String iServer)
+                public new void Save(string iPlayer, string iServer)
                 {
                     try
                     {
@@ -1591,7 +1591,7 @@ namespace Iocaine2.Bots
                                     }
                                     if (today || hasUnsynced)
                                     {
-                                        String fileName = iPlayer + "_" + iServer + "_" + jpDate.ToString("yy_MM_dd") + ".xml";
+                                        string fileName = iPlayer + "_" + iServer + "_" + jpDate.ToString("yy_MM_dd") + ".xml";
                                         tempTable.WriteXml(Statics.Files.FishStatsLocalPath + fileName);
                                     }
                                 }
@@ -1611,7 +1611,7 @@ namespace Iocaine2.Bots
                         LoggingFunctions.Error("FishStatsLocalTable::Save: " + e.ToString());
                     }
                 }
-                public void Push(String iPlayer, String iServer, FishStatsTable iDsStatsTable)
+                public void Push(string iPlayer, string iServer, FishStatsTable iDsStatsTable)
                 {
                     try
                     {
@@ -1627,7 +1627,7 @@ namespace Iocaine2.Bots
                             LoggingFunctions.Error("FishStatsLocalTable::Push: Table is not empty.");
                             return;
                         }
-                        List<String> files = getFileList(iPlayer, iServer);
+                        List<string> files = getFileList(iPlayer, iServer);
                         for (int ii = 0; ii < files.Count; ii++)
                         {
                             //Load each file 1 by 1 and push any unsynced files to the server.
@@ -1738,7 +1738,7 @@ namespace Iocaine2.Bots
                     oRow.YPos = iRow.YPos;
                     oRow.Zone = iRow.Zone;
                 }
-                private Boolean loadFile(String iFile, bool iDeleteAfter=false)
+                private bool loadFile(string iFile, bool iDeleteAfter=false)
                 {
                     try
                     {
@@ -1771,21 +1771,21 @@ namespace Iocaine2.Bots
                     }
                     return true;
                 }
-                private String getTodaysFile(String iPlayer, String iServer)
+                private string getTodaysFile(string iPlayer, string iServer)
                 {
-                    String file = iPlayer + "_" + iServer + "_";
+                    string file = iPlayer + "_" + iServer + "_";
                     DateTime jpTime = getJpTime();
                     file += jpTime.ToString("yy_MM_dd") + ".xml";
                     return file;
                 }
-                private List<String> getFileList(String iPlayer, String iServer)
+                private List<string> getFileList(string iPlayer, string iServer)
                 {
-                    List<String> files = new List<string>();
+                    List<string> files = new List<string>();
                     if (!Directory.Exists(Statics.Files.FishStatsLocalPath))
                     {
                         return files;
                     }
-                    foreach (String file in Directory.GetFiles(Statics.Files.FishStatsLocalPath))
+                    foreach (string file in Directory.GetFiles(Statics.Files.FishStatsLocalPath))
                     {
                         if (Path.GetFileNameWithoutExtension(file).Contains(iPlayer + "_" + iServer + "_"))
                         {
@@ -1807,7 +1807,7 @@ namespace Iocaine2.Bots
                 {
                     return getLastJpMidnight().AddHours(-9);
                 }
-                //protected Boolean compare(FishStatsLocalRow iLocalRow, FishStatsRow iServerRow)
+                //protected bool compare(FishStatsLocalRow iLocalRow, FishStatsRow iServerRow)
                 //{
                 //    try
                 //    {
@@ -1828,7 +1828,7 @@ namespace Iocaine2.Bots
 
                 #region Private Methods
                 #region Checks
-                private Boolean checkFiles(String iPlayer, String iServer)
+                private bool checkFiles(string iPlayer, string iServer)
                 {
                     try
                     {
@@ -2483,7 +2483,7 @@ namespace Iocaine2.Bots
                         {
                             return;
                         }
-                        Boolean found = false;
+                        bool found = false;
                         foreach (FishIDsLocalRow lclRow in iTable.Rows)
                         {
                             foreach (FishIDsRow srvRow in this.Rows)
@@ -2523,7 +2523,7 @@ namespace Iocaine2.Bots
                     }
 
                 }
-                protected Boolean compare(FishIDsLocalRow iLocalRow, FishIDsRow iServerRow)
+                protected bool compare(FishIDsLocalRow iLocalRow, FishIDsRow iServerRow)
                 {
                     try
                     {
@@ -2534,7 +2534,7 @@ namespace Iocaine2.Bots
                         int nbCols = iLocalRow.Table.Columns.Count;
                         for (int ii = 0; ii < nbCols; ii++)
                         {
-                            String colName = iLocalRow.Table.Columns[ii].ColumnName;
+                            string colName = iLocalRow.Table.Columns[ii].ColumnName;
                             if (colName == "Synced")
                             {
                                 continue;
@@ -2868,7 +2868,7 @@ namespace Iocaine2.Bots
                         {
                             return false;
                         }
-                        Boolean found = false;
+                        bool found = false;
                         foreach (FishIDsRow srvRow in iTable.Rows)
                         {
                             foreach (FishIDsLocalRow lclRow in this.Rows)
@@ -2964,7 +2964,7 @@ namespace Iocaine2.Bots
                 }
                 #endregion Utils
                 #region Checks
-                private Boolean checkFiles()
+                private bool checkFiles()
                 {
                     try
                     {
