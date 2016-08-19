@@ -5397,6 +5397,18 @@ namespace Iocaine2
                 }
                 else if ((e.Clicks == 1) && (e.Button == MouseButtons.Right))
                 {
+                    // Need to select the node under the cursor here.
+                    // Right clicking does not do this automatically.
+                    int idxUnderCursor = Nav_Rec_Route_LB.IndexFromPoint(e.Location);
+                    if (idxUnderCursor == ListBox.NoMatches)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Nav_Rec_Route_LB.SelectedIndex = idxUnderCursor;
+                    }
+
                     //On right click we want to perform the action of the node we
                     //clicked on.  If it's a command we should probably prompt the
                     //user if they actually want to execute the command. Or at least
