@@ -16,14 +16,14 @@ namespace Iocaine2.Settings
         public event DataUpdateHandler DataUpdated;
         #endregion Events/Delegates
         #region Members
-        private List<String> DoneActionStrings = new List<string>() { "Wait For Next Day", "Stop", "Shutdown", "Run Navigation Trip" };
-        private List<String> FullActionStrings = new List<string>() { "Stop", "Shutdown", "Continue Fishing", "Run Navigation Trip" };
+        private List<string> DoneActionStrings = new List<string>() { "Wait For Next Day", "Stop", "Shutdown", "Run Navigation Trip" };
+        private List<string> FullActionStrings = new List<string>() { "Stop", "Shutdown", "Continue Fishing", "Run Navigation Trip" };
         #endregion Members
         #region Inits
         public Fisher_Settings_Form(
             int iStartX,
             int iStartY,
-            List<String> NavTrips
+            List<string> NavTrips
             )
         {
             InitializeComponent();
@@ -153,17 +153,17 @@ namespace Iocaine2.Settings
             Statics.Settings.Fisher.KillFishProp = PropTimeRadioButton.Checked;
             Statics.Settings.Fisher.KillFishPropTimeMin = System.Convert.ToInt32(PropTimeMinTextBox.Text);
             Statics.Settings.Fisher.KillFishPropTimeMax = System.Convert.ToInt32(PropTimeMaxTextBox.Text);
-            Statics.Settings.Fisher.DoneWait = ((String)DoneActionCB.SelectedItem == "Wait For Next Day");
-            Statics.Settings.Fisher.DoneStop = ((String)DoneActionCB.SelectedItem == "Stop");
-            Statics.Settings.Fisher.DoneShutdown = ((String)DoneActionCB.SelectedItem == "Shutdown");
+            Statics.Settings.Fisher.DoneWait = ((string)DoneActionCB.SelectedItem == "Wait For Next Day");
+            Statics.Settings.Fisher.DoneStop = ((string)DoneActionCB.SelectedItem == "Stop");
+            Statics.Settings.Fisher.DoneShutdown = ((string)DoneActionCB.SelectedItem == "Shutdown");
             Statics.Settings.Fisher.DoneChange = false;
-            Statics.Settings.Fisher.DoneNav = ((String)DoneActionCB.SelectedItem == "Run Navigation Trip");
+            Statics.Settings.Fisher.DoneNav = ((string)DoneActionCB.SelectedItem == "Run Navigation Trip");
             Statics.Settings.Fisher.DoneNavTrip = (DoneTripCB.SelectedIndex >= 0) ? DoneTripCB.SelectedItem.ToString() : "";
-            Statics.Settings.Fisher.FullStop = ((String)FullActionCB.SelectedItem == "Stop");
-            Statics.Settings.Fisher.FullShutdown = ((String)FullActionCB.SelectedItem == "Shutdown");
+            Statics.Settings.Fisher.FullStop = ((string)FullActionCB.SelectedItem == "Stop");
+            Statics.Settings.Fisher.FullShutdown = ((string)FullActionCB.SelectedItem == "Shutdown");
             Statics.Settings.Fisher.FullChange = false;
-            Statics.Settings.Fisher.FullContinue = ((String)FullActionCB.SelectedItem == "Continue Fishing");
-            Statics.Settings.Fisher.FullNav = ((String)FullActionCB.SelectedItem == "Run Navigation Trip");
+            Statics.Settings.Fisher.FullContinue = ((string)FullActionCB.SelectedItem == "Continue Fishing");
+            Statics.Settings.Fisher.FullNav = ((string)FullActionCB.SelectedItem == "Run Navigation Trip");
             Statics.Settings.Fisher.FullNavTrip = (FullTripCB.SelectedIndex >= 0) ? FullTripCB.SelectedItem.ToString() : "";
             Statics.Settings.Fisher.FatiguedNav = FatiguedNavChkB.Checked;
             Statics.Settings.Fisher.FatiguedNavTrip = (FatiguedTripCB.SelectedIndex >= 0) ? FatiguedTripCB.SelectedItem.ToString() : "";
@@ -236,7 +236,7 @@ namespace Iocaine2.Settings
         }
         #endregion GUI Event Handlers
         #region Utility Functions
-        private DateTime parseTimeString(String timeString)
+        private DateTime parseTimeString(string timeString)
         {
             DateTime parsedTime;
             uint hourNb;
@@ -244,9 +244,9 @@ namespace Iocaine2.Settings
             if (timeString.Contains(':'))
             {
                 int colonIndex = timeString.IndexOf(':');
-                String hour = timeString.Substring(0, colonIndex);
+                string hour = timeString.Substring(0, colonIndex);
                 hour.Trim();
-                String minute = timeString.Substring(colonIndex + 1, 2);
+                string minute = timeString.Substring(colonIndex + 1, 2);
                 minute.Trim();
                 bool isPm = false;
                 hourNb = Convert.ToUInt32(hour);
@@ -281,18 +281,18 @@ namespace Iocaine2.Settings
                 char[] searchValues = "0123456789".ToCharArray();
                 timeBeginIndex = timeString.IndexOfAny(searchValues);
                 timeEndIndex = timeString.LastIndexOfAny(searchValues);
-                String tempTimeString = timeString.Substring(timeBeginIndex, timeEndIndex - timeBeginIndex + 1);
+                string tempTimeString = timeString.Substring(timeBeginIndex, timeEndIndex - timeBeginIndex + 1);
                 if (tempTimeString.Length == 4)
                 {
-                    String hourSubString = tempTimeString.Substring(0, 2);
-                    String minuteSubString = tempTimeString.Substring(2, 2);
+                    string hourSubString = tempTimeString.Substring(0, 2);
+                    string minuteSubString = tempTimeString.Substring(2, 2);
                     hourNb = Convert.ToUInt32(hourSubString);
                     minuteNb = Convert.ToUInt32(minuteSubString);
                 }
                 else if (tempTimeString.Length == 3)
                 {
-                    String hourSubString = tempTimeString.Substring(0, 1);
-                    String minuteSubString = tempTimeString.Substring(1, 2);
+                    string hourSubString = tempTimeString.Substring(0, 1);
+                    string minuteSubString = tempTimeString.Substring(1, 2);
                     hourNb = Convert.ToUInt32(hourSubString);
                     minuteNb = Convert.ToUInt32(minuteSubString);
                 }
@@ -345,18 +345,18 @@ namespace Iocaine2.Settings
         private bool evDoneShutdown;
         private bool evDoneChange;
         private bool evDoneNav;
-        private String evDoneNavTrip;
+        private string evDoneNavTrip;
         private bool evFullStop;
         private bool evFullShutdown;
         private bool evFullChange;
         private bool evFullContinue;
         private bool evFullNav;
-        private String evFullNavTrip;
+        private string evFullNavTrip;
         private bool evFatiguedNav;
-        private String evFatiguedNavTrip;
+        private string evFatiguedNavTrip;
         private ushort evFatigueThreshold;
         private bool evGiveLogoutCommand;
-        private String evLogoutCommand;
+        private string evLogoutCommand;
         private bool evFishByID;
         private bool evFishByHP;
         private bool evDropItems;
@@ -390,18 +390,18 @@ namespace Iocaine2.Settings
             bool DoneShutdown,
             bool DoneChange,
             bool DoneNav,
-            String DoneNavTrip,
+            string DoneNavTrip,
             bool FullStop,
             bool FullShutdown,
             bool FullChange,
             bool FullContinue,
             bool FullNav,
-            String FullNavTrip,
+            string FullNavTrip,
             bool FatiguedNav,
-            String FatiguedNavTrip,
+            string FatiguedNavTrip,
             ushort FatigueThreshold,
             bool GiveLogoutCommand,
-            String LogoutCommand,
+            string LogoutCommand,
             bool FishByID,
             bool FishByHP,
             bool DropItems,
@@ -563,7 +563,7 @@ namespace Iocaine2.Settings
                 return evDoneNav;
             }
         }
-        public String doneNavTrip
+        public string doneNavTrip
         {
             get
             {
@@ -605,7 +605,7 @@ namespace Iocaine2.Settings
                 return evFullNav;
             }
         }
-        public String fullNavTrip
+        public string fullNavTrip
         {
             get
             {
@@ -619,7 +619,7 @@ namespace Iocaine2.Settings
                 return evFatiguedNav;
             }
         }
-        public String fatiguedNavTrip
+        public string fatiguedNavTrip
         {
             get
             {
@@ -640,7 +640,7 @@ namespace Iocaine2.Settings
                 return evGiveLogoutCommand;
             }
         }
-        public String logoutCommand
+        public string logoutCommand
         {
             get
             {
