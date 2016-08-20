@@ -490,6 +490,7 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -652,7 +653,9 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
+            this.Nav_Rec_InsertAbove_RB = new System.Windows.Forms.RadioButton();
+            this.Nav_Rec_InsertBelow_RB = new System.Windows.Forms.RadioButton();
+            this.Nav_Rec_AppendToEnd_RB = new System.Windows.Forms.RadioButton();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -2271,6 +2274,9 @@
             // 
             // Nav_User_Sub_Tab
             // 
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_AppendToEnd_RB);
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_InsertBelow_RB);
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_InsertAbove_RB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Sequence_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_Label);
@@ -2343,7 +2349,7 @@
             // 
             // Nav_Rec_Delete_Node_Button
             // 
-            this.Nav_Rec_Delete_Node_Button.Location = new System.Drawing.Point(360, 289);
+            this.Nav_Rec_Delete_Node_Button.Location = new System.Drawing.Point(428, 304);
             this.Nav_Rec_Delete_Node_Button.Name = "Nav_Rec_Delete_Node_Button";
             this.Nav_Rec_Delete_Node_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Delete_Node_Button.TabIndex = 31;
@@ -6348,6 +6354,15 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -8114,14 +8129,43 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SynergizerDlg
+            // Nav_Rec_InsertAbove_RB
             // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
+            this.Nav_Rec_InsertAbove_RB.AutoSize = true;
+            this.Nav_Rec_InsertAbove_RB.Location = new System.Drawing.Point(284, 289);
+            this.Nav_Rec_InsertAbove_RB.Name = "Nav_Rec_InsertAbove_RB";
+            this.Nav_Rec_InsertAbove_RB.Size = new System.Drawing.Size(118, 17);
+            this.Nav_Rec_InsertAbove_RB.TabIndex = 44;
+            this.Nav_Rec_InsertAbove_RB.Text = "Insert Above Cursor";
+            this.Nav_Rec_InsertAbove_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_InsertAbove_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_InsertAbove_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_InsertAbove_RB_CheckedChanged);
+            // 
+            // Nav_Rec_InsertBelow_RB
+            // 
+            this.Nav_Rec_InsertBelow_RB.AutoSize = true;
+            this.Nav_Rec_InsertBelow_RB.Location = new System.Drawing.Point(284, 307);
+            this.Nav_Rec_InsertBelow_RB.Name = "Nav_Rec_InsertBelow_RB";
+            this.Nav_Rec_InsertBelow_RB.Size = new System.Drawing.Size(116, 17);
+            this.Nav_Rec_InsertBelow_RB.TabIndex = 45;
+            this.Nav_Rec_InsertBelow_RB.Text = "Insert Below Cursor";
+            this.Nav_Rec_InsertBelow_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_InsertBelow_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_InsertBelow_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_InsertBelow_RB_CheckedChanged);
+            // 
+            // Nav_Rec_AppendToEnd_RB
+            // 
+            this.Nav_Rec_AppendToEnd_RB.AutoSize = true;
+            this.Nav_Rec_AppendToEnd_RB.Checked = true;
+            this.Nav_Rec_AppendToEnd_RB.Location = new System.Drawing.Point(284, 325);
+            this.Nav_Rec_AppendToEnd_RB.Name = "Nav_Rec_AppendToEnd_RB";
+            this.Nav_Rec_AppendToEnd_RB.Size = new System.Drawing.Size(96, 17);
+            this.Nav_Rec_AppendToEnd_RB.TabIndex = 46;
+            this.Nav_Rec_AppendToEnd_RB.TabStop = true;
+            this.Nav_Rec_AppendToEnd_RB.Text = "Append to End";
+            this.Nav_Rec_AppendToEnd_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_AppendToEnd_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_AppendToEnd_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_AppendToEnd_RB_CheckedChanged);
             // 
             // Iocaine_2_Form
             // 
@@ -8914,5 +8958,8 @@
         private System.Windows.Forms.Label WMS_Safe2OccLabel;
         private System.Windows.Forms.CheckBox ALR_LoopMessageChkB;
         private System.Windows.Forms.Button Nav_Rec_Sequence_Button;
+        private System.Windows.Forms.RadioButton Nav_Rec_AppendToEnd_RB;
+        private System.Windows.Forms.RadioButton Nav_Rec_InsertBelow_RB;
+        private System.Windows.Forms.RadioButton Nav_Rec_InsertAbove_RB;
     }
 }

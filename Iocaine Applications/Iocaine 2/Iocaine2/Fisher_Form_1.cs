@@ -2989,7 +2989,6 @@ namespace Iocaine2
             Statics.Settings.Top.MapsPath = Convert.ToString(UserSettings.GetValue(UserSettings.BOT.TOP, "MapsPath"));
         }
         #endregion Fish Stats
-
         #endregion To Be Moved (To various bot pages)
     }
 }
