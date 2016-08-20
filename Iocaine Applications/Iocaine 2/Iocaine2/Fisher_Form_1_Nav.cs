@@ -3658,10 +3658,16 @@ namespace Iocaine2
 
         #region User Route Recording
         #region Enums
-        private enum NAV_REC_STATE :byte
+        private enum NAV_REC_STATE : byte
         {
             STOPPED = 0,
             RUNNING = 1
+        }
+        private enum NAV_REC_INSERT_POSITION : byte
+        {
+            ABOVE_CURSOR,
+            BELOW_CURSOR,
+            END
         }
         #endregion Enums
         #region Members
@@ -3699,6 +3705,7 @@ namespace Iocaine2
         private double Nav_Rec_PosY;
         private float Nav_Rec_PosH;
         private ushort Nav_Rec_Zone;
+        private NAV_REC_INSERT_POSITION Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.END;
         #endregion GUI Value Parallels
         #region Current Route Values
         private Nav_Route Nav_Rec_CurrentRoute;
@@ -4185,7 +4192,14 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodePosToString(Nav_Rec_PosX, Nav_Rec_PosY, Nav_Rec_PosH, Nav_Rec_Zone);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.END)
+            {
+                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
+            }
+            else
+            {
+
+            }
             Nav_Rec_refreshRouteLB();
             Nav_Rec_scrollRouteLB();
             Nav_Rec_modified = true;
@@ -4499,9 +4513,8 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeWaitToString(Nav_Rec_Wait);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            int insPos = Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            
             Nav_Rec_modified = true;
         }
         #endregion Node Creation
@@ -4527,6 +4540,101 @@ namespace Iocaine2
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_scrollRouteLB(topIndex);
             }
+        }
+        private int Nav_Rec_insertNode(Routes.UserRoutesRow iNode)
+        {
+            int selIndex = Nav_Rec_Route_LB.SelectedIndex;
+            int insIndex = 0;
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                insIndex = selIndex;
+            }
+            else if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.BELOW_CURSOR)
+            {
+                insIndex = selIndex + 1;
+            }
+            else
+            {
+                insIndex = Nav_Rec_CurrentRoute.RouteNodes.Count;
+            }
+            return Nav_Rec_insertNode(insIndex, iNode);
+        }
+        private int Nav_Rec_insertNode(int iIndex, Routes.UserRoutesRow iNode)
+        {
+            if ((iIndex < 0) || (iIndex > Nav_Rec_CurrentRoute.RouteNodes.Count))
+            {
+                return -1;
+            }
+            int topIndex = Nav_Rec_Route_LB.TopIndex;
+            int selIndex = Nav_Rec_Route_LB.SelectedIndex;
+            // Cases:
+            // 1. Appending:
+            //  - Always scroll to bottom.
+            // 2. Inserting above.
+            //  - Try to make the top index the selected index - 20 (total items in the LB).
+            // 3. Inserting below.
+            //  - Try to make the top index the selected index.
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.END)
+            {
+                // Always scroll to the bottom.
+                topIndex = iIndex;
+            }
+            else if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                if ((selIndex >= topIndex) && (selIndex < (topIndex + 20)))
+                {
+                    // Do nothing, we're inserting within our window.
+                }
+                else
+                {
+                    // If we're not inside our window, try to make the top index the selected index - 20 (total items in the LB).
+                    if (selIndex < 20)
+                    {
+                        topIndex = 0;
+                    }
+                    else
+                    {
+                        topIndex = selIndex - 20;
+                    }
+                }
+            }
+            else
+            {
+                // Inserting below the selected index.
+                if ((selIndex >= topIndex) && (selIndex < (topIndex + 20 - 1)))
+                {
+                    // Do nothing, we're inserting within our window.
+                }
+                else
+                {
+                    if (selIndex < 20)
+                    {
+                        topIndex = 0;
+                    }
+                    else
+                    {
+                        topIndex = selIndex - 20;
+                    }
+                }
+            }
+
+            Nav_Rec_CurrentRoute.RouteNodes.Insert(iIndex, iNode);
+            int nbNodes = Nav_Rec_CurrentRoute.RouteNodes.Count;
+            for (int ii = iIndex; ii < nbNodes; ii++)
+            {
+                Nav_Rec_CurrentRoute.RouteNodes[ii].NodeID = (uint)ii;
+            }
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_scrollRouteLB(topIndex);
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                Nav_Rec_Route_LB.SelectedIndex = iIndex + 1;
+            }
+            else
+            {
+                Nav_Rec_Route_LB.SelectedIndex = iIndex;
+            }
+            return iIndex;
         }
         private void Nav_Rec_loadFormWithNodeData(int iIdx)
         {
@@ -4755,80 +4863,6 @@ namespace Iocaine2
                 }
             }
             #endregion Position
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_modified = true;
-        }
-        private void Nav_Rec_saveNode(int iIdx)
-        {
-            if (iIdx < 0)
-            {
-                return;
-            }
-            if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
-            {
-                if ((Nav_Rec_CommandText != Nav_Rec_CommandTBDefText) && (Nav_Rec_CommandText != ""))
-                {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_Rec_CommandText;
-                }
-                else
-                {
-                    MessageBox.Show("Please enter the Command text");
-                    return;
-                }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
-            {
-                //Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)Nav_Rec_Key_Stroke_CB.SelectedIndex;
-                //Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
-            {
-                // TBD - This needs to be updated.
-                if ((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != ""))
-                {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
-                }
-                else
-                {
-                    MessageBox.Show("Please enter an NPC name");
-                    return;
-                }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)Nav_Rec_GilQuan;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeGilToString((uint)Nav_Rec_GilQuan);
-                
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
-            {
-                if ((Nav_Rec_ItemName != Nav_Rec_ItemNameTBDefText) && (Nav_Rec_ItemName != ""))
-                {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)Nav_Rec_ItemQuan;
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (byte)Nav_Rec_ItemQuan);
-                }
-                else
-                {
-                    MessageBox.Show("Please enter an Item name");
-                    return;
-                }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.WAIT)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)(Nav_Rec_Wait * 1000);
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeWaitToString(Nav_Rec_Wait);
-            }
-            else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_END)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodePosToString(Nav_Rec_PosX, Nav_Rec_PosY, Nav_Rec_PosH, Nav_Rec_Zone);
-            }
             Nav_Rec_refreshRouteLB();
             Nav_Rec_modified = true;
         }
@@ -5345,7 +5379,21 @@ namespace Iocaine2
                 Nav_Rec_deleteRoute((string)Nav_Rec_Delete_CB.SelectedItem);
             }
         }
-        #   endregion Buttons
+        #endregion Buttons
+        #region Radio Buttons
+        private void Nav_Rec_InsertAbove_RB_CheckedChanged(object sender, EventArgs e)
+        {
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.ABOVE_CURSOR;
+        }
+        private void Nav_Rec_InsertBelow_RB_CheckedChanged(object sender, EventArgs e)
+        {
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.BELOW_CURSOR;
+        }
+        private void Nav_Rec_AppendToEnd_RB_CheckedChanged(object sender, EventArgs e)
+        {
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.END;
+        }
+        #endregion Radio Buttons
         #region ComboBoxes
         private void Nav_Rec_Delete_CB_SelectedIndexChanged(object sender, EventArgs e)
         {
