@@ -3966,7 +3966,7 @@ namespace Iocaine2
         }
         private void Nav_Rec_refreshRouteLBCallBackFunction()
         {
-            int topIdx = Nav_Rec_Route_LB.TopIndex;
+            int topIdx = Nav_Rec_getTopIndex_RouteLB();
             ((CurrencyManager)Nav_Rec_Route_LB.BindingContext[Nav_Rec_Route_LB.DataSource]).Refresh();
             Nav_Rec_scrollRouteLB(topIdx);
         }
@@ -4091,6 +4091,51 @@ namespace Iocaine2
         private int Nav_Rec_getSelectedRouteLBItemCBF()
         {
             return Nav_Rec_Route_LB.SelectedIndex;
+        }
+        private void Nav_Rec_setTopIndex_RouteLB(int iIdx)
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Void_Int32(Nav_Rec_setTopIndex_RouteLBCBF), new object[] { iIdx });
+                }
+                else
+                {
+                    Nav_Rec_setTopIndex_RouteLBCBF(iIdx);
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
+        }
+        private void Nav_Rec_setTopIndex_RouteLBCBF(int iIdx)
+        {
+            Nav_Rec_Route_LB.TopIndex = iIdx;
+        }
+        private int Nav_Rec_getTopIndex_RouteLB()
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    return (int)Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Int32_Void(Nav_Rec_getTopIndex_RouteLBCBF));
+                }
+                else
+                {
+                    return Nav_Rec_getTopIndex_RouteLBCBF();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+                return -1;
+            }
+        }
+        private int Nav_Rec_getTopIndex_RouteLBCBF()
+        {
+            return Nav_Rec_Route_LB.TopIndex;
         }
         private void Nav_Rec_clearRouteLB()
         {
@@ -4538,7 +4583,7 @@ namespace Iocaine2
                     Routes.UserRoutesRow row = Nav_Rec_CurrentRoute.RouteNodes[ii];
                     row.NodeID = (uint)ii;
                 }
-                int topIndex = Nav_Rec_Route_LB.TopIndex;
+                int topIndex = Nav_Rec_getTopIndex_RouteLB();
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_scrollRouteLB(topIndex);
             }
@@ -4568,7 +4613,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Index (" + iIndex + " was out of range.");
                 return;
             }
-            int topIndex = Nav_Rec_Route_LB.TopIndex;
+            int topIndex = Nav_Rec_getTopIndex_RouteLB();
             int selIndex = Nav_Rec_getSelectedRouteLBItem();
             // Cases:
             // 1. Appending:
@@ -5425,10 +5470,10 @@ namespace Iocaine2
             //the selected node.
             if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
             {
-                int topIdx = Nav_Rec_Route_LB.TopIndex;
+                int topIdx = Nav_Rec_getTopIndex_RouteLB();
                 int selIdx = Nav_Rec_getSelectedRouteLBItem();
                 Nav_Rec_loadFormWithNodeData(selIdx);
-                Nav_Rec_Route_LB.TopIndex = topIdx;
+                Nav_Rec_setTopIndex_RouteLB(topIdx);
                 Nav_Rec_selectRouteLBItem(selIdx);
             }
             else
