@@ -13,6 +13,7 @@ namespace Iocaine2.Data.Entry
     {
         #region Private Members
         private bool m_onEnterFireEvent = false;
+        private bool m_keydownFromForm = false;
         #endregion Private Members
 
         #region Public Properties
@@ -62,15 +63,21 @@ namespace Iocaine2.Data.Entry
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
+                m_keydownFromForm = true;
             }
         }
         private void IocaineUpDown_KeyUp(object sender, KeyEventArgs e)
         {
+            if (!m_keydownFromForm)
+            {
+                return;
+            }
             if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Return))
             {
                 fireDataEnteredEvent();
                 e.SuppressKeyPress = true;
                 e.Handled = true;
+                m_keydownFromForm = false;
             }
         }
         private void fireDataEnteredEvent()
