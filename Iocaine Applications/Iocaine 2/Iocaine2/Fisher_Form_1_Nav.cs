@@ -4069,6 +4069,29 @@ namespace Iocaine2
         {
             Nav_Rec_Route_LB.SelectedIndex = iIdx;
         }
+        private int Nav_Rec_getSelectedRouteLBItem()
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    return (int)Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Int32_Void(Nav_Rec_getSelectedRouteLBItemCBF));
+                }
+                else
+                {
+                    return Nav_Rec_getSelectedRouteLBItemCBF();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error("In Nav_Rec_selectRouteLBItem: " + e.ToString());
+                return -1;
+            }
+        }
+        private int Nav_Rec_getSelectedRouteLBItemCBF()
+        {
+            return Nav_Rec_Route_LB.SelectedIndex;
+        }
         private void Nav_Rec_clearRouteLB()
         {
             try
@@ -4502,7 +4525,7 @@ namespace Iocaine2
         {
             if (Nav_Rec_Route_LB.SelectedItems.Count > 0)
             {
-                int selectedIdx = Nav_Rec_Route_LB.SelectedIndex;
+                int selectedIdx = Nav_Rec_getSelectedRouteLBItem();
                 if (Nav_Rec_CurrentRoute.RouteNodes[selectedIdx].RowState != DataRowState.Detached)
                 {
                     Statics.Datasets.RoutesDb._UserRoutes.Rows.Remove(Nav_Rec_CurrentRoute.RouteNodes[selectedIdx]);
@@ -4522,7 +4545,7 @@ namespace Iocaine2
         }
         private void Nav_Rec_insertNode(Routes.UserRoutesRow iNode)
         {
-            int selIndex = Nav_Rec_Route_LB.SelectedIndex;
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
             int insIndex = 0;
             if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
             {
@@ -4546,7 +4569,7 @@ namespace Iocaine2
                 return;
             }
             int topIndex = Nav_Rec_Route_LB.TopIndex;
-            int selIndex = Nav_Rec_Route_LB.SelectedIndex;
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
             // Cases:
             // 1. Appending:
             //  - Always scroll to bottom.
@@ -4608,11 +4631,11 @@ namespace Iocaine2
             Nav_Rec_scrollRouteLB(topIndex);
             if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
             {
-                Nav_Rec_Route_LB.SelectedIndex = iIndex + 1;
+                Nav_Rec_selectRouteLBItem(iIndex + 1);
             }
             else
             {
-                Nav_Rec_Route_LB.SelectedIndex = iIndex;
+                Nav_Rec_selectRouteLBItem(iIndex);
             }
             return;
         }
@@ -5129,8 +5152,8 @@ namespace Iocaine2
             //Go backwards thru the route until we find a position node.
             //If the distance from that node to where we are now is less than
             //the min distance, set the heading of that node to our current heading.
-            int nbNodes = Nav_Rec_CurrentRoute.RouteNodes.Count;
-            for (int ii = nbNodes - 1; ii >= 0; ii--)
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
+            for (int ii = selIndex - 1; ii >= 0; ii--)
             {
                 if ((Nav_Rec_CurrentRoute.RouteNodes[ii].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                     || (Nav_Rec_CurrentRoute.RouteNodes[ii].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
@@ -5403,10 +5426,10 @@ namespace Iocaine2
             if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
             {
                 int topIdx = Nav_Rec_Route_LB.TopIndex;
-                int selIdx = Nav_Rec_Route_LB.SelectedIndex;
+                int selIdx = Nav_Rec_getSelectedRouteLBItem();
                 Nav_Rec_loadFormWithNodeData(selIdx);
                 Nav_Rec_Route_LB.TopIndex = topIdx;
-                Nav_Rec_Route_LB.SelectedIndex = selIdx;
+                Nav_Rec_selectRouteLBItem(selIdx);
             }
             else
             {
@@ -5434,7 +5457,7 @@ namespace Iocaine2
                     }
                     else
                     {
-                        Nav_Rec_Route_LB.SelectedIndex = idxUnderCursor;
+                        Nav_Rec_selectRouteLBItem(idxUnderCursor);
                     }
 
                     //On right click we want to perform the action of the node we
@@ -5448,9 +5471,9 @@ namespace Iocaine2
                         MessageBox.Show("You cannot perform that action while a navigation process is running.", "Please stop first", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         return;
                     }
-                    if (Nav_Rec_Route_LB.SelectedIndex >= 0)
+                    if (Nav_Rec_getSelectedRouteLBItem() >= 0)
                     {
-                        Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_Route_LB.SelectedIndex];
+                        Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_getSelectedRouteLBItem()];
                         if (node.NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
                         {
                             DialogResult promptResult = MessageBox.Show("Do you really want to perform this command?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -5508,6 +5531,14 @@ namespace Iocaine2
                 Nav_Rec_CurrentRoute.RouteNodes[ii].NodeID = (uint)ii;
             }
             Nav_Rec_refreshRouteLB();
+        }
+        private void Nav_Rec_Route_LB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
+            {
+                Nav_Rec_deleteNode();
+                e.Handled = true;
+            }
         }
         #endregion List Boxes
         #endregion Event Handlers
