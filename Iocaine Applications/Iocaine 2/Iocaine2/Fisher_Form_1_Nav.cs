@@ -4192,16 +4192,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodePosToString(Nav_Rec_PosX, Nav_Rec_PosY, Nav_Rec_PosH, Nav_Rec_Zone);
-            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.END)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            }
-            else
-            {
-
-            }
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addNpcTargetNode()
@@ -4247,9 +4238,7 @@ namespace Iocaine2
                 Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
                 Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
                 Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
+                Nav_Rec_insertNode(Nav_Rec_CurrentNode);
                 Nav_Rec_modified = true;
             }
             else
@@ -4301,9 +4290,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (byte)Nav_Rec_ItemQuan);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addNpcTradeGilNode()
@@ -4342,9 +4329,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeGilToString((uint)Nav_Rec_GilQuan);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addCommandNode()
@@ -4380,9 +4365,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_Rec_CommandText;
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addSequenceNode()
@@ -4434,9 +4417,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeIocSequenceToString(name);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addKeystrokeNode()
@@ -4480,9 +4461,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeKeystrokeToString(selected);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addWaitNode()
@@ -4513,7 +4492,7 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeWaitToString(Nav_Rec_Wait);
-            int insPos = Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             
             Nav_Rec_modified = true;
         }
@@ -4541,7 +4520,7 @@ namespace Iocaine2
                 Nav_Rec_scrollRouteLB(topIndex);
             }
         }
-        private int Nav_Rec_insertNode(Routes.UserRoutesRow iNode)
+        private void Nav_Rec_insertNode(Routes.UserRoutesRow iNode)
         {
             int selIndex = Nav_Rec_Route_LB.SelectedIndex;
             int insIndex = 0;
@@ -4557,13 +4536,14 @@ namespace Iocaine2
             {
                 insIndex = Nav_Rec_CurrentRoute.RouteNodes.Count;
             }
-            return Nav_Rec_insertNode(insIndex, iNode);
+            Nav_Rec_insertNode(insIndex, iNode);
         }
-        private int Nav_Rec_insertNode(int iIndex, Routes.UserRoutesRow iNode)
+        private void Nav_Rec_insertNode(int iIndex, Routes.UserRoutesRow iNode)
         {
             if ((iIndex < 0) || (iIndex > Nav_Rec_CurrentRoute.RouteNodes.Count))
             {
-                return -1;
+                LoggingFunctions.Error("Index (" + iIndex + " was out of range.");
+                return;
             }
             int topIndex = Nav_Rec_Route_LB.TopIndex;
             int selIndex = Nav_Rec_Route_LB.SelectedIndex;
@@ -4634,7 +4614,7 @@ namespace Iocaine2
             {
                 Nav_Rec_Route_LB.SelectedIndex = iIndex;
             }
-            return iIndex;
+            return;
         }
         private void Nav_Rec_loadFormWithNodeData(int iIdx)
         {
