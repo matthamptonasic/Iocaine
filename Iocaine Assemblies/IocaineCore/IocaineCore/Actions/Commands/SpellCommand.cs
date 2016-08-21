@@ -17,6 +17,63 @@ namespace Iocaine2.Data.Structures
         #region Private Members
         private Client.Spells.SPELL_INFO _SpellInfo;
         private bool available = false;
+        private static ushort m_ninjutsuSkillId;
+        private static bool m_ninjaToolsLoaded = false;
+        private static Dictionary<ushort, List<ushort>> m_ninjutsuIdToToolIdMap = new Dictionary<ushort, List<ushort>>();
+        private static List<string> m_ninjaToolNames = new List<string> {
+            "Chonofuda", "Inoshishinofuda", "Shikanofuda",
+            "Soshi", "Jinko", "Jusatsu", "Kaginawa", "Sairui-Ran", "Kodoku",
+            "Uchitake", "Tsurara", "Kawahori-Ogi", "Makibishi", "Hiraishin", "Mizu-Deppo",
+            "Shihei", "Shinobi-Tabi", "Sanjaku-Tenugui", "Kabenro", "Mokujin", "Ranka", "Furusumi", "Ryuno"
+        };
+        private static Dictionary<string, ushort> m_ninjaToolNameToIdMap = new Dictionary<string, ushort>();
+        private static Dictionary<string, List<string>> m_ninjutsuNameToToolNamesMap = new Dictionary<string, List<string>> {
+            // Enfeebling
+            { "Aisha: Ichi", new List<string> { "Soshi", "Chonofuda" } },
+            { "Yurin: Ichi", new List<string> { "Jinko", "Chonofuda" } },
+            { "Jubaku: Ichi", new List<string> { "Jusatsu", "Chonofuda" } },
+            { "Jubaku: Ni", new List<string> { "Jusatsu", "Chonofuda" } },
+            { "Hojo: Ichi", new List<string> { "Kaginawa", "Chonofuda" } },
+            { "Hojo: Ni", new List<string> { "Kaginawa", "Chonofuda" } },
+            { "Hojo: San", new List<string> { "Kaginawa", "Chonofuda" } },
+            { "Kurayami: Ichi", new List<string> { "Sairui-Ran", "Chonofuda" } },
+            { "Kurayami: Ni", new List<string> { "Sairui-Ran", "Chonofuda" } },
+            { "Kurayami: San", new List<string> { "Sairui-Ran", "Chonofuda" } },
+            { "Dokumori: Ichi", new List<string> { "Kodoku", "Chonofuda" } },
+            { "Dokumori: Ni", new List<string> { "Kodoku", "Chonofuda" } },
+            // Elemental
+            { "Katon: Ichi", new List<string> { "Uchitake", "Inoshishinofuda" } },
+            { "Katon: Ni", new List<string> { "Uchitake", "Inoshishinofuda" } },
+            { "Katon: San", new List<string> { "Uchitake", "Inoshishinofuda" } },
+            { "Hyoton: Ichi", new List<string> { "Tsurara", "Inoshishinofuda" } },
+            { "Hyoton: Ni", new List<string> { "Tsurara", "Inoshishinofuda" } },
+            { "Hyoton: San", new List<string> { "Tsurara", "Inoshishinofuda" } },
+            { "Huton: Ichi", new List<string> { "Kawahori-Ogi", "Inoshishinofuda" } },
+            { "Huton: Ni", new List<string> { "Kawahori-Ogi", "Inoshishinofuda" } },
+            { "Huton: San", new List<string> { "Kawahori-Ogi", "Inoshishinofuda" } },
+            { "Doton: Ichi", new List<string> { "Makibishi", "Inoshishinofuda" } },
+            { "Doton: Ni", new List<string> { "Makibishi", "Inoshishinofuda" } },
+            { "Doton: San", new List<string> { "Makibishi", "Inoshishinofuda" } },
+            { "Raiton: Ichi", new List<string> { "Hiraishin", "Inoshishinofuda" } },
+            { "Raiton: Ni", new List<string> { "Hiraishin", "Inoshishinofuda" } },
+            { "Raiton: San", new List<string> { "Hiraishin", "Inoshishinofuda" } },
+            { "Suiton: Ichi", new List<string> { "Mizu-Deppo", "Inoshishinofuda" } },
+            { "Suiton: Ni", new List<string> { "Mizu-Deppo", "Inoshishinofuda" } },
+            { "Suiton: San", new List<string> { "Mizu-Deppo", "Inoshishinofuda" } },
+            // Enhancing
+            { "Utsusemi: Ichi", new List<string> { "Shihei", "Shikanofuda" } },
+            { "Utsusemi: Ni", new List<string> { "Shihei", "Shikanofuda" } },
+            { "Utsusemi: San", new List<string> { "Shihei", "Shikanofuda" } },
+            { "Tonko: Ichi", new List<string> { "Shinobi-Tabi", "Shikanofuda" } },
+            { "Tonko: Ni", new List<string> { "Shinobi-Tabi", "Shikanofuda" } },
+            { "Tonko: San", new List<string> { "Shinobi-Tabi", "Shikanofuda" } },
+            { "Monomi: Ichi", new List<string> { "Sanjaku-Tenugui", "Shikanofuda" } },
+            { "Myoshu: Ichi", new List<string> { "Kabenro", "Shikanofuda" } },
+            { "Migawari: Ichi", new List<string> { "Mokujin", "Shikanofuda" } },
+            { "Gekka: Ichi", new List<string> { "Ranka", "Shikanofuda" } },
+            { "Yain: Ichi", new List<string> { "Furusumi", "Shikanofuda" } },
+            { "Kakka: Ichi", new List<string> { "Ryuno", "Shikanofuda" } }
+        };
         #endregion Private Members
 
         #region Public Properties
@@ -101,6 +158,13 @@ namespace Iocaine2.Data.Structures
                 return _SpellInfo.Type;
             }
         }
+        public static ushort NinjutsuSkillId
+        {
+            set
+            {
+                m_ninjutsuSkillId = value;
+            }
+        }
         #endregion Public Properties
 
         #region Constructors
@@ -165,7 +229,6 @@ namespace Iocaine2.Data.Structures
             }
             return true;
         }
-        
         public override void Show()
         {
             MessageBox.Show(this.ToString(), "SpellCommand::" + Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -197,6 +260,17 @@ namespace Iocaine2.Data.Structures
 
                 treeDynamic.PushAnd(new MPCurrentMin(_SpellInfo.MP));
                 treeDynamic.PushAnd(new RecastReadySpell(_SpellInfo.ID));
+                if (_SpellInfo.Skill == (byte)m_ninjutsuSkillId)
+                {
+                    if (!m_ninjaToolsLoaded)
+                    {
+                        loadNinjaTools();
+                    }
+                    // Make sure we have tools for it.
+                    treeDynamic.PushAnd(new ConditionOr(new InventoryItem(m_ninjutsuNameToToolNamesMap[_SpellInfo.Name][0], m_ninjutsuIdToToolIdMap[_SpellInfo.ID][0]),
+                                                     new InventoryItem(m_ninjutsuNameToToolNamesMap[_SpellInfo.Name][1], m_ninjutsuIdToToolIdMap[_SpellInfo.ID][1]),
+                                                     _SpellInfo.Name + "_Tools"));
+                }
 
                 setConditions(treeStatic, treeDynamic);
             }
@@ -233,6 +307,51 @@ namespace Iocaine2.Data.Structures
             _SpellInfo.Skill = 0;
             _SpellInfo.Targets = 0;
             _SpellInfo.Type = "Dummy";
+        }
+        private static void loadNinjaTools()
+        {
+            // Load the tool ID's.
+            foreach (string tool in m_ninjaToolNames)
+            {
+                m_ninjaToolNameToIdMap.Add(tool, Client.Things.GetIdFromName(tool));
+            }
+
+            m_ninjutsuSkillId = Client.Skills.GetSkillId("Ninjutsu");
+            List<Client.Spells.SPELL_INFO> _info = Client.Spells.GetSpellInfoBySkill(m_ninjutsuSkillId);
+            byte ninjaJobId = Client.Jobs.GetJobId("Ninja", false);
+            foreach (Client.Spells.SPELL_INFO info in _info)
+            {
+                if (info.JobLevels[ninjaJobId] == 0)
+                {
+                    continue;
+                }
+                List<string> toolNames;
+                if (m_ninjutsuNameToToolNamesMap.ContainsKey(info.Name))
+                {
+                    toolNames = m_ninjutsuNameToToolNamesMap[info.Name];
+                }
+                else
+                {
+                    LoggingFunctions.Error("Could not find ninjutsu => tool name for '" + info.Name + "'");
+                    continue;
+                }
+                List<ushort> toolIds = new List<ushort>();
+                foreach (string toolName in toolNames)
+                {
+                    if (m_ninjaToolNameToIdMap.ContainsKey(toolName))
+                    {
+                        toolIds.Add(m_ninjaToolNameToIdMap[toolName]);
+                    }
+                    else
+                    {
+                        LoggingFunctions.Error("Could not find ninja tool name => tool id for '" + toolName + "'");
+                        continue;
+                    }
+                }
+                m_ninjutsuIdToToolIdMap.Add(info.ID, toolIds);
+            }
+
+            m_ninjaToolsLoaded = true;
         }
         #endregion Private Methods
     }
