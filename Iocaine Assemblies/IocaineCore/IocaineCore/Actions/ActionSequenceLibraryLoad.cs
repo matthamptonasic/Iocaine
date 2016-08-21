@@ -42,9 +42,18 @@ namespace Iocaine2.Data.Structures
 
             ActionSequence magic = new ActionSequence();
             magic.AddAction(CommandManager.SpellsManager.GetCommand("Sneak"));
-            magic.AddAction(new ActionWait());
             magic.AddAction(CommandManager.SpellsManager.GetCommand("Invisible"));
-            magic.AddAction(new ActionWait());
+
+            ActionSequence ninjutsu = new ActionSequence();
+            ninjutsu.AddAction(CommandManager.SpellsManager.GetCommand("Monomi: Ichi"));
+            ActionSequenceUnion tonkoUnion = new ActionSequenceUnion();
+            ActionSequence tonkoIchi = new ActionSequence("Tonko: Ichi");
+            tonkoIchi.AddAction(CommandManager.SpellsManager.GetCommand("Tonko: Ichi"));
+            ActionSequence tonkoNi = new ActionSequence("Tonko: Ni");
+            tonkoNi.AddAction(CommandManager.SpellsManager.GetCommand("Tonko: Ni"));
+            tonkoUnion.AddSequence(tonkoNi);
+            tonkoUnion.AddSequence(tonkoIchi);
+            ninjutsu.AddAction(tonkoUnion);
 
             ActionSequence item = new ActionSequence();
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
@@ -52,6 +61,7 @@ namespace Iocaine2.Data.Structures
 
             snkInvUnion.AddSequence(jig);
             snkInvUnion.AddSequence(magic);
+            snkInvUnion.AddSequence(ninjutsu);
             snkInvUnion.AddSequence(item);
 
             seq.AddAction(snkInvUnion);
@@ -79,11 +89,15 @@ namespace Iocaine2.Data.Structures
             magic.AddAction(CommandManager.SpellsManager.GetCommand("Sneak"));
             magic.AddAction(new ActionWait());
 
+            ninjutsu = new ActionSequence();
+            ninjutsu.AddAction(CommandManager.SpellsManager.GetCommand("Monomi: Ichi"));
+
             item = new ActionSequence();
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
 
             snkInvUnion.AddSequence(jig);
             snkInvUnion.AddSequence(magic);
+            snkInvUnion.AddSequence(ninjutsu);
             snkInvUnion.AddSequence(item);
 
             seq.AddAction(snkInvUnion);
