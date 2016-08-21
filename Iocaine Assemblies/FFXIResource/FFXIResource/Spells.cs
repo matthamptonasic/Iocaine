@@ -195,6 +195,17 @@ namespace Iocaine2.Data.Client
             MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
             return wrapRows(spellRows);
         }
+        public static List<SPELL_INFO> GetSpellInfoBySkill(ushort iSkillId)
+        {
+            FfxiResource.init();
+            string filterString;
+            string sortString;
+            filterString = "Skill=" + iSkillId;
+            sortString = "Name";
+
+            MainDatabase.SpellsRow[] spellRows = (MainDatabase.SpellsRow[])FfxiResource.mainDb.Spells.Select(filterString, sortString);
+            return wrapRows(spellRows);
+        }
         public static List<SPELL_INFO> GetCuresInfo(byte iJob, byte iSubJob, byte iJobLevel)
         {
             FfxiResource.init();
