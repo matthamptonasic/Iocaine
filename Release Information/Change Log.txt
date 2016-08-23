@@ -18,7 +18,6 @@ FFXIResource.dll    - 1.2.7.0
 		  3. Ninjutsu
 		  4. Silent Oil/Prism Powder
 		- If you already have sneak/invisible status when the sequence starts, it will try to cancel the status first.
-	- Added "invalid" properties to several classes in FFXIResource.
 
 IocaineInits.dll	- 1.0.0.2  - 2016/08/02
 IocaineServer.dll	- 1.0.2.1
