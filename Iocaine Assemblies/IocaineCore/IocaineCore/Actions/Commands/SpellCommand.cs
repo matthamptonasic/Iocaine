@@ -18,6 +18,7 @@ namespace Iocaine2.Data.Structures
         private Client.Spells.SPELL_INFO _SpellInfo;
         private bool available = false;
         private static ushort m_ninjutsuSkillId;
+        private static byte m_ninjaJobId;
         private static bool m_ninjaToolsLoaded = false;
         private static Dictionary<ushort, List<ushort>> m_ninjutsuIdToToolIdMap = new Dictionary<ushort, List<ushort>>();
         private static List<string> m_ninjaToolNames = new List<string> {
@@ -260,12 +261,13 @@ namespace Iocaine2.Data.Structures
 
                 treeDynamic.PushAnd(new MPCurrentMin(_SpellInfo.MP));
                 treeDynamic.PushAnd(new RecastReadySpell(_SpellInfo.ID));
-                if (_SpellInfo.Skill == (byte)m_ninjutsuSkillId)
+
+                if (!m_ninjaToolsLoaded)
                 {
-                    if (!m_ninjaToolsLoaded)
-                    {
-                        loadNinjaTools();
-                    }
+                    loadNinjaTools();
+                }
+                if ((_SpellInfo.Skill == (byte)m_ninjutsuSkillId) && (_SpellInfo.JobLevels[m_ninjaJobId] != 0))
+                {
                     // Make sure we have tools for it.
                     treeDynamic.PushAnd(new ConditionOr(new InventoryItem(m_ninjutsuNameToToolNamesMap[_SpellInfo.Name][0], m_ninjutsuIdToToolIdMap[_SpellInfo.ID][0]),
                                                      new InventoryItem(m_ninjutsuNameToToolNamesMap[_SpellInfo.Name][1], m_ninjutsuIdToToolIdMap[_SpellInfo.ID][1]),
@@ -318,10 +320,10 @@ namespace Iocaine2.Data.Structures
 
             m_ninjutsuSkillId = Client.Skills.GetSkillId("Ninjutsu");
             List<Client.Spells.SPELL_INFO> _info = Client.Spells.GetSpellInfoBySkill(m_ninjutsuSkillId);
-            byte ninjaJobId = Client.Jobs.GetJobId("Ninja", false);
+            m_ninjaJobId = Client.Jobs.GetJobId("Ninja", false);
             foreach (Client.Spells.SPELL_INFO info in _info)
             {
-                if (info.JobLevels[ninjaJobId] == 0)
+                if (info.JobLevels[m_ninjaJobId] == 0)
                 {
                     continue;
                 }
