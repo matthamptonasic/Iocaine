@@ -1,8 +1,23 @@
 Iocaine Change Notes:
 
-Main.exe            - 
-IocainCore.dll      - 
-FFXIResource.dll    - 
+Main.exe            - 2.10.4.0 - 2016/08/22
+IocainCore.dll      - 1.3.12.0
+IocaineInits.dll    - 1.0.1.0
+FFXIResource.dll    - 1.2.7.0
+	- Changed the Navigation Bot interface.
+        - Hopefully it's less intimidating and easier to use.
+		- Much easier to edit (simply double click a node in the box).
+		- Can insert nodes into an existing route.
+		- Delete/Backspace keys will delete the selected node.
+    - Introducing 'Sequences'.
+	    - Sneak + Invisible, Sneak, & Invisible.
+		- These will be used based on the job you are when the script runs.
+		- They take the following precedence:
+		  1. Spectral Jig (Dancer)
+		  2. Sneak/Invisible (Magic)
+		  3. Ninjutsu
+		  4. Silent Oil/Prism Powder
+		- If you already have sneak/invisible status when the sequence starts, it will try to cancel the status first.
 	- Added "invalid" properties to several classes in FFXIResource.
 
 IocaineInits.dll	- 1.0.0.2  - 2016/08/02
