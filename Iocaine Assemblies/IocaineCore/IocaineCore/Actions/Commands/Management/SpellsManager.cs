@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 
 using Iocaine2.Data.Client;
+using Iocaine2.Logging;
 using Iocaine2.Memory;
 
 namespace Iocaine2.Data.Structures
@@ -13,7 +14,7 @@ namespace Iocaine2.Data.Structures
     {
         public static class SpellsManager
         {
-            #region Member Variables
+            #region Private Members
             #region Skill Types
             private static UInt16 sk_Divine = Skills.GetSkillId("Divine Magic");
             private static UInt16 sk_Healing = Skills.GetSkillId("Healing Magic");
@@ -31,7 +32,6 @@ namespace Iocaine2.Data.Structures
             private static UInt16 sk_Handbell = Skills.GetSkillId("Handbell");
             #endregion Skill Types
             #region Flags
-            private static Boolean allSpellsSet = false;
             #endregion Flags
             #region Command Lists
             private static SpellCommand dummyCommand = new SpellCommand("Dummy");
@@ -51,8 +51,9 @@ namespace Iocaine2.Data.Structures
             private static List<SpellCommand> su_windCommands = new List<SpellCommand>();
             private static List<SpellCommand> su_geoCommands = new List<SpellCommand>();
             #endregion Command Lists
-            #endregion Member Variables
-            #region Properties
+            #endregion Private Members
+
+            #region Public Properties
             public static SpellCommand Dummy
             {
                 get
@@ -165,9 +166,26 @@ namespace Iocaine2.Data.Structures
                     return su_geoCommands;
                 }
             }
-            #endregion Properties
-            #region Interface Functions
-            public static void Init()
+            #endregion Public Properties
+
+            #region Inits
+            internal static void Init_Iocaine()
+            {
+                Monitor.Enter(padlock);
+                try
+                {
+                    loadAllCommands();
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
+            }
+            internal static void Init_JobChange()
             {
                 if (!ChangeMonitor.LoggedIn)
                 {
@@ -176,25 +194,23 @@ namespace Iocaine2.Data.Structures
                 else
                 {
                     Monitor.Enter(padlock);
-                    if (!allSpellsSet)
+                    try
                     {
-                        loadAllCommands();
-                        allSpellsSet = true;
+                        SetSpells();
                     }
+                    catch (Exception e)
+                    {
+                        LoggingFunctions.Error(e.ToString());
+                    }
+                    finally
+                    {
+                        Monitor.Exit(padlock);
+                    }
+                }
+            }
+            #endregion Inits
 
-                    SetSpells();
-                    Monitor.Exit(padlock);
-                }
-            }
-            private static void loadAllCommands()
-            {
-                List<Spells.SPELL_INFO> allSpellsInfo = Spells.GetSpellInfo();
-                foreach (Spells.SPELL_INFO info in allSpellsInfo)
-                {
-                    SpellCommand cmd = new SpellCommand(info);
-                    allCommands.Add(cmd);
-                }
-            }
+            #region Public Methods
             public static void SetSpells()
             {
                 List<Spells.SPELL_INFO> infoListCurrent = Spells.GetSpellInfo(PlayerCache.Vitals.MainJob, PlayerCache.Vitals.SubJob, PlayerCache.Vitals.MainJobLvl);
@@ -292,7 +308,30 @@ namespace Iocaine2.Data.Structures
                     #endregion SU Lists
                 }
             }
-            #endregion Interface Functions
+            public static SpellCommand GetCommand(string iName)
+            {
+                foreach (SpellCommand cmd in allCommands)
+                {
+                    if (iName == cmd.Name)
+                    {
+                        return cmd;
+                    }
+                }
+                return null;
+            }
+            #endregion Public Methods
+
+            #region Private Methods
+            private static void loadAllCommands()
+            {
+                List<Spells.SPELL_INFO> allSpellsInfo = Spells.GetSpellInfo();
+                foreach (Spells.SPELL_INFO info in allSpellsInfo)
+                {
+                    SpellCommand cmd = new SpellCommand(info);
+                    allCommands.Add(cmd);
+                }
+            }
+            #endregion Private Methods
         }
     }
 }

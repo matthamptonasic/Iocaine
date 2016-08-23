@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Iocaine2.Data.Client
 {
@@ -15,10 +16,23 @@ namespace Iocaine2.Data.Client
             public string Name;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
-        #region Init
+        private static AutoCompleteStringCollection buffNameCollection = new AutoCompleteStringCollection();
+        #endregion Private Members
+
+        #region Public Properties
+        public static AutoCompleteStringCollection StatusEffectNameCollection
+        {
+            get
+            {
+                return buffNameCollection;
+            }
+        }
+        #endregion Public Properties
+
+        #region Inits
         internal static void init()
         {
             if (!initDone)
@@ -27,7 +41,19 @@ namespace Iocaine2.Data.Client
                 initDone = true;
             }
         }
-        #endregion Init
+        private static void init_autoCompleteCollection()
+        {
+            buffNameCollection.Clear();
+            string filterString = "";
+            string sortString = "Name";
+            MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString, sortString);
+            foreach (MainDatabase.StatusEffectsRow row in statusEffectRows)
+            {
+                buffNameCollection.Add(row.Name);
+            }
+        }
+        #endregion Inits
+
         #region Get Functions
         /// <summary>
         /// Gets the status effect index with the given name.
@@ -78,6 +104,26 @@ namespace Iocaine2.Data.Client
             {
                 info.Index = iID;
                 info.Name = FfxiResource.DecodeApostrophy(statusEffectRows[0].Name);
+            }
+            return info;
+        }
+        public static STATUS_EFFECT_INFO GetStatusEffectInfo(string iName)
+        {
+            FfxiResource.init();
+            STATUS_EFFECT_INFO info = new STATUS_EFFECT_INFO();
+
+            string filterString = "Name = '" + FfxiResource.EncodeApostrophy(iName) + "'";
+            string sortString = "ID";
+            MainDatabase.StatusEffectsRow[] statusEffectRows = (MainDatabase.StatusEffectsRow[])FfxiResource.mainDb.StatusEffects.Select(filterString, sortString);
+            if (statusEffectRows.Length == 0)
+            {
+                info.Index = 0xFFFF;
+                info.Name = "";
+            }
+            else
+            {
+                info.Index = statusEffectRows[0].ID;
+                info.Name = iName;
             }
             return info;
         }

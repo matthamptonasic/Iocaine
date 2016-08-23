@@ -93,7 +93,14 @@ namespace Iocaine2.Data.Structures
         }
         #endregion Properties
         #region Interface Functions
-        public static void Init()
+        public static void Init_Iocaine()
+        {
+            SpellsManager.Init_Iocaine();
+            JAManager.Init_Iocaine();
+            WSManager.Init_Iocaine();
+            loadAllCommands();
+        }
+        public static void Init_JobChange()
         {
             if (!ChangeMonitor.LoggedIn)
             {
@@ -101,15 +108,18 @@ namespace Iocaine2.Data.Structures
             }
             else
             {
+                SpellsManager.Init_JobChange();
+                JAManager.Init_JobChange();
+                WSManager.Init_JobChange();
+
                 Monitor.Enter(padlock);   
-                if (!allCmdsSet)
-                {
-                    loadAllCommands();
-                    allCmdsSet = true;
-                }
                 loadCommandSets();
                 Monitor.Exit(padlock);
             }
+        }
+        public static void Init_CombatSkillChange()
+        {
+            WSManager.Init_JobChange();
         }
         private static void loadAllCommands()
         {

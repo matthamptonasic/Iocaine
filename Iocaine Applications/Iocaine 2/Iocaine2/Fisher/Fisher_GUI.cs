@@ -88,7 +88,7 @@ namespace Iocaine2.Bots
 
         #region Control Updates and Call-Backs
         #region Date & Weather Textboxes
-        private void c_timeDateTB_Update(String text)
+        private void c_timeDateTB_Update(string text)
         {
             if (!c_timeDateTB.IsHandleCreated)
             {
@@ -111,11 +111,11 @@ namespace Iocaine2.Bots
             }
             return;
         }
-        private void c_timeDateTB_UpdateCBF(String text)
+        private void c_timeDateTB_UpdateCBF(string text)
         {
             c_timeDateTB.Text = text;
         }
-        private void c_dayTB_Update(String text)
+        private void c_dayTB_Update(string text)
         {
             try
             {
@@ -133,11 +133,11 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_dayTB_Update: " + e.ToString());
             }
         }
-        private void c_dayTB_UpdateCBF(String text)
+        private void c_dayTB_UpdateCBF(string text)
         {
             c_dayTB.Text = text;
         }
-        private void c_moonTB_Update(String text)
+        private void c_moonTB_Update(string text)
         {
             try
             {
@@ -155,11 +155,11 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_moonTB_Update: " + e.ToString());
             }
         }
-        private void c_moonTB_UpdateCBF(String text)
+        private void c_moonTB_UpdateCBF(string text)
         {
             c_moonTB.Text = text;
         }
-        private void c_weatherTB_Update(String text)
+        private void c_weatherTB_Update(string text)
         {
             try
             {
@@ -170,13 +170,13 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_weatherTB_Update: " + e.ToString());
             }
         }
-        private void c_weatherTB_UpdateCBF(String text)
+        private void c_weatherTB_UpdateCBF(string text)
         {
             c_weatherTB.Text = text;
         }
         #endregion Date & Weather Textboxes
         #region Info Box Labels
-        private void c_zoneLabel_Update(String iText)
+        private void c_zoneLabel_Update(string iText)
         {
             try
             {
@@ -191,7 +191,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_zoneLabel_Update: " + e.ToString());
             }
         }
-        private void c_zoneLabel_UpdateCBF(String iText)
+        private void c_zoneLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -202,7 +202,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_zoneLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_rodNameLabel_Update(String iText)
+        private void c_rodNameLabel_Update(string iText)
         {
             try
             {
@@ -217,7 +217,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_rodNameLabel_Update: " + e.ToString());
             }
         }
-        private void c_rodNameLabel_UpdateCBF(String iText)
+        private void c_rodNameLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -228,7 +228,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_rodNameLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_baitNameLabel_Update(String iText)
+        private void c_baitNameLabel_Update(string iText)
         {
             try
             {
@@ -243,7 +243,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_baitNameLabel_Update: " + e.ToString());
             }
         }
-        private void c_baitNameLabel_UpdateCBF(String iText)
+        private void c_baitNameLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -254,7 +254,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_baitNameLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_baitQuanLabel_Update(String iText)
+        private void c_baitQuanLabel_Update(string iText)
         {
             try
             {
@@ -269,7 +269,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_baitQuanLabel_Update: " + e.ToString());
             }
         }
-        private void c_baitQuanLabel_UpdateCBF(String iText)
+        private void c_baitQuanLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -280,7 +280,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_baitQuanLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_lastCatchLabel_Update(String iText)
+        private void c_lastCatchLabel_Update(string iText)
         {
             try
             {
@@ -295,7 +295,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_lastCatchLabel_Update: " + e.ToString());
             }
         }
-        private void c_lastCatchLabel_UpdateCBF(String iText)
+        private void c_lastCatchLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -306,7 +306,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_lastCatchLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_fishNameLabel_Update(String iText)
+        private void c_fishNameLabel_Update(string iText)
         {
             try
             {
@@ -321,7 +321,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishNameLabel_Update: " + e.ToString());
             }
         }
-        private void c_fishNameLabel_UpdateCBF(String iText)
+        private void c_fishNameLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -332,7 +332,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishNameLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_fishCurHPLabel_Update(String iText)
+        private void c_fishCurHPLabel_Update(string iText)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishCurHPLabel_Update: " + e.ToString());
             }
         }
-        private void c_fishCurHPLabel_UpdateCBF(String iText)
+        private void c_fishCurHPLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -358,7 +358,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishCurHPLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_fishMaxHPLabel_Update(String iText)
+        private void c_fishMaxHPLabel_Update(string iText)
         {
             try
             {
@@ -373,7 +373,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishMaxHPLabel_Update: " + e.ToString());
             }
         }
-        private void c_fishMaxHPLabel_UpdateCBF(String iText)
+        private void c_fishMaxHPLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -384,7 +384,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fishMaxHPLabel_Update: " + e.ToString());
             }
         }
-        private void c_fatigueLabel_Update(String iText)
+        private void c_fatigueLabel_Update(string iText)
         {
             try
             {
@@ -399,7 +399,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fatigueLabel_Update: " + e.ToString());
             }
         }
-        private void c_fatigueLabel_UpdateCBF(String iText)
+        private void c_fatigueLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -410,7 +410,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_fatigueLabel_UpdateCBF: " + e.ToString());
             }
         }
-        private UInt16 c_fatigueLabel_GetValue()
+        private ushort c_fatigueLabel_GetValue()
         {
             try
             {
@@ -418,7 +418,7 @@ namespace Iocaine2.Bots
                 {
                     return 0;
                 }
-                return (UInt16)c_fatigueLabel.Invoke(new Statics.FuncPtrs.TD_UInt16_Void(c_fatigueLabel_GetValueCBF));
+                return (ushort)c_fatigueLabel.Invoke(new Statics.FuncPtrs.TD_UInt16_Void(c_fatigueLabel_GetValueCBF));
             }
             catch (Exception e)
             {
@@ -426,7 +426,7 @@ namespace Iocaine2.Bots
                 return 0;
             }
         }
-        private UInt16 c_fatigueLabel_GetValueCBF()
+        private ushort c_fatigueLabel_GetValueCBF()
         {
             try
             {
@@ -438,7 +438,7 @@ namespace Iocaine2.Bots
                 return 0;
             }
         }
-        private void c_id1Label_Update(String iText)
+        private void c_id1Label_Update(string iText)
         {
             try
             {
@@ -453,7 +453,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id1Label_Update: " + e.ToString());
             }
         }
-        private void c_id1Label_UpdateCBF(String iText)
+        private void c_id1Label_UpdateCBF(string iText)
         {
             try
             {
@@ -464,7 +464,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id1Label_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_id2Label_Update(String iText)
+        private void c_id2Label_Update(string iText)
         {
             try
             {
@@ -479,7 +479,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id2Label_Update: " + e.ToString());
             }
         }
-        private void c_id2Label_UpdateCBF(String iText)
+        private void c_id2Label_UpdateCBF(string iText)
         {
             try
             {
@@ -490,7 +490,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id2Label_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_id3Label_Update(String iText)
+        private void c_id3Label_Update(string iText)
         {
             try
             {
@@ -505,7 +505,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id3Label_Update: " + e.ToString());
             }
         }
-        private void c_id3Label_UpdateCBF(String iText)
+        private void c_id3Label_UpdateCBF(string iText)
         {
             try
             {
@@ -516,7 +516,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_id3Label_UpdateCBF: " + e.ToString());
             }
         }
-        private void c_largeLabel_Update(Int32 iVal)
+        private void c_largeLabel_Update(int iVal)
         {
             try
             {
@@ -543,7 +543,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_largeLabel_Update: " + e.ToString());
             }
         }
-        private void c_largeLabel_UpdateCBF(String iText)
+        private void c_largeLabel_UpdateCBF(string iText)
         {
             try
             {
@@ -556,7 +556,7 @@ namespace Iocaine2.Bots
         }
         #endregion Info Box Labels
         #region Info Box Progress Bar & Arrows
-        private void c_hpProgressBar_Update(Int32 curHP, Int32 maxHP)
+        private void c_hpProgressBar_Update(int curHP, int maxHP)
         {
             int newPerc = 100 * curHP / maxHP;
             try
@@ -572,7 +572,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_hpProgressBar_Update: " + e.ToString());
             }
         }
-        private void c_hpProgressBar_UpdateCBF(Int32 iValue)
+        private void c_hpProgressBar_UpdateCBF(int iValue)
         {
             try
             {
@@ -692,7 +692,7 @@ namespace Iocaine2.Bots
                 return false;
             }
         }
-        private bool c_dropLB_ContainsCBF(String iItem)
+        private bool c_dropLB_ContainsCBF(string iItem)
         {
             try
             {
@@ -828,7 +828,7 @@ namespace Iocaine2.Bots
                     {
                         for (int kk = 0; kk < baitSettings.Count; kk++)
                         {
-                            String localBaitName = Convert.ToString(baitSettings[kk][0]);
+                            string localBaitName = Convert.ToString(baitSettings[kk][0]);
                             if (localBaitName == infoList[ii].BaitName)
                             {
                                 localChecked = Convert.ToBoolean(baitSettings[kk][1]);
@@ -1050,7 +1050,7 @@ namespace Iocaine2.Bots
                 //Add Total Casts
                 System.Windows.Forms.ListViewItem newItem =
                     new System.Windows.Forms.ListViewItem(new string[] {
-                                                            String.Format("{0:0000}", totalRecords),
+                                                            string.Format("{0:0000}", totalRecords),
                                                             "* Total Casts *", "100"}, -1);
                 c_statsLB.Items.Insert(0, newItem);
 
@@ -1127,18 +1127,18 @@ namespace Iocaine2.Bots
             {
                 perc = 0;
             }
-            string percString = String.Format("{0:0.#}", perc);
+            string percString = string.Format("{0:0.#}", perc);
             c_statsLB.Items.Insert(c_statsLB.Items.Count,
                                       new ListViewItem(new string[] {
-                                          String.Format("{0:0000}", iCount),
+                                          string.Format("{0:0000}", iCount),
                                           iText, percString}, -1));
             LoggingFunctions.Debug("Fisher::c_addStatsBoxItem: Added '" + iCount + "  " + iText + " " + percString + "'", LoggingFunctions.DBG_SCOPE.FISHER);
         }
-        private void c_updateStatsBox(String iLastCatch)
+        private void c_updateStatsBox(string iLastCatch)
         {
             c_updateStatsBox(iLastCatch, 0);
         }
-        private void c_updateStatsBox(String iLastCatch, ushort iItemId)
+        private void c_updateStatsBox(string iLastCatch, ushort iItemId)
         {
             try
             {
@@ -1160,7 +1160,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_updateStatsBox: " + e.ToString());
             }
         }
-        private void c_updateStatsBoxCBF(String lastCatch, ushort iItemId)
+        private void c_updateStatsBoxCBF(string lastCatch, ushort iItemId)
         {
             try
             {
@@ -1193,7 +1193,7 @@ namespace Iocaine2.Bots
                         ListViewItem TotalCatchesItem = c_statsLB.FindItemWithText(itemText, true, 0);
                         int totalCatchesIndex = c_statsLB.Items.IndexOf(TotalCatchesItem);
                         int totalCatches = Convert.ToInt32(c_statsLB.Items[totalCatchesIndex].SubItems[0].Text);
-                        c_statsLB.Items[totalCatchesIndex].SubItems[0].Text = String.Format("{0:0000}", ++totalCatches);
+                        c_statsLB.Items[totalCatchesIndex].SubItems[0].Text = string.Format("{0:0000}", ++totalCatches);
                     }
                 }
                 c_statsLB.BeginUpdate();
@@ -1207,27 +1207,27 @@ namespace Iocaine2.Bots
                     {
                         foundItem = true;
                         int count = Convert.ToInt32(c_statsLB.Items[ii].SubItems[(int)LV_COL.CNT].Text);
-                        c_statsLB.Items[ii].SubItems[(int)LV_COL.CNT].Text = String.Format("{0:0000}", ++count);
+                        c_statsLB.Items[ii].SubItems[(int)LV_COL.CNT].Text = string.Format("{0:0000}", ++count);
                         float perc = 100 * count / (float)totalCasts;
-                        //String percString = perc.ToString();
-                        String percString = String.Format("{0:0.#}", perc);
+                        //string percString = perc.ToString();
+                        string percString = string.Format("{0:0.#}", perc);
                         c_statsLB.Items[ii].SubItems[(int)LV_COL.PERC].Text = percString;
                     }
                     else if (c_statsLB.Items[ii].SubItems[(int)LV_COL.CNT].Text != "0")
                     {
                         int count = Convert.ToInt32(c_statsLB.Items[ii].SubItems[(int)LV_COL.CNT].Text);
                         float perc = 100 * count / (float)totalCasts;
-                        //String percString = perc.ToString();
-                        String percString = String.Format("{0:0.#}", perc);
+                        //string percString = perc.ToString();
+                        string percString = string.Format("{0:0.#}", perc);
                         c_statsLB.Items[ii].SubItems[(int)LV_COL.PERC].Text = percString;
                     }
                 }
                 if (foundItem == false)
                 {
                     float perc = 100 / (float)totalCasts;
-                    //String percString = perc.ToString();
-                    //String.Format("{0:0.#}", percString);
-                    String percString = String.Format("{0:0.#}", perc);
+                    //string percString = perc.ToString();
+                    //string.Format("{0:0.#}", percString);
+                    string percString = string.Format("{0:0.#}", perc);
                     System.Windows.Forms.ListViewItem newItem =
                         new System.Windows.Forms.ListViewItem(new string[] {
                                             "0001", lastCatch, percString}, -1);
@@ -1268,7 +1268,7 @@ namespace Iocaine2.Bots
                 LoggingFunctions.Error("Fisher::c_changeNumberOfCasts: " + e.ToString());
             }
         }
-        private void c_changeNumberOfCastsCBF(Int32 iNbToChange)
+        private void c_changeNumberOfCastsCBF(int iNbToChange)
         {
             try
             {
@@ -1277,7 +1277,7 @@ namespace Iocaine2.Bots
                 int totalCastsIndex = c_statsLB.Items.IndexOf(itemArray);
                 int totalCasts = Convert.ToInt32(c_statsLB.Items[totalCastsIndex].SubItems[0].Text);
                 totalCasts += iNbToChange;
-                c_statsLB.Items[totalCastsIndex].SubItems[0].Text = String.Format("{0:0000}", totalCasts);
+                c_statsLB.Items[totalCastsIndex].SubItems[0].Text = string.Format("{0:0000}", totalCasts);
                 c_statsLB.Sort();
             }
             catch (Exception e)
@@ -1325,7 +1325,7 @@ namespace Iocaine2.Bots
         private void c_fishLB_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             bool tempCheck = e.NewValue.ToString() == "Checked" ? true : false;
-            String tempItem = c_fishLB.GetItemText(c_fishLB.Items[e.Index]);
+            string tempItem = c_fishLB.GetItemText(c_fishLB.Items[e.Index]);
             if (tempItem == "* Catch All *")
             {
                 Statics.Settings.Fisher.CatchAll = tempCheck;
@@ -1423,7 +1423,7 @@ namespace Iocaine2.Bots
         private void c_dropLB_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             bool checkValue = e.NewValue == CheckState.Checked ? true : false;
-            String itemName = c_dropLB.Items[e.Index].ToString();
+            string itemName = c_dropLB.Items[e.Index].ToString();
             if (init_checkDone())
             {
                 List<Object> newItem = new List<object>();

@@ -38,7 +38,8 @@ namespace Iocaine2
             NPC_TRADE_GIL = 6,
             COMMAND = 7,
             KEYSTROKE = 8,
-            WAIT = 9
+            WAIT = 9,
+            IOC_SEQUENCE = 10
         }
         internal enum NAV_KEYSTROKES : byte
         {
@@ -54,31 +55,31 @@ namespace Iocaine2
         #region Top Navigation
         #region Members
         #region File IO
-        private String Nav_userRoutesFilePath = ".\\Routes\\";
-        private String Nav_userTripsFilePath = ".\\Routes\\";
-        private String Nav_userRoutesFileName = "User_Routes.xml";
-        private String Nav_userTripsFileName = "User_Trips.xml";
+        private string Nav_userRoutesFilePath = ".\\Routes\\";
+        private string Nav_userTripsFilePath = ".\\Routes\\";
+        private string Nav_userRoutesFileName = "User_Routes.xml";
+        private string Nav_userTripsFileName = "User_Trips.xml";
         #endregion File IO
         #region Trip/Route ID Mapping
         //This holds the names of each individual route the user saved
-        private List<String> Nav_userRouteNames = null;
+        private List<string> Nav_userRouteNames = null;
         //This holds the RouteID of the routes as values with the route name as the key.
-        private Dictionary<String, UInt32> Nav_userRoutesIdMap = null;
+        private Dictionary<string, uint> Nav_userRoutesIdMap = null;
         //A complete list of all user routes tags.
-        private List<String> Nav_userRoutesTagsList = null;
+        private List<string> Nav_userRoutesTagsList = null;
         //This holds the Route Tags of the routes as values with the route name as the key.
-        private Dictionary<String, String> Nav_userRoutesTagsMap = null;
+        private Dictionary<string, string> Nav_userRoutesTagsMap = null;
         //This holds a list of zones contained in each route with the route name as the key.
-        private Dictionary<String, List<ushort>> Nav_userRoutesZoneMap = null;
-        private Dictionary<String, UInt32> Nav_userTripsIdMap = null;
-        private List<String> Nav_userTripsTagsList = null;
-        private Dictionary<String, String> Nav_userTripsTagsMap = null;
-        private Dictionary<String, List<ushort>> Nav_userTripsZoneMap = null;
-        private Dictionary<String, List<ushort>> Nav_userTripsLastZoneMap = null;
-        private String Nav_sortingUntaggedText = "Untagged";
-        private String Nav_sortingNoZoneText = "* No Zones *";
-        private UInt32 Nav_maxRouteId = 0;
-        private UInt32 Nav_maxTripId = 0;
+        private Dictionary<string, List<ushort>> Nav_userRoutesZoneMap = null;
+        private Dictionary<string, uint> Nav_userTripsIdMap = null;
+        private List<string> Nav_userTripsTagsList = null;
+        private Dictionary<string, string> Nav_userTripsTagsMap = null;
+        private Dictionary<string, List<ushort>> Nav_userTripsZoneMap = null;
+        private Dictionary<string, List<ushort>> Nav_userTripsLastZoneMap = null;
+        private string Nav_sortingUntaggedText = "Untagged";
+        private string Nav_sortingNoZoneText = "* No Zones *";
+        private uint Nav_maxRouteId = 0;
+        private uint Nav_maxTripId = 0;
         #endregion Trip/Route ID Mapping
         #endregion Members
         #region Inits
@@ -147,9 +148,9 @@ namespace Iocaine2
                 Nav_userRoutesZoneMap.Clear();
             }
             //Go thru each row in the table and add it to the list if the list doesn't already contain the route name.
-            String filter = "NodeID=0";
-            //String filter = "";
-            String orderBy = "RouteName";
+            string filter = "NodeID=0";
+            //string filter = "";
+            string orderBy = "RouteName";
             Routes.UserRoutesRow[] routeStartNodes = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter, orderBy);
             foreach (Routes.UserRoutesRow row in routeStartNodes)
             {
@@ -216,9 +217,9 @@ namespace Iocaine2
                 Nav_userTripsLastZoneMap.Clear();
             }
             //Go thru each row in the table and add it to the list if the list doesn't already contain the route name.
-            String filter = "RouteSequenceID=0";
-            //String filter = "";
-            String orderBy = "TripName";
+            string filter = "RouteSequenceID=0";
+            //string filter = "";
+            string orderBy = "TripName";
             Routes.UserTripsRow[] tripStartNodes = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter, orderBy);
             foreach (Routes.UserTripsRow row in tripStartNodes)
             {
@@ -244,7 +245,7 @@ namespace Iocaine2
         }
         private void Nav_loadUserSettings()
         {
-            Statics.Settings.Navigation.TripCompleteSound = (String)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_TripCompleteSound");
+            Statics.Settings.Navigation.TripCompleteSound = (string)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_TripCompleteSound");
             Statics.Settings.Navigation.SortingTagsFirst = (bool)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_sortingTagsFirst");
             Statics.Settings.Navigation.SortingUseLastZoneOnly = (bool)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_sortingUseLastZoneOnly");
             Nav_Prc_loadUserSettings();
@@ -354,15 +355,15 @@ namespace Iocaine2
         #endregion File IO
         #region Encoding/Decoding
         #region Node Details
-        internal static String Nav_encodePosToString(double iPosX, double iPosY, float iPosH, UInt16 iZone)
+        internal static string Nav_encodePosToString(double iPosX, double iPosY, float iPosH, ushort iZone)
         {
-            String detailString = "GoTo " + iZone.ToString();
-            detailString += " (" + String.Format("{0:0.0}", iPosX) + ", ";
-            detailString += String.Format("{0:0.0}", iPosY) + ") ";
-            detailString += "H: " + String.Format("{0:0.00}", iPosH);
+            string detailString = "GoTo " + iZone.ToString();
+            detailString += " (" + string.Format("{0:0.0}", iPosX) + ", ";
+            detailString += string.Format("{0:0.0}", iPosY) + ") ";
+            detailString += "H: " + string.Format("{0:0.00}", iPosH);
             return detailString;
         }
-        internal static bool Nav_decodeStringToPos(String iText, ref double oPosX, ref double oPosY, ref float oPosH, ref UInt16 oZone)
+        internal static bool Nav_decodeStringToPos(string iText, ref double oPosX, ref double oPosY, ref float oPosH, ref ushort oZone)
         {
             Regex regex1 = new Regex("GoTo ([0-9]*) \\(([-0-9.]*), ([-0-9.]*)\\) H: ([-0-9.]*)");
             Match match1;
@@ -379,7 +380,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    if (!UInt16.TryParse(match1.Groups[1].ToString(), out oZone))
+                    if (!ushort.TryParse(match1.Groups[1].ToString(), out oZone))
                     {
                         return false;
                     }
@@ -404,11 +405,11 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeNameToString(String iName)
+        internal static string Nav_encodeNameToString(string iName)
         {
             return "Target " + iName;
         }
-        internal static bool Nav_decodeStringToNpcName(String iText, ref String oName)
+        internal static bool Nav_decodeStringToNpcName(string iText, ref string oName)
         {
             if (iText.Contains("Target ") && (iText.Length >= 10))
             {
@@ -420,11 +421,11 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeItemToString(String iName, Byte iQuan)
+        internal static string Nav_encodeItemToString(string iName, byte iQuan)
         {
             return "Trade " + iName + " x" + iQuan;
         }
-        internal static bool Nav_decodeStringToItem(String iText, ref String oName, ref Byte oQuan)
+        internal static bool Nav_decodeStringToItem(string iText, ref string oName, ref byte oQuan)
         {
             Regex regex1 = new Regex("Trade ([ A-Za-z]*) x([0-9]*)");
             Match match1;
@@ -437,7 +438,7 @@ namespace Iocaine2
                 }
                 else if (match1.Groups.Count != 3)
                 {
-                    //String text = "Match groups are: \n";
+                    //string text = "Match groups are: \n";
                     //for (int ii = 0; ii < match1.Groups.Count; ii++)
                     //{
                     //    text += ii.ToString() + ". " + match1.Groups[ii].ToString() + "\n";
@@ -448,7 +449,7 @@ namespace Iocaine2
                 else
                 {
                     oName = match1.Groups[1].ToString();
-                    if (!Byte.TryParse(match1.Groups[2].ToString(), out oQuan))
+                    if (!byte.TryParse(match1.Groups[2].ToString(), out oQuan))
                     {
                         return false;
                     }
@@ -461,11 +462,11 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeGilToString(UInt32 iQuan)
+        internal static string Nav_encodeGilToString(uint iQuan)
         {
             return "Trade " + iQuan + " Gil";
         }
-        internal static bool Nav_decodeStringToGil(String iText, ref UInt32 oQuan)
+        internal static bool Nav_decodeStringToGil(string iText, ref uint oQuan)
         {
             Regex regex1 = new Regex("Trade ([0-9]*) Gil");
             Match match1;
@@ -482,7 +483,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    if (!UInt32.TryParse(match1.Groups[1].ToString(), out oQuan))
+                    if (!uint.TryParse(match1.Groups[1].ToString(), out oQuan))
                     {
                         return false;
                     }
@@ -495,11 +496,11 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeKeystrokeToString(String iKeys)
+        internal static string Nav_encodeKeystrokeToString(string iKeys)
         {
             return "Press " + iKeys;
         }
-        internal static bool Nav_decodeStringToKeystroke(String iText, ref String oKeys)
+        internal static bool Nav_decodeStringToKeystroke(string iText, ref string oKeys)
         {
             if (iText.Contains("Press ") && (iText.Length >= 7))
             {
@@ -511,11 +512,11 @@ namespace Iocaine2
                 return false;
             }
         }
-        internal static String Nav_encodeWaitToString(double iTime)
+        internal static string Nav_encodeWaitToString(decimal iTime)
         {
             return "Wait " + iTime.ToString() + " seconds";
         }
-        internal static bool Nav_decodeStringToWait(String iText, ref double oTime)
+        internal static bool Nav_decodeStringToWait(string iText, ref double oTime)
         {
             Regex regex1 = new Regex("Wait ([0-9\\.]*) seconds");
             Match match1;
@@ -545,15 +546,31 @@ namespace Iocaine2
                 return false;
             }
         }
+        internal static string Nav_encodeIocSequenceToString(string iSequenceName)
+        {
+            return "Sequence: " + iSequenceName;
+        }
+        internal static bool Nav_decodeStringToIocSequence(string iText, ref string oName)
+        {
+            if (iText.Contains("Sequence: ") && (iText.Length >= 11))
+            {
+                oName = iText.Substring(10);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion Node Details
         #region Tags
-        private List<String> Nav_getTagList(String iTags)
+        private List<string> Nav_getTagList(string iTags)
         {
-            List<String> tagList = new List<string>();
-            String[] tags = iTags.Split(',');
-            foreach (String tag in tags)
+            List<string> tagList = new List<string>();
+            string[] tags = iTags.Split(',');
+            foreach (string tag in tags)
             {
-                String trimmedTag = tag.Trim();
+                string trimmedTag = tag.Trim();
                 if (!tagList.Contains(trimmedTag))
                 {
                     tagList.Add(trimmedTag);
@@ -564,7 +581,7 @@ namespace Iocaine2
         #endregion Tags
         #endregion Encoding/Decoding
         #region Route Lists/Maps
-        private void Nav_insertUserRouteName(String iName, uint iRouteID, String iRouteTags)
+        private void Nav_insertUserRouteName(string iName, uint iRouteID, string iRouteTags)
         {
             if (Nav_userRouteNames.Contains(iName))
             {
@@ -576,12 +593,12 @@ namespace Iocaine2
             Nav_userRoutesTagsMap.Add(iName, iRouteTags);
             Nav_userRouteNames.Sort();
         }
-        private void Nav_mergeRouteTagsIntoList(String iTags)
+        private void Nav_mergeRouteTagsIntoList(string iTags)
         {
-            String[] tags = iTags.Split(',');
-            foreach (String tag in tags)
+            string[] tags = iTags.Split(',');
+            foreach (string tag in tags)
             {
-                String trimmedTag = tag.Trim();
+                string trimmedTag = tag.Trim();
                 if (!Nav_userRoutesTagsList.Contains(trimmedTag))
                 {
                     Nav_userRoutesTagsList.Add(trimmedTag);
@@ -598,7 +615,7 @@ namespace Iocaine2
         }
         #endregion Route Lists/Maps
         #region Trip Lists/Maps
-        private void Nav_insertUserTripName(String iName, uint iTripID, String iTripTags)
+        private void Nav_insertUserTripName(string iName, uint iTripID, string iTripTags)
         {
             if (Statics.Datasets.UserTripNames.Contains(iName))
             {
@@ -610,12 +627,12 @@ namespace Iocaine2
             Nav_userTripsTagsMap.Add(iName, iTripTags);
             Statics.Datasets.UserTripNames.Sort();
         }
-        private void Nav_mergeTripTagsIntoList(String iTags)
+        private void Nav_mergeTripTagsIntoList(string iTags)
         {
-            String[] tags = iTags.Split(',');
-            foreach (String tag in tags)
+            string[] tags = iTags.Split(',');
+            foreach (string tag in tags)
             {
-                String trimmedTag = tag.Trim();
+                string trimmedTag = tag.Trim();
                 if (!Nav_userTripsTagsList.Contains(trimmedTag))
                 {
                     Nav_userTripsTagsList.Add(trimmedTag);
@@ -673,7 +690,7 @@ namespace Iocaine2
         {
             //We have to assume that we've already loaded the user routes from the xml file (during the inits).
             //So we just need to do a select and sort by the route id descending order and take row 0.
-            String orderBy = "RouteID DESC";
+            string orderBy = "RouteID DESC";
             Routes.UserRoutesRow[] sortedRows = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select("", orderBy);
             if (sortedRows.Length == 0)
             {
@@ -685,16 +702,14 @@ namespace Iocaine2
             }
         }
         private bool Nav_formatRoute(Nav_Route iRoute,
-                                     String iRouteName,
-                                     String iRouteStartName,
-                                     String iRouteEndName,
-                                     String iRouteTags)
+                                     string iRouteName,
+                                     string iRouteTags)
         {
-            return Nav_formatRoute(iRoute, iRouteName, iRouteStartName, iRouteEndName, iRouteTags, false, false);
+            return Nav_formatRoute(iRoute, iRouteName, iRouteTags, false, false);
         }
         private bool Nav_formatRoute(Nav_Route iRoute, bool iReverseTypes, bool iFlipHeadings)
         {
-            String tags;
+            string tags;
             if (iRoute.RouteNodes[0].IsRouteTagsNull())
             {
                 tags = "";
@@ -703,13 +718,11 @@ namespace Iocaine2
             {
                 tags = iRoute.RouteNodes[0].RouteTags;
             }
-            return Nav_formatRoute(iRoute, iRoute.RouteName, iRoute.RouteNodes[0].RouteStartName, iRoute.RouteNodes[0].RouteEndName, tags, iReverseTypes, iFlipHeadings);
+            return Nav_formatRoute(iRoute, iRoute.RouteName, tags, iReverseTypes, iFlipHeadings);
         }
         private bool Nav_formatRoute(Nav_Route iRoute,
-                                     String iRouteName,
-                                     String iRouteStartName,
-                                     String iRouteEndName,
-                                     String iRouteTags,
+                                     string iRouteName,
+                                     string iRouteTags,
                                      bool iReverseTypes,
                                      bool iFlipHeadings)
         {
@@ -752,8 +765,8 @@ namespace Iocaine2
             //1. The first point has the strings saved to it.
             iRoute.RouteName = iRouteName;
             routeNodes[0].RouteName = iRouteName;
-            routeNodes[0].RouteStartName = iRouteStartName;
-            routeNodes[0].RouteEndName = iRouteEndName;
+            routeNodes[0].RouteStartName = "";
+            routeNodes[0].RouteEndName = "";
             routeNodes[0].RouteTags = iRouteTags;
             
             //2. Each beginning position node in a position string needs to be set as a start node.
@@ -863,27 +876,27 @@ namespace Iocaine2
             }
             return true;
         }
-        private Nav_Route Nav_createRoute(String iRouteName, bool iDirection)
+        private Nav_Route Nav_createRoute(string iRouteName, bool iDirection)
         {
             if (!Nav_userRouteNames.Contains(iRouteName))
             {
                 MessageBox.Show("Could not find records for route '" + iRouteName + "'", "No Route Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            UInt32 routeId = Nav_userRoutesIdMap[iRouteName];
+            uint routeId = Nav_userRoutesIdMap[iRouteName];
             return Nav_createRoute(routeId, iDirection);
         }
-        private Nav_Route Nav_createRoute(UInt32 iRouteId, bool iDirection)
+        private Nav_Route Nav_createRoute(uint iRouteId, bool iDirection)
         {
-            String filter = "RouteID=" + iRouteId.ToString();
-            String orderBy = "NodeID";
+            string filter = "RouteID=" + iRouteId.ToString();
+            string orderBy = "NodeID";
             Routes.UserRoutesRow[] routeNodes = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter, orderBy);
             if (routeNodes.Length <= 0)
             {
                 MessageBox.Show("Could not find records for route ID " + iRouteId, "No Route Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-            String routeName = routeNodes[0].RouteName;
+            string routeName = routeNodes[0].RouteName;
             Nav_Route oRoute = new Nav_Route(routeName, iRouteId, iDirection);
             oRoute.RouteNodes.AddRange(routeNodes);
             return oRoute;
@@ -894,8 +907,8 @@ namespace Iocaine2
         {
             //We have to assume that we've already loaded the user trips from the xml file (during the inits).
             //So we just need to do a select and sort by the trip id descending order and take row 0.
-            String filter = "RouteSequenceID=0";
-            String orderBy = "TripID DESC";
+            string filter = "RouteSequenceID=0";
+            string orderBy = "TripID DESC";
             Routes.UserTripsRow[] sortedRows = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter, orderBy);
             if (sortedRows.Length == 0)
             {
@@ -910,9 +923,9 @@ namespace Iocaine2
         {
             return Nav_checkForTripsWithReverseRoute(iRoute.RouteID);
         }
-        private bool Nav_checkForTripsWithReverseRoute(UInt32 iRouteId)
+        private bool Nav_checkForTripsWithReverseRoute(uint iRouteId)
         {
-            String filter = "RouteID=" + iRouteId + " AND Direction=false";
+            string filter = "RouteID=" + iRouteId + " AND Direction=false";
             Routes.UserTripsRow[] trips = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter);
             if (trips.Length > 0)
             {
@@ -934,7 +947,7 @@ namespace Iocaine2
                 {
                     if (iTrip.TripRoutes[ii].RouteNodes[kk].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
                     {
-                        String detail = iTrip.TripRoutes[ii].RouteNodes[kk].NodeDetail;
+                        string detail = iTrip.TripRoutes[ii].RouteNodes[kk].NodeDetail;
                         if (detail.ToLower().Contains("teleport")
                             || detail.ToLower().Contains("recall")
                             || detail.ToLower().Contains("warp")
@@ -950,7 +963,7 @@ namespace Iocaine2
             }
             return false;
         }
-        private Nav_Trip Nav_getTrip(String iTripName)
+        private Nav_Trip Nav_getTrip(string iTripName)
         {
             //First we'll get the trip rows and add them to the new Nav_Trip object.
             //Then we'll create the Nav_Route's and add them to the Nav_Trip object.
@@ -967,7 +980,7 @@ namespace Iocaine2
             #region Add Nav_Route's
             for (int ii = 0; ii < localTrip.TripNodes.Count; ii++)
             {
-                UInt32 routeId = localTrip.TripNodes[ii].RouteID;
+                uint routeId = localTrip.TripNodes[ii].RouteID;
                 bool direction = localTrip.TripNodes[ii].Direction;
                 Nav_Route newRoute = Nav_cloneRoute(Nav_createRoute(routeId, direction));
                 if (!Nav_formatRoute(newRoute, !newRoute.Direction, !newRoute.Direction))
@@ -994,14 +1007,14 @@ namespace Iocaine2
             #endregion Set name and ID
             return localTrip;
         }
-        private Routes.UserTripsRow[] Nav_getTripRows(String iTripName)
+        private Routes.UserTripsRow[] Nav_getTripRows(string iTripName)
         {
-            String filter = "TripID=" + Nav_userTripsIdMap[iTripName];
-            String orderby = "RouteSequenceID";
+            string filter = "TripID=" + Nav_userTripsIdMap[iTripName];
+            string orderby = "RouteSequenceID";
             Routes.UserTripsRow[] tripRows = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter, orderby);
             return tripRows;
         }
-        public static Nav_Trip Nav_getSubTrip(Nav_Trip iTrip, UInt16 iZoneId, float iPosX, float iPosY)
+        public static Nav_Trip Nav_getSubTrip(Nav_Trip iTrip, ushort iZoneId, float iPosX, float iPosY)
         {
             //This function allows us to start at any point along the trip without having to
             //go all the way back to the beginning. It basically prunes out any nodes in
@@ -1114,10 +1127,10 @@ namespace Iocaine2
                 return false;
             }
         }
-        private List<ushort> Nav_getRouteZones(String iRouteName)
+        private List<ushort> Nav_getRouteZones(string iRouteName)
         {
-            String filter = "RouteID=" + Nav_userRoutesIdMap[iRouteName];
-            String orderby = "NodeID";
+            string filter = "RouteID=" + Nav_userRoutesIdMap[iRouteName];
+            string orderby = "NodeID";
             Routes.UserRoutesRow[] routeNodes = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter, orderby);
             return Nav_getRouteZones(routeNodes);
         }
@@ -1136,10 +1149,10 @@ namespace Iocaine2
             }
             return zoneList;
         }
-        private List<ushort> Nav_getRouteFinalZone(String iRouteName, bool iDirection)
+        private List<ushort> Nav_getRouteFinalZone(string iRouteName, bool iDirection)
         {
-            String filter = "RouteID=" + Nav_userRoutesIdMap[iRouteName];
-            String orderby = "NodeID";
+            string filter = "RouteID=" + Nav_userRoutesIdMap[iRouteName];
+            string orderby = "NodeID";
             Routes.UserRoutesRow[] routeNodes = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter, orderby);
             return Nav_getRouteFinalZone(routeNodes, iDirection);
         }
@@ -1170,18 +1183,18 @@ namespace Iocaine2
             }
             return zoneList;
         }
-        private List<ushort> Nav_getTripZones(String iTripName)
+        private List<ushort> Nav_getTripZones(string iTripName)
         {
             return Nav_getTripZones(Nav_userTripsIdMap[iTripName]);
         }
-        private List<ushort> Nav_getTripZones(UInt32 iTripID)
+        private List<ushort> Nav_getTripZones(uint iTripID)
         {
-            String filter = "TripID=" + iTripID;
-            String orderby = "RouteSequenceID";
+            string filter = "TripID=" + iTripID;
+            string orderby = "RouteSequenceID";
             Routes.UserTripsRow[] trip = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter, orderby);
             if (trip.Length == 0)
             {
-                String msg = "[ERROR] Could not find info for TripID: " + iTripID;
+                string msg = "[ERROR] Could not find info for TripID: " + iTripID;
                 MessageBox.Show(msg);
                 LoggingFunctions.Timestamp(msg);
                 return new List<ushort>();
@@ -1197,12 +1210,12 @@ namespace Iocaine2
             List<ushort> tripZoneList = new List<ushort>();
             foreach (Routes.UserTripsRow route in iRoutes)
             {
-                String routeName;
-                String filter = "RouteID=" + route.RouteID + " AND NodeID=0";
+                string routeName;
+                string filter = "RouteID=" + route.RouteID + " AND NodeID=0";
                 Routes.UserRoutesRow[] routeRowZero = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter);
                 if (routeRowZero.Length != 1)
                 {
-                    String msg = "Could not find the route info for route ID: " + route.RouteID;
+                    string msg = "Could not find the route info for route ID: " + route.RouteID;
                     MessageBox.Show(msg);
                     LoggingFunctions.Timestamp(msg);
                     return tripZoneList;
@@ -1229,14 +1242,14 @@ namespace Iocaine2
             }
             return tripZoneList;
         }
-        private List<ushort> Nav_getTripFinalZone(UInt32 iTripID)
+        private List<ushort> Nav_getTripFinalZone(uint iTripID)
         {
-            String filter = "TripID=" + iTripID;
-            String orderby = "RouteSequenceID";
+            string filter = "TripID=" + iTripID;
+            string orderby = "RouteSequenceID";
             Routes.UserTripsRow[] trip = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter, orderby);
             if (trip.Length == 0)
             {
-                String msg = "[ERROR] Could not find info for TripID: " + iTripID;
+                string msg = "[ERROR] Could not find info for TripID: " + iTripID;
                 MessageBox.Show(msg);
                 LoggingFunctions.Timestamp(msg);
                 return new List<ushort>();
@@ -1254,12 +1267,12 @@ namespace Iocaine2
             {
                 Routes.UserTripsRow route = iRoutes[ii];
                 bool direction = route.Direction;
-                String routeName;
-                String filter = "RouteID=" + route.RouteID + " AND NodeID=0";
+                string routeName;
+                string filter = "RouteID=" + route.RouteID + " AND NodeID=0";
                 Routes.UserRoutesRow[] routeRowZero = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter);
                 if (routeRowZero.Length != 1)
                 {
-                    String msg = "Could not find the route info for route ID: " + route.RouteID;
+                    string msg = "Could not find the route info for route ID: " + route.RouteID;
                     MessageBox.Show(msg);
                     LoggingFunctions.Timestamp(msg);
                     routeZoneList = new List<ushort>();
@@ -1312,7 +1325,7 @@ namespace Iocaine2
             }
             return totalDist;
         }
-        internal static UInt32 Nav_getRouteTime(Nav_Route iRoute, double iRouteDistance)
+        internal static uint Nav_getRouteTime(Nav_Route iRoute, double iRouteDistance)
         {
             double routeTime = iRouteDistance / Statics.Constants.Navigation.SpeedWalking;
             //Now we need to add time for each non-position changing node.
@@ -1344,9 +1357,9 @@ namespace Iocaine2
                     routeTime += iRoute.RouteNodes[ii].NodeData / 1000;
                 }
             }
-            return (UInt32)routeTime;
+            return (uint)routeTime;
         }
-        internal static UInt32 Nav_getRouteTime(Nav_Route iRoute)
+        internal static uint Nav_getRouteTime(Nav_Route iRoute)
         {
             double routeDistance = Nav_getRouteDistance(iRoute);
             return Nav_getRouteTime(iRoute, routeDistance);
@@ -1360,18 +1373,18 @@ namespace Iocaine2
             }
             return totalDist;
         }
-        internal static UInt32 Nav_getTripTime(Nav_Trip iTrip)
+        internal static uint Nav_getTripTime(Nav_Trip iTrip)
         {
-            UInt32 totalTime = 0;
+            uint totalTime = 0;
             for (int ii = 0; ii < iTrip.TripRoutes.Count; ii++)
             {
                 totalTime += Nav_getRouteTime(iTrip.TripRoutes[ii]);
             }
             return totalTime;
         }
-        internal static UInt32 Nav_getWalkingTime(double iDistance)
+        internal static uint Nav_getWalkingTime(double iDistance)
         {
-            return (UInt32)(iDistance / Statics.Constants.Navigation.SpeedWalking);
+            return (uint)(iDistance / Statics.Constants.Navigation.SpeedWalking);
         }
         internal static double Nav_getDistance(double x0, double x1, double y0, double y1)
         {
@@ -1381,11 +1394,11 @@ namespace Iocaine2
         #region Printing
         internal static void Nav_PrintTrip(Nav_Trip iTrip, bool iOpenFile)
         {
-            String fileName = "PrintedTrip_" + iTrip.TripRoutes[0].RouteName + ".txt";
-            List<String> strList = new List<string>();
+            string fileName = "PrintedTrip_" + iTrip.TripRoutes[0].RouteName + ".txt";
+            List<string> strList = new List<string>();
             for (int ii = 0; ii < iTrip.TripRoutes.Count; ii++)
             {
-                String routeString = "Trip[" + ii + "]: " + (iTrip.TripRoutes[ii].Direction ? "Forward" : "Reverse") + "\n";
+                string routeString = "Trip[" + ii + "]: " + (iTrip.TripRoutes[ii].Direction ? "Forward" : "Reverse") + "\n";
                 strList.Add(routeString);
                 for (int kk = 0; kk < iTrip.TripRoutes[ii].RouteNodes.Count; kk++)
                 {
@@ -1399,12 +1412,12 @@ namespace Iocaine2
         }
         internal static void Nav_PrintRoute(Nav_Route iRoute, bool iOpenFile)
         {
-            String fileName = "PrintedRoute_" + iRoute.RouteName + ".txt";
-            List<String> strList = new List<string>();
+            string fileName = "PrintedRoute_" + iRoute.RouteName + ".txt";
+            List<string> strList = new List<string>();
             strList.Add("Route '" + iRoute.RouteName + "': ");
             for (int kk = 0; kk < iRoute.RouteNodes.Count; kk++)
             {
-                String routeString = "";
+                string routeString = "";
                 Routes.UserRoutesRow node = iRoute.RouteNodes[kk];
                 routeString = "node[" + kk + "] zone: " + node.NodeZoneID + ", pos(" + node.NodePosX + ", " + node.NodePosY + ") @" + node.NodePosHeading + ", Type: " + ((NAV_NODE_TYPE)node.NodeType).ToString();
                 strList.Add(routeString);
@@ -1439,14 +1452,14 @@ namespace Iocaine2
         #endregion Misc
         #region Default Values
         private int Nav_Prc_TVDefaultIndent = 4;
-        private String Nav_Prc_TripNameTBDefText = "Trip Name";
-        private String Nav_Prc_TripTagsTBDefText = "Comma Separated Tags";
+        private string Nav_Prc_TripNameTBDefText = "Trip Name";
+        private string Nav_Prc_TripTagsTBDefText = "Comma Separated Tags";
         #endregion Default Values
         #region GUI Value Parallels
-        private String Nav_Prc_TripName = "";
-        private String Nav_Prc_TripTags = "";
+        private string Nav_Prc_TripName = "";
+        private string Nav_Prc_TripTags = "";
         private bool Nav_Prc_Forward = true;
-        internal UInt32 Nav_Prc_Loop_Cnt = 1;
+        internal uint Nav_Prc_Loop_Cnt = 1;
         #endregion GUI Value Parallels
         #region Current Route/Trip Values
         private Nav_Trip Nav_Prc_CurrentTrip;
@@ -1454,12 +1467,12 @@ namespace Iocaine2
         #endregion Current Route/Trip Values
         #region Tool Tips
         private ToolTip Nav_Prc_RouteTV_TT = new ToolTip();
-        private const String Nav_Prc_RouteTV_TT_Title = "Route TreeView";
-        private const String Nav_Prc_RouteTV_TT_Text = "Double click a route to\nadd it to the current trip.\n"
+        private const string Nav_Prc_RouteTV_TT_Title = "Route TreeView";
+        private const string Nav_Prc_RouteTV_TT_Text = "Double click a route to\nadd it to the current trip.\n"
                                                      + "Right click a route or route node to\nprocess that route or node.";
         private ToolTip Nav_Prc_Trip_CreationTV_TT = new ToolTip();
-        private const String Nav_Prc_Trip_CreationTV_TT_Title = "Trip Creation TreeView";
-        private const String Nav_Prc_Trip_CreationTV_TT_Text = "Press the Delete key to remove the selected route.\n"
+        private const string Nav_Prc_Trip_CreationTV_TT_Title = "Trip Creation TreeView";
+        private const string Nav_Prc_Trip_CreationTV_TT_Text = "Press the Delete key to remove the selected route.\n"
                                                              + "Press the Escape key to deselect any routes or route nodes.\n"
                                                              + "Select a route and click the Forward or Reverse radio buttons\n"
                                                              + "to change the direction of that route.\n"
@@ -1490,17 +1503,17 @@ namespace Iocaine2
         private delegate void Nav_Prc_scrollTripSelectionTVDelegate(TreeNode iNode);
         #endregion Trip Selection TV
         #region Others
-        private delegate void Nav_Prc_setTripNameTBTextDelegate(String iText);
-        private delegate void Nav_Prc_setTripTagsTBTextDelegate(String iText);
+        private delegate void Nav_Prc_setTripNameTBTextDelegate(string iText);
+        private delegate void Nav_Prc_setTripTagsTBTextDelegate(string iText);
         private delegate void Nav_Prc_setForwardRBDelegate(bool iChk);
         private delegate void Nav_Prc_setReverseRBDelegate(bool iChk);
-        internal delegate void Nav_Prc_setStartButtonDelegate(String iText, Color iColor);
-        private delegate void Nav_Prc_setRouteDistanceTextDelegate(String iText);
-        private delegate void Nav_Prc_setRouteTimeTextDelegate(String iText);
-        private delegate void Nav_Prc_setTripDistanceTextDelegate(String iText);
-        private delegate void Nav_Prc_setTripTimeTextDelegate(String iText);
-        internal delegate void Nav_Prc_setTimeRemainingTextDelegate(UInt32 iTimeMs);
-        public delegate void Nav_Prc_setLoopCountDelegate(UInt32 iCount);
+        internal delegate void Nav_Prc_setStartButtonDelegate(string iText, Color iColor);
+        private delegate void Nav_Prc_setRouteDistanceTextDelegate(string iText);
+        private delegate void Nav_Prc_setRouteTimeTextDelegate(string iText);
+        private delegate void Nav_Prc_setTripDistanceTextDelegate(string iText);
+        private delegate void Nav_Prc_setTripTimeTextDelegate(string iText);
+        internal delegate void Nav_Prc_setTimeRemainingTextDelegate(uint iTimeMs);
+        public delegate void Nav_Prc_setLoopCountDelegate(uint iCount);
         #endregion Others
         #endregion Delegates
         #region Function Pointers
@@ -1642,7 +1655,7 @@ namespace Iocaine2
         #region Utility Functions
         #region GUI Updates
         #region Text Box Updates
-        private void Nav_Prc_setTripNameTBText(String iText)
+        private void Nav_Prc_setTripNameTBText(string iText)
         {
             try
             {
@@ -1660,7 +1673,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setTripNameTBText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setTripNameTBTextCallBackFunction(String iText)
+        private void Nav_Prc_setTripNameTBTextCallBackFunction(string iText)
         {
             Nav_Prc_Trip_Name_TB.Text = iText;
             if (iText != Nav_Prc_TripNameTBDefText)
@@ -1672,7 +1685,7 @@ namespace Iocaine2
                 Nav_Prc_Trip_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void Nav_Prc_setTripTagsTBText(String iText)
+        private void Nav_Prc_setTripTagsTBText(string iText)
         {
             try
             {
@@ -1690,7 +1703,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setTripTagsTBText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setTripTagsTBTextCallBackFunction(String iText)
+        private void Nav_Prc_setTripTagsTBTextCallBackFunction(string iText)
         {
             Nav_Prc_Trip_Tags_TB.Text = iText;
             if (iText != Nav_Prc_TripTagsTBDefText)
@@ -1730,17 +1743,17 @@ namespace Iocaine2
                 Nav_Prc_RouteTV.BeginUpdate();
                 Nav_Prc_RouteTV.Nodes.Clear();
                 List<ushort> zondIds;
-                List<String> tagList;
-                foreach (String name in Nav_userRouteNames)
+                List<string> tagList;
+                foreach (string name in Nav_userRouteNames)
                 {
-                    String tags;
+                    string tags;
                     if (Nav_userRoutesTagsMap.TryGetValue(name, out tags))
                     {
                         tagList = Nav_getTagList(tags);
                         if (Nav_userRoutesZoneMap.TryGetValue(name, out zondIds))
                         {
                             Nav_Route thisRoute = Nav_createRoute(name, true);
-                            foreach (String tag in tagList)
+                            foreach (string tag in tagList)
                             {
                                 if (zondIds.Count == 0)
                                 {
@@ -1757,7 +1770,7 @@ namespace Iocaine2
                         }
                         else
                         {
-                            String msg = "[ERROR] In Nav_Prc_loadRouteTVCallBackFunction: Could not find the zoneIds for route name '" + name + "'";
+                            string msg = "[ERROR] In Nav_Prc_loadRouteTVCallBackFunction: Could not find the zoneIds for route name '" + name + "'";
                             LoggingFunctions.Timestamp(msg);
                             MessageBox.Show(msg);
                             Nav_Prc_RouteTV.EndUpdate();
@@ -1766,7 +1779,7 @@ namespace Iocaine2
                     }
                     else
                     {
-                        String msg = "[ERROR] In Nav_Prc_loadRouteTVCallBackFunction: Could not find the tags for route name '" + name + "'";
+                        string msg = "[ERROR] In Nav_Prc_loadRouteTVCallBackFunction: Could not find the tags for route name '" + name + "'";
                         LoggingFunctions.Timestamp(msg);
                         MessageBox.Show(msg);
                         Nav_Prc_RouteTV.EndUpdate();
@@ -1776,14 +1789,14 @@ namespace Iocaine2
                 Nav_Prc_RouteTV.EndUpdate();
             }
         }
-        private void Nav_Prc_insertIntoRouteTV(Nav_Route iRoute, String iTag, ushort iZone)
+        private void Nav_Prc_insertIntoRouteTV(Nav_Route iRoute, string iTag, ushort iZone)
         {
             TreeNode topNode = null;
             TreeNode bottomNode = null;
             TreeNode routeNode = null;
-            String topString;
-            String bottomString;
-            String zoneShortName = Zones.GetZoneShortName(iZone);
+            string topString;
+            string bottomString;
+            string zoneShortName = Zones.GetZoneShortName(iZone);
             if (iTag == "")
             {
                 iTag = Nav_sortingUntaggedText;
@@ -2189,19 +2202,19 @@ namespace Iocaine2
             Nav_Prc_Trip_SelectionTV.BeginUpdate();
             Nav_Prc_Trip_SelectionTV.Nodes.Clear();
             List<ushort> zondIds;
-            List<String> tagList;
-            foreach (String name in Statics.Datasets.UserTripNames)
+            List<string> tagList;
+            foreach (string name in Statics.Datasets.UserTripNames)
             {
                 Nav_Trip tripToAdd = Nav_getTrip(name);
                 if (tripToAdd == null)
                 {
                     continue;
                 }
-                String tags;
+                string tags;
                 if (Nav_userTripsTagsMap.TryGetValue(name, out tags))
                 {
                     tagList = Nav_getTagList(tags);
-                    Dictionary<String, List<ushort>> localZoneMap = null;
+                    Dictionary<string, List<ushort>> localZoneMap = null;
                     if (Statics.Settings.Navigation.SortingUseLastZoneOnly)
                     {
                         localZoneMap = Nav_userTripsLastZoneMap;
@@ -2212,7 +2225,7 @@ namespace Iocaine2
                     }
                     if (localZoneMap.TryGetValue(name, out zondIds))
                     {
-                        foreach (String tag in tagList)
+                        foreach (string tag in tagList)
                         {
                             if (zondIds.Count == 0)
                             {
@@ -2229,7 +2242,7 @@ namespace Iocaine2
                     }
                     else
                     {
-                        String msg = "[ERROR] In Nav_Prc_loadTripSelectionTVCallBackFunction: Could not find the zoneIds for trip name '" + name + "'";
+                        string msg = "[ERROR] In Nav_Prc_loadTripSelectionTVCallBackFunction: Could not find the zoneIds for trip name '" + name + "'";
                         LoggingFunctions.Timestamp(msg);
                         MessageBox.Show(msg);
                         Nav_Prc_Trip_SelectionTV.EndUpdate();
@@ -2238,7 +2251,7 @@ namespace Iocaine2
                 }
                 else
                 {
-                    String msg = "[ERROR] In Nav_Prc_loadTripSelectionTVCallBackFunction: Could not find the tags for trip name '" + name + "'";
+                    string msg = "[ERROR] In Nav_Prc_loadTripSelectionTVCallBackFunction: Could not find the tags for trip name '" + name + "'";
                     LoggingFunctions.Timestamp(msg);
                     MessageBox.Show(msg);
                     Nav_Prc_Trip_SelectionTV.EndUpdate();
@@ -2247,7 +2260,7 @@ namespace Iocaine2
             }
             Nav_Prc_Trip_SelectionTV.EndUpdate();
         }
-        private void Nav_Prc_insertIntoTripSelectionTV(Nav_Trip iTrip, String iTag, ushort iZone)
+        private void Nav_Prc_insertIntoTripSelectionTV(Nav_Trip iTrip, string iTag, ushort iZone)
         {
             if (iTrip == null)
             {
@@ -2255,7 +2268,7 @@ namespace Iocaine2
             }
             if (iTrip.TripNodes.Count == 0)
             {
-                String msg = "[ERROR] Tried to insert an empty trip, returning.";
+                string msg = "[ERROR] Tried to insert an empty trip, returning.";
                 LoggingFunctions.Timestamp(msg);
                 MessageBox.Show(msg);
                 return;
@@ -2263,7 +2276,7 @@ namespace Iocaine2
             List<Nav_Route> tripList = iTrip.TripRoutes;
             if (tripList == null)
             {
-                String msg = "[ERROR] Tried to insert an empty trip, returning.";
+                string msg = "[ERROR] Tried to insert an empty trip, returning.";
                 LoggingFunctions.Timestamp(msg);
                 MessageBox.Show(msg);
                 return;
@@ -2271,9 +2284,9 @@ namespace Iocaine2
             TreeNode topNode = null;
             TreeNode bottomNode = null;
             TreeNode tripNode = null;
-            String topString;
-            String bottomString;
-            String zoneShortName = Zones.GetZoneShortName(iZone);
+            string topString;
+            string bottomString;
+            string zoneShortName = Zones.GetZoneShortName(iZone);
             if (iTag == "")
             {
                 iTag = Nav_sortingUntaggedText;
@@ -2550,7 +2563,7 @@ namespace Iocaine2
         }
         #endregion Radio Button Updates
         #region Button Updates
-        private void Nav_Prc_setStartButton(String iText, Color iColor)
+        private void Nav_Prc_setStartButton(string iText, Color iColor)
         {
             try
             {
@@ -2568,7 +2581,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setStartButton: " + e.ToString());
             }
         }
-        private void Nav_Prc_setStartButtonCallBackFunction(String iText, Color iColor)
+        private void Nav_Prc_setStartButtonCallBackFunction(string iText, Color iColor)
         {
             Nav_Prc_Start_Button.Text = iText;
             Nav_Prc_Start_Button.BackColor = iColor;
@@ -2578,13 +2591,13 @@ namespace Iocaine2
         private void Nav_Prc_setRouteDistanceAndTimeText(Nav_Route iRoute)
         {
             double routeDist = Nav_getRouteDistance(iRoute);
-            UInt32 routeTime = Nav_getRouteTime(iRoute, routeDist);
-            UInt32 routeTimeMin = routeTime / 60;
-            UInt32 routeTimeSec = routeTime % 60;
-            Nav_Prc_setRouteDistanceText(((UInt32)routeDist).ToString());
+            uint routeTime = Nav_getRouteTime(iRoute, routeDist);
+            uint routeTimeMin = routeTime / 60;
+            uint routeTimeSec = routeTime % 60;
+            Nav_Prc_setRouteDistanceText(((uint)routeDist).ToString());
             Nav_Prc_setRouteTimeText(routeTimeMin + " min " + routeTimeSec + " sec");
         }
-        private void Nav_Prc_setRouteDistanceText(String iText)
+        private void Nav_Prc_setRouteDistanceText(string iText)
         {
             try
             {
@@ -2603,11 +2616,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setRouteDistanceText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setRouteDistanceTextCallBackFunction(String iText)
+        private void Nav_Prc_setRouteDistanceTextCallBackFunction(string iText)
         {
             Nav_Prc_Route_Distance_Text.Text = iText;
         }
-        private void Nav_Prc_setRouteTimeText(String iText)
+        private void Nav_Prc_setRouteTimeText(string iText)
         {
             try
             {
@@ -2626,20 +2639,20 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setRouteTimeText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setRouteTimeTextCallBackFunction(String iText)
+        private void Nav_Prc_setRouteTimeTextCallBackFunction(string iText)
         {
             Nav_Prc_Route_Time_Text.Text = iText;
         }
         private void Nav_Prc_setTripDistanceAndTimeText(Nav_Trip iTrip)
         {
-            UInt32 TripDist = (UInt32)Nav_getTripDistance(iTrip);
-            UInt32 TripTime = Nav_getTripTime(iTrip);
-            UInt32 TripTimeMin = TripTime / 60;
-            UInt32 TripTimeSec = TripTime % 60;
+            uint TripDist = (uint)Nav_getTripDistance(iTrip);
+            uint TripTime = Nav_getTripTime(iTrip);
+            uint TripTimeMin = TripTime / 60;
+            uint TripTimeSec = TripTime % 60;
             Nav_Prc_setTripDistanceText(TripDist.ToString());
             Nav_Prc_setTripTimeText(TripTimeMin + " min " + TripTimeSec + " sec");
         }
-        private void Nav_Prc_setTripDistanceText(String iText)
+        private void Nav_Prc_setTripDistanceText(string iText)
         {
             try
             {
@@ -2658,11 +2671,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setTripDistanceText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setTripDistanceTextCallBackFunction(String iText)
+        private void Nav_Prc_setTripDistanceTextCallBackFunction(string iText)
         {
             Nav_Prc_Trip_Distance_Text.Text = iText;
         }
-        private void Nav_Prc_setTripTimeText(String iText)
+        private void Nav_Prc_setTripTimeText(string iText)
         {
             try
             {
@@ -2681,11 +2694,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setTripTimeText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setTripTimeTextCallBackFunction(String iText)
+        private void Nav_Prc_setTripTimeTextCallBackFunction(string iText)
         {
             Nav_Prc_Trip_Time_Text.Text = iText;
         }
-        private void Nav_Prc_setTimeRemainingText(UInt32 iTimeMs)
+        private void Nav_Prc_setTimeRemainingText(uint iTimeMs)
         {
             try
             {
@@ -2703,7 +2716,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setTimeRemainingText: " + e.ToString());
             }
         }
-        private void Nav_Prc_setTimeRemainingTextCallBackFunction(UInt32 iTimeMs)
+        private void Nav_Prc_setTimeRemainingTextCallBackFunction(uint iTimeMs)
         {
             //Monitor.Enter(m_TOP_TimerLabelLock);
             try
@@ -2715,9 +2728,9 @@ namespace Iocaine2
                         m_TOP_TimerLabelUser = TIMER_USER.NAVIGATION;
                         if (iTimeMs > 0)
                         {
-                            UInt32 tenthSec = (iTimeMs / 100) % 10;
-                            UInt32 sec = iTimeMs / 1000;
-                            UInt32 min = sec / 60;
+                            uint tenthSec = (iTimeMs / 100) % 10;
+                            uint sec = iTimeMs / 1000;
+                            uint min = sec / 60;
                             sec = sec % 60;
                             c_TimerLabel.Visible = true;
                             if (min > 0)
@@ -2746,7 +2759,7 @@ namespace Iocaine2
         }
         #endregion Label Updates
         #region UpDown Updates
-        public void Nav_Prc_setLoopCount(UInt32 iCount)
+        public void Nav_Prc_setLoopCount(uint iCount)
         {
             try
             {
@@ -2764,7 +2777,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Prc_setLoopCount: " + e.ToString());
             }
         }
-        private void Nav_Prc_setLoopCountCallBackFunction(UInt32 iCount)
+        private void Nav_Prc_setLoopCountCallBackFunction(uint iCount)
         {
             Nav_Prc_Loop_UpDn.Value = (Decimal)iCount;
         }
@@ -2828,7 +2841,7 @@ namespace Iocaine2
             {
                 if ((iRoute.Direction == false) && (Nav_canReverseRoute(iRoute) == false))
                 {
-                    String message = "You cannot reverse a route that has one of the following nodes:\n";
+                    string message = "You cannot reverse a route that has one of the following nodes:\n";
                     message += "1. Keystroke\n2. Target NPC\n3. Trade Item\n4. Trade Gil";
                     MessageBox.Show(message, "Cannot Reverse Route", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Nav_Prc_setForwardRB(true);
@@ -2907,7 +2920,7 @@ namespace Iocaine2
         }
         #endregion Trip Loading/Sorting
         #region Trip Deletion
-        private UInt32 Nav_Prc_deleteTrip(String iTripName, bool iPromptUser, bool iSaveFile, bool iRemoveNameFromList)
+        private uint Nav_Prc_deleteTrip(string iTripName, bool iPromptUser, bool iSaveFile, bool iRemoveNameFromList)
         {
             if (!Statics.Datasets.UserTripNames.Contains(iTripName))
             {
@@ -2922,7 +2935,7 @@ namespace Iocaine2
                     return 0xffffffff;
                 }
             }
-            UInt32 tripID = Nav_userTripsIdMap[iTripName];
+            uint tripID = Nav_userTripsIdMap[iTripName];
             Nav_Prc_deleteTrip(tripID);
             if (iRemoveNameFromList)
             {
@@ -2941,9 +2954,9 @@ namespace Iocaine2
             }
             return tripID;
         }
-        private void Nav_Prc_deleteTrip(UInt32 iTripID)
+        private void Nav_Prc_deleteTrip(uint iTripID)
         {
-            String filter = "TripID=" + iTripID.ToString();
+            string filter = "TripID=" + iTripID.ToString();
             Routes.UserTripsRow[] rows = (Routes.UserTripsRow[])Statics.Datasets.RoutesDb.UserTrips.Select(filter);
             try
             {
@@ -2954,7 +2967,7 @@ namespace Iocaine2
             }
             catch (Exception e)
             {
-                String msg = "[ERROR] Trying to delete a trip row from the DB: " + e.ToString();
+                string msg = "[ERROR] Trying to delete a trip row from the DB: " + e.ToString();
                 LoggingFunctions.Timestamp(msg);
                 MessageBox.Show(msg);
                 return;
@@ -2985,8 +2998,8 @@ namespace Iocaine2
             }
 
             //Now we'll do things differently whether we're saving an existing trip or creating a new one.
-            String tripName = "";
-            UInt32 tripId = 0;
+            string tripName = "";
+            uint tripId = 0;
             if (Nav_Prc_exisingTripLoaded == true)
             {
                 //Check that the user hasn't entered a new name that already exists.
@@ -3024,7 +3037,7 @@ namespace Iocaine2
             //Set the trip name. The Nav_Prc_TripName will either be what the user typed or what was loaded from the existing trip.
             tripName = Nav_Prc_TripName;
 
-            String tripTags = "";
+            string tripTags = "";
             if ((Nav_Prc_TripTags != Nav_Prc_TripTagsTBDefText) && (Nav_Prc_TripTags != ""))
             {
                 tripTags = Nav_Prc_TripTags;
@@ -3081,7 +3094,7 @@ namespace Iocaine2
         {
             Nav_Prc_FormatTripAndProcess(iTrip, true, Statics.Settings.Navigation.TripCompleteSound, Nav_Prc_Loop_Cnt, Nav_Prc_setLoopCountPtr);
         }
-        internal void Nav_Prc_FormatTripAndProcess(Nav_Trip iTrip, bool iPlaySound, String iSound, UInt32 iLoopCount, Iocaine_2_Form.Nav_Prc_setLoopCountDelegate iSetLoopCountPtr)
+        internal void Nav_Prc_FormatTripAndProcess(Nav_Trip iTrip, bool iPlaySound, string iSound, uint iLoopCount, Iocaine_2_Form.Nav_Prc_setLoopCountDelegate iSetLoopCountPtr)
         {
             //This function will check for the closest starting point in the trip to
             //where you're at and prune the trip accordingly.
@@ -3142,7 +3155,7 @@ namespace Iocaine2
                 || (iNode.NodeType == (ushort)NAV_NODE_TYPE.POS_START)
                 || (iNode.NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
             {
-                UInt16 zoneId = MemReads.Self.get_zone_id();
+                ushort zoneId = MemReads.Self.get_zone_id();
                 if (zoneId != iNode.NodeZoneID)
                 {
                     MessageBox.Show("Node was not in this zone.", "Not in Zone.", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3521,7 +3534,7 @@ namespace Iocaine2
                             }
                             else
                             {
-                                String message = "You cannot reverse a route that has one of the following nodes:\n";
+                                string message = "You cannot reverse a route that has one of the following nodes:\n";
                                 message += "1. Keystroke\n2. Target NPC\n3. Trade Item\n4. Trade Gil";
                                 MessageBox.Show(message, "Cannot Reverse Route", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 Nav_Prc_setForwardRB(true);
@@ -3597,13 +3610,13 @@ namespace Iocaine2
         #region UpDowns
         private void Nav_Prc_Loop_UpDn_ValueChanged(object sender, EventArgs e)
         {
-            Nav_Prc_Loop_Cnt = (UInt32)Nav_Prc_Loop_UpDn.Value;
+            Nav_Prc_Loop_Cnt = (uint)Nav_Prc_Loop_UpDn.Value;
         }
         #endregion UpDowns
         #region Resizing
         private void NAV_Form_ResizeEnd(object sender, EventArgs e)
         {
-            Int32 new_tv_width = m_TOP_Form_currentWidth - Nav_Prc_RouteTV.Left - 14;
+            int new_tv_width = m_TOP_Form_currentWidth - Nav_Prc_RouteTV.Left - 14;
             Nav_Prc_RouteTV.Width = new_tv_width / 3;
             Nav_Prc_Trip_SelectionTV.Width = new_tv_width / 3;
             Nav_Prc_Trip_CreationTV.Width = new_tv_width - Nav_Prc_RouteTV.Width - Nav_Prc_Trip_SelectionTV.Width - 14;
@@ -3645,10 +3658,16 @@ namespace Iocaine2
 
         #region User Route Recording
         #region Enums
-        private enum NAV_REC_STATE :byte
+        private enum NAV_REC_STATE : byte
         {
             STOPPED = 0,
             RUNNING = 1
+        }
+        private enum NAV_REC_INSERT_POSITION : byte
+        {
+            ABOVE_CURSOR,
+            BELOW_CURSOR,
+            END
         }
         #endregion Enums
         #region Members
@@ -3661,37 +3680,32 @@ namespace Iocaine2
         private uint Nav_Rec_xyhUpdatePeriod = 500;
         #endregion Misc
         #region Default Values
-        private String Nav_Rec_RouteNameTBDefText = "Route Name";
-        private String Nav_Rec_RouteStartNameTBDefText = "Start Point Name";
-        private String Nav_Rec_RouteEndNameTBDefText = "End Point Name";
-        private String Nav_Rec_RouteTagsTBDefText = "Comma Separated Tags";
-        private String Nav_Rec_NpcNameTBDefText = "NPC Name";
-        private String Nav_Rec_CommandTBDefText = "Command Text";
-        private String Nav_Rec_ItemNameTBDefText = "Item Name";
+        private string Nav_Rec_RouteNameTBDefText = "Route Name";
+        private string Nav_Rec_RouteTagsTBDefText = "Comma Separated Tags";
+        private string Nav_Rec_NpcNameTBDefText = "NPC Name";
+        private string Nav_Rec_CommandTBDefText = "Command Text";
+        private string Nav_Rec_ItemNameTBDefText = "Item Name";
         private double Nav_Rec_ItemQuanDefValue = 1D;
-        private double Nav_Rec_GilQuanDefValue = 300D;
+        private decimal Nav_Rec_GilQuanDefValue = 300;
         private double Nav_Rec_PosXDefValue = 999.9D;
         private double Nav_Rec_PosYDefValue = 999.9D;
         private float Nav_Rec_PosHDefValue = 0.0f;
-        private Byte Nav_Rec_PosZoneDefValue = 0;
+        private byte Nav_Rec_PosZoneDefValue = 0;
         #endregion Default Values
         #region GUI Value Parallels
-        private String Nav_Rec_RouteName = "";
-        private String Nav_Rec_RouteStartName = "";
-        private String Nav_Rec_RouteEndName = "";
-        private String Nav_Rec_RouteTags = "";
-        private String Nav_Rec_NpcName = "";
-        private String Nav_Rec_CommandText = "";
-        private String Nav_Rec_ItemName = "";
-        private double Nav_Rec_Interval;
-        private double Nav_Rec_MinDist;
-        private double Nav_Rec_Wait;
+        private string Nav_Rec_RouteName = "";
+        private string Nav_Rec_RouteTags = "";
+        private string Nav_Rec_NpcName = "";
+        private string Nav_Rec_CommandText = "";
+        private string Nav_Rec_ItemName = "";
+        private decimal Nav_Rec_Wait;
         private double Nav_Rec_ItemQuan;
         private double Nav_Rec_GilQuan;
         private double Nav_Rec_PosX;
         private double Nav_Rec_PosY;
         private float Nav_Rec_PosH;
-        private UInt16 Nav_Rec_Zone;
+        private ushort Nav_Rec_Zone;
+        private NAV_REC_INSERT_POSITION Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.END;
         #endregion GUI Value Parallels
         #region Current Route Values
         private Nav_Route Nav_Rec_CurrentRoute;
@@ -3700,27 +3714,11 @@ namespace Iocaine2
         private bool Nav_Rec_existingRouteLoaded = false;
         #endregion Current Route Values
         #region Delegates
-        private delegate void Nav_Rec_setRouteNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setRouteStartNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setRouteEndNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setRouteTagsTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setNpcNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setCommandTextTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setItemNameTBTextDelegate(String iText);
-        private delegate void Nav_Rec_setIntervalValueDelegate(double iValue);
-        private delegate void Nav_Rec_setMinDistValueDelegate(double iValue);
-        private delegate void Nav_Rec_setWaitValueDelegate(double iValue);
-        private delegate void Nav_Rec_setItemQuanValueDelegate(double iValue);
-        private delegate void Nav_Rec_setGilQuanValueDelegate(double iValue);
-        private delegate void Nav_Rec_setPosXValueDelegate(double iValue);
-        private delegate void Nav_Rec_setPosYValueDelegate(double iValue);
-        private delegate void Nav_Rec_setPosHValueDelegate(float iValue);
-        private delegate void Nav_Rec_setPosZoneValueDelegate(UInt16 iValue);
+        private delegate void Nav_Rec_setRouteNameTBTextDelegate(string iText);
+        private delegate void Nav_Rec_setRouteTagsTBTextDelegate(string iText);
         private delegate void Nav_Rec_loadDeleteCBDelegate();
         private delegate void Nav_Rec_setDeleteCBIndexDelegate(int iIdx);
-        private delegate void Nav_Rec_loadKeystrokesCBDelegate();
-        private delegate void Nav_Rec_setKeystrokesCBIndexDelegate(int iIdx);
-        private delegate void Nav_Rec_setStartButtonDelegate(String iText, Color iColor);
+        private delegate void Nav_Rec_setStartButtonDelegate(string iText, Color iColor);
         private delegate void Nav_Rec_addRouteLBItemDelegate(Routes.UserRoutesRow iRow);
         private delegate void Nav_Rec_updateRouteLBItemDelegate(int iIdx, Routes.UserRoutesRow iRow);
         private delegate void Nav_Rec_removeRouteLBItemDelegate(int iIdx);
@@ -3731,25 +3729,9 @@ namespace Iocaine2
         #endregion Delegates
         #region Function Pointers
         private Nav_Rec_setRouteNameTBTextDelegate Nav_Rec_setRouteNameTBTextPtr;
-        private Nav_Rec_setRouteStartNameTBTextDelegate Nav_Rec_setRouteStartNameTBTextPtr;
-        private Nav_Rec_setRouteEndNameTBTextDelegate Nav_Rec_setRouteEndNameTBTextPtr;
         private Nav_Rec_setRouteTagsTBTextDelegate Nav_Rec_setRouteTagsTBTextPtr;
-        private Nav_Rec_setNpcNameTBTextDelegate Nav_Rec_setNpcNameTBTextPtr;
-        private Nav_Rec_setCommandTextTBTextDelegate Nav_Rec_setCommandTextTBTextPtr;
-        private Nav_Rec_setItemNameTBTextDelegate Nav_Rec_setItemNameTBTextPtr;
-        private Nav_Rec_setIntervalValueDelegate Nav_Rec_setIntervalValuePtr;
-        private Nav_Rec_setMinDistValueDelegate Nav_Rec_setMinDistValuePtr;
-        private Nav_Rec_setWaitValueDelegate Nav_Rec_setWaitValuePtr;
-        private Nav_Rec_setItemQuanValueDelegate Nav_Rec_setItemQuanValuePtr;
-        private Nav_Rec_setGilQuanValueDelegate Nav_Rec_setGilQuanValuePtr;
-        private Nav_Rec_setPosXValueDelegate Nav_Rec_setPosXValuePtr;
-        private Nav_Rec_setPosYValueDelegate Nav_Rec_setPosYValuePtr;
-        private Nav_Rec_setPosHValueDelegate Nav_Rec_setPosHValuePtr;
-        private Nav_Rec_setPosZoneValueDelegate Nav_Rec_setPosZoneValuePtr;
         private Nav_Rec_loadDeleteCBDelegate Nav_Rec_loadDeleteCBPtr;
         private Nav_Rec_setDeleteCBIndexDelegate Nav_Rec_setDeleteCBIndexPtr;
-        private Nav_Rec_loadKeystrokesCBDelegate Nav_Rec_loadKeystrokesCBPtr;
-        private Nav_Rec_setKeystrokesCBIndexDelegate Nav_Rec_setKeystrokesCBIndexPtr;
         private Nav_Rec_setStartButtonDelegate Nav_Rec_setStartButtonPtr;
         private Nav_Rec_addRouteLBItemDelegate Nav_Rec_addRouteLBItemPtr;
         private Nav_Rec_removeRouteLBItemDelegate Nav_Rec_removeRouteLBItemPtr;
@@ -3766,9 +3748,7 @@ namespace Iocaine2
             Nav_Rec_createDelegates();
             Nav_Rec_CurrentRoute = new Nav_Route();
             Nav_Rec_loadDeleteCB();
-            Nav_Rec_loadKeystrokesCB();
             Nav_Rec_loadTextBoxDefText();
-            Nav_Rec_loadUpDnDefValues();
             Nav_Rec_clearGuiParallelValues();
             Nav_Rec_Route_LB.DataSource = Nav_Rec_CurrentRoute.RouteNodes;
             Nav_Rec_Route_LB.DisplayMember = "NodeDetail";
@@ -3778,25 +3758,9 @@ namespace Iocaine2
             if (Nav_Rec_setRouteNameTBTextPtr == null)
             {
                 Nav_Rec_setRouteNameTBTextPtr = new Nav_Rec_setRouteNameTBTextDelegate(Nav_Rec_setRouteNameTBTextCallBackFunction);
-                Nav_Rec_setRouteStartNameTBTextPtr = new Nav_Rec_setRouteStartNameTBTextDelegate(Nav_Rec_setRouteStartNameTBTextCallBackFunction);
-                Nav_Rec_setRouteEndNameTBTextPtr = new Nav_Rec_setRouteEndNameTBTextDelegate(Nav_Rec_setRouteEndNameTBTextCallBackFunction);
                 Nav_Rec_setRouteTagsTBTextPtr = new Nav_Rec_setRouteTagsTBTextDelegate(Nav_Rec_setRouteTagsTBTextCallBackFunction);
-                Nav_Rec_setNpcNameTBTextPtr = new Nav_Rec_setNpcNameTBTextDelegate(Nav_Rec_setNpcNameTBTextCallBackFunction);
-                Nav_Rec_setCommandTextTBTextPtr = new Nav_Rec_setCommandTextTBTextDelegate(Nav_Rec_setCommandTextTBTextCallBackFunction);
-                Nav_Rec_setItemNameTBTextPtr = new Nav_Rec_setItemNameTBTextDelegate(Nav_Rec_setItemNameTBTextCallBackFunction);
-                Nav_Rec_setIntervalValuePtr = new Nav_Rec_setIntervalValueDelegate(Nav_Rec_setIntervalValueCallBackFunction);
-                Nav_Rec_setMinDistValuePtr = new Nav_Rec_setMinDistValueDelegate(Nav_Rec_setMinDistValueCallBackFunction);
-                Nav_Rec_setWaitValuePtr = new Nav_Rec_setWaitValueDelegate(Nav_Rec_setWaitValueCallBackFunction);
-                Nav_Rec_setItemQuanValuePtr = new Nav_Rec_setItemQuanValueDelegate(Nav_Rec_setItemQuanValueCallBackFunction);
-                Nav_Rec_setGilQuanValuePtr = new Nav_Rec_setGilQuanValueDelegate(Nav_Rec_setGilQuanValueCallBackFunction);
-                Nav_Rec_setPosXValuePtr = new Nav_Rec_setPosXValueDelegate(Nav_Rec_setPosXValueCallBackFunction);
-                Nav_Rec_setPosYValuePtr = new Nav_Rec_setPosYValueDelegate(Nav_Rec_setPosYValueCallBackFunction);
-                Nav_Rec_setPosHValuePtr = new Nav_Rec_setPosHValueDelegate(Nav_Rec_setPosHValueCallBackFunction);
-                Nav_Rec_setPosZoneValuePtr = new Nav_Rec_setPosZoneValueDelegate(Nav_Rec_setPosZoneValueCallBackFunction);
                 Nav_Rec_loadDeleteCBPtr = new Nav_Rec_loadDeleteCBDelegate(Nav_Rec_loadDeleteCBCallBackFunction);
                 Nav_Rec_setDeleteCBIndexPtr = new Nav_Rec_setDeleteCBIndexDelegate(Nav_Rec_setDeleteCBIndexCallBackFunction);
-                Nav_Rec_loadKeystrokesCBPtr = new Nav_Rec_loadKeystrokesCBDelegate(Nav_Rec_loadKeystrokesCBCallBackFunction);
-                Nav_Rec_setKeystrokesCBIndexPtr = new Nav_Rec_setKeystrokesCBIndexDelegate(Nav_Rec_setKeystrokesCBIndexCallBackFunction);
                 Nav_Rec_setStartButtonPtr = new Nav_Rec_setStartButtonDelegate(Nav_Rec_setStartButtonCallBackFunction);
                 Nav_Rec_addRouteLBItemPtr = new Nav_Rec_addRouteLBItemDelegate(Nav_Rec_addRouteLBItemCallBackFunction);
                 Nav_Rec_removeRouteLBItemPtr = new Nav_Rec_removeRouteLBItemDelegate(Nav_Rec_removeRouteLBItemCallBackFunction);
@@ -3812,44 +3776,22 @@ namespace Iocaine2
             Statics.Settings.Navigation.IntervalDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_IntervalDefValue");
             Statics.Settings.Navigation.MinDistDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_MinDistDefValue");
             Statics.Settings.Navigation.WaitDefValue = (double)UserSettings.GetValue(UserSettings.BOT.NAV, "Nav_Rec_WaitDefValue");
-            Nav_Rec_loadUpDnDefValues();
         }
         private void Nav_Rec_loadTextBoxDefText()
         {
             Nav_Rec_setRouteNameTBText(Nav_Rec_RouteNameTBDefText);
-            Nav_Rec_setRouteStartNameTBText(Nav_Rec_RouteStartNameTBDefText);
-            Nav_Rec_setRouteEndNameTBText(Nav_Rec_RouteEndNameTBDefText);
             Nav_Rec_setRouteTagsTBText(Nav_Rec_RouteTagsTBDefText);
-            Nav_Rec_setNpcNameTBText(Nav_Rec_NpcNameTBDefText);
-            Nav_Rec_setCommandTextTBText(Nav_Rec_CommandTBDefText);
-            Nav_Rec_setItemNametTBText(Nav_Rec_ItemNameTBDefText);
-        }
-        private void Nav_Rec_loadUpDnDefValues()
-        {
-            Nav_Rec_setIntervalValue(Statics.Settings.Navigation.IntervalDefValue);
-            Nav_Rec_setMinDistValue(Statics.Settings.Navigation.MinDistDefValue);
-            Nav_Rec_setWaitValue(Statics.Settings.Navigation.WaitDefValue);
-            Nav_Rec_setItemQuanValue(Nav_Rec_ItemQuanDefValue);
-            Nav_Rec_setGilQuanValue(Nav_Rec_GilQuanDefValue);
-            Nav_Rec_setPosXValue(Nav_Rec_PosXDefValue);
-            Nav_Rec_setPosYValue(Nav_Rec_PosYDefValue);
-            Nav_Rec_setPosHValue(Nav_Rec_PosHDefValue);
-            Nav_Rec_setPosZoneValue(Nav_Rec_PosZoneDefValue);
         }
         private void Nav_Rec_clearGuiParallelValues()
         {
             Nav_Rec_RouteName = "";
-            Nav_Rec_RouteStartName = "";
-            Nav_Rec_RouteEndName = "";
             Nav_Rec_RouteTags = "";
             Nav_Rec_NpcName = "";
             Nav_Rec_CommandText = "";
             Nav_Rec_ItemName = "";
-            Nav_Rec_Interval = Statics.Settings.Navigation.IntervalDefValue;
-            Nav_Rec_MinDist = Statics.Settings.Navigation.MinDistDefValue;
-            Nav_Rec_Wait = Statics.Settings.Navigation.WaitDefValue;
+            Nav_Rec_Wait = (decimal)Statics.Settings.Navigation.WaitDefValue;
             Nav_Rec_ItemQuan = Nav_Rec_ItemQuanDefValue;
-            Nav_Rec_GilQuan = Nav_Rec_GilQuanDefValue;
+            Nav_Rec_GilQuan = (uint)Nav_Rec_GilQuanDefValue;
             Nav_Rec_PosX = Nav_Rec_PosXDefValue;
             Nav_Rec_PosY = Nav_Rec_PosYDefValue;
             Nav_Rec_PosH = Nav_Rec_PosHDefValue;
@@ -3859,7 +3801,7 @@ namespace Iocaine2
         #region Utility Functions
         #region GUI Updates
         #region Text Box Updates
-        private void Nav_Rec_setRouteNameTBText(String iText)
+        private void Nav_Rec_setRouteNameTBText(string iText)
         {
             try
             {
@@ -3877,7 +3819,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Rec_setRouteNameTBText: " + e.ToString());
             }
         }
-        private void Nav_Rec_setRouteNameTBTextCallBackFunction(String iText)
+        private void Nav_Rec_setRouteNameTBTextCallBackFunction(string iText)
         {
             Nav_Rec_Route_Name_TB.Text = iText;
             if (iText != Nav_Rec_RouteNameTBDefText)
@@ -3889,67 +3831,7 @@ namespace Iocaine2
                 Nav_Rec_Route_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void Nav_Rec_setRouteStartNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Route_Start_Name_TB.InvokeRequired)
-                {
-                    Nav_Rec_Route_Start_Name_TB.Invoke(Nav_Rec_setRouteStartNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setRouteStartNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setRouteStartNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setRouteStartNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Route_Start_Name_TB.Text = iText;
-            if (iText != Nav_Rec_RouteStartNameTBDefText)
-            {
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setRouteEndNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Route_End_Name_TB.InvokeRequired)
-                {
-                    Nav_Rec_Route_End_Name_TB.Invoke(Nav_Rec_setRouteEndNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setRouteEndNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setRouteEndNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setRouteEndNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Route_End_Name_TB.Text = iText;
-            if (iText != Nav_Rec_RouteEndNameTBDefText)
-            {
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setRouteTagsTBText(String iText)
+        private void Nav_Rec_setRouteTagsTBText(string iText)
         {
             try
             {
@@ -3967,7 +3849,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Rec_setRouteTagsTBText: " + e.ToString());
             }
         }
-        private void Nav_Rec_setRouteTagsTBTextCallBackFunction(String iText)
+        private void Nav_Rec_setRouteTagsTBTextCallBackFunction(string iText)
         {
             Nav_Rec_Route_Tags_TB.Text = iText;
             if (iText != Nav_Rec_RouteTagsTBDefText)
@@ -3979,275 +3861,7 @@ namespace Iocaine2
                 Nav_Rec_Route_Tags_TB.ForeColor = Color.Gray;
             }
         }
-        private void Nav_Rec_setNpcNameTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Target_NPC_TB.InvokeRequired)
-                {
-                    Nav_Rec_Target_NPC_TB.Invoke(Nav_Rec_setNpcNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setNpcNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setNpcNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setNpcNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Target_NPC_TB.Text = iText;
-            if (iText != Nav_Rec_NpcNameTBDefText)
-            {
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setCommandTextTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Command_TB.InvokeRequired)
-                {
-                    Nav_Rec_Command_TB.Invoke(Nav_Rec_setCommandTextTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setCommandTextTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setCommandTextTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setCommandTextTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Command_TB.Text = iText;
-            if (iText != Nav_Rec_CommandTBDefText)
-            {
-                Nav_Rec_Command_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Command_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_setItemNametTBText(String iText)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Item_TB.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Item_TB.Invoke(Nav_Rec_setItemNameTBTextPtr, new object[] { iText });
-                }
-                else
-                {
-                    Nav_Rec_setItemNameTBTextCallBackFunction(iText);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setItemNameTBText: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setItemNameTBTextCallBackFunction(String iText)
-        {
-            Nav_Rec_Trade_Item_TB.Text = iText;
-            if (iText != Nav_Rec_ItemNameTBDefText)
-            {
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Black;
-            }
-            else
-            {
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Gray;
-            }
-        }
         #endregion Text Box Updates
-        #region UpDown Value Updates
-        private void Nav_Rec_setIntervalValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Interval_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Interval_UpDn.Invoke(Nav_Rec_setIntervalValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setIntervalValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setIntervalValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setIntervalValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Interval_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setMinDistValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Min_Dist_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Min_Dist_UpDn.Invoke(Nav_Rec_setMinDistValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setMinDistValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setMinDistValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setMinDistValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Min_Dist_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setWaitValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Wait_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Wait_UpDn.Invoke(Nav_Rec_setWaitValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setWaitValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setWaitValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setWaitValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Wait_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setItemQuanValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Item_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Item_UpDn.Invoke(Nav_Rec_setItemQuanValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setItemQuanValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setItemQuanValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setItemQuanValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Trade_Item_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setGilQuanValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Trade_Gil_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Trade_Gil_UpDn.Invoke(Nav_Rec_setGilQuanValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setGilQuanValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setGilQuanValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setGilQuanValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Trade_Gil_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setPosXValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_X_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_X_UpDn.Invoke(Nav_Rec_setPosXValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosXValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosXValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosXValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Position_X_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setPosYValue(double iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_Y_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_Y_UpDn.Invoke(Nav_Rec_setPosYValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosYValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosYValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosYValueCallBackFunction(double iValue)
-        {
-            Nav_Rec_Position_Y_UpDn.Value = (decimal)iValue;
-        }
-        private void Nav_Rec_setPosHValue(float iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Position_H_UpDn.InvokeRequired)
-                {
-                    Nav_Rec_Position_H_UpDn.Invoke(Nav_Rec_setPosHValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosHValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosHValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosHValueCallBackFunction(float iValue)
-        {
-            Nav_Rec_Position_H_UpDn.Value = (decimal)iValue;
-        }
-        #endregion UpDown Value Updates
         #region ComboBox Updates
         private void Nav_Rec_loadDeleteCB()
         {
@@ -4273,7 +3887,7 @@ namespace Iocaine2
             {
                 Nav_Rec_Delete_CB.BeginUpdate();
                 Nav_Rec_Delete_CB.Items.Clear();
-                foreach (String str in Nav_userRouteNames)
+                foreach (string str in Nav_userRouteNames)
                 {
                     Nav_Rec_Delete_CB.Items.Add(str);
                 }
@@ -4305,60 +3919,9 @@ namespace Iocaine2
                 Nav_Rec_Delete_CB.SelectedIndex = iIdx;
             }
         }
-        private void Nav_Rec_loadKeystrokesCB()
-        {
-            try
-            {
-                if (Nav_Rec_Key_Stroke_CB.InvokeRequired)
-                {
-                    Nav_Rec_Key_Stroke_CB.Invoke(Nav_Rec_loadKeystrokesCBPtr);
-                }
-                else
-                {
-                    Nav_Rec_loadKeystrokesCBCallBackFunction();
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_loadKeystrokesCB: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_loadKeystrokesCBCallBackFunction()
-        {
-
-            foreach (String str in Statics.Constants.Navigation.KeystrokeStrings)
-            {
-                Nav_Rec_Key_Stroke_CB.Items.Add(str);
-            }
-        }
-        private void Nav_Rec_setKeystrokesCBIndex(int iIdx)
-        {
-            try
-            {
-                if (Nav_Rec_Key_Stroke_CB.InvokeRequired)
-                {
-                    Nav_Rec_Key_Stroke_CB.Invoke(Nav_Rec_setKeystrokesCBIndexPtr, new object[] { iIdx });
-                }
-                else
-                {
-                    Nav_Rec_setKeystrokesCBIndexCallBackFunction(iIdx);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setKeystrokesCBIndex: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setKeystrokesCBIndexCallBackFunction(int iIdx)
-        {
-            if (iIdx >= 0)
-            {
-                Nav_Rec_Key_Stroke_CB.SelectedIndex = iIdx;
-            }
-        }
         #endregion ComboBox Updates
         #region Button Updates
-        private void Nav_Rec_setStartButton(String iText, Color iColor)
+        private void Nav_Rec_setStartButton(string iText, Color iColor)
         {
             try
             {
@@ -4376,36 +3939,12 @@ namespace Iocaine2
                 LoggingFunctions.Error("In Nav_Rec_setStartButton: " + e.ToString());
             }
         }
-        private void Nav_Rec_setStartButtonCallBackFunction(String iText, Color iColor)
+        private void Nav_Rec_setStartButtonCallBackFunction(string iText, Color iColor)
         {
             Nav_Rec_Start_Stop_Button.Text = iText;
             Nav_Rec_Start_Stop_Button.BackColor = iColor;
         }
         #endregion Button Updates
-        #region Label Updates
-        private void Nav_Rec_setPosZoneValue(UInt16 iValue)
-        {
-            try
-            {
-                if (Nav_Rec_Zone_Text.InvokeRequired)
-                {
-                    Nav_Rec_Zone_Text.Invoke(Nav_Rec_setPosZoneValuePtr, new object[] { iValue });
-                }
-                else
-                {
-                    Nav_Rec_setPosZoneValueCallBackFunction(iValue);
-                }
-            }
-            catch (Exception e)
-            {
-                LoggingFunctions.Error("In Nav_Rec_setPosZoneValue: " + e.ToString());
-            }
-        }
-        private void Nav_Rec_setPosZoneValueCallBackFunction(UInt16 iValue)
-        {
-            Nav_Rec_Zone_Text.Text = iValue.ToString();
-        }
-        #endregion Label Updates
         #region List Box Updates
         private void Nav_Rec_refreshRouteLB()
         {
@@ -4427,7 +3966,7 @@ namespace Iocaine2
         }
         private void Nav_Rec_refreshRouteLBCallBackFunction()
         {
-            int topIdx = Nav_Rec_Route_LB.TopIndex;
+            int topIdx = Nav_Rec_getTopIndex_RouteLB();
             ((CurrencyManager)Nav_Rec_Route_LB.BindingContext[Nav_Rec_Route_LB.DataSource]).Refresh();
             Nav_Rec_scrollRouteLB(topIdx);
         }
@@ -4530,6 +4069,74 @@ namespace Iocaine2
         {
             Nav_Rec_Route_LB.SelectedIndex = iIdx;
         }
+        private int Nav_Rec_getSelectedRouteLBItem()
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    return (int)Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Int32_Void(Nav_Rec_getSelectedRouteLBItemCBF));
+                }
+                else
+                {
+                    return Nav_Rec_getSelectedRouteLBItemCBF();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error("In Nav_Rec_selectRouteLBItem: " + e.ToString());
+                return -1;
+            }
+        }
+        private int Nav_Rec_getSelectedRouteLBItemCBF()
+        {
+            return Nav_Rec_Route_LB.SelectedIndex;
+        }
+        private void Nav_Rec_setTopIndex_RouteLB(int iIdx)
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Void_Int32(Nav_Rec_setTopIndex_RouteLBCBF), new object[] { iIdx });
+                }
+                else
+                {
+                    Nav_Rec_setTopIndex_RouteLBCBF(iIdx);
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
+        }
+        private void Nav_Rec_setTopIndex_RouteLBCBF(int iIdx)
+        {
+            Nav_Rec_Route_LB.TopIndex = iIdx;
+        }
+        private int Nav_Rec_getTopIndex_RouteLB()
+        {
+            try
+            {
+                if (Nav_Rec_Route_LB.InvokeRequired)
+                {
+                    return (int)Nav_Rec_Route_LB.Invoke(new Statics.FuncPtrs.TD_Int32_Void(Nav_Rec_getTopIndex_RouteLBCBF));
+                }
+                else
+                {
+                    return Nav_Rec_getTopIndex_RouteLBCBF();
+                }
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+                return -1;
+            }
+        }
+        private int Nav_Rec_getTopIndex_RouteLBCBF()
+        {
+            return Nav_Rec_Route_LB.TopIndex;
+        }
         private void Nav_Rec_clearRouteLB()
         {
             try
@@ -4581,7 +4188,7 @@ namespace Iocaine2
         #endregion List Box Updates
         #endregion GUI Updates
         #region Node Creation
-        private UInt32 Nav_Rec_checkRouteIdInc()
+        private uint Nav_Rec_checkRouteIdInc()
         {
             if ((Nav_Rec_CurrentRoute.RouteNodes.Count == 0) && (Nav_Rec_existingRouteLoaded == false))
             {
@@ -4590,7 +4197,7 @@ namespace Iocaine2
             }
             return Nav_Rec_CurrentRouteID;
         }
-        private UInt32 Nav_Rec_peekRouteIdInc()
+        private uint Nav_Rec_peekRouteIdInc()
         {
             if ((Nav_Rec_CurrentRoute.RouteNodes.Count == 0) && (Nav_Rec_existingRouteLoaded == false))
             {
@@ -4606,16 +4213,6 @@ namespace Iocaine2
             if (Nav_Rec_RouteName == Nav_Rec_RouteNameTBDefText)
             {
                 MessageBox.Show("Please enter a Route Name");
-                return false;
-            }
-            if (Nav_Rec_RouteStartName == Nav_Rec_RouteStartNameTBDefText)
-            {
-                MessageBox.Show("Please enter a Route Start Point Name");
-                return false;
-            }
-            if (Nav_Rec_RouteEndName == Nav_Rec_RouteEndNameTBDefText)
-            {
-                MessageBox.Show("Please enter a Route End Point Name");
                 return false;
             }
             return true;
@@ -4655,17 +4252,15 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.RouteStartName = "";
             Nav_Rec_CurrentNode.RouteEndName = "";
             Nav_Rec_CurrentNode.RouteTags = "";
-            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.POS_NODE;
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.POS_NODE;
             Nav_Rec_CurrentNode.NodeData = 0;
             Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
             Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodePosToString(Nav_Rec_PosX, Nav_Rec_PosY, Nav_Rec_PosH, Nav_Rec_Zone);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addNpcTargetNode()
@@ -4674,12 +4269,24 @@ namespace Iocaine2
             {
                 return;
             }
-            String targetName = MemReads.Target.get_name();
-            if (((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != "")) || (targetName != ""))
+
+            Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("NPC To Target", Nav_Rec_NpcNameTBDefText, true, false, true);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_NpcName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
+            if ((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != ""))
             {
                 if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
                 {
-                    String message = "This route is part of a trip in the reverse direction.\n";
+                    string message = "This route is part of a trip in the reverse direction.\n";
                     message += "You cannot use a route in reverse that contains NPC Target nodes.\n";
                     message += "Please either remove the route from the trip or change the direction to forward.";
                     MessageBox.Show(message);
@@ -4691,72 +4298,86 @@ namespace Iocaine2
                 Nav_Rec_CurrentNode.RouteStartName = "";
                 Nav_Rec_CurrentNode.RouteEndName = "";
                 Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.NPC_TARGET;
+                Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+                Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.NPC_TARGET;
                 Nav_Rec_CurrentNode.NodeData = 0;
                 Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
                 Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
                 Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
                 Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                if ((Nav_Rec_NpcName == Nav_Rec_NpcNameTBDefText) || (Nav_Rec_NpcName == ""))
-                {
-                    Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(targetName);
-                }
-                else
-                {
-                    Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
-                }
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
+                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
+                Nav_Rec_insertNode(Nav_Rec_CurrentNode);
                 Nav_Rec_modified = true;
             }
             else
             {
-                MessageBox.Show("Please enter an NPC name");
+                MessageBox.Show("Please enter an NPC name.");
             }
         }
         private void Nav_Rec_addNpcTradeItemNode()
         {
-            if ((Nav_Rec_ItemName != Nav_Rec_ItemNameTBDefText) && (Nav_Rec_ItemName != ""))
+            Data.Entry.TextboxParameter param_tb = new Data.Entry.TextboxParameter("Trade Item", Nav_Rec_ItemNameTBDefText);
+            Data.Entry.UpDownParameter param_ud = new Data.Entry.UpDownParameter("Item Quantity", 1, 0, 1, 99, 1);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param_tb, param_ud });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
             {
-                if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+                Nav_Rec_ItemName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                Nav_Rec_ItemQuan = (byte)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                if (Nav_Rec_ItemName == Nav_Rec_ItemNameTBDefText)
                 {
-                    String message = "This route is part of a trip in the reverse direction.\n";
-                    message += "You cannot use a route in reverse that contains Trade Item nodes.\n";
-                    message += "Please either remove the route from the trip or change the direction to forward.";
-                    MessageBox.Show(message);
+                    MessageBox.Show("Please enter an Item name");
                     return;
                 }
-                Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
-                Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
-                Nav_Rec_CurrentNode.RouteName = "";
-                Nav_Rec_CurrentNode.RouteStartName = "";
-                Nav_Rec_CurrentNode.RouteEndName = "";
-                Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.NPC_TRADE_ITEM;
-                Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_ItemQuan;
-                Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (Byte)Nav_Rec_ItemQuan);
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
-                Nav_Rec_modified = true;
             }
             else
             {
-                MessageBox.Show("Please enter an Item name");
+                return;
             }
+
+
+            if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+            {
+                string message = "This route is part of a trip in the reverse direction.\n";
+                message += "You cannot use a route in reverse that contains Trade Item nodes.\n";
+                message += "Please either remove the route from the trip or change the direction to forward.";
+                MessageBox.Show(message);
+                return;
+            }
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.NPC_TRADE_ITEM;
+            Nav_Rec_CurrentNode.NodeData = (uint)Nav_Rec_ItemQuan;
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (byte)Nav_Rec_ItemQuan);
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            Nav_Rec_modified = true;
         }
         private void Nav_Rec_addNpcTradeGilNode()
         {
+            Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Trade Gil (NPC)", Nav_Rec_GilQuanDefValue, 0, 1, 10000, 1);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_GilQuan = (uint)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
             if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
             {
-                String message = "This route is part of a trip in the reverse direction.\n";
+                string message = "This route is part of a trip in the reverse direction.\n";
                 message += "You cannot use a route in reverse that contains Trade Gil nodes.\n";
                 message += "Please either remove the route from the trip or change the direction to forward.";
                 MessageBox.Show(message);
@@ -4768,98 +4389,179 @@ namespace Iocaine2
             Nav_Rec_CurrentNode.RouteStartName = "";
             Nav_Rec_CurrentNode.RouteEndName = "";
             Nav_Rec_CurrentNode.RouteTags = "";
-            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.NPC_TRADE_GIL;
-            Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_GilQuan;
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.NPC_TRADE_GIL;
+            Nav_Rec_CurrentNode.NodeData = (uint)Nav_Rec_GilQuan;
             Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
             Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeGilToString((UInt32)Nav_Rec_GilQuan);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeGilToString((uint)Nav_Rec_GilQuan);
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
             Nav_Rec_modified = true;
         }
         private void Nav_Rec_addCommandNode()
         {
-            if ((Nav_Rec_CommandText != Nav_Rec_CommandTBDefText) && (Nav_Rec_CommandText != ""))
+            Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("Enter Command", Nav_Rec_CommandTBDefText);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
             {
-                Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
-                Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
-                Nav_Rec_CurrentNode.RouteName = "";
-                Nav_Rec_CurrentNode.RouteStartName = "";
-                Nav_Rec_CurrentNode.RouteEndName = "";
-                Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.COMMAND;
-                Nav_Rec_CurrentNode.NodeData = 0;
-                Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentNode.NodeDetail = Nav_Rec_CommandText;
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
-                Nav_Rec_modified = true;
+                Nav_Rec_CommandText = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                if (Nav_Rec_CommandText == Nav_Rec_CommandTBDefText)
+                {
+                    MessageBox.Show("Please enter the Command text");
+                    return;
+                }
             }
             else
             {
-                MessageBox.Show("Please enter the Command text");
+                return;
             }
-        }
-        private void Nav_Rec_addKeystrokeNode()
-        {
-            if (Nav_Rec_Key_Stroke_CB.SelectedIndex >= 0)
-            {
-                if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
-                {
-                    String message = "This route is part of a trip in the reverse direction.\n";
-                    message += "You cannot use a route in reverse that contains Keystroke nodes.\n";
-                    message += "Please either remove the route from the trip or change the direction to forward.";
-                    MessageBox.Show(message);
-                    return;
-                }
-                Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
-                Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
-                Nav_Rec_CurrentNode.RouteName = "";
-                Nav_Rec_CurrentNode.RouteStartName = "";
-                Nav_Rec_CurrentNode.RouteEndName = "";
-                Nav_Rec_CurrentNode.RouteTags = "";
-                Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-                Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.KEYSTROKE;
-                Nav_Rec_CurrentNode.NodeData = (UInt32)Nav_Rec_Key_Stroke_CB.SelectedIndex;
-                Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentNode.NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
-                Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-                Nav_Rec_refreshRouteLB();
-                Nav_Rec_scrollRouteLB();
-                Nav_Rec_modified = true;
-            }
-        }
-        private void Nav_Rec_addWaitNode()
-        {
+
             Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
             Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
             Nav_Rec_CurrentNode.RouteName = "";
             Nav_Rec_CurrentNode.RouteStartName = "";
             Nav_Rec_CurrentNode.RouteEndName = "";
             Nav_Rec_CurrentNode.RouteTags = "";
-            Nav_Rec_CurrentNode.NodeID = (UInt32)Nav_Rec_CurrentRoute.RouteNodes.Count;
-            Nav_Rec_CurrentNode.NodeType = (Byte)NAV_NODE_TYPE.WAIT;
-            Nav_Rec_CurrentNode.NodeData = (UInt32)(Nav_Rec_Wait * 1000);
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.COMMAND;
+            Nav_Rec_CurrentNode.NodeData = 0;
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_Rec_CommandText;
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            Nav_Rec_modified = true;
+        }
+        private void Nav_Rec_addSequenceNode()
+        {
+            Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Select Build-In Sequence", ActionManager.AllSequenceNames);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            string name;
+            ActionSequence seq;
+            ushort id;
+            if (rslt == DialogResult.OK)
+            {
+                try
+                {
+                    name = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                    if (name == "")
+                    {
+                        return;
+                    }
+                    seq = ActionManager.GetSequence(name);
+                    id = ActionManager.GetSequenceId(name);
+                    if ((seq == null) || (id == ActionManager.InvalidID))
+                    {
+                        return;
+                    }
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.IOC_SEQUENCE;
+            Nav_Rec_CurrentNode.NodeData = id;
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeIocSequenceToString(name);
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            Nav_Rec_modified = true;
+        }
+        private void Nav_Rec_addKeystrokeNode()
+        {
+            Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Select Keystroke", Statics.Constants.Navigation.KeystrokeStrings);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            string selected = "";
+            if (rslt == DialogResult.OK)
+            {
+                selected = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                if (selected == "")
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            if (Nav_checkForTripsWithReverseRoute(Nav_Rec_peekRouteIdInc()))
+            {
+                string message = "This route is part of a trip in the reverse direction.\n";
+                message += "You cannot use a route in reverse that contains Keystroke nodes.\n";
+                message += "Please either remove the route from the trip or change the direction to forward.";
+                MessageBox.Show(message);
+                return;
+            }
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.KEYSTROKE;
+            Nav_Rec_CurrentNode.NodeData = (uint)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
+            Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
+            Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
+            Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
+            Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
+            Nav_Rec_CurrentNode.NodeDetail = Nav_encodeKeystrokeToString(selected);
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            Nav_Rec_modified = true;
+        }
+        private void Nav_Rec_addWaitNode()
+        {
+            Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Wait Time (seconds)", (decimal)Statics.Settings.Navigation.WaitDefValue, 1, 0.1m, 600, 0.5m);
+            Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+            DialogResult rslt = form.ShowDialog(this);
+            if (rslt == DialogResult.OK)
+            {
+                Nav_Rec_Wait = ((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+            }
+            else
+            {
+                return;
+            }
+
+            Nav_Rec_CurrentNode = Statics.Datasets.RoutesDb._UserRoutes.NewUserRoutesRow();
+            Nav_Rec_CurrentNode.RouteID = Nav_Rec_checkRouteIdInc();
+            Nav_Rec_CurrentNode.RouteName = "";
+            Nav_Rec_CurrentNode.RouteStartName = "";
+            Nav_Rec_CurrentNode.RouteEndName = "";
+            Nav_Rec_CurrentNode.RouteTags = "";
+            Nav_Rec_CurrentNode.NodeID = (uint)Nav_Rec_CurrentRoute.RouteNodes.Count;
+            Nav_Rec_CurrentNode.NodeType = (byte)NAV_NODE_TYPE.WAIT;
+            Nav_Rec_CurrentNode.NodeData = (uint)(Nav_Rec_Wait * 1000);
             Nav_Rec_CurrentNode.NodePosX = (float)Nav_Rec_PosX;
             Nav_Rec_CurrentNode.NodePosY = (float)Nav_Rec_PosY;
             Nav_Rec_CurrentNode.NodePosHeading = Nav_Rec_PosH;
             Nav_Rec_CurrentNode.NodeZoneID = Nav_Rec_Zone;
             Nav_Rec_CurrentNode.NodeDetail = Nav_encodeWaitToString(Nav_Rec_Wait);
-            Nav_Rec_CurrentRoute.RouteNodes.Add(Nav_Rec_CurrentNode);
-            Nav_Rec_refreshRouteLB();
-            Nav_Rec_scrollRouteLB();
+            Nav_Rec_insertNode(Nav_Rec_CurrentNode);
+            
             Nav_Rec_modified = true;
         }
         #endregion Node Creation
@@ -4868,7 +4570,7 @@ namespace Iocaine2
         {
             if (Nav_Rec_Route_LB.SelectedItems.Count > 0)
             {
-                int selectedIdx = Nav_Rec_Route_LB.SelectedIndex;
+                int selectedIdx = Nav_Rec_getSelectedRouteLBItem();
                 if (Nav_Rec_CurrentRoute.RouteNodes[selectedIdx].RowState != DataRowState.Detached)
                 {
                     Statics.Datasets.RoutesDb._UserRoutes.Rows.Remove(Nav_Rec_CurrentRoute.RouteNodes[selectedIdx]);
@@ -4881,10 +4583,106 @@ namespace Iocaine2
                     Routes.UserRoutesRow row = Nav_Rec_CurrentRoute.RouteNodes[ii];
                     row.NodeID = (uint)ii;
                 }
-                int topIndex = Nav_Rec_Route_LB.TopIndex;
+                int topIndex = Nav_Rec_getTopIndex_RouteLB();
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_scrollRouteLB(topIndex);
             }
+        }
+        private void Nav_Rec_insertNode(Routes.UserRoutesRow iNode)
+        {
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
+            int insIndex = 0;
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                insIndex = selIndex;
+            }
+            else if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.BELOW_CURSOR)
+            {
+                insIndex = selIndex + 1;
+            }
+            else
+            {
+                insIndex = Nav_Rec_CurrentRoute.RouteNodes.Count;
+            }
+            Nav_Rec_insertNode(insIndex, iNode);
+        }
+        private void Nav_Rec_insertNode(int iIndex, Routes.UserRoutesRow iNode)
+        {
+            if ((iIndex < 0) || (iIndex > Nav_Rec_CurrentRoute.RouteNodes.Count))
+            {
+                LoggingFunctions.Error("Index (" + iIndex + " was out of range.");
+                return;
+            }
+            int topIndex = Nav_Rec_getTopIndex_RouteLB();
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
+            // Cases:
+            // 1. Appending:
+            //  - Always scroll to bottom.
+            // 2. Inserting above.
+            //  - Try to make the top index the selected index - 20 (total items in the LB).
+            // 3. Inserting below.
+            //  - Try to make the top index the selected index.
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.END)
+            {
+                // Always scroll to the bottom.
+                topIndex = iIndex;
+            }
+            else if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                if ((selIndex >= topIndex) && (selIndex < (topIndex + 20)))
+                {
+                    // Do nothing, we're inserting within our window.
+                }
+                else
+                {
+                    // If we're not inside our window, try to make the top index the selected index - 20 (total items in the LB).
+                    if (selIndex < 20)
+                    {
+                        topIndex = 0;
+                    }
+                    else
+                    {
+                        topIndex = selIndex - 20;
+                    }
+                }
+            }
+            else
+            {
+                // Inserting below the selected index.
+                if ((selIndex >= topIndex) && (selIndex < (topIndex + 20 - 1)))
+                {
+                    // Do nothing, we're inserting within our window.
+                }
+                else
+                {
+                    if (selIndex < 20)
+                    {
+                        topIndex = 0;
+                    }
+                    else
+                    {
+                        topIndex = selIndex - 20;
+                    }
+                }
+            }
+
+            Nav_Rec_CurrentRoute.RouteNodes.Insert(iIndex, iNode);
+            int nbNodes = Nav_Rec_CurrentRoute.RouteNodes.Count;
+            for (int ii = iIndex; ii < nbNodes; ii++)
+            {
+                Nav_Rec_CurrentRoute.RouteNodes[ii].NodeID = (uint)ii;
+            }
+            Nav_Rec_refreshRouteLB();
+            Nav_Rec_scrollRouteLB(topIndex);
+            if (Nav_Rec_InsPos == NAV_REC_INSERT_POSITION.ABOVE_CURSOR)
+            {
+                Nav_Rec_selectRouteLBItem(iIndex + 1);
+            }
+            else
+            {
+                Nav_Rec_selectRouteLBItem(iIndex);
+            }
+            return;
         }
         private void Nav_Rec_loadFormWithNodeData(int iIdx)
         {
@@ -4892,52 +4690,190 @@ namespace Iocaine2
             {
                 return;
             }
+            #region Command
             if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
             {
-                Nav_Rec_setCommandTextTBText(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail);
+                //Nav_Rec_setCommandTextTBText(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail);
+                // Launch editor and save the NodeDetail with the updated command.
+                Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("Update Command", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, false, true, false, false);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    Nav_Rec_CommandText = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    if (Nav_Rec_CommandText == Nav_Rec_CommandTBDefText)
+                    {
+                        MessageBox.Show("Please enter the Command text");
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_Rec_CommandText;
+                }
+                else
+                {
+                    return;
+                }
             }
+            #endregion Command
+            #region Iocaine Sequence
+            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.IOC_SEQUENCE)
+            {
+                ushort id = (ushort)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
+                string name = "";
+                if (!Nav_decodeStringToIocSequence(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref name))
+                {
+                    return;
+                }
+                int idx = ActionManager.AllSequenceNames.IndexOf(name);
+                Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Build-In Sequence", ActionManager.AllSequenceNames, idx);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                ActionSequence seq;
+                if (rslt == DialogResult.OK)
+                {
+                    try
+                    {
+                        name = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                        if (name == "")
+                        {
+                            return;
+                        }
+                        seq = ActionManager.GetSequence(name);
+                        id = ActionManager.GetSequenceId(name);
+                        if ((seq == null) || (id == ActionManager.InvalidID))
+                        {
+                            return;
+                        }
+                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = id;
+                        Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeIocSequenceToString(name);
+                    }
+                    catch (Exception e)
+                    {
+                        LoggingFunctions.Error(e.ToString());
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            #endregion Iocaine Sequence
+            #region Keystroke
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
             {
-                String keystroke = "";
-                if (!Nav_decodeStringToKeystroke(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref keystroke))
+                Data.Entry.ComboBoxParameter param = new Data.Entry.ComboBoxParameter("Update Keystroke", Statics.Constants.Navigation.KeystrokeStrings, (int)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                string selected = "";
+                if (rslt == DialogResult.OK)
+                {
+                    selected = ((Data.Entry.ComboBoxReturn)form.ControlReturns[0]).Value;
+                    if (selected == "")
+                    {
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)Statics.Constants.Navigation.KeystrokeStrings.IndexOf(selected);
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(selected);
+                }
+                else
                 {
                     return;
                 }
-                int index = Statics.Constants.Navigation.KeystrokeStrings.IndexOf(keystroke);
-                if (index >= 0)
-                {
-                    Nav_Rec_setKeystrokesCBIndex(index);
-                }
             }
+            #endregion Keystroke
+            #region NPC Target
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
             {
-                String npcName = "";
-                if (!Nav_decodeStringToNpcName(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref npcName))
+                string oldName = "";
+                if (!Nav_decodeStringToNpcName(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref oldName))
                 {
                     return;
                 }
-                Nav_Rec_setNpcNameTBText(npcName);
+                Data.Entry.TextboxParameter param = new Data.Entry.TextboxParameter("Updated NPC", oldName, true, false, true, false);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    string name = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    if ((name == "") || (name == Nav_Rec_NpcNameTBDefText))
+                    {
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeNameToString(name);
+                }
+                else
+                {
+                    return;
+                }
             }
+            #endregion NPC Target
+            #region Trade Gil
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
             {
-                uint gilQuan = Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData;
-                Nav_Rec_setGilQuanValue((double)gilQuan);
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
-            {
-                String itemName = "";
-                byte itemQuan = 0;
-                if (!Nav_decodeStringToItem(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref itemName, ref itemQuan))
+                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Updated Gil Amount", Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData, 0, 1, 10000, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeGilToString(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData);
+                }
+                else
                 {
                     return;
                 }
-                Nav_Rec_setItemNametTBText(itemName);
-                Nav_Rec_setItemQuanValue((double)itemQuan);
             }
+            #endregion Trade Gil
+            #region Trade Item
+            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
+            {
+                string oldItemName = "";
+                byte oldItemQuan = 0;
+                if (!Nav_decodeStringToItem(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref oldItemName, ref oldItemQuan))
+                {
+                    return;
+                }
+                Data.Entry.TextboxParameter param_tb = new Data.Entry.TextboxParameter("Updated Item", oldItemName, true, true, false, false);
+                Data.Entry.UpDownParameter param_ud = new Data.Entry.UpDownParameter("Updated Quantity", oldItemQuan, 0, 1, 99, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param_tb, param_ud });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    string itemName = ((Data.Entry.TextboxReturn)form.ControlReturns[0]).Value;
+                    byte itemQuan = (byte)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                    if ((itemName == Nav_Rec_ItemNameTBDefText) || (itemName == ""))
+                    {
+                        MessageBox.Show("Please enter an Item name");
+                        return;
+                    }
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (uint)itemQuan;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeItemToString(itemName, itemQuan);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            #endregion Trade Item
+            #region Wait
             else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.WAIT)
             {
-                Nav_Rec_setWaitValue((double)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData / (double)1000);
+                Data.Entry.UpDownParameter param = new Data.Entry.UpDownParameter("Updated Time (seconds)", (decimal)Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData/1000, 1, 0.1m, 600, 0.5m);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { param });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
+                {
+                    decimal time = ((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData =  (uint)(time * 1000);
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeWaitToString(time);
+                }
+                else
+                {
+                    return;
+                }
             }
+            #endregion Wait
+            #region Position
             else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
                 || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_END)
@@ -4946,88 +4882,35 @@ namespace Iocaine2
                 double posx = 0;
                 double posy = 0;
                 float posh = 0;
-                UInt16 zone = 0;
+                ushort zone = 0;
                 if (!Nav_decodeStringToPos(Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail, ref posx, ref posy, ref posh, ref zone))
                 {
                     return;
                 }
-                Nav_Rec_setPosXValue(posx);
-                Nav_Rec_setPosYValue(posy);
-                Nav_Rec_setPosHValue(posh);
-                Nav_Rec_setPosZoneValue(zone);
-                Nav_Rec_Zone = zone;
-            }
-        }
-        private void Nav_Rec_saveNode(int iIdx)
-        {
-            if (iIdx < 0)
-            {
-                return;
-            }
-            if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
-            {
-                if ((Nav_Rec_CommandText != Nav_Rec_CommandTBDefText) && (Nav_Rec_CommandText != ""))
+                Data.Entry.UpDownParameter paramX = new Data.Entry.UpDownParameter("Updated X Value", (decimal)posx, 1, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramY = new Data.Entry.UpDownParameter("Updated Y Value", (decimal)posy, 1, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramH = new Data.Entry.UpDownParameter("Updated Heading Value", (decimal)posh, 2, -2000, 2000, 0.1m);
+                Data.Entry.UpDownParameter paramZone = new Data.Entry.UpDownParameter("Updated Zone ID", (decimal)zone, 0, 1, 511, 1);
+                Data.Entry.DataEntry form = new Data.Entry.DataEntry(this, new List<Data.Entry.ControlParameter> { paramX, paramY, paramH, paramZone });
+                DialogResult rslt = form.ShowDialog(this);
+                if (rslt == DialogResult.OK)
                 {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_Rec_CommandText;
+                    posx = (double)((Data.Entry.UpDownReturn)form.ControlReturns[0]).Value;
+                    posy = (double)((Data.Entry.UpDownReturn)form.ControlReturns[1]).Value;
+                    posh = (float)((Data.Entry.UpDownReturn)form.ControlReturns[2]).Value;
+                    zone = (ushort)((Data.Entry.UpDownReturn)form.ControlReturns[3]).Value;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosX = (float)posx;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosY = (float)posy;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosHeading = posh;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeZoneID = zone;
+                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodePosToString(posx, posy, posh, zone);
                 }
                 else
                 {
-                    MessageBox.Show("Please enter the Command text");
                     return;
                 }
             }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.KEYSTROKE)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Nav_Rec_Key_Stroke_CB.SelectedIndex;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeKeystrokeToString(Statics.Constants.Navigation.KeystrokeStrings[Nav_Rec_Key_Stroke_CB.SelectedIndex]);
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TARGET)
-            {
-                if ((Nav_Rec_NpcName != Nav_Rec_NpcNameTBDefText) && (Nav_Rec_NpcName != ""))
-                {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeNameToString(Nav_Rec_NpcName);
-                }
-                else
-                {
-                    MessageBox.Show("Please enter an NPC name");
-                    return;
-                }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_GIL)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Nav_Rec_GilQuan;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeGilToString((UInt32)Nav_Rec_GilQuan);
-                
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.NPC_TRADE_ITEM)
-            {
-                if ((Nav_Rec_ItemName != Nav_Rec_ItemNameTBDefText) && (Nav_Rec_ItemName != ""))
-                {
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)Nav_Rec_ItemQuan;
-                    Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeItemToString(Nav_Rec_ItemName, (Byte)Nav_Rec_ItemQuan);
-                }
-                else
-                {
-                    MessageBox.Show("Please enter an Item name");
-                    return;
-                }
-            }
-            else if (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.WAIT)
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeData = (UInt32)(Nav_Rec_Wait * 1000);
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodeWaitToString(Nav_Rec_Wait);
-            }
-            else if ((Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_END)
-                || (Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
-            {
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosX = (float)Nav_Rec_PosX;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosY = (float)Nav_Rec_PosY;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodePosHeading = Nav_Rec_PosH;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeZoneID = Nav_Rec_Zone;
-                Nav_Rec_CurrentRoute.RouteNodes[iIdx].NodeDetail = Nav_encodePosToString(Nav_Rec_PosX, Nav_Rec_PosY, Nav_Rec_PosH, Nav_Rec_Zone);
-            }
+            #endregion Position
             Nav_Rec_refreshRouteLB();
             Nav_Rec_modified = true;
         }
@@ -5057,8 +4940,8 @@ namespace Iocaine2
                     return;
                 }
                 LoggingFunctions.Debug("TopNAV::Nav_Rec_loadRoute: Loading route routeId " + routeId + ".", LoggingFunctions.DBG_SCOPE.TOP);
-                String filter = "RouteID=" + routeId.ToString();
-                String orderBy = "NodeID";
+                string filter = "RouteID=" + routeId.ToString();
+                string orderBy = "NodeID";
                 Routes.UserRoutesRow[] rows = (Routes.UserRoutesRow[])Statics.Datasets.RoutesDb._UserRoutes.Select(filter, orderBy);
                 if (rows.Length == 0)
                 {
@@ -5072,8 +4955,6 @@ namespace Iocaine2
                 if (Nav_Rec_CurrentRoute.RouteNodes.Count > 0)
                 {
                     Nav_Rec_setRouteNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteName);
-                    Nav_Rec_setRouteStartNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteStartName);
-                    Nav_Rec_setRouteEndNameTBText(Nav_Rec_CurrentRoute.RouteNodes[0].RouteEndName);
                     //Since we added tags after initial beta release, we need to check for a null value first.
                     if (Nav_Rec_CurrentRoute.RouteNodes[0].IsRouteTagsNull())
                     {
@@ -5106,7 +4987,7 @@ namespace Iocaine2
             {
                 return false;
             }
-            String tagsParam;
+            string tagsParam;
             if (Nav_Rec_RouteTags == Nav_Rec_RouteTagsTBDefText)
             {
                 tagsParam = "";
@@ -5120,7 +5001,7 @@ namespace Iocaine2
                 MessageBox.Show("Tags cannot contain the ' (apostrophe) character.");
                 return false;
             }
-            if (Nav_formatRoute(Nav_Rec_CurrentRoute, Nav_Rec_RouteName, Nav_Rec_RouteStartName, Nav_Rec_RouteEndName, tagsParam))
+            if (Nav_formatRoute(Nav_Rec_CurrentRoute, Nav_Rec_RouteName, tagsParam))
             {
                 Nav_Rec_refreshRouteLB();
                 return true;
@@ -5156,7 +5037,7 @@ namespace Iocaine2
             Nav_insertUserRouteName(Nav_Rec_CurrentRoute.RouteName, Nav_Rec_CurrentRoute.RouteID, Nav_Rec_CurrentRoute.RouteNodes[0].RouteTags);
             Nav_mergeRouteZonesIntoMap(Nav_Rec_CurrentRoute);
         }
-        private void Nav_Rec_deleteRoute(String iRouteName)
+        private void Nav_Rec_deleteRoute(string iRouteName)
         {
             if (!Nav_userRouteNames.Contains(iRouteName))
             {
@@ -5234,8 +5115,6 @@ namespace Iocaine2
             {
                 Nav_Rec_clearGuiParallelValues();
                 Nav_Rec_loadTextBoxDefText();
-                Nav_Rec_loadUpDnDefValues();
-                Nav_Rec_setKeystrokesCBIndex(0);
                 Nav_Rec_CurrentRoute.Clear();
                 Nav_Rec_refreshRouteLB();
                 Nav_Rec_existingRouteLoaded = false;
@@ -5282,22 +5161,22 @@ namespace Iocaine2
         {
             if (ChangeMonitor.LoggedIn == true)
             {
-                Nav_Rec_setPosXValue(MemReads.Self.Position.get_x());
-                Nav_Rec_setPosYValue(MemReads.Self.Position.get_y());
-                Nav_Rec_setPosHValue(MemReads.Self.Position.get_heading());
+                Nav_Rec_PosX = MemReads.Self.Position.get_x();
+                Nav_Rec_PosY = MemReads.Self.Position.get_y();
+                Nav_Rec_PosH = MemReads.Self.Position.get_heading();
             }
         }
         private void Nav_Rec_clearXYHUpDn()
         {
-            Nav_Rec_setPosXValue(0d);
-            Nav_Rec_setPosYValue(0d);
-            Nav_Rec_setPosHValue(0f);
+            Nav_Rec_PosX = 0d;
+            Nav_Rec_PosY = 0d;
+            Nav_Rec_PosH = 0f;
         }
         private bool Nav_Rec_distIsGreater(float iLastX, float iLastY)
         {
             //d = sqrt ( ( x1 - x0 )^2 + ( y1 - y0 )^2 )
             double dist = Math.Sqrt(Math.Pow(Nav_Rec_PosX - iLastX, 2) + Math.Pow(Nav_Rec_PosY - iLastY, 2));
-            if (dist >= Nav_Rec_MinDist)
+            if (dist >= Statics.Settings.Navigation.MinDistDefValue)
             {
                 if ((Nav_Rec_PosX == 0) && (Nav_Rec_PosY == 0) && (Nav_Rec_PosH == 0))
                 {
@@ -5318,8 +5197,8 @@ namespace Iocaine2
             //Go backwards thru the route until we find a position node.
             //If the distance from that node to where we are now is less than
             //the min distance, set the heading of that node to our current heading.
-            int nbNodes = Nav_Rec_CurrentRoute.RouteNodes.Count;
-            for (int ii = nbNodes - 1; ii >= 0; ii--)
+            int selIndex = Nav_Rec_getSelectedRouteLBItem();
+            for (int ii = selIndex - 1; ii >= 0; ii--)
             {
                 if ((Nav_Rec_CurrentRoute.RouteNodes[ii].NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
                     || (Nav_Rec_CurrentRoute.RouteNodes[ii].NodeType == (ushort)NAV_NODE_TYPE.POS_START)
@@ -5346,13 +5225,12 @@ namespace Iocaine2
             //a new point after the whole interval.
             //So we'll have an outter loop that runs every 100ms and a counter
             //that is checked to see if we want to record this time thru.
-            uint loopsPerRecording = (uint)Nav_Rec_Interval / Nav_Rec_xyhUpdatePeriod;
+            uint loopsPerRecording = (uint)Statics.Settings.Navigation.IntervalDefValue / Nav_Rec_xyhUpdatePeriod;
             uint loopCounter = 0;
             bool firstTimeThru = true;
             float lastX = MemReads.Self.Position.get_x();
             float lastY = MemReads.Self.Position.get_y();
-            UInt16 lastZone = MemReads.Self.get_zone_id();
-            Nav_Rec_setPosZoneValue(lastZone);
+            ushort lastZone = MemReads.Self.get_zone_id();
             while (Nav_Rec_State == NAV_REC_STATE.RUNNING)
             {
                 if (ChangeMonitor.LoggedIn == false)
@@ -5365,7 +5243,6 @@ namespace Iocaine2
                     Nav_Rec_clearXYHUpDn();
                     Nav_Rec_Zone = 0;
                     lastZone = 0;
-                    Nav_Rec_setPosZoneValue(0);
                     IocaineFunctions.delay(Nav_Rec_xyhUpdatePeriod);
                     continue;
                 }
@@ -5382,10 +5259,6 @@ namespace Iocaine2
                     {
                         IocaineFunctions.delay(1000);
                         continue;
-                    }
-                    if (Nav_Rec_Zone != lastZone)
-                    {
-                        Nav_Rec_setPosZoneValue(Nav_Rec_Zone);
                     }
                     if (firstTimeThru == true)
                     {
@@ -5418,6 +5291,7 @@ namespace Iocaine2
             }
             //Check the distance from the last point to where we are.
             //If it's greater than the min distance, record a node.
+            Nav_Rec_updateXYHUpDn();
             if (Nav_Rec_distIsGreater(lastX, lastY) == true)
             {
                 Nav_Rec_addPosNode();
@@ -5453,50 +5327,6 @@ namespace Iocaine2
             Nav_Rec_RouteName = Nav_Rec_Route_Name_TB.Text;
         }
         #endregion Route Name TB
-        #region Route Start Name TB
-        private void Nav_Rec_Route_Start_Name_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_Start_Name_TB.Text == Nav_Rec_RouteStartNameTBDefText)
-            {
-                Nav_Rec_Route_Start_Name_TB.Text = "";
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Route_Start_Name_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_Start_Name_TB.Text == "")
-            {
-                Nav_Rec_Route_Start_Name_TB.Text = Nav_Rec_RouteStartNameTBDefText;
-                Nav_Rec_Route_Start_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Route_Start_Name_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_RouteStartName = Nav_Rec_Route_Start_Name_TB.Text;
-        }
-        #endregion Route Start Name TB
-        #region Route End Name TB
-        private void Nav_Rec_Route_End_Name_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_End_Name_TB.Text == Nav_Rec_RouteEndNameTBDefText)
-            {
-                Nav_Rec_Route_End_Name_TB.Text = "";
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Route_End_Name_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Route_End_Name_TB.Text == "")
-            {
-                Nav_Rec_Route_End_Name_TB.Text = Nav_Rec_RouteEndNameTBDefText;
-                Nav_Rec_Route_End_Name_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Route_End_Name_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_RouteEndName = Nav_Rec_Route_End_Name_TB.Text;
-        }
-        #endregion Route End Name TB
         #region Route Tags TB
         private void Nav_Rec_Route_Tags_TB_TextChanged(object sender, EventArgs e)
         {
@@ -5519,149 +5349,7 @@ namespace Iocaine2
             }
         }
         #endregion Route Tags TB
-        #region Target NPC TB
-        private void Nav_Rec_Target_NPC_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Target_NPC_TB.Text == Nav_Rec_NpcNameTBDefText)
-            {
-                Nav_Rec_Target_NPC_TB.Text = "";
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Target_NPC_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Target_NPC_TB.Text == "")
-            {
-                Nav_Rec_Target_NPC_TB.Text = Nav_Rec_NpcNameTBDefText;
-                Nav_Rec_Target_NPC_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Target_NPC_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_NpcName = Nav_Rec_Target_NPC_TB.Text;
-        }
-        private void Nav_Rec_Target_NPC_TB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTargetNode();
-            }
-        }
-        #endregion Target NPC TB
-        #region Command Text TB
-        private void Nav_Rec_Command_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Command_TB.Text == Nav_Rec_CommandTBDefText)
-            {
-                Nav_Rec_Command_TB.Text = "";
-                Nav_Rec_Command_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Command_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Command_TB.Text == "")
-            {
-                Nav_Rec_Command_TB.Text = Nav_Rec_CommandTBDefText;
-                Nav_Rec_Command_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Command_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_CommandText = Nav_Rec_Command_TB.Text;
-        }
-        private void Nav_Rec_Command_TB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addCommandNode();
-            }
-        }
-        #endregion Command Text TB
-        #region Trade Item TB
-        private void Nav_Rec_Trade_Item_TB_Enter(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Trade_Item_TB.Text == Nav_Rec_ItemNameTBDefText)
-            {
-                Nav_Rec_Trade_Item_TB.Text = "";
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Black;
-            }
-        }
-        private void Nav_Rec_Trade_Item_TB_Leave(object sender, EventArgs e)
-        {
-            if (Nav_Rec_Trade_Item_TB.Text == "")
-            {
-                Nav_Rec_Trade_Item_TB.Text = Nav_Rec_ItemNameTBDefText;
-                Nav_Rec_Trade_Item_TB.ForeColor = Color.Gray;
-            }
-        }
-        private void Nav_Rec_Trade_Item_TB_TextChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_ItemName = Nav_Rec_Trade_Item_TB.Text;
-        }
-        private void Nav_Rec_Trade_Item_TB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeItemNode();
-            }
-        }
-        #endregion Trade Item TB
         #endregion Text Boxes
-        #region UpDn Boxes
-        private void Nav_Rec_Interval_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_Interval = (double)Nav_Rec_Interval_UpDn.Value;
-        }
-        private void Nav_Rec_Min_Dist_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_MinDist = (double)Nav_Rec_Min_Dist_UpDn.Value;
-        }
-        private void Nav_Rec_Wait_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_Wait = (double)Nav_Rec_Wait_UpDn.Value;
-        }
-        private void Nav_Rec_Wait_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addWaitNode();
-            }
-        }
-        private void Nav_Rec_Trade_Item_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_ItemQuan = (double)Nav_Rec_Trade_Item_UpDn.Value;
-        }
-        private void Nav_Rec_Trade_Item_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeItemNode();
-            }
-        }
-        private void Nav_Rec_Trade_Gil_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_GilQuan = (double)Nav_Rec_Trade_Gil_UpDn.Value;
-        }
-        private void Nav_Rec_Trade_Gil_UpDn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addNpcTradeGilNode();
-            }
-        }
-        private void Nav_Rec_Position_X_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosX = (double)Nav_Rec_Position_X_UpDn.Value;
-        }
-        private void Nav_Rec_Position_Y_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosY = (double)Nav_Rec_Position_Y_UpDn.Value;
-        }
-        private void Nav_Rec_Position_H_UpDn_ValueChanged(object sender, EventArgs e)
-        {
-            Nav_Rec_PosH = (float)Nav_Rec_Position_H_UpDn.Value;
-        }
-        #endregion UpDn Boxes
         #region Buttons
         private void Nav_Rec_Target_NPC_Button_Click(object sender, EventArgs e)
         {
@@ -5675,6 +5363,10 @@ namespace Iocaine2
         {
             Nav_Rec_addCommandNode();
         }
+        private void Nav_Rec_Sequence_Button_Click(object sender, EventArgs e)
+        {
+            Nav_Rec_addSequenceNode();
+        }
         private void Nav_Rec_Key_Stroke_Button_Click(object sender, EventArgs e)
         {
             Nav_Rec_addKeystrokeNode();
@@ -5686,10 +5378,6 @@ namespace Iocaine2
         private void Nav_Rec_Trade_Gil_Button_Click(object sender, EventArgs e)
         {
             Nav_Rec_addNpcTradeGilNode();
-        }
-        private void Nav_Rec_Save_Point_Button_Click(object sender, EventArgs e)
-        {
-            Nav_Rec_addPosNode();
         }
         private void Nav_Rec_Delete_Node_Button_Click(object sender, EventArgs e)
         {
@@ -5736,27 +5424,25 @@ namespace Iocaine2
         {
             if (Nav_Rec_Delete_CB.SelectedIndex >= 0)
             {
-                Nav_Rec_deleteRoute((String)Nav_Rec_Delete_CB.SelectedItem);
-            }
-        }
-        private void Nav_Rec_Update_Node_Button_Click(object sender, EventArgs e)
-        {
-            //If we're not recording, update the selected node with the
-            //current data on the form.
-            if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
-            {
-                Nav_Rec_saveNode(Nav_Rec_Route_LB.SelectedIndex);
+                Nav_Rec_deleteRoute((string)Nav_Rec_Delete_CB.SelectedItem);
             }
         }
         #endregion Buttons
-        #region ComboBoxes
-        private void Nav_Rec_Key_Stroke_CB_KeyPress(object sender, KeyPressEventArgs e)
+        #region Radio Buttons
+        private void Nav_Rec_InsertAbove_RB_CheckedChanged(object sender, EventArgs e)
         {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                Nav_Rec_addKeystrokeNode();
-            }
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.ABOVE_CURSOR;
         }
+        private void Nav_Rec_InsertBelow_RB_CheckedChanged(object sender, EventArgs e)
+        {
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.BELOW_CURSOR;
+        }
+        private void Nav_Rec_AppendToEnd_RB_CheckedChanged(object sender, EventArgs e)
+        {
+            Nav_Rec_InsPos = NAV_REC_INSERT_POSITION.END;
+        }
+        #endregion Radio Buttons
+        #region ComboBoxes
         private void Nav_Rec_Delete_CB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Nav_Rec_Delete_CB.SelectedIndex >= 0)
@@ -5766,64 +5452,33 @@ namespace Iocaine2
         }
         #endregion ComboBoxes
         #region List Boxes
+        // 1. Click used to load form with data.
+        //    - Click now does nothing.
+        // 2. Double click used to run the node.
+        //    - Double click now edits the node.
+        // 3. Right click used to do nothing.
+        //    - Right click now runs the node.
+
         private void Nav_Rec_Route_LB_Click(object sender, EventArgs e)
         {
-            //On click we want to see if we're currently recording.
+            // Does nothing here, starts the drag and drop in the MouseDown event.
+        }
+        private void Nav_Rec_Route_LB_DoubleClick(object sender, EventArgs e)
+        {
+            //On double click we want to see if we're currently recording.
             //If not, we'll load the form with the information from
             //the selected node.
             if (Nav_Rec_State == NAV_REC_STATE.STOPPED)
             {
-                Nav_Rec_loadFormWithNodeData(Nav_Rec_Route_LB.SelectedIndex);
+                int topIdx = Nav_Rec_getTopIndex_RouteLB();
+                int selIdx = Nav_Rec_getSelectedRouteLBItem();
+                Nav_Rec_loadFormWithNodeData(selIdx);
+                Nav_Rec_setTopIndex_RouteLB(topIdx);
+                Nav_Rec_selectRouteLBItem(selIdx);
             }
             else
             {
                 MessageBox.Show("Please stop recording to enable route editing.");
-            }
-        }
-        private void Nav_Rec_Route_LB_DoubleClick(object sender, EventArgs e)
-        {
-            //On double click we want to perform the action of the node we
-            //clicked on.  If it's a command we should probably prompt the
-            //user if they actually want to execute the command. Or at least
-            //prompt if it's a teleportation command.
-            //We should also update the status box.
-
-            if (Navigation.ProcessingStatus != Navigation.PROCESSING_STATUS.STOPPED)
-            {
-                MessageBox.Show("You cannot perform that action while a navigation process is running.", "Please stop first", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return;
-            }
-            if (Nav_Rec_Route_LB.SelectedIndex >= 0)
-            {
-                Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_Route_LB.SelectedIndex];
-                if (node.NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
-                {
-                    DialogResult promptResult = MessageBox.Show("Do you really want to perform this command?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (promptResult == System.Windows.Forms.DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                else if ((node.NodeType == (ushort)NAV_NODE_TYPE.POS_END)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_START)
-                    || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
-                {
-                    UInt16 zoneId = MemReads.Self.get_zone_id();
-                    if (zoneId != node.NodeZoneID)
-                    {
-                        MessageBox.Show("Node was not in this zone.", "Not in Zone.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    float distToNode = (float)Nav_getDistance(node.NodePosX, MemReads.Self.Position.get_x(),
-                                                              node.NodePosY, MemReads.Self.Position.get_y());
-                    if (distToNode > Statics.Constants.Navigation.MaxDistForRouteStart)
-                    {
-                        MessageBox.Show("Node was not within range.", "Not in Range.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-                Navigation.ProcessNode(node);
             }
         }
         private void Nav_Rec_Route_LB_MouseDown(object sender, MouseEventArgs e)
@@ -5832,9 +5487,67 @@ namespace Iocaine2
             if (idx >= 0)
             {
                 //An item was selected, start the drag/drop.
-                if (e.Clicks == 1)
+                if ((e.Clicks == 1) && (e.Button == MouseButtons.Left))
                 {
                     Nav_Rec_Route_LB.DoDragDrop(Nav_Rec_Route_LB.SelectedItem, DragDropEffects.Move | DragDropEffects.Scroll);
+                }
+                else if ((e.Clicks == 1) && (e.Button == MouseButtons.Right))
+                {
+                    // Need to select the node under the cursor here.
+                    // Right clicking does not do this automatically.
+                    int idxUnderCursor = Nav_Rec_Route_LB.IndexFromPoint(e.Location);
+                    if (idxUnderCursor == ListBox.NoMatches)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Nav_Rec_selectRouteLBItem(idxUnderCursor);
+                    }
+
+                    //On right click we want to perform the action of the node we
+                    //clicked on.  If it's a command we should probably prompt the
+                    //user if they actually want to execute the command. Or at least
+                    //prompt if it's a teleportation command.
+                    //We should also update the status box.
+
+                    if (Navigation.ProcessingStatus != Navigation.PROCESSING_STATUS.STOPPED)
+                    {
+                        MessageBox.Show("You cannot perform that action while a navigation process is running.", "Please stop first", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return;
+                    }
+                    if (Nav_Rec_getSelectedRouteLBItem() >= 0)
+                    {
+                        Routes.UserRoutesRow node = Nav_Rec_CurrentRoute.RouteNodes[Nav_Rec_getSelectedRouteLBItem()];
+                        if (node.NodeType == (ushort)NAV_NODE_TYPE.COMMAND)
+                        {
+                            DialogResult promptResult = MessageBox.Show("Do you really want to perform this command?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (promptResult == System.Windows.Forms.DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                        else if ((node.NodeType == (ushort)NAV_NODE_TYPE.POS_END)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_NODE)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_START)
+                            || (node.NodeType == (ushort)NAV_NODE_TYPE.POS_ZONE))
+                        {
+                            ushort zoneId = MemReads.Self.get_zone_id();
+                            if (zoneId != node.NodeZoneID)
+                            {
+                                MessageBox.Show("Node was not in this zone.", "Not in Zone.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            float distToNode = (float)Nav_getDistance(node.NodePosX, MemReads.Self.Position.get_x(),
+                                                                      node.NodePosY, MemReads.Self.Position.get_y());
+                            if (distToNode > Statics.Constants.Navigation.MaxDistForRouteStart)
+                            {
+                                MessageBox.Show("Node was not within range.", "Not in Range.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                        Navigation.ProcessNode(node);
+                    }
                 }
             }
             else
@@ -5863,6 +5576,14 @@ namespace Iocaine2
                 Nav_Rec_CurrentRoute.RouteNodes[ii].NodeID = (uint)ii;
             }
             Nav_Rec_refreshRouteLB();
+        }
+        private void Nav_Rec_Route_LB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Delete) || (e.KeyCode == Keys.Back))
+            {
+                Nav_Rec_deleteNode();
+                e.Handled = true;
+            }
         }
         #endregion List Boxes
         #endregion Event Handlers

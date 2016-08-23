@@ -114,6 +114,7 @@
             this.POS_NE_Button = new System.Windows.Forms.Button();
             this.POS_N_Button = new System.Windows.Forms.Button();
             this.Alert_Tab = new System.Windows.Forms.TabPage();
+            this.ALR_LoopMessageChkB = new System.Windows.Forms.CheckBox();
             this.ALR_AlwaysAlertChkB = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ALR_PCInRangeLabel = new System.Windows.Forms.Label();
@@ -159,47 +160,27 @@
             this.Nav_Prc_Trip_CreationTV_Label = new System.Windows.Forms.Label();
             this.Nav_Prc_RouteTV_Label = new System.Windows.Forms.Label();
             this.Nav_User_Sub_Tab = new System.Windows.Forms.TabPage();
+            this.Nav_Rec_AppendToEnd_RB = new System.Windows.Forms.RadioButton();
+            this.Nav_Rec_InsertBelow_RB = new System.Windows.Forms.RadioButton();
+            this.Nav_Rec_InsertAbove_RB = new System.Windows.Forms.RadioButton();
+            this.Nav_Rec_Sequence_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_Tags_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Tags_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Update_Node_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Position_H_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Position_Y_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Position_X_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Start_Stop_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Zone_Text = new System.Windows.Forms.Label();
-            this.Nav_Rec_Zone_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Position_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Delete_Node_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Save_Point_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Route_LB = new System.Windows.Forms.ListBox();
             this.Nav_Rec_Delete_CB = new System.Windows.Forms.ComboBox();
             this.Nav_Rec_Delete_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Clear_Button = new System.Windows.Forms.Button();
             this.Nav_Rec_Save_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Trade_Gil_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Trade_Gil_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Trade_Item_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Trade_Item_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Trade_Item_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Key_Stroke_CB = new System.Windows.Forms.ComboBox();
             this.Nav_Rec_Key_Stroke_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Command_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Command_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Wait_UpDn = new System.Windows.Forms.NumericUpDown();
             this.Nav_Rec_Wait_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Target_NPC_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Target_NPC_Button = new System.Windows.Forms.Button();
-            this.Nav_Rec_Min_Dist_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Interval_UpDn = new System.Windows.Forms.NumericUpDown();
-            this.Nav_Rec_Route_End_Name_TB = new System.Windows.Forms.TextBox();
-            this.Nav_Rec_Route_Start_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Name_TB = new System.Windows.Forms.TextBox();
             this.Nav_Rec_Route_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Wait_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Min_Dist_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Interval_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Route_End_Name_Label = new System.Windows.Forms.Label();
-            this.Nav_Rec_Route_Start_Name_Label = new System.Windows.Forms.Label();
             this.Nav_Rec_Route_Name_Label = new System.Windows.Forms.Label();
             this.Helpers_Tab = new System.Windows.Forms.TabPage();
             this.Helpers_Tab_Control = new System.Windows.Forms.TabControl();
@@ -675,7 +656,6 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.ALR_LoopMessageChkB = new System.Windows.Forms.CheckBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -691,14 +671,6 @@
             this.Nav_Nav_Sub_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Prc_Loop_UpDn)).BeginInit();
             this.Nav_User_Sub_Tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Min_Dist_UpDn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Interval_UpDn)).BeginInit();
             this.Helpers_Tab.SuspendLayout();
             this.Helpers_Tab_Control.SuspendLayout();
             this.Trader_Tab.SuspendLayout();
@@ -1793,6 +1765,17 @@
             this.Alert_Tab.Text = "Alert";
             this.Alert_Tab.UseVisualStyleBackColor = true;
             // 
+            // ALR_LoopMessageChkB
+            // 
+            this.ALR_LoopMessageChkB.AutoSize = true;
+            this.ALR_LoopMessageChkB.Location = new System.Drawing.Point(458, 25);
+            this.ALR_LoopMessageChkB.Name = "ALR_LoopMessageChkB";
+            this.ALR_LoopMessageChkB.Size = new System.Drawing.Size(50, 17);
+            this.ALR_LoopMessageChkB.TabIndex = 45;
+            this.ALR_LoopMessageChkB.Text = "Loop";
+            this.ALR_LoopMessageChkB.UseVisualStyleBackColor = true;
+            this.ALR_LoopMessageChkB.CheckedChanged += new System.EventHandler(this.ALR_LoopMessageChkB_CheckedChanged);
+            // 
             // ALR_AlwaysAlertChkB
             // 
             this.ALR_AlwaysAlertChkB.AutoSize = true;
@@ -2291,47 +2274,27 @@
             // 
             // Nav_User_Sub_Tab
             // 
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_AppendToEnd_RB);
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_InsertBelow_RB);
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_InsertAbove_RB);
+            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Sequence_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Tags_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Update_Node_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_H_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_Y_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_X_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Start_Stop_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Zone_Text);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Zone_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Position_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Node_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Save_Point_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_LB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_CB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Delete_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Clear_Button);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Save_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Gil_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Gil_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Trade_Item_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_CB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Key_Stroke_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Command_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_UpDn);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Target_NPC_Button);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Min_Dist_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Interval_UpDn);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_End_Name_TB);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Start_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_TB);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Wait_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Min_Dist_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Interval_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_End_Name_Label);
-            this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Start_Name_Label);
             this.Nav_User_Sub_Tab.Controls.Add(this.Nav_Rec_Route_Name_Label);
             this.Nav_User_Sub_Tab.Location = new System.Drawing.Point(4, 25);
             this.Nav_User_Sub_Tab.Name = "Nav_User_Sub_Tab";
@@ -2341,10 +2304,58 @@
             this.Nav_User_Sub_Tab.Text = "Recording";
             this.Nav_User_Sub_Tab.UseVisualStyleBackColor = true;
             // 
+            // Nav_Rec_AppendToEnd_RB
+            // 
+            this.Nav_Rec_AppendToEnd_RB.AutoSize = true;
+            this.Nav_Rec_AppendToEnd_RB.Checked = true;
+            this.Nav_Rec_AppendToEnd_RB.Location = new System.Drawing.Point(284, 325);
+            this.Nav_Rec_AppendToEnd_RB.Name = "Nav_Rec_AppendToEnd_RB";
+            this.Nav_Rec_AppendToEnd_RB.Size = new System.Drawing.Size(96, 17);
+            this.Nav_Rec_AppendToEnd_RB.TabIndex = 46;
+            this.Nav_Rec_AppendToEnd_RB.TabStop = true;
+            this.Nav_Rec_AppendToEnd_RB.Text = "Append to End";
+            this.Nav_Rec_AppendToEnd_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_AppendToEnd_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_AppendToEnd_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_AppendToEnd_RB_CheckedChanged);
+            // 
+            // Nav_Rec_InsertBelow_RB
+            // 
+            this.Nav_Rec_InsertBelow_RB.AutoSize = true;
+            this.Nav_Rec_InsertBelow_RB.Location = new System.Drawing.Point(284, 307);
+            this.Nav_Rec_InsertBelow_RB.Name = "Nav_Rec_InsertBelow_RB";
+            this.Nav_Rec_InsertBelow_RB.Size = new System.Drawing.Size(116, 17);
+            this.Nav_Rec_InsertBelow_RB.TabIndex = 45;
+            this.Nav_Rec_InsertBelow_RB.Text = "Insert Below Cursor";
+            this.Nav_Rec_InsertBelow_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_InsertBelow_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_InsertBelow_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_InsertBelow_RB_CheckedChanged);
+            // 
+            // Nav_Rec_InsertAbove_RB
+            // 
+            this.Nav_Rec_InsertAbove_RB.AutoSize = true;
+            this.Nav_Rec_InsertAbove_RB.Location = new System.Drawing.Point(284, 289);
+            this.Nav_Rec_InsertAbove_RB.Name = "Nav_Rec_InsertAbove_RB";
+            this.Nav_Rec_InsertAbove_RB.Size = new System.Drawing.Size(118, 17);
+            this.Nav_Rec_InsertAbove_RB.TabIndex = 44;
+            this.Nav_Rec_InsertAbove_RB.Text = "Insert Above Cursor";
+            this.Nav_Rec_InsertAbove_RB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Nav_Rec_InsertAbove_RB.UseVisualStyleBackColor = true;
+            this.Nav_Rec_InsertAbove_RB.CheckedChanged += new System.EventHandler(this.Nav_Rec_InsertAbove_RB_CheckedChanged);
+            // 
+            // Nav_Rec_Sequence_Button
+            // 
+            this.Nav_Rec_Sequence_Button.Location = new System.Drawing.Point(168, 128);
+            this.Nav_Rec_Sequence_Button.Name = "Nav_Rec_Sequence_Button";
+            this.Nav_Rec_Sequence_Button.Size = new System.Drawing.Size(75, 23);
+            this.Nav_Rec_Sequence_Button.TabIndex = 43;
+            this.Nav_Rec_Sequence_Button.Text = "Sequence";
+            this.Nav_Rec_Sequence_Button.UseVisualStyleBackColor = true;
+            this.Nav_Rec_Sequence_Button.Click += new System.EventHandler(this.Nav_Rec_Sequence_Button_Click);
+            // 
             // Nav_Rec_Route_Tags_TB
             // 
             this.Nav_Rec_Route_Tags_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_Tags_TB.Location = new System.Drawing.Point(0, 84);
+            this.Nav_Rec_Route_Tags_TB.Location = new System.Drawing.Point(0, 32);
             this.Nav_Rec_Route_Tags_TB.Name = "Nav_Rec_Route_Tags_TB";
             this.Nav_Rec_Route_Tags_TB.Size = new System.Drawing.Size(137, 20);
             this.Nav_Rec_Route_Tags_TB.TabIndex = 5;
@@ -2356,109 +2367,11 @@
             // Nav_Rec_Route_Tags_Label
             // 
             this.Nav_Rec_Route_Tags_Label.AutoSize = true;
-            this.Nav_Rec_Route_Tags_Label.Location = new System.Drawing.Point(138, 87);
+            this.Nav_Rec_Route_Tags_Label.Location = new System.Drawing.Point(138, 35);
             this.Nav_Rec_Route_Tags_Label.Name = "Nav_Rec_Route_Tags_Label";
             this.Nav_Rec_Route_Tags_Label.Size = new System.Drawing.Size(31, 13);
             this.Nav_Rec_Route_Tags_Label.TabIndex = 42;
             this.Nav_Rec_Route_Tags_Label.Text = "Tags";
-            // 
-            // Nav_Rec_Update_Node_Button
-            // 
-            this.Nav_Rec_Update_Node_Button.Location = new System.Drawing.Point(440, 289);
-            this.Nav_Rec_Update_Node_Button.Name = "Nav_Rec_Update_Node_Button";
-            this.Nav_Rec_Update_Node_Button.Size = new System.Drawing.Size(75, 23);
-            this.Nav_Rec_Update_Node_Button.TabIndex = 32;
-            this.Nav_Rec_Update_Node_Button.Text = "Save Edits";
-            this.Nav_Rec_Update_Node_Button.UseVisualStyleBackColor = true;
-            this.Nav_Rec_Update_Node_Button.Click += new System.EventHandler(this.Nav_Rec_Update_Node_Button_Click);
-            // 
-            // Nav_Rec_Position_H_UpDn
-            // 
-            this.Nav_Rec_Position_H_UpDn.DecimalPlaces = 2;
-            this.Nav_Rec_Position_H_UpDn.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.Nav_Rec_Position_H_UpDn.Location = new System.Drawing.Point(370, 318);
-            this.Nav_Rec_Position_H_UpDn.Maximum = new decimal(new int[] {
-            315,
-            0,
-            0,
-            131072});
-            this.Nav_Rec_Position_H_UpDn.Minimum = new decimal(new int[] {
-            315,
-            0,
-            0,
-            -2147352576});
-            this.Nav_Rec_Position_H_UpDn.Name = "Nav_Rec_Position_H_UpDn";
-            this.Nav_Rec_Position_H_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_H_UpDn.TabIndex = 39;
-            this.Nav_Rec_Position_H_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_H_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_H_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_H_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Position_Y_UpDn
-            // 
-            this.Nav_Rec_Position_Y_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Position_Y_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Position_Y_UpDn.Location = new System.Drawing.Point(307, 318);
-            this.Nav_Rec_Position_Y_UpDn.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Position_Y_UpDn.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.Nav_Rec_Position_Y_UpDn.Name = "Nav_Rec_Position_Y_UpDn";
-            this.Nav_Rec_Position_Y_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_Y_UpDn.TabIndex = 38;
-            this.Nav_Rec_Position_Y_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_Y_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_Y_UpDn.Value = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            -2147418112});
-            this.Nav_Rec_Position_Y_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_Y_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Position_X_UpDn
-            // 
-            this.Nav_Rec_Position_X_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Position_X_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Position_X_UpDn.Location = new System.Drawing.Point(244, 318);
-            this.Nav_Rec_Position_X_UpDn.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Position_X_UpDn.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.Nav_Rec_Position_X_UpDn.Name = "Nav_Rec_Position_X_UpDn";
-            this.Nav_Rec_Position_X_UpDn.Size = new System.Drawing.Size(57, 20);
-            this.Nav_Rec_Position_X_UpDn.TabIndex = 37;
-            this.Nav_Rec_Position_X_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Position_X_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Position_X_UpDn.Value = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            -2147418112});
-            this.Nav_Rec_Position_X_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Position_X_UpDn_ValueChanged);
             // 
             // Nav_Rec_Start_Stop_Button
             // 
@@ -2472,52 +2385,15 @@
             this.Nav_Rec_Start_Stop_Button.UseVisualStyleBackColor = false;
             this.Nav_Rec_Start_Stop_Button.Click += new System.EventHandler(this.Nav_Rec_Start_Stop_Button_Click);
             // 
-            // Nav_Rec_Zone_Text
-            // 
-            this.Nav_Rec_Zone_Text.AutoSize = true;
-            this.Nav_Rec_Zone_Text.Location = new System.Drawing.Point(485, 320);
-            this.Nav_Rec_Zone_Text.Name = "Nav_Rec_Zone_Text";
-            this.Nav_Rec_Zone_Text.Size = new System.Drawing.Size(13, 13);
-            this.Nav_Rec_Zone_Text.TabIndex = 35;
-            this.Nav_Rec_Zone_Text.Text = "0";
-            // 
-            // Nav_Rec_Zone_Label
-            // 
-            this.Nav_Rec_Zone_Label.AutoSize = true;
-            this.Nav_Rec_Zone_Label.Location = new System.Drawing.Point(444, 320);
-            this.Nav_Rec_Zone_Label.Name = "Nav_Rec_Zone_Label";
-            this.Nav_Rec_Zone_Label.Size = new System.Drawing.Size(35, 13);
-            this.Nav_Rec_Zone_Label.TabIndex = 34;
-            this.Nav_Rec_Zone_Label.Text = "Zone:";
-            // 
-            // Nav_Rec_Position_Label
-            // 
-            this.Nav_Rec_Position_Label.AutoSize = true;
-            this.Nav_Rec_Position_Label.Location = new System.Drawing.Point(155, 320);
-            this.Nav_Rec_Position_Label.Name = "Nav_Rec_Position_Label";
-            this.Nav_Rec_Position_Label.Size = new System.Drawing.Size(90, 13);
-            this.Nav_Rec_Position_Label.TabIndex = 32;
-            this.Nav_Rec_Position_Label.Text = "Position ( X,Y,H ):";
-            // 
             // Nav_Rec_Delete_Node_Button
             // 
-            this.Nav_Rec_Delete_Node_Button.Location = new System.Drawing.Point(360, 289);
+            this.Nav_Rec_Delete_Node_Button.Location = new System.Drawing.Point(428, 304);
             this.Nav_Rec_Delete_Node_Button.Name = "Nav_Rec_Delete_Node_Button";
             this.Nav_Rec_Delete_Node_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Delete_Node_Button.TabIndex = 31;
             this.Nav_Rec_Delete_Node_Button.Text = "Del Node";
             this.Nav_Rec_Delete_Node_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Delete_Node_Button.Click += new System.EventHandler(this.Nav_Rec_Delete_Node_Button_Click);
-            // 
-            // Nav_Rec_Save_Point_Button
-            // 
-            this.Nav_Rec_Save_Point_Button.Location = new System.Drawing.Point(281, 289);
-            this.Nav_Rec_Save_Point_Button.Name = "Nav_Rec_Save_Point_Button";
-            this.Nav_Rec_Save_Point_Button.Size = new System.Drawing.Size(75, 23);
-            this.Nav_Rec_Save_Point_Button.TabIndex = 30;
-            this.Nav_Rec_Save_Point_Button.Text = "Save Pos.";
-            this.Nav_Rec_Save_Point_Button.UseVisualStyleBackColor = true;
-            this.Nav_Rec_Save_Point_Button.Click += new System.EventHandler(this.Nav_Rec_Save_Point_Button_Click);
             // 
             // Nav_Rec_Route_LB
             // 
@@ -2531,6 +2407,7 @@
             this.Nav_Rec_Route_LB.DragDrop += new System.Windows.Forms.DragEventHandler(this.Nav_Rec_Route_LB_DragDrop);
             this.Nav_Rec_Route_LB.DragOver += new System.Windows.Forms.DragEventHandler(this.Nav_Rec_Route_LB_DragOver);
             this.Nav_Rec_Route_LB.DoubleClick += new System.EventHandler(this.Nav_Rec_Route_LB_DoubleClick);
+            this.Nav_Rec_Route_LB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Nav_Rec_Route_LB_KeyDown);
             this.Nav_Rec_Route_LB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Nav_Rec_Route_LB_MouseDown);
             // 
             // Nav_Rec_Delete_CB
@@ -2572,35 +2449,9 @@
             this.Nav_Rec_Save_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Save_Button.Click += new System.EventHandler(this.Nav_Rec_Save_Button_Click);
             // 
-            // Nav_Rec_Trade_Gil_UpDn
-            // 
-            this.Nav_Rec_Trade_Gil_UpDn.Location = new System.Drawing.Point(81, 305);
-            this.Nav_Rec_Trade_Gil_UpDn.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.Name = "Nav_Rec_Trade_Gil_UpDn";
-            this.Nav_Rec_Trade_Gil_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Trade_Gil_UpDn.TabIndex = 23;
-            this.Nav_Rec_Trade_Gil_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Trade_Gil_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Trade_Gil_UpDn.Value = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Gil_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Trade_Gil_UpDn_ValueChanged);
-            this.Nav_Rec_Trade_Gil_UpDn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Trade_Gil_UpDn_KeyPress);
-            // 
             // Nav_Rec_Trade_Gil_Button
             // 
-            this.Nav_Rec_Trade_Gil_Button.Location = new System.Drawing.Point(0, 304);
+            this.Nav_Rec_Trade_Gil_Button.Location = new System.Drawing.Point(6, 128);
             this.Nav_Rec_Trade_Gil_Button.Name = "Nav_Rec_Trade_Gil_Button";
             this.Nav_Rec_Trade_Gil_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Trade_Gil_Button.TabIndex = 22;
@@ -2608,48 +2459,9 @@
             this.Nav_Rec_Trade_Gil_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Trade_Gil_Button.Click += new System.EventHandler(this.Nav_Rec_Trade_Gil_Button_Click);
             // 
-            // Nav_Rec_Trade_Item_UpDn
-            // 
-            this.Nav_Rec_Trade_Item_UpDn.Location = new System.Drawing.Point(183, 275);
-            this.Nav_Rec_Trade_Item_UpDn.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Item_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Item_UpDn.Name = "Nav_Rec_Trade_Item_UpDn";
-            this.Nav_Rec_Trade_Item_UpDn.Size = new System.Drawing.Size(42, 20);
-            this.Nav_Rec_Trade_Item_UpDn.TabIndex = 21;
-            this.Nav_Rec_Trade_Item_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Trade_Item_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Trade_Item_UpDn.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Trade_Item_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Trade_Item_UpDn_ValueChanged);
-            this.Nav_Rec_Trade_Item_UpDn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Trade_Item_UpDn_KeyPress);
-            // 
-            // Nav_Rec_Trade_Item_TB
-            // 
-            this.Nav_Rec_Trade_Item_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Trade_Item_TB.Location = new System.Drawing.Point(81, 276);
-            this.Nav_Rec_Trade_Item_TB.Name = "Nav_Rec_Trade_Item_TB";
-            this.Nav_Rec_Trade_Item_TB.Size = new System.Drawing.Size(96, 20);
-            this.Nav_Rec_Trade_Item_TB.TabIndex = 20;
-            this.Nav_Rec_Trade_Item_TB.Text = "Item Name";
-            this.Nav_Rec_Trade_Item_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Trade_Item_TB_TextChanged);
-            this.Nav_Rec_Trade_Item_TB.Enter += new System.EventHandler(this.Nav_Rec_Trade_Item_TB_Enter);
-            this.Nav_Rec_Trade_Item_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Trade_Item_TB_KeyPress);
-            this.Nav_Rec_Trade_Item_TB.Leave += new System.EventHandler(this.Nav_Rec_Trade_Item_TB_Leave);
-            // 
             // Nav_Rec_Trade_Item_Button
             // 
-            this.Nav_Rec_Trade_Item_Button.Location = new System.Drawing.Point(0, 275);
+            this.Nav_Rec_Trade_Item_Button.Location = new System.Drawing.Point(6, 99);
             this.Nav_Rec_Trade_Item_Button.Name = "Nav_Rec_Trade_Item_Button";
             this.Nav_Rec_Trade_Item_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Trade_Item_Button.TabIndex = 19;
@@ -2657,18 +2469,9 @@
             this.Nav_Rec_Trade_Item_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Trade_Item_Button.Click += new System.EventHandler(this.Nav_Rec_Trade_Item_Button_Click);
             // 
-            // Nav_Rec_Key_Stroke_CB
-            // 
-            this.Nav_Rec_Key_Stroke_CB.FormattingEnabled = true;
-            this.Nav_Rec_Key_Stroke_CB.Location = new System.Drawing.Point(81, 247);
-            this.Nav_Rec_Key_Stroke_CB.Name = "Nav_Rec_Key_Stroke_CB";
-            this.Nav_Rec_Key_Stroke_CB.Size = new System.Drawing.Size(121, 21);
-            this.Nav_Rec_Key_Stroke_CB.TabIndex = 18;
-            this.Nav_Rec_Key_Stroke_CB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Key_Stroke_CB_KeyPress);
-            // 
             // Nav_Rec_Key_Stroke_Button
             // 
-            this.Nav_Rec_Key_Stroke_Button.Location = new System.Drawing.Point(0, 246);
+            this.Nav_Rec_Key_Stroke_Button.Location = new System.Drawing.Point(168, 70);
             this.Nav_Rec_Key_Stroke_Button.Name = "Nav_Rec_Key_Stroke_Button";
             this.Nav_Rec_Key_Stroke_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Key_Stroke_Button.TabIndex = 17;
@@ -2676,22 +2479,9 @@
             this.Nav_Rec_Key_Stroke_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Key_Stroke_Button.Click += new System.EventHandler(this.Nav_Rec_Key_Stroke_Button_Click);
             // 
-            // Nav_Rec_Command_TB
-            // 
-            this.Nav_Rec_Command_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Command_TB.Location = new System.Drawing.Point(81, 219);
-            this.Nav_Rec_Command_TB.Name = "Nav_Rec_Command_TB";
-            this.Nav_Rec_Command_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Command_TB.TabIndex = 16;
-            this.Nav_Rec_Command_TB.Text = "Command Text";
-            this.Nav_Rec_Command_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Command_TB_TextChanged);
-            this.Nav_Rec_Command_TB.Enter += new System.EventHandler(this.Nav_Rec_Command_TB_Enter);
-            this.Nav_Rec_Command_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Command_TB_KeyPress);
-            this.Nav_Rec_Command_TB.Leave += new System.EventHandler(this.Nav_Rec_Command_TB_Leave);
-            // 
             // Nav_Rec_Command_Button
             // 
-            this.Nav_Rec_Command_Button.Location = new System.Drawing.Point(0, 217);
+            this.Nav_Rec_Command_Button.Location = new System.Drawing.Point(168, 99);
             this.Nav_Rec_Command_Button.Name = "Nav_Rec_Command_Button";
             this.Nav_Rec_Command_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Command_Button.TabIndex = 15;
@@ -2699,41 +2489,9 @@
             this.Nav_Rec_Command_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Command_Button.Click += new System.EventHandler(this.Nav_Rec_Command_Button_Click);
             // 
-            // Nav_Rec_Wait_UpDn
-            // 
-            this.Nav_Rec_Wait_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Wait_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Wait_UpDn.Location = new System.Drawing.Point(81, 190);
-            this.Nav_Rec_Wait_UpDn.Maximum = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Wait_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Wait_UpDn.Name = "Nav_Rec_Wait_UpDn";
-            this.Nav_Rec_Wait_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Wait_UpDn.TabIndex = 13;
-            this.Nav_Rec_Wait_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Wait_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Wait_UpDn.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Wait_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Wait_UpDn_ValueChanged);
-            this.Nav_Rec_Wait_UpDn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Wait_UpDn_KeyPress);
-            // 
             // Nav_Rec_Wait_Button
             // 
-            this.Nav_Rec_Wait_Button.Location = new System.Drawing.Point(0, 188);
+            this.Nav_Rec_Wait_Button.Location = new System.Drawing.Point(87, 70);
             this.Nav_Rec_Wait_Button.Name = "Nav_Rec_Wait_Button";
             this.Nav_Rec_Wait_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Wait_Button.TabIndex = 12;
@@ -2741,113 +2499,15 @@
             this.Nav_Rec_Wait_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Wait_Button.Click += new System.EventHandler(this.Nav_Rec_Wait_Button_Click);
             // 
-            // Nav_Rec_Target_NPC_TB
-            // 
-            this.Nav_Rec_Target_NPC_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Target_NPC_TB.Location = new System.Drawing.Point(81, 161);
-            this.Nav_Rec_Target_NPC_TB.Name = "Nav_Rec_Target_NPC_TB";
-            this.Nav_Rec_Target_NPC_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Target_NPC_TB.TabIndex = 11;
-            this.Nav_Rec_Target_NPC_TB.Text = "NPC Name";
-            this.Nav_Rec_Target_NPC_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_TextChanged);
-            this.Nav_Rec_Target_NPC_TB.Enter += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_Enter);
-            this.Nav_Rec_Target_NPC_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nav_Rec_Target_NPC_TB_KeyPress);
-            this.Nav_Rec_Target_NPC_TB.Leave += new System.EventHandler(this.Nav_Rec_Target_NPC_TB_Leave);
-            // 
             // Nav_Rec_Target_NPC_Button
             // 
-            this.Nav_Rec_Target_NPC_Button.Location = new System.Drawing.Point(0, 159);
+            this.Nav_Rec_Target_NPC_Button.Location = new System.Drawing.Point(6, 70);
             this.Nav_Rec_Target_NPC_Button.Name = "Nav_Rec_Target_NPC_Button";
             this.Nav_Rec_Target_NPC_Button.Size = new System.Drawing.Size(75, 23);
             this.Nav_Rec_Target_NPC_Button.TabIndex = 10;
             this.Nav_Rec_Target_NPC_Button.Text = "Target NPC";
             this.Nav_Rec_Target_NPC_Button.UseVisualStyleBackColor = true;
             this.Nav_Rec_Target_NPC_Button.Click += new System.EventHandler(this.Nav_Rec_Target_NPC_Button_Click);
-            // 
-            // Nav_Rec_Min_Dist_UpDn
-            // 
-            this.Nav_Rec_Min_Dist_UpDn.DecimalPlaces = 1;
-            this.Nav_Rec_Min_Dist_UpDn.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.Nav_Rec_Min_Dist_UpDn.Location = new System.Drawing.Point(0, 136);
-            this.Nav_Rec_Min_Dist_UpDn.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.Name = "Nav_Rec_Min_Dist_UpDn";
-            this.Nav_Rec_Min_Dist_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Min_Dist_UpDn.TabIndex = 8;
-            this.Nav_Rec_Min_Dist_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Min_Dist_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Min_Dist_UpDn.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Min_Dist_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Min_Dist_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Interval_UpDn
-            // 
-            this.Nav_Rec_Interval_UpDn.Increment = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Location = new System.Drawing.Point(0, 110);
-            this.Nav_Rec_Interval_UpDn.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.Name = "Nav_Rec_Interval_UpDn";
-            this.Nav_Rec_Interval_UpDn.Size = new System.Drawing.Size(60, 20);
-            this.Nav_Rec_Interval_UpDn.TabIndex = 6;
-            this.Nav_Rec_Interval_UpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Nav_Rec_Interval_UpDn.ThousandsSeparator = true;
-            this.Nav_Rec_Interval_UpDn.Value = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.Nav_Rec_Interval_UpDn.ValueChanged += new System.EventHandler(this.Nav_Rec_Interval_UpDn_ValueChanged);
-            // 
-            // Nav_Rec_Route_End_Name_TB
-            // 
-            this.Nav_Rec_Route_End_Name_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_End_Name_TB.Location = new System.Drawing.Point(0, 58);
-            this.Nav_Rec_Route_End_Name_TB.Name = "Nav_Rec_Route_End_Name_TB";
-            this.Nav_Rec_Route_End_Name_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Route_End_Name_TB.TabIndex = 4;
-            this.Nav_Rec_Route_End_Name_TB.Text = "End Point Name";
-            this.Nav_Rec_Route_End_Name_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_TextChanged);
-            this.Nav_Rec_Route_End_Name_TB.Enter += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_Enter);
-            this.Nav_Rec_Route_End_Name_TB.Leave += new System.EventHandler(this.Nav_Rec_Route_End_Name_TB_Leave);
-            // 
-            // Nav_Rec_Route_Start_Name_TB
-            // 
-            this.Nav_Rec_Route_Start_Name_TB.ForeColor = System.Drawing.Color.Gray;
-            this.Nav_Rec_Route_Start_Name_TB.Location = new System.Drawing.Point(0, 32);
-            this.Nav_Rec_Route_Start_Name_TB.Name = "Nav_Rec_Route_Start_Name_TB";
-            this.Nav_Rec_Route_Start_Name_TB.Size = new System.Drawing.Size(137, 20);
-            this.Nav_Rec_Route_Start_Name_TB.TabIndex = 2;
-            this.Nav_Rec_Route_Start_Name_TB.Text = "Start Point Name";
-            this.Nav_Rec_Route_Start_Name_TB.TextChanged += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_TextChanged);
-            this.Nav_Rec_Route_Start_Name_TB.Enter += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_Enter);
-            this.Nav_Rec_Route_Start_Name_TB.Leave += new System.EventHandler(this.Nav_Rec_Route_Start_Name_TB_Leave);
             // 
             // Nav_Rec_Route_Name_TB
             // 
@@ -2869,51 +2529,6 @@
             this.Nav_Rec_Route_Label.Size = new System.Drawing.Size(70, 13);
             this.Nav_Rec_Route_Label.TabIndex = 29;
             this.Nav_Rec_Route_Label.Text = "Route Nodes";
-            // 
-            // Nav_Rec_Wait_Label
-            // 
-            this.Nav_Rec_Wait_Label.AutoSize = true;
-            this.Nav_Rec_Wait_Label.Location = new System.Drawing.Point(147, 193);
-            this.Nav_Rec_Wait_Label.Name = "Nav_Rec_Wait_Label";
-            this.Nav_Rec_Wait_Label.Size = new System.Drawing.Size(79, 13);
-            this.Nav_Rec_Wait_Label.TabIndex = 14;
-            this.Nav_Rec_Wait_Label.Text = "Time (seconds)";
-            // 
-            // Nav_Rec_Min_Dist_Label
-            // 
-            this.Nav_Rec_Min_Dist_Label.AutoSize = true;
-            this.Nav_Rec_Min_Dist_Label.Location = new System.Drawing.Point(66, 138);
-            this.Nav_Rec_Min_Dist_Label.Name = "Nav_Rec_Min_Dist_Label";
-            this.Nav_Rec_Min_Dist_Label.Size = new System.Drawing.Size(128, 13);
-            this.Nav_Rec_Min_Dist_Label.TabIndex = 9;
-            this.Nav_Rec_Min_Dist_Label.Text = "Min. Dist. Between Points";
-            // 
-            // Nav_Rec_Interval_Label
-            // 
-            this.Nav_Rec_Interval_Label.AutoSize = true;
-            this.Nav_Rec_Interval_Label.Location = new System.Drawing.Point(66, 112);
-            this.Nav_Rec_Interval_Label.Name = "Nav_Rec_Interval_Label";
-            this.Nav_Rec_Interval_Label.Size = new System.Drawing.Size(94, 13);
-            this.Nav_Rec_Interval_Label.TabIndex = 7;
-            this.Nav_Rec_Interval_Label.Text = "Recording Interval";
-            // 
-            // Nav_Rec_Route_End_Name_Label
-            // 
-            this.Nav_Rec_Route_End_Name_Label.AutoSize = true;
-            this.Nav_Rec_Route_End_Name_Label.Location = new System.Drawing.Point(138, 61);
-            this.Nav_Rec_Route_End_Name_Label.Name = "Nav_Rec_Route_End_Name_Label";
-            this.Nav_Rec_Route_End_Name_Label.Size = new System.Drawing.Size(84, 13);
-            this.Nav_Rec_Route_End_Name_Label.TabIndex = 5;
-            this.Nav_Rec_Route_End_Name_Label.Text = "End Point Name";
-            // 
-            // Nav_Rec_Route_Start_Name_Label
-            // 
-            this.Nav_Rec_Route_Start_Name_Label.AutoSize = true;
-            this.Nav_Rec_Route_Start_Name_Label.Location = new System.Drawing.Point(138, 35);
-            this.Nav_Rec_Route_Start_Name_Label.Name = "Nav_Rec_Route_Start_Name_Label";
-            this.Nav_Rec_Route_Start_Name_Label.Size = new System.Drawing.Size(87, 13);
-            this.Nav_Rec_Route_Start_Name_Label.TabIndex = 3;
-            this.Nav_Rec_Route_Start_Name_Label.Text = "Start Point Name";
             // 
             // Nav_Rec_Route_Name_Label
             // 
@@ -8553,17 +8168,6 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ALR_LoopMessageChkB
-            // 
-            this.ALR_LoopMessageChkB.AutoSize = true;
-            this.ALR_LoopMessageChkB.Location = new System.Drawing.Point(458, 25);
-            this.ALR_LoopMessageChkB.Name = "ALR_LoopMessageChkB";
-            this.ALR_LoopMessageChkB.Size = new System.Drawing.Size(50, 17);
-            this.ALR_LoopMessageChkB.TabIndex = 45;
-            this.ALR_LoopMessageChkB.Text = "Loop";
-            this.ALR_LoopMessageChkB.UseVisualStyleBackColor = true;
-            this.ALR_LoopMessageChkB.CheckedChanged += new System.EventHandler(this.ALR_LoopMessageChkB_CheckedChanged);
-            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8631,14 +8235,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nav_Prc_Loop_UpDn)).EndInit();
             this.Nav_User_Sub_Tab.ResumeLayout(false);
             this.Nav_User_Sub_Tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_H_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_Y_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Position_X_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Gil_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Trade_Item_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Wait_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Min_Dist_UpDn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nav_Rec_Interval_UpDn)).EndInit();
             this.Helpers_Tab.ResumeLayout(false);
             this.Helpers_Tab_Control.ResumeLayout(false);
             this.Trader_Tab.ResumeLayout(false);
@@ -9072,46 +8668,22 @@
         private System.Windows.Forms.TabControl Nav_Tab_Control;
         private System.Windows.Forms.TabPage Nav_Nav_Sub_Tab;
         private System.Windows.Forms.TabPage Nav_User_Sub_Tab;
-        private System.Windows.Forms.Label Nav_Rec_Zone_Text;
-        private System.Windows.Forms.Label Nav_Rec_Zone_Label;
-        private System.Windows.Forms.Label Nav_Rec_Position_Label;
         private System.Windows.Forms.Button Nav_Rec_Delete_Node_Button;
-        private System.Windows.Forms.Button Nav_Rec_Save_Point_Button;
         private System.Windows.Forms.ListBox Nav_Rec_Route_LB;
         private System.Windows.Forms.ComboBox Nav_Rec_Delete_CB;
         private System.Windows.Forms.Button Nav_Rec_Delete_Button;
         private System.Windows.Forms.Button Nav_Rec_Clear_Button;
         private System.Windows.Forms.Button Nav_Rec_Save_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Trade_Gil_UpDn;
         private System.Windows.Forms.Button Nav_Rec_Trade_Gil_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Trade_Item_UpDn;
-        private System.Windows.Forms.TextBox Nav_Rec_Trade_Item_TB;
         private System.Windows.Forms.Button Nav_Rec_Trade_Item_Button;
-        private System.Windows.Forms.ComboBox Nav_Rec_Key_Stroke_CB;
         private System.Windows.Forms.Button Nav_Rec_Key_Stroke_Button;
-        private System.Windows.Forms.TextBox Nav_Rec_Command_TB;
         private System.Windows.Forms.Button Nav_Rec_Command_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Wait_UpDn;
         private System.Windows.Forms.Button Nav_Rec_Wait_Button;
-        private System.Windows.Forms.TextBox Nav_Rec_Target_NPC_TB;
         private System.Windows.Forms.Button Nav_Rec_Target_NPC_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Min_Dist_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Interval_UpDn;
-        private System.Windows.Forms.TextBox Nav_Rec_Route_End_Name_TB;
-        private System.Windows.Forms.TextBox Nav_Rec_Route_Start_Name_TB;
         private System.Windows.Forms.TextBox Nav_Rec_Route_Name_TB;
         private System.Windows.Forms.Label Nav_Rec_Route_Label;
-        private System.Windows.Forms.Label Nav_Rec_Wait_Label;
-        private System.Windows.Forms.Label Nav_Rec_Min_Dist_Label;
-        private System.Windows.Forms.Label Nav_Rec_Interval_Label;
-        private System.Windows.Forms.Label Nav_Rec_Route_End_Name_Label;
-        private System.Windows.Forms.Label Nav_Rec_Route_Start_Name_Label;
         private System.Windows.Forms.Label Nav_Rec_Route_Name_Label;
         private System.Windows.Forms.Button Nav_Rec_Start_Stop_Button;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_Y_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_X_UpDn;
-        private System.Windows.Forms.NumericUpDown Nav_Rec_Position_H_UpDn;
-        private System.Windows.Forms.Button Nav_Rec_Update_Node_Button;
         private System.Windows.Forms.Label Nav_Prc_Trip_SelectionTV_Label;
         private System.Windows.Forms.Label Nav_Prc_Trip_CreationTV_Label;
         private System.Windows.Forms.RadioButton Nav_Prc_Reverse_RB;
@@ -9386,5 +8958,9 @@
         private System.Windows.Forms.Label WMS_Safe2Label;
         private System.Windows.Forms.Label WMS_Safe2OccLabel;
         private System.Windows.Forms.CheckBox ALR_LoopMessageChkB;
+        private System.Windows.Forms.Button Nav_Rec_Sequence_Button;
+        private System.Windows.Forms.RadioButton Nav_Rec_AppendToEnd_RB;
+        private System.Windows.Forms.RadioButton Nav_Rec_InsertBelow_RB;
+        private System.Windows.Forms.RadioButton Nav_Rec_InsertAbove_RB;
     }
 }

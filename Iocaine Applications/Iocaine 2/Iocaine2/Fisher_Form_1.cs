@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Media;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Speech.Synthesis;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -91,45 +82,45 @@ namespace Iocaine2
         #endregion Enums
 
         #region Type Defs
-        private delegate void TD_Void_String_TIMERUSER(String iText, TIMER_USER iUser);
+        private delegate void TD_Void_String_TIMERUSER(string iText, TIMER_USER iUser);
         #endregion Type Defs
 
         #region Members
         #region Form State
-        //private static Boolean m_TOP_Form_active = true; //For flashing the window.
+        //private static bool m_TOP_Form_active = true; //For flashing the window.
         private static volatile object m_TOP_TimerLabelLock = new object();
         private static TIMER_USER m_TOP_TimerLabelUser = TIMER_USER.NONE;
-        private static UInt32 m_TOP_LogErrorsFlashTimerShort = 1000;
+        private static uint m_TOP_LogErrorsFlashTimerShort = 1000;
         #endregion Form State
         #region Form Layout Settings
-        private static Int32 m_TOP_Form_initialWidth;
-        private static Int32 m_TOP_Form_initialHeight;
-        private static Int32 m_TOP_Form_currentWidth;
-        private static Int32 m_TOP_Form_currentHeight;
-        private static Int32 m_TOP_Form_currentCenterX;
-        private static Int32 m_TOP_Form_currentCenterY;
-        private static Int32 m_TOP_Form_previousWidth;
-        private static Int32 m_TOP_Form_previousHeight;
-        private static Int32 m_TOP_Form_previousCenterX;
-        private static Int32 m_TOP_Form_previousCenterY;
-        private static Int32 m_TOP_Form_widthWithMap;
-        private static Int32 m_TOP_Form_extRtBtnInitialX;
-        private const Int32 m_TOP_Form_resizeSteps = 20;
-        private const Int32 m_TOP_Form_resizeDelay = 10;
-        private const Int32 m_TOP_Form_mapAddWidth = 460;
-        private const Int32 m_TOP_Form_mapPosXOff = -5; //-20;
-        private const Int32 m_TOP_Form_mapPosYOff = 30;
-        private static Boolean m_TOP_Form_mapExtended = false;
+        private static int m_TOP_Form_initialWidth;
+        private static int m_TOP_Form_initialHeight;
+        private static int m_TOP_Form_currentWidth;
+        private static int m_TOP_Form_currentHeight;
+        private static int m_TOP_Form_currentCenterX;
+        private static int m_TOP_Form_currentCenterY;
+        private static int m_TOP_Form_previousWidth;
+        private static int m_TOP_Form_previousHeight;
+        private static int m_TOP_Form_previousCenterX;
+        private static int m_TOP_Form_previousCenterY;
+        private static int m_TOP_Form_widthWithMap;
+        private static int m_TOP_Form_extRtBtnInitialX;
+        private const int m_TOP_Form_resizeSteps = 20;
+        private const int m_TOP_Form_resizeDelay = 10;
+        private const int m_TOP_Form_mapAddWidth = 460;
+        private const int m_TOP_Form_mapPosXOff = -5; //-20;
+        private const int m_TOP_Form_mapPosYOff = 30;
+        private static bool m_TOP_Form_mapExtended = false;
         #endregion Form Layout Settings
         #region Map
         #region PictureBox
-        private const UInt32 m_MAP_pollPeriod = 250;
+        private const uint m_MAP_pollPeriod = 250;
         private static List<MemReads.NPCs.NPCInfoStruct> m_MAP_npcList = new List<MemReads.NPCs.NPCInfoStruct>();
         private static Object m_MAP_npcLock = new object();
         private PictureBox c_MAP_mapPB = null;
-        private const Int32 m_MAP_pbSize = 450;
-        private static Boolean m_MAP_mapCurrSet = false;
-        private static Byte m_MAP_currentMapId = 0;
+        private const int m_MAP_pbSize = 450;
+        private static bool m_MAP_mapCurrSet = false;
+        private static byte m_MAP_currentMapId = 0;
         private static Maps.MapSet m_MAP_mapCurrMapSet = null;
         private static Maps.MapSet m_MAP_MapCurrMapSet
         {
@@ -142,60 +133,60 @@ namespace Iocaine2
                 m_MAP_mapCurrMapSet = value;
             }
         }
-        private static Boolean m_MAP_mapIsPanning = false;
+        private static bool m_MAP_mapIsPanning = false;
         private static PointF m_MAP_mapDragStartPoint = Point.Empty;
         private static PointF m_MAP_mapDragLastRedrawPoint = Point.Empty;
         private static PointF m_MAP_mapStartCenter = Point.Empty;
         #endregion PictureBox
         #region Buttons
-        private static Boolean m_MAP_centerLocked = false;
-        private static Boolean m_MAP_centerZoomLocked = false;
-        private static Boolean MAP_CenterOnce = false;
+        private static bool m_MAP_centerLocked = false;
+        private static bool m_MAP_centerZoomLocked = false;
+        private static bool MAP_CenterOnce = false;
         private Button c_MAP_centerButton = null;
-        private const Int32 m_MAP_centerButtonPosXOff = 25;
-        private const Int32 m_MAP_centerButtonWidth = 15;
-        private const Int32 m_MAP_centerButtonHeight = 20;
+        private const int m_MAP_centerButtonPosXOff = 25;
+        private const int m_MAP_centerButtonWidth = 15;
+        private const int m_MAP_centerButtonHeight = 20;
         private Button c_MAP_lockButton = null;
-        private const Int32 m_MAP_lockButtonPosXOff = 44;
-        private const Int32 m_MAP_lockButtonWidth = 20;
-        private const Int32 m_MAP_lockButtonHeight = 20;
+        private const int m_MAP_lockButtonPosXOff = 44;
+        private const int m_MAP_lockButtonWidth = 20;
+        private const int m_MAP_lockButtonHeight = 20;
         private Button c_MAP_extentsButton = null;
-        private const Int32 m_MAP_extentsButtonPosXOff = 1;
-        private const Int32 m_MAP_extentsButtonWidth = 20;
-        private const Int32 m_MAP_extentsButtonHeight = 20;
+        private const int m_MAP_extentsButtonPosXOff = 1;
+        private const int m_MAP_extentsButtonWidth = 20;
+        private const int m_MAP_extentsButtonHeight = 20;
         #endregion Buttons
         #region CheckBoxes
-        private Boolean m_MAP_doingInit = false;
+        private bool m_MAP_doingInit = false;
         private CheckBox c_MAP_showNpcsChkB = null;
-        private const Int32 m_MAP_showNpcsChkBXOff = 2;
-        private const Int32 m_MAP_showNpcsChkBYOff = 476;
+        private const int m_MAP_showNpcsChkBXOff = 2;
+        private const int m_MAP_showNpcsChkBYOff = 476;
         private CheckBox c_MAP_showNpcNamesChkB = null;
-        private const Int32 m_MAP_showNpcNamesChkBXOff = m_MAP_showNpcsChkBXOff + 48;
-        private const Int32 m_MAP_showNpcNamesChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showNpcNamesChkBXOff = m_MAP_showNpcsChkBXOff + 48;
+        private const int m_MAP_showNpcNamesChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showMobsChkB = null;
-        private const Int32 m_MAP_showMobsChkBXOff = m_MAP_showNpcNamesChkBXOff + 58;
-        private const Int32 m_MAP_showMobsChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showMobsChkBXOff = m_MAP_showNpcNamesChkBXOff + 58;
+        private const int m_MAP_showMobsChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showMobNamesChkB = null;
-        private const Int32 m_MAP_showMobNamesChkBXOff = m_MAP_showMobsChkBXOff + 48;
-        private const Int32 m_MAP_showMobNamesChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showMobNamesChkBXOff = m_MAP_showMobsChkBXOff + 48;
+        private const int m_MAP_showMobNamesChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showPcsChkB = null;
-        private const Int32 m_MAP_showPcsChkBXOff = m_MAP_showMobNamesChkBXOff + 58;
-        private const Int32 m_MAP_showPcsChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showPcsChkBXOff = m_MAP_showMobNamesChkBXOff + 58;
+        private const int m_MAP_showPcsChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showPcNamesChkB = null;
-        private const Int32 m_MAP_showPcNamesChkBXOff = m_MAP_showPcsChkBXOff + 48;
-        private const Int32 m_MAP_showPcNamesChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showPcNamesChkBXOff = m_MAP_showPcsChkBXOff + 48;
+        private const int m_MAP_showPcNamesChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showPetsChkB = null;
-        private const Int32 m_MAP_showPetsChkBXOff = m_MAP_showPcNamesChkBXOff + 58;
-        private const Int32 m_MAP_showPetsChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showPetsChkBXOff = m_MAP_showPcNamesChkBXOff + 58;
+        private const int m_MAP_showPetsChkBYOff = m_MAP_showNpcsChkBYOff;
         private CheckBox c_MAP_showPetNamesChkB = null;
-        private const Int32 m_MAP_showPetNamesChkBXOff = m_MAP_showPetsChkBXOff + 48;
-        private const Int32 m_MAP_showPetNamesChkBYOff = m_MAP_showNpcsChkBYOff;
+        private const int m_MAP_showPetNamesChkBXOff = m_MAP_showPetsChkBXOff + 48;
+        private const int m_MAP_showPetNamesChkBYOff = m_MAP_showNpcsChkBYOff;
         #endregion CheckBoxes
         #endregion Map
         #region Server Related
         #endregion Server Related
         #region Current Game Values
-        private UInt16 m_TOP_currentZone;
+        private ushort m_TOP_currentZone;
         #endregion Current Game Values
         #region Chat
         private ArrayList m_TOP_replyNamesList = null;
@@ -215,26 +206,26 @@ namespace Iocaine2
         #endregion Threads
         #region Process Related
         #region Flag File Info
-        private const String m_TOP_File_mainFileName = "Main.exe";
-        private const String m_TOP_File_mainFile = @".\" + m_TOP_File_mainFileName;
-        private const String m_TOP_File_updaterFileName = "Iocaine2.exe";
-        private const String m_TOP_File_updaterFile = @".\" + m_TOP_File_updaterFileName;
-        private const String m_TOP_File_versionFileName = "UpdateData.txt";
-        private const String m_TOP_File_changeLogFileName = "Change Log.txt";
-        private const String m_TOP_File_updatingFileName = "updating";
-        private const String m_TOP_File_updatingFile = @".\" + m_TOP_File_updatingFileName;
-        private const String m_TOP_File_skipIpCheckFileName = "NO_IP_CHECK.txt";
-        private const String m_TOP_File_skipIpCheckFile = @".\" + m_TOP_File_skipIpCheckFileName;
+        private const string m_TOP_File_mainFileName = "Main.exe";
+        private const string m_TOP_File_mainFile = @".\" + m_TOP_File_mainFileName;
+        private const string m_TOP_File_updaterFileName = "Iocaine2.exe";
+        private const string m_TOP_File_updaterFile = @".\" + m_TOP_File_updaterFileName;
+        private const string m_TOP_File_versionFileName = "UpdateData.txt";
+        private const string m_TOP_File_changeLogFileName = "Change Log.txt";
+        private const string m_TOP_File_updatingFileName = "updating";
+        private const string m_TOP_File_updatingFile = @".\" + m_TOP_File_updatingFileName;
+        private const string m_TOP_File_skipIpCheckFileName = "NO_IP_CHECK.txt";
+        private const string m_TOP_File_skipIpCheckFile = @".\" + m_TOP_File_skipIpCheckFileName;
         #endregion Flag File Info
         #region Process Flags
-        private static Boolean m_TOP_cbInitDone = false;
-        private static Boolean m_TOP_taInitDone = false;
-        private static Boolean m_TOP_trInitDone = false;
-        private static Boolean m_TOP_wmsGuiInitDone = false;
-        private static String m_TOP_iocaineTitleBarText = "";
+        private static bool m_TOP_cbInitDone = false;
+        private static bool m_TOP_taInitDone = false;
+        private static bool m_TOP_trInitDone = false;
+        private static bool m_TOP_wmsGuiInitDone = false;
+        private static string m_TOP_iocaineTitleBarText = "";
         #endregion Process Flags
         #region Debug Settings
-        private static Boolean m_TOP_File_keepPidLogFile = false;
+        private static bool m_TOP_File_keepPidLogFile = false;
         #endregion Debug Settings
         #endregion Process Related
         #region Tool Tips
@@ -243,11 +234,11 @@ namespace Iocaine2
         private ToolTip c_TOP_errorLightTT = new ToolTip();
         #endregion Tool Tips
         #region XML
-        private const String m_TOP_Xml_quote = "&quot;";
-        private const String m_TOP_Xml_amp = "&amp;";
-        private const String m_TOP_Xml_apos = "&apos;";
-        private const String m_TOP_Xml_less = "&lt;";
-        private const String m_TOP_Xml_greater = "&gt;";
+        private const string m_TOP_Xml_quote = "&quot;";
+        private const string m_TOP_Xml_amp = "&amp;";
+        private const string m_TOP_Xml_apos = "&apos;";
+        private const string m_TOP_Xml_less = "&lt;";
+        private const string m_TOP_Xml_greater = "&gt;";
         #endregion XML
         #endregion Members
 
@@ -453,6 +444,10 @@ namespace Iocaine2
             // Add any Iocaine Form level inits to be done after the main function is run.
             // Bot form level inits should go here.
             // If any fatal errors occur, set the retValue to false.
+
+            Data.Structures.CommandManager.Init_Iocaine();
+            Data.Structures.ActionManager.Init_Iocaine();
+
             retValue &= Fisher.Access.Init_Iocaine();   //Fisher inits
             SL_Prc_inits();                             //Seller inits
             BY_Prc_inits();                             //Buyer inits
@@ -494,7 +489,7 @@ namespace Iocaine2
         }
         #endregion Init Process
         #region Init LoggedIn
-        private bool TOP_Init_LoggedIn_Begin(String iName)
+        private bool TOP_Init_LoggedIn_Begin(string iName)
         {
             // This is called BEFORE all other "LoggedIn" inits are done.
             // At this point, no user settings have been loaded, no PlayerCache
@@ -584,7 +579,7 @@ namespace Iocaine2
             ChangeMonitor._polLoginChanged += new ChangeMonitor.CM_Delegate_POLLoginChanged(TOP_updateTitlebarText);
             ChangeMonitor._polWindowTitleChanged += new ChangeMonitor.CM_Delegate_POLWindowTitleChanged(TOP_changeProcessWindowTitleText);
             #region Command Management
-            ChangeMonitor._equ_CombatSkillChanged += new ChangeMonitor.CM_Delegate_Equ_CombatSkillChanged(Data.Structures.CommandManager.WSManager.Init);
+            ChangeMonitor._equ_CombatSkillChanged += new ChangeMonitor.CM_Delegate_Equ_CombatSkillChanged(Data.Structures.CommandManager.Init_CombatSkillChange);
             ChangeMonitor._vitals_AnyJobChanged += new ChangeMonitor.CM_Delegate_Vitals_AnyJobChanged(TOP_vitalsOrAnyJobChangedHandler);
             #endregion Command Management
             Inventory.Containers._CurrentCapacityValuesUpdated += new Inventory.Containers.CurrentCapcityValuesUpdated(TOP_setTopInvCurLabelText);
@@ -637,10 +632,10 @@ namespace Iocaine2
             Statics.Settings.Top.KillOnGmTell = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "TOP_KillOnGmTell");
             Statics.Settings.Top.StopAllOnGmTell = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "TOP_StopAllOnGmTell");
             Statics.Settings.Top.StopFisherOnGmTell = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "TOP_StopFisherOnGmTell");
-            Statics.Settings.Top.MoveUpDownDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.TOP, "MoveUpDownDelay");
-            Statics.Settings.Top.MoveItemDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.TOP, "MoveItemDelay");
-            Statics.Settings.Top.KeyHoldTime = (UInt32)UserSettings.GetValue(UserSettings.BOT.TOP, "KeyHoldTime");
-            String FisherLeftArrowKey = (String)UserSettings.GetValue(UserSettings.BOT.TOP, "FisherLeftArrowKey");
+            Statics.Settings.Top.MoveUpDownDelay = (uint)UserSettings.GetValue(UserSettings.BOT.TOP, "MoveUpDownDelay");
+            Statics.Settings.Top.MoveItemDelay = (uint)UserSettings.GetValue(UserSettings.BOT.TOP, "MoveItemDelay");
+            Statics.Settings.Top.KeyHoldTime = (uint)UserSettings.GetValue(UserSettings.BOT.TOP, "KeyHoldTime");
+            string FisherLeftArrowKey = (string)UserSettings.GetValue(UserSettings.BOT.TOP, "FisherLeftArrowKey");
             if (FisherLeftArrowKey == "NumPad4")
             {
                 Statics.Settings.Fisher.LeftArrowKey = Keys.NumPad4;
@@ -653,7 +648,7 @@ namespace Iocaine2
             {
                 Statics.Settings.Fisher.LeftArrowKey = Keys.NumPad4;
             }
-            String FisherRightArrowKey = (String)UserSettings.GetValue(UserSettings.BOT.TOP, "FisherRightArrowKey");
+            string FisherRightArrowKey = (string)UserSettings.GetValue(UserSettings.BOT.TOP, "FisherRightArrowKey");
             if (FisherRightArrowKey == "NumPad6")
             {
                 Statics.Settings.Fisher.RightArrowKey = Keys.NumPad6;
@@ -667,15 +662,15 @@ namespace Iocaine2
                 Statics.Settings.Fisher.RightArrowKey = Keys.NumPad6;
             }
             m_MAP_doingInit = true;
-            Statics.Settings.Top.ShowNpcs = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowNpcs");
-            Statics.Settings.Top.ShowNpcNames = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowNpcNames");
-            Statics.Settings.Top.ShowMobs = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowMobs");
-            Statics.Settings.Top.ShowMobNames = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowMobNames");
-            Statics.Settings.Top.ShowPcs = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPcs");
-            Statics.Settings.Top.ShowPcNames = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPcNames");
-            Statics.Settings.Top.ShowPets = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPets");
-            Statics.Settings.Top.ShowPetNames = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPetNames");
-            Statics.Settings.Top.ShowRangeCircle = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowRangeCircle");
+            Statics.Settings.Top.ShowNpcs = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowNpcs");
+            Statics.Settings.Top.ShowNpcNames = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowNpcNames");
+            Statics.Settings.Top.ShowMobs = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowMobs");
+            Statics.Settings.Top.ShowMobNames = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowMobNames");
+            Statics.Settings.Top.ShowPcs = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPcs");
+            Statics.Settings.Top.ShowPcNames = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPcNames");
+            Statics.Settings.Top.ShowPets = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPets");
+            Statics.Settings.Top.ShowPetNames = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowPetNames");
+            Statics.Settings.Top.ShowRangeCircle = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ShowRangeCircle");
 
             //Load the checkboxes
             TOP_setChkBValue(c_MAP_showNpcsChkB, Statics.Settings.Top.ShowNpcs);
@@ -694,7 +689,7 @@ namespace Iocaine2
             TOP_setChkBValue(StatsAutoResetChkB, Statics.Settings.Top.AutoReset);
             TOP_setChkBValue(StatsThisZoneOnlyChkB, Statics.Settings.Top.ThisZoneOnly);
         }
-        private void TOP_Init_processFfxiProcChange(Boolean polIsValid)
+        private void TOP_Init_processFfxiProcChange(bool polIsValid)
         {
             LoggingFunctions.Debug("Top::processFfxiProcChange: Recieved the proc valid change: " + polIsValid + ".", LoggingFunctions.DBG_SCOPE.TOP);
         }
@@ -709,7 +704,7 @@ namespace Iocaine2
             TOP_removeTabPage(c_MainTabControl, TAB_KEYS_MAIN.PL_Events_Tab.ToString());
             TOP_removeTabPage(PL_Sub_Tabs, TAB_KEYS_PL.PL_OffenseSubTab.ToString());
         }
-        private void TOP_Init_setMapsPath(String iPath)
+        private void TOP_Init_setMapsPath(string iPath)
         {
             Statics.Settings.Top.MapsPath = iPath;
             UserSettings.SetValue(UserSettings.BOT.TOP, "MapsPath", Statics.Settings.Top.MapsPath);
@@ -799,14 +794,14 @@ namespace Iocaine2
             //Monitor.Enter(m_TOP_TimerLabelLock);
             try
             {
-                String msg = "Log has " + LoggingFunctions.NbErrors + " error";
+                string msg = "Log has " + LoggingFunctions.NbErrors + " error";
                 if (LoggingFunctions.NbErrors != 1)
                 {
                     msg += "s";
                 }
                 msg += "!";
                 TOP_setTimerLabelText(msg, TIMER_USER.ERROR_LOG);
-                for (UInt32 ii = 0; ii < LoggingFunctions.NbErrors; ii++)
+                for (uint ii = 0; ii < LoggingFunctions.NbErrors; ii++)
                 {
                     TOP_LogErrorsSetLight(true, false);
                     if (LoggingFunctions.NbErrors > 0)
@@ -830,7 +825,7 @@ namespace Iocaine2
                 //Monitor.Exit(m_TOP_TimerLabelLock);
             }
         }
-        private void TOP_LogErrorsSetLight(Boolean iLightOn, Boolean iDisable)
+        private void TOP_LogErrorsSetLight(bool iLightOn, bool iDisable)
         {
             try
             {
@@ -848,7 +843,7 @@ namespace Iocaine2
                 MessageBox.Show("TOP_LogErrorsSetLight: " + e.ToString());
             }
         }
-        private void TOP_LogErrorsSetLightCBF(Boolean iLightOn, Boolean iDisable)
+        private void TOP_LogErrorsSetLightCBF(bool iLightOn, bool iDisable)
         {
             try
             {
@@ -897,7 +892,7 @@ namespace Iocaine2
         #endregion Error Alert
 
         #region Timer Text
-        private void TOP_setTimerLabelText(String iText, TIMER_USER iSender)
+        private void TOP_setTimerLabelText(string iText, TIMER_USER iSender)
         {
             try
             {
@@ -915,7 +910,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("TOP_setTimerLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTimerLabelTextCBF(String iText, TIMER_USER iSender)
+        private void TOP_setTimerLabelTextCBF(string iText, TIMER_USER iSender)
         {
             lock(m_TOP_TimerLabelLock)
             {
@@ -953,15 +948,15 @@ namespace Iocaine2
             try
             {
                 Monitor.Enter(m_TOP_chatLog);
-                UInt32 nbLines = m_TOP_chatLog.LinesSinceLastRead;
-                for (Int32 ii = 0; ii < nbLines; ii++)
+                uint nbLines = m_TOP_chatLog.LinesSinceLastRead;
+                for (int ii = 0; ii < nbLines; ii++)
                 {
                     ChatLine iNextLine = null;
                     if (m_TOP_chatLog.Read(out iNextLine))
                     {
                         if ((iNextLine.Mode == FFXIEnums.CHAT_MODE.TELL_INC1) || (iNextLine.Mode == FFXIEnums.CHAT_MODE.TELL_INC2))
                         {
-                            String incName;
+                            string incName;
                             //if the /tell is broken over multiple lines, we won't have a >> and it will crash
                             //because incName will be null.
                             if (iNextLine.ProcessedLine.Contains(">>"))
@@ -978,9 +973,9 @@ namespace Iocaine2
                                     m_TOP_replyNamesList.Remove(incName);
                                 }
                                 m_TOP_replyNamesList.Insert(0, incName);
-                                for (Int32 kk = 0; kk < m_TOP_replyNamesList.Count; kk++)
+                                for (int kk = 0; kk < m_TOP_replyNamesList.Count; kk++)
                                 {
-                                    LoggingFunctions.Debug("chatParserThreadFunction: replyList[" + kk + "]: " + (String)m_TOP_replyNamesList[kk] + ".", LoggingFunctions.DBG_SCOPE.CHAT);
+                                    LoggingFunctions.Debug("chatParserThreadFunction: replyList[" + kk + "]: " + (string)m_TOP_replyNamesList[kk] + ".", LoggingFunctions.DBG_SCOPE.CHAT);
                                 }
                             }
                         }
@@ -1002,7 +997,7 @@ namespace Iocaine2
          * @param contactName - incoming name of persone sending /tell (incName)
          * @author Justin Walega
          */
-        private String TOP_Chat_checkForTimestamp(String contactName)
+        private string TOP_Chat_checkForTimestamp(string contactName)
         {
             if (contactName.Contains(":"))
             {
@@ -1016,7 +1011,7 @@ namespace Iocaine2
          * TODO - output character information to inform player of reason for crash.
          * @author Justin Walega
          */
-        private void TOP_Chat_checkGMTellKill(String contactName)
+        private void TOP_Chat_checkGMTellKill(string contactName)
         {
             if (contactName.Contains("[GM]"))
             {
@@ -1065,8 +1060,8 @@ namespace Iocaine2
                 {
                     //Update the updater (Iocaine2.exe).
                     versionList = Server.Update.GetFileList(m_TOP_File_versionFileName);
-                    String fileInfo = "";
-                    foreach (String str in versionList)
+                    string fileInfo = "";
+                    foreach (string str in versionList)
                     {
                         if (str.Contains(m_TOP_File_updaterFileName))
                         {
@@ -1101,7 +1096,7 @@ namespace Iocaine2
             try
             {
                 Assembly asm = Assembly.GetExecutingAssembly();
-                String version = asm.GetName().Version.ToString();
+                string version = asm.GetName().Version.ToString();
                 if (versionList != null)
                 {
                     LoggingFunctions.Debug("Top::updaterThreadFunction: Version list has " + versionList.Count + " items.", LoggingFunctions.DBG_SCOPE.TOP);
@@ -1110,8 +1105,8 @@ namespace Iocaine2
                 {
                     versionList = Server.Update.GetFileList(m_TOP_File_versionFileName);
                 }
-                Boolean updateNeeded = false;
-                foreach (String str in versionList)
+                bool updateNeeded = false;
+                foreach (string str in versionList)
                 {
                     if (str.Contains(m_TOP_File_changeLogFileName) || str.Contains(m_TOP_File_updaterFileName))
                     {
@@ -1124,9 +1119,9 @@ namespace Iocaine2
                         break;
                     }
                 }
-                Boolean ignoreUpdateExists = File.Exists(".\\NO_UPDATE.txt");
-                Boolean debugFileExists = File.Exists(".\\DEBUG.txt");
-                Boolean debugLogFileExists = File.Exists(".\\DEBUG_PRC_LOG.txt");
+                bool ignoreUpdateExists = File.Exists(".\\NO_UPDATE.txt");
+                bool debugFileExists = File.Exists(".\\DEBUG.txt");
+                bool debugLogFileExists = File.Exists(".\\DEBUG_PRC_LOG.txt");
                 if (debugFileExists)
                 {
                     Iocaine2.Logging.LoggingFunctions.AddDebugScope(LoggingFunctions.DBG_SCOPE.ALL);
@@ -1148,7 +1143,7 @@ namespace Iocaine2
                     {
                         //We've already gone through this once.
                         //Prompt the user to try updating or cancel out/exit.
-                        String msg = "Iocaine has files that need to be updated,\n";
+                        string msg = "Iocaine has files that need to be updated,\n";
                         msg += "but the updater may be stuck in a loop.\n";
                         msg += "Click Retry to try updating.";
                         DialogResult rslt = MessageBox.Show(msg, "Update Required", MessageBoxButtons.RetryCancel);
@@ -1159,7 +1154,7 @@ namespace Iocaine2
                         }
                         //If the user didn't Cancel out, fall through to the updater spawn below.
                     }
-                    String updateFileAbsolute = Path.GetFullPath(m_TOP_File_updaterFile);
+                    string updateFileAbsolute = Path.GetFullPath(m_TOP_File_updaterFile);
                     if (File.Exists(updateFileAbsolute))
                     {
                         try
@@ -1202,7 +1197,7 @@ namespace Iocaine2
         {
             TOP_stopAllBots(false);
         }
-        private void TOP_stopAllBots(Boolean iReleaseFisher)
+        private void TOP_stopAllBots(bool iReleaseFisher)
         {
             // TBD : Eventually go into the bot controller.
             if (Fisher.Access.State == STATE.RUNNING)
@@ -1271,14 +1266,18 @@ namespace Iocaine2
         }
         private void TOP_vitalsOrAnyJobChangedHandler()
         {
-            //The order of these is crutial since refresh lists invokes onto the GUI thread.
+            //The order of these is crutial since PL_RefreshLists invokes onto the GUI thread.
             //So if they were all assigned to the same event (as was previously done),
             //and the event called the PL_RefreshLists first, it would cause errors.
-            Data.Structures.CommandManager.SpellsManager.Init();
-            Data.Structures.CommandManager.JAManager.Init();
-            Data.Structures.CommandManager.WSManager.Init();
-            Data.Structures.CommandManager.Init();
-            PL_RefreshLists();
+            try
+            {
+                Data.Structures.CommandManager.Init_JobChange();
+                PL_RefreshLists();
+            }
+            catch (Exception e)
+            {
+                LoggingFunctions.Error(e.ToString());
+            }
         }
         #region Fisher Event Handlers
         private void Fisher_OnDoneHandler()
@@ -1303,7 +1302,7 @@ namespace Iocaine2
         }
         private void Fisher_DoNavAndFish(Object iTripName)
         {
-            String tripName = (String)iTripName;
+            string tripName = (string)iTripName;
             if (!Statics.Datasets.UserTripNames.Contains(tripName))
             {
                 MessageBox.Show("[ERROR] Could not find trip named '" + tripName + "'");
@@ -1364,7 +1363,7 @@ namespace Iocaine2
         {
             m_TOP_currentZone = iNewZoneId;
         }
-        private void TOP_changeMonitor__mapChanged(Boolean mapSet, Byte newMapId)
+        private void TOP_changeMonitor__mapChanged(bool mapSet, byte newMapId)
         {
             m_MAP_mapCurrSet = mapSet;
             if (mapSet)
@@ -1411,9 +1410,9 @@ namespace Iocaine2
                 return;
             }
             //Set arrow position...
-            Single myX = MemReads.Self.Position.get_x();
-            Single myY = MemReads.Self.Position.get_y();
-            Single myH = MemReads.Self.Position.get_heading();
+            float myX = MemReads.Self.Position.get_x();
+            float myY = MemReads.Self.Position.get_y();
+            float myH = MemReads.Self.Position.get_heading();
             if (m_MAP_centerLocked || MAP_CenterOnce)
             {
                 m_MAP_MapCurrMapSet.CenterPosition(myX, myY);
@@ -1440,7 +1439,7 @@ namespace Iocaine2
             }
             m_MAP_MapCurrMapSet.AddRangeCircle(50, myX, myY);
 
-            UInt16 tgtId = MemReads.Target.get_id();
+            ushort tgtId = MemReads.Target.get_id();
             if (tgtId != 0)
             {
                 MemReads.NPCs.NPCInfoStruct tgtInfo = new MemReads.NPCs.NPCInfoStruct();
@@ -1453,10 +1452,10 @@ namespace Iocaine2
             c_MAP_mapPB.SizeMode = PictureBoxSizeMode.StretchImage;
             c_MAP_mapPB.Image = m_MAP_MapCurrMapSet.DynamicMap;
         }
-        private void TOP_MAP_setMap(UInt16 iZoneId, Byte iMapId)
+        private void TOP_MAP_setMap(ushort iZoneId, byte iMapId)
         {
-            Byte mapIdx;
-            Single currZoom = 1;
+            byte mapIdx;
+            float currZoom = 1;
             if (m_MAP_mapCurrMapSet != null)
             {
                 currZoom = m_MAP_MapCurrMapSet.CurrentZoom;
@@ -1523,10 +1522,10 @@ namespace Iocaine2
         {
             if (m_MAP_mapIsPanning)
             {
-                Single diffX = (e.Location.X - m_MAP_mapDragStartPoint.X) / m_MAP_MapCurrMapSet.CurrentZoom;
-                Single diffY = (e.Location.Y - m_MAP_mapDragStartPoint.Y) / m_MAP_MapCurrMapSet.CurrentZoom;
+                float diffX = (e.Location.X - m_MAP_mapDragStartPoint.X) / m_MAP_MapCurrMapSet.CurrentZoom;
+                float diffY = (e.Location.Y - m_MAP_mapDragStartPoint.Y) / m_MAP_MapCurrMapSet.CurrentZoom;
                 m_MAP_MapCurrMapSet.CurrentCenter = new PointF(m_MAP_mapStartCenter.X - diffX, m_MAP_mapStartCenter.Y - diffY);
-                Single dist = (Single)Math.Sqrt(Math.Pow(e.X - m_MAP_mapDragLastRedrawPoint.X, 2) + Math.Pow(e.Y - m_MAP_mapDragLastRedrawPoint.Y, 2));
+                float dist = (float)Math.Sqrt(Math.Pow(e.X - m_MAP_mapDragLastRedrawPoint.X, 2) + Math.Pow(e.Y - m_MAP_mapDragLastRedrawPoint.Y, 2));
                 if(dist > 5)
                 {
                     m_MAP_mapDragLastRedrawPoint = new PointF(e.X, e.Y);
@@ -1537,23 +1536,23 @@ namespace Iocaine2
         private void c_MAP_mapPB_MouseWheel(object sender, MouseEventArgs e)
         {
             // Location is x/y of where the mouse is relative to the 0,0 of the picturebox.
-            Single mouseX = (Single)e.Location.X;
-            Single mouseY = (Single)e.Location.Y;
-            Int32 zoomSwitch = e.Delta > 0 ? 1 : -1;
+            float mouseX = (float)e.Location.X;
+            float mouseY = (float)e.Location.Y;
+            int zoomSwitch = e.Delta > 0 ? 1 : -1;
             // We want the same map pixel to be under the pointer once the zoom is complete.
 
-            Single currPxlCnt = 512 / m_MAP_MapCurrMapSet.CurrentZoom;
-            Single mapLeft = m_MAP_MapCurrMapSet.CurrentCenter.X - currPxlCnt / 2;
-            Single mapTop = m_MAP_MapCurrMapSet.CurrentCenter.Y - currPxlCnt / 2;
-            Single mapXUnderCursor = mouseX / c_MAP_mapPB.Width * currPxlCnt + mapLeft;
-            Single mapYUnderCursor = mouseY / c_MAP_mapPB.Height * currPxlCnt + mapTop;
-            Single currCursorXToCenterX = m_MAP_MapCurrMapSet.CurrentCenter.X - mapXUnderCursor;
-            Single currCursorYToCenterY = m_MAP_MapCurrMapSet.CurrentCenter.Y - mapYUnderCursor;
+            float currPxlCnt = 512 / m_MAP_MapCurrMapSet.CurrentZoom;
+            float mapLeft = m_MAP_MapCurrMapSet.CurrentCenter.X - currPxlCnt / 2;
+            float mapTop = m_MAP_MapCurrMapSet.CurrentCenter.Y - currPxlCnt / 2;
+            float mapXUnderCursor = mouseX / c_MAP_mapPB.Width * currPxlCnt + mapLeft;
+            float mapYUnderCursor = mouseY / c_MAP_mapPB.Height * currPxlCnt + mapTop;
+            float currCursorXToCenterX = m_MAP_MapCurrMapSet.CurrentCenter.X - mapXUnderCursor;
+            float currCursorYToCenterY = m_MAP_MapCurrMapSet.CurrentCenter.Y - mapYUnderCursor;
 
-            Single newPxlCnt = currPxlCnt - currPxlCnt / Maps.MapSet.PercZoomPerScroll * zoomSwitch;
-            Single newCenterX = mapXUnderCursor + currCursorXToCenterX * newPxlCnt / currPxlCnt;
-            Single newCenterY = mapYUnderCursor + currCursorYToCenterY * newPxlCnt / currPxlCnt;
-            Single newZoom = m_MAP_MapCurrMapSet.CurrentZoom * (1 + (zoomSwitch / Maps.MapSet.PercZoomPerScroll));
+            float newPxlCnt = currPxlCnt - currPxlCnt / Maps.MapSet.PercZoomPerScroll * zoomSwitch;
+            float newCenterX = mapXUnderCursor + currCursorXToCenterX * newPxlCnt / currPxlCnt;
+            float newCenterY = mapYUnderCursor + currCursorYToCenterY * newPxlCnt / currPxlCnt;
+            float newZoom = m_MAP_MapCurrMapSet.CurrentZoom * (1 + (zoomSwitch / Maps.MapSet.PercZoomPerScroll));
             PointF newCenter = new PointF(newCenterX, newCenterY);
             m_MAP_centerLocked = false;
             m_MAP_centerZoomLocked = false;
@@ -1578,7 +1577,7 @@ namespace Iocaine2
         {
             TOP_MAP_centerNoZoom();
         }
-        private void TOP_MAP_centerZoom(Single iPosWidth)
+        private void TOP_MAP_centerZoom(float iPosWidth)
         {
             m_MAP_MapCurrMapSet.SetPosWidth(100);
             m_MAP_centerZoomLocked = true;
@@ -1587,8 +1586,8 @@ namespace Iocaine2
         }
         private void TOP_MAP_centerNoZoom()
         {
-            Single myX = MemReads.Self.Position.get_x();
-            Single myY = MemReads.Self.Position.get_y();
+            float myX = MemReads.Self.Position.get_x();
+            float myY = MemReads.Self.Position.get_y();
             m_MAP_MapCurrMapSet.CenterPosition(myX, myY);
             m_MAP_centerLocked = true;
             TOP_MAP_drawMap();
@@ -1704,11 +1703,11 @@ namespace Iocaine2
             {
                 return;
             }
-            Int32 buttonXFromRight = this.Width - c_ExtendRightButton.Left;
-            Int32 addWidth = m_TOP_Form_widthWithMap - m_TOP_Form_initialWidth;
+            int buttonXFromRight = this.Width - c_ExtendRightButton.Left;
+            int addWidth = m_TOP_Form_widthWithMap - m_TOP_Form_initialWidth;
             if (Statics.Settings.Top.EnableResizeEffects)
             {
-                for (Int32 ii = 0; ii < m_TOP_Form_resizeSteps; ii++)
+                for (int ii = 0; ii < m_TOP_Form_resizeSteps; ii++)
                 {
                     this.Width += addWidth / m_TOP_Form_resizeSteps;
                     c_ExtendRightButton.Left += addWidth / m_TOP_Form_resizeSteps;
@@ -1745,11 +1744,11 @@ namespace Iocaine2
             {
                 return;
             }
-            Int32 buttonXFromRight = this.Width - c_ExtendRightButton.Left;
-            Int32 addWidth = m_TOP_Form_widthWithMap - m_TOP_Form_initialWidth;
+            int buttonXFromRight = this.Width - c_ExtendRightButton.Left;
+            int addWidth = m_TOP_Form_widthWithMap - m_TOP_Form_initialWidth;
             if (Statics.Settings.Top.EnableResizeEffects)
             {
-                for (Int32 ii = 0; ii < m_TOP_Form_resizeSteps; ii++)
+                for (int ii = 0; ii < m_TOP_Form_resizeSteps; ii++)
                 {
                     this.Width -= addWidth / m_TOP_Form_resizeSteps;
                     c_ExtendRightButton.Left -= addWidth / m_TOP_Form_resizeSteps;
@@ -1765,7 +1764,7 @@ namespace Iocaine2
         #endregion Map
 
         #region Process Combo Box
-        private void TOP_changeProcessWindowTitleText(String newText)
+        private void TOP_changeProcessWindowTitleText(string newText)
         {
             while (!c_ProcessCB.IsHandleCreated)
             {
@@ -1788,14 +1787,14 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting process combo box item text: " + e.ToString());
             }
         }
-        private void TOP_changeProcessWindowTitleTextCBF(String newTitle)
+        private void TOP_changeProcessWindowTitleTextCBF(string newTitle)
         {
             c_ProcessCB.Text = newTitle + " (" + ChangeMonitor.MainProc.Id + ")";
         }
         #endregion Process Combo Box
         
         #region Tab Pages
-        private void TOP_addTabPage(TabControl iControlToAddTo, Int32 iIndex, TabPage iPageToAdd)
+        private void TOP_addTabPage(TabControl iControlToAddTo, int iIndex, TabPage iPageToAdd)
         {
             try
             {
@@ -1813,7 +1812,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In addTabPage: " + e.ToString());
             }
         }
-        private void TOP_addTabPageCBF(TabControl iControlToAddTo, Int32 iIndex, TabPage iPageToAdd)
+        private void TOP_addTabPageCBF(TabControl iControlToAddTo, int iIndex, TabPage iPageToAdd)
         {
             if (iControlToAddTo.TabPages.Count <= iIndex)
             {
@@ -1853,7 +1852,7 @@ namespace Iocaine2
                 iControlToRemoveFrom.TabPages.Remove(iPageToRemove);
             }
         }
-        private void TOP_removeTabPage(TabControl iControl, String iKey)
+        private void TOP_removeTabPage(TabControl iControl, string iKey)
         {
             try
             {
@@ -1871,24 +1870,24 @@ namespace Iocaine2
                 LoggingFunctions.Error("TOP_RemoveTab:\r\t" + e.ToString());
             }
         }
-        private void TOP_removeTabPageCBF(TabControl iControl, String iKey)
+        private void TOP_removeTabPageCBF(TabControl iControl, string iKey)
         {
             if (iControl.TabPages.ContainsKey(iKey))
             {
                 iControl.TabPages.RemoveByKey(iKey);
             }
         }
-        private Int32 TOP_getMainTabSelectionIndexCBF()
+        private int TOP_getMainTabSelectionIndexCBF()
         {
             return this.c_MainTabControl.SelectedIndex;
         }
-        private String TOP_getMainTabSelectionName()
+        private string TOP_getMainTabSelectionName()
         {
             try
             {
                 if (c_MainTabControl.InvokeRequired)
                 {
-                    return (String)c_MainTabControl.Invoke(new Statics.FuncPtrs.TD_String_Void(TOP_getMainTabSelectionNameCBF));
+                    return (string)c_MainTabControl.Invoke(new Statics.FuncPtrs.TD_String_Void(TOP_getMainTabSelectionNameCBF));
                 }
                 else
                 {
@@ -1901,14 +1900,14 @@ namespace Iocaine2
                 return "";
             }
         }
-        private String TOP_getMainTabSelectionNameCBF()
+        private string TOP_getMainTabSelectionNameCBF()
         {
             return this.c_MainTabControl.SelectedTab.Name;
         }
         #endregion Tab Pages
 
         #region Status Box
-        private void TOP_updateStatusBox(String newTxt, System.Drawing.Color color)
+        private void TOP_updateStatusBox(string newTxt, System.Drawing.Color color)
         {
             try
             {
@@ -1935,7 +1934,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating status box: " + e.ToString());
             }
         }
-        private void TOP_updateStatusBoxCBF(String newTxt, System.Drawing.Color boxColor)
+        private void TOP_updateStatusBoxCBF(string newTxt, System.Drawing.Color boxColor)
         {
             c_StatusBoxTB.BackColor = boxColor;
             c_StatusBoxTB.Text = newTxt;
@@ -1946,7 +1945,7 @@ namespace Iocaine2
         #region Settings Button
         private void c_SettingsButton_Click(object sender, EventArgs e)
         {
-            String tabName = c_MainTabControl.SelectedTab.Name;
+            string tabName = c_MainTabControl.SelectedTab.Name;
             if (tabName == TAB_KEYS_MAIN.Fish_Bot_Tab.ToString())
             {
                 Fisher.Access.ShowSettingsDialog(this);
@@ -2020,7 +2019,7 @@ namespace Iocaine2
         #region Stats Button
         private void c_StatsButton_Click(object sender, EventArgs e)
         {
-            String tabName = c_MainTabControl.SelectedTab.Name;
+            string tabName = c_MainTabControl.SelectedTab.Name;
             if (tabName == TAB_KEYS_MAIN.Fish_Bot_Tab.ToString())
             {
                 //MessageBox.Show("Fish Stats is currrently broken.\nNo ETA on fixing it.\nSorry for the inconvenience.", "Broken :(", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -2073,7 +2072,7 @@ namespace Iocaine2
         #region Event Handlers
         #endregion Event Handlers
         #region Updates
-        private void TOP_setChkBValue(CheckBox iChkB, Boolean iValue)
+        private void TOP_setChkBValue(CheckBox iChkB, bool iValue)
         {
             try
             {
@@ -2091,7 +2090,7 @@ namespace Iocaine2
                 LoggingFunctions.Error(e.ToString());
             }
         }
-        private void TOP_setChkBValueCBF(CheckBox iChkB, Boolean iValue)
+        private void TOP_setChkBValueCBF(CheckBox iChkB, bool iValue)
         {
             iChkB.Checked = iValue;
         }
@@ -2122,7 +2121,7 @@ namespace Iocaine2
         }
         #endregion Update All
         #region Bag
-        private void TOP_setTopInvBagCurLabelText(String iText)
+        private void TOP_setTopInvBagCurLabelText(string iText)
         {
             try
             {
@@ -2140,11 +2139,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvBagCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvBagCurLabelTextCBF(String iText)
+        private void TOP_setTopInvBagCurLabelTextCBF(string iText)
         {
             c_InvBagCurLabel.Text = iText;
         }
-        private void TOP_setTopInvBagMaxLabelText(String iText)
+        private void TOP_setTopInvBagMaxLabelText(string iText)
         {
             try
             {
@@ -2162,13 +2161,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvBagMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvBagMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvBagMaxLabelTextCBF(string iText)
         {
             c_InvBagMaxLabel.Text = iText;
         }
         #endregion Bag
         #region Satchel
-        private void TOP_setTopInvSatchelCurLabelText(String iText)
+        private void TOP_setTopInvSatchelCurLabelText(string iText)
         {
             try
             {
@@ -2186,11 +2185,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSatchelCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSatchelCurLabelTextCBF(String iText)
+        private void TOP_setTopInvSatchelCurLabelTextCBF(string iText)
         {
             c_InvSatchelCurLabel.Text = iText;
         }
-        private void TOP_setTopInvSatchelMaxLabelText(String iText)
+        private void TOP_setTopInvSatchelMaxLabelText(string iText)
         {
             try
             {
@@ -2208,13 +2207,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSatchelMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSatchelMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvSatchelMaxLabelTextCBF(string iText)
         {
             c_InvSatchelMaxLabel.Text = iText;
         }
         #endregion Satchel
         #region Sack
-        private void TOP_setTopInvSackCurLabelText(String iText)
+        private void TOP_setTopInvSackCurLabelText(string iText)
         {
             try
             {
@@ -2232,11 +2231,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSackCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSackCurLabelTextCBF(String iText)
+        private void TOP_setTopInvSackCurLabelTextCBF(string iText)
         {
             c_InvSackCurLabel.Text = iText;
         }
-        private void TOP_setTopInvSackMaxLabelText(String iText)
+        private void TOP_setTopInvSackMaxLabelText(string iText)
         {
             try
             {
@@ -2254,13 +2253,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSackMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSackMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvSackMaxLabelTextCBF(string iText)
         {
             c_InvSackMaxLabel.Text = iText;
         }
         #endregion Sack
         #region Case
-        private void TOP_setTopInvCaseCurLabelText(String iText)
+        private void TOP_setTopInvCaseCurLabelText(string iText)
         {
             try
             {
@@ -2278,11 +2277,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvCaseCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvCaseCurLabelTextCBF(String iText)
+        private void TOP_setTopInvCaseCurLabelTextCBF(string iText)
         {
             c_InvCaseCurLabel.Text = iText;
         }
-        private void TOP_setTopInvCaseMaxLabelText(String iText)
+        private void TOP_setTopInvCaseMaxLabelText(string iText)
         {
             try
             {
@@ -2300,13 +2299,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvCaseMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvCaseMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvCaseMaxLabelTextCBF(string iText)
         {
             c_InvCaseMaxLabel.Text = iText;
         }
         #endregion Case
         #region Safe
-        private void TOP_setTopInvSafeCurLabelText(String iText)
+        private void TOP_setTopInvSafeCurLabelText(string iText)
         {
             try
             {
@@ -2324,11 +2323,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSafeCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSafeCurLabelTextCBF(String iText)
+        private void TOP_setTopInvSafeCurLabelTextCBF(string iText)
         {
             c_InvSafeCurLabel.Text = iText;
         }
-        private void TOP_setTopInvSafeMaxLabelText(String iText)
+        private void TOP_setTopInvSafeMaxLabelText(string iText)
         {
             try
             {
@@ -2346,13 +2345,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvSafeMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvSafeMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvSafeMaxLabelTextCBF(string iText)
         {
             c_InvSafeMaxLabel.Text = iText;
         }
         #endregion Safe
         #region Storage
-        private void TOP_setTopInvStorageCurLabelText(String iText)
+        private void TOP_setTopInvStorageCurLabelText(string iText)
         {
             try
             {
@@ -2370,11 +2369,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvStorageCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvStorageCurLabelTextCBF(String iText)
+        private void TOP_setTopInvStorageCurLabelTextCBF(string iText)
         {
             c_InvStorageCurLabel.Text = iText;
         }
-        private void TOP_setTopInvStorageMaxLabelText(String iText)
+        private void TOP_setTopInvStorageMaxLabelText(string iText)
         {
             try
             {
@@ -2392,13 +2391,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvStorageMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvStorageMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvStorageMaxLabelTextCBF(string iText)
         {
             c_InvStorageMaxLabel.Text = iText;
         }
         #endregion Storage
         #region Locker
-        private void TOP_setTopInvLockerCurLabelText(String iText)
+        private void TOP_setTopInvLockerCurLabelText(string iText)
         {
             try
             {
@@ -2416,11 +2415,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvLockerCurLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvLockerCurLabelTextCBF(String iText)
+        private void TOP_setTopInvLockerCurLabelTextCBF(string iText)
         {
             c_InvLockerCurLabel.Text = iText;
         }
-        private void TOP_setTopInvLockerMaxLabelText(String iText)
+        private void TOP_setTopInvLockerMaxLabelText(string iText)
         {
             try
             {
@@ -2438,7 +2437,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In setTopInvLockerMaxLabelText: " + e.ToString());
             }
         }
-        private void TOP_setTopInvLockerMaxLabelTextCBF(String iText)
+        private void TOP_setTopInvLockerMaxLabelTextCBF(string iText)
         {
             c_InvLockerMaxLabel.Text = iText;
         }
@@ -2465,57 +2464,57 @@ namespace Iocaine2
         }
         private void TOP_Form_ResizeEnd(object sender, EventArgs e)
         {
-            Int32 top_tab_x_diff = 549 - 525;
-            Int32 top_tab_y_diff = 535 - 432;
+            int top_tab_x_diff = 549 - 525;
+            int top_tab_y_diff = 535 - 432;
             c_MainTabControl.Width = m_TOP_Form_currentWidth - top_tab_x_diff + 10;
             c_MainTabControl.Height = m_TOP_Form_currentHeight - top_tab_y_diff;
 
             #region Shift Inventory Totals
-            const Int32 nb_label_groups = 7;
-            const Int32 bag_label_size = 25;
-            const Int32 bag_occ_label_size = 17;
-            const Int32 bag_max_label_size = 27;
-            const Int32 bag_group_size = bag_label_size + bag_occ_label_size + bag_max_label_size;
-            const Int32 satchel_label_size = 27;
-            const Int32 satchel_occ_label_size = 17;
-            const Int32 satchel_max_label_size = 27;
-            const Int32 satchel_group_size = satchel_label_size + satchel_occ_label_size + satchel_max_label_size;
-            const Int32 sack_label_size = 30;
-            const Int32 sack_occ_label_size = 17;
-            const Int32 sack_max_label_size = 27;
-            const Int32 sack_group_size = sack_label_size + sack_occ_label_size + sack_max_label_size;
-            const Int32 case_label_size = 29;
-            const Int32 case_occ_label_size = 17;
-            const Int32 case_max_label_size = 27;
-            const Int32 case_group_size = case_label_size + case_occ_label_size + case_max_label_size;
-            const Int32 safe_label_size = 27;
-            const Int32 safe_occ_label_size = 17;
-            const Int32 safe_max_label_size = 27;
-            const Int32 safe_group_size = safe_label_size + safe_occ_label_size + safe_max_label_size;
-            const Int32 storage_label_size = 24;
-            const Int32 storage_occ_label_size = 17;
-            const Int32 storage_max_label_size = 27;
-            const Int32 storage_group_size = storage_label_size + storage_occ_label_size + storage_max_label_size;
-            const Int32 locker_label_size = 27;
-            const Int32 locker_occ_label_size = 17;
-            const Int32 locker_max_label_size = 27;
-            const Int32 locker_group_size = locker_label_size + locker_occ_label_size + locker_max_label_size;
-            const Int32 left_buffer = 4;
-            const Int32 right_buffer = 4;
-            const Int32 inv_label_top_diff = 549 - 483;
-            Int32 inv_label_top = m_TOP_Form_currentHeight - inv_label_top_diff + 14;
-            Int32 between_buffer = 0;
+            const int nb_label_groups = 7;
+            const int bag_label_size = 25;
+            const int bag_occ_label_size = 17;
+            const int bag_max_label_size = 27;
+            const int bag_group_size = bag_label_size + bag_occ_label_size + bag_max_label_size;
+            const int satchel_label_size = 27;
+            const int satchel_occ_label_size = 17;
+            const int satchel_max_label_size = 27;
+            const int satchel_group_size = satchel_label_size + satchel_occ_label_size + satchel_max_label_size;
+            const int sack_label_size = 30;
+            const int sack_occ_label_size = 17;
+            const int sack_max_label_size = 27;
+            const int sack_group_size = sack_label_size + sack_occ_label_size + sack_max_label_size;
+            const int case_label_size = 29;
+            const int case_occ_label_size = 17;
+            const int case_max_label_size = 27;
+            const int case_group_size = case_label_size + case_occ_label_size + case_max_label_size;
+            const int safe_label_size = 27;
+            const int safe_occ_label_size = 17;
+            const int safe_max_label_size = 27;
+            const int safe_group_size = safe_label_size + safe_occ_label_size + safe_max_label_size;
+            const int storage_label_size = 24;
+            const int storage_occ_label_size = 17;
+            const int storage_max_label_size = 27;
+            const int storage_group_size = storage_label_size + storage_occ_label_size + storage_max_label_size;
+            const int locker_label_size = 27;
+            const int locker_occ_label_size = 17;
+            const int locker_max_label_size = 27;
+            const int locker_group_size = locker_label_size + locker_occ_label_size + locker_max_label_size;
+            const int left_buffer = 4;
+            const int right_buffer = 4;
+            const int inv_label_top_diff = 549 - 483;
+            int inv_label_top = m_TOP_Form_currentHeight - inv_label_top_diff + 14;
+            int between_buffer = 0;
 
-            Int32 inv_label_total_x = bag_group_size + satchel_group_size + sack_group_size + case_group_size + safe_group_size + storage_group_size + locker_group_size;
-            Int32 inv_label_x_remaining = m_TOP_Form_currentWidth - left_buffer - right_buffer - inv_label_total_x;
+            int inv_label_total_x = bag_group_size + satchel_group_size + sack_group_size + case_group_size + safe_group_size + storage_group_size + locker_group_size;
+            int inv_label_x_remaining = m_TOP_Form_currentWidth - left_buffer - right_buffer - inv_label_total_x;
             if (inv_label_x_remaining <= 0)
             {
                 between_buffer = 0;
             }
             else
             {
-                between_buffer = (Int32)(inv_label_x_remaining / (nb_label_groups - 1));
-                for (Int32 ii = 0; ii < 2; ii++)
+                between_buffer = (int)(inv_label_x_remaining / (nb_label_groups - 1));
+                for (int ii = 0; ii < 2; ii++)
                 {
                     if (between_buffer >= 1)
                     {
@@ -2524,7 +2523,7 @@ namespace Iocaine2
                 }
             }
 
-            Int32 current_x = left_buffer;
+            int current_x = left_buffer;
             c_InvBagLabel.Top = inv_label_top;
             c_InvBagCurLabel.Top = inv_label_top;
             c_InvBagMaxLabel.Top = inv_label_top;
@@ -2589,18 +2588,18 @@ namespace Iocaine2
         private void Fisher_Tab_ResizeEnd(object sender, EventArgs e)
         {
             //Move the centered, constant sized items
-            Start_Button.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2);
-            FisherReleaseButton.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2);
-            Stop_Button.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2);
-            TimeDateForm.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2) - (TimeDateForm.Width / 2) + 37;
-            DayForm.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2) - (DayForm.Width / 2) + 37;
-            MoonForm.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2) - (MoonForm.Width / 2) + 37;
-            WeatherForm.Left = m_TOP_Form_currentCenterX - (Int32)(Start_Button.Width / 2) - (WeatherForm.Width / 2) + 37;
+            Start_Button.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2);
+            FisherReleaseButton.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2);
+            Stop_Button.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2);
+            TimeDateForm.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2) - (TimeDateForm.Width / 2) + 37;
+            DayForm.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2) - (DayForm.Width / 2) + 37;
+            MoonForm.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2) - (MoonForm.Width / 2) + 37;
+            WeatherForm.Left = m_TOP_Form_currentCenterX - (int)(Start_Button.Width / 2) - (WeatherForm.Width / 2) + 37;
 
             //Stretch the left controls
-            const Int32 initial_start_button_left = 232;
-            const Int32 initial_catch_box_width = 205;
-            //const Int32 initial_catch_box_height = 194;
+            const int initial_start_button_left = 232;
+            const int initial_catch_box_width = 205;
+            //const int initial_catch_box_height = 194;
             //catch box left = 10, start button left 232 => new width = start button left - 232 + 205
             FishListBox.Width = Start_Button.Left - initial_start_button_left + initial_catch_box_width;
 
@@ -2623,9 +2622,9 @@ namespace Iocaine2
             //194 / (194 + 139) ~ .58 => keep that proportion for the fish box.
             //When resized, get the difference between bottom of bait box and top of fish box.
             //Subtract 19 to get total box size.  Distribute ~.58 to fish box, ~.42 to bait box.
-            Int32 total_box_height = BaitBoxUpButton.Top - 3 - FishListBox.Top - 19;
-            FishListBox.Height = (Int32)(total_box_height * 0.58);
-            BaitBoxLB.Height = (Int32)(total_box_height * 0.42);
+            int total_box_height = BaitBoxUpButton.Top - 3 - FishListBox.Top - 19;
+            FishListBox.Height = (int)(total_box_height * 0.58);
+            BaitBoxLB.Height = (int)(total_box_height * 0.42);
             DropListBox.Height = BaitBoxLB.Height - 30;
             DropListBox.Top = FishListBox.Top + FishListBox.Height + 19;
             BaitBoxLB.Top = DropListBox.Top;
@@ -2689,7 +2688,7 @@ namespace Iocaine2
             if (m_TOP_File_keepPidLogFile == false)
             {
                 LoggingFunctions.Debug("Top::closeLogFile: LoggingFunctions.debug was 0, clearing old log file. This should never get printed.", LoggingFunctions.DBG_SCOPE.TOP);
-                String fileName = ".\\Iocaine_Log_" + Process.GetCurrentProcess().Id.ToString() + ".txt";
+                string fileName = ".\\Iocaine_Log_" + Process.GetCurrentProcess().Id.ToString() + ".txt";
                 if (File.Exists(fileName))
                 {
                     File.Delete(fileName);
@@ -2703,7 +2702,7 @@ namespace Iocaine2
         private void TOP_updateTitlebarText()
         {
             Assembly asm = Assembly.GetExecutingAssembly();
-            String version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString();
+            string version = asm.GetName().Version.Major.ToString() + "." + asm.GetName().Version.Minor.ToString();
             m_TOP_iocaineTitleBarText = "Iocaine " + version;
             if (this.InvokeRequired)
             {
@@ -2714,9 +2713,9 @@ namespace Iocaine2
                 TOP_updateTitlebarTextCBF(m_TOP_iocaineTitleBarText);
             }
         }
-        private void TOP_updateTitlebarText(bool iLoggedIn, String iPlayerName)
+        private void TOP_updateTitlebarText(bool iLoggedIn, string iPlayerName)
         {
-            String text = "";
+            string text = "";
             if (iLoggedIn)
             {
                 text = iPlayerName + " - " + m_TOP_iocaineTitleBarText;
@@ -2741,13 +2740,13 @@ namespace Iocaine2
                 LoggingFunctions.Error("In updateMainWindowText: " + e.ToString());
             }
         }
-        private void TOP_updateTitlebarTextCBF(String iText)
+        private void TOP_updateTitlebarTextCBF(string iText)
         {
             this.Text = iText;
         }
         #endregion Title Bar
         #region Flashing Stuff
-        private static Boolean TOP_Form_FlashWindowEx(Form iForm, Boolean iEnable = true)
+        private static bool TOP_Form_FlashWindowEx(Form iForm, bool iEnable = true)
         {
             IntPtr hWnd = iForm.Handle;
             WinApi.FLASHWINFO fInfo = new WinApi.FLASHWINFO();
@@ -2762,7 +2761,7 @@ namespace Iocaine2
             {
                 fInfo.dwFlags = WinApi.FLASHW_STOP;
             }
-            fInfo.uCount = UInt32.MaxValue;
+            fInfo.uCount = uint.MaxValue;
             fInfo.dwTimeout = 0;
 
             return WinApi.FlashWindowEx(ref fInfo);
@@ -2776,7 +2775,7 @@ namespace Iocaine2
         {
             //m_TOP_Form_active = false;
         }
-        private void TOP_Form_showBlinkingMessage(String text)
+        private void TOP_Form_showBlinkingMessage(string text)
         {
             MessageForm msgFrm = new MessageForm(MessageForm.FORM_MODE.BLINK_MSG, text, 1500,
                                                  this.Location.X + 125, this.Location.Y + 195);
@@ -2784,7 +2783,7 @@ namespace Iocaine2
         }
         private void TOP_Form_flashStuff()
         {
-            Boolean flashFishStatsButton = Statics.Settings.Top.FlashFishStatsButton;
+            bool flashFishStatsButton = Statics.Settings.Top.FlashFishStatsButton;
             //Add other conditions here.
 
             if (flashFishStatsButton)
@@ -2799,10 +2798,10 @@ namespace Iocaine2
         {
             while (true)
             {
-                Boolean flashFishStatsButton = Statics.Settings.Top.FlashFishStatsButton;
+                bool flashFishStatsButton = Statics.Settings.Top.FlashFishStatsButton;
                 //Add other conditions here.
 
-                if (flashFishStatsButton && ((Int32)this.Invoke(new Statics.FuncPtrs.TD_Int32_Void(TOP_getMainTabSelectionIndexCBF)) == 0))
+                if (flashFishStatsButton && ((int)this.Invoke(new Statics.FuncPtrs.TD_Int32_Void(TOP_getMainTabSelectionIndexCBF)) == 0))
                 {
                     this.Invoke(new Statics.FuncPtrs.TD_Void_Color(TOP_setStatsButtonColorCBF), new object[] { SystemColors.MenuHighlight });
                 }
@@ -2822,9 +2821,9 @@ namespace Iocaine2
         // TBD : Move XML to another class in IocaineCore.
         #region Global Utilities
         #region XML Functions (Global)
-        internal static String XmlEncodeSpecialCharacters(String iText)
+        internal static string XmlEncodeSpecialCharacters(string iText)
         {
-            String localText = iText;
+            string localText = iText;
             while (localText.Contains("\"")
                 || localText.Contains("&")
                 || localText.Contains("'")
@@ -2854,9 +2853,9 @@ namespace Iocaine2
             }
             return localText;
         }
-        internal static String XmlDecodeSpecialCharacters(String iText)
+        internal static string XmlDecodeSpecialCharacters(string iText)
         {
-            String localText = iText;
+            string localText = iText;
             while (localText.Contains(m_TOP_Xml_quote)
                 || localText.Contains(m_TOP_Xml_amp)
                 || localText.Contains(m_TOP_Xml_apos)
@@ -2892,7 +2891,7 @@ namespace Iocaine2
         #region To Be Moved (To various bot pages)
         #region Start Buttons
         // TBD : Move to various bot tabs.
-        private void updatePLStartButton(String text, System.Drawing.Color color)
+        private void updatePLStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -2903,7 +2902,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating PL Start Button: " + e.ToString());
             }
         }
-        private void updateSUStartButton(String text, System.Drawing.Color color)
+        private void updateSUStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -2914,7 +2913,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating SU Start Button: " + e.ToString());
             }
         }
-        private void updateCrafterStartButton(String text, System.Drawing.Color color)
+        private void updateCrafterStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -2925,7 +2924,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating Crafter Start Button: " + e.ToString());
             }
         }
-        private void updateTAStartButton(String text, System.Drawing.Color color)
+        private void updateTAStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -2936,7 +2935,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating TA Start Button: " + e.ToString());
             }
         }
-        private void updateTraderStartButton(String text, System.Drawing.Color color)
+        private void updateTraderStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -2947,31 +2946,31 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating Trader Start Button: " + e.ToString());
             }
         }
-        private void updatePLStartButtonCBF(String text, System.Drawing.Color color)
+        private void updatePLStartButtonCBF(string text, System.Drawing.Color color)
         {
             PL_Start_Button.UseMnemonic = true;
             PL_Start_Button.Text = text;
             PL_Start_Button.BackColor = color;
         }
-        private void updateSUStartButtonCBF(String text, System.Drawing.Color color)
+        private void updateSUStartButtonCBF(string text, System.Drawing.Color color)
         {
             SU_Start_Button.UseMnemonic = true;
             SU_Start_Button.Text = text;
             SU_Start_Button.BackColor = color;
         }
-        private void updateCrafterStartButtonCBF(String text, System.Drawing.Color color)
+        private void updateCrafterStartButtonCBF(string text, System.Drawing.Color color)
         {
             CB_Start_Button.UseMnemonic = true;
             CB_Start_Button.Text = text;
             CB_Start_Button.BackColor = color;
         }
-        private void updateTAStartButtonCBF(String text, System.Drawing.Color color)
+        private void updateTAStartButtonCBF(string text, System.Drawing.Color color)
         {
             TA_Start_Button.UseMnemonic = true;
             TA_Start_Button.Text = text;
             TA_Start_Button.BackColor = color;
         }
-        private void updateTraderStartButtonCBF(String text, System.Drawing.Color color)
+        private void updateTraderStartButtonCBF(string text, System.Drawing.Color color)
         {
             TR_Start_Button.UseMnemonic = true;
             TR_Start_Button.Text = text;
@@ -2990,7 +2989,6 @@ namespace Iocaine2
             Statics.Settings.Top.MapsPath = Convert.ToString(UserSettings.GetValue(UserSettings.BOT.TOP, "MapsPath"));
         }
         #endregion Fish Stats
-
         #endregion To Be Moved (To various bot pages)
     }
 }

@@ -3256,11 +3256,11 @@ namespace Iocaine2.Memory
             {
                 public static class Magic
                 {
-                    public static ushort get_time_remaining(short iSpellId)
+                    public static ushort get_time_remaining(ushort iSpellId)
                     {
                         return get_time_remaining(processIndex, iSpellId);
                     }
-                    public static ushort get_time_remaining(int iProcIndex, short iSpellId)
+                    public static ushort get_time_remaining(int iProcIndex, ushort iSpellId)
                     {
                         Process proc = processPointerList[iProcIndex].MainProcess;
                         return (ushort)(MemoryFunctions.ReadMem((IntPtr)proc.Handle, processPointerList[processIndex].Info_RecastSpell, iSpellId * 2, 2) / 60);

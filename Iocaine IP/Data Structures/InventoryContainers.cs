@@ -16,6 +16,7 @@ namespace Iocaine2.Inventory
         #region Enums
         #endregion Enums
         #region Private Members
+        private static object padlock = new object();
         private static EquipmentContainer bag;
         private static ItemContainer satchel;
         private static ItemContainer sack;
@@ -55,6 +56,13 @@ namespace Iocaine2.Inventory
         private static bool initDone = false;
         #endregion Private Members
         #region Public Members/Properties
+        public static object Padlock
+        {
+            get
+            {
+                return padlock;
+            }
+        }
         #region Containers
         public static ItemContainer Bag
         {
@@ -334,8 +342,7 @@ namespace Iocaine2.Inventory
         {
             try
             {
-                Monitor.Enter(itemAutoCompleteList);
-                Monitor.Enter(summaryItemList);
+                Monitor.Enter(padlock);
                 itemAutoCompleteList.Clear();
                 for (int ii = 0; ii < summaryItemList.Count; ii++)
                 {
@@ -348,8 +355,7 @@ namespace Iocaine2.Inventory
             }
             finally
             {
-                Monitor.Exit(summaryItemList);
-                Monitor.Exit(itemAutoCompleteList);
+                Monitor.Exit(padlock);
             }
         }
         #endregion Auto Complete List
@@ -429,135 +435,204 @@ namespace Iocaine2.Inventory
         #region All
         public static bool Contains(String iItemName)
         {
-            Monitor.Enter(summaryItemList);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemList)
             {
                 if (item.Name == iItemName)
                 {
-                    Monitor.Exit(summaryItemList);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemList);
+            Monitor.Exit(padlock);
             return false;
         }
         public static bool Contains(short iItemID)
         {
-            Monitor.Enter(summaryItemList);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemList)
             {
                 if (item.ItemID == iItemID)
                 {
-                    Monitor.Exit(summaryItemList);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemList);
+            Monitor.Exit(padlock);
             return false;
         }
         public static bool Contains(Item iItem)
         {
-            Monitor.Enter(summaryItemList);
+            Monitor.Enter(padlock);
             foreach (Item localItem in summaryItemList)
             {
                 if ((iItem.ItemID == localItem.ItemID) && (iItem.Name == localItem.Name))
                 {
-                    Monitor.Exit(summaryItemList);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemList);
+            Monitor.Exit(padlock);
             return false;
         }
         #endregion All
         #region House
         public static bool ContainsHouse(String iItemName)
         {
-            Monitor.Enter(summaryItemListHouse);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemListHouse)
             {
                 if (item.Name == iItemName)
                 {
-                    Monitor.Exit(summaryItemListHouse);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListHouse);
+            Monitor.Exit(padlock);
             return false;
         }
         public static bool ContainsHouse(short iItemID)
         {
-            Monitor.Enter(summaryItemListHouse);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemListHouse)
             {
                 if (item.ItemID == iItemID)
                 {
-                    Monitor.Exit(summaryItemListHouse);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListHouse);
+            Monitor.Exit(padlock);
             return false;
         }
         public static bool ContainsHouse(Item iItem)
         {
-            Monitor.Enter(summaryItemListHouse);
+            Monitor.Enter(padlock);
             foreach (Item localItem in summaryItemListHouse)
             {
                 if ((iItem.ItemID == localItem.ItemID) && (iItem.Name == localItem.Name))
                 {
-                    Monitor.Exit(summaryItemListHouse);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListHouse);
+            Monitor.Exit(padlock);
             return false;
         }
         #endregion House
         #region Mobile
         public static bool ContainsMobile(String iItemName)
         {
-            Monitor.Enter(summaryItemListMobile);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemListMobile)
             {
                 if (item.Name == iItemName)
                 {
-                    Monitor.Exit(summaryItemListMobile);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListMobile);
+            Monitor.Exit(padlock);
             return false;
+        }
+        public static bool ContainsMobile(short iItemID, out Inventory.ItemContainer.STORAGE_TYPE oType)
+        {
+            Monitor.Enter(padlock);
+            bool retValue = false;
+            oType = ItemContainer.STORAGE_TYPE.BAG;
+            foreach (ItemContainer cntnr in containerListMobile)
+            {
+                if (cntnr.Contains(iItemID))
+                {
+                    retValue = true;
+                    oType = cntnr.StorageType;
+                    break;
+                }
+            }
+            Monitor.Exit(padlock);
+            return retValue;
         }
         public static bool ContainsMobile(short iItemID)
         {
-            Monitor.Enter(summaryItemListMobile);
+            Monitor.Enter(padlock);
             foreach (Item item in summaryItemListMobile)
             {
                 if (item.ItemID == iItemID)
                 {
-                    Monitor.Exit(summaryItemListMobile);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListMobile);
+            Monitor.Exit(padlock);
             return false;
         }
         public static bool ContainsMobile(Item iItem)
         {
-            Monitor.Enter(summaryItemListMobile);
+            Monitor.Enter(padlock);
             foreach (Item localItem in summaryItemListMobile)
             {
                 if ((iItem.ItemID == localItem.ItemID) && (iItem.Name == localItem.Name))
                 {
-                    Monitor.Exit(summaryItemListMobile);
+                    Monitor.Exit(padlock);
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemListMobile);
+            Monitor.Exit(padlock);
             return false;
         }
         #endregion Mobile
+        #region Equipment
+        public static bool ContainsEquipment(String iItemName)
+        {
+            Monitor.Enter(padlock);
+            foreach (ItemContainer cntnr in containerListEquip)
+            {
+                if (cntnr.Contains(iItemName))
+                {
+                    Monitor.Exit(padlock);
+                    return true;
+                }
+            }
+            Monitor.Exit(padlock);
+            return false;
+        }
+        public static bool ContainsEquipment(short iItemID, out Inventory.ItemContainer.STORAGE_TYPE oType)
+        {
+            Monitor.Enter(padlock);
+            bool retValue = false;
+            oType = ItemContainer.STORAGE_TYPE.BAG;
+            foreach (ItemContainer cntnr in containerListEquip)
+            {
+                if (cntnr.Contains(iItemID))
+                {
+                    retValue = true;
+                    oType = cntnr.StorageType;
+                    break;
+                }
+            }
+            Monitor.Exit(padlock);
+            return retValue;
+        }
+        public static bool ContainsEquipment(short iItemID)
+        {
+            Inventory.ItemContainer.STORAGE_TYPE dummy;
+            return ContainsEquipment(iItemID, out dummy);
+        }
+        public static bool ContainsEquipment(Item iItem)
+        {
+            Monitor.Enter(padlock);
+            foreach (ItemContainer cntnr in containerListEquip)
+            {
+                if (cntnr.Contains(iItem))
+                {
+                    Monitor.Exit(padlock);
+                    return true;
+                }
+            }
+            Monitor.Exit(padlock);
+            return false;
+        }
+        #endregion Equipment
         #endregion Contains
         #region Item Quantity
         #region All
@@ -568,9 +643,9 @@ namespace Iocaine2.Inventory
                 return 0;
             }
             int idx = indexOf(iItem);
-            Monitor.Enter(summaryItemListQuan);
+            Monitor.Enter(padlock);
             ushort quan = summaryItemListQuan[idx];
-            Monitor.Exit(summaryItemListQuan);
+            Monitor.Exit(padlock);
             return quan;
         }
         public static ushort GetItemQuan(String iItemName)
@@ -602,9 +677,9 @@ namespace Iocaine2.Inventory
                 return 0;
             }
             int idx = indexOfHouse(iItem);
-            Monitor.Enter(summaryItemListQuanHouse);
+            Monitor.Enter(padlock);
             ushort quan = summaryItemListQuanHouse[idx];
-            Monitor.Exit(summaryItemListQuanHouse);
+            Monitor.Exit(padlock);
             return quan;
         }
         public static ushort GetItemQuanHouse(String iItemName)
@@ -636,9 +711,9 @@ namespace Iocaine2.Inventory
                 return 0;
             }
             int idx = indexOfMobile(iItem);
-            Monitor.Enter(summaryItemListQuanMobile);
+            Monitor.Enter(padlock);
             ushort quan = summaryItemListQuanMobile[idx];
-            Monitor.Exit(summaryItemListQuanMobile);
+            Monitor.Exit(padlock);
             return quan;
         }
         public static ushort GetItemQuanMobile(String iItemName)
@@ -775,10 +850,7 @@ namespace Iocaine2.Inventory
             RebuildListsMobileOnly();
             RebuildListsHouseOnly();
 
-            Monitor.Enter(summaryItemList);
-            Monitor.Enter(summaryItemListQuan);
-            Monitor.Enter(summaryItemListHouse);
-            Monitor.Enter(summaryItemListQuanHouse);
+            Monitor.Enter(padlock);
             summaryItemList.Clear();
             summaryItemListQuan.Clear();
             summaryItemList.AddRange(summaryItemListMobile);
@@ -804,10 +876,7 @@ namespace Iocaine2.Inventory
                     summaryItemListQuan.Add(summaryItemListQuanHouse[ii]);
                 }
             }
-            Monitor.Exit(summaryItemList);
-            Monitor.Exit(summaryItemListQuan);
-            Monitor.Exit(summaryItemListHouse);
-            Monitor.Exit(summaryItemListQuanHouse);
+            Monitor.Exit(padlock);
         }
         public static void RebuildListsMobileOnly()
         {
@@ -818,8 +887,7 @@ namespace Iocaine2.Inventory
                     cntnr.RebuildLists();
                 }
 
-                Monitor.Enter(summaryItemListMobile);
-                Monitor.Enter(summaryItemListQuanMobile);
+                Monitor.Enter(padlock);
                 summaryItemListMobile.Clear();
                 summaryItemListQuanMobile.Clear();
 
@@ -861,8 +929,7 @@ namespace Iocaine2.Inventory
             }
             finally
             {
-                Monitor.Exit(summaryItemListMobile);
-                Monitor.Exit(summaryItemListQuanMobile);
+                Monitor.Exit(padlock);
                 if (_CurrentCapacityValuesUpdated != null)
                 {
                     _CurrentCapacityValuesUpdated();
@@ -878,8 +945,7 @@ namespace Iocaine2.Inventory
                     cntnr.RebuildLists();
                 }
 
-                Monitor.Enter(summaryItemListHouse);
-                Monitor.Enter(summaryItemListQuanHouse);
+                Monitor.Enter(padlock);
                 summaryItemListHouse.Clear();
                 summaryItemListQuanHouse.Clear();
 
@@ -916,8 +982,7 @@ namespace Iocaine2.Inventory
             }
             finally
             {
-                Monitor.Exit(summaryItemListHouse);
-                Monitor.Exit(summaryItemListQuanHouse);
+                Monitor.Exit(padlock);
                 if (_CurrentCapacityValuesUpdated != null)
                 {
                     _CurrentCapacityValuesUpdated();

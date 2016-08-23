@@ -16,20 +16,51 @@ namespace Iocaine2.Data.Client
             public string Abbr;
         }
         #endregion Structures
-        #region Member Variables
+
+        #region Private Members
         private static bool initDone = false;
-        #endregion Member Variables
+        private const byte minId = 1;
+        private const byte maxId = 22;
+        private static Dictionary<byte, JOBS_INFO> infoMap;
+        #endregion Private Members
+
+        #region Public Properties
+        public static byte MinID
+        {
+            get
+            {
+                return minId;
+            }
+        }
+        public static byte MaxID
+        {
+            get
+            {
+                return maxId;
+            }
+        }
+        public static Dictionary<byte, JOBS_INFO> InfoMap
+        {
+            get
+            {
+                return infoMap;
+            }
+        }
+        #endregion Public Properties
+
         #region Init
         internal static void init()
         {
             if (!initDone)
             {
                 loadData();
+                loadInfoMap();
                 initDone = true;
             }
         }
         #endregion Init
-        #region Get Functions
+
+        #region Public Methods
         public static JOBS_INFO GetJobInfo(byte iId)
         {
             FfxiResource.init();
@@ -129,6 +160,19 @@ namespace Iocaine2.Data.Client
                 return jobsRows[0].Abbreviation;
             }
         }
-        #endregion Get Functions
+        #endregion Public Methods
+
+        #region Private Methods
+        private static void loadInfoMap()
+        {
+            infoMap = new Dictionary<byte, JOBS_INFO>();
+
+            MainDatabase.JobsRow[] jobsRows = (MainDatabase.JobsRow[])FfxiResource.mainDb.Jobs.Select();
+            foreach (MainDatabase.JobsRow row in jobsRows)
+            {
+                infoMap.Add(row.ID, new JOBS_INFO { ID = row.ID, Name = row.Name, Abbr = row.Abbreviation });
+            }
+        }
+        #endregion Private Methods
     }
 }

@@ -83,54 +83,81 @@ namespace Iocaine2.Inventory
         #endregion Member Variables
         #region Methods/Properties
         #region Contains Methods
-        public bool Contains(String iItemName)
+        public bool Contains(String iItemName, bool iLock = true)
         {
-            Monitor.Enter(summaryItemList);
+            if (iLock)
+            {
+                Monitor.Enter(Inventory.Containers.Padlock);
+            }
             foreach (Item item in summaryItemList)
             {
                 if (item.Name == iItemName)
                 {
-                    Monitor.Exit(summaryItemList);
+                    if (iLock)
+                    {
+                        Monitor.Exit(Inventory.Containers.Padlock);
+                    }
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemList);
+            if (iLock)
+            {
+                Monitor.Exit(Inventory.Containers.Padlock);
+            }
             return false;
         }
-        public bool Contains(short iItemID)
+        public bool Contains(short iItemID, bool iLock = true)
         {
-            Monitor.Enter(summaryItemList);
+            if (iLock)
+            {
+                Monitor.Enter(Inventory.Containers.Padlock);
+            }
             foreach (Item item in summaryItemList)
             {
                 if (item.ItemID == iItemID)
                 {
-                    Monitor.Exit(summaryItemList);
+                    if (iLock)
+                    {
+                        Monitor.Exit(Inventory.Containers.Padlock);
+                    }
                     return true;
                 }
             }
-            Monitor.Exit(summaryItemList);
+            if (iLock)
+            {
+                Monitor.Exit(Inventory.Containers.Padlock);
+            }
             return false;
         }
-        public bool Contains(Item iItem)
+        public bool Contains(Item iItem, bool iLock = true)
         {
             try
             {
-                Monitor.Enter(summaryItemList);
+                if (iLock)
+                {
+                    Monitor.Enter(Inventory.Containers.Padlock);
+                }
                 foreach (Item localItem in summaryItemList)
                 {
                     if (iItem.ItemID == localItem.ItemID)
                     {
-                        Monitor.Exit(summaryItemList);
+                        if (iLock)
+                        {
+                            Monitor.Exit(Inventory.Containers.Padlock);
+                        }
                         return true;
                     }
                 }
-                Monitor.Exit(summaryItemList);
+                if (iLock)
+                {
+                    Monitor.Exit(Inventory.Containers.Padlock);
+                }
                 return false;
             }
             catch(Exception e)
             {
                 LoggingFunctions.Error(this.type.ToString() + ".Contains: " + e.ToString());
-                Monitor.Exit(summaryItemList);
+                Monitor.Exit(Inventory.Containers.Padlock);
                 return false;
             }
         }
@@ -143,15 +170,15 @@ namespace Iocaine2.Inventory
         /// <returns></returns>
         public ushort GetItemId(String iName)
         {
-            Monitor.Enter(itemNameHistory);
+            Monitor.Enter(Inventory.Containers.Padlock);
             if (itemNameHistory.Contains(iName))
             {
-                Monitor.Exit(itemNameHistory);
+                Monitor.Exit(Inventory.Containers.Padlock);
                 return (ushort)itemIdHistory[itemNameHistory.IndexOf(iName)];
             }
             else
             {
-                Monitor.Exit(itemNameHistory);
+                Monitor.Exit(Inventory.Containers.Padlock);
                 LoggingFunctions.Timestamp("Could not find item: " + iName + " in memory.");
                 return 0;
             }
@@ -163,18 +190,16 @@ namespace Iocaine2.Inventory
         /// <returns></returns>
         public String GetItemName(ushort iItemId)
         {
-            Monitor.Enter(itemNameHistory);
+            Monitor.Enter(Inventory.Containers.Padlock);
             if (itemIdHistory.Contains(iItemId))
             {
-                Monitor.Enter(itemIdHistory);
                 String itemName = itemNameHistory[itemIdHistory.IndexOf(iItemId)];
-                Monitor.Exit(itemIdHistory);
-                Monitor.Exit(itemNameHistory);
+                Monitor.Exit(Inventory.Containers.Padlock);
                 return itemName;
             }
             else
             {
-                Monitor.Exit(itemNameHistory);
+                Monitor.Exit(Inventory.Containers.Padlock);
                 return "";
             }
         }
@@ -190,9 +215,9 @@ namespace Iocaine2.Inventory
                 return 0;
             }
             int idx = indexOf(iItem);
-            Monitor.Enter(summaryItemListQuan);
+            Monitor.Enter(Inventory.Containers.Padlock);
             ushort quan = summaryItemListQuan[idx];
-            Monitor.Exit(summaryItemListQuan);
+            Monitor.Exit(Inventory.Containers.Padlock);
             return quan;
         }
         /// <summary>
@@ -264,7 +289,7 @@ namespace Iocaine2.Inventory
         /// </summary>
         public void RebuildLists()
         {
-            Monitor.Enter(this);
+            Monitor.Enter(Inventory.Containers.Padlock);
             //First we'll build a summary list of items, but no quantities.
             summaryItemList.Clear();
             summaryItemListQuan.Clear();
@@ -334,7 +359,7 @@ namespace Iocaine2.Inventory
             {
                 LoggingFunctions.Debug("Item: " + summaryItemList[ii].Name + " :: " + summaryItemListQuan[ii], LoggingFunctions.DBG_SCOPE.INVENTORY);
             }
-            Monitor.Exit(this);
+            Monitor.Exit(Inventory.Containers.Padlock);
         }
         public bool GetPrunedItemList(List<ushort> iItemIDsToPrune, ref List<Item> oPrunedItems, ref List<ushort> oPrunedItemQuan)
         {

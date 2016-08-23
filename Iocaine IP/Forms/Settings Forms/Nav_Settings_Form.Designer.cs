@@ -115,9 +115,9 @@
             this.Nav_Settings_Rec_Interval_Label.AutoSize = true;
             this.Nav_Settings_Rec_Interval_Label.Location = new System.Drawing.Point(78, 14);
             this.Nav_Settings_Rec_Interval_Label.Name = "Nav_Settings_Rec_Interval_Label";
-            this.Nav_Settings_Rec_Interval_Label.Size = new System.Drawing.Size(153, 13);
+            this.Nav_Settings_Rec_Interval_Label.Size = new System.Drawing.Size(116, 13);
             this.Nav_Settings_Rec_Interval_Label.TabIndex = 10;
-            this.Nav_Settings_Rec_Interval_Label.Text = "Default Recording Interval (ms)";
+            this.Nav_Settings_Rec_Interval_Label.Text = "Recording Interval (ms)";
             // 
             // Nav_Settings_Rec_Min_Dist_UpDn
             // 
@@ -155,9 +155,9 @@
             this.Nav_Settings_Rec_Min_Dist_Label.AutoSize = true;
             this.Nav_Settings_Rec_Min_Dist_Label.Location = new System.Drawing.Point(78, 40);
             this.Nav_Settings_Rec_Min_Dist_Label.Name = "Nav_Settings_Rec_Min_Dist_Label";
-            this.Nav_Settings_Rec_Min_Dist_Label.Size = new System.Drawing.Size(165, 13);
+            this.Nav_Settings_Rec_Min_Dist_Label.Size = new System.Drawing.Size(170, 13);
             this.Nav_Settings_Rec_Min_Dist_Label.TabIndex = 12;
-            this.Nav_Settings_Rec_Min_Dist_Label.Text = "Default Min. Dist. Between Points";
+            this.Nav_Settings_Rec_Min_Dist_Label.Text = "Minimum Distance Between Points";
             // 
             // Nav_Settings_Rec_Wait_UpDn
             // 

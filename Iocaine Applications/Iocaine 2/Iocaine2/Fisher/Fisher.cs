@@ -72,39 +72,39 @@ namespace Iocaine2.Bots
         private List<FishStatsDataSet.FishStatsLocalRow> fishStatsRows = new List<FishStatsDataSet.FishStatsLocalRow>();
         private List<FishStatsDataSet.FishStatsLocalRow> fishStatsRows_master = new List<FishStatsDataSet.FishStatsLocalRow>();
         private FishStatEntry fishStatEntry;
-        private Int32 statsInfoData = 0;
-        private Boolean statsFishermansTunica = false;
-        private Boolean statsFishermansGloves = false;
-        private Boolean statsFishermansHose = false;
-        private Boolean statsFishermansBoots = false;
-        private Boolean statsAnglersTunica = false;
-        private Boolean statsAnglersGloves = false;
-        private Boolean statsAnglersHose = false;
-        private Boolean statsAnglersBoots = false;
-        private Boolean statsWaders = false;
-        private Boolean statsFishermansApron = false;
-        private Boolean statsSerpentRumors = false;
-        private Boolean statsFrogFishing = false;
-        private Boolean statsMooching = false;
-        private Boolean statsFishingHoleMap = false;
-        private Boolean statsTheBigOne = false;
-        private Boolean statsFishermansSignBoard = false;
-        private Boolean statsRustyBucket = false;
-        private Boolean statsBlueBambooGrass = false;
-        private Boolean statsGreenBambooGrass = false;
-        private Boolean statsRedBambooGrass = false;
-        private Boolean statsImagery = false;
-        private Boolean statsPelicanRing = false;
-        private Boolean statsAlbatrossRing = false;
-        private Boolean statsPenguinRing = false;
-        private Byte statsSkillUp = 0;
+        private int statsInfoData = 0;
+        private bool statsFishermansTunica = false;
+        private bool statsFishermansGloves = false;
+        private bool statsFishermansHose = false;
+        private bool statsFishermansBoots = false;
+        private bool statsAnglersTunica = false;
+        private bool statsAnglersGloves = false;
+        private bool statsAnglersHose = false;
+        private bool statsAnglersBoots = false;
+        private bool statsWaders = false;
+        private bool statsFishermansApron = false;
+        private bool statsSerpentRumors = false;
+        private bool statsFrogFishing = false;
+        private bool statsMooching = false;
+        private bool statsFishingHoleMap = false;
+        private bool statsTheBigOne = false;
+        private bool statsFishermansSignBoard = false;
+        private bool statsRustyBucket = false;
+        private bool statsBlueBambooGrass = false;
+        private bool statsGreenBambooGrass = false;
+        private bool statsRedBambooGrass = false;
+        private bool statsImagery = false;
+        private bool statsPelicanRing = false;
+        private bool statsAlbatrossRing = false;
+        private bool statsPenguinRing = false;
+        private byte statsSkillUp = 0;
         #endregion Fish Stats Related
         #region State Related
         private uint recastDelay = 1000;
-        private Int32 badFishCount = 0;
-        private Int32 noCatchCount = 0;
-        private const Int32 incWaitDelay = 200;
-        private String lastCatch;
+        private int badFishCount = 0;
+        private int noCatchCount = 0;
+        private const int incWaitDelay = 200;
+        private string lastCatch;
         private bool waitForNextDay = false;
         #endregion State Related
         #region Player/Environment Info
@@ -112,7 +112,7 @@ namespace Iocaine2.Bots
         private string rodMacroText = "";
         private BaitBoxItem currentBaitItem = null;
         private List<BaitBoxItem> baitList = Statics.Settings.Fisher.BaitBoxItems;
-        private Int32 currentFatigue = 0;
+        private int currentFatigue = 0;
         #endregion Player/Environment Info
         #region Events/Function Pointers
         public event Statics.FuncPtrs.TD_Void_Void _FishingDone;
@@ -695,9 +695,9 @@ namespace Iocaine2.Bots
         /// <returns>True if some action was taken and we should exit any loops we're in, false otherwise.</returns>
         private bool onDoneActions(bool iNoRod, bool iNoBait, bool iNoBiteCount, bool iInvFull)
         {
-            String statusBoxAction = "";
-            String statusBoxReason = " ";
-            String statusBoxText = "";
+            string statusBoxAction = "";
+            string statusBoxReason = " ";
+            string statusBoxText = "";
             try
             {
                 if (iNoRod == true)
@@ -850,9 +850,9 @@ namespace Iocaine2.Bots
             int formMonth = initTime.Month;
             int formDay = initTime.DayMonth;
             int formYear = initTime.Year;
-            String formDayName = initTime.DayName;
+            string formDayName = initTime.DayName;
             int formMoonPerc = initTime.MoonPercent;
-            String formMoonPhase = initTime.MoonPhase;
+            string formMoonPhase = initTime.MoonPhase;
             while (vanaTimeThread.__CheckState())
             {
                 try
@@ -866,7 +866,7 @@ namespace Iocaine2.Bots
                     formDayName = current.DayName;
                     formMoonPerc = current.MoonPercent;
                     formMoonPhase = current.MoonPhase;
-                    c_timeDateTB_Update(String.Format("{0:0#}:{1:0#}   {2}/{3}/{4}", formHour, formMin, formMonth, formDay, formYear));
+                    c_timeDateTB_Update(string.Format("{0:0#}:{1:0#}   {2}/{3}/{4}", formHour, formMin, formMonth, formDay, formYear));
                     c_dayTB_Update(formDayName);
                     c_moonTB_Update(formMoonPerc.ToString() + "%  " + formMoonPhase);
                 }
@@ -1085,7 +1085,7 @@ namespace Iocaine2.Bots
                 maxFishHP = MemReads.Fishing.get_max_hp();
                 FFXIEnums.FISHING_RESULT fishingResult = FFXIEnums.FISHING_RESULT.UNKNOWN;
                 isMonster = checkIsMonster();
-                String fishOnLine = fishIDtoNameConversion(currentID1, currentID2, currentID3, currentLarge, maxFishHP, isMonster, ref fishItemID);
+                string fishOnLine = fishIDtoNameConversion(currentID1, currentID2, currentID3, currentLarge, maxFishHP, isMonster, ref fishItemID);
                 LoggingFunctions.Debug("Fisher::fightFish: FishOnLine: " + fishOnLine + ", FishItemID: " + fishItemID + ".", LoggingFunctions.DBG_SCOPE.FISHER);
                 if ((fishItemID == 0) && (currentID1 == 60))
                 {
@@ -1176,7 +1176,7 @@ namespace Iocaine2.Bots
                     }
 
                     int currHP = MemReads.Fishing.get_cur_hp();
-                    UInt16 lastTimer = MemReads.Fishing.get_arrow_timer_value();
+                    ushort lastTimer = MemReads.Fishing.get_arrow_timer_value();
                     bool justPressed = false;
                     while (currHP != 0)
                     {
@@ -1218,7 +1218,7 @@ namespace Iocaine2.Bots
                             return;
                         }
                         MemReads.FISHING_ARROW_DIR direction = MemReads.Fishing.get_arrow_direction();
-                        UInt16 curTimer = MemReads.Fishing.get_arrow_timer_value();
+                        ushort curTimer = MemReads.Fishing.get_arrow_timer_value();
                         bool maskKeyPress = false;
                         if ((curTimer == lastTimer) || justPressed)
                         {
@@ -1296,7 +1296,7 @@ namespace Iocaine2.Bots
                     {
                         IocaineFunctions.delay(5 * 1000);
                         //Do some accounting here
-                        String tempCatch = getLastCatch(ref fishingResult);
+                        string tempCatch = getLastCatch(ref fishingResult);
                         addFishStat(fishingResult, fishItemID, maxFishHP);
                         Statics.FuncPtrs.SetStatusBoxPtr("Updating counts", Statics.Fields.Green);
                         LoggingFunctions.Timestamp("Last catch was a " + tempCatch);
@@ -1523,7 +1523,7 @@ namespace Iocaine2.Bots
         }
         #endregion Table Interactions
         #region Fish Stats
-        private String fishIDtoNameConversion(int ID1, int ID2, int ID3, int Large, int MaxHP, bool IsMonster, ref int fishItemID)
+        private string fishIDtoNameConversion(int ID1, int ID2, int ID3, int Large, int MaxHP, bool IsMonster, ref int fishItemID)
         {
             try
             {
@@ -1576,7 +1576,7 @@ namespace Iocaine2.Bots
                         break;
                     }
                 }
-                Boolean itsAMob = false;
+                bool itsAMob = false;
                 if ((Statics.Settings.Fisher.DropMobs == true) && (isMonster == true))
                 {
                     itsAMob = true;
@@ -1924,8 +1924,8 @@ namespace Iocaine2.Bots
                 }
                 else if (Statics.Settings.Fisher.KillFishProp)
                 {
-                    Int16 maxHP = MemReads.Fishing.get_max_hp();
-                    Int16 hpDiff = (Int16)(maxHP - 1000);
+                    short maxHP = MemReads.Fishing.get_max_hp();
+                    short hpDiff = (short)(maxHP - 1000);
                     double percOverMin = (double)hpDiff / (double)(9999 - 1000);
                     double waitTime = (((Statics.Settings.Fisher.KillFishPropTimeMax - Statics.Settings.Fisher.KillFishPropTimeMin) * percOverMin) + Statics.Settings.Fisher.KillFishPropTimeMin);
                     waitTime *= 1000;
@@ -2270,7 +2270,7 @@ namespace Iocaine2.Bots
                 //This always takes precedence over what we have in the bait box items list.
                 bool baitEquipped = false;
                 ushort ammoId = PlayerCache.Equipment.Ammo;
-                String baitName = "";
+                string baitName = "";
                 if (ammoId > 0)
                 {
                     baitName = Data.Client.Bait.GetBaitName(ammoId);
@@ -2309,7 +2309,7 @@ namespace Iocaine2.Bots
                     bool foundInList = false;
                     for (int ii = 0; ii < baitList.Count; ii++)
                     {
-                        String name = baitList[ii].BaitName;
+                        string name = baitList[ii].BaitName;
                         if (!baitList[ii].Use)
                         {
                             continue;
@@ -2385,8 +2385,8 @@ namespace Iocaine2.Bots
                 bool enchantment = false;
                 statsImagery = false;
                 doIHaveFishingEffects(ref enchantment, ref statsImagery);
-                UInt16 ringL = MemReads.Self.Equipment.get_ringL_id();
-                UInt16 ringR = MemReads.Self.Equipment.get_ringR_id();
+                ushort ringL = MemReads.Self.Equipment.get_ringL_id();
+                ushort ringR = MemReads.Self.Equipment.get_ringR_id();
                 statsPelicanRing = (enchantment && ((ringL == (short)FFXIEnums.ITEM_ID.PELICAN_RING) || (ringR == (short)FFXIEnums.ITEM_ID.PELICAN_RING)));
                 LoggingFunctions.Debug("Fisher::updateFishStatsInfoData: statsPelicanRing: " + statsPelicanRing + ".", LoggingFunctions.DBG_SCOPE.FISHER);
                 statsAlbatrossRing = (enchantment && ((ringL == (short)FFXIEnums.ITEM_ID.ALBATROSS_RING) || (ringR == (short)FFXIEnums.ITEM_ID.ALBATROSS_RING)));
@@ -2441,7 +2441,7 @@ namespace Iocaine2.Bots
         {
             try
             {
-                UInt16[] statusArray = new UInt16[32];
+                ushort[] statusArray = new ushort[32];
                 MemReads.Self.StatusEffects.get_effects(ref statusArray);
                 enchantment = imagery = false;
                 for (int ii = 0; ii < 32; ii++)
@@ -2450,11 +2450,11 @@ namespace Iocaine2.Bots
                     {
                         return;
                     }
-                    else if (statusArray[ii] == (UInt16)FFXIEnums.STATUS_EFFECT.Enchantment)
+                    else if (statusArray[ii] == (ushort)FFXIEnums.STATUS_EFFECT.Enchantment)
                     {
                         enchantment = true;
                     }
-                    else if (statusArray[ii] == (UInt16)FFXIEnums.STATUS_EFFECT.Fishing_Imagery)
+                    else if (statusArray[ii] == (ushort)FFXIEnums.STATUS_EFFECT.Fishing_Imagery)
                     {
                         imagery = true;
                     }
@@ -2467,7 +2467,7 @@ namespace Iocaine2.Bots
         }
         #endregion Fish Stats
         #region Inventory
-        private bool swapFishAndBait(String iBait, bool iInitialRebuild)
+        private bool swapFishAndBait(string iBait, bool iInitialRebuild)
         {
             bool movedSomething = false;
             try
@@ -2713,7 +2713,7 @@ namespace Iocaine2.Bots
             }
             return movedSomething;
         }
-        private void dropInventory(String dropItem)
+        private void dropInventory(string dropItem)
         {
             try
             {
@@ -2778,7 +2778,7 @@ namespace Iocaine2.Bots
         {
             try
             {
-                recastDelay = (UInt32)Statics.Settings.Fisher.RecastDelay + ((uint)incWaitDelay * iFatigue);
+                recastDelay = (uint)Statics.Settings.Fisher.RecastDelay + ((uint)incWaitDelay * iFatigue);
                 c_fatigueLabel_Update(iFatigue.ToString());
             }
             catch(Exception e)
@@ -2826,12 +2826,12 @@ namespace Iocaine2.Bots
         }
         #endregion Misc
         #region Chat Log
-        private String getLastCatch(ref FFXIEnums.FISHING_RESULT fishingResult)
+        private string getLastCatch(ref FFXIEnums.FISHING_RESULT fishingResult)
         {
             try
             {
-                String fisherman = PlayerCache.Vitals.Name;
-                String tempResult = "";
+                string fisherman = PlayerCache.Vitals.Name;
+                string tempResult = "";
                 LoggingFunctions.Debug("Fisher::getLastCatch: Fisher name: " + fisherman + ".", LoggingFunctions.DBG_SCOPE.FISHER);
                 uint nbLines = 0;
                 chatLog.Update(ref nbLines);
@@ -2853,9 +2853,9 @@ namespace Iocaine2.Bots
                             {
                                 hit_index++;
                             }
-                            String anotherTempString = tempString.ProcessedLine.Replace("'", "");
+                            string anotherTempString = tempString.ProcessedLine.Replace("'", "");
                             int temp_len = anotherTempString.Length - hit_index - 1;  //hit index is beginning of fish name, -1 to remove the '!'
-                            String name = anotherTempString.Substring(hit_index, temp_len);
+                            string name = anotherTempString.Substring(hit_index, temp_len);
                             if (anotherTempString.Contains("caught 2"))
                             {
                                 name = name + " 2";
@@ -2994,7 +2994,7 @@ namespace Iocaine2.Bots
                 {
                     LoggingFunctions.Debug("Fisher::parseChatLog: " + readString.Mode + ": " + readString.ProcessedLine + ".", LoggingFunctions.DBG_SCOPE.FISHER);
                     //Check for "We are nearing" to pause bot
-                    if ((Byte)readString.Mode == 148)
+                    if ((byte)readString.Mode == 148)
                     {
                         if (readString.ProcessedLine.Contains("We are nearing "))
                         {
