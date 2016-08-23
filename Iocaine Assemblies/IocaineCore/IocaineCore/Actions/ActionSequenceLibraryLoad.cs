@@ -36,7 +36,7 @@ namespace Iocaine2.Data.Structures
             seq.AddAction(new ActionWait());
 
             // Snk/Inv choices
-            ActionSequenceUnion snkInvUnion = new ActionSequenceUnion();
+            ActionSequenceUnion mainUnion = new ActionSequenceUnion();
             ActionSequence jig = new ActionSequence();
             jig.AddAction(CommandManager.JAManager.GetCommand("Spectral Jig"));
 
@@ -59,12 +59,12 @@ namespace Iocaine2.Data.Structures
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
             item.AddAction(new UseItem("Prism Powder", "<me>", 2000));
 
-            snkInvUnion.AddSequence(jig);
-            snkInvUnion.AddSequence(magic);
-            snkInvUnion.AddSequence(ninjutsu);
-            snkInvUnion.AddSequence(item);
+            mainUnion.AddSequence(jig);
+            mainUnion.AddSequence(magic);
+            mainUnion.AddSequence(ninjutsu);
+            mainUnion.AddSequence(item);
 
-            seq.AddAction(snkInvUnion);
+            seq.AddAction(mainUnion);
 
             m_nameToIdMap.Add(name, id);
             m_idToSequenceMap.Add(id, seq);
@@ -80,8 +80,8 @@ namespace Iocaine2.Data.Structures
             seq.AddAction(new ActionCancelBuff("sneak"));
             seq.AddAction(new ActionWait());
 
-            // Snk/Inv choices
-            ActionSequenceUnion snkUnion = new ActionSequenceUnion();
+            // Snk choices
+            mainUnion = new ActionSequenceUnion();
             jig = new ActionSequence();
             jig.AddAction(CommandManager.JAManager.GetCommand("Spectral Jig"));
 
@@ -95,18 +95,56 @@ namespace Iocaine2.Data.Structures
             item = new ActionSequence();
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
 
-            snkInvUnion.AddSequence(jig);
-            snkInvUnion.AddSequence(magic);
-            snkInvUnion.AddSequence(ninjutsu);
-            snkInvUnion.AddSequence(item);
+            mainUnion.AddSequence(jig);
+            mainUnion.AddSequence(magic);
+            mainUnion.AddSequence(ninjutsu);
+            mainUnion.AddSequence(item);
 
-            seq.AddAction(snkInvUnion);
+            seq.AddAction(mainUnion);
 
             m_nameToIdMap.Add(name, id);
             m_idToSequenceMap.Add(id, seq);
             m_nameToSequenceMap.Add(name, seq);
             id++;
             #endregion Sneak
+
+            #region Invisible
+            name = "Invisible";
+            seq = new ActionSequence(name);
+
+            // Cancel segment
+            seq.AddAction(new ActionCancelBuff("invisible"));
+            seq.AddAction(new ActionWait());
+
+            // Snk/Inv choices
+            mainUnion = new ActionSequenceUnion();
+            jig = new ActionSequence();
+            jig.AddAction(CommandManager.JAManager.GetCommand("Spectral Jig"));
+
+            magic = new ActionSequence();
+            magic.AddAction(CommandManager.SpellsManager.GetCommand("Invisible"));
+            magic.AddAction(new ActionWait());
+
+            ninjutsu = new ActionSequence();
+            tonkoUnion.AddSequence(tonkoNi);
+            tonkoUnion.AddSequence(tonkoIchi);
+            ninjutsu.AddAction(tonkoUnion);
+
+            item = new ActionSequence();
+            item.AddAction(new UseItem("Prism Powder", "<me>", 2000));
+
+            mainUnion.AddSequence(jig);
+            mainUnion.AddSequence(magic);
+            mainUnion.AddSequence(ninjutsu);
+            mainUnion.AddSequence(item);
+
+            seq.AddAction(mainUnion);
+
+            m_nameToIdMap.Add(name, id);
+            m_idToSequenceMap.Add(id, seq);
+            m_nameToSequenceMap.Add(name, seq);
+            id++;
+            #endregion Invisible
         }
         #endregion Private Methods
     }
