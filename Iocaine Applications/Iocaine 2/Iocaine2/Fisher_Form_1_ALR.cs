@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using Iocaine2.Data.Client;
 using Iocaine2.Logging;
 using Iocaine2.Memory;
 using Iocaine2.Settings;
@@ -24,18 +13,18 @@ namespace Iocaine2
     partial class Iocaine_2_Form
     {
         #region Private Members
-        private const String ALR_whitelistTBDefText = "Type Name, Hit Enter to Add";
-        private const String ALR_playMessageTBDefText = "Text to Say or File to Play";
+        private const string ALR_whitelistTBDefText = "Type Name, Hit Enter to Add";
+        private const string ALR_playMessageTBDefText = "Text to Say or File to Play";
         private static Iocaine2.Tools.Audio player = new Tools.Audio();
-        private static Boolean ALR_loadingSettings = false;
+        private static bool ALR_loadingSettings = false;
         private static BindingSource ALR_whitelistSavedBS;
-        private static List<String> ALR_whitelistTemp = new List<string>();
+        private static List<string> ALR_whitelistTemp = new List<string>();
         private static BindingSource ALR_whitelistTempBS;
-        private static List<String> ALR_currentList = new List<string>();
+        private static List<string> ALR_currentList = new List<string>();
         private static BindingSource ALR_currentBS;
-        private static Boolean ALR_currentHovering = false;
+        private static bool ALR_currentHovering = false;
         private static Dictionary<BOT, BOT_STATE> ALR_previousStateMap = new Dictionary<BOT, BOT_STATE>();
-        private static Boolean ALR_alerting = false;
+        private static bool ALR_alerting = false;
         private static bool ALR_clearAlwaysAlert = false;
         private static event Statics.FuncPtrs.TD_Void_Bool _ALR_AlertChanged;
         #endregion Private Members
@@ -55,13 +44,13 @@ namespace Iocaine2
         }
         private void ALR_loadUserSettings()
         {
-            Statics.Settings.Alert.Enable = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_Enable");
+            Statics.Settings.Alert.Enable = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_Enable");
             Statics.Settings.Alert.AlwaysAlert = false;
-            Statics.Settings.Alert.PlayMessage = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PlayMessage");
+            Statics.Settings.Alert.PlayMessage = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PlayMessage");
             Statics.Settings.Alert.LoopMessage = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_LoopMessage");
-            Statics.Settings.Alert.MessageText = (String)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_MessageText");
-            Statics.Settings.Alert.FlashTaskBar = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_FlashTaskBar");
-            Statics.Settings.Alert.PauseBots = (Boolean)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PauseBots");
+            Statics.Settings.Alert.MessageText = (string)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_MessageText");
+            Statics.Settings.Alert.FlashTaskBar = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_FlashTaskBar");
+            Statics.Settings.Alert.PauseBots = (bool)UserSettings.GetValue(UserSettings.BOT.TOP, "ALR_PauseBots");
             ALR_loadingSettings = true;
             ALR_setEnabledChkB(Statics.Settings.Alert.Enable);
             ALR_setAlwaysAlertChkB(Statics.Settings.Alert.AlwaysAlert);
@@ -74,7 +63,7 @@ namespace Iocaine2
             player.Loop = Statics.Settings.Alert.LoopMessage;
 
             Statics.Settings.Alert.Whitelist.Clear();
-            List<List<Object>> whitelistSettings = UserSettings.GetList(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST);
+            List<List<object>> whitelistSettings = UserSettings.GetList(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST);
             if (whitelistSettings != null)
             {
                 //Outer list are the rows.
@@ -96,7 +85,7 @@ namespace Iocaine2
                 if (ALR_WhitelistSavedEntryTB.Text != "")
                 {
                     ALR_whitelistSavedBS.Add(ALR_WhitelistSavedEntryTB.Text);
-                    UserSettings.AddListValue(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST, new List<Object>(){ALR_WhitelistSavedEntryTB.Text});
+                    UserSettings.AddListValue(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST, new List<object>(){ALR_WhitelistSavedEntryTB.Text});
                     UserSettings.SaveSettings();
                     ALR_WhitelistSavedEntryTB.Text = "";
                 }
@@ -262,7 +251,7 @@ namespace Iocaine2
             {
                 return;
             }
-            Int32 idx = ALR_WhitelistSavedLB.IndexFromPoint(e.Location);
+            int idx = ALR_WhitelistSavedLB.IndexFromPoint(e.Location);
             if (idx != System.Windows.Forms.ListBox.NoMatches)
             {
                 UserSettings.RemoveListValue(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST, Statics.Settings.Alert.Whitelist[idx]);
@@ -275,7 +264,7 @@ namespace Iocaine2
             {
                 return;
             }
-            Int32 idx = ALR_WhitelistTempLB.IndexFromPoint(e.Location);
+            int idx = ALR_WhitelistTempLB.IndexFromPoint(e.Location);
             if (idx != System.Windows.Forms.ListBox.NoMatches)
             {
                 ALR_whitelistTempBS.RemoveAt(idx);
@@ -283,10 +272,10 @@ namespace Iocaine2
         }
         private void ALR_WhitelistTempLB_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Int32 idx = ALR_WhitelistTempLB.IndexFromPoint(e.Location);
+            int idx = ALR_WhitelistTempLB.IndexFromPoint(e.Location);
             if (idx != System.Windows.Forms.ListBox.NoMatches)
             {
-                String item = (String)ALR_whitelistTempBS[idx];
+                string item = (string)ALR_whitelistTempBS[idx];
                 ALR_whitelistSavedBS.Add(item);
                 UserSettings.AddListValue(UserSettings.BOT.TOP, UserSettings.LIST_TABLE.ALR_WHITELIST, new List<object>() { item });
                 UserSettings.SaveSettings();
@@ -295,10 +284,10 @@ namespace Iocaine2
         }
         private void ALR_CurrentPCsLB_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Int32 idx = ALR_CurrentPCsLB.IndexFromPoint(e.Location);
+            int idx = ALR_CurrentPCsLB.IndexFromPoint(e.Location);
             if (idx != System.Windows.Forms.ListBox.NoMatches)
             {
-                String item = (String)ALR_currentBS[idx];
+                string item = (string)ALR_currentBS[idx];
                 ALR_whitelistTempBS.Add(item);
             }
         }
@@ -340,7 +329,7 @@ namespace Iocaine2
             {
                 foreach (MemReads.NPCs.NPCInfoStruct npc in iNpcs)
                 {
-                    String name = MemReads.NPCs.getName(npc);
+                    string name = MemReads.NPCs.getName(npc);
                     if (npc.Type == MemReads.NPCs.eType.Player)
                     {
                         if (PlayerCache.Vitals.Name != name)
@@ -361,8 +350,8 @@ namespace Iocaine2
             // If there are any PC's not in the whitelists and Alerts are enabled, go through the actions.
             // Check the current action state first. If the action is already being performed, ignore.
             // Also check if we're running bots. If we're not running anything, skip unless set to always alert.
-            Boolean callActions = false;
-            String pcName = "";
+            bool callActions = false;
+            string pcName = "";
             if (ALR_botsRunning() || ALR_alerting || Statics.Settings.Alert.AlwaysAlert)
             {
                 if (!ALR_botsRunning() && ALR_alerting && ALR_clearAlwaysAlert)
@@ -427,7 +416,7 @@ namespace Iocaine2
                 }
             }
         }
-        public void ALR_setEnabledChkB(Boolean iValue)
+        public void ALR_setEnabledChkB(bool iValue)
         {
             try
             {
@@ -445,11 +434,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setEnabledChkB:\r\n" + e.ToString());
             }
         }
-        public void ALR_setEnabledChkBCBF(Boolean iValue)
+        public void ALR_setEnabledChkBCBF(bool iValue)
         {
             ALR_EnableAlertsChkB.Checked = iValue;
         }
-        public void ALR_setAlwaysAlertChkB(Boolean iValue)
+        public void ALR_setAlwaysAlertChkB(bool iValue)
         {
             try
             {
@@ -467,11 +456,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setAlwaysAlertChkB:\r\n" + e.ToString());
             }
         }
-        public void ALR_setAlwaysAlertChkBCBF(Boolean iValue)
+        public void ALR_setAlwaysAlertChkBCBF(bool iValue)
         {
             ALR_AlwaysAlertChkB.Checked = iValue;
         }
-        public void ALR_setPlayMessageChkB(Boolean iValue)
+        public void ALR_setPlayMessageChkB(bool iValue)
         {
             try
             {
@@ -489,11 +478,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setPlayMessageChkB:\r\n" + e.ToString());
             }
         }
-        public void ALR_setPlayMessageChkBCBF(Boolean iValue)
+        public void ALR_setPlayMessageChkBCBF(bool iValue)
         {
             ALR_PlayMessageChkB.Checked = iValue;
         }
-        public void ALR_setLoopMessageChkB(Boolean iValue)
+        public void ALR_setLoopMessageChkB(bool iValue)
         {
             try
             {
@@ -511,11 +500,11 @@ namespace Iocaine2
                 LoggingFunctions.Error(e.ToString());
             }
         }
-        public void ALR_setLoopMessageChkBCBF(Boolean iValue)
+        public void ALR_setLoopMessageChkBCBF(bool iValue)
         {
             ALR_LoopMessageChkB.Checked = iValue;
         }
-        public void ALR_setFlashTaskbarChkB(Boolean iValue)
+        public void ALR_setFlashTaskbarChkB(bool iValue)
         {
             try
             {
@@ -533,11 +522,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setFlashTaskbarChkB:\r\n" + e.ToString());
             }
         }
-        public void ALR_setFlashTaskbarChkBCBF(Boolean iValue)
+        public void ALR_setFlashTaskbarChkBCBF(bool iValue)
         {
             ALR_FlashTaskBarChkB.Checked = iValue;
         }
-        public void ALR_setPauseBotsChkB(Boolean iValue)
+        public void ALR_setPauseBotsChkB(bool iValue)
         {
             try
             {
@@ -555,11 +544,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setPauseBotsChkB:\r\n" + e.ToString());
             }
         }
-        public void ALR_setPauseBotsChkBCBF(Boolean iValue)
+        public void ALR_setPauseBotsChkBCBF(bool iValue)
         {
             ALR_PauseBotsChkB.Checked = iValue;
         }
-        public void ALR_setMessageTextTB(String iText)
+        public void ALR_setMessageTextTB(string iText)
         {
             try
             {
@@ -577,7 +566,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("ALR_setMessageTextTBCBF:\r\n" + e.ToString());
             }
         }
-        public void ALR_setMessageTextTBCBF(String iText)
+        public void ALR_setMessageTextTBCBF(string iText)
         {
             if(iText == "")
             {
@@ -613,7 +602,7 @@ namespace Iocaine2
                 Crafter1.PauseCrafter();
             }
         }
-        private Boolean ALR_botsRunning()
+        private bool ALR_botsRunning()
         {
             if (Bots.Fisher.Access.State == Bots.STATE.RUNNING)
             {
