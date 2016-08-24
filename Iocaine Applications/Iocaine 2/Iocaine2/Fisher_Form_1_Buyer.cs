@@ -42,64 +42,64 @@ namespace Iocaine2
         #endregion DB
         #region Bot Data
         private List<ushort> BY_itemIdList = new List<ushort>();
-        private List<String> BY_itemNameList = new List<String>();
+        private List<string> BY_itemNameList = new List<string>();
         private List<ushort> BY_itemQuanList = new List<ushort>();
-        private List<UInt32> BY_priceList = new List<uint>();
-        private String BY_scriptLoadedName = "";
+        private List<uint> BY_priceList = new List<uint>();
+        private string BY_scriptLoadedName = "";
         private bool BY_scriptLoaded = false;
         private bool BY_scriptModified = false;
         #endregion Bot Data
         #region File I/O
-        private String BY_scriptFilePath = ".\\Scripts\\";
-        private String BY_scriptFileName = "Buyer_Scripts.xml";
+        private string BY_scriptFilePath = ".\\Scripts\\";
+        private string BY_scriptFileName = "Buyer_Scripts.xml";
         #endregion File I/O
         #region Time Related
         #endregion Time Related
         #region Default Values
-        private String BY_npcNameTBDefText = "NPC Name";
-        private String BY_itemNameTBDefText = "Item Name";
-        private String BY_scriptNameTBDefText = "Script Name";
-        private UInt16 BY_itemQuanUpDnDefValue = 1;
-        private Byte BY_modeDefValue = 0;
-        private UInt16 BY_combinedTotalQuanDefValue = 40;
-        private Byte BY_percentageDefValue = 60;
-        private UInt16 BY_leaveSlotsOpenQuanDefValue = 10;
+        private string BY_npcNameTBDefText = "NPC Name";
+        private string BY_itemNameTBDefText = "Item Name";
+        private string BY_scriptNameTBDefText = "Script Name";
+        private ushort BY_itemQuanUpDnDefValue = 1;
+        private byte BY_modeDefValue = 0;
+        private ushort BY_combinedTotalQuanDefValue = 40;
+        private byte BY_percentageDefValue = 60;
+        private ushort BY_leaveSlotsOpenQuanDefValue = 10;
         private bool BY_includeSatchelDefValue = true;
         private bool BY_includeSackDefValue = true;
         #endregion Default Values
         #region GUI Value Parallels
-        private String BY_npcName = "";
-        private String BY_itemName = "";
-        private String BY_scriptName = "";
-        private UInt16 BY_itemQuan = 1;
-        private Byte BY_mode = 0;
-        private UInt16 BY_combinedTotalQuan = 40;
-        private Byte BY_percentageValue = 60;
-        private UInt16 BY_leaveSlotsOpenQuan = 10;
-        private UInt32 BY_pricePerItem = 4000;
+        private string BY_npcName = "";
+        private string BY_itemName = "";
+        private string BY_scriptName = "";
+        private ushort BY_itemQuan = 1;
+        private byte BY_mode = 0;
+        private ushort BY_combinedTotalQuan = 40;
+        private byte BY_percentageValue = 60;
+        private ushort BY_leaveSlotsOpenQuan = 10;
+        private uint BY_pricePerItem = 4000;
         private bool BY_includeSatchel = true;
         private bool BY_includeSack = true;
         #endregion GUI Value Parallels
         #region Tool Tips
         #endregion Tool Tips
         #region Delegates
-        private delegate void BY_setNpcNameTBTextDelegate(String iText);
-        private delegate void BY_setItemNameTBTextDelegate(String iText);
-        private delegate void BY_setScriptNameTBTextDelegate(String iText);
-        private delegate void BY_setItemQuanUpDnValueDelegate(UInt16 iValue);
-        private delegate void BY_setPricerPerItemUpDnValueDelegate(UInt32 iValue);
+        private delegate void BY_setNpcNameTBTextDelegate(string iText);
+        private delegate void BY_setItemNameTBTextDelegate(string iText);
+        private delegate void BY_setScriptNameTBTextDelegate(string iText);
+        private delegate void BY_setItemQuanUpDnValueDelegate(ushort iValue);
+        private delegate void BY_setPricerPerItemUpDnValueDelegate(uint iValue);
         private delegate void BY_setCombinedTotalRBValueDelegate(bool iChecked);
-        private delegate void BY_setCombinedTotalUpDnValueDelegate(UInt16 iQuan);
+        private delegate void BY_setCombinedTotalUpDnValueDelegate(ushort iQuan);
         private delegate void BY_setExactQuanRBValueDelegate(bool iChecked);
         private delegate void BY_setPercentageRBValueDelegate(bool iChecked);
-        private delegate void BY_setPercentageUpDnValueDelegate(Byte iPerc);
+        private delegate void BY_setPercentageUpDnValueDelegate(byte iPerc);
         private delegate void BY_setLeaveSlotsOpenRBValueDelegate(bool iChecked);
-        private delegate void BY_setLeaveSlotsOpenUpDnValueDelegate(UInt16 iQuan);
+        private delegate void BY_setLeaveSlotsOpenUpDnValueDelegate(ushort iQuan);
         private delegate void BY_setIncludeSatchelChkBValueDelegate(bool iChecked);
         private delegate void BY_setIncludeSackChkBValueDelegate(bool iChecked);
-        private delegate void BY_setGuildWaitTimeUpDnDelegate(UInt32 iValue);
+        private delegate void BY_setGuildWaitTimeUpDnDelegate(uint iValue);
         private delegate void BY_loadScriptCBDelegate();
-        private delegate void BY_setStartButtonDelegate(String iText, Color iColor);
+        private delegate void BY_setStartButtonDelegate(string iText, Color iColor);
         #endregion Delegates
         #region Function Pointers
         private BY_setNpcNameTBTextDelegate BY_setNpcNameTBTextPtr;
@@ -192,8 +192,8 @@ namespace Iocaine2
         }
         private void BY_loadUserSettings()
         {
-            Statics.Settings.Helpers.WhenDoneSound_Buyer = (String)UserSettings.GetValue(UserSettings.BOT.HELPERS, "BY_WhenDoneSound");
-            Statics.Settings.Helpers.GuildWaitTime_Buyer = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "BY_GuildWaitTime");
+            Statics.Settings.Helpers.WhenDoneSound_Buyer = (string)UserSettings.GetValue(UserSettings.BOT.HELPERS, "BY_WhenDoneSound");
+            Statics.Settings.Helpers.GuildWaitTime_Buyer = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "BY_GuildWaitTime");
             Statics.Settings.Helpers.GuildSetIndex_Buyer = (bool)UserSettings.GetValue(UserSettings.BOT.HELPERS, "BY_GuildSetIndex");
             BY_setGuildWaitTimeUpDn(Statics.Settings.Helpers.GuildWaitTime_Buyer);
         }
@@ -203,28 +203,28 @@ namespace Iocaine2
             BY_setItemNameTBText(BY_itemNameTBDefText);
             BY_setScriptNameTBText(BY_scriptNameTBDefText);
             BY_setItemQuanUpDnValue(BY_itemQuanUpDnDefValue);
-            if (BY_modeDefValue == (Byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL)
+            if (BY_modeDefValue == (byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL)
             {
                 BY_setCombinedTotalRBValue(true);
                 BY_setExactQuanRBValue(false);
                 BY_setPercentageRBValue(false);
                 BY_setLeaveSlotsOpenRBValue(false);
             }
-            else if (BY_modeDefValue == (Byte)Bots.Buyer.MODES.BUY_EXACT_QUAN)
+            else if (BY_modeDefValue == (byte)Bots.Buyer.MODES.BUY_EXACT_QUAN)
             {
                 BY_setCombinedTotalRBValue(false);
                 BY_setExactQuanRBValue(true);
                 BY_setPercentageRBValue(false);
                 BY_setLeaveSlotsOpenRBValue(false);
             }
-            else if (BY_modeDefValue == (Byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS)
+            else if (BY_modeDefValue == (byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS)
             {
                 BY_setCombinedTotalRBValue(false);
                 BY_setExactQuanRBValue(false);
                 BY_setPercentageRBValue(true);
                 BY_setLeaveSlotsOpenRBValue(false);
             }
-            else if (BY_modeDefValue == (Byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN)
+            else if (BY_modeDefValue == (byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN)
             {
                 BY_setCombinedTotalRBValue(false);
                 BY_setExactQuanRBValue(false);
@@ -269,7 +269,7 @@ namespace Iocaine2
         #region Utility Functions
         #region GUI Updates
         #region Text Box Updates
-        private void BY_setNpcNameTBText(String iText)
+        private void BY_setNpcNameTBText(string iText)
         {
             try
             {
@@ -287,7 +287,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setNpcNameTBText: " + e.ToString());
             }
         }
-        private void BY_setNpcNameTBTextCallBackFunction(String iText)
+        private void BY_setNpcNameTBTextCallBackFunction(string iText)
         {
             BY_NPC_Name_TB.Text = iText;
             if (iText != BY_npcNameTBDefText)
@@ -299,7 +299,7 @@ namespace Iocaine2
                 BY_NPC_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void BY_setItemNameTBText(String iText)
+        private void BY_setItemNameTBText(string iText)
         {
             try
             {
@@ -317,7 +317,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setItemNameTBText: " + e.ToString());
             }
         }
-        private void BY_setItemNameTBTextCallBackFunction(String iText)
+        private void BY_setItemNameTBTextCallBackFunction(string iText)
         {
             BY_Item_Name_TB.Text = iText;
             if (iText != BY_itemNameTBDefText)
@@ -329,7 +329,7 @@ namespace Iocaine2
                 BY_Item_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void BY_setScriptNameTBText(String iText)
+        private void BY_setScriptNameTBText(string iText)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setScriptNameTBText: " + e.ToString());
             }
         }
-        private void BY_setScriptNameTBTextCallBackFunction(String iText)
+        private void BY_setScriptNameTBTextCallBackFunction(string iText)
         {
             BY_Script_Name_TB.Text = iText;
             if (iText != BY_scriptNameTBDefText)
@@ -361,7 +361,7 @@ namespace Iocaine2
         }
         #endregion Text Box Updates
         #region UpDown Updates
-        private void BY_setItemQuanUpDnValue(UInt16 iValue)
+        private void BY_setItemQuanUpDnValue(ushort iValue)
         {
             try
             {
@@ -379,11 +379,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setItemQuanUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setItemQuanUpDnValueCallBackFunction(UInt16 iValue)
+        private void BY_setItemQuanUpDnValueCallBackFunction(ushort iValue)
         {
             BY_Item_Quan_UpDn.Value = (decimal)iValue;
         }
-        private void BY_setCombinedTotalUpDnValue(UInt16 iValue)
+        private void BY_setCombinedTotalUpDnValue(ushort iValue)
         {
             try
             {
@@ -401,11 +401,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setCombinedTotalUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setCombinedTotalUpDnValueCallBackFunction(UInt16 iValue)
+        private void BY_setCombinedTotalUpDnValueCallBackFunction(ushort iValue)
         {
             BY_Combined_Total_UpDn.Value = (decimal)iValue;
         }
-        private void BY_setPercentageUpDnValue(Byte iValue)
+        private void BY_setPercentageUpDnValue(byte iValue)
         {
             try
             {
@@ -423,11 +423,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setPercentageUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setPercentageUpDnValueCallBackFunction(Byte iValue)
+        private void BY_setPercentageUpDnValueCallBackFunction(byte iValue)
         {
             BY_Percentage_UpDn.Value = (decimal)iValue;
         }
-        private void BY_setLeaveSlotsOpenUpDnValue(UInt16 iValue)
+        private void BY_setLeaveSlotsOpenUpDnValue(ushort iValue)
         {
             try
             {
@@ -445,11 +445,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setLeaveSlotsOpenUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setLeaveSlotsOpenUpDnValueCallBackFunction(UInt16 iValue)
+        private void BY_setLeaveSlotsOpenUpDnValueCallBackFunction(ushort iValue)
         {
             BY_Leave_Slots_Open_UpDn.Value = (decimal)iValue;
         }
-        private void BY_setGuildWaitTimeUpDn(UInt32 iValue)
+        private void BY_setGuildWaitTimeUpDn(uint iValue)
         {
             try
             {
@@ -467,11 +467,11 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setGuildWaitTimeUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setGuildWaitTimeUpDnCallBackFunction(UInt32 iValue)
+        private void BY_setGuildWaitTimeUpDnCallBackFunction(uint iValue)
         {
             BY_Guild_Wait_Time_UpDn.Value = (decimal)iValue;
         }
-        private void BY_setPricePerItemUpDnValue(UInt32 iValue)
+        private void BY_setPricePerItemUpDnValue(uint iValue)
         {
             try
             {
@@ -489,7 +489,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setPricePerItemUpDnValue: " + e.ToString());
             }
         }
-        private void BY_setPricePerItemUpDnValueCallBackFunction(UInt32 iValue)
+        private void BY_setPricePerItemUpDnValueCallBackFunction(uint iValue)
         {
             BY_Price_Per_Item_UpDn.Value = (decimal)iValue;
         }
@@ -660,7 +660,7 @@ namespace Iocaine2
         }
         #endregion Check Box Updates
         #region Button Updates
-        private void BY_setStartButton(String iText, Color iColor)
+        private void BY_setStartButton(string iText, Color iColor)
         {
             try
             {
@@ -678,7 +678,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In BY_setStartButton: " + e.ToString());
             }
         }
-        private void BY_setStartButtonCallBackFunction(String iText, Color iColor)
+        private void BY_setStartButtonCallBackFunction(string iText, Color iColor)
         {
             BY_Start_Button.Text = iText;
             BY_Start_Button.BackColor = iColor;
@@ -745,7 +745,7 @@ namespace Iocaine2
         }
         #endregion File I/O
         #region Script Loading
-        private void BY_LoadScript(String iScriptName)
+        private void BY_LoadScript(string iScriptName)
         {
             foreach (Buyer_Script script in BY_scriptList)
             {
@@ -755,21 +755,21 @@ namespace Iocaine2
                     //Now go through all of the controls and set their values.
                     BY_setScriptNameTBText(iScriptName);
                     BY_setNpcNameTBText(script.NpcName);
-                    if (script.Mode == (Byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL)
+                    if (script.Mode == (byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL)
                     {
                         BY_setCombinedTotalRBValue(true);
                         BY_setExactQuanRBValue(false);
                         BY_setPercentageRBValue(false);
                         BY_setLeaveSlotsOpenRBValue(false);
                     }
-                    else if (script.Mode == (Byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS)
+                    else if (script.Mode == (byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS)
                     {
                         BY_setCombinedTotalRBValue(false);
                         BY_setExactQuanRBValue(false);
                         BY_setPercentageRBValue(true);
                         BY_setLeaveSlotsOpenRBValue(false);
                     }
-                    else if (script.Mode == (Byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN)
+                    else if (script.Mode == (byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN)
                     {
                         BY_setCombinedTotalRBValue(false);
                         BY_setExactQuanRBValue(false);
@@ -795,7 +795,7 @@ namespace Iocaine2
                     BY_priceList.Clear();
                     List<Item> itemList = script.ItemList;
                     List<ushort> quanList = script.ItemQuanList;
-                    List<UInt32> priceList = script.PricePerItemList;
+                    List<uint> priceList = script.PricePerItemList;
                     for (int ii = 0; ii < itemList.Count; ii++)
                     {
                         BY_Item_LB.Items.Add(BY_GetItemListBoxString(itemList[ii].Name, quanList[ii], priceList[ii]));
@@ -812,9 +812,9 @@ namespace Iocaine2
         }
         #endregion Script Loading
         #region Script Deletion
-        private void BY_RemoveScript(String iScriptName)
+        private void BY_RemoveScript(string iScriptName)
         {
-            String filterString = "ScriptName='" + iScriptName + "'";
+            string filterString = "ScriptName='" + iScriptName + "'";
             Buyer_Scripts_DS.Script_TableRow[] scriptRows = (Buyer_Scripts_DS.Script_TableRow[])BY_scriptsDb.Script_Table.Select(filterString);
             int nbRows = scriptRows.Length;
             for (int ii = nbRows - 1; ii >= 0; ii--)
@@ -884,7 +884,7 @@ namespace Iocaine2
             script.IncludeSatchel = iRow.IncludeSatchel;
             script.IncludeSack = iRow.IncludeSack;
 
-            String filterString = "ScriptName = '" + iRow.ScriptName + "'";
+            string filterString = "ScriptName = '" + iRow.ScriptName + "'";
             Buyer_Scripts_DS.Item_TableRow[] itemRows = (Buyer_Scripts_DS.Item_TableRow[])BY_scriptsDb.Item_Table.Select(filterString);
             foreach (Buyer_Scripts_DS.Item_TableRow itemRow in itemRows)
             {
@@ -922,7 +922,7 @@ namespace Iocaine2
 
             List<Item> itemList = iScript.ItemList;
             List<ushort> itemQuanList = iScript.ItemQuanList;
-            List<UInt32> priceList = iScript.PricePerItemList;
+            List<uint> priceList = iScript.PricePerItemList;
             int nbItems = itemList.Count;
             for (int ii = 0; ii < nbItems; ii++)
             {
@@ -938,7 +938,7 @@ namespace Iocaine2
         #endregion Script Saving
         #endregion Script Related
         #region Parsing
-        private String BY_GetItemListBoxString(String iName, ushort iQuan, UInt32 iPrice)
+        private string BY_GetItemListBoxString(string iName, ushort iQuan, uint iPrice)
         {
             if ((iName != "") && (iName != BY_itemNameTBDefText))
             {
@@ -949,7 +949,7 @@ namespace Iocaine2
                 return "";
             }
         }
-        private String BY_GetItemListBoxString()
+        private string BY_GetItemListBoxString()
         {
             if ((BY_itemName != "") && (BY_itemName != BY_itemNameTBDefText))
             {
@@ -960,7 +960,7 @@ namespace Iocaine2
                 return "";
             }
         }
-        private String BY_ParseItemName(String iText)
+        private string BY_ParseItemName(string iText)
         {
             int parenIdx = iText.IndexOf('(');
             if (parenIdx <= 1)
@@ -973,7 +973,7 @@ namespace Iocaine2
                 return iText.Substring(0, parenIdx - 1);
             }
         }
-        private ushort BY_ParseItemQuan(String iText)
+        private ushort BY_ParseItemQuan(string iText)
         {
             int parenIdxOpen = iText.IndexOf('(');
             int parenIdxClose = iText.IndexOf(')');
@@ -984,7 +984,7 @@ namespace Iocaine2
             }
             else
             {
-                String quanString = iText.Substring(parenIdxOpen + 1, parenIdxClose - parenIdxOpen - 1);
+                string quanString = iText.Substring(parenIdxOpen + 1, parenIdxClose - parenIdxOpen - 1);
                 ushort parseData = 0;
                 bool parseResult = ushort.TryParse(quanString, out parseData);
                 if (parseResult)
@@ -998,7 +998,7 @@ namespace Iocaine2
                 }
             }
         }
-        private UInt32 BY_ParseItemPrice(String iText)
+        private uint BY_ParseItemPrice(string iText)
         {
             int bracketIdxOpen = iText.IndexOf('[');
             int bracketIdxClose = iText.IndexOf(']');
@@ -1009,9 +1009,9 @@ namespace Iocaine2
             }
             else
             {
-                String priceString = iText.Substring(bracketIdxOpen + 1, bracketIdxClose - bracketIdxOpen - 1);
-                UInt32 parseData = 0;
-                bool parseResult = UInt32.TryParse(priceString, out parseData);
+                string priceString = iText.Substring(bracketIdxOpen + 1, bracketIdxClose - bracketIdxOpen - 1);
+                uint parseData = 0;
+                bool parseResult = uint.TryParse(priceString, out parseData);
                 if (parseResult)
                 {
                     return parseData;
@@ -1073,7 +1073,7 @@ namespace Iocaine2
                 {
                     return;
                 }
-                String targetName = MemReads.Target.get_name();
+                string targetName = MemReads.Target.get_name();
                 if ((BY_NPC_Name_TB.Text == "") && (targetName != ""))
                 {
                     BY_NPC_Name_TB.Text = targetName;
@@ -1105,7 +1105,7 @@ namespace Iocaine2
             }
             else
             {
-                String userText = BY_NPC_Name_TB.Text;
+                string userText = BY_NPC_Name_TB.Text;
                 BY_NPC_Name_TB.Text = userText.Substring(0, 1).ToUpper() + userText.Substring(1, userText.Length - 1).ToLower();
             }
         }
@@ -1137,7 +1137,7 @@ namespace Iocaine2
             }
             else
             {
-                String itemText = BY_Item_Name_TB.Text;
+                string itemText = BY_Item_Name_TB.Text;
                 itemText = itemText.Substring(0, 1).ToUpper() + itemText.Substring(1, itemText.Length - 1);
                 BY_Item_Name_TB.Text = itemText;
             }
@@ -1179,7 +1179,7 @@ namespace Iocaine2
             }
             if (BY_Combined_Total_RB.Checked)
             {
-                BY_mode = (Byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL;
+                BY_mode = (byte)Bots.Buyer.MODES.BUY_COMBINED_TOTAL;
             }
         }
         private void BY_Exact_Quan_RB_CheckedChanged(object sender, EventArgs e)
@@ -1190,7 +1190,7 @@ namespace Iocaine2
             }
             if (BY_Exact_Quan_RB.Checked)
             {
-                BY_mode = (Byte)Bots.Buyer.MODES.BUY_EXACT_QUAN;
+                BY_mode = (byte)Bots.Buyer.MODES.BUY_EXACT_QUAN;
             }
         }
         private void BY_Percentage_RB_CheckedChanged(object sender, EventArgs e)
@@ -1201,7 +1201,7 @@ namespace Iocaine2
             }
             if (BY_Percentage_RB.Checked)
             {
-                BY_mode = (Byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS;
+                BY_mode = (byte)Bots.Buyer.MODES.BUY_PERC_OPEN_SLOTS;
             }
         }
         private void BY_Leave_Slots_Open_RB_CheckedChanged(object sender, EventArgs e)
@@ -1212,7 +1212,7 @@ namespace Iocaine2
             }
             if (BY_Leave_Slots_Open_RB.Checked)
             {
-                BY_mode = (Byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN;
+                BY_mode = (byte)Bots.Buyer.MODES.LEAVE_NUMBER_SLOTS_OPEN;
             }
         }
         #endregion Radio Buttons
