@@ -86,9 +86,9 @@ namespace Iocaine2
         #endregion
         #region Members
         #region Flags
-        private static Boolean PL_FirstInitDone = false;
-        private static Boolean PL_CuresInitDone = false;
-        private static Boolean PL_PauseDebuffsParser = false;
+        private static bool PL_FirstInitDone = false;
+        private static bool PL_CuresInitDone = false;
+        private static bool PL_PauseDebuffsParser = false;
         #endregion Flags
         #region Threads
         private Thread PL_EnqueueThread = null;
@@ -99,11 +99,11 @@ namespace Iocaine2
         private List<PLCharacter> PL_CharacterList = new List<PLCharacter>();
         private List<Command> PL_CureCmdList = new List<Command>();                 //Holds all of the available cure commands.
         private List<Command> PL_PartyBuffCmdList = new List<Command>();            //Holds a subset of buff commands that appear in the default grid.
-        private List<UInt32> PL_PartyBuffRecastList = new List<UInt32>();           //Holds the corresponding recast time for the above commands.
-        private List<Boolean> PL_PartyBuffEnableList = new List<Boolean>();         //Holds the corresponding enable for the above commands.
+        private List<uint> PL_PartyBuffRecastList = new List<uint>();           //Holds the corresponding recast time for the above commands.
+        private List<bool> PL_PartyBuffEnableList = new List<bool>();         //Holds the corresponding enable for the above commands.
         private List<Command> PL_PartyBuffCmdListMaster = new List<Command>();
-        private List<UInt32> PL_PartyBuffRecastListMaster = new List<UInt32>();
-        private List<Boolean> PL_PartyBuffEnableListMaster = new List<Boolean>();
+        private List<uint> PL_PartyBuffRecastListMaster = new List<uint>();
+        private List<bool> PL_PartyBuffEnableListMaster = new List<bool>();
         private List<Command> PL_MyDebuffCmdList = new List<Command>();             //Holds the list of debuffs in the grid.
         private List<Command> PL_MyDebuffCmdListMaster = new List<Command>();
         private List<Task> PL_MySelfBuffTaskList = new List<Task>();                //Holds the list of self buff tasks in the grid.
@@ -114,7 +114,7 @@ namespace Iocaine2
         #endregion ChatLog
         #region Default Values / Settings
         //Character buff related settings
-        private String PL_CharacterSticky = ""; //This gets set when a player is added for the first time. After that, the PL will not be reset on logout/in, etc.
+        private string PL_CharacterSticky = ""; //This gets set when a player is added for the first time. After that, the PL will not be reset on logout/in, etc.
         private PLCharacter PL_FocusCharacter = null;
         private PLCharacter PL_FollowCharacter = null;
         private Command PL_WakeCureCommand;
@@ -124,12 +124,12 @@ namespace Iocaine2
         private Command PL_FirstCureDefCmdMaster;
         private Command PL_SecondCureDefCmdMaster;
         private Command PL_ThirdCureDefCmdMaster;
-        private String PL_FirstCureDefault = "Cure II";
-        private String PL_SecondCureDefault = "Cure III";
-        private String PL_ThirdCureDefault = "Cure IV";
-        private Byte PL_FirstCureDefaultPerc = 85;
-        private Byte PL_SecondCureDefaultPerc = 65;
-        private Byte PL_ThirdCureDefaultPerc = 35;
+        private string PL_FirstCureDefault = "Cure II";
+        private string PL_SecondCureDefault = "Cure III";
+        private string PL_ThirdCureDefault = "Cure IV";
+        private byte PL_FirstCureDefaultPerc = 85;
+        private byte PL_SecondCureDefaultPerc = 65;
+        private byte PL_ThirdCureDefaultPerc = 35;
         #endregion Default Values / Settings
         #region GUI Member Parallels
         private bool PL_CuresAutoWake = true;
@@ -138,15 +138,15 @@ namespace Iocaine2
         #region GUI Thread Synchronization
         private delegate bool PL_initCharacterGridDelegate();
         private PL_initCharacterGridDelegate PL_initCharacterGridPtr;
-        private delegate bool PL_addCharacterDelegate(String iName);
+        private delegate bool PL_addCharacterDelegate(string iName);
         private PL_addCharacterDelegate PL_addCharacterPtr;
-        private delegate void PL_removeCharacterDelegate(String iName, int iRowIndex);
+        private delegate void PL_removeCharacterDelegate(string iName, int iRowIndex);
         private PL_removeCharacterDelegate PL_removeCharacterPtr;
-        private delegate bool PL_loadCuresGridDelegate(String iName);
+        private delegate bool PL_loadCuresGridDelegate(string iName);
         private PL_loadCuresGridDelegate PL_loadCuresGridPtr;
         private delegate void PL_clearCuresGridDelegate();
         private PL_clearCuresGridDelegate PL_clearCuresGridPtr;
-        private delegate bool PL_loadBuffsGridDelegate(String iName);
+        private delegate bool PL_loadBuffsGridDelegate(string iName);
         private PL_loadBuffsGridDelegate PL_loadBuffsGridPtr;
         private delegate void PL_clearBuffsGridDelegate();
         private PL_clearBuffsGridDelegate PL_clearBuffsGridPtr;
@@ -162,7 +162,7 @@ namespace Iocaine2
         private PL_refreshListsDelegate PL_refreshListsPtr;
         private delegate bool PL_addMeDelegate();
         private PL_addMeDelegate PL_addMePtr;
-        private delegate void PL_appendChatDelegate(String iText);
+        private delegate void PL_appendChatDelegate(string iText);
         private PL_appendChatDelegate PL_appendChatPtr;
         private PL_refreshListsDelegate PL_removeChatPtr;
         #endregion GUI Thread Synchronization
@@ -352,15 +352,15 @@ namespace Iocaine2
             #endregion Individual Values
             #region Lists
             #region Party Buff List
-            List<List<Object>> buffList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_PARTYBUFFS);
+            List<List<object>> buffList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_PARTYBUFFS);
             if (buffList != null)
             {
                 LoggingFunctions.Debug("PL_LoadSettings: There are " + buffList.Count + " items in the party buff list.", LoggingFunctions.DBG_SCOPE.PL);
-                foreach (List<Object> row in buffList)
+                foreach (List<object> row in buffList)
                 {
                     Command command = null;
-                    String commandName = Data.Client.FfxiResource.DecodeApostrophy(Convert.ToString(row[0]));
-                    UInt32 commandRecast = Convert.ToUInt32(row[1]);
+                    string commandName = Data.Client.FfxiResource.DecodeApostrophy(Convert.ToString(row[0]));
+                    uint commandRecast = Convert.ToUInt32(row[1]);
                     foreach (Command cmd in CommandManager.AllCommands)
                     {
                         if (cmd.Name == commandName)
@@ -380,14 +380,14 @@ namespace Iocaine2
             }
             #endregion Party Buff List
             #region Debuff List
-            List<List<Object>> commandList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_DEBUFFS);
+            List<List<object>> commandList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_DEBUFFS);
             if (commandList != null)
             {
-                foreach (List<Object> strList in commandList)
+                foreach (List<object> strList in commandList)
                 {
-                    foreach (Object str in strList)
+                    foreach (object str in strList)
                     {
-                        String cmdName = Data.Client.FfxiResource.DecodeApostrophy((String)str);
+                        string cmdName = Data.Client.FfxiResource.DecodeApostrophy((string)str);
                         int debuffIndex = -1;
                         foreach (Command cmd in CommandManager.AllCommands)
                         {
@@ -408,14 +408,14 @@ namespace Iocaine2
             }
             #endregion Debuff List
             #region Self Buff List
-            List<List<Object>> selfBuffList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_SELFBUFFS);
+            List<List<object>> selfBuffList = UserSettings.GetList(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_SELFBUFFS);
             if (selfBuffList != null)
             {
                 LoggingFunctions.Debug("PL_LoadSettings: There are " + selfBuffList.Count + " items in the self buff list.", LoggingFunctions.DBG_SCOPE.PL);
-                foreach (List<Object> row in selfBuffList)
+                foreach (List<object> row in selfBuffList)
                 {
-                    String commandName = Data.Client.FfxiResource.DecodeApostrophy(Convert.ToString(row[0]));
-                    UInt32 commandRecast = Convert.ToUInt32(row[1]);
+                    string commandName = Data.Client.FfxiResource.DecodeApostrophy(Convert.ToString(row[0]));
+                    uint commandRecast = Convert.ToUInt32(row[1]);
                     Command cmdToAdd = null;
                     foreach (Command cmd in CommandManager.AllCommands)
                     {
@@ -620,15 +620,15 @@ namespace Iocaine2
             try
             {
                 #region Save Player
-                String savedPlayer = "-default-";
+                string savedPlayer = "-default-";
                 DataGridViewSelectedCellCollection cellList = CharacterGrid.SelectedCells;
                 foreach (DataGridViewCell cell in cellList)
                 {
                     if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                     {
-                        if ((String)cell.Value != "-default-")
+                        if ((string)cell.Value != "-default-")
                         {
-                            savedPlayer = (String)cell.Value;
+                            savedPlayer = (string)cell.Value;
                             break;
                         }
                     }
@@ -751,9 +751,9 @@ namespace Iocaine2
                 }
                 #endregion Init
                 #region Default
-                Boolean found_1st = false;
-                Boolean found_2nd = false;
-                Boolean found_3rd = false;
+                bool found_1st = false;
+                bool found_2nd = false;
+                bool found_3rd = false;
                 foreach (Command cmd in PL_CureCmdList)
                 {
                     if (cmd == PL_FirstCureDefCmdMaster)
@@ -855,7 +855,7 @@ namespace Iocaine2
                 {
                     if (CommandManager.PL_PartyBuffsCommands.Contains(cmd))
                     {
-                        Int32 idx = PL_PartyBuffCmdListMaster.IndexOf(cmd);
+                        int idx = PL_PartyBuffCmdListMaster.IndexOf(cmd);
                         PL_PartyBuffCmdList.Add(PL_PartyBuffCmdListMaster[idx]);
                         PL_PartyBuffRecastList.Add(PL_PartyBuffRecastListMaster[idx]);
                         PL_PartyBuffEnableList.Add(PL_PartyBuffEnableListMaster[idx]);
@@ -868,8 +868,8 @@ namespace Iocaine2
                 {
                     for (int ii = 0; ii < chr.TaskListMaster.Count; ii++)
                     {
-                        Boolean valid = CommandManager.PL_PartyBuffsCommands.Contains(chr.TaskListMaster[ii].Cmd);
-                        Boolean found = false;
+                        bool valid = CommandManager.PL_PartyBuffsCommands.Contains(chr.TaskListMaster[ii].Cmd);
+                        bool found = false;
                         for (int kk = chr.TaskList.Count - 1; kk >= 0; kk--)
                         {
                             if (chr.TaskList[kk] == chr.TaskListMaster[ii])
@@ -1010,7 +1010,7 @@ namespace Iocaine2
             FollowDistUpDownBox.Maximum = 20;
             return true;
         }
-        private bool PL_AddCharacter(String iName)
+        private bool PL_AddCharacter(string iName)
         {
             try
             {
@@ -1029,10 +1029,10 @@ namespace Iocaine2
                 return false;
             }
         }
-        private bool PL_AddCharacterCBF(String iName)
+        private bool PL_AddCharacterCBF(string iName)
         {
             List<Task> localPartyBuffTaskList = new List<Task>();
-            Int32 nbPartyBuffs = PL_PartyBuffCmdList.Count;
+            int nbPartyBuffs = PL_PartyBuffCmdList.Count;
             for(int ii=0; ii<nbPartyBuffs; ii++)
             {
                 localPartyBuffTaskList.Add(new Task(Task.TYPE.BUFF, iName, PL_PartyBuffCmdList[ii], PL_PartyBuffRecastList[ii], PL_PartyBuffEnableList[ii], Statics.Settings.PowerLevel.BuffQ));
@@ -1042,7 +1042,7 @@ namespace Iocaine2
                                   PL_SecondCureDefaultPerc, PL_ThirdCureDefaultPerc, localPartyBuffTaskList);
             foreach (Command cmd in PL_PartyBuffCmdListMaster)
             {
-                Boolean found = false;
+                bool found = false;
                 foreach(Task tsk in newChar.TaskList)
                 {
                     if(tsk.CmdName == cmd.Name)
@@ -1053,7 +1053,7 @@ namespace Iocaine2
                 }
                 if(!found)
                 {
-                    Int32 idx = PL_PartyBuffCmdListMaster.IndexOf(cmd);
+                    int idx = PL_PartyBuffCmdListMaster.IndexOf(cmd);
                     Task taskToAdd = new Task(Task.TYPE.BUFF, iName, cmd, PL_PartyBuffRecastListMaster[idx], false, Statics.Settings.PowerLevel.BuffQ);
                     taskToAdd.Elapsed += new System.Timers.ElapsedEventHandler(Bots.PowerLevel.Access.RebuffTimer_Elapsed);
                     newChar.TaskListMaster.Add(taskToAdd);
@@ -1122,9 +1122,9 @@ namespace Iocaine2
             {
                 foreach (PLCharacter chr in PL_CharacterList)
                 {
-                    if (chr.Name == (String)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, CharacterGrid.Rows.Count - 2].Value)
+                    if (chr.Name == (string)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, CharacterGrid.Rows.Count - 2].Value)
                     {
-                        //LoggingFunctions.debug("Character " + chr.Name + " matched cell " + (String)CharacterGrid[(int)CHAR_GRID_COL.NAME, CharacterGrid.Rows.Count - 2].Value + " and setting priority cell value to " + (CharacterGrid.Rows.Count - 1).ToString());
+                        //LoggingFunctions.debug("Character " + chr.Name + " matched cell " + (string)CharacterGrid[(int)CHAR_GRID_COL.NAME, CharacterGrid.Rows.Count - 2].Value + " and setting priority cell value to " + (CharacterGrid.Rows.Count - 1).ToString());
                         CharacterGrid[(int)PL_CHAR_GRID_COL.PRI, CharacterGrid.Rows.Count - 2].Value = CharacterGrid.Rows.Count - 1;
                         chr.Priority = CharacterGrid.Rows.Count - 2;
                     }
@@ -1147,14 +1147,14 @@ namespace Iocaine2
                 LoggingFunctions.Debug("PL_CharacterGrid_CellClick: Entering grid cell click.", LoggingFunctions.DBG_SCOPE.PL);
                 int selectedIndex = e.RowIndex;
                 LoggingFunctions.Debug("PL_CharacterGrid_CellClick: Row index is " + selectedIndex.ToString() + ".", LoggingFunctions.DBG_SCOPE.PL);
-                String selectedChar = System.Convert.ToString(CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, e.RowIndex].Value);
+                string selectedChar = System.Convert.ToString(CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, e.RowIndex].Value);
                 LoggingFunctions.Debug("PL_CharacterGrid_CellClick: Found selected character " + selectedChar + ".", LoggingFunctions.DBG_SCOPE.PL);
                 PL_ReloadGrids(selectedChar);
             }
         }
         private void PL_CharBoxAddTargetButton_Click(object sender, EventArgs e)
         {
-            String charToAdd = MemReads.Target.get_name();
+            string charToAdd = MemReads.Target.get_name();
             //charToAdd = charToAdd.Substring(0, charToAdd.Length - 1);
             LoggingFunctions.Timestamp("Adding character: " + charToAdd);
             if (charToAdd == "")
@@ -1168,7 +1168,7 @@ namespace Iocaine2
         }
         private void PL_CharBoxAddButton_Click(object sender, EventArgs e)
         {
-            String charToAdd = AddCharTextBox.Text;
+            string charToAdd = AddCharTextBox.Text;
             if ((charToAdd == "") || (charToAdd == "Enter name or just target and click Add Target"))
             {
                 LoggingFunctions.Timestamp("Could not add character to list, nothing typed in text box");
@@ -1184,8 +1184,8 @@ namespace Iocaine2
         }
         private void PL_CharBoxAddPartyButton_Click(object sender, EventArgs e)
         {
-            List<String> memberList = MemReads.Party.get_members();
-            foreach (String str in memberList)
+            List<string> memberList = MemReads.Party.get_members();
+            foreach (string str in memberList)
             {
                 LoggingFunctions.Timestamp("Adding PL character: '" + str + "'");
                 PL_AddCharacter(str);
@@ -1211,16 +1211,16 @@ namespace Iocaine2
                 {
                     if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                     {
-                        if ((String)cell.Value != "-default-")
+                        if ((string)cell.Value != "-default-")
                         {
-                            PL_RemoveCharacterCBF((String)cell.Value, cell.RowIndex);
+                            PL_RemoveCharacterCBF((string)cell.Value, cell.RowIndex);
                             break;
                         }
                     }
                 }
             }
         }
-        private void PL_RemoveCharacter(String iName, int iRowIndex)
+        private void PL_RemoveCharacter(string iName, int iRowIndex)
         {
             try
             {
@@ -1238,7 +1238,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("PL_RemoveCharacter: Removing character from grid: " + e.ToString());
             }
         }
-        private void PL_RemoveCharacterCBF(String iName, int iRowIndex)
+        private void PL_RemoveCharacterCBF(string iName, int iRowIndex)
         {
             if (iName == "-default-")
             {
@@ -1260,12 +1260,12 @@ namespace Iocaine2
             //Now for each row we need to insert the correct priority and change the character's priority, too
             foreach (DataGridViewRow row in CharacterGrid.Rows)
             {
-                if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
+                if ((string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
                 {
                     row.Cells[(int)PL_CHAR_GRID_COL.PRI].Value = row.Index + 1;
                     foreach (PLCharacter chr in PL_CharacterList)
                     {
-                        if (chr.Name == (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
+                        if (chr.Name == (string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
                         {
                             chr.Priority = row.Index + 1;
                             LoggingFunctions.Debug("PL_RemoveCharacterCBF: " + chr.Name + "'s new pri is " + chr.Priority.ToString() + ".", LoggingFunctions.DBG_SCOPE.PL);
@@ -1284,7 +1284,7 @@ namespace Iocaine2
             int nbRows = CharacterGrid.Rows.Count;
             for (int ii = nbRows-1; ii >= 0; ii--)
             {
-                PL_RemoveCharacter((String)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, ii].Value, ii);
+                PL_RemoveCharacter((string)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, ii].Value, ii);
             }
         }
         private void PL_Player_Up_Button_Click(object sender, EventArgs e)
@@ -1301,7 +1301,7 @@ namespace Iocaine2
             {
                 if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                 {
-                    if ((String)cell.Value != "-default-")
+                    if ((string)cell.Value != "-default-")
                     {
                         if (cell.RowIndex < firstRow)
                         {
@@ -1329,12 +1329,12 @@ namespace Iocaine2
             //Now for each row we need to insert the correct priority and change the character's priority, too
             foreach (DataGridViewRow row in CharacterGrid.Rows)
             {
-                if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
+                if ((string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
                 {
                     row.Cells[(int)PL_CHAR_GRID_COL.PRI].Value = row.Index + 1;
                     foreach (PLCharacter chr in PL_CharacterList)
                     {
-                        if (chr.Name == (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
+                        if (chr.Name == (string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
                         {
                             chr.Priority = row.Index + 1;
                             LoggingFunctions.Debug("PL_Player_Up_Button_Click: " + chr.Name + "'s new pri is " + chr.Priority.ToString() + ".", LoggingFunctions.DBG_SCOPE.PL);
@@ -1357,7 +1357,7 @@ namespace Iocaine2
             {
                 if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                 {
-                    if ((String)cell.Value != "-default-")
+                    if ((string)cell.Value != "-default-")
                     {
                         if (cell.RowIndex < firstRow)
                         {
@@ -1386,12 +1386,12 @@ namespace Iocaine2
             //Now for each row we need to insert the correct priority and change the character's priority, too
             foreach (DataGridViewRow row in CharacterGrid.Rows)
             {
-                if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
+                if ((string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value != "-default-")
                 {
                     row.Cells[(int)PL_CHAR_GRID_COL.PRI].Value = row.Index + 1;
                     foreach (PLCharacter chr in PL_CharacterList)
                     {
-                        if (chr.Name == (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
+                        if (chr.Name == (string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value)
                         {
                             chr.Priority = row.Index + 1;
                             LoggingFunctions.Debug("PL_Player_Dn_Button_Click: " + chr.Name + "'s new pri is " + chr.Priority.ToString() + ".", LoggingFunctions.DBG_SCOPE.PL);
@@ -1411,7 +1411,7 @@ namespace Iocaine2
             {
                 if (CharacterGrid.Rows.Count > 2)
                 {
-                    String name = (String)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, (int)FollowUpDownBox.Value-1].Value;
+                    string name = (string)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, (int)FollowUpDownBox.Value-1].Value;
                     if (name == PlayerCache.Vitals.Name)
                     {
                         PL_FollowCharacter = null;
@@ -1439,10 +1439,10 @@ namespace Iocaine2
         {
             if ((CharacterGrid.Rows.Count > 2) && (Statics.Settings.PowerLevel.FocusCharacterRow <= CharacterGrid.Rows.Count - 2))
             {
-                String name = (String)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, (Statics.Settings.PowerLevel.FocusCharacterRow - 1)].Value;
+                string name = (string)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, (Statics.Settings.PowerLevel.FocusCharacterRow - 1)].Value;
                 if (name == PlayerCache.Vitals.Name)
                 {
-                    name = (String)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, Statics.Settings.PowerLevel.FocusCharacterRow].Value;
+                    name = (string)CharacterGrid[(int)PL_CHAR_GRID_COL.NAME, Statics.Settings.PowerLevel.FocusCharacterRow].Value;
                 }
                 foreach (PLCharacter chr in PL_CharacterList)
                 {
@@ -1464,7 +1464,7 @@ namespace Iocaine2
         }
         #endregion
         #region Cures Grid Section
-        private bool PL_LoadCuresGrid(String iName = "-default-")
+        private bool PL_LoadCuresGrid(string iName = "-default-")
         {
             try
             {
@@ -1476,17 +1476,17 @@ namespace Iocaine2
                 return false;
             }
         }
-        private bool PL_LoadCuresGridCBF(String iName)
+        private bool PL_LoadCuresGridCBF(string iName)
         {
             //Load the Cures grid.
             PLCharacter selChar = null;
-            Boolean loadDefault = iName == "-default-";
+            bool loadDefault = iName == "-default-";
             Command local_1stCure = null;
             Command local_2ndCure = null;
             Command local_3rdCure = null;
-            Byte local_1stCurePerc = 0;
-            Byte local_2ndCurePerc = 0;
-            Byte local_3rdCurePerc = 0;
+            byte local_1stCurePerc = 0;
+            byte local_2ndCurePerc = 0;
+            byte local_3rdCurePerc = 0;
             PL_ClearCuresGrid();
             if (!loadDefault)
             {
@@ -1535,7 +1535,7 @@ namespace Iocaine2
                 }
                 whichCell.ValueMember = "Name";
                 whichCell.DisplayMember = "Name";
-                Int32 cureIndex = -1;
+                int cureIndex = -1;
                 switch (ii)
                 {
                     case 1:
@@ -1582,11 +1582,11 @@ namespace Iocaine2
             {
                 if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                 {
-                    if ((String)cell.Value == "-default-")
+                    if ((string)cell.Value == "-default-")
                     {
                         if (e.ColumnIndex == (int)PL_CURE_GRID_COL.WHICH)
                         {
-                            String newCmdName = (String)CuresGrid[(int)PL_CURE_GRID_COL.WHICH, e.RowIndex].Value;
+                            string newCmdName = (string)CuresGrid[(int)PL_CURE_GRID_COL.WHICH, e.RowIndex].Value;
                             Command newCmd = null;
                             foreach (Command cmd in PL_CureCmdList)
                             {
@@ -1654,14 +1654,14 @@ namespace Iocaine2
                         PLCharacter selChar = null;
                         foreach (PLCharacter player in PL_CharacterList)
                         {
-                            if (player.Name == (String)cell.Value)
+                            if (player.Name == (string)cell.Value)
                             {
                                 selChar = player;
                             }
                         }
                         if (e.ColumnIndex == (int)PL_CURE_GRID_COL.WHICH)
                         {
-                            String newCmdName = (String)CuresGrid[(int)PL_CURE_GRID_COL.WHICH, e.RowIndex].Value;
+                            string newCmdName = (string)CuresGrid[(int)PL_CURE_GRID_COL.WHICH, e.RowIndex].Value;
                             Command newCmd = null;
                             foreach (Command cmd in PL_CureCmdList)
                             {
@@ -1739,7 +1739,7 @@ namespace Iocaine2
         }
         #endregion
         #region Buffs Grid Section
-        private bool PL_LoadBuffsGrid(String iName = "-default-")
+        private bool PL_LoadBuffsGrid(string iName = "-default-")
         {
             try
             {
@@ -1751,7 +1751,7 @@ namespace Iocaine2
                 return false;
             }
         }
-        private bool PL_LoadBuffsGridCBF(String iName)
+        private bool PL_LoadBuffsGridCBF(string iName)
         {
             PL_BuffsGrid.Rows.Clear();
             if (iName == "-default-")
@@ -1820,8 +1820,8 @@ namespace Iocaine2
             {
                 return;
             }
-            Boolean playerSelected = false;
-            Boolean defaultSelected = false;
+            bool playerSelected = false;
+            bool defaultSelected = false;
             PLCharacter selChar = null;
             PLCharacter firstSelChar = null;
             DataGridViewSelectedCellCollection cellList = CharacterGrid.SelectedCells;
@@ -1830,7 +1830,7 @@ namespace Iocaine2
                 if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                 {
                     //We are saving these new values to the user settings
-                    if ((String)cell.Value == "-default-")
+                    if ((string)cell.Value == "-default-")
                     {
                         Command buffCmd = (Command)PL_PartyBuffCB.SelectedItem;
                         PL_PartyBuffCmdList.Add(buffCmd);
@@ -1849,7 +1849,7 @@ namespace Iocaine2
                     {
                         foreach (PLCharacter player in PL_CharacterList)
                         {
-                            if (player.Name == (String)cell.Value)
+                            if (player.Name == (string)cell.Value)
                             {
                                 selChar = player;
                                 if(!playerSelected)
@@ -1858,7 +1858,7 @@ namespace Iocaine2
                                     firstSelChar = player;
                                 }
                                 Command buffCmd = (Command)PL_PartyBuffCB.SelectedItem;
-                                Boolean exists = false;
+                                bool exists = false;
                                 for (int ii = 0; ii < selChar.TaskList.Count; ii++)
                                 {
                                     if(selChar.TaskList[ii].Cmd.Name == buffCmd.Name)
@@ -1905,8 +1905,8 @@ namespace Iocaine2
         }
         private void PL_PartyBuffRemoveButton_Click(object sender, EventArgs e)
         {
-            Boolean playerSelected = false;
-            Boolean defaultSelected = false;
+            bool playerSelected = false;
+            bool defaultSelected = false;
             PLCharacter firstSelChar = null;
             DataGridViewSelectedCellCollection charCellList = CharacterGrid.SelectedCells;
             DataGridViewSelectedCellCollection cellsToRemove = PL_BuffsGrid.SelectedCells;
@@ -1915,14 +1915,14 @@ namespace Iocaine2
                 if (cell.ColumnIndex == (int)PL_CHAR_GRID_COL.NAME)
                 {
                     //Remove from the default party buff list.
-                    if ((String)cell.Value == "-default-")
+                    if ((string)cell.Value == "-default-")
                     {
                         foreach (DataGridViewCell buffCell in cellsToRemove)
                         {
                             if (buffCell.ColumnIndex == (int)PL_SELF_BUFF_COL.BUFF)
                             {
                                 Command buff = (Command)buffCell.Value;
-                                Int32 idxOf = PL_PartyBuffCmdList.IndexOf(buff);
+                                int idxOf = PL_PartyBuffCmdList.IndexOf(buff);
                                 if (idxOf < 0)
                                 {
                                     LoggingFunctions.Error("PL_PartyBuffRemoveButton_Click: Could not find index of " + buff.Name + " in the buff list.");
@@ -1947,7 +1947,7 @@ namespace Iocaine2
                     {
                         foreach (PLCharacter player in PL_CharacterList)
                         {
-                            if (player.Name == (String)cell.Value)
+                            if (player.Name == (string)cell.Value)
                             {
                                 foreach (DataGridViewCell buffCell in cellsToRemove)
                                 {
@@ -2014,19 +2014,19 @@ namespace Iocaine2
                 {
                     #region Default
                     //We are saving these new values to the user settings
-                    if ((String)cell.Value == "-default-")
+                    if ((string)cell.Value == "-default-")
                     {
                         if (e.ColumnIndex == (int)PL_BUFF_GRID_COL.RECAST)
                         {
                             //Find the buff for this row
                             Command buff = (Command)PL_BuffsGrid[(int)PL_BUFF_GRID_COL.BUFF, e.RowIndex].Value;
-                            Int32 idxOf = PL_PartyBuffCmdList.IndexOf(buff);
+                            int idxOf = PL_PartyBuffCmdList.IndexOf(buff);
                             if (idxOf < 0)
                             {
                                 LoggingFunctions.Error("PL_BuffsGrid_CellValueChanged: Couldn't find buff " + buff.Name + " in the buff list.");
                                 continue;
                             }
-                            UInt32 recast = Convert.ToUInt32(PL_BuffsGrid[(int)PL_BUFF_GRID_COL.RECAST, e.RowIndex].Value.ToString()) * 1000;
+                            uint recast = Convert.ToUInt32(PL_BuffsGrid[(int)PL_BUFF_GRID_COL.RECAST, e.RowIndex].Value.ToString()) * 1000;
                             PL_PartyBuffRecastList[idxOf] = recast;
                             idxOf = PL_PartyBuffCmdListMaster.IndexOf(buff);
                             if(idxOf >= 0)
@@ -2039,13 +2039,13 @@ namespace Iocaine2
                         {
                             //Find the buff for this row
                             Command buff = (Command)PL_BuffsGrid[(int)PL_BUFF_GRID_COL.BUFF, e.RowIndex].Value;
-                            Int32 idxOf = PL_PartyBuffCmdList.IndexOf(buff);
+                            int idxOf = PL_PartyBuffCmdList.IndexOf(buff);
                             if (idxOf < 0)
                             {
                                 LoggingFunctions.Error("PL_BuffsGrid_CellValueChanged: Couldn't find buff " + buff.Name + " in the buff list.");
                                 continue;
                             }
-                            Boolean enable = Convert.ToBoolean(PL_BuffsGrid[(int)PL_BUFF_GRID_COL.EN, e.RowIndex].Value);
+                            bool enable = Convert.ToBoolean(PL_BuffsGrid[(int)PL_BUFF_GRID_COL.EN, e.RowIndex].Value);
                             PL_PartyBuffEnableList[idxOf] = enable;
                             idxOf = PL_PartyBuffCmdListMaster.IndexOf(buff);
                             if (idxOf >= 0)
@@ -2061,7 +2061,7 @@ namespace Iocaine2
                         PLCharacter selChar = null;
                         foreach (PLCharacter player in PL_CharacterList)
                         {
-                            if (player.Name == (String)cell.Value)
+                            if (player.Name == (string)cell.Value)
                             {
                                 selChar = player;
                             }
@@ -2127,7 +2127,7 @@ namespace Iocaine2
                         PLCharacter selChar = null;
                         foreach (PLCharacter chr in PL_CharacterList)
                         {
-                            if (chr.Name == (String)cell.Value)
+                            if (chr.Name == (string)cell.Value)
                             {
                                 selChar = chr;
                             }
@@ -2135,7 +2135,7 @@ namespace Iocaine2
                         if (selChar != null)
                         {
 
-                            Command buff = (Command)PL_BuffsGrid[(Int32)PL_BUFF_GRID_COL.BUFF, e.RowIndex].Value;
+                            Command buff = (Command)PL_BuffsGrid[(int)PL_BUFF_GRID_COL.BUFF, e.RowIndex].Value;
                             foreach (Task tsk in selChar.TaskList)
                             {
                                 if (tsk.Cmd == buff)
@@ -2230,7 +2230,7 @@ namespace Iocaine2
             }
 
             //Add cure to the user settings profile
-            UserSettings.AddListValue(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_DEBUFFS, new List<Object>() { Data.Client.FfxiResource.EncodeApostrophy(cmdToAdd.Name) });
+            UserSettings.AddListValue(UserSettings.BOT.PL, UserSettings.LIST_TABLE.PL_DEBUFFS, new List<object>() { Data.Client.FfxiResource.EncodeApostrophy(cmdToAdd.Name) });
         }
         //private void PL_DebuffGrid_CellFormatting(object sender, System.Windows.Forms.DataGridViewCellFormattingEventArgs e)
         //{
@@ -2281,7 +2281,7 @@ namespace Iocaine2
                         PLCharacter selChar = null;
                         foreach (PLCharacter chr in PL_CharacterList)
                         {
-                            if (chr.Name == (String)cell.Value)
+                            if (chr.Name == (string)cell.Value)
                             {
                                 selChar = chr;
                             }
@@ -2410,11 +2410,11 @@ namespace Iocaine2
             if (PL_SelfBuffGrid.Rows.Count > 0)
             {
                 LoggingFunctions.Debug("PL_SelfBuffGrid_CellValueChanged: SelfBuffGrid cell value changed.", LoggingFunctions.DBG_SCOPE.PL);
-                Task editedTask = (Task)PL_SelfBuffGrid.Rows[e.RowIndex].Cells[(Int32)PL_SELF_BUFF_COL.BUFF].Value;
-                if (e.ColumnIndex == (Int32)PL_SELF_BUFF_COL.EN)
+                Task editedTask = (Task)PL_SelfBuffGrid.Rows[e.RowIndex].Cells[(int)PL_SELF_BUFF_COL.BUFF].Value;
+                if (e.ColumnIndex == (int)PL_SELF_BUFF_COL.EN)
                 {
                     LoggingFunctions.Debug("PL_SelfBuffGrid_CellValueChanged: SelfBuffGrid enable changed for row " + e.RowIndex + ".", LoggingFunctions.DBG_SCOPE.PL);
-                    bool newEnValue = (Boolean)PL_SelfBuffGrid[e.ColumnIndex, e.RowIndex].Value;
+                    bool newEnValue = (bool)PL_SelfBuffGrid[e.ColumnIndex, e.RowIndex].Value;
                     if (newEnValue && !editedTask.UseTimer)
                     {
                         LoggingFunctions.Debug("PL_SelfBuffGrid_CellValueChanged: Enabling task " + editedTask.CmdName + " and sending to Q.", LoggingFunctions.DBG_SCOPE.PL);
@@ -2428,7 +2428,7 @@ namespace Iocaine2
                         editedTask.UseTimer = newEnValue;
                     }
                 }
-                else if (e.ColumnIndex == (Int32)PL_SELF_BUFF_COL.RECAST)
+                else if (e.ColumnIndex == (int)PL_SELF_BUFF_COL.RECAST)
                 {
                     LoggingFunctions.Debug("PL_SelfBuffGrid_CellValueChanged: SelfBuffGrid recast changed for row " + e.RowIndex + ".", LoggingFunctions.DBG_SCOPE.PL);
                     editedTask.Interval = (System.Convert.ToInt32(PL_SelfBuffGrid[e.ColumnIndex, e.RowIndex].Value) * 1000);
@@ -2446,9 +2446,9 @@ namespace Iocaine2
             {
                 return;
             }
-            if (e.ColumnIndex == (Int32)PL_SELF_BUFF_COL.CAST)
+            if (e.ColumnIndex == (int)PL_SELF_BUFF_COL.CAST)
             {
-                Task taskToDo = (Task)PL_SelfBuffGrid[(Int32)PL_SELF_BUFF_COL.BUFF, e.RowIndex].Value;
+                Task taskToDo = (Task)PL_SelfBuffGrid[(int)PL_SELF_BUFF_COL.BUFF, e.RowIndex].Value;
                 taskToDo.Reset();
                 Bots.PowerLevel.Access.EnqueueTask(taskToDo);
             }
@@ -2497,10 +2497,10 @@ namespace Iocaine2
                             int charRow = 0;
                             foreach (DataGridViewRow row in CharacterGrid.Rows)
                             {
-                                LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Comparing with grid row #" + row.Index + " w/ value " + (String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
-                                if ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value == chr.Name)
+                                LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Comparing with grid row #" + row.Index + " w/ value " + (string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                                if ((string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value == chr.Name)
                                 {
-                                    LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Compare matched. Cell value: " + ((String)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value) + " chr.Name: " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                                    LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: Compare matched. Cell value: " + ((string)row.Cells[(int)PL_CHAR_GRID_COL.NAME].Value) + " chr.Name: " + chr.Name + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
                                     charRow = row.Index;
                                     LoggingFunctions.Debug("PL_CheckPlayerActivityThreadRun: row.Index is " + row.Index + ".", LoggingFunctions.DBG_SCOPE.BACKGROUND);
                                     break;
@@ -2546,7 +2546,7 @@ namespace Iocaine2
         }
         #endregion
         #region Utility Functions
-        public void PL_ReloadGrids(String iName = "-default-")
+        public void PL_ReloadGrids(string iName = "-default-")
         {
             PL_LoadCuresGrid(iName);
             PL_LoadBuffsGrid(iName);
@@ -2584,7 +2584,7 @@ namespace Iocaine2
                 tsk.Priority = Statics.Settings.PowerLevel.SelfBuffQ;
             }
         }
-        private void PL_AppendChat(String iText)
+        private void PL_AppendChat(string iText)
         {
             try
             {
@@ -2602,7 +2602,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("PL_AppendChat: " + e.ToString());
             }
         }
-        private void PL_AppendChatCBF(String iText)
+        private void PL_AppendChatCBF(string iText)
         {
             PL_EventsChatLogRTB.AppendText(iText);
             PL_EventsChatLogRTB.ScrollToCaret();
@@ -2703,7 +2703,7 @@ namespace Iocaine2
                 {
                     foreach (PLCharacter chr in PL_CharacterList)
                     {
-                        if ((chr.Name == (String)cell.Value) && (chr.Name != PlayerCache.Vitals.Name))
+                        if ((chr.Name == (string)cell.Value) && (chr.Name != PlayerCache.Vitals.Name))
                         {
                             if (!chr.CureQueued)
                             {
@@ -2799,9 +2799,9 @@ namespace Iocaine2
             //Manual cures box height = new total box height - new character box height
             //New button Y = character box bottom + 17
             //New TB Y = new button top + 29
-            /*Int32 new_total_left_box_height = DebuffGrid.Bottom - CharacterGrid.Top - 87;
-            Double char_box_scale_factor = 150d / (150d + 88d);
-            CharacterGrid.Height = (Int32)((Double)new_total_left_box_height * char_box_scale_factor);
+            /*int new_total_left_box_height = DebuffGrid.Bottom - CharacterGrid.Top - 87;
+            double char_box_scale_factor = 150d / (150d + 88d);
+            CharacterGrid.Height = (int)((double)new_total_left_box_height * char_box_scale_factor);
             DebuffGrid.Height = new_total_left_box_height - CharacterGrid.Height;
             DebuffGrid.Top = DebuffComboBox.Top - 6 - DebuffGrid.Height;
             DebuffGridLabel.Top = DebuffGrid.Top - 15;
@@ -2812,9 +2812,9 @@ namespace Iocaine2
             PL_Start_Button.Top = DebuffGrid.Top + 1;
             PL_Stop_Button.Top = PL_Start_Button.Top + 48;
 
-            Int32 new_total_right_box_height = SelfBuffGrid.Bottom - CuresGrid.Top - 6;
-            Double buff_box_scale_factor = 110d / (110d + 108d + 88d);
-            SelfBuffGrid.Height = (Int32)(new_total_right_box_height * buff_box_scale_factor);
+            int new_total_right_box_height = SelfBuffGrid.Bottom - CuresGrid.Top - 6;
+            double buff_box_scale_factor = 110d / (110d + 108d + 88d);
+            SelfBuffGrid.Height = (int)(new_total_right_box_height * buff_box_scale_factor);
             BuffsGrid.Height = SelfBuffGrid.Height;
             CuresGrid.Height = new_total_right_box_height - SelfBuffGrid.Height - BuffsGrid.Height;
             BuffsGrid.Top = CuresGrid.Bottom + 3;
@@ -2851,7 +2851,7 @@ namespace Iocaine2
             //    Monitor.Enter(PL_chatDebuffParsing);
             //    if (!PL_PauseDebuffsParser)
             //    {
-            //        String str = "";
+            //        string str = "";
             //        int code = 0;
             //        while (PL_chatDebuffParsing.Read(ref str, ref code))
             //        {
@@ -2895,18 +2895,18 @@ namespace Iocaine2
             //    PL_ParsedEventRTB.Clear();
             //    for (int ii = startLine; ii <= endLine; ii++)
             //    {
-            //        String str = PL_EventsChatLogRTB.Lines[ii] + "\n";
+            //        string str = PL_EventsChatLogRTB.Lines[ii] + "\n";
 
             //        int code = 0;
             //        Regex regex_code = new Regex("Code\\[([0-9]+)\\]: (.*)");
             //        Match match_code = regex_code.Match(str);
             //        if (match_code.Success)
             //        {
-            //            code = Int32.Parse(match_code.Groups[1].ToString());
+            //            code = int.Parse(match_code.Groups[1].ToString());
             //            str = match_code.Groups[2].ToString();
             //        }
 
-            //        String target = "";
+            //        string target = "";
             //        foreach (PLCharacter chr in PL_CharacterList)
             //        {
             //            Regex regex_target = new Regex(chr.Name);
