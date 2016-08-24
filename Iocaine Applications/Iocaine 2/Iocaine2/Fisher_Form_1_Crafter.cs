@@ -30,29 +30,29 @@ namespace Iocaine2
     partial class Iocaine_2_Form
     {
         #region Member Variables
-        private String recipeDir = ".\\Recipes\\";
-        private String recipeWWFile = "Woodworking.xml";
-        private String recipeSMFile = "Smithing.xml";
-        private String recipeGSFile = "Goldsmithing.xml";
-        private String recipeCCFile = "Clothcraft.xml";
-        private String recipeLCFile = "Leathercraft.xml";
-        private String recipeBCFile = "Bonecraft.xml";
-        private String recipeALFile = "Alchemy.xml";
-        private String recipeCKFile = "Cooking.xml";
+        private string recipeDir = ".\\Recipes\\";
+        private string recipeWWFile = "Woodworking.xml";
+        private string recipeSMFile = "Smithing.xml";
+        private string recipeGSFile = "Goldsmithing.xml";
+        private string recipeCCFile = "Clothcraft.xml";
+        private string recipeLCFile = "Leathercraft.xml";
+        private string recipeBCFile = "Bonecraft.xml";
+        private string recipeALFile = "Alchemy.xml";
+        private string recipeCKFile = "Cooking.xml";
 
-        private String recipeWWTable = "RecipesWW";
-        private String recipeSMTable = "RecipesSM";
-        private String recipeGSTable = "RecipesGS";
-        private String recipeCCTable = "RecipesCC";
-        private String recipeLCTable = "RecipesLC";
-        private String recipeBCTable = "RecipesBC";
-        private String recipeALTable = "RecipesAL";
-        private String recipeCKTable = "RecipesCK";
+        private string recipeWWTable = "RecipesWW";
+        private string recipeSMTable = "RecipesSM";
+        private string recipeGSTable = "RecipesGS";
+        private string recipeCCTable = "RecipesCC";
+        private string recipeLCTable = "RecipesLC";
+        private string recipeBCTable = "RecipesBC";
+        private string recipeALTable = "RecipesAL";
+        private string recipeCKTable = "RecipesCK";
 
         private Recipe CB_MR_currentRecipe;
-        private String currentMRRecipeTable;
-        private String currentMRRecipeFile;
-        private String currentCrafterRecipeTable;
+        private string currentMRRecipeTable;
+        private string currentMRRecipeFile;
+        private string currentCrafterRecipeTable;
 
         private List<Item.ITEM_TYPE> CB_InventoryFilterList;
 
@@ -79,9 +79,9 @@ namespace Iocaine2
         #region Delegate declarations
         public delegate void CB_craftNumberOfUpDownUpdateDelegate(int value);
         public delegate void CB_craftNumberOfRBUpdateDelegate(bool value);
-        public delegate void CB_craftMaxTBDelegate(String text);
+        public delegate void CB_craftMaxTBDelegate(string text);
         public delegate void CB_craftMaxRBDelegate(bool value);
-        public delegate void CB_craftUntilSkillTBDelegate(String text);
+        public delegate void CB_craftUntilSkillTBDelegate(string text);
         public delegate void CB_craftUntilSkillRBDelegate(bool value);
         public delegate void CB_synthRBDelegate(bool value);
         public delegate void CB_desynthRBDelegate(bool value);
@@ -98,7 +98,7 @@ namespace Iocaine2
         public delegate void CB_statsAddRecipeDelegate(Recipe recipe, DataGridView dgv, Label recipeLabel, Label currentRecipeLabel, Label maxRecipeLabel);
         public delegate void CB_statsUpdateDelegate(DataGridView dgv, Label recipeLabel);
         public delegate void CB_rebuildInventoryLBDelegate();
-        public delegate void CB_playSoundTBDelegate(String str);
+        public delegate void CB_playSoundTBDelegate(string str);
         public delegate void CB_updateRecipeReportDelegate(Recipe recipe);
         public delegate void CB_clearRecipeInCrafterDelegate();
         public delegate void CB_MR_clearRecipeInManagerDelegate();
@@ -172,7 +172,7 @@ namespace Iocaine2
         {
             CB_CraftNumberOf_RadioButton.Checked = value;
         }
-        private void CB_updateCraftMaxTBCallBackFunction(String text)
+        private void CB_updateCraftMaxTBCallBackFunction(string text)
         {
             CB_CraftMax_Textbox.Text = text;
         }
@@ -180,7 +180,7 @@ namespace Iocaine2
         {
             CB_CraftMax_RadioButton.Checked = value;
         }
-        private void CB_updateCraftUntilSkillTBCallBackFunction(String text)
+        private void CB_updateCraftUntilSkillTBCallBackFunction(string text)
         {
             CB_CraftUntilSkill_Textbox.Text = text;
         }
@@ -248,7 +248,7 @@ namespace Iocaine2
         {
             rebuildInventoryListbox();
         }
-        private void CB_playSoundTBCallBackFunction(String str)
+        private void CB_playSoundTBCallBackFunction(string str)
         {
             CB_PlaySound_TB.Text = str;
         }
@@ -302,7 +302,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating form control: " + e.ToString());
             }
         }
-        private void CB_udpateCraftMaxTB(String text)
+        private void CB_udpateCraftMaxTB(string text)
         {
             try
             {
@@ -338,7 +338,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating form control: " + e.ToString());
             }
         }
-        private void CB_udpateCraftUntilSkillTB(String text)
+        private void CB_udpateCraftUntilSkillTB(string text)
         {
             try
             {
@@ -644,7 +644,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Updating form control: " + e.ToString());
             }
         }
-        private void CB_updatePlaySoundTB(String str)
+        private void CB_updatePlaySoundTB(string str)
         {
             try
             {
@@ -1714,7 +1714,7 @@ namespace Iocaine2
 
             if (CB_MR_CreateNew_RadioButton.Checked == true)
             {
-                List<String> ingr_names = new List<String>();
+                List<string> ingr_names = new List<string>();
                     
                 ingr_names.Add(CB_MR_Ingredient1_Textbox.Text);
                 ingr_names.Add(CB_MR_Ingredient2_Textbox.Text);
@@ -1736,7 +1736,7 @@ namespace Iocaine2
                 ingr_quantities.Add((byte)CB_MR_Ingredient7Quan_UpDown.Value);
                 ingr_quantities.Add((byte)CB_MR_Ingredient8Quan_UpDown.Value);
 
-                List<String> result_names = new List<String>();
+                List<string> result_names = new List<string>();
 
                 result_names.Add(CB_MR_ResultNQ_Textbox.Text);
                 result_names.Add(CB_MR_ResultHQ1_Textbox.Text);
@@ -1853,7 +1853,7 @@ namespace Iocaine2
                     LoggingFunctions.Debug("TopCR::CB_Start_Button_Click: Starting Crafter.", LoggingFunctions.DBG_SCOPE.TOP);
                     Bots.Crafter.CRAFT_MODE mode = Bots.Crafter.CRAFT_MODE.NUMBER_OF;
                     int nbOf = 1;
-                    Single skill = 1;
+                    float skill = 1;
                     setSatchelOccupancy();
                     setBagOccupancy();
                     Containers.RebuildListsMobileOnly();
@@ -2093,12 +2093,12 @@ namespace Iocaine2
         #endregion Play Sounds
         #endregion Event Handlers
         #region Utility Functions
-        private void reloadRecipes(String tableName, String fileName)
+        private void reloadRecipes(string tableName, string fileName)
         {
             Statics.Datasets.MainDb.Tables[tableName].Rows.Clear();
             loadRecipes(tableName, fileName);
         }
-        private void loadRecipes(String tableName, String fileName)
+        private void loadRecipes(string tableName, string fileName)
         {
             if(Directory.Exists(recipeDir))
             {
@@ -2118,7 +2118,7 @@ namespace Iocaine2
                 }
             }
         }
-        private void saveRecipes(String tableName, String fileName)
+        private void saveRecipes(string tableName, string fileName)
         {
             if (!Directory.Exists(recipeDir))
             {
@@ -2140,7 +2140,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Saving file: " + recipeDir + fileName + ": " + ex.ToString());
             }
         }
-        private void addRecipe(Recipe recipeToAdd, String tableToAddTo)
+        private void addRecipe(Recipe recipeToAdd, string tableToAddTo)
         {
             DataRow row = Statics.Datasets.MainDb.Tables[tableToAddTo].NewRow();
 
@@ -2150,7 +2150,7 @@ namespace Iocaine2
             bool inserted = false;
             for (int ii = 0; ii < nbRows; ii++)
             {
-                if ((Statics.Datasets.MainDb.Tables[tableToAddTo].Rows[ii]["ResultNQ"]).ToString().CompareTo((String)row["ResultNQ"]) > 0)
+                if ((Statics.Datasets.MainDb.Tables[tableToAddTo].Rows[ii]["ResultNQ"]).ToString().CompareTo((string)row["ResultNQ"]) > 0)
                 {
                     Statics.Datasets.MainDb.Tables[tableToAddTo].Rows.InsertAt(row, ii);
                     inserted = true;
@@ -2238,7 +2238,7 @@ namespace Iocaine2
                     break;
             }
         }
-        private void loadCrafterRecipeSelectionCB(String tableName)
+        private void loadCrafterRecipeSelectionCB(string tableName)
         {
             if (tableName == null)
             {
@@ -2253,7 +2253,7 @@ namespace Iocaine2
             int nbRows = Statics.Datasets.MainDb.Tables[tableName].Rows.Count;
             for (int ii = 0; ii < nbRows; ii++)
             {
-                CB_Recipe_ComboBox.Items.Add((String)Recipe.getNameFromDataRow(Statics.Datasets.MainDb.Tables[tableName].Rows[ii]));
+                CB_Recipe_ComboBox.Items.Add((string)Recipe.getNameFromDataRow(Statics.Datasets.MainDb.Tables[tableName].Rows[ii]));
             }
             if (CB_Recipe_ComboBox.Items.Count > 0)
             {
@@ -2266,7 +2266,7 @@ namespace Iocaine2
             }
         }
 
-        private void loadMRRecipeSelectionCB(String tableName)
+        private void loadMRRecipeSelectionCB(string tableName)
         {
             CB_MR_RecipeSelect_ComboBox.Items.Clear();
             CB_MR_RecipeSelect_ComboBox.Text = "";
@@ -2274,7 +2274,7 @@ namespace Iocaine2
             for(int ii=0; ii < nbRows; ii++) 
             {
                 
-                CB_MR_RecipeSelect_ComboBox.Items.Add((String)Recipe.getNameFromDataRow(Statics.Datasets.MainDb.Tables[tableName].Rows[ii]));
+                CB_MR_RecipeSelect_ComboBox.Items.Add((string)Recipe.getNameFromDataRow(Statics.Datasets.MainDb.Tables[tableName].Rows[ii]));
             }
             if (CB_MR_RecipeSelect_ComboBox.Items.Count > 0)
             {
@@ -2461,17 +2461,17 @@ namespace Iocaine2
         private void wrapCurrentMRRecipeEntry()
         {
 
-            List<String> ingr_names = new List<String>();
+            List<string> ingr_names = new List<string>();
             List<byte> ingr_quantity = new List<byte>();
 
-            ingr_names.Add((String)CB_MR_Ingredient1_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient2_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient3_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient4_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient5_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient6_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient7_Textbox.Text);
-            ingr_names.Add((String)CB_MR_Ingredient8_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient1_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient2_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient3_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient4_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient5_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient6_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient7_Textbox.Text);
+            ingr_names.Add((string)CB_MR_Ingredient8_Textbox.Text);
 
             ingr_quantity.Add((byte)CB_MR_Ingredient1Quan_UpDown.Value);
             ingr_quantity.Add((byte)CB_MR_Ingredient2Quan_UpDown.Value);
@@ -2482,14 +2482,14 @@ namespace Iocaine2
             ingr_quantity.Add((byte)CB_MR_Ingredient7Quan_UpDown.Value);
             ingr_quantity.Add((byte)CB_MR_Ingredient8Quan_UpDown.Value);
 
-            List<String> result_names = new List<String>();
+            List<string> result_names = new List<string>();
             List<byte> result_quantity = new List<byte>();
             List<byte> result_verified = new List<byte>();
 
-            result_names.Add((String)CB_MR_ResultNQ_Textbox.Text);
-            result_names.Add((String)CB_MR_ResultHQ1_Textbox.Text);
-            result_names.Add((String)CB_MR_ResultHQ2_Textbox.Text);
-            result_names.Add((String)CB_MR_ResultHQ3_Textbox.Text);
+            result_names.Add((string)CB_MR_ResultNQ_Textbox.Text);
+            result_names.Add((string)CB_MR_ResultHQ1_Textbox.Text);
+            result_names.Add((string)CB_MR_ResultHQ2_Textbox.Text);
+            result_names.Add((string)CB_MR_ResultHQ3_Textbox.Text);
 
             result_quantity.Add((byte)CB_MR_ResultNQQuan_UpDown.Value);
             result_quantity.Add((byte)CB_MR_ResultHQ1Quan_UpDown.Value);
@@ -2717,7 +2717,7 @@ namespace Iocaine2
             {
                 if (!CB_InventoryFilterList.Contains(inventory[ii].Type))
                 {
-                    String textToAdd = "(" + inventoryQuan[ii].ToString() + ")";
+                    string textToAdd = "(" + inventoryQuan[ii].ToString() + ")";
                     textToAdd = textToAdd.PadRight(7);
                     textToAdd += inventory[ii].Name;
                     CB_Inventory_Listbox.Items.Add(textToAdd);
