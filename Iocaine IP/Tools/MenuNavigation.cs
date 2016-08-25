@@ -70,28 +70,29 @@ namespace Iocaine2.Tools
         public static String[] MainMenu_1_Help_Text = new String[12] { 
             "View status.",
             "Equip weapons and armor.",
-            "View spell and song list.",
+            "View spell and song lists.",
             "View current inventory.",
+            "View the list of synthesis-related options.",
             "View job abilities, weapon skills, etc.",
             "Organize party settings.",
             "Trade items or money with current target.",
             "Search for other players according to various conditions.",
             "Set up and equip linkshell items.",
-            "Use the PlayOnline viewer's Friend List functions.",
             "View the balance of power for each region.",
-            "Open the Mog House menu."
+            "View map of current area."
+            //"Open the Mog House menu."
         };
         public static String[] MainMenu_2_Help_Text = new String[12] {
             "View list of current missions.",
             "View list of current quests.",
             "View list of key items. Key items cannot be traded or dropped.",
-            "View contents of Mog House and Mog Satchel.",
+            "View contents of Mog House and Mog Case, and other such storage.",
             "Select merchandise from your inventory to place on sale in your bazaar.",
-            "Edit the user-defined macros in your macro palettes.",
+            "Edit equipment sets and the user-defined macros in your macro palettes.",
             "Change the game's options.",
             "Search for solutions to past problems or report new instances of trouble.",
-            "Display total time spent in Vana'diel.",
             "Display current time in Vana'diel and on Earth. Also toggles the on-screen clock and weekday display.",
+            "Display the Friend List and the Emote List.",
             "Log out from FINAL FANTASY XI and PlayOnline.",
             "Quit FINAL FANTASY XI and return to title screen."
         };
@@ -100,14 +101,15 @@ namespace Iocaine2.Tools
             "Equipment",
             "Magic List",
             "Items",
+            "Sythesis",
             "Abilities",
             "Party",
             "Trade",
             "Search",
             "Linkshell",
-            "Friend List",
             "Region Info",
-            "Mog House"
+            //"Mog House"
+            "Map"
         };
         public static String[] MainMenu_2_Left_Text = new String[12] {
             "Missions",
@@ -115,11 +117,11 @@ namespace Iocaine2.Tools
             "Key Items",
             "View House",
             "Set Bazaar",
-            "Macro Palette",
+            "MacroPalette",
             "Config",
             "Help Desk",
-            "Time Played",
             "Current Time",
+            "Communication",
             "Shut Down",
             "Log Out"
         };
