@@ -207,9 +207,6 @@
     <Compile Include="..\..\..\Iocaine IP\Data Structures\ItemContainer.cs">
       <Link>ItemContainer.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Iocaine IP\Tools\MenuNavigation.cs">
-      <Link>MenuNavigation.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Iocaine IP\Data Structures\InventoryContainers.cs">
       <Link>InventoryContainers.cs</Link>
     </Compile>
@@ -272,6 +269,7 @@
     <Compile Include="Data Entry\UpDownParameter.cs" />
     <Compile Include="Data Entry\UpDownReturn.cs" />
     <Compile Include="IocaineThreading.cs" />
+    <Compile Include="Menus\MenuNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\Toolbox.cs">
       <Link>Toolbox.cs</Link>
