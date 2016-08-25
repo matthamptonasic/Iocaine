@@ -36,13 +36,23 @@ namespace Iocaine2.Data.Client
         }
         #endregion Enums
 
+        #region Structures
+        public struct NPC_INFO
+        {
+            public string Name;
+            public NPC_TYPE Type;
+            public ushort Zone;
+            public uint Data;
+        }
+        #endregion Structures
+
         #region Private Members
         private static bool m_initDone = false;
         private static NPC_Dataset db = new NPC_Dataset();
         private static AutoCompleteStringCollection npcNameCollection = new AutoCompleteStringCollection();
         #endregion Private Members
 
-        #region Public Properties
+        #region Public Properties/Constants
         public static bool Init_Done
         {
             get
@@ -57,6 +67,11 @@ namespace Iocaine2.Data.Client
                 return npcNameCollection;
             }
         }
+        #region Invalid Values
+        public const string InvalidName = "Unknown";
+        public const NPC_TYPE InvalidType = NPC_TYPE.UNKNOWN;
+        public const ushort InvalidZone = 0;
+        #endregion Invalid Values
         #endregion Public Properties
 
         #region Inits
@@ -181,6 +196,29 @@ namespace Iocaine2.Data.Client
                 }
             }
         }
+        public static NPC_INFO GetInfo(string iName)
+        {
+            Init_Iocaine();
+            string filter = "Name='" + iName + "'";
+            List<NPC_INFO> infoList = getInfo(filter);
+            if (infoList.Count == 0)
+            {
+                return nullInfo();
+            }
+            return infoList[0];
+        }
+        public static List<NPC_INFO> GetInfo(NPC_TYPE iType)
+        {
+            Init_Iocaine();
+            string filter = "Type=" + (byte)iType;
+            return getInfo(filter);
+        }
+        public static List<NPC_INFO> GetInfo(ushort iZone)
+        {
+            Init_Iocaine();
+            string filter = "Zone=" + iZone;
+            return getInfo(filter);
+        }
         #endregion Public Methods
 
         #region Private Methods
@@ -194,6 +232,38 @@ namespace Iocaine2.Data.Client
             {
                 npcNameCollection.Add(row.Name);
             }
+        }
+        private static List<NPC_INFO> getInfo(string iFilter = "", string iOrderBy = "")
+        {
+            NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(iFilter, iOrderBy);
+            List<NPC_INFO> retValue = new List<NPC_INFO>();
+            for (int ii = 0; ii < rows.Length; ii++)
+            {
+                NPC_INFO info = new NPC_INFO();
+                info.Name = rows[ii].Name;
+                try
+                {
+                    info.Type = (NPC_TYPE)rows[ii].Type;
+                }
+                catch
+                {
+                    continue;
+                }
+                info.Zone = rows[ii].Zone;
+                info.Data = rows[ii].Data;
+
+                retValue.Add(info);
+            }
+            return retValue;
+        }
+        private static NPC_INFO nullInfo()
+        {
+            NPC_INFO info = new NPC_INFO();
+            info.Name = InvalidName;
+            info.Type = InvalidType;
+            info.Zone = InvalidZone;
+            info.Data = 0;
+            return info;
         }
         #endregion Private Methods
     }
