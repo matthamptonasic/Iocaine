@@ -1312,7 +1312,7 @@ namespace Iocaine2.Bots
                 {
                     return isGuild;
                 }
-                if (NPCs.Type(script.NpcName) == NPCs.NPC_TYPE.GUILD_MERCH)
+                if (NPCs.GetNPCType(script.NpcName) == NPCs.NPC_TYPE.GUILD_MERCH)
                 {
                     isGuild = true;
                 }

@@ -24,7 +24,7 @@ namespace Iocaine2.Tools
                 Byte guildDayOff = 0;
                 Byte guildHourOpen = 0;
                 Byte guildHourClose = 0;
-                if (!NPCs.GuildInfo(iGuild, iZone, ref guildHourOpen, ref guildHourClose, ref guildDayOff))
+                if (!NPCs.GetGuildInfo(iGuild, iZone, ref guildHourOpen, ref guildHourClose, ref guildDayOff))
                 {
                     //The NPC name didn't show up as a guild merchant even though they should have.
                     //So something's wrong, but we'll just log the error and continue (return false).
@@ -48,7 +48,7 @@ namespace Iocaine2.Tools
                 Byte guildDayOff = 0;
                 Byte guildHourOpen = 0;
                 Byte guildHourClose = 0;
-                if (!NPCs.GuildInfo(iNpcName, ref guildHourOpen, ref guildHourClose, ref guildDayOff))
+                if (!NPCs.GetGuildInfo(iNpcName, ref guildHourOpen, ref guildHourClose, ref guildDayOff))
                 {
                     //The NPC name didn't show up as a guild merchant even though they should have.
                     //So something's wrong, but we'll just log the error and continue (assuming it's a normal npc, so return true).
