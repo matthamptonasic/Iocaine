@@ -13,22 +13,23 @@ namespace Iocaine2.Data.Client
         #region Enums
         public enum NPC_TYPE : byte
         {
-            UNKNOWN = 0,
-            SELL_ALL = 1,
-            GUILD_MERCH = 2,
-            REGIONAL = 3,
-            OUTPOST = 4,
-            ROE = 5,
-            CRUOR = 6,
-            SIGIL_WIN = 7,
-            SIGIL_BAS = 8,
-            SIGIL_SAN = 9,
-            SANCTION = 10,
-            SIGNET_WIN = 11,
-            SIGNET_BAS = 12,
-            SIGNET_SAN = 13,
-            SIGNET_JEU = 14,
-            IONIS = 15
+            UNKNOWN,
+            SELL_ALL,
+            GUILD_MERCH,
+            REGIONAL,
+            OUTPOST,
+            ROE,
+            CRUOR,
+            SIGIL_WIN,
+            SIGIL_BAS,
+            SIGIL_SAN,
+            SANCTION,
+            SIGNET_WIN,
+            SIGNET_BAS,
+            SIGNET_SAN,
+            SIGNET_JEU,
+            IONIS,
+            TASK_DELEGATOR
         }
         #endregion Enums
         #region Members
