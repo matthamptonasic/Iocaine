@@ -10,12 +10,26 @@ namespace Iocaine2.Data.Client
 {
     public static partial class NPCs
     {
+        #region Top Load Method
         private static bool loadDataset()
         {
             if (db == null)
             {
                 db = new NPC_Dataset();
             }
+            loadGuildMerchants();
+            loadRoENpcs();
+            return true;
+        }
+        #endregion Top Load Method
+
+        #region Individual Load Methods
+        #region Sell All Merchants
+        #endregion Sell All Merchants
+
+        #region Guild
+        private static void loadGuildMerchants()
+        {
             loadGuildFishermans();
             loadGuildCarpenters();
             loadGuildSmithing();
@@ -27,7 +41,6 @@ namespace Iocaine2.Data.Client
             loadGuildCooking();
             loadGuildTenshodo();
             loadGuildHours();
-            return true;
         }
         #region Guild Hours
         private static void loadGuildHours()
@@ -70,17 +83,86 @@ namespace Iocaine2.Data.Client
         #region Fishing
         private static void loadGuildFishermans()
         {
-            db.NPCs.Rows.Add(new object[] { "Babubu", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.PORT_WINDURST, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Graegham", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SELBINA, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Mendoline", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SELBINA, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Mep Nhapopoluko", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.BIBIKI_BAY, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Wahnid", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.AHT_URHGAN_WHITEGATE, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Rajmonda", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SHIP_BOUND_FOR_SELBINA, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Lokhong", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SHIP_BOUND_FOR_MHAURA, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Cehn Teyohngo", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.OPEN_SEA_ROUTE_TO_AL_ZAHBI, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Pashi Maccaleh", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.OPEN_SEA_ROUTE_TO_MHAURA, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Jidwahn", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SILVER_SEA_ROUTE_TO_NASHMAU, FFXIEnums.GUILDS.FI });
-            db.NPCs.Rows.Add(new object[] { "Yahliq", NPC_TYPE.GUILD_MERCH, FFXIEnums.ZONES.SILVER_SEA_ROUTE_TO_AL_ZAHBI, FFXIEnums.GUILDS.FI });
+            NPC_Dataset.NPCsRow row = null;
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Babubu";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.PORT_WINDURST;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Graegham";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SELBINA;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Mendoline";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SELBINA;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Mep Nhapopoluko";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.BIBIKI_BAY;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Wahnid";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.AHT_URHGAN_WHITEGATE;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Rajmonda";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SHIP_BOUND_FOR_SELBINA;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Lokhong";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SHIP_BOUND_FOR_MHAURA;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Cehn Teyohngo";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.OPEN_SEA_ROUTE_TO_AL_ZAHBI;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Pashi Maccaleh";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.OPEN_SEA_ROUTE_TO_MHAURA;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Jidwahn";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SILVER_SEA_ROUTE_TO_NASHMAU;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Yahliq";
+            row.Type = (byte)NPC_TYPE.GUILD_MERCH;
+            row.Zone = (ushort)FFXIEnums.ZONES.SILVER_SEA_ROUTE_TO_AL_ZAHBI;
+            row.Data = (uint)FFXIEnums.GUILDS.FI;
+            db.NPCs.Rows.Add(row);
+
+            db.NPCs.AcceptChanges();
         }
         #endregion Fishing
         #region Carpenter's
@@ -169,11 +251,50 @@ namespace Iocaine2.Data.Client
         }
         #endregion Tenshodo
         #endregion Guild Merchants
+        #endregion Guild
+
         #region Regional Merchants
         #endregion Regional Merchants
-        #region Sell Any Merchants
-        #endregion Sell Any Merchants
+
+        #region Records of Eminence (RoE)
+        private static void loadRoENpcs()
+        {
+            NPC_Dataset.NPCsRow row = null;
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Rolandienne";
+            row.Type = (byte)NPC_TYPE.ROE;
+            row.Zone = (ushort)FFXIEnums.ZONES.SOUTHERN_SAN_DORIA;
+            row.Data = 0;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Isakoth";
+            row.Type = (byte)NPC_TYPE.ROE;
+            row.Zone = (ushort)FFXIEnums.ZONES.BASTOK_MARKETS;
+            row.Data = 0;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Fhelm Jobeizat";
+            row.Type = (byte)NPC_TYPE.ROE;
+            row.Zone = (ushort)FFXIEnums.ZONES.WINDURST_WOODS;
+            row.Data = 0;
+            db.NPCs.Rows.Add(row);
+
+            row = db.NPCs.NewNPCsRow();
+            row.Name = "Eternal Flame";
+            row.Type = (byte)NPC_TYPE.ROE;
+            row.Zone = (ushort)FFXIEnums.ZONES.WESTERN_ADOULIN;
+            row.Data = 0;
+            db.NPCs.Rows.Add(row);
+
+            db.NPCs.AcceptChanges();
+        }
+        #endregion Records of Eminence (RoE)
+
         #region Delivery NPC's
         #endregion Delivery NPC's
+        #endregion Individual Load Methods
     }
 }
