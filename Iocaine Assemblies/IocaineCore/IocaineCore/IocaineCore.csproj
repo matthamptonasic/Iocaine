@@ -270,6 +270,7 @@
     <Compile Include="Data Entry\UpDownReturn.cs" />
     <Compile Include="IocaineThreading.cs" />
     <Compile Include="Menus\NPC_MenuLoad.cs" />
+    <Compile Include="Menus\NPC_MenuParsingParameters.cs" />
     <Compile Include="Menus\Player_MenuNavigation.cs" />
     <Compile Include="Menus\NPC_MenuNode.cs" />
     <Compile Include="Menus\NPC_Menu.cs" />
