@@ -29,21 +29,25 @@ namespace Iocaine2.Data.Client
             SIGNET_SAN,
             SIGNET_JEU,
             IONIS,
-            TASK_DELEGATOR
+            TASK_DELEGATOR,
+            DELIVERY,
+            MOOGLE_PORTER,
+            MOOGLE_GREEN_THUMB
         }
         #endregion Enums
-        #region Members
+
         #region Private Members
-        private static bool init_done = false;
+        private static bool m_initDone = false;
         private static NPC_Dataset db = new NPC_Dataset();
         private static AutoCompleteStringCollection npcNameCollection = new AutoCompleteStringCollection();
         #endregion Private Members
-        #region Public Members
+
+        #region Public Properties
         public static bool Init_Done
         {
             get
             {
-                return init_done;
+                return m_initDone;
             }
         }
         public static AutoCompleteStringCollection NpcNameCollection
@@ -53,75 +57,37 @@ namespace Iocaine2.Data.Client
                 return npcNameCollection;
             }
         }
-        #endregion Public Members
-        #endregion Members
-        #region Methods
+        #endregion Public Properties
+
         #region Inits
-        public static bool Init()
+        public static bool Init_Iocaine()
         {
-            return InitInt();
-        }
-        private static bool InitInt()
-        {
-            if (init_done == false)
+            if (m_initDone == false)
             {
                 loadDataset();
                 loadNpcNameCollection();
+                m_initDone = true;
             }
-            init_done = true;
             return true;
         }
         #endregion Inits
-        #region Utility Functions
-        private static void loadNpcNameCollection()
-        {
-            npcNameCollection.Clear();
-            string filter = "";
-            string orderBy = "Name ASC";
-            NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter, orderBy);
-            foreach (NPC_Dataset.NPCsRow row in rows)
-            {
-                npcNameCollection.Add(row.Name);
-            }
-        }
-        #endregion Utility Functions
+
         #region Public Methods
-        public static uint Count()
+        public static uint GetCount()
         {
-            return CountInt();
-        }
-        private static uint CountInt()
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             return (uint)db.NPCs.Rows.Count;
         }
-        public static uint Count(NPC_TYPE iType)
+        public static uint GetCount(NPC_TYPE iType)
         {
-            return CountInt(iType);
-        }
-        private static uint CountInt(NPC_TYPE iType)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Type=" + iType;
             NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter);
             return (uint)rows.Length;
         }
         public static bool NpcExists(string iName)
         {
-            return NpcExistsInt(iName);
-        }
-        private static bool NpcExistsInt(string iName)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Name='" + iName + "'";
             NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter);
             if (rows.Length == 0)
@@ -133,16 +99,9 @@ namespace Iocaine2.Data.Client
                 return true;
             }
         }
-        public static NPC_TYPE Type(string iName)
+        public static NPC_TYPE GetNPCType(string iName)
         {
-            return TypeInt(iName);
-        }
-        private static NPC_TYPE TypeInt(string iName)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Name='" + iName + "'";
             NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter);
             if (rows.Length == 0)
@@ -154,16 +113,9 @@ namespace Iocaine2.Data.Client
                 return (NPC_TYPE)rows[0].Type;
             }
         }
-        public static ushort Zone(string iName)
+        public static ushort GetZone(string iName)
         {
-            return ZoneInt(iName);
-        }
-        private static ushort ZoneInt(string iName)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Name='" + iName + "'";
             NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter);
             if (rows.Length == 0)
@@ -175,16 +127,9 @@ namespace Iocaine2.Data.Client
                 return rows[0].Zone;
             }
         }
-        public static bool GuildInfo(FFXIEnums.GUILDS iGuild, FFXIEnums.ZONES iZone, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
+        public static bool GetGuildInfo(FFXIEnums.GUILDS iGuild, FFXIEnums.ZONES iZone, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
         {
-            return GuildInfoInt(iGuild, iZone, ref oHourOpen, ref oHourClose, ref oDayOff);
-        }
-        private static bool GuildInfoInt(FFXIEnums.GUILDS iGuild, FFXIEnums.ZONES iZone, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Guild=" + ((byte)iGuild).ToString() + " AND Zone=" + ((ushort)iZone).ToString();
             NPC_Dataset.GuildHoursRow[] rows = (NPC_Dataset.GuildHoursRow[])db.GuildHours.Select(filter);
             if (rows.Length == 0)
@@ -202,16 +147,9 @@ namespace Iocaine2.Data.Client
                 return true;
             }
         }
-        public static bool GuildInfo(string iName, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
+        public static bool GetGuildInfo(string iName, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
         {
-            return GuildInfoInt(iName, ref oHourOpen, ref oHourClose, ref oDayOff);
-        }
-        private static bool GuildInfoInt(string iName, ref byte oHourOpen, ref byte oHourClose, ref byte oDayOff)
-        {
-            if (db == null)
-            {
-                loadDataset();
-            }
+            Init_Iocaine();
             string filter = "Name='" + iName + "'";
             NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter);
             if (rows.Length == 0)
@@ -244,6 +182,19 @@ namespace Iocaine2.Data.Client
             }
         }
         #endregion Public Methods
-        #endregion Methods
+
+        #region Private Methods
+        private static void loadNpcNameCollection()
+        {
+            npcNameCollection.Clear();
+            string filter = "";
+            string orderBy = "Name ASC";
+            NPC_Dataset.NPCsRow[] rows = (NPC_Dataset.NPCsRow[])db.NPCs.Select(filter, orderBy);
+            foreach (NPC_Dataset.NPCsRow row in rows)
+            {
+                npcNameCollection.Add(row.Name);
+            }
+        }
+        #endregion Private Methods
     }
 }
