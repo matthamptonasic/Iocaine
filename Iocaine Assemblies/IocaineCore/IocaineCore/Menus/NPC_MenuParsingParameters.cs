@@ -52,6 +52,7 @@ namespace Iocaine2.Data.Client
     public class NPC_MenuParsingParameters
     {
         #region Private Members
+        private bool m_escapeExits = true;
         private List<string> m_finalActionTopText = new List<string>();
         private List<string> m_exitAllText = new List<string>();
         private List<string> m_linkUpNodeText = new List<string>();
@@ -64,6 +65,17 @@ namespace Iocaine2.Data.Client
         #endregion Private Members
 
         #region Public Properties
+        public bool EscapeExits
+        {
+            get
+            {
+                return m_escapeExits;
+            }
+            set
+            {
+                m_escapeExits = value;
+            }
+        }
         public List<string> FinalActionTopText
         {
             get
