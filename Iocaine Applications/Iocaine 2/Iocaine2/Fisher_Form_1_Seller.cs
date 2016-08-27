@@ -46,32 +46,32 @@ namespace Iocaine2
         #endregion DB
         #region Bot Data
         private List<ushort> SL_itemIdList = new List<ushort>();
-        private List<String> SL_itemNameList = new List<String>();
+        private List<string> SL_itemNameList = new List<string>();
         private List<ushort> SL_itemQuanList = new List<ushort>();
-        private String SL_scriptLoadedName = "";
+        private string SL_scriptLoadedName = "";
         private bool SL_scriptLoaded = false;
         private bool SL_scriptModified = false;
         #endregion Bot Data
         #region File I/O
-        private String SL_scriptFilePath = ".\\Scripts\\";
-        private String SL_scriptFileName = "Seller_Scripts.xml";
+        private string SL_scriptFilePath = ".\\Scripts\\";
+        private string SL_scriptFileName = "Seller_Scripts.xml";
         #endregion File I/O
         #region Time Related
         #endregion Time Related
         #region Default Values
-        private String SL_npcNameTBDefText = "NPC Name";
-        private String SL_itemNameTBDefText = "Item Name";
-        private String SL_scriptNameTBDefText = "Script Name";
-        private UInt16 SL_itemQuanUpDnDefValue = 1;
+        private string SL_npcNameTBDefText = "NPC Name";
+        private string SL_itemNameTBDefText = "Item Name";
+        private string SL_scriptNameTBDefText = "Script Name";
+        private ushort SL_itemQuanUpDnDefValue = 1;
         private bool SL_sellAllDefValue = false;
         private bool SL_sellFromSatchelDefValue = false;
         private bool SL_sellFromSackDefValue = false;
         #endregion Default Values
         #region GUI Value Parallels
-        private String SL_npcName = "";
-        private String SL_itemName = "";
-        private String SL_scriptName = "";
-        private UInt16 SL_itemQuan = 1;
+        private string SL_npcName = "";
+        private string SL_itemName = "";
+        private string SL_scriptName = "";
+        private ushort SL_itemQuan = 1;
         private bool SL_sellAll = false;
         private bool SL_sellFromSatchel = false;
         private bool SL_sellFromSack = false;
@@ -80,16 +80,16 @@ namespace Iocaine2
         #region Tool Tips
         #endregion Tool Tips
         #region Delegates
-        private delegate void SL_setNpcNameTBTextDelegate(String iText);
-        private delegate void SL_setItemNameTBTextDelegate(String iText);
-        private delegate void SL_setScriptNameTBTextDelegate(String iText);
-        private delegate void SL_setItemQuanUpDnValueDelegate(UInt16 iValue);
+        private delegate void SL_setNpcNameTBTextDelegate(string iText);
+        private delegate void SL_setItemNameTBTextDelegate(string iText);
+        private delegate void SL_setScriptNameTBTextDelegate(string iText);
+        private delegate void SL_setItemQuanUpDnValueDelegate(ushort iValue);
         private delegate void SL_setSellAllChkBValueDelegate(bool iChecked);
         private delegate void SL_setSellFromSatchelChkBValueDelegate(bool iChecked);
         private delegate void SL_setSellFromSackChkBValueDelegate(bool iChecked);
         private delegate void SL_setSellFromCaseChkBValueDelegate(bool iChecked);
         private delegate void SL_loadScriptCBDelegate();
-        private delegate void SL_setStartButtonDelegate(String iText, Color iColor);
+        private delegate void SL_setStartButtonDelegate(string iText, Color iColor);
         #endregion Delegates
         #region Function Pointers
         private SL_setNpcNameTBTextDelegate SL_setNpcNameTBTextPtr;
@@ -162,12 +162,12 @@ namespace Iocaine2
         }
         private void SL_loadUserSettings()
         {
-            Statics.Settings.Helpers.EnterNpcMenuDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_EnterNpcMenuDelay");
-            Statics.Settings.Helpers.EnterToSellDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_EnterToSellDelay");
-            Statics.Settings.Helpers.CheckHelpTextDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_CheckHelpTextDelay");
-            Statics.Settings.Helpers.ChangeSellQuanDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_ChangeSellQuanDelay");
-            Statics.Settings.Helpers.PressEnterToSellDelay = (UInt32)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_PressEnterToSellDelay");
-            Statics.Settings.Helpers.WhenDoneSound_Seller = (String)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_WhenDoneSound");
+            Statics.Settings.Helpers.EnterNpcMenuDelay = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_EnterNpcMenuDelay");
+            Statics.Settings.Helpers.EnterToSellDelay = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_EnterToSellDelay");
+            Statics.Settings.Helpers.CheckHelpTextDelay = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_CheckHelpTextDelay");
+            Statics.Settings.Helpers.ChangeSellQuanDelay = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_ChangeSellQuanDelay");
+            Statics.Settings.Helpers.PressEnterToSellDelay = (uint)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_PressEnterToSellDelay");
+            Statics.Settings.Helpers.WhenDoneSound_Seller = (string)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_WhenDoneSound");
             Statics.Settings.Helpers.SellFromBagFirst = (bool)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_SellFromBagFirst");
             Statics.Settings.Helpers.SortBeforeSelling = (bool)UserSettings.GetValue(UserSettings.BOT.HELPERS, "SL_SortBeforeSelling");
         }
@@ -213,7 +213,7 @@ namespace Iocaine2
         #region Utility Functions
         #region GUI Updates
         #region Text Box Updates
-        private void SL_setNpcNameTBText(String iText)
+        private void SL_setNpcNameTBText(string iText)
         {
             try
             {
@@ -231,7 +231,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In SL_setNpcNameTBText: " + e.ToString());
             }
         }
-        private void SL_setNpcNameTBTextCallBackFunction(String iText)
+        private void SL_setNpcNameTBTextCallBackFunction(string iText)
         {
             SL_NPC_Name_TB.Text = iText;
             if (iText != SL_npcNameTBDefText)
@@ -243,7 +243,7 @@ namespace Iocaine2
                 SL_NPC_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void SL_setItemNameTBText(String iText)
+        private void SL_setItemNameTBText(string iText)
         {
             try
             {
@@ -261,7 +261,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In SL_setItemNameTBText: " + e.ToString());
             }
         }
-        private void SL_setItemNameTBTextCallBackFunction(String iText)
+        private void SL_setItemNameTBTextCallBackFunction(string iText)
         {
             SL_Item_Name_TB.Text = iText;
             if (iText != SL_itemNameTBDefText)
@@ -273,7 +273,7 @@ namespace Iocaine2
                 SL_Item_Name_TB.ForeColor = Color.Gray;
             }
         }
-        private void SL_setScriptNameTBText(String iText)
+        private void SL_setScriptNameTBText(string iText)
         {
             try
             {
@@ -291,7 +291,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In SL_setScriptNameTBText: " + e.ToString());
             }
         }
-        private void SL_setScriptNameTBTextCallBackFunction(String iText)
+        private void SL_setScriptNameTBTextCallBackFunction(string iText)
         {
             SL_Script_Name_TB.Text = iText;
             if (iText != SL_scriptNameTBDefText)
@@ -305,7 +305,7 @@ namespace Iocaine2
         }
         #endregion Text Box Updates
         #region UpDown Updates
-        private void SL_setItemQuanUpDnValue(UInt16 iValue)
+        private void SL_setItemQuanUpDnValue(ushort iValue)
         {
             try
             {
@@ -323,7 +323,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In SL_setItemQuanUpDnValue: " + e.ToString());
             }
         }
-        private void SL_setItemQuanUpDnValueCallBackFunction(UInt16 iValue)
+        private void SL_setItemQuanUpDnValueCallBackFunction(ushort iValue)
         {
             SL_Item_Quan_UpDn.Value = (decimal)iValue;
         }
@@ -448,7 +448,7 @@ namespace Iocaine2
         }
         #endregion Check Box Updates
         #region Button Updates
-        private void SL_setStartButton(String iText, Color iColor)
+        private void SL_setStartButton(string iText, Color iColor)
         {
             try
             {
@@ -466,7 +466,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("In SL_setStartButton: " + e.ToString());
             }
         }
-        private void SL_setStartButtonCallBackFunction(String iText, Color iColor)
+        private void SL_setStartButtonCallBackFunction(string iText, Color iColor)
         {
             SL_Start_Button.Text = iText;
             SL_Start_Button.BackColor = iColor;
@@ -533,7 +533,7 @@ namespace Iocaine2
         }
         #endregion File I/O
         #region Script Loading
-        private void SL_LoadScript(String iScriptName)
+        private void SL_LoadScript(string iScriptName)
         {
             foreach (Seller_Script script in SL_scriptList)
             {
@@ -573,7 +573,7 @@ namespace Iocaine2
         }
         #endregion Script Loading
         #region Script Deletion
-        private void SL_RemoveScript(String iScriptName)
+        private void SL_RemoveScript(string iScriptName)
         {
             int nbRows = SL_scriptsDb.Script_Table.Rows.Count;
             for (int ii = nbRows - 1; ii >= 0; ii--)
@@ -650,7 +650,7 @@ namespace Iocaine2
             script.SellFromSatchel = iRow.SellFromSatchel;
             script.SellFromCase = iRow.SellFromCase;
 
-            String filterString = "ScriptName = '" + iRow.ScriptName + "'";
+            string filterString = "ScriptName = '" + iRow.ScriptName + "'";
             Seller_Scripts_DS.Item_TableRow[] itemRows = (Seller_Scripts_DS.Item_TableRow[])SL_scriptsDb.Item_Table.Select(filterString);
             foreach(Seller_Scripts_DS.Item_TableRow itemRow in itemRows)
             {
@@ -701,7 +701,7 @@ namespace Iocaine2
         #endregion Script Saving
         #endregion Script Related
         #region Parsing
-        private String SL_GetItemListBoxString(String iName, ushort iQuan)
+        private string SL_GetItemListBoxString(string iName, ushort iQuan)
         {
             if ((iName != "") && (iName != SL_itemNameTBDefText))
             {
@@ -719,7 +719,7 @@ namespace Iocaine2
                 return "";
             }
         }
-        private String SL_GetItemListBoxString()
+        private string SL_GetItemListBoxString()
         {
             if ((SL_itemName != "") && (SL_itemName != SL_itemNameTBDefText))
             {
@@ -737,7 +737,7 @@ namespace Iocaine2
                 return "";
             }
         }
-        private String SL_ParseItemName(String iText)
+        private string SL_ParseItemName(string iText)
         {
             int parenIdx = iText.IndexOf('(');
             if (parenIdx <= 1)
@@ -750,7 +750,7 @@ namespace Iocaine2
                 return iText.Substring(0, parenIdx - 1);
             }
         }
-        private ushort SL_ParseItemQuan(String iText)
+        private ushort SL_ParseItemQuan(string iText)
         {
             int parenIdxOpen = iText.IndexOf('(');
             int parenIdxClose = iText.IndexOf(')');
@@ -761,7 +761,7 @@ namespace Iocaine2
             }
             else
             {
-                String quanString = iText.Substring(parenIdxOpen + 1, parenIdxClose - parenIdxOpen - 1);
+                string quanString = iText.Substring(parenIdxOpen + 1, parenIdxClose - parenIdxOpen - 1);
                 if (quanString == "All")
                 {
                     return 0;
@@ -832,7 +832,7 @@ namespace Iocaine2
                 {
                     return;
                 }
-                String targetName = MemReads.Target.get_name();
+                string targetName = MemReads.Target.get_name();
                 if ((SL_NPC_Name_TB.Text == "") && (targetName != ""))
                 {
                     SL_NPC_Name_TB.Text = targetName;
@@ -891,7 +891,7 @@ namespace Iocaine2
             }
             else
             {
-                String itemText = SL_Item_Name_TB.Text;
+                string itemText = SL_Item_Name_TB.Text;
                 itemText = itemText.Substring(0, 1).ToUpper() + itemText.Substring(1, itemText.Length - 1);
                 SL_Item_Name_TB.Text = itemText;
             }
@@ -965,7 +965,7 @@ namespace Iocaine2
         {
             if (SL_Script_CB.SelectedIndex >= 0)
             {
-                SL_scriptName = (String)SL_Script_CB.SelectedItem;
+                SL_scriptName = (string)SL_Script_CB.SelectedItem;
                 SL_scriptLoaded = true;
                 SL_scriptLoadedName = SL_scriptName;
                 SL_LoadScript(SL_scriptName);
@@ -1065,7 +1065,7 @@ namespace Iocaine2
         {
             if (SL_Script_CB.SelectedIndex >= 0)
             {
-                SL_RemoveScript((String)SL_Script_CB.Items[SL_Script_CB.SelectedIndex]);
+                SL_RemoveScript((string)SL_Script_CB.Items[SL_Script_CB.SelectedIndex]);
                 SL_SaveScriptDB();
             }
             SL_loadScriptCB();
