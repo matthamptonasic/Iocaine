@@ -46,6 +46,8 @@ namespace Iocaine2.Data.Client
 
             // Set the parsing parameters.
             NPC_MenuParsingParameters param = new NPC_MenuParsingParameters();
+            param.EscapeExits = true;
+
             param.FinalActionTopText.Add(@"Make the exchange?");
             param.FinalActionTopText.Add(@"Recieve how many? (${SPARKS} sparks)");
             param.FinalActionTopText.Add(@"Exchange how many points? (On hand: ${COPPER_VOUCHERS})");
@@ -62,7 +64,9 @@ namespace Iocaine2.Data.Client
 
             param.SkipNodeText.Add("Wise words on Records of Eminence.");
 
-            // TBD - there are more than this.
+            // There are too many affirmative text cases and could change.
+            // We'll assume that if the top text is a FinalActionTopText and the
+            // node we're on is NOT in the ConfirmationNegative list, it's positive.
             param.ConfirmAffirmativeText.Add("Yes.");
 
             param.ConfirmNegativeText.Add("No.");
