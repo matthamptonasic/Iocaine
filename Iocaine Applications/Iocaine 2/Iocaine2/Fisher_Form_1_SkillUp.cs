@@ -56,9 +56,9 @@ namespace Iocaine2
         private bool SU_DoneLogout = false;
         private bool SU_DoneShutdown = false;
         private bool SU_GiveRestCommand = false;
-        private String SU_RestCommand = "/item \"Ginger Cookie\" <me>";
+        private string SU_RestCommand = "/item \"Ginger Cookie\" <me>";
         private bool SU_GiveLogoutCommand = false;
-        private String SU_LogoutCommand = "/ma Warp <me>";
+        private string SU_LogoutCommand = "/ma Warp <me>";
         private bool SU_DelayBetweenCasts = false;
         private uint SU_DelayValueBetweenCasts = 0;
         #endregion Settings
@@ -73,17 +73,17 @@ namespace Iocaine2
         private SU_SetStopAtRadioButtonDelegate SU_SetStopAtRadioButtonCallBack;
         private delegate bool getStopAtRadioButtonDelegate();
         private getStopAtRadioButtonDelegate getStopAtRadioButtonCallBack;
-        private delegate void SU_SetStopAtTextBoxTextDelegate(String text);
+        private delegate void SU_SetStopAtTextBoxTextDelegate(string text);
         private SU_SetStopAtTextBoxTextDelegate SU_SetStopAtTextBoxTextCallBack;
-        private delegate String getStopAtTextBoxTextDelegate();
+        private delegate string getStopAtTextBoxTextDelegate();
         private getStopAtTextBoxTextDelegate getStopAtTextBoxTextCallBack;
         private delegate void SU_SetDoOnlyRadioButtonDelegate(bool value);
         private SU_SetDoOnlyRadioButtonDelegate SU_SetDoOnlyRadioButtonCallBack;
         private delegate bool getDoOnlyRadioButtonDelegate();
         private getDoOnlyRadioButtonDelegate getDoOnlyRadioButtonCallBack;
-        private delegate void SU_SetDoOnlyTextBoxTextDelegate(String text);
+        private delegate void SU_SetDoOnlyTextBoxTextDelegate(string text);
         private SU_SetDoOnlyTextBoxTextDelegate SU_SetDoOnlyTextBoxTextCallBack;
-        private delegate String getDoOnlyTextBoxTextDelegate();
+        private delegate string getDoOnlyTextBoxTextDelegate();
         private getDoOnlyTextBoxTextDelegate getDoOnlyTextBoxTextCallBack;
         private delegate void SU_SetStopRadioButtonDelegate(bool value);
         private SU_SetStopRadioButtonDelegate SU_SetStopRadioButtonCallBack;
@@ -101,19 +101,19 @@ namespace Iocaine2
         private SU_SetLogoutCommandCheckBoxDelegate SU_SetLogoutCommandCheckBoxCallBack;
         private delegate bool getLogoutCommandCheckBoxDelegate();
         private getLogoutCommandCheckBoxDelegate getLogoutCommandCheckBoxCallBack;
-        private delegate void SU_SetLogoutCommandTextBoxTextDelegate(String text);
+        private delegate void SU_SetLogoutCommandTextBoxTextDelegate(string text);
         private SU_SetLogoutCommandTextBoxTextDelegate SU_SetLogoutCommandTextBoxTextCallBack;
-        private delegate String getLogoutCommandTextBoxTextDelegate();
+        private delegate string getLogoutCommandTextBoxTextDelegate();
         private getLogoutCommandTextBoxTextDelegate getLogoutCommandTextBoxTextCallBack;
         private delegate void SU_SetRestCommandCheckBoxDelegate(bool value);
         private SU_SetRestCommandCheckBoxDelegate SU_SetRestCommandCheckBoxCallBack;
         private delegate bool getRestCommandCheckBoxDelegate();
         private getRestCommandCheckBoxDelegate getRestCommandCheckBoxCallBack;
-        private delegate void SU_SetRestCommandTextBoxTextDelegate(String text);
+        private delegate void SU_SetRestCommandTextBoxTextDelegate(string text);
         private SU_SetRestCommandTextBoxTextDelegate SU_SetRestCommandTextBoxTextCallBack;
-        private delegate String getRestCommandTextBoxTextDelegate();
+        private delegate string getRestCommandTextBoxTextDelegate();
         private getRestCommandTextBoxTextDelegate getRestCommandTextBoxTextCallBack;
-        public delegate void SU_SetSUStartButtonDelegate(String text, System.Drawing.Color color);
+        public delegate void SU_SetSUStartButtonDelegate(string text, System.Drawing.Color color);
         private SU_SetSUStartButtonDelegate SU_SetSUStartButtonCallBack;
         private delegate void setEnhancingRadioButtonDelegate(bool value);
         private setEnhancingRadioButtonDelegate setEnhancingRadioButtonCallBack;
@@ -267,7 +267,7 @@ namespace Iocaine2
         {
             return SUStopAtRadioButton.Checked;
         }
-        private void setStopAtTextBoxText(String text)
+        private void setStopAtTextBoxText(string text)
         {
             try
             {
@@ -279,15 +279,15 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting Stop at skill TB: " + e.ToString());
             }
         }
-        private void setStopAtTextBoxTextCallBackFunction(String text)
+        private void setStopAtTextBoxTextCallBackFunction(string text)
         {
             SUStopAtTextBox.Text = text;
         }
-        private String getStopAtTextBoxText()
+        private string getStopAtTextBoxText()
         {
             try
             {
-                return (String)SUStopAtTextBox.Invoke(getStopAtTextBoxTextCallBack);
+                return (string)SUStopAtTextBox.Invoke(getStopAtTextBoxTextCallBack);
 
             }
             catch (Exception e)
@@ -296,7 +296,7 @@ namespace Iocaine2
                 return "ERROR";
             }
         }
-        private String getStopAtTextBoxTextCallBackFunction()
+        private string getStopAtTextBoxTextCallBackFunction()
         {
             return SUStopAtTextBox.Text;
         }
@@ -333,7 +333,7 @@ namespace Iocaine2
         {
             return SUDoOnlyRadioButton.Checked;
         }
-        private void setDoOnlyTextBoxText(String text)
+        private void setDoOnlyTextBoxText(string text)
         {
             try
             {
@@ -345,15 +345,15 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting Do only TB: " + e.ToString());
             }
         }
-        private void setDoOnlyTextBoxTextCallBackFunction(String text)
+        private void setDoOnlyTextBoxTextCallBackFunction(string text)
         {
             SUDoOnlyTextBox.Text = text;
         }
-        private String getDoOnlyTextBoxText()
+        private string getDoOnlyTextBoxText()
         {
             try
             {
-                return (String)SUDoOnlyTextBox.Invoke(getDoOnlyTextBoxTextCallBack);
+                return (string)SUDoOnlyTextBox.Invoke(getDoOnlyTextBoxTextCallBack);
 
             }
             catch (Exception e)
@@ -362,7 +362,7 @@ namespace Iocaine2
                 return "ERROR";
             }
         }
-        private String getDoOnlyTextBoxTextCallBackFunction()
+        private string getDoOnlyTextBoxTextCallBackFunction()
         {
             return SUDoOnlyTextBox.Text;
         }
@@ -498,7 +498,7 @@ namespace Iocaine2
         {
             return SULogoutCommandCheckBox.Checked;
         }
-        private void setLogoutCommandTextBoxText(String text)
+        private void setLogoutCommandTextBoxText(string text)
         {
             try
             {
@@ -510,15 +510,15 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting Logout Command TB: " + e.ToString());
             }
         }
-        private void setLogoutCommandTextBoxTextCallBackFunction(String text)
+        private void setLogoutCommandTextBoxTextCallBackFunction(string text)
         {
             SULogoutCommandTextBox.Text = text;
         }
-        private String getLogoutCommandTextBoxText()
+        private string getLogoutCommandTextBoxText()
         {
             try
             {
-                return (String)SULogoutCommandTextBox.Invoke(getLogoutCommandTextBoxTextCallBack);
+                return (string)SULogoutCommandTextBox.Invoke(getLogoutCommandTextBoxTextCallBack);
 
             }
             catch (Exception e)
@@ -527,7 +527,7 @@ namespace Iocaine2
                 return "ERROR";
             }
         }
-        private String getLogoutCommandTextBoxTextCallBackFunction()
+        private string getLogoutCommandTextBoxTextCallBackFunction()
         {
             return SULogoutCommandTextBox.Text;
         }
@@ -564,7 +564,7 @@ namespace Iocaine2
         {
             return SURestCommandCheckBox.Checked;
         }
-        private void setRestCommandTextBoxText(String text)
+        private void setRestCommandTextBoxText(string text)
         {
             try
             {
@@ -576,15 +576,15 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting Rest Command TB: " + e.ToString());
             }
         }
-        private void setRestCommandTextBoxTextCallBackFunction(String text)
+        private void setRestCommandTextBoxTextCallBackFunction(string text)
         {
             SURestCommandTextBox.Text = text;
         }
-        private String getRestCommandTextBoxText()
+        private string getRestCommandTextBoxText()
         {
             try
             {
-                return (String)SURestCommandTextBox.Invoke(getRestCommandTextBoxTextCallBack);
+                return (string)SURestCommandTextBox.Invoke(getRestCommandTextBoxTextCallBack);
 
             }
             catch (Exception e)
@@ -593,11 +593,11 @@ namespace Iocaine2
                 return "ERROR";
             }
         }
-        private String getRestCommandTextBoxTextCallBackFunction()
+        private string getRestCommandTextBoxTextCallBackFunction()
         {
             return SURestCommandTextBox.Text;
         }
-        private void setSUStartButton(String text, System.Drawing.Color color)
+        private void setSUStartButton(string text, System.Drawing.Color color)
         {
             try
             {
@@ -609,7 +609,7 @@ namespace Iocaine2
                 LoggingFunctions.Error("Setting Start Button Properties: " + e.ToString());
             }
         }
-        private void setSUStartButtonCallBackFunction(String text, System.Drawing.Color color)
+        private void setSUStartButtonCallBackFunction(string text, System.Drawing.Color color)
         {
             SU_Start_Button.UseMnemonic = true;
             SU_Start_Button.Text = text;
@@ -1001,9 +1001,9 @@ namespace Iocaine2
 
             LoggingFunctions.Debug("TopSU::loadSUFullCommandList: Setting up full command list for SU.", LoggingFunctions.DBG_SCOPE.TOP);
             SU_SetFullCommandLBSource(iCmdList);
-            //String filter = "Type = " + skillType.ToString();
+            //string filter = "Type = " + skillType.ToString();
             //LoggingFunctions.Debug("TopSU::loadSUFullCommandList: " + filter + ".", LoggingFunctions.DBG_SCOPE.TOP);
-            //String sort = "Name ASC";
+            //string sort = "Name ASC";
             //DataRow[] rowArray = Statics.Datasets.MainDb.Tables["Commands"].Select(filter, sort);
             //LoggingFunctions.Debug("TopSU::loadSUFullCommandList: There are " + rowArray.Length + " commands loaded.", LoggingFunctions.DBG_SCOPE.TOP);
             //foreach (DataRow row in rowArray)
@@ -1025,16 +1025,16 @@ namespace Iocaine2
             try
             {
                 LoggingFunctions.Debug("TopSU::initSUDoCommandList: Doing init of SU Command List.", LoggingFunctions.DBG_SCOPE.TOP);
-                List<List<Object>> commandList = UserSettings.GetList(UserSettings.BOT.SU, UserSettings.LIST_TABLE.SU_COMMANDS);
+                List<List<object>> commandList = UserSettings.GetList(UserSettings.BOT.SU, UserSettings.LIST_TABLE.SU_COMMANDS);
                 if (commandList == null)
                 {
                     return true;
                 }
-                foreach (List<Object> strList in commandList)
+                foreach (List<object> strList in commandList)
                 {
-                    foreach (Object str in strList)
+                    foreach (object str in strList)
                     {
-                        String cmdName = (String)str;
+                        string cmdName = (string)str;
                         foreach (SpellCommand cmd in CommandManager.SpellsManager.AllCommands)
                         {
                             if(cmd.Name == cmdName)
@@ -1046,7 +1046,7 @@ namespace Iocaine2
                         //{
                         //    cmdName = cmdName.Insert(cmdName.IndexOf("'"), "\'");
                         //}
-                        //String subFilter = "Name = \'" + cmdName + "\'";
+                        //string subFilter = "Name = \'" + cmdName + "\'";
                         //LoggingFunctions.Debug("TopSU::initSUDoCommandList: " + subFilter + ".", LoggingFunctions.DBG_SCOPE.TOP);
                         //DataRow[] subRowArray = Statics.Datasets.MainDb.Tables["Commands"].Select(subFilter);
                         //LoggingFunctions.Debug("TopSU::initSUDoCommandList: Got back " + subRowArray.Length + " rows.", LoggingFunctions.DBG_SCOPE.TOP);
@@ -1148,7 +1148,7 @@ namespace Iocaine2
             {
                 if (SUDoCommandListBox.GetSelected(ii))
                 {
-                    String cmdName = ((Command)SUDoCommandListBox.Items[ii]).Name;
+                    string cmdName = ((Command)SUDoCommandListBox.Items[ii]).Name;
                     UserSettings.RemoveListValue(UserSettings.BOT.SU, UserSettings.LIST_TABLE.SU_COMMANDS, cmdName);
                     SUDoCommandListBox.Items.RemoveAt(ii);
                 }
@@ -1596,7 +1596,7 @@ namespace Iocaine2
         #region Other
         private void suSaveCommandListSettings()
         {
-            List<Object> commandList = new List<object>();
+            List<object> commandList = new List<object>();
             for (int ii = 0; ii < SUDoCommandListBox.Items.Count; ii++)
             {
                 commandList.Add(SUDoCommandListBox.Items[ii].ToString());
