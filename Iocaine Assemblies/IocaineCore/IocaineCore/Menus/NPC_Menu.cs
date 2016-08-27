@@ -21,6 +21,22 @@ namespace Iocaine2.Data.Client
         #endregion Private Members
 
         #region Public Properties
+        public List<NPCs.NPC_INFO> NpcInfoList
+        {
+            get
+            {
+                return m_npcInfo;
+            }
+            set
+            {
+                m_npcInfo = value;
+            }
+        }
+        /// <summary>
+        /// Specifies whether the menu for all NPCs of this type are unique.
+        /// Unique example is the task delegator NPCs in Adoulin, each menu is different.
+        /// Non-Unique example is the RoE NPCs, each menu is the same as the rest.
+        /// </summary>
         public bool NpcsAreUnique
         {
             get
@@ -55,6 +71,7 @@ namespace Iocaine2.Data.Client
         #endregion Constructors
 
         #region Public Methods
+        #region Get/Add
         public void Add(NPC_MenuNode iNode)
         {
             if (iNode != null)
@@ -83,6 +100,29 @@ namespace Iocaine2.Data.Client
             }
             return null;
         }
+        #endregion Get/Add
+        #region Menu Parsing
+        public static bool ParseMenu(NPC_Menu iMenu, string iNPC = "")
+        {
+            if (!ChangeMonitor.LoggedIn)
+            {
+                return false;
+            }
+            // If the iNPC is empty, find the one in this zone. Exit if none.
+
+            // Check if the NPC is nearby.
+
+            // Check if we're already in a menu. If so, try to exit out.
+
+            // Target the nearby NPC.
+
+            // Enter the menu at the top.
+
+            // Parse it depth-first.
+
+            return true;
+        }
+        #endregion Menu Parsing
         #endregion Public Methods
 
         #region Private Methods
