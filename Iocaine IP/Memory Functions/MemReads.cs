@@ -14,6 +14,137 @@ namespace Iocaine2.Memory
 {
     public class MemReads
     {
+        #region Notes on Synchronization
+        #region Notes (How-to)
+        // =============================================================================================================
+        // Here are the rules to make one of our static classes thread-safe:
+        // 1. Every class has a single padlock object.
+        //
+        //  private static readonly object padlock = new padlock();
+        //
+        // 2. Every public method (or property that has functionality) uses a Monitor while running.
+        //
+        //  public static void Method_A() {
+        //      Monitor.Enter(padlock);
+        //      try {
+        //          // Do work.
+        //      }
+        //      catch(Exception e) {
+        //          LoggingFunctions.Error(e.ToString());
+        //      }
+        //      finally {
+        //          Monitor.Exit(padlock);
+        //      }
+        //  }
+        //
+        // 3. No public or private method may call another public method within the same class as this will cause a deadlock.
+        // 
+        // 4. If a private method needs to be made public, create a public wrapper method to do the thread locking.
+        //
+        //  private static void Method_B() {
+        //      // Do work that may be called by any public or private class method.
+        //  }
+        //
+        //  public static void Method_B_prime() {
+        //      try {
+        //          Method_B();
+        //      }
+        //      catch(Exception e) {
+        //          LoggingFunctions.Error(e.ToString());
+        //      }
+        //      finally {
+        //          Monitor.Exit(padlock);
+        //      }
+        //  }
+        //
+        // Note: Method_B and Method_B_prime are not meant to be overloads of the same function.
+        //       The public method should keep the more simple/descriptive name while the 
+        //       private method may have a suffix indicating that it carries out the functionality of the public method asynchronously.
+        //
+        // =============================================================================================================
+        // Here is a little more explanation as to why the above rules are needed.
+        //
+        // To lock a static class down properly (thread-safe) we need to lock every public method call.
+        // We may have a background thread (such as the map/npc updating thread or the change monitor thread)
+        // calling a static function regularly while a bot thread is calling it as well.
+        //
+        // We also need to make sure that these public methods to not call other public methods or
+        // we will have a deadlock.
+        // For instance:
+        //  public static void Method_A() {
+        //      Monitor.Enter(padlock);
+        //      Method_B();
+        //      Method_C();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  public static void Method_B() {
+        //      Monitor.Enter(padlock);
+        //      // Gets some meta-data for the user.
+        //      Method_C();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  public static void Method_C() {
+        //      Monitor.Enter(padlock);
+        //      // Does FFXI structure read.
+        //      Monitor.Exit(padlock);
+        //  }
+        //
+        // We can't lock all of them. If we lock Method_C, it will stop when Method_A or Method_B call Method_C, because
+        // _A & _B already lock the same padlock object.
+        // We can make Method_C private and NOT lock it.  So when Method_A/_B call Method_C, Method_C will not try to lock
+        // the same padlock object.
+        //
+        //  public static void Method_A() {
+        //      Monitor.Enter(padlock);
+        //      Method_B();
+        //      Method_C();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  public static void Method_B() {
+        //      Monitor.Enter(padlock);
+        //      // Gets some meta-data for the user.
+        //      Method_C();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  private static void Method_C() {
+        //      // Does FFXI structure read.
+        //  }
+        //
+        // However, if Method_A is called, both _A & _B will lock the padlock object and Method_B will get stuck.
+        // The problem is, Method_B gives the user some extra functionality which we do not want to remove, so we
+        // do not want to make Method_B private.
+        //
+        // So, where we call a public method internally, make a public wrapper for that method and make the
+        // main method private.
+        //   Then, the public method (wrapper) will lock the class, the private method will not.
+        //
+        //  public static void Method_A() {
+        //      Monitor.Enter(padlock);
+        //      Method_B_prvt();
+        //      Method_C();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  public static void Method_B() {
+        //      Monitor.Enter(padlock);
+        //      Method_B_prvt();
+        //      Monitor.Exit(padlock);
+        //  }
+        //  private static void Method_B_prvt() {
+        //      // Gets some meta-data for the user.
+        //      Method_C();
+        //  }
+        //  private static void Method_C() {
+        //      // Does FFXI structure read.
+        //  }
+        //
+        // This way, all of the functionality is still presented to the user in the same manner as before,
+        // but every single public entry point is thread-safe, and as long as we do not call any public
+        // methods internally (from private or public methods within the same class), we will avoid any deadlocks.
+        #endregion Notes (How-to)
+        #region Currently Implemented Classes as Thread-Safe
+        // NPCs
+        #endregion Currently Implemented Classes as Thread-Safe
+        #endregion Notes on Synchronization
         #region Settings
         public static int OS_Version = 5;
         #endregion Settings
@@ -7210,18 +7341,7 @@ namespace Iocaine2.Memory
             //Zone NPCs are between 0x00 and 0x400 and dynamic NPCs (pets, trusts, fellows, etc.) are between 0x700 and 0x800 iirc
             //PCs are 0x400-0x6ff?
 
-            // The NPC class has 2 main uses.
-            // 1. The user gets a list of all of the info structures. This is the simplest, but most costly.
-            // 2. The user is only interested in a subset of structures, so they create their own list.
-            //    The user populates the list once to find the NPC map indeces desired,
-            //    then they only update those individual structures.
-
-            // To lock the class down properly (thread-safe) we need to lock every public method call.
-            // We also need to make sure that these public methods to not call other public methods or
-            // we will have a deadlock.
-            // So, where we call a public method internally, make a public wrapper for that method and make the
-            // main method private.
-            //   Then, the public method (wrapper) will lock the class, the private method will not.
+            
             private static readonly object padlock = new object();
             
             private static List<uint> get_NPCMap_Pointers()
