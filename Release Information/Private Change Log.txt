@@ -2,6 +2,8 @@ Iocaine Change Notes:
 
 IocainCore.dll      - 
 FFXINpcs.dll		- 
+IocaineInits.dll    - 1.0.1.1
+	- Updated Data.Client.NPCs inits.
 
 Main.exe            - 2.10.4.0 - 2016/08/22
 IocainCore.dll      - 1.3.12.0
