@@ -24,7 +24,7 @@ namespace Iocaine2
             }
             catch (Exception ex)
             {
-                String errMsg = "Iocaine has experienced a failure that it could not handle.\nIf this error persists, please send me a PM with the details.\n";
+                string errMsg = "Iocaine has experienced a failure that it could not handle.\nIf this error persists, please send me a PM with the details.\n";
                 if (!mainForm.IsDisposed)
                 {
                     errMsg += "The error details are given below.\n\n";
