@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 using Iocaine2.Logging;
@@ -7209,41 +7210,89 @@ namespace Iocaine2.Memory
             //Zone NPCs are between 0x00 and 0x400 and dynamic NPCs (pets, trusts, fellows, etc.) are between 0x700 and 0x800 iirc
             //PCs are 0x400-0x6ff?
 
-            public static List<uint> get_NPCMap_Pointers()
+            // The NPC class has 2 main uses.
+            // 1. The user gets a list of all of the info structures. This is the simplest, but most costly.
+            // 2. The user is only interested in a subset of structures, so they create their own list.
+            //    The user populates the list once to find the NPC map indeces desired,
+            //    then they only update those individual structures.
+
+            // To lock the class down properly (thread-safe) we need to lock every public method call.
+            // We also need to make sure that these public methods to not call other public methods or
+            // we will have a deadlock.
+            // So, where we call a public method internally, make a public wrapper for that method and make the
+            // main method private.
+            //   Then, the public method (wrapper) will lock the class, the private method will not.
+            private static readonly object padlock = new object();
+            
+            private static List<uint> get_NPCMap_Pointers()
             {
                 List<uint> ptrList = new List<uint>();
-                Process proc = processPointerList[processIndex].MainProcess;
-                for (uint ii = processPointerList[processIndex].Info_MapNpcBegin; ii < processPointerList[processIndex].Info_MapNpcEnd; ii += 4)
+                try
                 {
-                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, ii);
-                    if(ptr != 0)
+                    Process proc = processPointerList[processIndex].MainProcess;
+                    for (uint ii = processPointerList[processIndex].Info_MapNpcBegin; ii < processPointerList[processIndex].Info_MapNpcEnd; ii += 4)
                     {
-                        ptrList.Add(ptr);
+                        uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, ii);
+                        if (ptr != 0)
+                        {
+                            ptrList.Add(ptr);
+                        }
                     }
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
                 }
                 return ptrList;
             }
             public static ushort get_myNPCIndex(string iName = "")
             {
-                if (iName == "")
+                Monitor.Enter(padlock);
+                try
                 {
-                    iName = MemReads.Self.get_name();
+                    if (iName == "")
+                    {
+                        iName = MemReads.Self.get_name();
+                    }
+                    List<ushort> idxList = get_NPCIndex(iName);
+                    if (idxList.Count <= 0)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return idxList[0];
+                    }
                 }
-                List<ushort> idxList = get_NPCIndex(iName);
-                if (idxList.Count <= 0)
+                catch (Exception e)
                 {
+                    LoggingFunctions.Error(e.ToString());
                     return 0;
                 }
-                else
+                finally
                 {
-                    return idxList[0];
+                    Monitor.Exit(padlock);
                 }
             }
             public static List<NPCInfoStruct> get_NPCInfoStructList(bool iNoFilter = false, int iProcIndex = -1)
             {
-                return get_NPCInfoStructList(get_NPCMap_Pointers(), iNoFilter, iProcIndex);
+                Monitor.Enter(padlock);
+                List<NPCInfoStruct> retValue = null;
+                try
+                {
+                    retValue = get_NPCInfoStructList(get_NPCMap_Pointers(), iNoFilter, iProcIndex);
+                }
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
+                return retValue;
             }
-            public static List<NPCInfoStruct> get_NPCInfoStructList(List<uint> iPtrList, bool iNoFilter = false, int iProcIndex = -1)
+            private static List<NPCInfoStruct> get_NPCInfoStructList(List<uint> iPtrList, bool iNoFilter = false, int iProcIndex = -1)
             {
                 int procindex = processIndex;
                 if (iProcIndex != -1)
@@ -7279,18 +7328,9 @@ namespace Iocaine2.Memory
             }
             private static ushort get_NPCMap_count(int iProcIndex = -1)
             {
-                //int procindex = processIndex;
-                //if (iProcIndex != -1)
-                //{
-                //    procindex = iProcIndex;
-                //}
-                //Process proc = processPointerList[procindex].MainProcess;
-                //ushort count = (ushort)MemoryFunctions.ReadMem(proc.Handle, processPointerList[procindex].Info_NPCMapCount, 0, 2);
-
-                //return count;
                 return 0x1fff / 4;
             }
-            public static bool get_NPCInfoStruct(ref NPCInfoStruct NPCInfo, uint iNpcInfoPtr, int iProcIndex = -1)
+            private static bool get_NPCInfoStruct(ref NPCInfoStruct NPCInfo, uint iNpcInfoPtr, int iProcIndex = -1)
             {
                 int datasize = Marshal.SizeOf(typeof(NPCInfoStruct));
                 byte[] buffer = new byte[datasize];
@@ -7328,20 +7368,33 @@ namespace Iocaine2.Memory
                 }
                 return true;
             }
-            public static bool get_NPCInfoStruct(ref NPCInfoStruct NPCInfo, int index, int iProcIndex = -1)
+            public static bool get_NPCInfoStruct(ref NPCInfoStruct oNPCInfo, int iNpcMapIndex, int iProcIndex = -1)
             {
-                int procindex = processIndex;
-                if (iProcIndex != -1)
+                Monitor.Enter(padlock);
+                try
                 {
-                    procindex = iProcIndex;
+                    int procindex = processIndex;
+                    if (iProcIndex != -1)
+                    {
+                        procindex = iProcIndex;
+                    }
+                    Process proc = processPointerList[procindex].MainProcess;
+
+                    UIntPtr npcInfoPtr = MemoryFunctions.GetPointer(proc.Handle, processPointerList[procindex].Info_MapNpcBegin, 4 * iNpcMapIndex);
+
+                    return get_NPCInfoStruct(ref oNPCInfo, (uint)npcInfoPtr, iProcIndex);
                 }
-                Process proc = processPointerList[procindex].MainProcess;
-
-                UIntPtr npcInfoPtr = MemoryFunctions.GetPointer(proc.Handle, processPointerList[procindex].Info_MapNpcBegin, 4 * index);
-
-                return get_NPCInfoStruct(ref NPCInfo, (uint)npcInfoPtr, iProcIndex);
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                    return false;
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
             }
-            public static List<ushort> get_NPCIndex(string name, int iProcIndex = -1)
+            private static List<ushort> get_NPCIndex(string name, int iProcIndex = -1)
             {
                 List<ushort> indices = new List<ushort>();
 
@@ -7374,15 +7427,27 @@ namespace Iocaine2.Memory
             }
             public static string getName(NPCInfoStruct iInfo)
             {
-                System.Text.ASCIIEncoding textEncoding = new System.Text.ASCIIEncoding();
-                if(iInfo.Name == null)
+                Monitor.Enter(padlock);
+                try
                 {
-                    return "";
+                    System.Text.ASCIIEncoding textEncoding = new System.Text.ASCIIEncoding();
+                    if (iInfo.Name == null)
+                    {
+                        return "";
+                    }
+                    string[] data_names = textEncoding.GetString(iInfo.Name).Trim('\0').Split('\0');
+                    if (data_names.Count() > 0)
+                    {
+                        return data_names[0];
+                    }
                 }
-                string[] data_names = textEncoding.GetString(iInfo.Name).Trim('\0').Split('\0');
-                if (data_names.Count() > 0)
+                catch (Exception e)
                 {
-                    return data_names[0];
+                    LoggingFunctions.Error(e.ToString());
+                }
+                finally
+                {
+                    Monitor.Exit(padlock);
                 }
                 return "";
             }
@@ -7394,47 +7459,58 @@ namespace Iocaine2.Memory
             /// <returns>KeyValuePair of the NPC index (0x00 if invalid) and the distance.</returns>
             public static KeyValuePair<ushort, double> get_NPCIndexClosest(string name, int iProcIndex = -1)
             {
-                float playerPosX = MemReads.Self.Position.get_x();
-                float playerPosY = MemReads.Self.Position.get_y();
-                float playerPosZ = MemReads.Self.Position.get_z();
-
-                Dictionary<ushort, double> npcdistances = new Dictionary<ushort, double>();
-
-                ushort countNPCMap = get_NPCMap_count(iProcIndex);
-
-                System.Text.ASCIIEncoding textEncoding = new System.Text.ASCIIEncoding();
-
-                for (ushort arrayindex = 0; arrayindex < countNPCMap; arrayindex++)
+                KeyValuePair<ushort, double> minimumDistance = new KeyValuePair<ushort, double>(0x00, 0x00);
+                Monitor.Enter(padlock);
+                try
                 {
-                    NPCInfoStruct data = new NPCInfoStruct();
-                    try
+                    float playerPosX = MemReads.Self.Position.get_x();
+                    float playerPosY = MemReads.Self.Position.get_y();
+                    float playerPosZ = MemReads.Self.Position.get_z();
+
+                    Dictionary<ushort, double> npcdistances = new Dictionary<ushort, double>();
+
+                    ushort countNPCMap = get_NPCMap_count(iProcIndex);
+
+                    System.Text.ASCIIEncoding textEncoding = new System.Text.ASCIIEncoding();
+
+                    for (ushort arrayindex = 0; arrayindex < countNPCMap; arrayindex++)
                     {
-                        if (get_NPCInfoStruct(ref data, arrayindex, iProcIndex) == true)
+                        NPCInfoStruct data = new NPCInfoStruct();
+                        try
                         {
-                            // This is quick and dirty, there are probably better methods.
-                            string[] data_names = textEncoding.GetString(data.Name).Trim('\0').Split('\0');
-                            if (data_names.Count() > 0 && data_names[0] == name)
+                            if (get_NPCInfoStruct(ref data, arrayindex, iProcIndex) == true)
                             {
-                                // No need to do the square root if we want the closest one.
-                                npcdistances[arrayindex] = Math.Pow(data.PosX - playerPosX, 2) + Math.Pow(data.PosY - playerPosY, 2) + Math.Pow(data.PosZ - playerPosZ, 2);
+                                // This is quick and dirty, there are probably better methods.
+                                string[] data_names = textEncoding.GetString(data.Name).Trim('\0').Split('\0');
+                                if (data_names.Count() > 0 && data_names[0] == name)
+                                {
+                                    // No need to do the square root if we want the closest one.
+                                    npcdistances[arrayindex] = Math.Pow(data.PosX - playerPosX, 2) + Math.Pow(data.PosY - playerPosY, 2) + Math.Pow(data.PosZ - playerPosZ, 2);
+                                }
                             }
                         }
-                    }
-                    catch (NullReferenceException)
-                    {
+                        catch (NullReferenceException)
+                        {
 
+                        }
+                    }
+
+                    foreach (KeyValuePair<ushort, double> distance in npcdistances)
+                    {
+                        if (minimumDistance.Key == 0x00 || distance.Value < minimumDistance.Value)
+                        {
+                            minimumDistance = distance;
+                        }
                     }
                 }
-
-                KeyValuePair<ushort, double> minimumDistance = new KeyValuePair<ushort, double>(0x00, 0x00);
-                foreach (KeyValuePair<ushort, double> distance in npcdistances)
+                catch (Exception e)
                 {
-                    if (minimumDistance.Key == 0x00 || distance.Value < minimumDistance.Value)
-                    {
-                        minimumDistance = distance;
-                    }
+                    LoggingFunctions.Error(e.ToString());
                 }
-
+                finally
+                {
+                    Monitor.Exit(padlock);
+                }
                 return minimumDistance;
             }
             #endregion NPC Map Functions
