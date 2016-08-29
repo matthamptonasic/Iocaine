@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
+
+using Iocaine2.Logging;
+using Iocaine2.Memory;
 
 namespace Iocaine2.Data.Client
 {
@@ -15,6 +19,9 @@ namespace Iocaine2.Data.Client
         private bool m_isTop;
         private NPCs.NPC_TYPE m_npcType;
         private List<NPCs.NPC_INFO> m_npcInfo;
+        private const float m_npcInteractDist = 3.5f;
+        private const float m_npcMaxXyDist = 10;
+        private const float m_npcMaxZDist = 2;
         private bool m_npcsAreUnique = true;
         private List<NPC_MenuNode> m_nodes;
         private NPC_MenuParsingParameters m_parsingParams;
@@ -104,19 +111,120 @@ namespace Iocaine2.Data.Client
         #region Menu Parsing
         public static bool ParseMenu(NPC_Menu iMenu, string iNPC = "")
         {
-            if (!ChangeMonitor.LoggedIn)
+            if (!ChangeMonitor.LoggedIn || (iMenu == null))
             {
                 return false;
             }
             // If the iNPC is empty, find the one in this zone. Exit if none.
-
-            // Check if the NPC is nearby.
+            string npcName = "";
+            bool inRange = false;
+            bool mustMove = false;
+            List<MemReads.NPCs.NPCInfoStruct> npcStructs = MemReads.NPCs.get_NPCInfoStructList(true);
+            ushort currentZone = PlayerCache.Environment.ZoneId;
+            float currentX = MemReads.Self.Position.get_x();
+            float currentY = MemReads.Self.Position.get_y();
+            float currentZ = MemReads.Self.Position.get_z();
+            if (iNPC == "")
+            {
+                foreach (NPCs.NPC_INFO info in iMenu.m_npcInfo)
+                {
+                    if (info.Zone == currentZone)
+                    {
+                        // The NPC from the FFXINpcs library is in the same zone we're in.
+                        // Check if that NPC is in the current NPC map in memory.
+                        foreach (MemReads.NPCs.NPCInfoStruct npc in npcStructs)
+                        {
+                            if (MemReads.NPCs.getName(npc) == info.Name)
+                            {
+                                // If so, is it close enough to interact with.
+                                float z_dist = npc.PosZ - currentZ;
+                                float xy_dist = (float)Math.Sqrt(Math.Pow(npc.PosX - currentX, 2) + Math.Pow(npc.PosY - currentY, 2));
+                                if ((xy_dist <= m_npcMaxXyDist) && (z_dist <= m_npcMaxZDist))
+                                {
+                                    inRange = true;
+                                    if (xy_dist > m_npcInteractDist)
+                                    {
+                                        mustMove = true;
+                                    }
+                                    npcName = info.Name;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (npcName != "")
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                // Check that the given NPC is in this zone and nearby.
+                foreach (MemReads.NPCs.NPCInfoStruct npc in npcStructs)
+                {
+                    if (MemReads.NPCs.getName(npc) == iNPC)
+                    {
+                        // If so, is it close enough to interact with.
+                        float z_dist = npc.PosZ - currentZ;
+                        float xy_dist = (float)Math.Sqrt(Math.Pow(npc.PosX - currentX, 2) + Math.Pow(npc.PosY - currentY, 2));
+                        if ((xy_dist <= m_npcMaxXyDist) && (z_dist <= m_npcMaxZDist))
+                        {
+                            inRange = true;
+                            if (xy_dist > m_npcInteractDist)
+                            {
+                                mustMove = true;
+                            }
+                            npcName = iNPC;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (npcName == "")
+            {
+                string msg = "Could not find ";
+                if (iNPC == "")
+                {
+                    msg += "any NPC's for this menu type ";
+                }
+                else
+                {
+                    msg += "NPC " + iNPC + " ";
+                }
+                msg += "in range.";
+                MessageBox.Show(msg);
+                return false;
+            }
 
             // Check if we're already in a menu. If so, try to exit out.
+            if (MemReads.Windows.Menus.TextStyle.is_open())
+            {
+                if (!Tools.NPC_MenuNavigation.ExitMenu(iMenu))
+                {
+                    return false;
+                }
+            }
 
             // Target the nearby NPC.
+            byte errCnt = 5;
+            byte loopCnt = 0;
+            while (loopCnt < errCnt)
+            {
+                if (Tools.Interaction.TargetNPC(npcName))
+                {
+                    break;
+                }
+                loopCnt++;
+            }
+            if (loopCnt == errCnt)
+            {
+                LoggingFunctions.Error("Could not target NPC " + npcName + ".");
+                return false;
+            }
 
             // Enter the menu at the top.
+
 
             // Parse it depth-first.
 
@@ -126,6 +234,8 @@ namespace Iocaine2.Data.Client
         #endregion Public Methods
 
         #region Private Methods
+        #region Menu Parsing
+        #endregion Menu Parsing
         #endregion Private Methods
     }
 }
