@@ -129,7 +129,7 @@ namespace Iocaine2.Bots
                                 }
                                 Statics.FuncPtrs.SetStatusBoxPtr("Could not sell some items, trying again.", Statics.Fields.Red);
                                 IocaineFunctions.delay(2000);
-                                MenuNavigation.CloseCheck();
+                                Player_MenuNavigation.CloseCheck();
                                 cnt++;
                             }
                             if (cnt == nbSellingRetries)
@@ -153,7 +153,7 @@ namespace Iocaine2.Bots
                     IocaineFunctions.delay(1000);
                     Inventory.Containers.RebuildListsMobileOnly();
                 }
-                MenuNavigation.CloseCheck();
+                Player_MenuNavigation.CloseCheck();
                 if (soundOnDone != "")
                 {
                     player.PlaySound(soundOnDone);
@@ -651,7 +651,7 @@ namespace Iocaine2.Bots
                     else
                     {
                         //This item was not for sale. Move down one and continue.
-                        IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                        IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                         IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
                     }
                     twoItemsAgo = lastItemIdx;
