@@ -691,7 +691,7 @@ namespace Iocaine2.Inventory
         }
         private void openCloseBag()
         {
-            MenuNavigation.CloseCheck();
+            Player_MenuNavigation.CloseCheck();
             IocaineFunctions.twoKeys(System.Windows.Forms.Keys.LControlKey, System.Windows.Forms.Keys.I, 250);
             IocaineFunctions.delay(500);
             int cnt = 0;
@@ -706,7 +706,7 @@ namespace Iocaine2.Inventory
                 IocaineFunctions.delay(100);
             }
             IocaineFunctions.delay(300);
-            MenuNavigation.CloseCheck();
+            Player_MenuNavigation.CloseCheck();
         }
         private int indexOf(Item iItem)
         {
