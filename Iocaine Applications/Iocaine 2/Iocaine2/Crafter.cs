@@ -116,7 +116,7 @@ namespace Iocaine2.Bots
                     modeInfo = "Crafting until skill level " + skill + " is reached.";
                 }
                 LoggingFunctions.Timestamp("Starting crafter. " + modeInfo);
-                MenuNavigation.OpenBag();
+                Player_MenuNavigation.OpenBag();
                 Inventory.Movement.SortInventory(false);
                 goToInventorySpot(1);
                 LoggingFunctions.Debug("Crafter::StartCrafter: Crystal is: " + recipe.CrystalString + ".", LoggingFunctions.DBG_SCOPE.CRAFTER);
@@ -158,7 +158,7 @@ namespace Iocaine2.Bots
                     IocaineFunctions.delay(500);
                     do
                     {
-                        MenuNavigation.HitOK();
+                        Player_MenuNavigation.HitOK();
                         IocaineFunctions.delay(2000);
                     } while (chatlogContains("wait longer"));
                     //Wait for the status to become "crafting".
@@ -473,7 +473,7 @@ namespace Iocaine2.Bots
             {
                 LoggingFunctions.Debug("Crafter::findItem: Searching for item: " + item + ".", LoggingFunctions.DBG_SCOPE.CRAFTER);
 
-                MenuNavigation.OpenBag();
+                Player_MenuNavigation.OpenBag();
                 return Inventory.Movement.SelectItem(item);
             }
             catch(Exception e)
