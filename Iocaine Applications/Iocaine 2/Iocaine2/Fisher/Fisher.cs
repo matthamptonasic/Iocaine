@@ -1029,7 +1029,7 @@ namespace Iocaine2.Bots
                     if ((state == STATE.PAUSED_USER_NOW) || (state == STATE.PAUSED_ALR))
                     {
                         releaseButtonPressed = true;
-                        MenuNavigation.CloseCheck();
+                        Player_MenuNavigation.CloseCheck();
                         IocaineFunctions.delay(1000);
                         break;
                     }
@@ -1192,7 +1192,7 @@ namespace Iocaine2.Bots
                                 }
                                 killFishThread = null;
                             }
-                            MenuNavigation.CloseCheck();
+                            Player_MenuNavigation.CloseCheck();
                             IocaineFunctions.delay(5 * 1000);
                             addFishStat(FFXIEnums.FISHING_RESULT.GAVE_UP, fishItemID, maxFishHP);
                             Statics.FuncPtrs.SetStatusBoxPtr("Gave up and reeled in, pausing...", Statics.Fields.Yellow);
@@ -1961,7 +1961,7 @@ namespace Iocaine2.Bots
                     delay = randVal.Next((int)(Statics.Settings.Fisher.ReleaseTimeRandomMin * 1000), (int)(Statics.Settings.Fisher.ReleaseTimeRandomMax * 1000));
                     IocaineFunctions.delay((uint)(delay));
                 }
-                MenuNavigation.CloseCheck();
+                Player_MenuNavigation.CloseCheck();
             }
             catch(Exception e)
             {
@@ -2702,9 +2702,9 @@ namespace Iocaine2.Bots
                         }
                     }
                 }
-                if (MenuNavigation.GetCurrentOpenMenu() != MenuNavigation.MENU_TYPE.NONE)
+                if (Player_MenuNavigation.GetCurrentOpenMenu() != Player_MenuNavigation.MENU_TYPE.NONE)
                 {
-                    MenuNavigation.CloseCheck(3);
+                    Player_MenuNavigation.CloseCheck(3);
                 }
             }
             catch(Exception e)
@@ -2718,7 +2718,7 @@ namespace Iocaine2.Bots
             try
             {
                 Statics.FuncPtrs.SetStatusBoxPtr("Dropping item", Statics.Fields.Green);
-                MenuNavigation.CloseCheck();                   //Open item window
+                Player_MenuNavigation.CloseCheck();                   //Open item window
                 IocaineFunctions.twoKeys(System.Windows.Forms.Keys.LControlKey, System.Windows.Forms.Keys.I, 250);
                 IocaineFunctions.delay(500);    //Go to bottom
                 IocaineFunctions.arrowKeyDown(Keys.Right, 1500);
@@ -2738,7 +2738,7 @@ namespace Iocaine2.Bots
                     IocaineFunctions.keyDown(System.Windows.Forms.Keys.Enter, 100);
                     IocaineFunctions.delay(500);
                 }
-                MenuNavigation.CloseCheck();
+                Player_MenuNavigation.CloseCheck();
             }
             catch(Exception e)
             {
