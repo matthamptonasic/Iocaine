@@ -314,7 +314,7 @@ namespace Iocaine2.Bots
                     IocaineFunctions.delay(mainLoopDelay);
                     Inventory.Containers.RebuildListsMobileOnly();
                 }
-                MenuNavigation.CloseCheck();
+                Player_MenuNavigation.CloseCheck();
                 if (soundOnDone != "")
                 {
                     player.PlaySound(soundOnDone);
