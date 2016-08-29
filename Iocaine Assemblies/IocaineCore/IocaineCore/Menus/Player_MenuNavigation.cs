@@ -13,7 +13,7 @@ using Iocaine2.Memory.Interface;
 
 namespace Iocaine2.Tools
 {
-    public static class MenuNavigation
+    public static class Player_MenuNavigation
     {
         #region Enums
         public enum MENU_TYPE
