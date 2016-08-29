@@ -835,7 +835,7 @@ namespace IocaineOffsetHelper
                             AppendText("\nIs Casting: " + MemReads.Self.Casting.is_casting());
                             foreach (Spells.SPELL_INFO info in spellInfoList)
                             {
-                                UInt16 recast = MemReads.Self.Recast.Magic.get_time_remaining((short)info.ID);
+                                UInt16 recast = MemReads.Self.Recast.Magic.get_time_remaining(info.ID);
                                 if (recast != 0)
                                 {
                                     AppendText("\n" + info.Name + " recast: " + recast);
