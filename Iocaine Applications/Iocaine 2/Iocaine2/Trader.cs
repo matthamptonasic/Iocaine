@@ -166,14 +166,14 @@ namespace Iocaine2.Bots
                     sendAllCommands();
                     IocaineFunctions.delay(1000);
                     //Go to trade menu
-                    MenuNavigation.GotoMenuItem("Trade", true);
+                    Player_MenuNavigation.GotoMenuItem("Trade", true);
                     sendAllCommands();
 
                     //Enter item to trade
                     setItems();
 
                     //Hit OK
-                    MenuNavigation.HitOK();
+                    Player_MenuNavigation.HitOK();
                     sendAllCommands();
 
                     //Hit given number of Enters to clear dialog
