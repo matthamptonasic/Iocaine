@@ -79,7 +79,7 @@ namespace Iocaine2.Tools
             }
             Dictionary<UInt16, String> namesTargeted = new Dictionary<UInt16, String>();
             Dictionary<UInt16, Byte> timesTargeted = new Dictionary<UInt16, Byte>();
-            MenuNavigation.CloseCheck();
+            Player_MenuNavigation.CloseCheck();
             //First need to try to target anything to put something in list
             IocaineFunctions.keyDown(Keys.Tab, 100);
             IocaineFunctions.delay(400);
@@ -176,7 +176,7 @@ namespace Iocaine2.Tools
 
             Dictionary<ushort, byte> targetedList = new Dictionary<ushort,byte>();
 
-            MenuNavigation.CloseCheck();
+            Player_MenuNavigation.CloseCheck();
             //First need to try to target anything to put something in list
             IocaineFunctions.keyDown(Keys.Tab, 100);
             IocaineFunctions.delay(400);
@@ -274,17 +274,17 @@ namespace Iocaine2.Tools
                 LoggingFunctions.Error("In TradeItemToNpc: Lists were not equal in length or length was greater than 8.");
                 return false;
             }
-            if (!MenuNavigation.GotoMenuItem("Trade", true))
+            if (!Player_MenuNavigation.GotoMenuItem("Trade", true))
             {
                 LoggingFunctions.Error("In TradeItemToNpc: Could not find trade menu item.");
                 return false;
             }
-            if (!MenuNavigation.SetNpcTradeItems(iItemIdList, iItemQuanList))
+            if (!Player_MenuNavigation.SetNpcTradeItems(iItemIdList, iItemQuanList))
             {
                 LoggingFunctions.Error("In TradeItemToNpc: Could not set trade window items.");
                 return false;
             }
-            MenuNavigation.HitOK();
+            Player_MenuNavigation.HitOK();
             return true;
         }
         public static bool TradeGilNpc(UInt32 iGilQuan, String iNpcName)
@@ -300,17 +300,17 @@ namespace Iocaine2.Tools
         }
         public static bool TradeGilNpc(UInt32 iGilQuan)
         {
-            if (!MenuNavigation.GotoMenuItem("Trade", true))
+            if (!Player_MenuNavigation.GotoMenuItem("Trade", true))
             {
                 LoggingFunctions.Error("In TradeGilNpc: Could not find trade menu item.");
                 return false;
             }
-            if (!MenuNavigation.SetNpcTradeGil(iGilQuan))
+            if (!Player_MenuNavigation.SetNpcTradeGil(iGilQuan))
             {
                 LoggingFunctions.Error("In TradeGilNpc: Could not set trade window gil.");
                 return false;
             }
-            MenuNavigation.HitOK();
+            Player_MenuNavigation.HitOK();
             return true;
         }
         #endregion Trading
@@ -331,7 +331,7 @@ namespace Iocaine2.Tools
                 Statics.FuncPtrs.SetStatusBoxPtr("Opening merchant dialog window.", Statics.Fields.Green);
                 if (topLeft != "N/A")
                 {
-                    MenuNavigation.CloseCheck(2);
+                    Player_MenuNavigation.CloseCheck(2);
                 }
                 if (!TargetNPC(iNpcName, iCheckStatus))
                 {
@@ -345,18 +345,18 @@ namespace Iocaine2.Tools
                     return false;
                 }
                 //Enter on NPC
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Helpers.EnterNpcMenuDelay);
                 //Buy or Sell should be displayed now.
                 Int16 menuIdx = MemReads.Windows.Menus.ButtonStyle.get_curr_index();
                 if ((iBuy && (menuIdx != 0)) || (!iBuy && (menuIdx != 1)))
                 {
                     //We're not on the right button. Hit down.
-                    IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(200);
                 }
                 //There's no way to tell which is selected, so just select one and if it's the wrong one we'll back out.
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(250);
                 //We should now either be in the buy or sell menu.
                 topLeft = MemReads.Windows.BannerText.get_top_left_text();
@@ -386,11 +386,11 @@ namespace Iocaine2.Tools
                     //If the selected item has an inventory index of 0, it means that we're in the buy menu.
                     //Or if the index is not 0, we're in our inventory, so it's the sell menu.
                     //So go back 1 menu and arrow down to get to the other menu.
-                    IocaineFunctions.keyDown(System.Windows.Forms.Keys.Escape, MenuNavigation.KeyDownTimeEscape);
+                    IocaineFunctions.keyDown(System.Windows.Forms.Keys.Escape, Player_MenuNavigation.KeyDownTimeEscape);
                     IocaineFunctions.delay(250);
-                    IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(250);
-                    IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                    IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                     IocaineFunctions.delay(250);
                     if ((iCheckStatus != null) && (!iCheckStatus()))
                     {
@@ -452,7 +452,7 @@ namespace Iocaine2.Tools
             String helpText = MemReads.Windows.BannerText.get_help_text();
             if (iFirstItemBeingSold)
             {
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Helpers.PressEnterToSellDelay);
             }
             String itemName = MemReads.Windows.Items.get_selected_item_name();
@@ -461,7 +461,7 @@ namespace Iocaine2.Tools
                 return false;
             }
 
-            IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+            IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
             IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
 
             //Now we need to determine if we are selling more than 1 or not so we
@@ -472,7 +472,7 @@ namespace Iocaine2.Tools
             {
                 if (iQuan >= maxCnt)
                 {
-                    IocaineFunctions.arrowKeyDown(Keys.Left, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Left, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
                 }
                 else
@@ -484,13 +484,13 @@ namespace Iocaine2.Tools
                         {
                             return false;
                         }
-                        IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                        IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                         IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
                         currentCnt = MemReads.Windows.Items.get_shop_quan_cur();
                     }
                 }
                 oActualSold = MemReads.Windows.Items.get_shop_quan_cur();
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 //Use same as check help text. That will make the delay same as if we were selling non-stackable item.
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
             }
@@ -502,7 +502,7 @@ namespace Iocaine2.Tools
             if (!getToSellMenuButton())
             {
                 //We're not in the Sell/Cancel menu. Try pressing Enter again and rechecking.
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 if (!getToSellMenuButton())
                 {
@@ -522,7 +522,7 @@ namespace Iocaine2.Tools
             {
                 return false;
             }
-            IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+            IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
             IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
             UInt32 afterGil = MemReads.Self.Inventory.get_gil();
             if (afterGil == prevGil)
@@ -552,13 +552,13 @@ namespace Iocaine2.Tools
             else if (menuIdx == 1)
             {
                 //Pressing down should wrap up to 0.
-                IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 menuIdx = MemReads.Windows.Menus.ButtonStyle.get_curr_index();
                 if (menuIdx != 0)
                 {
                     //If it's 2, we may still be in the Bag, so press up once to get us back on the item.
-                    IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                     //We're obviously not in the Sell menu.
                     String errMsg = "getToSellMenuButton::Pressing down from 1 did not go to 0.";
@@ -570,7 +570,7 @@ namespace Iocaine2.Tools
             else
             {
                 //To make sure we're really in the menu, press up once and the index should wrap up to 1.
-                IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 menuIdx = MemReads.Windows.Menus.ButtonStyle.get_curr_index();
                 if (menuIdx != 1)
@@ -583,7 +583,7 @@ namespace Iocaine2.Tools
                 else
                 {
                     //We ARE in the menu. Just hit back up again to get to 0 and return.
-                    IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                     return true;
                 }
@@ -652,7 +652,7 @@ namespace Iocaine2.Tools
                 Byte nbScreensToJump = (Byte)(iItemIndex / 10);
                 for (Byte ii = 0; ii < nbScreensToJump; ii++)
                 {
-                    IocaineFunctions.arrowKeyDown(Keys.Right, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Right, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(100);
                 }
                 if ((iCheckStatus != null) && (!iCheckStatus()))
@@ -667,7 +667,7 @@ namespace Iocaine2.Tools
                 Int16 nbDownPresses = (Int16)(iItemIndex - curIdx);
                 for (int ii = 0; ii < nbDownPresses; ii++)
                 {
-                    IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(75);
                     if ((iCheckStatus != null) && (!iCheckStatus()))
                     {
@@ -682,7 +682,7 @@ namespace Iocaine2.Tools
                 bool foundItem = selectedItemName == desiredItemName;
                 while (!atBottom && !foundItem)
                 {
-                    IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                    IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
                     curIdx = MemReads.Windows.Shops.ItemWindow.get_cur_idx();
                     selectedItemName = MemReads.Windows.Items.get_selected_item_name();
@@ -700,7 +700,7 @@ namespace Iocaine2.Tools
                     int timeout = 50;
                     while ((MemReads.Windows.Shops.ItemWindow.get_cur_idx() != 1) && (timeout > 0))
                     {
-                        IocaineFunctions.arrowKeyDown(Keys.Left, MenuNavigation.KeyDownTimeArrow);
+                        IocaineFunctions.arrowKeyDown(Keys.Left, Player_MenuNavigation.KeyDownTimeArrow);
                         IocaineFunctions.delay(100);
                         timeout--;
                         if ((iCheckStatus != null) && (!iCheckStatus()))
@@ -723,7 +723,7 @@ namespace Iocaine2.Tools
                             foundItem = true;
                             break;
                         }
-                        IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
+                        IocaineFunctions.arrowKeyDown(Keys.Down, Player_MenuNavigation.KeyDownTimeArrow);
                         IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
                         if ((iCheckStatus != null) && (!iCheckStatus()))
                         {
@@ -761,7 +761,7 @@ namespace Iocaine2.Tools
                 }
                 UInt16 quanRemaining = (UInt16)(iQuan - quanPurchased);
                 UInt16 tempQuanPurchased = 0;
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 if ((iCheckStatus != null) && (!iCheckStatus()))
                 {
@@ -773,7 +773,7 @@ namespace Iocaine2.Tools
                 {
                     //This should only happen if the guild is out of stock of this item.
                     //We'll try hitting enter again. If that doesn't work, just return.
-                    IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                    IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                     IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                     if (helpText != "Purchase merchandise.")
                     {
@@ -796,7 +796,7 @@ namespace Iocaine2.Tools
                             return quanPurchased;
                         }
                         //Buy the maximum amount.
-                        IocaineFunctions.arrowKeyDown(Keys.Left, MenuNavigation.KeyDownTimeArrow);
+                        IocaineFunctions.arrowKeyDown(Keys.Left, Player_MenuNavigation.KeyDownTimeArrow);
                         IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
                     }
                     else
@@ -809,13 +809,13 @@ namespace Iocaine2.Tools
                                 oCode = BUY_RETURN_CODE.STOPPED;
                                 return quanPurchased;
                             }
-                            IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                            IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                             IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
                             currentCnt = MemReads.Windows.Items.get_shop_quan_cur();
                         }
                     }
                     tempQuanPurchased = MemReads.Windows.Items.get_shop_quan_cur();
-                    IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                    IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                     //Use same as check help text. That will make the delay same as if we were selling non-stackable item.
                     IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 }
@@ -829,10 +829,10 @@ namespace Iocaine2.Tools
                     return (UInt16)(quanPurchased + tempQuanPurchased);
                 }
                 //Move from 'Cancel' to 'Buy'
-                IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
+                IocaineFunctions.arrowKeyDown(Keys.Up, Player_MenuNavigation.KeyDownTimeArrow);
                 IocaineFunctions.delay(Statics.Settings.Helpers.PressEnterToSellDelay);
                 //Hit 'Enter' to buy.
-                IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
+                IocaineFunctions.keyDown(Keys.Enter, Player_MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
                 
                 //Now parse the chat log for either of the phrases mentioned at the top of the function.

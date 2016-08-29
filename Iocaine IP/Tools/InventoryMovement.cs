@@ -94,7 +94,7 @@ namespace Iocaine2.Inventory
             bool moveFromCase = iSource.StorageType == ItemContainer.STORAGE_TYPE.CASE;
             if (moveToSack || moveFromSack)
             {
-                if (!MenuNavigation.OpenSack())
+                if (!Player_MenuNavigation.OpenSack())
                 {
                     errMsg = "Could not open Mog Sack.";
                     MessageBox.Show(errMsg);
@@ -105,7 +105,7 @@ namespace Iocaine2.Inventory
             }
             else if (moveToSatchel || moveFromSatchel)
             {
-                if (!MenuNavigation.OpenSatchel())
+                if (!Player_MenuNavigation.OpenSatchel())
                 {
                     errMsg = "Could not open Satchel.";
                     MessageBox.Show(errMsg);
@@ -116,7 +116,7 @@ namespace Iocaine2.Inventory
             }
             else if (moveToCase || moveFromCase)
             {
-                if (!MenuNavigation.OpenCase())
+                if (!Player_MenuNavigation.OpenCase())
                 {
                     errMsg = "Could not open Case.";
                     MessageBox.Show(errMsg);
@@ -423,7 +423,7 @@ namespace Iocaine2.Inventory
         public static bool SelectItem(List<String> iItemNames, FFXIEnums.INVENTORY_MENU iMenu, ushort iMinQuan, Statics.FuncPtrs.TD_Bool_Void iCheckStatus)
         {
             bool secWndOpen = false;
-            if (MenuNavigation.GetOpenInventoryMenu(out secWndOpen) == FFXIEnums.INVENTORY_MENU.NONE)
+            if (Player_MenuNavigation.GetOpenInventoryMenu(out secWndOpen) == FFXIEnums.INVENTORY_MENU.NONE)
             {
                 return false;
             }
@@ -515,13 +515,13 @@ namespace Iocaine2.Inventory
         }
         public static bool SelectItem(String iItemName, Statics.FuncPtrs.TD_Bool_Void iCheckStatus)
         {
-            FFXIEnums.INVENTORY_MENU menu = MenuNavigation.GetOpenInventoryMenu();
+            FFXIEnums.INVENTORY_MENU menu = Player_MenuNavigation.GetOpenInventoryMenu();
             List<String> itemNames = new List<string>() { iItemName };
             return SelectItem(itemNames, menu, 0, iCheckStatus);
         }
         public static bool SelectItem(String iItemName)
         {
-            FFXIEnums.INVENTORY_MENU menu = MenuNavigation.GetOpenInventoryMenu();
+            FFXIEnums.INVENTORY_MENU menu = Player_MenuNavigation.GetOpenInventoryMenu();
             List<String> itemNames = new List<string>() { iItemName };
             return SelectItem(itemNames, menu, 0, null);
         }
@@ -564,7 +564,7 @@ namespace Iocaine2.Inventory
             //If it's already the Item menu, just sort.
             //If it's the satchel or sack menu, go to the right menu and sort.
             //Otherwise, close check, open the item menu, and sort.
-            FFXIEnums.INVENTORY_MENU openMenu = MenuNavigation.GetOpenInventoryMenu();
+            FFXIEnums.INVENTORY_MENU openMenu = Player_MenuNavigation.GetOpenInventoryMenu();
             if ((openMenu == FFXIEnums.INVENTORY_MENU.SACK) || (openMenu == FFXIEnums.INVENTORY_MENU.SATCHEL) || (openMenu == FFXIEnums.INVENTORY_MENU.CASE))
             {
                 if (MemReads.Windows.Items.get_left_wnd_selected())
@@ -578,14 +578,14 @@ namespace Iocaine2.Inventory
                     LoggingFunctions.Error("Could not sort inventory. Top left text was '" + topLeftText + "'.");
                     if (iExitOnDone)
                     {
-                        MenuNavigation.CloseCheck(3);
+                        Player_MenuNavigation.CloseCheck(3);
                     }
                     return false;
                 }
             }
             else if (openMenu != FFXIEnums.INVENTORY_MENU.BAG)
             {
-                MenuNavigation.CloseCheck(3);
+                Player_MenuNavigation.CloseCheck(3);
                 IocaineFunctions.twoKeys(System.Windows.Forms.Keys.LControlKey, System.Windows.Forms.Keys.I, 250);
                 IocaineFunctions.delay(250);
             }
@@ -602,7 +602,7 @@ namespace Iocaine2.Inventory
                 LoggingFunctions.Error("Could not sort inventory. Top left text was '" + topLeftText + "'.");
                 if (iExitOnDone)
                 {
-                    MenuNavigation.CloseCheck(3);
+                    Player_MenuNavigation.CloseCheck(3);
                 }
                 return false;
             }
@@ -620,7 +620,7 @@ namespace Iocaine2.Inventory
             IocaineFunctions.keyDown(System.Windows.Forms.Keys.Enter);
             if (iExitOnDone)
             {
-                MenuNavigation.CloseCheck(2);
+                Player_MenuNavigation.CloseCheck(2);
             }
             return true;
         }
