@@ -7,11 +7,11 @@ namespace Iocaine2.Bots
 {
     public static class BotController
     {
-        #region Members
+        #region Private Members
         private static List<Bot> loadedBots = new List<Bot>();
-        #endregion Members
+        #endregion Private Members
 
-        #region Properties
+        #region Public Properties
         public static List<Bot> LoadedBots
         {
             get
@@ -24,10 +24,10 @@ namespace Iocaine2.Bots
                 return temp;
             }
         }
-        #endregion Properties
+        #endregion Public Properties
 
         #region Public Methods
-        public static Boolean LoadBot(String iFileName)
+        public static bool LoadBot(string iFileName)
         {
             // TBD
             // Do file exists check.
@@ -40,7 +40,7 @@ namespace Iocaine2.Bots
 
             return true;
         }
-        public static Boolean UnloadBot(String iFileName)
+        public static bool UnloadBot(string iFileName)
         {
 
 
@@ -53,7 +53,7 @@ namespace Iocaine2.Bots
                 bot.Stop();
             }
         }
-        public static void PauseAllBots(Boolean iNow = true)
+        public static void PauseAllBots(bool iNow = true)
         {
             foreach(Bot bot in loadedBots)
             {
