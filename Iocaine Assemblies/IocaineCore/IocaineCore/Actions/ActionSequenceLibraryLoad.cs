@@ -57,6 +57,7 @@ namespace Iocaine2.Data.Structures
 
             ActionSequence item = new ActionSequence();
             item.AddAction(new UseItem("Silent Oil", "<me>", 2000));
+            item.AddAction(new ActionWait(1500));
             item.AddAction(new UseItem("Prism Powder", "<me>", 2000));
 
             mainUnion.AddSequence(jig);

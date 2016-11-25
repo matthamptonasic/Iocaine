@@ -1,5 +1,8 @@
 Iocaine Change Notes:
 
+IocainCore.dll      - 1.3.12.1
+	- Added/fixed delay between Sneak and Invisible in the Nav bot when using Silent Oil and Prism Powder.
+
 Main.exe            - 2.10.4.0 - 2016/08/22
 IocainCore.dll      - 1.3.12.0
 IocaineInits.dll    - 1.0.1.0
