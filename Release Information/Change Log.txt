@@ -1,10 +1,12 @@
 Iocaine Change Notes:
 
-IocainCore.dll      - 1.3.12.1
+IocaineCore.dll     - 1.3.12.1
+IocaineInits.dll    - 1.0.1.1
+IocaineNpcs.dll		- 1.0.3.2
 	- Added/fixed delay between Sneak and Invisible in the Nav bot when using Silent Oil and Prism Powder.
 
 Main.exe            - 2.10.4.0 - 2016/08/22
-IocainCore.dll      - 1.3.12.0
+IocaineCore.dll     - 1.3.12.0
 IocaineInits.dll    - 1.0.1.0
 FFXIResource.dll    - 1.2.7.0
 	- Changed the Navigation Bot interface.
@@ -29,7 +31,7 @@ Iocaine2.exe		- 1.4.0.0
 	- Fixed server address resolution.
 
 Main.exe			- 2.10.3.1 - 2016/07/28
-IocainCore.dll		- 1.3.11.1
+IocaineCore.dll		- 1.3.11.1
 	- Added wardrobe 3/4 functionality to the fisher.
 	- Made the Alert "Always Alert" setting unchecked on load so sounds don't go off when logging in.
 	- Added option for the Alert sound to play on a loop.
@@ -39,11 +41,11 @@ IocainCore.dll		- 1.3.11.1
 
 Main.exe			- 2.10.3.0 - 2016/07/27
 FFXIThings.dll		- 1.2.5.0
-IocainCore.dll		- 1.3.11.0
+IocaineCore.dll		- 1.3.11.0
 	- Added automatatic use of clusters when the crafter runs out of crystals.
 	
 Main.exe			- 2.10.2.1 - 2016/07/24
-IocainCore.dll		- 1.3.10.2
+IocaineCore.dll		- 1.3.10.2
 	- Added Wardrobes 2-4 and Safe 2 to the WMS tab.
 	- Fixed various WMS issues.
 	- Changed character data handling when changing processes.
@@ -51,7 +53,7 @@ IocainCore.dll		- 1.3.10.2
 Main.exe			- 2.10.2.0 - 2016/07/18
 FFXINpcs.dll		- 1.0.3.1
 FFXIResource.dll	- 1.2.6.1
-IocainCore.dll		- 1.3.10.1
+IocaineCore.dll		- 1.3.10.1
 IocaineEvents.dll	- 1.0.1.1
 ItemsFishing.dll	- 1.0.4.1
 MapDll.dll			- 1.1.5.1
@@ -64,7 +66,7 @@ Main.exe			- 2.10.1.0 - 2016/07/16
 FFXINpcs.dll		- 1.0.3.0
 FFXIResource.dll	- 1.2.6.0
 FFXIThings.dll		- 1.2.4.0
-IocainCore.dll		- 1.3.10.0
+IocaineCore.dll		- 1.3.10.0
 IocaineEvents.dll	- 1.0.1.0
 IocaineInits.dll	- 1.0.0.0
 IocaineServer.dll	- 1.0.2.0
@@ -76,7 +78,7 @@ MapDll.dll			- 1.1.5.0
 	- Released the beta features below.
 	
 Main.exe			- 2.10.0.0 - 2016/07/08
-IocainCore.dll		- 1.3.9.0
+IocaineCore.dll		- 1.3.9.0
 FFXIResource.dll	- 1.2.5.0
 FFXIThings.dll		- 1.2.3.0
 IocaineServer.dll	- 1.0.1.0
@@ -95,7 +97,7 @@ IocaineServer.dll	- 1.0.0.1
 	- Fixed issue with the Alert tab not clearing when "Always Alert" is unchecked.
 
 Main.exe			- 2.9.5.0 - 2016/06/27
-IocainCore.dll		- 1.3.8.0
+IocaineCore.dll		- 1.3.8.0
 MapDll.dll			- 1.1.4.0
 FFXIThings.dll		- 1.2.2.0
 FFXIResource.dll	- 1.2.4.0
@@ -110,58 +112,58 @@ Main.exe			- 2.9.4.3 - 2016/05/04
 	
 Main.exe			- 2.9.4.2 - 2016/05/04
 	- Added more debug capabilities.
-IocainCore.dll		- 1.3.7.1
+IocaineCore.dll		- 1.3.7.1
 	- Fixed end-of-line chat log parsing.
 
 Main.exe			- 2.9.4.1 - 2016/05/01
 	- Fixed Fisher catching mobs.
 	
 Main.exe			- 2.9.4.0 - 2016/05/01
-IocainCore.dll		- 1.3.7.0
+IocaineCore.dll		- 1.3.7.0
 	- Synergy is working again.
 	
-IocainCore.dll		- 1.3.6.4 - 2016/04/05
+IocaineCore.dll		- 1.3.6.4 - 2016/04/05
 	- Fixed after version update.
 	
-IocainCore.dll		- 1.3.6.3 - 2016/02/10
+IocaineCore.dll		- 1.3.6.3 - 2016/02/10
 FFXIResource.dll	- 1.2.3.3
 	- Fixed after version update.
 	
 Main.exe			- 2.9.3.3 - 2015/12/17
-IocainCore.dll		- 1.3.6.2
+IocaineCore.dll		- 1.3.6.2
 	- Fixhed some fisher bugs.
 	
 Main.exe			- 2.9.3.1 - 2015/12/10
-IocainCore.dll		- 1.3.6.1
+IocaineCore.dll		- 1.3.6.1
 	- Fixed after version update.
 	
 Main.exe			- 2.9.3.0 - 2015/11/30
-IocainCore.dll		- 1.3.6.0
+IocaineCore.dll		- 1.3.6.0
 	- Reorganization and cleanup.
 	
 Main.exe			- 2.9.2.9 - 2015/11/22
-IocainCore.dll		- 1.3.5.8
+IocaineCore.dll		- 1.3.5.8
 	- Removed IP checking to speed up initialization.
 	- Fixed target lock mem-read (SU, PL, and Reive bots).
 	
 Main.exe			- 2.9.2.8 - 2015/11/22
-IocainCore.dll		- 1.3.5.7
+IocaineCore.dll		- 1.3.5.7
 	- Fixed issue with map/zone updates not working when no fishing rod equiped.
 	- Fixed some of the background thread issues in the PL and TA.
 
 Main.exe		- 2.9.2.7 - 2015/11/10
-IocainCore.dll		- 1.3.5.6
+IocaineCore.dll		- 1.3.5.6
 FFXIThings.dll		- 1.2.1.7
 FFXIResource.dll	- 1.2.3.2
 	- Fixed after version update.
 	- Fisher: Added equiping bait from wardrobe (needs to be tested).
 	- TA/PL:  Added using Mweya Plasm items between actions.
 
-IocainCore.dll		- 1.3.5.5 - 2015/10/05
+IocaineCore.dll		- 1.3.5.5 - 2015/10/05
 	- Top:	Fixed chat log again after version update.
 
 Main.exe		- 2.9.2.5 - 2015/09/29
-IocainCore.dll		- 1.3.5.4
+IocaineCore.dll		- 1.3.5.4
 FFXIThings.dll		- 1.2.1.6
 FFXIResource.dll	- 1.2.3.1
 	- Top:	Fixed chat log again after version update (NPC shops still broken).
@@ -169,16 +171,16 @@ FFXIResource.dll	- 1.2.3.1
 	- SkillUp: Fixed bug that occasionally caused the Reive Bot to crash.
 
 Main.exe		- 2.9.2.4 - 2015/09/20
-IocainCore.dll		- 1.3.5.3
+IocaineCore.dll		- 1.3.5.3
 	- Top:	Fixed after September version update (NPC shops still broken).
 
 Main.exe		- 2.9.2.3 - 2015/09/05
-IocainCore.dll		- 1.3.5.2
+IocaineCore.dll		- 1.3.5.2
 	- Top:	Added Alert feature.
 	- Top:	Made top settings common for all characters.
 
 Main.exe		- 2.9.1.0 - 2015/08/31
-IocainCore.dll		- 1.3.4.1
+IocaineCore.dll		- 1.3.4.1
 MapDll.dll		- 1.1.3.0
 	- Maps:   Fixed map selected for overlapping zones (3-D seletion).
 	- Maps:   Added target line/circle.
@@ -188,12 +190,12 @@ MapDll.dll		- 1.1.3.0
 	- Seller/Buyer: Removed private feature status. Not sure buyer actually works (probably doesn't).
 
 Main.exe		- 2.9.0.0 - 2015/08/29
-IocainCore.dll		- 1.3.4.0
+IocaineCore.dll		- 1.3.4.0
 MapDll.dll		- 1.1.2.0
 	- Added Pop-Out Map.
 
 Main.exe		- 2.8.3.0 - 2015/08/19
-IocainCore.dll		- 1.3.3.0
+IocaineCore.dll		- 1.3.3.0
 MapDll.dll		- 1.1.1.1
 FFXIThings.dll		- 1.2.1.5
 FFXIResource.dll	- 1.2.3.0
@@ -211,7 +213,7 @@ Iocaine2.exe		- 1.3.1.0
 	- Added items after August update.
 
 Main.exe		- 2.8.2.0 - 2015/08/05
-IocainCore.dll		- 1.3.2.4
+IocaineCore.dll		- 1.3.2.4
 ItemsFishing.dll	- 1.0.3.0
 MapDll.dll		- 1.1.0.0
 	- Fixed after August update.
@@ -223,14 +225,14 @@ Main.exe		- 2.8.1.4 - 2015/07/08
 	- Fixed fisher bug that failed to save fish with an apostrophe in the name.
 
 Main.exe		- 2.8.1.3 - 2015/07/07
-IocainCore.dll		- 1.3.2.3
+IocaineCore.dll		- 1.3.2.3
 FFXIResource.dll	- 1.2.2.0
 ItemsFishing.dll	- 1.0.2.0
 FFXIThings.dll		- 1.2.1.4
 	- Updated fish and bait.
 	- Moved local fish and bait tables to FFXIResource.
 
-IocainCore.dll		- 1.3.2.2 - 2015/06/30
+IocaineCore.dll		- 1.3.2.2 - 2015/06/30
 FFXIResource.dll	- 1.2.1.4
 FFXIThings.dll		- 1.2.1.3
 	- Fixed after the June version update.
@@ -239,13 +241,13 @@ Main.exe		- 2.8.1.2 - 2015/05/16
 	- Changed reive bot target lock from 'h' key to '*'.
 	- Fixed enfeebling cast of Dia casting Diaga.
 
-IocainCore.dll		- 1.3.2.1 - 2015/05/15
+IocaineCore.dll		- 1.3.2.1 - 2015/05/15
 FFXIResource.dll	- 1.2.1.3
 FFXIThings.dll		- 1.2.1.2
 	- Fixed after the May version update.
 
 Main.exe		- 2.8.1.1 - 2015/03/27
-IocainCore.dll		- 1.3.2.0
+IocaineCore.dll		- 1.3.2.0
 FFXIResource.dll	- 1.2.1.2
 FFXIThings.dll		- 1.2.1.1
 	- Fixed after the March version update.
@@ -253,13 +255,13 @@ FFXIThings.dll		- 1.2.1.1
 	- Fixed Banish in the Reive bot.
 
 Main.exe		- 2.8.1.0 - 2015/03/21
-IocainCore.dll		- 1.3.1.0
+IocaineCore.dll		- 1.3.1.0
 FFXIResource.dll	- 1.2.1.1
 	- Added Reives option to the Skill Up.
 	- Added Erase to the manual cures list.
 
 Main.exe		- 2.8.0.3 - 2015/02/22
-IocainCore.dll		- 1.3.0.3
+IocaineCore.dll		- 1.3.0.3
 	- Fixed the PL grids that were not displaying correctly.
 
 FFXIThings.dll		- 1.2.1.0 - 2015/02/20
@@ -267,7 +269,7 @@ FFXIResource.dll	- 1.2.1.0
 	- Updated items and spells after the February version update.
 
 Main.exe		- 2.8.0.1 - 2015/02/19
-IocainCore.dll		- 1.3.0.1
+IocaineCore.dll		- 1.3.0.1
 FFXIResource.dll	- 1.2.0.1
 IocaineEvents.dll	- 1.0.0.0
 	- Fixed after the February version update.
