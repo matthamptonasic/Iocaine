@@ -522,6 +522,10 @@
       <Project>{999d02d3-2128-43a9-90cd-fd3e2fa883b0}</Project>
       <Name>IocaineEvents</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\IocaineParser\IocaineParser.csproj">
+      <Project>{1e3eb180-86c3-4e84-a729-de2602462f18}</Project>
+      <Name>IocaineParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Iocaine Assemblies\ItemDllFishing\ItemsFishing\ItemsFishing.csproj">
       <Project>{F21096D0-F5B2-4C39-9B0F-E76EEC72B467}</Project>
       <Name>ItemsFishing</Name>

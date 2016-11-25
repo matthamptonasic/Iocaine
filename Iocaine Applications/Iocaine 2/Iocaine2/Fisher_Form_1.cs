@@ -453,6 +453,8 @@ namespace Iocaine2
             BY_Prc_inits();                             //Buyer inits
             retValue &= POS_Init_Iocaine();             //<pos> inits
 
+            retValue &= Parsing.ItemDescription.Init_Iocaine();
+
             return retValue;
         }
         #endregion Init Iocaine
