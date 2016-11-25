@@ -56,7 +56,7 @@ namespace Iocaine2.Data.Client
         #endregion Members
         #region Methods
         #region Inits
-        public static bool Init()
+        public static bool Init_Iocaine()
         {
             return InitInt();
         }
