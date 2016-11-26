@@ -453,8 +453,6 @@ namespace Iocaine2
             BY_Prc_inits();                             //Buyer inits
             retValue &= POS_Init_Iocaine();             //<pos> inits
 
-            retValue &= Parsing.ItemDescription.Init_Iocaine();
-
             return retValue;
         }
         #endregion Init Iocaine
@@ -488,6 +486,7 @@ namespace Iocaine2
             m_TOP_taInitDone = doTAInits();
             Bots.TeachersAssistant.init(TA_redrawPlayerLBWrapperCallBack);
             #endregion TA Inits
+            Parsing.Lua.Init_Process();
         }
         #endregion Init Process
         #region Init LoggedIn
@@ -2991,6 +2990,12 @@ namespace Iocaine2
             Statics.Settings.Top.MapsPath = Convert.ToString(UserSettings.GetValue(UserSettings.BOT.TOP, "MapsPath"));
         }
         #endregion Fish Stats
+
         #endregion To Be Moved (To various bot pages)
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Weapon count: " + Parsing.Lua.Items.WeaponsCount);
+        }
     }
 }

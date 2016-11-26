@@ -656,6 +656,8 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
+            this.GS_Tab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -744,6 +746,7 @@
             this.About_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c_ErrorLightPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerConnectionLightPB)).BeginInit();
+            this.GS_Tab.SuspendLayout();
             this.SuspendLayout();
             // 
             // Fish_Bot_Tab
@@ -1433,6 +1436,7 @@
             this.c_MainTabControl.Controls.Add(this.Skill_Up_Bot_Tab);
             this.c_MainTabControl.Controls.Add(this.Crafter_Tab);
             this.c_MainTabControl.Controls.Add(this.WMS_Tab);
+            this.c_MainTabControl.Controls.Add(this.GS_Tab);
             this.c_MainTabControl.Controls.Add(this.TA_Tab);
             this.c_MainTabControl.Controls.Add(this.PL_Bot_Tab);
             this.c_MainTabControl.Controls.Add(this.PL_Events_Tab);
@@ -8168,6 +8172,26 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // GS_Tab
+            // 
+            this.GS_Tab.Controls.Add(this.button1);
+            this.GS_Tab.Location = new System.Drawing.Point(4, 25);
+            this.GS_Tab.Name = "GS_Tab";
+            this.GS_Tab.Size = new System.Drawing.Size(525, 403);
+            this.GS_Tab.TabIndex = 12;
+            this.GS_Tab.Text = "Search";
+            this.GS_Tab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(230, 163);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8329,6 +8353,7 @@
             this.About_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c_ErrorLightPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerConnectionLightPB)).EndInit();
+            this.GS_Tab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8962,5 +8987,7 @@
         private System.Windows.Forms.RadioButton Nav_Rec_AppendToEnd_RB;
         private System.Windows.Forms.RadioButton Nav_Rec_InsertBelow_RB;
         private System.Windows.Forms.RadioButton Nav_Rec_InsertAbove_RB;
+        private System.Windows.Forms.TabPage GS_Tab;
+        private System.Windows.Forms.Button button1;
     }
 }
