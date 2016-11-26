@@ -998,7 +998,7 @@ namespace ResourceXMLParser
             }
             if (TypeCheckBox.Checked)
             {
-                outputFile.WriteLine("        public static ushort GetTypeFromId(ushort thingId)");
+                outputFile.WriteLine("        public static ITEM_TYPE GetTypeFromId(ushort thingId)");
                 outputFile.WriteLine("        {");
                 outputFile.WriteLine("            if (thingId > maxID)");
                 outputFile.WriteLine("            {");
@@ -1006,7 +1006,7 @@ namespace ResourceXMLParser
                 outputFile.WriteLine("            }");
                 outputFile.WriteLine("            else");
                 outputFile.WriteLine("            {");
-                outputFile.WriteLine("                return thingType[(int)thingId];");
+                outputFile.WriteLine("                return (ITEM_TYPE)thingType[(int)thingId];");
                 outputFile.WriteLine("            }");
                 outputFile.WriteLine("        }");
             }
@@ -1387,7 +1387,7 @@ namespace ResourceXMLParser
                 return;
             }
             outputFile.WriteLine("        #region thingType Array");
-            outputFile.WriteLine("        private static ushort[] thingType = new ushort[" + (maxItemID + 1) + "] {");
+            outputFile.WriteLine("        private static byte[] thingType = new byte[" + (maxItemID + 1) + "] {");
             for (int ii = 0; ii <= maxItemID; ii++)
             {
                 if (ii != maxItemID)
