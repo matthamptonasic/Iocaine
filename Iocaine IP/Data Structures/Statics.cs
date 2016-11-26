@@ -434,6 +434,9 @@ namespace Iocaine2
                 private static bool autoReset = true;
                 private static bool thisZoneOnly = false;
                 #endregion Fish Stats Box
+                #region Parser
+                private static bool parseItemDescOnStartup = false;
+                #endregion Parser
                 #endregion Private Members
                 #region Public Properties
                 #region Misc
@@ -666,6 +669,7 @@ namespace Iocaine2
                     }
                 }
                 #endregion Maps
+                #region Fish Stats Box
                 public static bool AutoReset
                 {
                     get
@@ -688,6 +692,20 @@ namespace Iocaine2
                         thisZoneOnly = value;
                     }
                 }
+                #endregion Fish Stats Box
+                #region Parser
+                public static bool ParseItemDescOnStartup
+                {
+                    get
+                    {
+                        return parseItemDescOnStartup;
+                    }
+                    set
+                    {
+                        parseItemDescOnStartup = value;
+                    }
+                }
+                #endregion Parser
                 #endregion Public Properties
             }
 
@@ -3265,7 +3283,7 @@ namespace Iocaine2
                     UInt16 id = Things.GetIdFromName(str);
                     if (id != Things.invalidID)
                     {
-                        idleConsumables.Add(new Inventory.Item(str, id, Inventory.Item.ITEM_TYPE.UNKNOWN));
+                        idleConsumables.Add(new Inventory.Item(str, id, Things.ITEM_TYPE.UNKNOWN));
                     }
                 }
                 idleConsumablesInitDone = true;
