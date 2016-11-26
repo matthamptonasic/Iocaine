@@ -232,7 +232,7 @@ namespace Iocaine2.Inventory
             {
                 id = Things.GetIdFromName(iItemName);
             }
-            Item itm = new Item(iItemName, id, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(iItemName, id, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuan(itm);
         }
         /// <summary>
@@ -247,7 +247,7 @@ namespace Iocaine2.Inventory
             {
                 name = Things.GetNameFromId(iItemId);
             }
-            Item itm = new Item(name, iItemId, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(name, iItemId, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuan(itm);
         }
         #endregion Get Item ID, Name, Quantity
@@ -306,7 +306,7 @@ namespace Iocaine2.Inventory
                 ushort itemID = 0;
                 byte itemQuan = 0;
                 String itemName = "";
-                ushort itemType = 0;
+                Things.ITEM_TYPE itemType = 0;
                 int indexInSummary = 0;
                 Item item = null;
                 itemID = info_item_id_ptr(ii);
@@ -322,7 +322,7 @@ namespace Iocaine2.Inventory
                 {
                     itemName = "Unknown Item";
                 }
-                item = new Item(itemName, itemID, (Item.ITEM_TYPE)itemType);
+                item = new Item(itemName, itemID, itemType);
                 if (!itemIdHistory.Contains(itemID))
                 {
                     itemIdHistory.Add(itemID);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Iocaine2.Data.Client;
 using Iocaine2.Inventory;
 using Iocaine2.Logging;
 
@@ -200,7 +201,7 @@ namespace Iocaine2
         {
             try
             {
-                itemList.Add(new Item(iName, iId, Item.ITEM_TYPE.UNKNOWN));
+                itemList.Add(new Item(iName, iId, Things.ITEM_TYPE.UNKNOWN));
                 itemQuanList.Add(iQuan);
                 pricePerItemList.Add(iPrice);
             }

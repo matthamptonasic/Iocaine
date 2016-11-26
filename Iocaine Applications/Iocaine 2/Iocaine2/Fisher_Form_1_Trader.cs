@@ -467,7 +467,7 @@ namespace Iocaine2
             {
                 return null;
             }
-            Item.ITEM_TYPE type = (Item.ITEM_TYPE)Things.GetTypeFromId(id);
+            Things.ITEM_TYPE type = Things.GetTypeFromId(id);
             Item item = new Item(name, id, type);
             return item;
         }

@@ -654,7 +654,7 @@ namespace Iocaine2
             Seller_Scripts_DS.Item_TableRow[] itemRows = (Seller_Scripts_DS.Item_TableRow[])SL_scriptsDb.Item_Table.Select(filterString);
             foreach(Seller_Scripts_DS.Item_TableRow itemRow in itemRows)
             {
-                script.AddItem(new Item(itemRow.ItemName, itemRow.ItemId, Item.ITEM_TYPE.UNKNOWN), itemRow.ItemQuan);
+                script.AddItem(new Item(itemRow.ItemName, itemRow.ItemId, Things.ITEM_TYPE.UNKNOWN), itemRow.ItemQuan);
                 //script.ItemQuanList.Add(itemRow.ItemQuan);
             }
             return script;

@@ -593,7 +593,7 @@ namespace Iocaine2.Bots
                 List<Recipe.CResult> resultItems = recipe.mResults;
                 foreach (Recipe.CResult result in resultItems)
                 {
-                    Item localItem = new Item(result.Name, result.ID, (Item.ITEM_TYPE)Things.GetTypeFromId(result.ID));
+                    Item localItem = new Item(result.Name, result.ID, Things.GetTypeFromId(result.ID));
                     Containers.RebuildListsMobileOnly();
                     ushort localNbItem = Containers.Bag.GetItemQuan(localItem.ItemID);
                     if (localNbItem == 0)

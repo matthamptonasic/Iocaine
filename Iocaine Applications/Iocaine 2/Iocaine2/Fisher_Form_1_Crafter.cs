@@ -54,7 +54,7 @@ namespace Iocaine2
         private String currentMRRecipeFile;
         private String currentCrafterRecipeTable;
 
-        private List<Item.ITEM_TYPE> CB_InventoryFilterList;
+        private List<Things.ITEM_TYPE> CB_InventoryFilterList;
 
         private CraftingTracker CB_Stats_Tracker;
 
@@ -2729,48 +2729,48 @@ namespace Iocaine2
         {
             if (CB_InventoryFilterList == null)
             {
-                CB_InventoryFilterList = new List<Item.ITEM_TYPE>();
+                CB_InventoryFilterList = new List<Things.ITEM_TYPE>();
             }
             CB_InventoryFilterList.Clear();
             if (CB_Inv_Filter_Armor_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.ARMOR);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.ARMOR);
             }
             if (CB_Inv_Filter_Weapons_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.WEAPON);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.WEAPON);
             }
             if (CB_Inv_Filter_Crystals_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.CRYSTALS);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.CRYSTALS);
             }
             if (CB_Inv_Filter_Fish_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.FISH);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.MISC_KEY);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.FISH);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.MISC_KEY);
             }
             if (CB_Inv_Filter_Linkpearl_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.LINKPEARL);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.LINKPEARL);
             }
             if (CB_Inv_Filter_Misc_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.ASSAULT_ITEMS);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.CHOCO_ITEMS_A);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.CHOCO_ITEMS_B);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.CODEX);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.FLOWER_POT);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.FURNISHING);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.MANNEQUIN);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.MISC_TESTIMONY);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.MOG_MARBLE);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.SEEDS);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.SOUL_PLATE);
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.SOUL_REFLECTOR);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.ASSAULT_ITEMS);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.CHOCO_ITEMS_A);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.CHOCO_ITEMS_B);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.CODEX);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.FLOWER_POT);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.FURNISHING);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.MANNEQUIN);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.MISC_TESTIMONY);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.MOG_MARBLE);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.SEEDS);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.SOUL_PLATE);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.SOUL_REFLECTOR);
             }
             if (CB_Inv_Filter_Misc2_Checkbox.Checked)
             {
-                CB_InventoryFilterList.Add(Item.ITEM_TYPE.MISC_TEMP_ITEMS);
+                CB_InventoryFilterList.Add(Things.ITEM_TYPE.MISC_TEMP_ITEMS);
             }
         }
         private void updateQuantities(Recipe recipe, int currentTotal, bool setToMax)

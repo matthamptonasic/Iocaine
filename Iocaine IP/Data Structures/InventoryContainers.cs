@@ -655,7 +655,7 @@ namespace Iocaine2.Inventory
             {
                 id = Things.GetIdFromName(iItemName);
             }
-            Item itm = new Item(iItemName, id, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(iItemName, id, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuan(itm);
         }
         public static ushort GetItemQuan(ushort iItemId)
@@ -665,7 +665,7 @@ namespace Iocaine2.Inventory
             {
                 name = Things.GetNameFromId(iItemId);
             }
-            Item itm = new Item(name, iItemId, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(name, iItemId, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuan(itm);
         }
         #endregion All
@@ -689,7 +689,7 @@ namespace Iocaine2.Inventory
             {
                 id = Things.GetIdFromName(iItemName);
             }
-            Item itm = new Item(iItemName, id, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(iItemName, id, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuanHouse(itm);
         }
         public static ushort GetItemQuanHouse(ushort iItemId)
@@ -699,7 +699,7 @@ namespace Iocaine2.Inventory
             {
                 name = Things.GetNameFromId(iItemId);
             }
-            Item itm = new Item(name, iItemId, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(name, iItemId, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuanHouse(itm);
         }
         #endregion House
@@ -723,7 +723,7 @@ namespace Iocaine2.Inventory
             {
                 id = Things.GetIdFromName(iItemName);
             }
-            Item itm = new Item(iItemName, id, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(iItemName, id, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuanMobile(itm);
         }
         public static ushort GetItemQuanMobile(ushort iItemId)
@@ -733,7 +733,7 @@ namespace Iocaine2.Inventory
             {
                 name = Things.GetNameFromId(iItemId);
             }
-            Item itm = new Item(name, iItemId, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(name, iItemId, Things.ITEM_TYPE.UNKNOWN);
             return GetItemQuanMobile(itm);
         }
         #endregion Mobile

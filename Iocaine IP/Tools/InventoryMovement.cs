@@ -384,7 +384,7 @@ namespace Iocaine2.Inventory
         }
         public static ushort MoveItem(String iItemName, ushort iQuan, ItemContainer iSource, ItemContainer iDest, Statics.FuncPtrs.TD_Bool_Void iCheckStatus)
         {
-            Item itm = new Item(iItemName, Things.GetIdFromName(iItemName), Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(iItemName, Things.GetIdFromName(iItemName), Things.ITEM_TYPE.UNKNOWN);
             List<Item> itemList = new List<Item>() { itm };
             List<ushort> quanList = new List<ushort>() { iQuan };
             return MoveItem(itemList, quanList, iSource, iDest, iCheckStatus, true, 0)[0];
@@ -395,7 +395,7 @@ namespace Iocaine2.Inventory
         }
         public static ushort MoveItem(ushort iItemId, ushort iQuan, ItemContainer iSource, ItemContainer iDest, Statics.FuncPtrs.TD_Bool_Void iCheckStatus)
         {
-            Item itm = new Item(Things.GetNameFromId(iItemId), iItemId, Item.ITEM_TYPE.UNKNOWN);
+            Item itm = new Item(Things.GetNameFromId(iItemId), iItemId, Things.ITEM_TYPE.UNKNOWN);
             List<Item> itemList = new List<Item>() { itm };
             List<ushort> quanList = new List<ushort>() { iQuan };
             return MoveItem(itemList, quanList, iSource, iDest, iCheckStatus, true, 0)[0];

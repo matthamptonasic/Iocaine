@@ -888,7 +888,7 @@ namespace Iocaine2
             Buyer_Scripts_DS.Item_TableRow[] itemRows = (Buyer_Scripts_DS.Item_TableRow[])BY_scriptsDb.Item_Table.Select(filterString);
             foreach (Buyer_Scripts_DS.Item_TableRow itemRow in itemRows)
             {
-                script.AddItem(new Item(itemRow.ItemName, itemRow.ItemId, Item.ITEM_TYPE.UNKNOWN), itemRow.ItemQuan, itemRow.ItemPrice);
+                script.AddItem(new Item(itemRow.ItemName, itemRow.ItemId, Things.ITEM_TYPE.UNKNOWN), itemRow.ItemQuan, itemRow.ItemPrice);
             }
             return script;
         }
