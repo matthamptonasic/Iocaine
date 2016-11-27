@@ -32,6 +32,7 @@ namespace Iocaine2.Parsing
             private static string m_filePath = "";
             private static bool m_parsed = false;
             private static Dictionary<ushort, ItemInfo> m_items;
+            private static Dictionary<string, ushort> m_ids;
             private static List<ushort> m_armorIds;
             private static List<ushort> m_weaponIds;
             #endregion Private Members
@@ -88,6 +89,7 @@ namespace Iocaine2.Parsing
             internal static bool Init_Process(string iFilePath)
             {
                 m_filePath = Path.Combine(iFilePath, m_fileName);
+                parse();
                 return true;
             }
             #endregion Inits
@@ -128,43 +130,59 @@ namespace Iocaine2.Parsing
                 }
                 // TBD - Add status message to user.
                 m_items = new Dictionary<ushort, ItemInfo>();
+                m_ids = new Dictionary<string, ushort>();
                 m_armorIds = new List<ushort>();
                 m_weaponIds = new List<ushort>();
 
-                if (!File.Exists(m_filePath))
+                ItemInfo l_info;
+                try
                 {
-                    return;
-                }
-                StreamReader l_reader = new StreamReader(m_filePath, UTF8Encoding.UTF8);
-                string l_line = "";
-                while (!l_reader.EndOfStream)
-                {
-                    l_line = l_reader.ReadLine();
-                    ItemInfo l_info;
-                    if (processLine(ref l_line, out l_info))
+                    if (!File.Exists(m_filePath))
                     {
-                        replaceCharacters(ref l_info.m_name);
-                        m_items.Add(l_info.m_id, l_info);
-                        if (l_info.m_type == (byte)Things.ITEM_TYPE.ARMOR)
+                        return;
+                    }
+                    StreamReader l_reader = new StreamReader(m_filePath, UTF8Encoding.UTF8);
+                    string l_line = "";
+                    while (!l_reader.EndOfStream)
+                    {
+                        l_line = l_reader.ReadLine();
+                        if (processLine(ref l_line, out l_info))
                         {
-                            m_armorIds.Add(l_info.m_id);
-                        }
-                        else if (l_info.m_type == (byte)Things.ITEM_TYPE.WEAPON)
-                        {
-                            m_weaponIds.Add(l_info.m_id);
+                            replaceCharacters(ref l_info.m_name);
+                            m_items.Add(l_info.m_id, l_info);
+                            if (!m_ids.ContainsKey(l_info.m_name))
+                            {
+                                m_ids.Add(l_info.m_name, l_info.m_id);
+                            }
+                            if (l_info.m_type == (byte)Things.ITEM_TYPE.ARMOR)
+                            {
+                                m_armorIds.Add(l_info.m_id);
+                            }
+                            else if (l_info.m_type == (byte)Things.ITEM_TYPE.WEAPON)
+                            {
+                                m_weaponIds.Add(l_info.m_id);
+                            }
                         }
                     }
+                    l_reader.Close();
                 }
-                l_reader.Close();
+                catch (Exception e)
+                {
+                    LoggingFunctions.Error(e.ToString());
+                }
 
+                Categorizer.SetItems(ref m_items);
+                Categorizer.SetIds(ref m_ids);
+                Categorizer.SetArmorIds(ref m_armorIds);
+                Categorizer.SetWeaponIds(ref m_weaponIds);
                 m_parsed = true;
             }
             private static bool processLine(ref string iLine, out ItemInfo oInfo)
             {
                 oInfo = new ItemInfo();
 
-                String l_patternNum = "=([^,}]*)[,}]";
-                String l_patternStr = "=\"([^\"]*)\"";
+                string l_patternNum = "=([^,}]*)[,}]";
+                string l_patternStr = "=\"([^\"]*)\"";
                 Regex l_idRegex = new Regex("id" + l_patternNum);
                 Match l_idMatch = l_idRegex.Match(iLine);
                 if (l_idMatch.Groups.Count != 2)
