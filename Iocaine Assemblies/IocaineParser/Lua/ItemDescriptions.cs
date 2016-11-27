@@ -29,6 +29,7 @@ namespace Iocaine2.Parsing
             internal static bool Init_Process(string iFilePath)
             {
                 m_filePath = Path.Combine(iFilePath, m_fileName);
+                parse();
                 return true;
             }
             #endregion Inits
@@ -71,6 +72,7 @@ namespace Iocaine2.Parsing
                 }
                 l_reader.Close();
 
+                Categorizer.SetDescription(ref m_desc);
                 m_parsed = true;
             }
             private static bool processLine(ref string iLine, out ushort oId, out string oDesc)
@@ -78,8 +80,9 @@ namespace Iocaine2.Parsing
                 oId = Things.invalidID;
                 oDesc = "";
 
-                String l_pattern = "=\"([^\"]*)\"";
-                Regex l_idRegex = new Regex("id" + l_pattern);
+                string l_patternNum = "=([^,}]*)[,}]";
+                string l_patternStr = "=\"([^\"]*)\"";
+                Regex l_idRegex = new Regex("id" + l_patternNum);
                 Match l_idMatch = l_idRegex.Match(iLine);
                 if (l_idMatch.Groups.Count != 2)
                 {
@@ -90,7 +93,7 @@ namespace Iocaine2.Parsing
                 {
                     return false;
                 }
-                Regex l_descRegex = new Regex("en" + l_pattern);
+                Regex l_descRegex = new Regex("en" + l_patternStr);
                 Match l_descMatch = l_descRegex.Match(iLine);
                 oDesc = l_descMatch.Groups[1].ToString();
 
