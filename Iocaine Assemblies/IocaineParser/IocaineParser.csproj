@@ -39,9 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lua\Categorizer.cs" />
     <Compile Include="Lua\Items.cs" />
     <Compile Include="Lua\ItemDescriptions.cs" />
     <Compile Include="Lua\Lua.cs" />
+    <Compile Include="ParsedDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParsedDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +63,19 @@
       <Project>{b76c45e2-e307-406f-baea-c8288b5737c0}</Project>
       <Name>IocaineCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ParsedDataset.xsc">
+      <DependentUpon>ParsedDataset.xsd</DependentUpon>
+    </None>
+    <None Include="ParsedDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ParsedDataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ParsedDataset.xss">
+      <DependentUpon>ParsedDataset.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
