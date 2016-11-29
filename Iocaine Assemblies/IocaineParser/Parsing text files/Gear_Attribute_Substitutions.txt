@@ -21,6 +21,17 @@ Spurrina Gages::Enhances avatar attack=>Avatar attack +12
 Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
 Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 
+// ====== Breath Effects ======
+Lancer's Torque::Enhances effect of wyvern's breath=>Healing breath +2
+Glassblower's Belt::Enhances effect of wyvern's breath=>Healing breath +2
+Glassblower's Belt::Increases breath damage=>"Breath" attacks +2
+Saurian Helm::Increases breath damage=>"Breath" attacks +10
+Wyrm Armet::Enhances effect of wyvern's breath=>Healing breath +11 "Breath" attacks +11
+Wym. Armet +1::Enhances effect of wyvern's breath=>Healing breath +11 "Breath" attacks +11
+Wym. Armet +2::Enhances effect of wyvern's breath=>Healing breath +15 "Breath" attacks +15
+Ptero. Armet::"Breath" attacks \+19=>Healing breath +19 "Breath" attacks +19
+Ptero. Armet +1::"Breath" attacks \+22=>Healing breath +22 "Breath" attacks +22
+
 // ====== Critical Hit Damage ======
 Murzim Manopolas::Increases critical hit damage=>Critical hit damage +2%
 Athos's Tabard::Increases critical hit damage=>Critical hit damage +5%
@@ -136,6 +147,19 @@ Leyline Gloves::"Fast Cast"=>Fast Cast
 Taeon Tabard::"Fast Cast"=>Fast Cast
 Sapience Orb::"Fast Cast"=>Fast Cast
 
+// ====== Killer Effects ======
+// ======   All Killer   ======
+Beast Trousers::Enhances "Killer" effects=>"Killer" effects +1
+Bst. Trousers +1::Enhances "Killer" effects=>"Killer" effects +1
+Totemic Trousers::Enhances "Killer" effects=>"Killer" effects +1
+Tatami Shield::Enhances "Killer" effects=>"Killer" effects +2
+Flawless Ribbon::Enhances "Killer" effects=>"Killer" effects +1
+Killer Shortbow::Enhances "Killer" effects=>"Killer" effects +2
+Mst. Helm +2::Augments "Killer" effects=>"Killer" effects +5
+Killer's Kilij::Enhances "Killer" effects=>"Killer" effects +5
+Eradicator's Kilij::Enhances "Killer" effects=>"Killer" effects +0
+Kaidate::Enhances "Killer" effects=>"Killer" effects +2
+
 // ====== Magic Burst Damage ======
 Baalmuian Robe::Bonus damage added to magic burst=>Magic burst damage +0
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -145,6 +169,15 @@ Chl. Trousers +1::Bonus damage added to magic burst=>Magic burst damage +10
 Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
 Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
 Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
+
+// ====== Ninjutsu ======
+// ====== Nin. MAB ======
+Kog. Hatsuburi +2::Enhances ninjutsu damage=>Ninjutsu damage +10
+
+// ====== Rampart ======
+Valor Coronet::Enhances "Rampart" effect=>"Rampart" duration +15
+Vlr. Coronet +1::Enhances "Rampart" effect=>"Rampart" duration +15
+Vlr. Coronet +2::Enhances "Rampart" effect=>"Rampart" duration +30
 
 // ====== Rapid Shot Rate ======
 Beater's Mantle::Increases "Rapid Shot" activation rate=>Rapid Shot +0
@@ -157,6 +190,21 @@ Phineus' Gun::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Orion Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +10
 
 // ====== Refresh ======
+Frugal Cape::Adds "Recycle" effect=>"Recycle"+0
+Volunt. Earring::Adds "Recycle" effect=>"Recycle"+0
+Paddock Trousers::Adds "Recycle" effect=>"Recycle"+2
+Kappa Necklace::Adds "Recycle" effect=>"Recycle"+0
+Scout's Beret::"Recycle"=>"Recycle+25
+Sct. Beret +1::"Recycle"=>"Recycle+25
+Entois trousers::Adds "Recycle" effect=>"Recycle"+3
+Sct. Beret +2::"Recycle"=>"Recycle+25
+Handgonne::Adds "Recycle" effect=>"Recycle"+0
+Handgonne +1::Adds "Recycle" effect=>"Recycle"+0
+Manibozho Gloves::Adds "Recycle" effect=>"Recycle"+10
+Lak. Frac::Adds "Recycle" effect=>"Recycle"+15
+Surcouf's Jambiya::Adds "Recycle" effect=>"Recycle"+0
+
+// ====== Refresh ======
 Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
 
 // ====== Snapshot Rate ======
@@ -164,6 +212,11 @@ Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+0
 
 // ====== Stoneskin Damage ======
 Shedir Seraweels::(Enhances "Stoneskin" effect)=>$1 +35
+
+// ====== Warcry ======
+Warrior's Mask::Enhances "Warcry" effect=>Warcry effect duration +10
+War. Mask +1::Enhances "Warcry" effect=>Warcry effect duration +10
+War. Mask +2::Enhances "Warcry" effect=>Warcry effect duration +20
 
 // ====== WS Damage ======
 Rheic Korazin +2::Increases weapon skill damage=>Weapon skill damage +4
