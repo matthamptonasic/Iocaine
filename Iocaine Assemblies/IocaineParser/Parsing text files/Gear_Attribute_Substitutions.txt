@@ -1,0 +1,200 @@
+// Elemental symbol codes
+*::\uE000=>Fire
+*::\uE001=>Ice
+*::\uE002=>Wind
+*::\uE003=>Earth
+*::\uE004=>Lightning
+*::\uE005=>Water
+*::\uE006=>Light
+*::\uE007=>Dark
+
+// Quantify class refresh/regen with values of 1
+*::Adds "Refresh" effect=>"Refresh"+1
+*::Adds "Regen" effect=>"Regen"+1
+*::Decreases movement speed=>Movement speed -12
+
+// ====== Avatar Attack ======
+Auspex Gages::Enhances avatar attack=>Avatar attack +9
+Spurrina Gages::Enhances avatar attack=>Avatar attack +12
+
+// ====== Avatar Blood Pact Damage ======
+Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
+Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
+
+// ====== Critical Hit Damage ======
+Murzim Manopolas::Increases critical hit damage=>Critical hit damage +2%
+Athos's Tabard::Increases critical hit damage=>Critical hit damage +5%
+
+// ====== Cursna ======
+Ephedra Ring::Enhances "Cursna" effect=>Cursna+10
+Haoma's Ring::Enhances "Cursna" effect=>Cursna+15
+Hieros Mittens::Enhances "Cursna" effect=>Cursna+0
+Malison Medallion::Enhances "Cursna" effect=>Cursna+10
+Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
+
+// ====== Fast Cast ======
+Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
+Neit's Slops::Enhances "Fast Cast" effect=>Fast Cast +1
+Warlock's Chapeau::Enhances "Fast Cast" effect=>Fast Cast +10
+Malagigi's Trousers::Enhances "Fast Cast" effect=>Fast Cast +10
+Ebon Talar::Enhances "Fast Cast" effect=>Fast Cast +5
+Ebur Talar::Enhances "Fast Cast" effect=>Fast Cast +5
+Furia Talar::Enhances "Fast Cast" effect=>Fast Cast +5
+Ebon Tam::Enhances "Fast Cast" effect=>Fast Cast +2
+Ebur Tam::Enhances "Fast Cast" effect=>Fast Cast +2
+Furia Tam::Enhances "Fast Cast" effect=>Fast Cast +2
+Wlk. Chapeau +1::Enhances "Fast Cast" effect=>Fast Cast +10
+Dls. Tabard +1::Enhances "Fast Cast" effect=>Fast Cast +10
+Homam Cosciales::Enhances "Fast Cast" effect=>Fast Cast +5
+Marduk's Tiara::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
+Marduk's Jubbah::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
+Marduk's Dastanas::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
+Marduk's Shalwar::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
+Marduk's Crackows::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
+Marduk's Tiara +1::Enhances "Fast Cast" effect=>Fast Cast {2=3,3=5,4=7,5=9}
+Marduk's Jubbah +1::(Set: ?)Enhances "Fast Cast" effect=>$1Fast Cast {2=3,3=5,4=7,5=9}
+Mdk. Dastanas +1::Enhances "Fast Cast" effect=>Fast Cast {2=3,3=5,4=7,5=9}
+Mdk. Shalwar +1::Enhances "Fast Cast" effect=>Fast Cast {2=3,3=5,4=7,5=9}
+Mdk. Crackows +1::Enhances "Fast Cast" effect=>Fast Cast {2=3,3=5,4=7,5=9}
+Rostrum Pumps::Enhances "Fast Cast" effect=>Fast Cast +3
+Loquac. Earring::Enhances "Fast Cast" effect=>Fast Cast +2
+Veela Cape::Enhances "Fast Cast" effect=>Fast Cast +1
+Vivid Strap::Enhances "Fast Cast" effect=>Fast Cast +1
+Vivid Strap +1::Enhances "Fast Cast" effect=>Fast Cast +1
+Pi Ring::Enhances "Fast Cast" effect=>Fast Cast +0
+Teal Chapeau::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=10}
+Teal Chapeau +1::"Fast Cast"\+4-10%=>Fast Cast {2=4,3=4,4=10,5=10}
+Teal Saio::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=10}
+Teal Saio +1::"Fast Cast"\+4-10%=>Fast Cast {2=4,3=4,4=10,5=10}
+Teal Cuffs::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=10}
+Teal Cuffs +1::"Fast Cast\+4-10%=>Fast Cast {2=4,3=4,4=10,5=10}
+Teal Slops::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=10}
+Teal Slops +1::"Fast Cast"\+4-10%=>Fast Cast {2=4,3=4,4=10,5=10}
+Teal Pigaches::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=10}
+Teal Pigaches +1::"Fast Cast"\+4-10%=>Fast Cast {2=4,3=4,4=10,5=10}
+Augur's Gaiters::Enhances "Fast Cast" effect=>Fast Cast +3
+Hochomasamune::Enhances "Fast Cast" effect=>Fast Cast +10
+Incantor Stone::Enhances "Fast Cast" effect=>Fast Cast +2
+Orison Locket::Enhances "Fast Cast" effect=>Fast Cast +5
+Creed Armet +2::Enhances "Fast Cast" effect=>Fast Cast +5
+Nebula Hpl. +1::Enhances "Fast Cast" effect=>Fast Cast +5
+Nebula Slops +1::Enhances "Fast Cast" effect=>Fast Cast +2
+Nebula Cuffs +1::Enhances "Fast Cast" effect=>Fast Cast +1
+Isador::Enhances "Fast Cast" effect=>Fast Cast +5
+Dls. Tabard +2::Enhances "Fast Cast" effect=>Fast Cast +12
+Anhur Robe::Enhances "Fast Cast" effect=>Fast Cast +10
+Argute Loafers +2::Enhances "Fast Cast" effect=>Fast Cast +5
+Estq. Earring::Enhances "Fast Cast" effect=>Fast Cast +2
+Winged Wand::Enhances "Fast Cast" effect=>Fast Cast +0
+Ptn. Churidars +2::Enhances "Fast Cast" effect=>Fast Cast +0
+Prolix Ring::Enhances "Fast Cast" effect=>Fast Cast +2
+Sortilege Scythe::Enhances "Fast Cast" effect=>Fast Cast +10
+Majorelle Shield::Enhances "Fast Cast" effect=>Fast Cast +5
+Heka's Kalasiris::Enhances "Fast Cast" effect=>Fast Cast +5
+Rubeus Bandeau::Enhances "Fast Cast" effect=>Fast Cast {2=4,3=4,4=10,5=10}
+Rubeus Jacket::Enhances "Fast Cast" effect=>Fast Cast {2=4,3=4,4=10,5=10}
+Rubeus Gloves::Enhances "Fast Cast" effect=>Fast Cast {2=4,3=4,4=10,5=10}
+Rubeus Spats::Enhances "Fast Cast" effect=>Fast Cast {2=4,3=4,4=10,5=10}
+Rubeus Boots::Enhances "Fast Cast" effect=>Fast Cast {2=4,3=4,4=10,5=10}
+Magavan Mitts::Enhances "Fast Cast" effect=>Fast Cast +2
+Witful Belt::Enhances "Fast Cast" effect=>Fast Cast +3
+Athos's Chapeau::Enhances "Fast Cast" effect=>Fast Cast +2
+Atrophy Chapeau::Enhances "Fast Cast" effect=>Fast Cast +11
+Marduk's Jubbah +1::Enhances "Fast Cast" effect=>Fast Cast +11
+Eirene's Manteel::Enhances "Fast Cast" effect=>Fast Cast +10
+Hyaline Hat::Enhances "Fast Cast" effect=>Fast Cast +10
+Nahtirah Hat::Enhances "Fast Cast" effect=>Fast Cast +10
+Nares Cap::Enhances "Fast Cast" effect=>Fast Cast +10
+Runeist Bandeau::Enhances "Fast Cast" effect=>Fast Cast +10
+Enif Cosciales::Enhances "Fast Cast" effect=>Fast Cast +8
+Tethyan Cap +3::Enhances "Fast Cast" effect=>Fast Cast +7
+Lifestream Cape::Enhances "Fast Cast" [Ee]ffect=>Fast Cast +7
+Chelona Boots +1::Enhances "Fast Cast" effect=>Fast Cast +5
+Fea's Slops::Enhances "Fast Cast" effect=>Fast Cast +5
+Orunmila's Torque::"Fast Cast" effect=>Fast Cast 
+Orvail Pants::Enhances "Fast Cast" effect=>Fast Cast +5
+Cizin Helm::Enhances "Fast Cast" effect=>Fast Cast +5
+Chelona Boots::Enhances "Fast Cast" effect=>Fast Cast +4
+Nabu's Crackows::Enhances "Fast Cast" effect=>Fast Cast +4
+Swith Cape +1::Enhances "Fast Cast" effect=>Fast Cast +4
+Thaumas Gloves::Enhances "Fast Cast" effect=>Fast Cast +4
+Gendewitha Gages::Enhances "Fast Cast" effect=>Fast Cast +7
+Swith Cape::Enhances "Fast Cast" effect=>Fast Cast +3
+Atinian Staff +1::Enhances "Fast Cast" effect=>Fast Cast +2
+Repartie Gloves::Enhances "Fast Cast" effect=>Fast Cast +2
+Euxine Gloves +2::Enhances "Fast Cast" effect=>Fast Cast +0
+Euxine Gloves +3::Enhances "Fast Cast" effect=>Fast Cast +0
+Tethyan Cap +1::Enhances "Fast Cast" effect=>Fast Cast +0
+Tethyan Cap +2::Enhances "Fast Cast" effect=>Fast Cast +0
+Gyve Trousers::"Fast Cast"=>Fast Cast
+Carmine Mask::"Fast Cast"=>Fast Cast
+Carmine Mask +1::"Fast Cast"=>Fast Cast
+Carmine Greaves::"Fast Cast"=>Fast Cast
+Carmine Greaves +1::"Fast Cast"=>Fast Cast
+Weather. Ring::"Fast Cast"=>Fast Cast
+Leyline Gloves::"Fast Cast"=>Fast Cast
+Taeon Tabard::"Fast Cast"=>Fast Cast
+Sapience Orb::"Fast Cast"=>Fast Cast
+
+// ====== Magic Burst Damage ======
+Baalmuian Robe::Bonus damage added to magic burst=>Magic burst damage +0
+Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
+Chl. Trousers +1::Bonus damage added to magic burst=>Magic burst damage +10
+
+// ====== Misc ======
+Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
+Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
+Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
+
+// ====== Rapid Shot Rate ======
+Beater's Mantle::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Hunter's Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Htr. Beret +1::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Mrc. Dastanas::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Entois trousers::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Murzim Cosciales::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Phineus' Gun::Increases "Rapid Shot" activation rate=>Rapid Shot +0
+Orion Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +10
+
+// ====== Refresh ======
+Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
+
+// ====== Snapshot Rate ======
+Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+0
+
+// ====== Stoneskin Damage ======
+Shedir Seraweels::(Enhances "Stoneskin" effect)=>$1 +35
+
+// ====== WS Damage ======
+Rheic Korazin +2::Increases weapon skill damage=>Weapon skill damage +4
+Rheic Korazin +3::Increases weapon skill damage=>Weapon skill damage +5
+Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
+
+// ====== Zanshin Rate ======
+Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0
+Katana Strap::Enhances "Zanshin" effect=>"Zanshin"+3
+Kumokirimaru::Enhances "Zanshin" effect=>"Zanshin"+0
+Amir Korazin::Enhances "Zanshin" effect=>"Zanshin"+5
+Nanatsusaya::Enhances "Zanshin" effect=>"Zanshin"+100
+Myn. Sune-Ate +1::Enhances "Zanshin" effect=>"Zanshin"+0
+Hachiryu Haramaki::Enhances "Zanshin" effect=>"Zanshin"+5
+Hachiryu Kote::Enhances "Zanshin" effect=>"Zanshin"+5
+Hachiryu Haidate::Enhances "Zanshin" effect=>"Zanshin"+5
+Hachiryu Sune-Ate::Enhances "Zanshin" effect=>"Zanshin"+5
+Unkai Sugemino::Enhances "Zanshin" effect=>"Zanshin"+5
+Unkai Domaru +1::Enhances "Zanshin" effect=>"Zanshin"+5
+Unkai Domaru +2::Enhances "Zanshin" effect=>"Zanshin"+10
+Unkai Mimikazari::Enhances "Zanshin" effect=>"Zanshin"+3
+Jing. Greatsword::Enhances "Zanshin" effect=>"Zanshin"+0
+Ace's Mufflers::Enhances "Zanshin" effect=>"Zanshin"+3
+Mujin Necklace::Enhances "Zanshin" effect=>"Zanshin"+5
+Jingang Hose::Enhances "Zanshin" effect=>"Zanshin"+2
+Nikko-ichimonji::Enhances "Zanshin" effect=>"Zanshin"+4
+Antias Mitts::Enhances "Zanshin" effect=>"Zanshin"+1
+Hrafn Gauntlets::Enhances "Zanshin" effect=>"Zanshin"+0
+Huginn Gauntlets::Enhances "Zanshin" effect=>"Zanshin"+0
+Omodaka Haramaki::Enhances "Zanshin" effect=>"Zanshin"+10
+Wakido Sune-Ate::Enhances "Zanshin" effect=>"Zanshin"+2
+
+
+
