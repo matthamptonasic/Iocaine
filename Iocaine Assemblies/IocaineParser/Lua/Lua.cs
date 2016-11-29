@@ -111,6 +111,8 @@ namespace Iocaine2.Parsing
         private static void replaceCharacters(ref string ioText)
         {
             //ioText = ioText.Replace("&amp;", "&");
+            ioText = ioText.Replace(@"\n", " ");
+            ioText = ioText.Replace(@"\", "");
             ioText = ioText.Replace("♂", " Male");
             ioText = ioText.Replace("♀", " Female");
         }
