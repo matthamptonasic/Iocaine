@@ -13,6 +13,12 @@
 *::Adds "Regen" effect=>"Regen"+1
 *::Decreases movement speed=>Movement speed -12
 
+// ====== Aggressor ======
+Warrior's Lorica::Enhances "Aggressor" effect=>Aggressor evasion +10
+War. Lorica +1::Enhances "Aggressor" effect=>Aggressor evasion +10
+War. Lorica +2::Enhances "Aggressor" effect=>Aggressor evasion +10 "Aggressor" duration +10
+Pummeler's Mask::Enhances "Aggressor" effect=>"Aggressor" duration +10
+
 // ====== Avatar Attack ======
 Auspex Gages::Enhances avatar attack=>Avatar attack +9
 Spurrina Gages::Enhances avatar attack=>Avatar attack +12
@@ -31,10 +37,63 @@ Wym. Armet +1::Enhances effect of wyvern's breath=>Healing breath +11 "Breath" a
 Wym. Armet +2::Enhances effect of wyvern's breath=>Healing breath +15 "Breath" attacks +15
 Ptero. Armet::"Breath" attacks \+19=>Healing breath +19 "Breath" attacks +19
 Ptero. Armet +1::"Breath" attacks \+22=>Healing breath +22 "Breath" attacks +22
+Mirage Keffiyeh +2::Increases breath damage=>"Breath" attacks +10
+
+// ====== Chakra ======
+Temple Cyclas::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
+Tpl. Cyclas +1::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
+Melee Gloves::Enhances "Chakra" effect II=>"Chakra"+30 Chakra removes Disease.
+Mel. Gloves +1::Enhances "Chakra" effect II=>"Chakra"+30 Chakra removes Disease.
+Mel. Gloves +2::Enhances "Chakra" effect III=>"Chakra"+40 Chakra removes Disease Plague.
+Anchorite's Cyclas::Enhances "Chakra" effect=>"Chakra"+60 Chakra removes Paralysis.
+Anch. Cyclas +1::("Chakra"\+\d+)=>$1 Chakra removes Paralysis.
+Hes. Gloves::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
+Hes. Gloves +1::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
+
+// ====== Cover ======
+Gallant Coronet::Enhances "Cover" effect=>Cover takes magic damage
+Glt. Coronet +1::Enhances "Cover" effect=>Cover takes magic damage
+Valor Surcoat::Augments "Cover"=>"Cover": Physical damage converted to MP +20
+Vlr. Surcoat +1::Augments "Cover"=>"Cover": Physical damage converted to MP +20
+Vlr. Surcoat +2::Augments "Cover"=>"Cover": Physical damage converted to MP +30
+Rev. Coronet::Enhances "Cover" effect=>Cover takes magic damage
+Rev. Coronet +1::"Cover" effect duration \+9=>Cover takes magic damage "Cover" +9
 
 // ====== Critical Hit Damage ======
-Murzim Manopolas::Increases critical hit damage=>Critical hit damage +2%
+Rvg. Calligae +2::Increases critical hit damage=>Critical hit damage +10%
+Lncr. Cuissots +2::Increases critical hit damage=>Critical hit damage +10%
+Kamome::Increases critical hit damage=>Critical hit damage +10%
+Oneiros Knife::Increases critical hit damage=>Critical hit damage +10%
+Loki's Kaftan::Increases critical hit damage=>Critical hit damage +5%
+Lncr. Cuissots +1::Increases critical hit damage=>Critical hit damage +5%
+Qirmiz Tathlum::Increases critical hit damage=>Critical hit damage +5%
+Charis Feather::Increases critical hit damage=>Critical hit damage +5%
 Athos's Tabard::Increases critical hit damage=>Critical hit damage +5%
+Athos's Tights::Increases critical hit damage=>Critical hit damage +4%
+Brave Grip::Increases critical hit damage=>Critical hit damage +3%
+Cavaros Mantle::Increases critical hit damage=>Critical hit damage +3%
+Oneiros Helm::Increases critical hit damage=>Critical hit damage +3%
+Asn. Vest +2::Increases critical hit damage=>Critical hit damage +3%
+Aluh Jambiya::Increases critical hit damage=>Critical hit damage +3%
+Alcide's Harness::Increases critical hit damage=>Critical hit damage +0
+Alcd. Harness +1::Increases critical hit damage=>Critical hit damage +2%
+Murzim Manopolas::Increases critical hit damage=>Critical hit damage +2%
+Fatality Belt::Increases critical hit damage=>Critical hit damage +2%
+X's Knife::Increases critical hit damage=>Critical hit damage +0
+Ginhaku Kote::Increases critical hit damage=>Critical hit damage +0
+Ginhaku Togi::Increases critical hit damage=>Critical hit damage +0
+Shikkoku Kote::Increases critical hit damage=>Critical hit damage +0
+Shikkoku Togi::Increases critical hit damage=>Critical hit damage +0
+Shinku Kote::Increases critical hit damage=>Critical hit damage +0
+Shinku Togi::Increases critical hit damage=>Critical hit damage +0
+Ferus Algol::Increases critical hit damage=>Critical hit damage +0
+Iga Erimaki::Increases critical hit damage=>Critical hit damage +0
+Dies Irae::Increases critical hit damage=>Critical hit damage +10%
+Wroth Scythe::Increases critical hit damage=>Critical hit damage +5%
+Cruadin::Increases critical hit damage=>Critical hit damage +0
+// Occasionally increases critical hit damage...
+Asteria::critical hit damage=>critical hit damage +20%
+Supernal Knife::critical hit damage=>critical hit damage +10%
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>Cursna+10
@@ -42,6 +101,45 @@ Haoma's Ring::Enhances "Cursna" effect=>Cursna+15
 Hieros Mittens::Enhances "Cursna" effect=>Cursna+0
 Malison Medallion::Enhances "Cursna" effect=>Cursna+10
 Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
+
+// ====== Double Shot ======
+// ====== Enmity ======
+Sylvan Gapette +1::Enhances "Double Shot" effect=>"Double Shot" enmity -25
+Sylvan Gapette +2::Enhances "Double Shot" effect=>"Double Shot" enmity -50
+Ajjub Bow::Enhances "Double Shot" effect=>"Double Shot" enmity +0
+// ====== Damage ======
+Sct. Jerkin +2::Increases "Double Shot" damage=>"Double Shot" damage +10%
+Ajjub Bow::Increases "Double Shot" damage=>"Double Shot" damage +3%
+
+// ====== Dual Wield ======
+Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
+Ninja Chainmail::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Nin. Chainmail +1::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Koga Hakama::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Kog. Hakama +1::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Suppanomimi::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Charis Necklace::Enhances "Dual Wield" effect=>"Dual Wield"+3
+Auric Dagger::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Raider's Bmrng.::Enhances "Dual Wield" effect=>"Dual Wield"+3
+Nusku's Sash::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Iga Zukin +2::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Iga Mimikazari::Enhances "Dual Wield" effect=>"Dual Wield"+1
+Charis Casaque +1::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Charis Casaque +2::Enhances "Dual Wield" effect=>"Dual Wield"+10
+Kog. Chainmail +2::Enhances "Dual Wield" effect=>"Dual Wield"+3
+Kog. Hakama +2::Enhances "Dual Wield" effect=>"Dual Wield"+7
+Patentia Sash::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Uguisu::Enhances "Dual Wield" effect=>"Dual Wield"+3
+Skadi's Cuirie +1::Enhances "Dual Wield" effect=>"Dual Wield"+7
+Thurandaut Chapeau::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Thur. Chapeau +1::Enhances "Dual Wield" effect=>"Dual Wield"+5
+Hachi. Chainmail::Enhances "Dual Wield" effect=>"Dual Wield"+7
+Hachiya Hakama::Enhances "Dual Wield" effect=>"Dual Wield"+3
+Iga Zukin +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+Iga Ningi +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+Iga Tekko +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+Iga Hakama +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+Iga Kyahan +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -146,6 +244,7 @@ Weather. Ring::"Fast Cast"=>Fast Cast
 Leyline Gloves::"Fast Cast"=>Fast Cast
 Taeon Tabard::"Fast Cast"=>Fast Cast
 Sapience Orb::"Fast Cast"=>Fast Cast
+Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
 
 // ====== Killer Effects ======
 // ======   All Killer   ======
@@ -179,6 +278,11 @@ Valor Coronet::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +1::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +2::Enhances "Rampart" effect=>"Rampart" duration +30
 
+// ====== Random Deal ======
+Commodore Frac::Enhances "Random Deal" effect=>"Random Deal" effect +5
+Comm. Frac +1::Enhances "Random Deal" effect=>"Random Deal" effect +5
+Comm. Frac +2::Enhances "Random Deal" effect=>"Random Deal" effect +5
+
 // ====== Rapid Shot Rate ======
 Beater's Mantle::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Hunter's Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +0
@@ -189,7 +293,7 @@ Murzim Cosciales::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Phineus' Gun::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Orion Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +10
 
-// ====== Refresh ======
+// ====== Recycle ======
 Frugal Cape::Adds "Recycle" effect=>"Recycle"+0
 Volunt. Earring::Adds "Recycle" effect=>"Recycle"+0
 Paddock Trousers::Adds "Recycle" effect=>"Recycle"+2
@@ -207,11 +311,72 @@ Surcouf's Jambiya::Adds "Recycle" effect=>"Recycle"+0
 // ====== Refresh ======
 Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
 
+// ====== Regen ======
+Cleric's Briault::Enhances potency of "Regen"=>Regen potency +1
+Clr. Briault +1::Enhances potency of "Regen"=>Regen potency +1
+Clr. Briault +2::Enhances "Regen" potency=>Regen potency +2
+Marduk's Tiara +1::Enhances "Regen" potency=>Regen potency +1
+Svnt. Bonnet +2::Enhances "Regen" potency=>Regen potency +1
+
+Orison Mitts +1::Increases "Regen" effect duration=>"Regen" effect duration +9
+Orison Mitts +2::Increases "Regen" effect duration=>"Regen" effect duration +18
+Runeist Bandeau::Increases "Regen" effect duration=>"Regen" effect duration +20
+Theo. Pantaloons::Increases "Regen" effect duration=>"Regen" effect duration +18
+
+// ====== Reward ====== 
+// ====== Recast ====== 
+Bison Warbonnet::Reduces "Reward" recast time=>"Reward" recast time -10
+Brv. Warbonnet::Reduces "Reward" recast time=>"Reward" recast time -15
+Khimaira Bonnet::Reduces "Reward" recast time=>"Reward" recast time -10
+Stout Bonnet::Reduces "Reward" recast time=>"Reward" recast time -15
+Totemic Trousers::Reduces "Reward" recast time=>"Reward" recast time -15
+Mst. Trousers +2::Reduces "Reward" recast time=>"Reward" recast time -10
+Ankusa Trousers::"Reward" recast time reduction \+15=>"Reward" recast time -15
+Ankusa Trousers +1::"Reward" recast time reduction \+17=>"Reward" recast time -17
+// ====== Removes ... ====== 
+Beast Jackcoat::Augments "Reward"=>Reward removes Paralysis Poison Blind.
+Bst. Jackcoat +1::Augments "Reward"=>Reward removes Paralysis Poison Blind.
+Totemic Jackcoat::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
+Tot. Jackcoat +1::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
+Monster Jackcoat::Augments "Reward" II=>Reward removes Silence Weight Slow.
+Mst. Jackcoat +1::Augments "Reward" II=>Reward removes Silence Weight Slow.
+Mst. Jackcoat +2::Augments "Reward" III=>Reward removes Silence Weight Slow Paralysis Poison Blind.
+Ankusa Jackcoat::Augments "Reward" effect III=>Reward removes Silence Weight Slow Paralysis Poison Blind.
+An. Jackcoat +1::Augments "Reward" effect III=>Reward removes Silence Weight Slow Paralysis Poison Blind.
+// ====== Potency ====== 
+Totemic Jackcoat::Enhances "Reward" effect=>"Reward"+20
+Ogre Gloves::Enhances "Reward" effect=>"Reward"+10
+Ogre Gloves +1::Enhances "Reward" effect=>"Reward"+11
+Beast Gaiters::Enhances "Reward" effect=>"Reward"+10
+Bst. Gaiters +1::Enhances "Reward" effect=>"Reward"+11
+Totemic Gaiters::Enhances "Reward" effect=>"Reward"+30
+Monster Gaiters::Enhances "Reward" effect II=>"Reward"+20
+Mst. Gaiters +1::Enhances "Reward" effect II=>"Reward"+20
+Mst. Gaiters +2::Enhances "Reward" effect III=>"Reward"+30
+Zoraal Ja's Axe::Enhances "Reward" effect=>"Reward"+10
+Pallas's Shield::Enhances "Reward" effect=>"Reward"+5
+Ferine Earring::Enhances "Reward" effect=>"Reward"+2
+
 // ====== Snapshot Rate ======
 Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+0
 
 // ====== Stoneskin Damage ======
 Shedir Seraweels::(Enhances "Stoneskin" effect)=>$1 +35
+
+// ====== Sublimation ======
+Scholar's M.board::Enhances "Sublimation" effect=>"Sublimation"+1
+Sch. M.board +1::Enhances "Sublimation" effect=>"Sublimation"+1
+Argute Gown::Enhances "Sublimation" effect=>"Sublimation"+1
+Argute Gown +1::Enhances "Sublimation" effect=>"Sublimation"+1
+Siriti::Enhances "Sublimation" effect=>"Sublimation"+1
+Savant's Earring::Enhances "Sublimation" effect=>"Sublimation"+1
+Argute Gown +2::Enhances "Sublimation" effect=>"Sublimation"+2
+Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
+
+// ====== Warcry ======
+Etoile Casaque::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
+Etoile Casaque +1::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
+Etoile Casaque +2::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
 
 // ====== Warcry ======
 Warrior's Mask::Enhances "Warcry" effect=>Warcry effect duration +10
