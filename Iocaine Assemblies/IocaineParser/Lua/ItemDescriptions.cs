@@ -43,6 +43,11 @@ namespace Iocaine2.Parsing
                 }
                 oDesc = m_desc;
             }
+            internal static void Reparse()
+            {
+                m_desc = null;
+                parse();
+            }
             #endregion Internal Methods
 
             #region Private Methods
@@ -58,15 +63,20 @@ namespace Iocaine2.Parsing
                 {
                     return;
                 }
-                StreamReader l_reader = File.OpenText(m_filePath);
+                StreamReader l_reader = new StreamReader(m_filePath, UnicodeEncoding.UTF8);
                 string l_line = "";
-                while ((l_line = l_reader.ReadLine()) != null)
+                while (!l_reader.EndOfStream)
                 {
+                    l_line = l_reader.ReadLine();
                     ushort l_id;
                     string l_desc;
                     if (processLine(ref l_line, out l_id, out l_desc))
                     {
                         replaceCharacters(ref l_desc);
+                        if (l_id == 10287)
+                        {
+                            l_id = l_id;
+                        }
                         m_desc[l_id] = l_desc;
                     }
                 }
@@ -81,7 +91,7 @@ namespace Iocaine2.Parsing
                 oDesc = "";
 
                 string l_patternNum = "=([^,}]*)[,}]";
-                string l_patternStr = "=\"([^\"]*)\"";
+                string l_patternStr = "=\"(.*?[^\\\\])\"[,}]";
                 Regex l_idRegex = new Regex("id" + l_patternNum);
                 Match l_idMatch = l_idRegex.Match(iLine);
                 if (l_idMatch.Groups.Count != 2)
@@ -92,6 +102,10 @@ namespace Iocaine2.Parsing
                 if (oId == Things.invalidID)
                 {
                     return false;
+                }
+                if (oId == 10790)
+                {
+                    oId = oId;
                 }
                 Regex l_descRegex = new Regex("en" + l_patternStr);
                 Match l_descMatch = l_descRegex.Match(iLine);
