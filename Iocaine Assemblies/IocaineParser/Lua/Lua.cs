@@ -77,6 +77,8 @@ namespace Iocaine2.Parsing
                 return false;
             }
 
+            Items.PostProcess();
+
             m_initDone = true;
             return true;
         }
