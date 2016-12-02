@@ -1,3 +1,27 @@
+// How to add substitutions.
+// Generally, just follow the format below.
+// Lines starting with *:: are substitutions that are performed on every item.
+// Try to be sparing on these as it will slow down processing much more dramatically
+// than the per-item substitutions.
+// The per-item substitutions start with the item name (as shown in inventory, not the full name).
+// The :: after the name is just a seperator, followed by the text to be replaced.
+// The => is another seperator, followed by the text to be filled into the item.
+// This text will then be parsed in the "Gear_Attribute_Filters.txt" file.
+// Basically, this is done to either:
+// 1. Enter a quantity where none exists in the description, but has been tried and tested.
+// 2. To standardize the naming where different description text means the same thing.
+// An example of both 1 and 2 would be:
+//   Entois trousers::Adds "Recycle" effect=>"Recycle"+3
+//   Sct. Beret +2::"Recycle"=>"Recycle"+25
+
+//   Neither item quantifies the value, so we add it here.
+//   Sct. Beret +2 just says "Recycle" instead of 'Adds "Recycle" effect'
+//   We fix this by replacing 'Addes "Recycle" effect' with "Recycle"+3
+//  		 and by replacing "Recycle" with "Recycle"+25.
+//	 This makes it so that we only have to parse for "Recycle"+(value).
+//
+//   Blank lines or lines starting with // are ignored.
+
 // Elemental symbol codes
 *::\uE000=>Fire
 *::\uE001=>Ice
@@ -260,9 +284,19 @@ Eradicator's Kilij::Enhances "Killer" effects=>"Killer" effects +0
 Kaidate::Enhances "Killer" effects=>"Killer" effects +2
 
 // ====== Magic Burst Damage ======
-Baalmuian Robe::Bonus damage added to magic burst=>Magic burst damage +0
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
 Chl. Trousers +1::Bonus damage added to magic burst=>Magic burst damage +10
+Src. Gloves +2::Bonus damage added to magic burst=>Magic burst damage +10
+Static Earring::Bonus damage added to magic burst=>Magic burst damage +5
+Src. Gloves +1::Bonus damage added to magic burst=>Magic burst damage +5
+Sorcerer's Gloves::Bonus damage added to magic burst=>Magic burst damage +5
+Catalyst::Bonus damage added to magic burst=>Magic burst damage +5
+Menhit Leggings::Bonus damage added to magic burst=>Magic burst damage +4
+Channeling Robe::Bonus damage added to magic burst=>Magic burst damage +2
+Nebula Hpl. +1::Bonus damage added to magic burst=>Magic burst damage +0
+Baalmuian Robe::Bonus damage added to magic burst=>Magic burst damage +0
+Nebula Hpl.::Bonus damage added to magic burst=>Magic burst damage +0
+Locus Ring::Bonus damage added to magic burst=>Magic burst damage +5
 
 // ====== Misc ======
 Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
@@ -298,10 +332,10 @@ Frugal Cape::Adds "Recycle" effect=>"Recycle"+0
 Volunt. Earring::Adds "Recycle" effect=>"Recycle"+0
 Paddock Trousers::Adds "Recycle" effect=>"Recycle"+2
 Kappa Necklace::Adds "Recycle" effect=>"Recycle"+0
-Scout's Beret::"Recycle"=>"Recycle+25
-Sct. Beret +1::"Recycle"=>"Recycle+25
+Scout's Beret::"Recycle"=>"Recycle"+25
+Sct. Beret +1::"Recycle"=>"Recycle"+25
 Entois trousers::Adds "Recycle" effect=>"Recycle"+3
-Sct. Beret +2::"Recycle"=>"Recycle+25
+Sct. Beret +2::"Recycle"=>"Recycle"+25
 Handgonne::Adds "Recycle" effect=>"Recycle"+0
 Handgonne +1::Adds "Recycle" effect=>"Recycle"+0
 Manibozho Gloves::Adds "Recycle" effect=>"Recycle"+10
@@ -356,6 +390,16 @@ Mst. Gaiters +2::Enhances "Reward" effect III=>"Reward"+30
 Zoraal Ja's Axe::Enhances "Reward" effect=>"Reward"+10
 Pallas's Shield::Enhances "Reward" effect=>"Reward"+5
 Ferine Earring::Enhances "Reward" effect=>"Reward"+2
+
+// ====== Shield Bash ======
+Fenian Ring::Augments "Shield Bash"=>"Shield Bash"+50
+Aegis(75)::Augments "Shield Bash"=>"Shield Bash"+200
+Aegis(80)::Augments "Shield Bash" II=>"Shield Bash"+210
+Aegis(85)::Augments "Shield Bash" III=>"Shield Bash"+220
+Aegis(90)::Augments "Shield Bash" IV=>"Shield Bash"+230
+Aegis(95)::Augments "Shield Bash" V=>"Shield Bash"+240
+Aegis(99)::Augments "Shield Bash" VI=>"Shield Bash"+250
+Aegis(99)Afterglow::Augments "Shield Bash" VI=>"Shield Bash"+250
 
 // ====== Snapshot Rate ======
 Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+0
