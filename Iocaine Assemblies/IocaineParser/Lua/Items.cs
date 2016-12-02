@@ -21,6 +21,8 @@ namespace Iocaine2.Parsing
             {
                 public ushort m_id;
                 public byte m_type;
+                public byte m_level;
+                public ushort m_item_level;
                 public uint m_jobs;
                 public uint m_flags;
                 public string m_name;
@@ -35,6 +37,8 @@ namespace Iocaine2.Parsing
             private static Dictionary<string, ushort> m_ids;
             private static List<ushort> m_armorIds;
             private static List<ushort> m_weaponIds;
+            private static Dictionary<ushort, string> m_desc; //References the one in ItemDescriptions.
+            private static Dictionary<string, List<ItemInfo>> m_postProcessingItems;
             #endregion Private Members
 
             #region Public Properties
@@ -119,6 +123,146 @@ namespace Iocaine2.Parsing
                 }
                 oWeapons = m_weaponIds;
             }
+            internal static void PostProcess()
+            {
+                ItemDescriptions.GetItemDescriptions(out m_desc);
+                string l_newName;
+                //List<string> l_allAdded = new List<string>();
+                foreach (string i_name in m_postProcessingItems.Keys)
+                {
+                    // Go through each item name (list of ItemInfo's) and determine if
+                    // we should create a single entry for the lowest item ID,
+                    // or create different names for each ID AND one that is not unique that points to the lowest ID.
+                    ushort l_lowId = 0xffff;
+                    foreach (ItemInfo i_info in m_postProcessingItems[i_name])
+                    {
+                        // 1. If the level or item_level's are different, append the level to name. e.g. Aegis(80).
+                        // 2. If the level and item_level's are the same, but the description contains 'Afterglow', append 'Afterglow'.
+                        //    This means we need to postpone all of this processing until the description parsing phase.
+                        // 3. If 1 and 2 are not satisfied, append the item ID to both/all items, 
+                        //    but also create an entry with no suffix that points to the first item.
+                        l_newName = i_name;
+                        bool l_sameLevel = false;
+                        bool l_sameiLevel = false;
+                        bool l_hasAfterglow = false;
+                        bool l_otherHasAfterglow = false;
+                        if (i_info.m_id < l_lowId)
+                        {
+                            l_lowId = i_info.m_id;
+                        }
+                        l_hasAfterglow = m_desc.ContainsKey(i_info.m_id) && m_desc[i_info.m_id].Contains("Afterglow");
+                        foreach (ItemInfo i_infoCompare in m_postProcessingItems[i_name])
+                        {
+                            if (i_infoCompare.m_id == i_info.m_id)
+                            {
+                                continue;
+                            }
+                            l_sameLevel = (i_info.m_level > 0) && (i_infoCompare.m_level > 0) && (i_info.m_level == i_infoCompare.m_level);
+                            l_sameLevel |= (i_info.m_level == 0) && (i_infoCompare.m_level == 0);
+                            l_sameiLevel = (i_info.m_item_level > 0) && (i_infoCompare.m_item_level > 0) && (i_info.m_item_level == i_infoCompare.m_item_level);
+                            if (l_sameLevel || l_sameiLevel)
+                            {
+                                l_otherHasAfterglow = m_desc.ContainsKey(i_infoCompare.m_id) && m_desc[i_infoCompare.m_id].Contains("Afterglow");
+                                break;
+                            }
+                        }
+                        if (!(l_sameLevel || l_sameiLevel) || l_hasAfterglow || l_otherHasAfterglow)
+                        {
+                            // Add level to name.
+                            l_newName += "(";
+                            if (i_info.m_item_level > 0)
+                            {
+                                l_newName += i_info.m_item_level;
+                            }
+                            else
+                            {
+                                l_newName += i_info.m_level;
+                            }
+                            l_newName += ")";
+                        }
+                        if (l_hasAfterglow)
+                        {
+                            // Add 'Afterglow' to name.
+                            l_newName += "Afterglow";
+                        }
+                        if (l_newName == i_name)
+                        {
+                            // We made no changes which means the item is ambiguous. We'll only add a single entry outside of the loop.
+                            // But we still need to check the other items just in case, so don't break, just continue.
+                            continue;
+                        }
+
+                        if (m_ids.ContainsKey(l_newName))
+                        {
+                            // If we get to this point and we're still not unique, we may be on the last stage of REM weapon upgrades.
+                            // Both are 119 and have afterglow. To tell the difference at this point, we'll have to look at the damage.
+                            // The item with the higher damage will have " Final" added to the name.
+                            // At the time of writing this, these weapons are the only case where this is being hit.
+                            ushort l_dmgFirst = parseDmg(m_ids[l_newName]);
+                            ushort l_dmgCurr = parseDmg(i_info.m_id);
+                            if ((l_dmgFirst == 0) || (l_dmgCurr == 0))
+                            {
+                                MessageBox.Show("Could not figure out what to do with item '" + l_newName + "' (" + i_info.m_id + ")");
+                                continue;
+                            }
+                            if (l_dmgCurr >= l_dmgFirst)
+                            {
+                                l_newName += " Final";
+                                if (m_ids.ContainsKey(l_newName))
+                                {
+                                    MessageBox.Show("We're really hosed with item '" + l_newName + "' (" + i_info.m_id + ")");
+                                }
+                                else
+                                {
+                                    m_ids.Add(l_newName, i_info.m_id);
+                                    //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                                }
+                            }
+                            else
+                            {
+                                // We have to change the key of the previous item to have the " Final" suffix.
+                                // To do this we add a key with the new suffix pointing to the old item ID.
+                                // Then we go change the previous key's value to be the new item ID.
+                                string l_oldName = l_newName;
+                                l_newName += " Final";
+                                if (m_ids.ContainsKey(l_newName))
+                                {
+                                    MessageBox.Show("We're really hosed with item '" + l_newName + "' (" + i_info.m_id + ") when swapping with " + m_ids[l_oldName] + ".");
+                                }
+                                else
+                                {
+                                    m_ids.Add(l_newName, m_ids[l_oldName]);
+                                    m_ids[l_oldName] = i_info.m_id;
+                                    //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            m_ids.Add(l_newName, i_info.m_id);
+                            //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                        }
+                    }
+                    // Add 1 entry with the common name.
+                    if (!m_ids.ContainsKey(i_name))
+                    {
+                        m_ids.Add(i_name, l_lowId);
+                        //l_allAdded.Add(i_name + "[" + l_lowId + "]");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The item '" + i_name + "' was already in the m_ids map.");
+                    }
+                }
+
+                //string l_allNewNames = "";
+                //foreach (string i_str in l_allAdded)
+                //{
+                //    l_allNewNames += "'" + i_str + "'\n";
+                //}
+                //LoggingFunctions.Timestamp(l_allNewNames);
+                //Process.Start(LoggingFunctions.Name);
+            }
             #endregion Internal Methods
 
             #region Private Methods
@@ -128,11 +272,13 @@ namespace Iocaine2.Parsing
                 {
                     return;
                 }
-                // TBD - Add status message to user.
                 m_items = new Dictionary<ushort, ItemInfo>();
                 m_ids = new Dictionary<string, ushort>();
                 m_armorIds = new List<ushort>();
                 m_weaponIds = new List<ushort>();
+                m_postProcessingItems = new Dictionary<string, List<ItemInfo>>();
+
+                List<ushort> l_idsToRemove = new List<ushort>();
 
                 ItemInfo l_info;
                 try
@@ -143,6 +289,31 @@ namespace Iocaine2.Parsing
                     }
                     StreamReader l_reader = new StreamReader(m_filePath, UTF8Encoding.UTF8);
                     string l_line = "";
+                    // The m_ids map is so that we can get the item ID from the user's statement of the item name.
+                    // Some items have the same name for multiple ID's.
+                    // Some of these are ambiguous to us. For instance, Dnc. Casaque +1 has a male and female version.
+                    // Since we only care about the difference in certain fields, we may ignore this and only point
+                    // to the first item.
+                    // This will be the case when:
+                    // 1. The names are the same.
+                    // 2. The level's are the same (if applicable).
+                    // 3. The item_level's are the same (if applicable).
+                    // 4. The item descriptions do not contain the word 'Afterglow'.
+
+                    // Others have differences that we need to categorize.
+                    // 1. If the level or item_level's are different, append the level to name. e.g. Aegis(80).
+                    // 2. If the level and item_level's are the same, but the description contains 'Afterglow', append 'Afterglow'.
+                    //    This means we need to postpone all of this processing until the description parsing phase.
+                    // 3. If 1 and 2 are not satisfied, append the item ID to both/all items, 
+                    //    but also create an entry with no suffix that points to the first item.
+
+                    // Postprocessing means we will:
+                    // When we find a duplicate, we put the new ItemInfo into a list for later.
+                    // When we get done with all items, we also go back and remove the original id from the m_ids
+                    // and push the corresponding ItemInfo into the same list as above.
+                    //
+                    // Then when we finish processing all of the items, and all of the ItemDescriptions are done,
+                    // we'll go back through our list and create the necessary entries.
                     while (!l_reader.EndOfStream)
                     {
                         l_line = l_reader.ReadLine();
@@ -153,6 +324,16 @@ namespace Iocaine2.Parsing
                             if (!m_ids.ContainsKey(l_info.m_name))
                             {
                                 m_ids.Add(l_info.m_name, l_info.m_id);
+                            }
+                            else
+                            {
+                                // Push the new item into the post processing list.
+                                pushPostProcessItem(l_info);
+                                // If the original item is not already scheduled to be removed, do it now.
+                                if (!l_idsToRemove.Contains(m_ids[l_info.m_name]))
+                                {
+                                    l_idsToRemove.Add(m_ids[l_info.m_name]);
+                                }
                             }
                             if (l_info.m_type == (byte)Things.ITEM_TYPE.ARMOR)
                             {
@@ -165,6 +346,12 @@ namespace Iocaine2.Parsing
                         }
                     }
                     l_reader.Close();
+                    foreach (ushort i_id in l_idsToRemove)
+                    {
+                        pushPostProcessItem(m_items[i_id]);
+                        m_ids.Remove(m_items[i_id].m_name);
+                    }
+                    int cnt = m_postProcessingItems.Count;
                 }
                 catch (Exception e)
                 {
@@ -182,7 +369,7 @@ namespace Iocaine2.Parsing
                 oInfo = new ItemInfo();
 
                 string l_patternNum = "=([^,}]*)[,}]";
-                string l_patternStr = "=\"([^\"]*)\"";
+                string l_patternStr = "=\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)";  //"=\"([^\"]*)\"";
                 Regex l_idRegex = new Regex("id" + l_patternNum);
                 Match l_idMatch = l_idRegex.Match(iLine);
                 if (l_idMatch.Groups.Count != 2)
@@ -224,6 +411,36 @@ namespace Iocaine2.Parsing
                     oInfo.m_type = 0xff;
                 }
 
+                Regex l_levelRegex = new Regex("[^_]level" + l_patternNum);
+                Match l_levelMatch = l_levelRegex.Match(iLine);
+                if (l_levelMatch.Success)
+                {
+                    if (!byte.TryParse(l_levelMatch.Groups[1].ToString(), out oInfo.m_level))
+                    {
+                        LoggingFunctions.Error("Malformed 'level' when parsing item '" + oInfo.m_name + "'");
+                        return false;
+                    }
+                }
+                else
+                {
+                    oInfo.m_level = 0;
+                }
+
+                Regex l_item_levelRegex = new Regex("item_level" + l_patternNum);
+                Match l_item_levelMatch = l_item_levelRegex.Match(iLine);
+                if (l_item_levelMatch.Success)
+                {
+                    if (!ushort.TryParse(l_item_levelMatch.Groups[1].ToString(), out oInfo.m_item_level))
+                    {
+                        LoggingFunctions.Error("Malformed 'item_level' when parsing item '" + oInfo.m_name + "'");
+                        return false;
+                    }
+                }
+                else
+                {
+                    oInfo.m_item_level = 0;
+                }
+
                 Regex l_jobsRegex = new Regex("jobs" + l_patternNum);
                 Match l_jobsMatch = l_jobsRegex.Match(iLine);
                 if (l_jobsMatch.Success)
@@ -255,6 +472,31 @@ namespace Iocaine2.Parsing
                 }
 
                 return true;
+            }
+            private static void pushPostProcessItem(ItemInfo iInfo)
+            {
+                if (!m_postProcessingItems.ContainsKey(iInfo.m_name))
+                {
+                    m_postProcessingItems.Add(iInfo.m_name, new List<ItemInfo>());
+                }
+                m_postProcessingItems[iInfo.m_name].Add(iInfo);
+            }
+            private static ushort parseDmg(ushort iItemId)
+            {
+                string l_desc = "";
+                string l_dmgPattern = @"DMG:?\+?(\d+)"; // : is optional due to a typo on item 20930.
+                string l_dmgStr = "";
+                ushort l_retVal = 0;
+                if (m_desc.ContainsKey(iItemId))
+                {
+                    l_desc = m_desc[iItemId];
+                    if (Regex.IsMatch(l_desc, l_dmgPattern))
+                    {
+                        l_dmgStr = Regex.Match(l_desc, l_dmgPattern).Groups[1].ToString();
+                        ushort.TryParse(l_dmgStr, out l_retVal);
+                    }
+                }
+                return l_retVal;
             }
             #endregion Private Methods
         }
