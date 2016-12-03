@@ -33,12 +33,14 @@ namespace Iocaine2.Parsing
             private const string m_fileName = "items.lua";
             private static string m_filePath = "";
             private static bool m_parsed = false;
+            private const string m_specialFileName = @"Parsing\Gear_Special_Case_Names.txt";
             private static Dictionary<ushort, ItemInfo> m_items;
             private static Dictionary<string, ushort> m_ids;
             private static List<ushort> m_armorIds;
             private static List<ushort> m_weaponIds;
             private static Dictionary<ushort, string> m_desc; //References the one in ItemDescriptions.
             private static Dictionary<string, List<ItemInfo>> m_postProcessingItems;
+            private static Dictionary<ushort, string> m_specialCases = new Dictionary<ushort, string>();
             #endregion Private Members
 
             #region Public Properties
@@ -93,6 +95,7 @@ namespace Iocaine2.Parsing
             internal static bool Init_Process(string iFilePath)
             {
                 m_filePath = Path.Combine(iFilePath, m_fileName);
+                loadSpecialCases();
                 parse();
                 return true;
             }
@@ -134,6 +137,7 @@ namespace Iocaine2.Parsing
                     // we should create a single entry for the lowest item ID,
                     // or create different names for each ID AND one that is not unique that points to the lowest ID.
                     ushort l_lowId = 0xffff;
+                    List<ItemInfo> l_temp = m_postProcessingItems[i_name];
                     foreach (ItemInfo i_info in m_postProcessingItems[i_name])
                     {
                         // 1. If the level or item_level's are different, append the level to name. e.g. Aegis(80).
@@ -143,7 +147,6 @@ namespace Iocaine2.Parsing
                         //    but also create an entry with no suffix that points to the first item.
                         l_newName = i_name;
                         bool l_sameLevel = false;
-                        bool l_sameiLevel = false;
                         bool l_hasAfterglow = false;
                         bool l_otherHasAfterglow = false;
                         if (i_info.m_id < l_lowId)
@@ -157,16 +160,28 @@ namespace Iocaine2.Parsing
                             {
                                 continue;
                             }
-                            l_sameLevel = (i_info.m_level > 0) && (i_infoCompare.m_level > 0) && (i_info.m_level == i_infoCompare.m_level);
-                            l_sameLevel |= (i_info.m_level == 0) && (i_infoCompare.m_level == 0);
-                            l_sameiLevel = (i_info.m_item_level > 0) && (i_infoCompare.m_item_level > 0) && (i_info.m_item_level == i_infoCompare.m_item_level);
-                            if (l_sameLevel || l_sameiLevel)
+                            if ((i_info.m_item_level > 0) || (i_infoCompare.m_item_level > 0))
+                            {
+                                // Compare item levels, not levels.
+                                l_sameLevel = (i_info.m_item_level == i_infoCompare.m_item_level);
+                            }
+                            else if ((i_info.m_level > 0) && (i_infoCompare.m_level > 0))
+                            {
+                                // Compare levels.
+                                l_sameLevel = (i_info.m_level == i_infoCompare.m_level);
+                            }
+                            else if ((i_info.m_level == 0) && (i_infoCompare.m_level == 0))
+                            {
+                                // No levels for this item. Call them the same which will cause us to make no change to the name.
+                                l_sameLevel = true;
+                            }
+                            if (l_sameLevel)
                             {
                                 l_otherHasAfterglow = m_desc.ContainsKey(i_infoCompare.m_id) && m_desc[i_infoCompare.m_id].Contains("Afterglow");
                                 break;
                             }
                         }
-                        if (!(l_sameLevel || l_sameiLevel) || l_hasAfterglow || l_otherHasAfterglow)
+                        if (!l_sameLevel || l_hasAfterglow || l_otherHasAfterglow)
                         {
                             // Add level to name.
                             l_newName += "(";
@@ -320,6 +335,10 @@ namespace Iocaine2.Parsing
                         if (processLine(ref l_line, out l_info))
                         {
                             replaceCharacters(ref l_info.m_name);
+                            if (m_specialCases.ContainsKey(l_info.m_id))
+                            {
+                                l_info.m_name = m_specialCases[l_info.m_id];
+                            }
                             m_items.Add(l_info.m_id, l_info);
                             if (!m_ids.ContainsKey(l_info.m_name))
                             {
@@ -497,6 +516,46 @@ namespace Iocaine2.Parsing
                     }
                 }
                 return l_retVal;
+            }
+            private static void loadSpecialCases()
+            {
+                if (File.Exists(m_specialFileName))
+                {
+                    StreamReader l_reader = new StreamReader(m_specialFileName, UTF8Encoding.UTF8);
+                    string l_line = "";
+                    while (!l_reader.EndOfStream)
+                    {
+                        l_line = l_reader.ReadLine();
+                        if (isCommented(l_line))
+                        {
+                            continue;
+                        }
+                        string l_pattern = "(.*)=(.*)";
+                        Regex l_regex = new Regex(l_pattern);
+                        Match l_match = l_regex.Match(l_line);
+                        if (l_match.Groups.Count != 3)
+                        {
+                            MessageBox.Show("Could not parse special item '" + l_line + "'");
+                            return;
+                        }
+                        ushort l_id;
+                        string l_itemName = l_match.Groups[2].ToString();
+                        if (!ushort.TryParse(l_match.Groups[1].ToString(), out l_id))
+                        {
+                            MessageBox.Show("Could not parse special item id from line '" + l_line + "'");
+                            return;
+                        }
+                        else
+                        {
+                            if (!m_specialCases.ContainsKey(l_id))
+                            {
+                                m_specialCases.Add(l_id, l_itemName);
+                            }
+                        }
+                    }
+                    l_reader.Close();
+                }
+                return;
             }
             #endregion Private Methods
         }
