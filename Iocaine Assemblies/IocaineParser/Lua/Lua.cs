@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using Iocaine2.Logging;
 
@@ -50,6 +51,7 @@ namespace Iocaine2.Parsing
         private static string m_luaPath = "";
         private const string m_hookDllName = "Hook.dll";
         private const string m_folderName = "res";
+        private const string m_commentChars = "//";
         #endregion Private Members
 
         #region Public Properties
@@ -117,6 +119,12 @@ namespace Iocaine2.Parsing
             ioText = ioText.Replace(@"\", "");
             ioText = ioText.Replace("♂", " Male");
             ioText = ioText.Replace("♀", " Female");
+        }
+        private static bool isCommented(string iLine)
+        {
+            Regex l_regex_comment = new Regex(@"^\s*" + m_commentChars);
+            Regex l_regex_blank = new Regex(@"^\s*$");
+            return l_regex_comment.IsMatch(iLine) || l_regex_blank.IsMatch(iLine);
         }
         #endregion Private Methods
     }
