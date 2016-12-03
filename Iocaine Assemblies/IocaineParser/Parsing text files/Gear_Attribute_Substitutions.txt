@@ -51,6 +51,24 @@ Spurrina Gages::Enhances avatar attack=>Avatar attack +12
 Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
 Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 
+// ====== Berserk ======
+// ====== Defense Penalty Down & Duration ======
+Warrior's Calligae::Enhances "Berserk" effect=>Berserk defense penalty -15%
+War. Calligae +1::Enhances "Berserk" effect=>Berserk defense penalty -15%
+War. Calligae +2::Enhances "Berserk" effect=>Berserk defense penalty -15% "Berserk" duration +10
+Pummeler's Lorica::Enhances "Berserk" effect=>"Berserk" duration +10
+// ====== Mythic ======
+Conqueror(75)::Augments "Berserk"=>Berserk Atk +5% Def -5% Crit Rate +5%
+Conqueror(80)::Augments "Berserk" II=>Berserk Atk +6% Def -6% Crit Rate +7%
+Conqueror(85)::Augments "Berserk" effect III=>Berserk Atk +7% Def -7% Crit Rate +9%
+Conqueror(90)::Augments "Berserk" IV=>Berserk Atk +8% Def -8% Crit Rate +11%
+Conqueror(95)::Augments "Berserk" IV=>Berserk Atk +8% Def -8% Crit Rate +11%
+Conqueror(99)::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
+Conqueror(99)Afterglow::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
+Conqueror(119)::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
+Conqueror(119)Afterglow::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
+Conqueror(119)Afterglow Final::Enhances "Berserk" effect V=>Berserk Atk +9% Def -9% Crit Rate +14%
+
 // ====== Breath Effects ======
 Lancer's Torque::Enhances effect of wyvern's breath=>Healing breath +2
 Glassblower's Belt::Enhances effect of wyvern's breath=>Healing breath +2
@@ -63,6 +81,16 @@ Ptero. Armet::"Breath" attacks \+19=>Healing breath +19 "Breath" attacks +19
 Ptero. Armet +1::"Breath" attacks \+22=>Healing breath +22 "Breath" attacks +22
 Mirage Keffiyeh +2::Increases breath damage=>"Breath" attacks +10
 
+// ====== Call Beast ======
+Monster Gloves::Augments "Call Beast"=>Call Beast +1
+Mst. Gloves +1::Augments "Call Beast"=>Call Beast +1
+Mst. Gloves +2::Augments "Call Beast"=>Call Beast +2
+
+// ====== Celerity & Alacrity ======
+Argute Loafers::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
+Argute Loafers +1::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
+Argute Loafers +2::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -15%
+
 // ====== Chakra ======
 Temple Cyclas::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
 Tpl. Cyclas +1::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
@@ -73,6 +101,27 @@ Anchorite's Cyclas::Enhances "Chakra" effect=>"Chakra"+60 Chakra removes Paralys
 Anch. Cyclas +1::("Chakra"\+\d+)=>$1 Chakra removes Paralysis.
 Hes. Gloves::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
 Hes. Gloves +1::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
+
+// ====== Counter ======
+Cobra Cap::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
+Cobra Harness::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
+Cobra Mittens::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
+Cobra Subligar::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
+Cobra Leggings::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
+Mel. Gaiters +2::Increases "Counter" attack=>"Counter" damage +10
+Ultion Mantle::Increases "Counter" attack=>"Counter" damage +10
+Spharai(75)::Enhances "Counter" effect=>"Counter"+5
+Spharai(80)::Enhances "Counter" effect II=>"Counter"+7
+Spharai(85)::Enhances "Counter" effect III=>"Counter"+9
+Spharai(90)::Enhances "Counter" effect IV=>"Counter"+11
+Spharai(95)::Enhances "Counter" effect IV=>"Counter"+11
+Spharai(99)::Enhances "Counter" effect V=>"Counter"+14
+Spharai(119)::Enhances "Counter" effect V=>"Counter"+14
+
+// ====== Counterstance ======
+Melee Gaiters::Enhances ("Counterstance") effect=>$1+5
+Mel. Gaiters +1::Enhances ("Counterstance") effect=>$1+5
+Mel. Gaiters +2::Enhances ("Counterstance") effect=>$1+10
 
 // ====== Cover ======
 Gallant Coronet::Enhances "Cover" effect=>Cover takes magic damage
@@ -125,6 +174,32 @@ Haoma's Ring::Enhances "Cursna" effect=>Cursna+15
 Hieros Mittens::Enhances "Cursna" effect=>Cursna+0
 Malison Medallion::Enhances "Cursna" effect=>Cursna+10
 Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
+Saida Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +15
+Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +20
+
+// ====== Double Attack ======
+// ====== Rate ======
+Ares' Mask +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
+Ares' Cuirass +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
+Ares' Gauntlets +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
+Ares' Flanchard +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
+Ares' Sollerets +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
+Bladeborn Earring::("Double Attack")\+(\d)%=>$1 {2=$2}
+Steelflash Earring::("Double Attack")\+(\d)%=>$1 {2=$2}
+Fazheluo Helm::("Double Attack")\+(\d)%=>$1 {2=$2}
+Fazheluo Helm +1::("Double Attack")\+(\d)%=>$1 {2=$2}
+Fazheluo Mail::("Double Attack")\+(\d)%=>$1 {2=$2}
+Fazheluo Mail +1::("Double Attack")\+(\d)%=>$1 {2=$2}
+Fazheluo R. Mail::("Double Attack")\+(\d)%=>$1 {2=$2}
+Brutal Earring::Enhances "Double Attack" effect=>"Double Attack"+5%
+Vougier's Contus::Enhances "Double Attack" effect=>"Double Attack"+5%
+// ====== Damage ======
+War. Cuisses +2::Increases "Double Attack" damage=>Double Attack damage +3%
+Ravager's Mask +2::Augments "Double Attack"=>Double Attack occ. deals double damage
+Rvg. Lorica +2::Augments "Double Attack"=>Double Attack occ. deals double damage
+Rvg. Mufflers +2::Augments "Double Attack"=>Double Attack occ. deals double damage
+Rvg. Cuisses +2::Augments "Double Attack"=>Double Attack occ. deals double damage
+Rvg. Calligae +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 
 // ====== Double Shot ======
 // ====== Enmity ======
@@ -134,6 +209,9 @@ Ajjub Bow::Enhances "Double Shot" effect=>"Double Shot" enmity +0
 // ====== Damage ======
 Sct. Jerkin +2::Increases "Double Shot" damage=>"Double Shot" damage +10%
 Ajjub Bow::Increases "Double Shot" damage=>"Double Shot" damage +3%
+
+// ====== Drain & Aspir ======
+Striga Crown::Enhances the effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -270,6 +348,97 @@ Taeon Tabard::"Fast Cast"=>Fast Cast
 Sapience Orb::"Fast Cast"=>Fast Cast
 Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
 
+// ====== Holy Water ======
+Blenmot's Ring::Enhances "Holy Water" effect=>"Holy Water"+5%
+Blenmot's Ring +1::Enhances "Holy Water" effect=>"Holy Water"+10%
+
+// ====== Jumps ======
+// ====== Enm. Loss ======
+Wyrm Brais::Enhances "High Jump" effect=>"High Jump": Enmity reduction +10%
+Wym. Brais +1::Enhances "High Jump" effect=>"High Jump": Enmity reduction +10%
+Wym. Brais +2::Enhances "High Jump" effect=>"High Jump": Enmity reduction +25%
+// ====== TP Bonus ======
+Barone Cosciales::"?Jump"? TP Bonus=>"Jump" TP Bonus +20
+Conte Cosciales::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
+Barone Corazza::"?Jump"? TP Bonus=>"Jump" TP Bonus +20
+Conte Corazza::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
+Skystrider::"?Jump"? TP Bonus=>"Jump" TP Bonus +50
+Chanar Xyston::"?Jump"? TP Bonus=>"Jump" TP Bonus +20
+Chanar Xyston +1::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
+Vishap Mail::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
+Vish. Fin. Gaunt::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
+Crusher Gauntlets::"?Jump"? TP Bonus=>"Jump" TP Bonus +25
+Lncr. Schynbld. +1::"Spirit Jump" TP Bonus=>"Spirit Jump": TP Bonus +25
+Lncr. Schynbld. +2::"Spirit Jump" TP Bonus=>"Spirit Jump": TP Bonus +50
+Pelt. Schynbalds::"Spirit Jump": TP Bonus=>"Spirit Jump": TP Bonus +60
+// ====== Critical Hit ======
+Ryunohige(75)::Augments jump attacks=>Jump critical hit
+Ryunohige(80)::Augments jump attacks II=>Jump critical hit Jump attack +13%
+Ryunohige(85)::Augments jump attacks III=>Jump critical hit Jump attack +20%
+Ryunohige(90)::Augments jump attacks IV=>Jump critical hit Jump attack +30%
+Ryunohige(95)::Augments jump attacks IV=>Jump critical hit Jump attack +30%
+Ryunohige(99)::Augments jump attacks V=>Jump critical hit Jump attack +35%
+Ryunohige(99)Afterglow::Augments jump attacks V=>Jump critical hit Jump attack +35%
+Ryunohige(119)::Augments jump attacks V=>Jump critical hit Jump attack +35%
+Ryunohige(119)Afterglow::Augments jump attacks V=>Jump critical hit Jump attack +35%
+Ryunohige(119)Afterglow Final::Enhances "Jump" V=>Jump critical hit Jump attack +35%
+// ====== Attack ======
+Skanda Boots::Enhances "Jump" effects?=>Jump attack +15
+Drachen Greaves::Enhances "Jump" effects?=>Jump attack +15
+Drn. Greaves +1::Enhances "Jump" effects?=>Jump attack +15
+Vishap Greaves::Enhances "Jump" effects?=>Jump attack +15
+Vishap Greaves +1::"Jump"\+(\d+)=>Jump attack +$1
+// ====== Misc ======
+Vishap Brais::Enhances "High Jump" effect=>"High Jump"+0
+Drake Ring::Enhances "Jump" effects=>"Jump"+0
+Eta Earring::Enhances "Jump" effects=>"Jump"+0
+
+// ====== Jigs ======
+Dancer's Shoes::Increases "Jig" duration=>"Jig" duration +35
+Dancer's Shoes +1::Increases "Jig" duration=>"Jig" duration +35
+Etoile Tights::Increases "Jig" duration=>"Jig" duration +35
+Etoile Tights +1::Increases "Jig" duration=>"Jig" duration +35
+Etoile Tights +2::Increases "Jig" duration=>"Jig" duration +35
+Maxixi Shoes::Increases "Jig" duration=>"Jig" duration +40
+
+// ====== Kick Attacks ======
+// ====== Rate ======
+// ====== Damage ======
+Junkenshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Junrenshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Junhanshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Seirenshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Seihanshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Seikenshi Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Hakke Habaki::Increases ("Kick Attacks" attack)=>$1 +0
+Calcitrant Stole::Increases ("Kick Attacks" attack)=>$1 +5
+Kyoshu Kyahan::Increases "Kick Attacks" attack=>"Kick Attacks" attack +25
+Kung Fu Shoes::(DEF:\d+)=>$1 "Kick Attacks" attack +25
+Wulong Shoes::(DEF:\d+)=>$1 "Kick Attacks" attack +27
+Wulong Shoes +1::(DEF:\d+)=>$1 "Kick Attacks" attack +30
+Dune Boots::(DEF:\d+)=>$1 "Kick Attacks" attack +30
+Poise Shoes::Increases "Kick Attacks" attack=>"Kick Attacks" attack +35
+Tantra Gaiters +1::Increases ("Kick Attacks" attack)=>$1 +40
+Tantra Gaiters +2::Increases "Kick Attacks" damage=>"Kick Attacks" attack +45
+Anch. Gaiters::Increases ("Kick Attacks" attack)=>$1 +65
+Soku. Sune-Ate::("Kick Attacks")(\+\d+)=>$1 attack $2
+// ====== OAT ======
+Bhikku Crown::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Cyclas::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Gloves::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Hose::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Gaiters::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Crown +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Cyclas +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Gloves +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Hose +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Bhikku Gaiters +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
+Tantra Crown +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+Tantra Cyclas +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+Tantra Gloves +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+Tantra Hose +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+Tantra Gaiters +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+
 // ====== Killer Effects ======
 // ======   All Killer   ======
 Beast Trousers::Enhances "Killer" effects=>"Killer" effects +1
@@ -282,6 +451,11 @@ Mst. Helm +2::Augments "Killer" effects=>"Killer" effects +5
 Killer's Kilij::Enhances "Killer" effects=>"Killer" effects +5
 Eradicator's Kilij::Enhances "Killer" effects=>"Killer" effects +0
 Kaidate::Enhances "Killer" effects=>"Killer" effects +2
+
+// ====== Last Resort ======
+Abyss Sollerets::Enhances "Last Resort" effect=>"Last Resort"+1
+Abs. Sollerets +1::Enhances "Last Resort" effect=>"Last Resort"+1
+Abs. Sollerets +2::Enhances "Last Resort" effect=>"Last Resort"+1
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -298,14 +472,56 @@ Baalmuian Robe::Bonus damage added to magic burst=>Magic burst damage +0
 Nebula Hpl.::Bonus damage added to magic burst=>Magic burst damage +0
 Locus Ring::Bonus damage added to magic burst=>Magic burst damage +5
 
+// ====== Magic Critical Hit Damage ======
+Maleficus::Increases magic critical hit damage=>Magic critical hit damage +30
+Choleric Earring::Increases magic critical hit damage=>Magic critical hit damage +10
+Eradico Mitts::Increases magic critical hit damage=>Magic critical hit damage +5
+Nefarious Collar::Increases magic critical hit damage=>Magic critical hit damage +5
+Goetia Gloves +1::Increases magic critical hit damage=>Magic critical hit damage +3
+Goetia Gloves +2::Increases magic critical hit damage=>Magic critical hit damage +5
+Ebon Coat::Increases magic critical hit damage=>Magic critical hit damage +0
+Ebur Coat::Increases magic critical hit damage=>Magic critical hit damage +0
+Furia Coat::Increases magic critical hit damage=>Magic critical hit damage +0
+Ebon Cuffs::Increases magic critical hit damage=>Magic critical hit damage +0
+Ebur Cuffs::Increases magic critical hit damage=>Magic critical hit damage +0
+Furia Cuffs::Increases magic critical hit damage=>Magic critical hit damage +0
+Ebon Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
+Ebur Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
+Furia Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
+Genesis Locket::Increases magic critical hit damage=>Magic critical hit damage +0
+
+// ====== Meditate ======
+Myochin Kabuto::Enhances "Meditate" effect=>Meditate Duration +4
+Myn. Kabuto +1::Enhances "Meditate" effect=>Meditate Duration +4
+Wakido Kabuto::Enhances "Meditate" effect=>Meditate Duration +4
+Saotome Kote::Enhances "Meditate" effect=>Meditate Duration +4
+Sao. Kote +1::Enhances "Meditate" effect=>Meditate Duration +4
+Sao. Kote +2::Enhances "Meditate" effect=>Meditate Duration +8
+
 // ====== Misc ======
 Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
 Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
 Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
 
+// ====== Ninja Tool Expertise ======
+Gosha Sarashi::"Ninja tool expertise"=>Ninja tool expertise +0
+Koga Tekko::"Ninja tool expertise"=>Ninja tool expertise +20
+Kog. Tekko +1::"Ninja tool expertise"=>Ninja tool expertise +20
+Kappa Necklace::"Ninja tool expertise"=>Ninja tool expertise +0
+Oirandori::"Ninja tool expertise"=>Ninja tool expertise +10
+Kog. Tekko +2::"Ninja tool expertise"=>Ninja tool expertise +30
+
 // ====== Ninjutsu ======
 // ====== Nin. MAB ======
 Kog. Hatsuburi +2::Enhances ninjutsu damage=>Ninjutsu damage +10
+
+// ====== Protect & Shell ======
+Brachyura Earring::Enhances effect of Protect and Shell spells cast on wearer=>Protect Received +2 Shell Received +1
+Sheltered Ring::Enhances effect of "Protect" and "Shell" spells cast on wearer=>Protect Received +2 Shell Received +1
+
+// ====== Quick Magic ======
+Weather. Ring::"Quick Magic"(\+\d%)=>Occ. quickens spellcasting $1
+Lebeche Ring::"Quick Magic"(\+\d%)=>Occ. quickens spellcasting $1
 
 // ====== Rampart ======
 Valor Coronet::Enhances "Rampart" effect=>"Rampart" duration +15
@@ -351,22 +567,22 @@ Clr. Briault +1::Enhances potency of "Regen"=>Regen potency +1
 Clr. Briault +2::Enhances "Regen" potency=>Regen potency +2
 Marduk's Tiara +1::Enhances "Regen" potency=>Regen potency +1
 Svnt. Bonnet +2::Enhances "Regen" potency=>Regen potency +1
-
 Orison Mitts +1::Increases "Regen" effect duration=>"Regen" effect duration +9
 Orison Mitts +2::Increases "Regen" effect duration=>"Regen" effect duration +18
 Runeist Bandeau::Increases "Regen" effect duration=>"Regen" effect duration +20
 Theo. Pantaloons::Increases "Regen" effect duration=>"Regen" effect duration +18
+Mandraguard::Mandragora's Grace=>Daytime: "Regen"+1
 
 // ====== Reward ====== 
 // ====== Recast ====== 
-Bison Warbonnet::Reduces "Reward" recast time=>"Reward" recast time -10
-Brv. Warbonnet::Reduces "Reward" recast time=>"Reward" recast time -15
-Khimaira Bonnet::Reduces "Reward" recast time=>"Reward" recast time -10
-Stout Bonnet::Reduces "Reward" recast time=>"Reward" recast time -15
-Totemic Trousers::Reduces "Reward" recast time=>"Reward" recast time -15
-Mst. Trousers +2::Reduces "Reward" recast time=>"Reward" recast time -10
-Ankusa Trousers::"Reward" recast time reduction \+15=>"Reward" recast time -15
-Ankusa Trousers +1::"Reward" recast time reduction \+17=>"Reward" recast time -17
+Bison Warbonnet::Reduces "Reward" recast time=>"Reward" recast -10
+Brv. Warbonnet::Reduces "Reward" recast time=>"Reward" recast -15
+Khimaira Bonnet::Reduces "Reward" recast time=>"Reward" recast -10
+Stout Bonnet::Reduces "Reward" recast time=>"Reward" recast -15
+Totemic Trousers::Reduces "Reward" recast time=>"Reward" recast -15
+Mst. Trousers +2::Reduces "Reward" recast time=>"Reward" recast -10
+Ankusa Trousers::"Reward" recast time reduction \+15=>"Reward" recast -15
+Ankusa Trousers +1::"Reward" recast time reduction \+17=>"Reward" recast -17
 // ====== Removes ... ====== 
 Beast Jackcoat::Augments "Reward"=>Reward removes Paralysis Poison Blind.
 Bst. Jackcoat +1::Augments "Reward"=>Reward removes Paralysis Poison Blind.
@@ -391,6 +607,11 @@ Zoraal Ja's Axe::Enhances "Reward" effect=>"Reward"+10
 Pallas's Shield::Enhances "Reward" effect=>"Reward"+5
 Ferine Earring::Enhances "Reward" effect=>"Reward"+2
 
+// ====== Sentinel ======
+Valor Leggings::Enhances "Sentinel" effect=>"Sentinel"+10
+Vlr. Leggings +1::Enhances "Sentinel" effect=>"Sentinel"+10
+Vlr. Leggings +2::Enhances "Sentinel" effect=>"Sentinel"+10
+
 // ====== Shield Bash ======
 Fenian Ring::Augments "Shield Bash"=>"Shield Bash"+50
 Aegis(75)::Augments "Shield Bash"=>"Shield Bash"+200
@@ -401,8 +622,65 @@ Aegis(95)::Augments "Shield Bash" V=>"Shield Bash"+240
 Aegis(99)::Augments "Shield Bash" VI=>"Shield Bash"+250
 Aegis(99)Afterglow::Augments "Shield Bash" VI=>"Shield Bash"+250
 
-// ====== Snapshot Rate ======
-Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+0
+// ====== Shield Defense Bonus ======
+Crd. Gauntlets +1::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+1
+Crd. Gauntlets +2::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+2
+Castellan's Shield::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+0
+
+// ====== Snapshot ======
+Jalzahn's Ring::Enhances "Snapshot" effect=>"Snapshot"+0
+Ebon Visor::Enhances "Snapshot" effect=>"Snapshot"+0
+Ebon Jerkin::Enhances "Snapshot" effect=>"Snapshot"+0
+Furia Visor::Enhances "Snapshot" effect=>"Snapshot"+0
+Furia Jerkin::Enhances "Snapshot" effect=>"Snapshot"+0
+Ebur Visor::Enhances "Snapshot" effect=>"Snapshot"+0
+Ebur Jerkin::Enhances "Snapshot" effect=>"Snapshot"+0
+Commodore Gants::Enhances "Snapshot" effect=>"Snapshot"+0
+Comm. Gants +1::Enhances "Snapshot" effect=>"Snapshot"+0
+Zha'Go's Barbut::Enhances "Snapshot" effect=>"Snapshot"+3
+Impulse Belt::Enhances "Snapshot" effect=>"Snapshot"+3
+Sylvan Gapette +1::Enhances "Snapshot" effect=>"Snapshot"+5
+Sylvan Gapette +2::Enhances "Snapshot" effect=>"Snapshot"+5
+Navarch's Mantle::Enhances "Snapshot" effect=>"Snapshot"+7
+Nvrch. Culottes +1::Enhances "Snapshot" effect=>"Snapshot"+7
+Nvrch. Culottes +2::Enhances "Snapshot" effect=>"Snapshot"+7
+Oneiros Coif::Reduces "Snapshot" effect=>"Snapshot"+0
+Acinaces::Enhances "Snapshot" effect=>"Snapshot"+7
+Alruna's Gloves::Enhances "Snapshot" effect=>"Snapshot"+0
+Comm. Gants +2::Enhances "Snapshot" effect=>"Snapshot"+9
+Mustela Brais::Enhances "Snapshot" effect=>"Snapshot"+5
+Wurrukatte Boots::Enhances "Snapshot" effect=>"Snapshot"+6
+Ahkormaar Bow::Enhances "Snapshot" effect=>"Snapshot"+0
+Ahkormaar Bow +1::Enhances "Snapshot" effect=>"Snapshot"+0
+Manibozho Gloves::Enhances "Snapshot" effect=>"Snapshot"+4
+Nahtirah Trousers::Enhances "Snapshot" effect=>"Snapshot"+10
+Iuitl Wristbands::Enh. "Snapshot" ef.=>"Snapshot"+5
+Cama. Bow::Enhances "Snapshot" effect=>"Snapshot"+0
+Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
+
+// ====== Steps ======
+Dancer's Bangles::Increases "Steps?" accuracy=>"Step" accuracy +10
+Dnc. Bangles +1::Increases "Steps?" accuracy=>"Step" accuracy +10
+Choreia Earring::Increases "Steps?" accuracy=>"Step" accuracy +5
+Etoile Shoes::Increases "Steps?" accuracy=>"Step" accuracy +10
+Etoile Shoes +1::Increases "Steps?" accuracy=>"Step" accuracy +10
+Etoile Shoes +2::Increases "Steps?" accuracy=>"Step" accuracy +15
+Maxixi Tiara::Increases "Steps?" accuracy=>"Step" accuracy +10
+Maxixi Bangles::Increases "Steps?" accuracy=>"Step" accuracy +15
+Terpsichore(75)::Increases "Steps" accuracy=>"Step" accuracy +10
+Terpsichore(80)::Increases "Steps" accuracy II=>"Step" accuracy +20
+Terpsichore(85)::Increases "Steps" accuracy III=>"Step" accuracy +30
+Terpsichore(90)::Increases "Steps" accuracy IV=>"Step" accuracy +40
+Terpsichore(95)::Increases "Steps" accuracy IV=>"Step" accuracy +40
+Terpsichore(99)::Increases "Steps" accuracy V=>"Step" accuracy +50
+Terpsichore(119)::Increases "Steps" accuracy V=>"Step" accuracy +50
+Terpsichore(75)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(80)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(85)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(90)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(95)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(99)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(119)::Augments "Steps"=>"Step" finishing moves +1
 
 // ====== Stoneskin Damage ======
 Shedir Seraweels::(Enhances "Stoneskin" effect)=>$1 +35
@@ -417,7 +695,35 @@ Savant's Earring::Enhances "Sublimation" effect=>"Sublimation"+1
 Argute Gown +2::Enhances "Sublimation" effect=>"Sublimation"+2
 Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
 
-// ====== Warcry ======
+// ====== Third Eye ======
+Saotome Haidate::Augments "Third Eye"=>"Third Eye": "Counter" rate +15
+Sao. Haidate +1::Augments "Third Eye"=>"Third Eye": "Counter" rate +15
+Sao. Haidate +2::Augments "Third Eye"=>"Third Eye": "Counter" rate +25
+Kogarasumaru(75)::Enhances "Third Eye" effect=>"Third Eye" antic. rate +15
+Kogarasumaru(80)::Enhances "Third Eye" effect II=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +10
+Kogarasumaru(85)::Enhances "Third Eye" effect III=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +15
+Kogarasumaru(90)::Enhances "Third Eye" effect IV=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +20
+Kogarasumaru(95)::Enhances "Third Eye" effect IV=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +20
+Kogarasumaru(99)::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
+Kogarasumaru(99)Afterglow::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
+Kogarasumaru(119)::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
+Kogarasumaru(119)Afterglow::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
+Kogarasumaru(119)Afterglow Final::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
+
+// ====== Triple Attack ======
+Zareehkl Scythe::Increases rate of "Triple Attack"=>"Triple Attack"+0
+Homam Corazza::Enhances "Triple Attack" effect=>"Triple Attack"+1
+Demonry Ring::Increases "Triple Attack" damage=>Triple Atk Dmg +3%
+Triplus Dagger::Increases "Triple Attack" damage=>Triple Atk Dmg +0%
+Chiner's Belt::Increases "Triple Attack" damage=>Triple Atk Dmg +0%
+Asn. Poulaines +2::Increases "Triple Attack" damage=>Triple Atk Dmg +2%
+Raid. Bonnet +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+Raider's Vest +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+Raid. Armlets +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+Raid. Culottes +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+Raid. Poulaines +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+
+// ====== Violent Flourish ======
 Etoile Casaque::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
 Etoile Casaque +1::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
 Etoile Casaque +2::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
