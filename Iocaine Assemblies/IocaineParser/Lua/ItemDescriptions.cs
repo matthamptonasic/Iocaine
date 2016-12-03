@@ -73,10 +73,6 @@ namespace Iocaine2.Parsing
                     if (processLine(ref l_line, out l_id, out l_desc))
                     {
                         replaceCharacters(ref l_desc);
-                        if (l_id == 10287)
-                        {
-                            l_id = l_id;
-                        }
                         m_desc[l_id] = l_desc;
                     }
                 }
@@ -102,10 +98,6 @@ namespace Iocaine2.Parsing
                 if (oId == Things.invalidID)
                 {
                     return false;
-                }
-                if (oId == 10790)
-                {
-                    oId = oId;
                 }
                 Regex l_descRegex = new Regex("en" + l_patternStr);
                 Match l_descMatch = l_descRegex.Match(iLine);
