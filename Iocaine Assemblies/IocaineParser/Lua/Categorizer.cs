@@ -39,7 +39,6 @@ namespace Iocaine2.Parsing
             private static Dictionary<string, ushort> m_ids;
             private static List<ushort> m_armorIds;
             private static List<ushort> m_weaponIds;
-            private const string m_commentChars = "//";
 
             private const string m_filterFileName = @"Parsing\Gear_Attribute_Filters.txt";
             //private static Dictionary<string, List<string>> m_filters; // <column_name, List<filter_strings> >
@@ -138,6 +137,7 @@ namespace Iocaine2.Parsing
                         if (l_match.Groups.Count != 3)
                         {
                             MessageBox.Show("Could not parse filter '" + l_line + "'");
+                            l_reader.Close();
                             return false;
                         }
 
@@ -233,12 +233,6 @@ namespace Iocaine2.Parsing
                     return true;
                 }
                 return false;
-            }
-            private static bool isCommented(string iLine)
-            {
-                Regex l_regex_comment = new Regex(@"^\s*" + m_commentChars);
-                Regex l_regex_blank = new Regex(@"^\s*$");
-                return l_regex_comment.IsMatch(iLine) || l_regex_blank.IsMatch(iLine);
             }
             private static bool runSubstitutions()
             {
