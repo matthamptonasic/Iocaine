@@ -243,7 +243,16 @@ namespace Iocaine2.Parsing
                     if (!l_regex.IsMatch(l_desc))
                     {
                         string l_msg = "No match when running substitutions.\n";
-                        l_msg += "Item: " + m_items[i_pair.m_id].m_name + "\n";
+                        string l_itemNameUser = m_items[i_pair.m_id].m_name;
+                        foreach (KeyValuePair<string, ushort> i_kvp in m_ids)
+                        {
+                            if (i_kvp.Value == i_pair.m_id)
+                            {
+                                l_itemNameUser = i_kvp.Key;
+                                break;
+                            }
+                        }
+                        l_msg += "Item: " + l_itemNameUser + " [" + i_pair.m_id + "]\n";
                         l_msg += "Desc: " + l_desc + "\n";
                         l_msg += "Pattern: " + i_pair.m_old + "\n";
                         l_msg += "Subst.:  " + i_pair.m_new;
