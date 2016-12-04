@@ -35,7 +35,21 @@
 // Quantify class refresh/regen with values of 1
 *::Adds "Refresh" effect=>"Refresh"+1
 *::Adds "Regen" effect=>"Regen"+1
-*::Decreases movement speed=>Movement speed -12
+*::(?:Decreases|Reduces) movement speed=>Movement speed -12
+
+// ====== Absorb Spells ======
+Chuparrosa Mantle::Augments "Absorb" spells=>Absorb spells duration +20
+Chuparrosa Mantle::Enhances "Absorb" effects=>Absorb spells potency +10%
+
+// ====== Accomplice & Collaborator ======
+Raid. Bonnet +1::Enhances "Accomplice" effect=>"Accomplice"+5%
+Raid. Bonnet +2::Enhances "Accomplice" effect=>"Accomplice"+10%
+Raid. Bonnet +1::Enhances "Collaborator" effect=>"Collaborator"+5%
+Raid. Bonnet +2::Enhances "Collaborator" effect=>"Collaborator"+10%
+
+// ====== Afflatus Solace ======
+Orison Bliaud +1::Enhances "Afflatus Solace" effect=>"Afflatus Solace"+5
+Orison Bliaud +2::Enhances "Afflatus Solace" effect=>"Afflatus Solace"+10
 
 // ====== Aggressor ======
 Warrior's Lorica::Enhances "Aggressor" effect=>Aggressor evasion +10
@@ -50,6 +64,10 @@ Spurrina Gages::Enhances avatar attack=>Avatar attack +12
 // ====== Avatar Blood Pact Damage ======
 Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
 Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
+
+// ====== Avatar's Favor ======
+Caller's Horn +1::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+1
+Caller's Horn +2::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+2
 
 // ====== Berserk ======
 // ====== Defense Penalty Down & Duration ======
@@ -68,6 +86,16 @@ Conqueror(99)Afterglow::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate 
 Conqueror(119)::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
 Conqueror(119)Afterglow::Augments "Berserk" V=>Berserk Atk +9% Def -9% Crit Rate +14%
 Conqueror(119)Afterglow Final::Enhances "Berserk" effect V=>Berserk Atk +9% Def -9% Crit Rate +14%
+
+// ====== Blitzer's Roll ======
+Nvrch. Tricorne +1::Occ. enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+2
+Nvrch. Tricorne +2::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+3
+Chass. Tricorne::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+3
+Chass. Tricorne +1::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+4
+
+// ====== Blood Rage ======
+Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
+Rvg. Lorica +2::Enhances "Blood Rage" effect=>"Blood Rage" duration +30
 
 // ====== Breath Effects ======
 Lancer's Torque::Enhances effect of wyvern's breath=>Healing breath +2
@@ -91,6 +119,11 @@ Argute Loafers::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Reca
 Argute Loafers +1::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
 Argute Loafers +2::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -15%
 
+// ====== Chain Affinity ======
+Mavi Kavuk +1::Enhances "Chain Affinity" effect=>"Chain Affinity"+10
+Mavi Kavuk +2::Enhances "Chain Affinity" effect=>"Chain Affinity"+20
+Assim. Charuqs::Enhances "Chain Affinity" effect=>"Chain Affinity"+10
+
 // ====== Chakra ======
 Temple Cyclas::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
 Tpl. Cyclas +1::Enhances "Chakra" effect=>"Chakra"+50 Chakra removes Paralysis.
@@ -101,6 +134,10 @@ Anchorite's Cyclas::Enhances "Chakra" effect=>"Chakra"+60 Chakra removes Paralys
 Anch. Cyclas +1::("Chakra"\+\d+)=>$1 Chakra removes Paralysis.
 Hes. Gloves::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
 Hes. Gloves +1::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
+
+// ====== Climactic Flourish ======
+Charis Tiara +1::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +10%
+Charis Tiara +2::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +20%
 
 // ====== Counter ======
 Cobra Cap::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
@@ -177,6 +214,20 @@ Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
 Saida Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +15
 Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +20
 
+// ====== Divine Veil ======
+Orison Cap +1::Enhances "Divine Veil" effect=>"Divine Veil"+5%
+Orison Cap +2::Enhances "Divine Veil" effect=>"Divine Veil"+10%
+Yagrush(75)::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+Yagrush(80)::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+Yagrush(85)::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+Yagrush(90)::Augments "Divine Veil"=>"Divine Veil"+100%
+Yagrush(95)::Augments "Divine Veil"=>"Divine Veil"+100%
+Yagrush(99)::Augments "Divine Veil"=>"Divine Veil"+100%
+Yagrush(99)Afterglow::Augments "Divine Veil"=>"Divine Veil"+100%
+Yagrush(119)::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+Yagrush(119)Afterglow::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+Yagrush(119)Afterglow Final::Enhances "Divine Veil" effect=>"Divine Veil"+100%
+
 // ====== Double Attack ======
 // ====== Rate ======
 Ares' Mask +1::Enhances "Double Attack" effect=>"Double Attack" {2=3,3=5,4=7,5=9}
@@ -213,6 +264,10 @@ Ajjub Bow::Increases "Double Shot" damage=>"Double Shot" damage +3%
 // ====== Drain & Aspir ======
 Striga Crown::Enhances the effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 
+// ====== Dread Spikes ======
+Bale Cuirass +1::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +13%
+Bale Cuirass +2::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +25%
+
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
 Ninja Chainmail::Enhances "Dual Wield" effect=>"Dual Wield"+5
@@ -242,6 +297,14 @@ Iga Ningi +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=
 Iga Tekko +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
 Iga Hakama +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
 Iga Kyahan +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+
+// ====== Ebullience ======
+Svnt. Bonnet +1::Enhances "Ebullience" effect=>"Ebullience"+5
+Svnt. Bonnet +2::Enhances "Ebullience" effect=>"Ebullience"+10
+
+// ====== Enfeebling ======
+Estq. Sayon +2::Enhances enfeebling magic effect=>Enfeebling magic effect +10
+Uk'uxkaj Boots::Enhances enfeebling magic effect=>Enfeebling magic effect +6
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -352,6 +415,10 @@ Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
 Blenmot's Ring::Enhances "Holy Water" effect=>"Holy Water"+5%
 Blenmot's Ring +1::Enhances "Holy Water" effect=>"Holy Water"+10%
 
+// ====== Innin ======
+Iga Zukin +1::Augments "Innin"=>Innin: "Double Attack"+3%
+Iga Zukin +2::Augments "Innin"=>Innin: "Double Attack"+5%
+
 // ====== Jumps ======
 // ====== Enm. Loss ======
 Wyrm Brais::Enhances "High Jump" effect=>"High Jump": Enmity reduction +10%
@@ -451,6 +518,80 @@ Mst. Helm +2::Augments "Killer" effects=>"Killer" effects +5
 Killer's Kilij::Enhances "Killer" effects=>"Killer" effects +5
 Eradicator's Kilij::Enhances "Killer" effects=>"Killer" effects +0
 Kaidate::Enhances "Killer" effects=>"Killer" effects +2
+// ======   Amorph Killer   ======
+Aquan Earring::Enhances "Amorph Killer" effect=>"Amorph Killer"+3
+Amorph Earring::Weakens "Amorph Killer" effect=>"Amorph Killer"-3
+// ======   Aquan Killer   ======
+Bird Earring::Enhances "Aquan Killer" effect=>"Aquan Killer"+3
+Aquan Earring::Weakens "Aquan Killer" effect=>"Aquan Killer"-3
+Bibiki Seashell::Enhances "Aquan Killer" effect=>"Aquan Killer"+5
+Admiral's Shield::Enhances "Aquan Killer" effect=>"Aquan Killer"+0
+Aquan Slayer::Enhances "Aquan Killer" effect=>"Aquan Killer"+0
+Marine Slayer::Enhances "Aquan Killer" effect=>"Aquan Killer"+0
+Epsilon Earring::Enhances "Aquan Killer" effect=>"Aquan Killer"+0
+// ======   Arcana Killer   ======
+Undead Earring::Enhances "Arcana Killer" effect=>"Arcana Killer"+3
+Arcana Earring::Weakens "Arcana Killer" effect=>"Arcana Killer"-3
+Diana Corona::Enhances "Arcana Killer" effect=>"Arcana Killer"+5
+Nyx Gorget::Enhances "Arcana Killer" effect=>"Arcana Killer"+3
+Messhikimaru::("Arcana Killer")=>$1+0
+// ======   Beast Killer   ======
+Plantoid Earring::Enhances "Beast Killer" effect=>"Beast Killer"+3
+Beast Earring::Weakens "Beast Killer" effect=>"Beast Killer"-3
+Vendetta::Enhances "Beast Killer" effect=>"Beast Killer"+5
+Onishibari::Enhances "Beast Killer" effect=>"Beast Killer"+0
+Zaide::Enhances "Beast Killer" effect=>"Beast Killer"+0
+General's Shield::Enhances "Beast Killer" effect=>"Beast Killer"+0
+Koenig Shield::Enhances effect of "Beast Killer"=>"Beast Killer"+0
+Kaiser Shield::Enhances effect of "Beast Killer"=>"Beast Killer"+0
+Byakko's Axe::Enhances "Beast Killer" effect=>"Beast Killer"+4
+Beast Slayer::Enhances "Beast Killer" effect=>"Beast Killer"+15
+// ======   Bird Killer   ======
+Bird Earring::Weakens "Bird Killer" effect=>"Bird Killer"-3
+Amorph Earring::Enhances "Bird Killer" effect=>"Bird Killer"+3
+Fowling Earring::Enhances "Bird Killer" effect=>"Bird Killer"+3
+Suzaku's Scythe::Enhances "Bird Killer" effect=>"Bird Killer"+4
+Melaco Mittens::Enhances "Bird Killer" effect=>"Bird Killer"+5
+// ======   Demon Killer   ======
+Demon Earring::Weakens "Demon Killer" effect=>"Demon Killer"-3
+Dragon Earring::Enhances "Demon Killer" effect=>"Demon Killer"+3
+Demon Slayer::Enhances "Demon Killer" effect=>"Demon Killer"+0
+Devil Slayer::Enhances "Demon Killer" effect=>"Demon Killer"+0
+Staurobow::Enhances "Demon Killer" effect=>"Demon Killer"+1
+Staurobow +1::Enhances "Demon Killer" effect=>"Demon Killer"+0
+Sanctus Rosary::Enhances "Demon Killer" effect=>"Demon Killer"+3
+// ======   Dragon Killer   ======
+Demon Earring::Enhances "Dragon Killer" effect=>"Dragon Killer"+3
+Dragon Earring::Weakens "Dragon Killer" effect=>"Dragon Killer"-3
+Hrotti::Enhances effect of "Dragon Killer"=>"Dragon Killer"+2
+Dragon Slayer::Enhances "Dragon Killer" effect=>"Dragon Killer"+0
+Wyrm Slayer::Enhances "Dragon Killer" effect=>"Dragon Killer"+0
+Bahamut's Mask::Enhances "Dragon Killer" effect=>"Dragon Killer"+1
+Oneiros Cape::Enhances "Dragon Killer" effect=>"Dragon Killer"+0
+Predatrice::Adds "Dragon Killer" effect=>"Dragon Killer"+0
+// ======   Lizard Killer   ======
+Beast Earring::Enhances "Lizard Killer" effect=>"Lizard Killer"+3
+Panther Mask::Enhances "Lizard Killer" effect=>"Lizard Killer"+5
+Panther Mask +1::Enhances "Lizard Killer" effect=>"Lizard Killer"+5
+Lizard Earring::Weakens "Lizard Killer" effect=>"Lizard Killer"-3
+// ======   Plantoid Killer   ======
+Plantoid Earring::Weakens "Plantoid Killer" effect=>"Plantoid Killer"-3
+Vermin Earring::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+3
+Barkborer::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+0
+Eventreuse::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+0
+Seiryu's Sword::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+4
+Epsilon Earring::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+0
+Pipilaka Belt::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+5
+// ======   Undead Killer   ======
+Undead Earring::Weakens "Undead Killer" effect=>"Undead Killer"-3
+Arcana Earring::Enhances "Undead Killer" effect=>"Undead Killer"+3
+// ======   Vermin Killer   ======
+Lizard Earring::Enhances "Vermin Killer" effect=>"Vermin Killer"+3
+Vermin Earring::Weakens "Vermin Killer" effect=>"Vermin Killer"-3
+Insect Slayer::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
+Vermin Slayer::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
+Koggelmander::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
+Zonure::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
 
 // ====== Last Resort ======
 Abyss Sollerets::Enhances "Last Resort" effect=>"Last Resort"+1
@@ -490,6 +631,24 @@ Ebur Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
 Furia Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
 Genesis Locket::Increases magic critical hit damage=>Magic critical hit damage +0
 
+// ====== Martial Arts ======
+Wrestler's Mantle::Enhances "Martial Arts" effect=>"Martial Arts"+0
+Shaolin Belt::Enhances "Martial Arts" effect=>"Martial Arts"+10
+Cirque Necklace::Enhances "Martial Arts" effect=>"Martial Arts"+10
+Tantra Cyclas +2::Enhances "Martial Arts" effect=>"Martial Arts"+5
+Cirq. Pantaloni +1::Enhances "Martial Arts" effect=>"Martial Arts"+5
+Cirq. Pantaloni +2::Enhances "Martial Arts" effect=>"Martial Arts"+10
+Kenkonken(75)::Enhances "Martial Arts" effect=>"Martial Arts"+20
+Kenkonken(80)::Enhances "Martial Arts" effect II=>"Martial Arts"+30
+Kenkonken(85)::Enhances "Martial Arts" effect III=>"Martial Arts"+40
+Kenkonken(90)::Enhances "Martial Arts" effect IV=>"Martial Arts"+45
+Kenkonken(95)::Enhances "Martial Arts" effect IV=>"Martial Arts"+45
+Kenkonken(99)::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+Kenkonken(99)Afterglow::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+Kenkonken(119)::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+Kenkonken(119)Afterglow::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+Kenkonken(119)Afterglow Final::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+
 // ====== Meditate ======
 Myochin Kabuto::Enhances "Meditate" effect=>Meditate Duration +4
 Myn. Kabuto +1::Enhances "Meditate" effect=>Meditate Duration +4
@@ -498,10 +657,16 @@ Saotome Kote::Enhances "Meditate" effect=>Meditate Duration +4
 Sao. Kote +1::Enhances "Meditate" effect=>Meditate Duration +4
 Sao. Kote +2::Enhances "Meditate" effect=>Meditate Duration +8
 
+// ====== Migawari ======
+Iga Ningi +1::Enhances "Migawari" effect=>"Migawari"+5
+Iga Ningi +2::Enhances "Migawari" effect=>"Migawari"+10
+Andartia's Mantle::"Mikage"(\+\d+)=>"Migawari"$1
+
 // ====== Misc ======
 Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
 Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
 Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
+Kaikias' Cape::(Wind Elemental) (Magic Accuracy\+\d) Wind Elemental ("Magic Atk. Bonus"\+\d)=>$1: $2 $3
 
 // ====== Ninja Tool Expertise ======
 Gosha Sarashi::"Ninja tool expertise"=>Ninja tool expertise +0
@@ -514,6 +679,10 @@ Kog. Tekko +2::"Ninja tool expertise"=>Ninja tool expertise +30
 // ====== Ninjutsu ======
 // ====== Nin. MAB ======
 Kog. Hatsuburi +2::Enhances ninjutsu damage=>Ninjutsu damage +10
+
+// ====== Perfect Counter ======
+Tantra Crown +1::Increases "Perfect Counter" damage=>"Perfect Counter" attack +10
+Tantra Crown +2::Increases "Perfect Counter" attack=>"Perfect Counter" attack +20
 
 // ====== Protect & Shell ======
 Brachyura Earring::Enhances effect of Protect and Shell spells cast on wearer=>Protect Received +2 Shell Received +1
@@ -542,6 +711,10 @@ Entois trousers::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Murzim Cosciales::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Phineus' Gun::Increases "Rapid Shot" activation rate=>Rapid Shot +0
 Orion Beret::Increases "Rapid Shot" activation rate=>Rapid Shot +10
+
+// ====== Rapture ======
+Svnt. Bonnet +1::Enhances "Rapture" effect=>"Rapture"+5
+Svnt. Bonnet +2::Enhances "Rapture" effect=>"Rapture"+10
 
 // ====== Recycle ======
 Frugal Cape::Adds "Recycle" effect=>"Recycle"+0
@@ -607,6 +780,14 @@ Zoraal Ja's Axe::Enhances "Reward" effect=>"Reward"+10
 Pallas's Shield::Enhances "Reward" effect=>"Reward"+5
 Ferine Earring::Enhances "Reward" effect=>"Reward"+2
 
+// ====== Saboteur ======
+Estq. Ganthrt. +1::Enhances "Saboteur" effect=>"Saboteur"+5
+Estq. Ganthrt. +2::Enhances "Saboteur" effect=>"Saboteur"+10
+
+// ====== Seigan ======
+Unkai Kabuto +1::Enhances "Seigan" effect=>Seigan: Counter rate+3
+Unkai Kabuto +2::Enhances "Seigan" effect=>Seigan: Counter rate+5
+
 // ====== Sentinel ======
 Valor Leggings::Enhances "Sentinel" effect=>"Sentinel"+10
 Vlr. Leggings +1::Enhances "Sentinel" effect=>"Sentinel"+10
@@ -658,6 +839,27 @@ Iuitl Wristbands::Enh. "Snapshot" ef.=>"Snapshot"+5
 Cama. Bow::Enhances "Snapshot" effect=>"Snapshot"+0
 Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
 
+// ====== Song Duration ======
+Aoidos' Hngrln. +1::Increases song effect duration=>Song duration +5
+Aoidos' Hngrln. +2::Increases song effect duration=>Song duration +10
+Aoidos' Matinee::Increases song effect duration=>Song duration +10
+Brioso Slippers::Increases song effect duration=>Song duration +10
+Carnwenhan(75)::Increases song effect duration=>Song duration +10
+Carnwenhan(80)::Increases song effect duration II=>Song duration +20
+Carnwenhan(85)::Increases song effect duration III=>Song duration +30
+Carnwenhan(90)::Increases song effect duration IV=>Song duration +40
+Carnwenhan(95)::Increases song effect duration IV=>Song duration +40
+Carnwenhan(99)::Increases song effect duration V=>Song duration +50
+Carnwenhan(99)Afterglow::Increases song effect duration V=>Song duration +50
+Carnwenhan(119)::Increases song effect duration V=>Song duration +50
+Carnwenhan(119)Afterglow::Increases song effect duration V=>Song duration +50
+Carnwenhan(119)Afterglow Final::Increase song effect duration V=>Song duration +50
+Daurdabla(90)::Increases song effect duration=>Song duration +25
+Daurdabla(95)::Increases song effect duration=>Song duration +30
+Daurdabla(99)::Increases song effect duration=>Song duration +30
+Legato Dagger::Increases song effect duration=>Song duration +5
+Mdk. Shalwar +1::Increases song effect duration=>Song duration +10
+
 // ====== Steps ======
 Dancer's Bangles::Increases "Steps?" accuracy=>"Step" accuracy +10
 Dnc. Bangles +1::Increases "Steps?" accuracy=>"Step" accuracy +10
@@ -682,8 +884,13 @@ Terpsichore(95)::Augments "Steps"=>"Step" finishing moves +1
 Terpsichore(99)::Augments "Steps"=>"Step" finishing moves +1
 Terpsichore(119)::Augments "Steps"=>"Step" finishing moves +1
 
-// ====== Stoneskin Damage ======
-Shedir Seraweels::(Enhances "Stoneskin" effect)=>$1 +35
+// ====== Stoneskin ======
+Shedir Seraweels::Enhances "Stoneskin" effect=>"Stoneskin"+35
+Stone Gorget::Enhances "Stoneskin" effect=>"Stoneskin"+30
+Stone Mufflers::Enhances "Stoneskin" effect=>"Stoneskin"+30
+Siegel Sash::Enhances "Stoneskin" effect=>"Stoneskin"+20
+Haven Hose::Enhances "Stoneskin" effect=>"Stoneskin"+20
+Earthcry Earring::Enhances "Stoneskin" effect=>"Stoneskin"+10
 
 // ====== Sublimation ======
 Scholar's M.board::Enhances "Sublimation" effect=>"Sublimation"+1
@@ -737,6 +944,10 @@ War. Mask +2::Enhances "Warcry" effect=>Warcry effect duration +20
 Rheic Korazin +2::Increases weapon skill damage=>Weapon skill damage +4
 Rheic Korazin +3::Increases weapon skill damage=>Weapon skill damage +5
 Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
+
+// ====== Velocity Shot ======
+Sylvan Caban +1::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
+Sylvan Caban +2::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
 
 // ====== Zanshin Rate ======
 Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0

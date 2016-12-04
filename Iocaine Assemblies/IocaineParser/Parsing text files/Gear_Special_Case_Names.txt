@@ -18,3 +18,13 @@
 18986=Tizona(75)(Incomplete)
 18987=Death Penalty(75)(Incomplete)
 18988=Kenkonken(75)(Incomplete)
+
+// These descriptions are cut off in the lua files, so our parsing fails.
+21062=Yagrush(119)
+21063=Yagrush(119)Afterglow
+21078=Yagrush(119)Afterglow Final
+20511=Kenkonken(119)Afterglow Final
+
+// There is no difference between the level 99 items I & II, so we have to set their names here.
+18571=Daurdabla(99)
+18839=Daurdabla(99)b
