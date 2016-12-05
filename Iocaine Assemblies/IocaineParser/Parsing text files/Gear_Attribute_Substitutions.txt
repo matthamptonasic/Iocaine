@@ -40,12 +40,20 @@
 // ====== Absorb Spells ======
 Chuparrosa Mantle::Augments "Absorb" spells=>Absorb spells duration +20
 Chuparrosa Mantle::Enhances "Absorb" effects=>Absorb spells potency +10%
+Bale Gauntlets +1::Enhances "Absorb-TP" effect=>"Absorb-TP" effect +5%
+Bale Gauntlets +2::Enhances "Absorb-TP" effect=>"Absorb-TP" effect +5%
 
 // ====== Accomplice & Collaborator ======
 Raid. Bonnet +1::Enhances "Accomplice" effect=>"Accomplice"+5%
 Raid. Bonnet +2::Enhances "Accomplice" effect=>"Accomplice"+10%
 Raid. Bonnet +1::Enhances "Collaborator" effect=>"Collaborator"+5%
 Raid. Bonnet +2::Enhances "Collaborator" effect=>"Collaborator"+10%
+
+// ====== Addendum White/Black ======
+Savant's Gown +1::Enhances "Addendum: White" effect=>"Addendum: White" enmity -10
+Savant's Gown +1::Enhances "Addendum: Black" effect=>"Addendum: Black" enmity -10
+Savant's Gown +2::Enhances "Addendum: White" effect=>"Addendum: White" enmity -20
+Savant's Gown +2::Enhances "Addendum: Black" effect=>"Addendum: Black" enmity -20
 
 // ====== Afflatus Solace ======
 Orison Bliaud +1::Enhances "Afflatus Solace" effect=>"Afflatus Solace"+5
@@ -56,6 +64,16 @@ Warrior's Lorica::Enhances "Aggressor" effect=>Aggressor evasion +10
 War. Lorica +1::Enhances "Aggressor" effect=>Aggressor evasion +10
 War. Lorica +2::Enhances "Aggressor" effect=>Aggressor evasion +10 "Aggressor" duration +10
 Pummeler's Mask::Enhances "Aggressor" effect=>"Aggressor" duration +10
+
+// ====== Allies' Roll ======
+Nvrch. Gants +1::Occ. enhances "Allies' Roll" effect=>"Allies' Roll"+2
+Nvrch. Gants +2::Enhances "Allies' Roll" effect=>"Allies' Roll"+5
+Chasseur's Gants::Enhances "Allies' Roll" effect=>"Allies' Roll"+5
+Chasseur's Gants +1::Enhances "Allies' Roll" effect=>"Allies' Roll"+5
+
+// ====== Auspice ======
+Orsn. Duckbills +1::Enhances "Auspice" effect=>"Auspice"+5
+Orsn. Duckbills +2::Enhances "Auspice" effect=>"Auspice"+10
 
 // ====== Avatar Attack ======
 Auspex Gages::Enhances avatar attack=>Avatar attack +9
@@ -97,6 +115,10 @@ Chass. Tricorne +1::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+4
 Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
 Rvg. Lorica +2::Enhances "Blood Rage" effect=>"Blood Rage" duration +30
 
+// ====== Bounty Shot ======
+Syl. Glvltte. +1::Enhances "Bounty Shot" effect=>"Bounty Shot"+1
+Syl. Glvltte. +2::Enhances "Bounty Shot" effect=>"Bounty Shot"+1
+
 // ====== Breath Effects ======
 Lancer's Torque::Enhances effect of wyvern's breath=>Healing breath +2
 Glassblower's Belt::Enhances effect of wyvern's breath=>Healing breath +2
@@ -109,10 +131,21 @@ Ptero. Armet::"Breath" attacks \+19=>Healing breath +19 "Breath" attacks +19
 Ptero. Armet +1::"Breath" attacks \+22=>Healing breath +22 "Breath" attacks +22
 Mirage Keffiyeh +2::Increases breath damage=>"Breath" attacks +10
 
+// ====== Burst Affinity ======
+Mavi Basmak +1::Enhances "Burst Affinity" effect=>"Burst Affinity"+5
+Mavi Basmak +2::Enhances "Burst Affinity" effect=>"Burst Affinity"+10
+Assim. Shalwar::Enhances "Burst Affinity" effect=>"Burst Affinity"+10
+
 // ====== Call Beast ======
 Monster Gloves::Augments "Call Beast"=>Call Beast +1
 Mst. Gloves +1::Augments "Call Beast"=>Call Beast +1
 Mst. Gloves +2::Augments "Call Beast"=>Call Beast +2
+
+// ====== Caster's Roll ======
+Nvrch. Culottes +1::Occ. enhances "Caster's Roll" effect=>"Caster's Roll"+5
+Nvrch. Culottes +2::Enhances "Caster's Roll" effect=>"Caster's Roll"+10
+Chas. Culottes::Enhances "Caster's Roll" effect=>"Caster's Roll"+10
+Chas. Culottes +1::Enhances "Caster's Roll" effect=>"Caster's Roll"+10
 
 // ====== Celerity & Alacrity ======
 Argute Loafers::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
@@ -205,6 +238,10 @@ Cruadin::Increases critical hit damage=>Critical hit damage +0
 Asteria::critical hit damage=>critical hit damage +20%
 Supernal Knife::critical hit damage=>critical hit damage +10%
 
+// ====== Cumulative Magic ======
+Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
+Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect duration +30
+
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>Cursna+10
 Haoma's Ring::Enhances "Cursna" effect=>Cursna+15
@@ -213,6 +250,30 @@ Malison Medallion::Enhances "Cursna" effect=>Cursna+10
 Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
 Saida Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +15
 Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +20
+
+// ====== Despoil ======
+Raid. Poulaines +1::Enhances "Despoil" effect=>"Despoil" effect +0
+Raid. Poulaines +2::Enhances "Despoil" effect=>"Despoil" effect +0
+
+// ====== Divine Benison ======
+Yagrush(80)::Enhances "Divine Benison" effect=>"Divine Benison"+1
+Yagrush(85)::Enhances "Divine Benison" effect II=>"Divine Benison"+2
+Yagrush(90)::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(95)::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(99)::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(99)Afterglow::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(119)::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(119)Afterglow::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+Yagrush(119)Afterglow Final::Enhances "Divine Benison" effect III=>"Divine Benison"+2
+
+// ====== Divine Emblem ======
+Creed Sabatons +1::Enhances "Divine Emblem" effect=>"Divine Emblem"+5
+Creed Sabatons +2::Enhances "Divine Emblem" effect=>"Divine Emblem"+10
+
+// ====== Divine Carress ======
+Orison Mitts +1::Enhances "Divine Caress" effect=>"Divine Carress"+2
+Orison Mitts +2::Enhances "Divine Caress" effect=>"Divine Carress"+3
+Mending Cape::Enhances "Divine Caress" effect=>"Divine Carress"+2
 
 // ====== Divine Veil ======
 Orison Cap +1::Enhances "Divine Veil" effect=>"Divine Veil"+5%
@@ -302,9 +363,24 @@ Iga Kyahan +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2
 Svnt. Bonnet +1::Enhances "Ebullience" effect=>"Ebullience"+5
 Svnt. Bonnet +2::Enhances "Ebullience" effect=>"Ebullience"+10
 
+// ====== Efflux ======
+Mavi Tayt +1::Enhances "Efflux" effect=>"Efflux" TP Bonus +125
+Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
+
+// ====== Elemental Siphon ======
+Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
+Caller's Pgch. +2::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+40
+Conveyance Cape::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+30
+
 // ====== Enfeebling ======
 Estq. Sayon +2::Enhances enfeebling magic effect=>Enfeebling magic effect +10
 Uk'uxkaj Boots::Enhances enfeebling magic effect=>Enfeebling magic effect +6
+
+// ====== Enhancing ======
+Atrophy Gloves::Increases enhancing magic effect duration=>Enhancing magic duration +15
+Estq. Houseaux +1::Increases enhancing magic effect duration=>Enhancing magic duration +10
+Estq. Houseaux +2::Increases enhancing magic effect duration=>Enhancing magic duration +20
+Estoqueur's Cape::Increases enhancing magic effect duration=>Enhancing magic duration +10
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -411,9 +487,30 @@ Taeon Tabard::"Fast Cast"=>Fast Cast
 Sapience Orb::"Fast Cast"=>Fast Cast
 Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
 
+// ====== Feather Step ======
+Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
+Charis Shoes +2::Enhances "Feather Step" effect=>"Feather Step"+2
+
+// ====== Footwork ======
+Tantra Gaiters +1::Enhances "Footwork" effect=>"Footwork"+3%
+Tantra Gaiters +2::Enhances "Footwork" effect=>"Footwork"+5%
+
+// ====== Futae ======
+Iga Tekko +1::Enhances "Futae" effect=>"Futae"+0
+Iga Tekko +2::Enhances "Futae" effect=>"Futae"+0
+
+// ====== Hasso ======
+Unkai Haidate +1::Enhances "Hasso" effect=>"Hasso"+1
+Unkai Haidate +2::Enhances "Hasso" effect=>"Hasso"+2
+Wakido Kote::Enhances "Hasso" effect=>"Hasso"+1
+
 // ====== Holy Water ======
 Blenmot's Ring::Enhances "Holy Water" effect=>"Holy Water"+5%
 Blenmot's Ring +1::Enhances "Holy Water" effect=>"Holy Water"+10%
+
+// ====== Immanence ======
+Svnt. Bracers +1::Enhances "Immanence" effect=>"Immanence"+5%
+Svnt. Bracers +2::Enhances "Immanence" effect=>"Immanence"+10%
 
 // ====== Innin ======
 Iga Zukin +1::Augments "Innin"=>Innin: "Double Attack"+3%
@@ -593,6 +690,10 @@ Vermin Slayer::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
 Koggelmander::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
 Zonure::Enhances "Vermin Killer" effect=>"Vermin Killer"+0
 
+// ====== Klimaform ======
+Svnt. Loafers +1::Enhances "Klimaform" effect=>"Klimaform"+10
+Svnt. Loafers +2::Enhances "Klimaform" effect=>"Klimaform"+10
+
 // ====== Last Resort ======
 Abyss Sollerets::Enhances "Last Resort" effect=>"Last Resort"+1
 Abs. Sollerets +1::Enhances "Last Resort" effect=>"Last Resort"+1
@@ -631,6 +732,14 @@ Ebur Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
 Furia Sabots::Increases magic critical hit damage=>Magic critical hit damage +0
 Genesis Locket::Increases magic critical hit damage=>Magic critical hit damage +0
 
+// ====== Mana Cede ======
+Caller's Bracers +1::Enhances "Mana Cede" effect=>"Mana Cede"+50
+Call. Bracers +2::Enhances "Mana Cede" effect=>"Mana Cede"+100
+
+// ====== Mana Wall ======
+Goetia Sabots +1:: Enhances "Mana Wall" effect=>"Mana Wall"+5%
+Goetia Sabots +2:: Enhances "Mana Wall" effect=>"Mana Wall"+10%
+
 // ====== Martial Arts ======
 Wrestler's Mantle::Enhances "Martial Arts" effect=>"Martial Arts"+0
 Shaolin Belt::Enhances "Martial Arts" effect=>"Martial Arts"+10
@@ -668,6 +777,10 @@ Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
 Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
 Kaikias' Cape::(Wind Elemental) (Magic Accuracy\+\d) Wind Elemental ("Magic Atk. Bonus"\+\d)=>$1: $2 $3
 
+// ====== Nether Void ======
+Bale Flanchard +1::Enhances "Nether Void" effect=>Nether Void+15
+Bale Flanchard +2::Enhances "Nether Void" effect=>Nether Void+25
+
 // ====== Ninja Tool Expertise ======
 Gosha Sarashi::"Ninja tool expertise"=>Ninja tool expertise +0
 Koga Tekko::"Ninja tool expertise"=>Ninja tool expertise +20
@@ -678,15 +791,71 @@ Kog. Tekko +2::"Ninja tool expertise"=>Ninja tool expertise +30
 
 // ====== Ninjutsu ======
 // ====== Nin. MAB ======
-Kog. Hatsuburi +2::Enhances ninjutsu damage=>Ninjutsu damage +10
+Yagentoshiro::Enhances ninjutsu damage=>Elemental ninjutsu damage +10%
+Koga Hatsuburi::Enhances ninjutsu damage=>Elemental ninjutsu damage +5%
+Kog. Hatsuburi +1::Enhances ninjutsu damage=>Elemental ninjutsu damage +5%
+Kog. Hatsuburi +2::Enhances ninjutsu damage=>Elemental ninjutsu damage +10%
+Iga Tekko +1::Increases elemental ninjutsu damage=>Elemental ninjutsu damage +5%
+Iga Tekko +2::Increases elemental ninjutsu damage=>Elemental ninjutsu damage +10%
+
+// ====== Occult Acumen ======
+Bale Sollerets +1::Enhances "Occult Acumen" effect=>"Occult Acumen"+15
+Bale Sollerets +2::Enhances "Occult Acumen" effect=>"Occult Acumen"+25
+Oneiros Rope::Enhances "Occult Acumen" effect=>"Occult Acumen"+20
+
+// ====== Overload ======
+Buffoon's Collar::Reduces "Overload" rate=>"Overload" rate -5
+Bfn. Collar +1::Reduces "Overload" rate=>"Overload" rate -5
+Pup. Dastanas::Reduces "Overload" rate=>"Overload" rate -5
+Pup. Dastanas +1::Reduces "Overload" rate=>"Overload" rate -5
+Foire Dastanas::Reduces "Overload" rate=>"Overload" rate -5
+Cirque Farsetto +1::Reduces "Overload" rate=>"Overload" rate -20
+Cirque Farsetto +2::Reduces "Overload" rate=>"Overload" rate -40
+Dispersal Mantle::Reduces "Overload" rate=>"Overload" rate -5
+
+// ====== Penury & Parsimony ======
+Savant's Pants +1::Enhances "Penury" effect=>"Penury"+0
+Savant's Pants +1::Enhances "Parsimony" effect=>"Parsimony"+0
+Savant's Pants +2::Enhances "Penury" effect=>"Penury"+0
+Savant's Pants +2::Enhances "Parsimony" effect=>"Parsimony"+0
+Arbatel Pants::"Penury" and "Parsimony"\+(\d)=>"Penury"+$1 "Parsimony"+$1
+Arbatel Pants +1::"Penury" and "Parsimony"\+(\d)=>"Penury"+$1 "Parsimony"+$1
 
 // ====== Perfect Counter ======
 Tantra Crown +1::Increases "Perfect Counter" damage=>"Perfect Counter" attack +10
 Tantra Crown +2::Increases "Perfect Counter" attack=>"Perfect Counter" attack +20
 
+// ====== Perpetuance ======
+Svnt. Bracers +1::Enhances "Perpetuance" effect=>"Perpetuance"+25%
+Svnt. Bracers +2::Enhances "Perpetuance" effect=>"Perpetuance"+50%
+
+// ====== Phantom Roll ======
+Nvrch. Gants +1::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+5
+Nvrch. Gants +2::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+10
+Luzaf's Ring::Increases "Phantom Roll" area of effect=>"Phantom Roll" area +8
+
 // ====== Protect & Shell ======
 Brachyura Earring::Enhances effect of Protect and Shell spells cast on wearer=>Protect Received +2 Shell Received +1
 Sheltered Ring::Enhances effect of "Protect" and "Shell" spells cast on wearer=>Protect Received +2 Shell Received +1
+
+// ====== Quick Draw ======
+Nvrch. Bottes +1::Enhances "Quick Draw" effect=>"Quick Draw"+10
+Nvrch. Bottes +2::Enhances "Quick Draw" effect=>"Quick Draw"+20
+Corsair's Tricorne::Enhances "Quick Draw" effect=>"Quick Draw"+10
+Cor. Tricorne +1::Enhances "Quick Draw" effect=>"Quick Draw"+10
+Laksamana's Hat::Enhances "Quick Draw" effect=>"Quick Draw"+10
+Lak. Bottes::Enhances "Quick Draw" effect=>"Quick Draw"+10
+Death Penalty(75)::Enhances "Quick Draw" effect=>"Quick Draw" damage +20 "Quick Draw" MAcc. +20
+Death Penalty(80)::Enhances "Quick Draw" effect II=>"Quick Draw" damage +30 "Quick Draw" MAcc. +30
+Death Penalty(85)::Enhances "Quick Draw" effect III=>"Quick Draw" damage +40 "Quick Draw" MAcc. +40
+Death Penalty(90)::Enhances "Quick Draw" effect IV=>"Quick Draw" damage +50 "Quick Draw" MAcc. +50
+Death Penalty(95)::Enhances "Quick Draw" effect IV=>"Quick Draw" damage +50 "Quick Draw" MAcc. +50
+Death Penalty(99)::Enhances "Quick Draw" effect V=>"Quick Draw" damage +60 "Quick Draw" MAcc. +60
+Death Penalty(99)Afterglow::Enhances "Quick Draw" effect V=>"Quick Draw" damage +60 "Quick Draw" MAcc. +60
+Death Penalty(119)::Enhances "Quick Draw" effect V=>"Quick Draw" damage +60 "Quick Draw" MAcc. +60
+Death Penalty(119)Afterglow::Enhances "Quick Draw" effect V=>"Quick Draw" damage +60 "Quick Draw" MAcc. +60
+Death Penalty(119)Afterglow Final::Enhances "Quick Draw" effect V=>"Quick Draw" damage +60 "Quick Draw" MAcc. +60
+Schutzen Mittens::"Quick Draw" TP Bonus=>"Quick Draw" TP Bonus +25
 
 // ====== Quick Magic ======
 Weather. Ring::"Quick Magic"(\+\d%)=>Occ. quickens spellcasting $1
@@ -733,6 +902,10 @@ Surcouf's Jambiya::Adds "Recycle" effect=>"Recycle"+0
 
 // ====== Refresh ======
 Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
+// ====== Potency ======
+Estqr. Fuseau +2::Enhances "Refresh" potency=>"Refresh" potency +1
+// ====== Duration ======
+Grapevine Cape::Increases duration of "Refresh" effect received=>Duration of Refresh effects received +30
 
 // ====== Regen ======
 Cleric's Briault::Enhances potency of "Regen"=>Regen potency +1
@@ -745,6 +918,19 @@ Orison Mitts +2::Increases "Regen" effect duration=>"Regen" effect duration +18
 Runeist Bandeau::Increases "Regen" effect duration=>"Regen" effect duration +20
 Theo. Pantaloons::Increases "Regen" effect duration=>"Regen" effect duration +18
 Mandraguard::Mandragora's Grace=>Daytime: "Regen"+1
+
+// ====== Restraint ======
+Rvg. Mufflers +1::Enhances "Restraint" effect=>"Restraint"+50
+Rvg. Mufflers +2::Enhances "Restraint" effect=>"Restraint"+100
+
+// ====== Retaliation ======
+Rvg. Calligae +1::Enhances "Retaliation" effect=>"Retaliation"+10
+Rvg. Calligae +2::Enhances "Retaliation" effect=>"Retaliation"+20
+Pumm. Mufflers::Enhances "Retaliation" effect=>"Retaliation"+15
+
+// ====== Reverse Flourish ======
+Charis Bangles +1::Enhances "Reverse Flourish" effect=>"Reverse Flourish"+5
+Charis Bangles +2::Enhances "Reverse Flourish" effect=>"Reverse Flourish"+10
 
 // ====== Reward ====== 
 // ====== Recast ====== 
@@ -788,6 +974,16 @@ Estq. Ganthrt. +2::Enhances "Saboteur" effect=>"Saboteur"+10
 Unkai Kabuto +1::Enhances "Seigan" effect=>Seigan: Counter rate+3
 Unkai Kabuto +2::Enhances "Seigan" effect=>Seigan: Counter rate+5
 
+// ====== Sekkanoki ======
+Unkai Kote +1::Enhances "Sekkanoki" effect=>"Sekkanoki" +50% TP
+Unkai Kote +2::Enhances "Sekkanoki" effect=>"Sekkanoki" +100% TP
+Kasuga Kote::Enhances "Sekkanoki" effect=>"Sekkanoki" +100% TP
+Kasuga Kote +1::Enhances "Sekkanoki" effect=>"Sekkanoki" +100% TP
+
+// ====== Sengikori ======
+Unkai Sune-Ate +1::Enhances "Sengikori" effect=>"Sengikori"+5
+Unkai Sune-Ate +2::Enhances "Sengikori" effect=>"Sengikori"+10
+
 // ====== Sentinel ======
 Valor Leggings::Enhances "Sentinel" effect=>"Sentinel"+10
 Vlr. Leggings +1::Enhances "Sentinel" effect=>"Sentinel"+10
@@ -807,6 +1003,29 @@ Aegis(99)Afterglow::Augments "Shield Bash" VI=>"Shield Bash"+250
 Crd. Gauntlets +1::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+1
 Crd. Gauntlets +2::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+2
 Castellan's Shield::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+0
+
+// ====== Sic ======
+Frn. Manoplas +1::Enhances "Sic" and "Ready" effects=>"Sic" TP Bonus +250 "Ready" TP Bonus +250
+Frn. Manoplas +2::Enhances "Sic" and "Ready" effects=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(75)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(80)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(85)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(90)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(95)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(99)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(99)Afterglow::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(119)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(119)Afterglow::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Aymur(119)Afterglow Final::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
+Charmer's Merlin::"Sic" and "Ready" ability delay (-\d)=>"Sic" ability delay $1 "Ready" ability delay $1
+
+// ====== Skillchain Bonus ======
+Charis Bangles +1::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+5
+Charis Bangles +2::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+10
+Kagotsurube::Enhances effect of skillchain bonuses=>"Skillchain Bonus"+15
+Suijingiri KM::Enhances effect of skillchain bonuses=>"Skillchain Bonus"+5
+Maxixi Tights::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+0
+Azukinagamitsu::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+5
 
 // ====== Snapshot ======
 Jalzahn's Ring::Enhances "Snapshot" effect=>"Snapshot"+0
@@ -839,6 +1058,30 @@ Iuitl Wristbands::Enh. "Snapshot" ef.=>"Snapshot"+5
 Cama. Bow::Enhances "Snapshot" effect=>"Snapshot"+0
 Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
 
+// ====== Sneak Attack ======
+Raid. Armlets +1::Increases "Sneak Attack" damage=>"Sneak Attack"+10
+Raid. Armlets +2::Increases "Sneak Attack" damage=>"Sneak Attack"+20
+Vajra(75)::Enhances "Sneak Attack" effect=>"Sneak Attack" critical hit damage +10%
+Vajra(75)::Enhances "Trick Attack" effect=>"Trick Attack" critical hit damage +10%
+Vajra(80)::Enhances "Sneak Attack" effect II=>"Sneak Attack" critical hit damage +15%
+Vajra(80)::Enhances "Trick Attack" effect II=>"Trick Attack" critical hit damage +15%
+Vajra(85)::Enhances "Sneak Attack" effect III=>"Sneak Attack" critical hit damage +20%
+Vajra(85)::Enhances "Trick Attack" effect III=>"Trick Attack" critical hit damage +20%
+Vajra(90)::Enhances "Sneak Attack" effect IV=>"Sneak Attack" critical hit damage +25%
+Vajra(90)::Enhances "Trick Attack" effect IV=>"Trick Attack" critical hit damage +25%
+Vajra(95)::Enhances "Sneak Attack" effect IV=>"Sneak Attack" critical hit damage +25%
+Vajra(95)::Enhances "Trick Attack" effect IV=>"Trick Attack" critical hit damage +25%
+Vajra(99)::Enhances "Sneak Attack" effect V=>"Sneak Attack" critical hit damage +30%
+Vajra(99)::Enhances "Trick Attack" effect V=>"Trick Attack" critical hit damage +30%
+Vajra(99)Afterglow::Enhances "Sneak Attack" effect V=>"Sneak Attack" critical hit damage +30%
+Vajra(99)Afterglow::Enhances "Trick Attack" effect V=>"Trick Attack" critical hit damage +30%
+Vajra(119)::Enhances "Sneak Attack" effect=>"Sneak Attack" critical hit damage +30%
+Vajra(119)::Enhances "Trick Attack" effect V=>"Trick Attack" critical hit damage +30%
+Vajra(119)Afterglow::Enhances "Sneak Attack" effect=>"Sneak Attack" critical hit damage +30%
+Vajra(119)Afterglow::Enhances "Trick Attack" effect V=>"Trick Attack" critical hit damage +30%
+Vajra(119)Afterglow Final::Enhances "Sneak Attack" effect V=>"Sneak Attack" critical hit damage +30%
+Vajra(119)Afterglow Final::Enhances "Trick Attack" effect V=>"Trick Attack" critical hit damage +30%
+
 // ====== Song Duration ======
 Aoidos' Hngrln. +1::Increases song effect duration=>Song duration +5
 Aoidos' Hngrln. +2::Increases song effect duration=>Song duration +10
@@ -859,6 +1102,18 @@ Daurdabla(95)::Increases song effect duration=>Song duration +30
 Daurdabla(99)::Increases song effect duration=>Song duration +30
 Legato Dagger::Increases song effect duration=>Song duration +5
 Mdk. Shalwar +1::Increases song effect duration=>Song duration +10
+
+// ====== Spirit Link ======
+Drn. Armet +1::Enhances "Spirit Link" effect=>"Spirit Link"+0
+Lncr. Vmbrc. +1::Enhances "Spirit Link" effect=>"Spirit Link"+5 "Spirit Link" removal +1
+Lncr. Vmbrc. +2::Enhances "Spirit Link" effect=>"Spirit Link"+10 "Spirit Link" removal +2
+Pel. Vambraces::Enhances "Spirit Link" effect=>"Spirit Link" removal +2
+Pel. Vambraces +1::Enhances "Spirit Link" effect=>"Spirit Link" removal +2
+Vishap Armet::Enhances "Spirit Link" effect=>"Spirit Link"+10
+
+// ====== Spur ======
+Ferine Ocreae +1::Enhances "Spur" effect=>"Spur"+5
+Ferine Ocreae +2::Enhances "Spur" effect=>"Spur"+10
 
 // ====== Steps ======
 Dancer's Bangles::Increases "Steps?" accuracy=>"Step" accuracy +10
@@ -892,6 +1147,10 @@ Siegel Sash::Enhances "Stoneskin" effect=>"Stoneskin"+20
 Haven Hose::Enhances "Stoneskin" effect=>"Stoneskin"+20
 Earthcry Earring::Enhances "Stoneskin" effect=>"Stoneskin"+10
 
+// ====== Striking Flourish ======
+Charis Casaque +1::Enhances "Striking Flourish" effect=>Striking Flourish: "Double Attack" critical hit rate +25%
+Charis Casaque +2::Enhances "Striking Flourish" effect=>Striking Flourish: "Double Attack" critical hit rate +50%
+
 // ====== Sublimation ======
 Scholar's M.board::Enhances "Sublimation" effect=>"Sublimation"+1
 Sch. M.board +1::Enhances "Sublimation" effect=>"Sublimation"+1
@@ -901,6 +1160,20 @@ Siriti::Enhances "Sublimation" effect=>"Sublimation"+1
 Savant's Earring::Enhances "Sublimation" effect=>"Sublimation"+1
 Argute Gown +2::Enhances "Sublimation" effect=>"Sublimation"+2
 Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
+
+// ====== Tactical Guard ======
+Tantra Gloves +1::Enhances "Tactical Guard" effect=>"Tactical Guard"+15
+Tantra Gloves +2::Enhances "Tactical Guard" effect=>"Tactical Guard"+25
+
+// ====== Tactical (Critical) Parry ======
+Charis Tights +1::Enhances "Tactical Parry" effect=>"Critical Parry"+10
+Charis Tights +2::Enhances "Tactical Parry" effect=>"Critical Parry"+15
+Iga Kyahan +1::Enhances "Tactical Parry" effect=>"Critical Parry"+10
+Iga Kyahan +2::Enhances "Tactical Parry" effect=>"Critical Parry"+15
+
+// ====== Tactical Switch ======
+Cirque Scarpe +1::Enhances "Tactical Switch" effect=>"Tactical Switch"+10
+Cirque Scarpe +2::Enhances "Tactical Switch" effect=>"Tactical Switch"+20
 
 // ====== Third Eye ======
 Saotome Haidate::Augments "Third Eye"=>"Third Eye": "Counter" rate +15
@@ -930,6 +1203,13 @@ Raid. Armlets +2::Augments "Triple Attack"=>Triple Attack occ. deals triple dama
 Raid. Culottes +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
 Raid. Poulaines +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
 
+// ====== Triple Shot ======
+Navarch's Frac +1::Enhances "Triple Shot" effect=>"Triple Shot"+5%
+Nvrch. Frac +2::Increases "Triple Shot" effect duration=>"Triple Shot"+10%
+
+// ====== Utsusemi ======
+Iga Kyahan +2::Enhances "Utsusemi" effect=>"Utsusemi"+1
+
 // ====== Violent Flourish ======
 Etoile Casaque::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
 Etoile Casaque +1::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
@@ -948,6 +1228,10 @@ Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
 // ====== Velocity Shot ======
 Sylvan Caban +1::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
 Sylvan Caban +2::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
+
+// ====== Yonin ======
+Iga Hakama +1::Augments "Yonin"=>Yonin: "Counter"+5
+Iga Hakama +2::Augments "Yonin"=>Yonin: "Counter"+10
 
 // ====== Zanshin Rate ======
 Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0
@@ -974,6 +1258,3 @@ Hrafn Gauntlets::Enhances "Zanshin" effect=>"Zanshin"+0
 Huginn Gauntlets::Enhances "Zanshin" effect=>"Zanshin"+0
 Omodaka Haramaki::Enhances "Zanshin" effect=>"Zanshin"+10
 Wakido Sune-Ate::Enhances "Zanshin" effect=>"Zanshin"+2
-
-
-
