@@ -281,7 +281,28 @@ namespace Iocaine2.Parsing
                 foreach (ushort i_id in l_itemIds)
                 {
                     l_itemClear = false;
-                    string l_desc = m_desc[i_id];
+                    string l_desc = "";
+                    if (!m_desc.ContainsKey(i_id))
+                    {
+                        // TBD - For now do nothing.
+                        // Once we have augments to parse, we'll need to do that.
+                        // 11697 is Moonshade Earring.
+                        // 11988 - 12007 are job-specific torques that are either not available or not used in the game?
+                        // 12491 - Onion cap no longer exists.
+                        // 12619 - Onion harness no longer exists.
+                        // 13121 - Beast Collar
+                        // 13122 - Miner's Pendant
+                        // 13147 - Ugg. Necklace
+                        // 13517 - Wedding Ring
+                        // 13842 - Tavnazian Mask
+                        //if (i_id > 13517)
+                        //{
+                        //    MessageBox.Show("No description found for item '" + m_items[i_id].m_name + "' (" + i_id + ")");
+                        //    return false;
+                        //}
+                        continue;
+                    }
+                    l_desc = m_desc[i_id];
                     // First run any global substitutions on the description.
                     foreach (SubstitutionPair i_sub in m_globalSubs)
                     {
