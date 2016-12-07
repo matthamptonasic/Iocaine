@@ -58,8 +58,13 @@ namespace Iocaine2.Parsing
         #endregion Public Properties
 
         #region Inits
-        public static bool Init_Process()
+        public static bool Init_Process(bool iWipeClean = false)
         {
+            if (iWipeClean)
+            {
+                m_initDone = false;
+                Categorizer.DeleteBookmark();
+            }
             if (m_initDone)
             {
                 return true;
@@ -70,11 +75,11 @@ namespace Iocaine2.Parsing
             {
                 return false;
             }
-            if (!Items.Init_Process(m_luaPath))
+            if (!Items.Init_Process(m_luaPath, iWipeClean))
             {
                 return false;
             }
-            if (!ItemDescriptions.Init_Process(m_luaPath))
+            if (!ItemDescriptions.Init_Process(m_luaPath, iWipeClean))
             {
                 return false;
             }

@@ -40,7 +40,7 @@ namespace Iocaine2.Parsing
             private static List<ushort> m_weaponIds;
             private static Dictionary<ushort, string> m_desc; //References the one in ItemDescriptions.
             private static Dictionary<string, List<ItemInfo>> m_postProcessingItems;
-            private static Dictionary<ushort, string> m_specialCases = new Dictionary<ushort, string>();
+            private static Dictionary<ushort, string> m_specialCases;
             #endregion Private Members
 
             #region Public Properties
@@ -92,8 +92,12 @@ namespace Iocaine2.Parsing
             #endregion Public Properties
 
             #region Inits
-            internal static bool Init_Process(string iFilePath)
+            internal static bool Init_Process(string iFilePath, bool iWipeClean = false)
             {
+                if (iWipeClean)
+                {
+                    m_parsed = false;
+                }
                 m_filePath = Path.Combine(iFilePath, m_fileName);
                 loadSpecialCases();
                 parse();
@@ -130,7 +134,7 @@ namespace Iocaine2.Parsing
             {
                 ItemDescriptions.GetItemDescriptions(out m_desc);
                 string l_newName;
-                //List<string> l_allAdded = new List<string>();
+                List<string> l_allAdded = new List<string>();
                 foreach (string i_name in m_postProcessingItems.Keys)
                 {
                     // Go through each item name (list of ItemInfo's) and determine if
@@ -230,7 +234,7 @@ namespace Iocaine2.Parsing
                                 else
                                 {
                                     m_ids.Add(l_newName, i_info.m_id);
-                                    //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                                    l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
                                 }
                             }
                             else
@@ -248,21 +252,21 @@ namespace Iocaine2.Parsing
                                 {
                                     m_ids.Add(l_newName, m_ids[l_oldName]);
                                     m_ids[l_oldName] = i_info.m_id;
-                                    //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                                    l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
                                 }
                             }
                         }
                         else
                         {
                             m_ids.Add(l_newName, i_info.m_id);
-                            //l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
+                            l_allAdded.Add(l_newName + "[" + i_info.m_id + "]");
                         }
                     }
                     // Add 1 entry with the common name.
                     if (!m_ids.ContainsKey(i_name))
                     {
                         m_ids.Add(i_name, l_lowId);
-                        //l_allAdded.Add(i_name + "[" + l_lowId + "]");
+                        l_allAdded.Add(i_name + "[" + l_lowId + "]");
                     }
                     else
                     {
@@ -519,6 +523,7 @@ namespace Iocaine2.Parsing
             }
             private static void loadSpecialCases()
             {
+                m_specialCases = new Dictionary<ushort, string>();
                 if (File.Exists(m_specialFileName))
                 {
                     StreamReader l_reader = new StreamReader(m_specialFileName, UTF8Encoding.UTF8);

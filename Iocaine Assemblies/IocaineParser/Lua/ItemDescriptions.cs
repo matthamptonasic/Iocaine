@@ -26,8 +26,12 @@ namespace Iocaine2.Parsing
             #endregion Public Properties
 
             #region Inits
-            internal static bool Init_Process(string iFilePath)
+            internal static bool Init_Process(string iFilePath, bool iWipeClean = false)
             {
+                if (iWipeClean)
+                {
+                    m_parsed = false;
+                }
                 m_filePath = Path.Combine(iFilePath, m_fileName);
                 parse();
                 return true;

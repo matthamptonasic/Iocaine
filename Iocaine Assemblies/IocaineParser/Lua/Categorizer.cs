@@ -53,6 +53,10 @@ namespace Iocaine2.Parsing
 
             private static bool m_parseArmor = true;
             private static bool m_parseWeapons = true;
+
+            private static float m_percentDone = 0f;
+            private const string m_bookmarkFileName = @"Parsing\Parsing_Bookmark.txt";
+            private static ushort m_startParsingAt = 0;
             #endregion Private Members
 
             #region Public Properties
@@ -77,6 +81,7 @@ namespace Iocaine2.Parsing
                 {
                     return;
                 }
+                loadBookmark();
                 // Run through each substitution, replacing the description in place.
                 if (!runSubstitutions())
                 {
@@ -88,8 +93,10 @@ namespace Iocaine2.Parsing
                 // Manually update the filters and restart.
                 if (!runCategorization())
                 {
+                    saveBookmark();
                     return;
                 }
+                saveBookmark();
             }
             internal static void SetDescription(ref Dictionary<ushort, string> iDesc)
             {
@@ -110,6 +117,14 @@ namespace Iocaine2.Parsing
             internal static void SetWeaponIds(ref List<ushort> iWeaponIds)
             {
                 m_weaponIds = iWeaponIds;
+            }
+            internal static void DeleteBookmark()
+            {
+                if (File.Exists(m_bookmarkFileName))
+                {
+                    File.Delete(m_bookmarkFileName);
+                }
+                m_startParsingAt = 0;
             }
             #endregion Internal Methods
 
@@ -234,6 +249,24 @@ namespace Iocaine2.Parsing
                 }
                 return false;
             }
+            private static void loadBookmark()
+            {
+                if (!File.Exists(m_bookmarkFileName))
+                {
+                    return;
+                }
+                StreamReader l_reader = new StreamReader(m_bookmarkFileName);
+                string l_line = "";
+                l_line = l_reader.ReadLine();
+                ushort.TryParse(l_line, out m_startParsingAt);
+                l_reader.Close();
+            }
+            private static void saveBookmark()
+            {
+                StreamWriter l_writer = new StreamWriter(m_bookmarkFileName, false);
+                l_writer.WriteLine(m_startParsingAt);
+                l_writer.Close();
+            }
             private static bool runSubstitutions()
             {
                 foreach (SubstitutionPair i_pair in m_substitutions)
@@ -267,6 +300,7 @@ namespace Iocaine2.Parsing
             }
             private static bool runCategorization()
             {
+                m_percentDone = 0f;
                 List<ushort> l_itemIds = new List<ushort>();
                 if (m_parseArmor)
                 {
@@ -276,10 +310,17 @@ namespace Iocaine2.Parsing
                 {
                     l_itemIds.AddRange(m_weaponIds);
                 }
+                float l_totalItems = l_itemIds.Count;
 
                 bool l_itemClear = false;
+                ushort l_cnt = 0;
                 foreach (ushort i_id in l_itemIds)
                 {
+                    l_cnt++;
+                    if (i_id < m_startParsingAt)
+                    {
+                        continue;
+                    }
                     l_itemClear = false;
                     string l_desc = "";
                     if (!m_desc.ContainsKey(i_id))
@@ -359,6 +400,8 @@ namespace Iocaine2.Parsing
                                 l_msg += "\n";
                             }
                         }
+                        m_percentDone = l_cnt / l_totalItems * 100;
+                        l_msg += "\n\nPercent Complete: " + m_percentDone.ToString("f2") + "%";
                         DialogResult l_dialRslt = MessageBox.Show(l_msg + "\n\nOpen this in text editor?", "Item Description Parser Miss", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
                         if (l_dialRslt == DialogResult.Yes)
                         {
@@ -368,6 +411,10 @@ namespace Iocaine2.Parsing
                             Process.Start(m_tempFileName);
                         }
                         return false;
+                    }
+                    else
+                    {
+                        m_startParsingAt = i_id;
                     }
                 }
 
