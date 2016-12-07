@@ -423,6 +423,8 @@ Ajjub Bow::Increases "Double Shot" damage=>"Double Shot" damage +3%
 // ====== Drain & Aspir ======
 Striga Crown::Enhances the effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Appetence Crown::Enhances effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
+Excelsis Ring::Enhances effect of "Drain" and "Aspir"=>"Drain"+5 "Aspir"+5
+Hirudinea Earring::Enhances effect of "Drain" and "Aspir"=>"Drain"+3 "Aspir"+3
 
 // ====== Dread Spikes ======
 Bale Cuirass +1::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +13%
@@ -471,6 +473,9 @@ Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
 Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
 Caller's Pgch. +2::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+40
 Conveyance Cape::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+30
+
+// ====== Enemy Critical Hit Rate ======
+Griffon Ring::Reduces enemy critical hit rate=>Enemy critical hit rate +0
 
 // ====== Enfeebling ======
 Estq. Sayon +2::Enhances enfeebling magic effect=>Enfeebling magic effect +10
@@ -945,6 +950,7 @@ Tactics Pearl::(.*)=>
 Rajas Ring::STR\+2～5 DEX\+2～5=>STR+5 DEX+5
 Sattva Ring::HP\+15～30 VIT\+2～5 AGI\+2～5=>HP+30 VIT+5 AGI+5
 Tamas Ring::MP\+15～30 INT\+2～5 MND\+2～5=>MP+30 INT+5 MND+5
+Glory Crown::.*=>
 
 // ====== Monster Correlation ======
 Assim. Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
