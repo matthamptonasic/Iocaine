@@ -123,6 +123,25 @@ Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 Caller's Horn +1::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+1
 Caller's Horn +2::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+2
 
+// ====== Bar-Spells ======
+Blessed Briault::Enhances elemental resistance spells=>Elemental resistance spells+0
+Blessed Briault +1::Enhances elemental resistance spells=>Elemental resistance spells+0
+
+// ====== Barrage ======
+Htr. Bracers +1::Enhances "Barrage" effect=>"Barrage"+1
+Orion Bracers::Enhances "Barrage" effect=>"Barrage"+1
+Phineus' Gun::Enhances "Barrage" effect=>"Barrage"+1
+Gastraphetes(75)::Increases "Barrage" accuracy=>"Barrage" Accuracy+30
+Gastraphetes(80)::Increases "Barrage" accuracy II=>"Barrage" Accuracy+40
+Gastraphetes(85)::Increases "Barrage" accuracy III=>"Barrage" Accuracy+50
+Gastraphetes(90)::Increases "Barrage" accuracy IV=>"Barrage" Accuracy+60
+Gastraphetes(95)::Increases "Barrage" accuracy IV=>"Barrage" Accuracy+60
+Gastraphetes(99)::Increases "Barrage" accuracy V=>"Barrage" Accuracy+70
+Gastraphetes(99)Afterglow::Increases "Barrage" accuracy V=>"Barrage" Accuracy+70
+Gastraphetes(119)::Increases "Barrage" accuracy V=>"Barrage" Accuracy+70
+Gastraphetes(119)Afterglow::Increases "Barrage" accuracy V=>"Barrage" Accuracy+70
+Gastraphetes(119)Afterglow Final::Increases "Barrage" Accuracy V=>"Barrage" Accuracy+70
+
 // ====== Berserk ======
 // ====== Defense Penalty Down & Duration ======
 Warrior's Calligae::Enhances "Berserk" effect=>Berserk defense penalty -15%
@@ -287,6 +306,13 @@ Cruadin::Increases critical hit damage=>Critical hit damage +0
 // Occasionally increases critical hit damage...
 Asteria::critical hit damage=>critical hit damage +20%
 Supernal Knife::critical hit damage=>critical hit damage +10%
+
+// ====== Critical Hit Rate ======
+Assassin's Vest::Increases rate of critical hits=>Critical hit rate +0
+Asn. Vest +1::Increases rate of critical hits=>Critical hit rate +0
+Sipahi Jawshan::Increases rate of critical hits=>Critical hit rate +3
+Abtal Jawshan::Increases rate of critical hits=>Critical hit rate +3
+Pln. Khazagand::Increases rate of critical hits=>Critical hit rate +0
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -456,6 +482,9 @@ Estq. Houseaux +1::Increases enhancing magic effect duration=>Enhancing magic du
 Estq. Houseaux +2::Increases enhancing magic effect duration=>Enhancing magic duration +20
 Estoqueur's Cape::Increases enhancing magic effect duration=>Enhancing magic duration +10
 
+// ====== Enhances the Effect of... ======
+Dream Robe +1::(Enhances the effect of Selbina milk)=>$1.
+
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
 Neit's Slops::Enhances "Fast Cast" effect=>Fast Cast +1
@@ -468,6 +497,7 @@ Ebon Tam::Enhances "Fast Cast" effect=>Fast Cast +2
 Ebur Tam::Enhances "Fast Cast" effect=>Fast Cast +2
 Furia Tam::Enhances "Fast Cast" effect=>Fast Cast +2
 Wlk. Chapeau +1::Enhances "Fast Cast" effect=>Fast Cast +10
+Duelist's Tabard::Enhances "Fast Cast" effect=>Fast Cast +10
 Dls. Tabard +1::Enhances "Fast Cast" effect=>Fast Cast +10
 Homam Cosciales::Enhances "Fast Cast" effect=>Fast Cast +5
 Marduk's Tiara::Enhances "Fast Cast" effect=>Fast Cast {2=0,3=0,4=0,5=5}
@@ -797,6 +827,9 @@ Pipilaka Belt::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+5
 // ======   Undead Killer   ======
 Undead Earring::Weakens "Undead Killer" effect=>"Undead Killer"-3
 Arcana Earring::Enhances "Undead Killer" effect=>"Undead Killer"+3
+Vampiric Mitts::Enhances "Undead Killer" effect=>"Undead Killer"+5
+Caballero Gnt.::Enhances "Undead Killer" effect=>"Undead Killer"+5
+Exorcist Hose::Enhances "Undead Killer" effect=>"Undead Killer"+3
 // ======   Vermin Killer   ======
 Lizard Earring::Enhances "Vermin Killer" effect=>"Vermin Killer"+3
 Vermin Earring::Weakens "Vermin Killer" effect=>"Vermin Killer"-3
@@ -864,6 +897,11 @@ Call. Bracers +2::Enhances "Mana Cede" effect=>"Mana Cede"+100
 Goetia Sabots +1:: Enhances "Mana Wall" effect=>"Mana Wall"+5%
 Goetia Sabots +2:: Enhances "Mana Wall" effect=>"Mana Wall"+10%
 
+// ====== Maneuver ======
+Pup. Dastanas::Enhances "Maneuver" effects=>"Maneuver" effects +1
+Pup. Dastanas +1::Enhances "Maneuver" effects=>"Maneuver" effects +1
+Foire Dastanas::Enhances "Maneuver" effects=>"Maneuver" effects +1
+
 // ====== Martial Arts ======
 Wrestler's Mantle::Enhances "Martial Arts" effect=>"Martial Arts"+0
 Shaolin Belt::Enhances "Martial Arts" effect=>"Martial Arts"+10
@@ -902,11 +940,19 @@ Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
 Kaikias' Cape::(Wind Elemental) (Magic Accuracy\+\d) Wind Elemental ("Magic Atk. Bonus"\+\d)=>$1: $2 $3
 Chimera Hairpin::(Wind Elemental) ("Magic Atk. Bonus"\+\d)=>$1: $2
 Aries Mantle::Sleep:=>While asleep:
+Signal Pearl::(.*)=>
+Tactics Pearl::(.*)=>
+Rajas Ring::STR\+2～5 DEX\+2～5=>STR+5 DEX+5
+Sattva Ring::HP\+15～30 VIT\+2～5 AGI\+2～5=>HP+30 VIT+5 AGI+5
+Tamas Ring::MP\+15～30 INT\+2～5 MND\+2～5=>MP+30 INT+5 MND+5
 
 // ====== Monster Correlation ======
 Assim. Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
 Magus Keffiyeh +1::Enhances monster correlation effects=>Monster correlation effects+0
 Magus Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
+
+// ====== Movement Speed ======
+Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
 
 // ====== Nether Void ======
 Bale Flanchard +1::Enhances "Nether Void" effect=>Nether Void+15
@@ -1221,7 +1267,9 @@ Iuitl Wristbands::Enh. "Snapshot" ef.=>"Snapshot"+5
 Cama. Bow::Enhances "Snapshot" effect=>"Snapshot"+0
 Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
 
-// ====== Sneak Attack ======
+// ====== Sneak/Trick Attack ======
+Rog. Armlets +1::Increases "Trick Attack" damage=>"Trick Attack" damage+15
+Pillager's Armlets::Increases "Trick Attack" damage=>"Trick Attack" damage+15
 Raid. Armlets +1::Increases "Sneak Attack" damage=>"Sneak Attack"+10
 Raid. Armlets +2::Increases "Sneak Attack" damage=>"Sneak Attack"+20
 Vajra(75)::Enhances "Sneak Attack" effect=>"Sneak Attack" critical hit damage +10%
@@ -1284,6 +1332,9 @@ Vishap Armet::Enhances "Spirit Link" effect=>"Spirit Link"+10
 // ====== Spur ======
 Ferine Ocreae +1::Enhances "Spur" effect=>"Spur"+5
 Ferine Ocreae +2::Enhances "Spur" effect=>"Spur"+10
+
+// ====== Stealth ======
+Sneaking Boots::Enhances "Stealth" effect=>"Stealth"+1
 
 // ====== Steps ======
 Dancer's Bangles(M)::Increases "Steps?" accuracy=>"Step" accuracy +10
@@ -1358,6 +1409,9 @@ Brave's Kecks::Improves "Tame" success rate=>"Tame" success rate +0
 Khimaira Kecks::Improves "Tame" success rate=>"Tame" success rate +0
 Stout Kecks::Improves "Tame" success rate=>"Tame" success rate +0
 Totemic Helm::Increases "Tame" success rate=>"Tame" success rate +25
+
+// ====== Teleport ======
+Dcl.Grd. Ring::.*=>Teleport: Ru'Lude Gardens
 
 // ====== Third Eye ======
 Saotome Haidate::Augments "Third Eye"=>"Third Eye": "Counter" rate +15
