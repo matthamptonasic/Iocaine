@@ -101,6 +101,10 @@ Drachen Brais::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 Drn. Brais +1::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 Vishap Brais::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 
+// ====== Aquaveil ======
+Emphatikos Rope::Enhances "Aquaveil" effect=>"Aquaveil"+1
+Shedir Seraweels::Enhances "Aquaveil" effect=>"Aquaveil"+1
+
 // ====== Arcane Circle ======
 Chaos Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 Chs. Sollerets +1::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
@@ -122,6 +126,12 @@ Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 // ====== Avatar's Favor ======
 Caller's Horn +1::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+1
 Caller's Horn +2::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+2
+
+// ====== Banish ======
+Fenian Ring::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
+Cleric's Mitts::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
+Clr. Mitts +1::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
+Clr. Mitts +2::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
 
 // ====== Bar-Spells ======
 Blessed Briault::Enhances elemental resistance spells=>Elemental resistance spells+0
@@ -240,6 +250,9 @@ Hes. Gloves +1::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
 // ====== Climactic Flourish ======
 Charis Tiara +1::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +10%
 Charis Tiara +2::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +20%
+
+// ====== Combat Skills ======
+Combatant's Torque::Combat skills (\+\d+)=>Hand-to-Hand skill $1 Dagger skill $1 Sword skill $1 Great Sword skill $1 Scythe skill $1 Polearm skill $1 Katana skill $1 Great Katana skill $1 Club skill $1 Staff skill $1 Archery skill $1 Marksmanship skill $1 Throwing skill $1 Evasion skill $1 Guarding skill $1 Parrying skill $1 Shield skill $1
 
 // ====== Counter ======
 Cobra Cap::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
@@ -425,6 +438,7 @@ Striga Crown::Enhances the effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Appetence Crown::Enhances effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Excelsis Ring::Enhances effect of "Drain" and "Aspir"=>"Drain"+5 "Aspir"+5
 Hirudinea Earring::Enhances effect of "Drain" and "Aspir"=>"Drain"+3 "Aspir"+3
+Evanescence Ring::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 
 // ====== Dread Spikes ======
 Bale Cuirass +1::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +13%
@@ -468,6 +482,9 @@ Svnt. Bonnet +2::Enhances "Ebullience" effect=>"Ebullience"+10
 // ====== Efflux ======
 Mavi Tayt +1::Enhances "Efflux" effect=>"Efflux" TP Bonus +125
 Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
+
+// ====== Element Resistance ======
+Ahosi Leggings::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 
 // ====== Elemental Siphon ======
 Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
@@ -852,6 +869,10 @@ Abyss Sollerets::Enhances "Last Resort" effect=>"Last Resort"+1
 Abs. Sollerets +1::Enhances "Last Resort" effect=>"Last Resort"+1
 Abs. Sollerets +2::Enhances "Last Resort" effect=>"Last Resort"+1
 
+// ====== Light Arts ======
+Scholar's Pants::Enhances "Light Arts" effect=>Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15
+Scholar's Pants +1::Enhances "Light Arts" effect=>Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15
+
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
 Chl. Trousers +1::Bonus damage added to magic burst=>Magic burst damage +10
@@ -893,6 +914,11 @@ Aegis(90)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(95)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(99)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(99)Afterglow::Magic damage taken II (-\d+)%=>Magic damage taken $1
+
+// ====== Magic Skills ======
+Inyanga Dastanas::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Inyan. Dastanas +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Incanter's Torque::Magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 
 // ====== Mana Cede ======
 Caller's Bracers +1::Enhances "Mana Cede" effect=>"Mana Cede"+50
@@ -1012,6 +1038,9 @@ Tantra Crown +2::Increases "Perfect Counter" attack=>"Perfect Counter" attack +2
 Svnt. Bracers +1::Enhances "Perpetuance" effect=>"Perpetuance"+25%
 Svnt. Bracers +2::Enhances "Perpetuance" effect=>"Perpetuance"+50%
 
+// ====== Pet Effects ======
+Herder's Subligar::Enhances pet accuracy=>Pet: Accuracy +5 Ranged Accuracy +5
+
 // ====== Phantom Roll ======
 Nvrch. Gants +1::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+5
 Nvrch. Gants +2::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+10
@@ -1108,6 +1137,194 @@ Foire Babouches::Enhances "Repair" effect=>"Repair"+1
 Pup. Babouches::Enhances "Repair" effect=>"Repair"+1
 Pup. Babouches +1::Enhances "Repair" effect=>"Repair"+1
 Guignol Earring::Enhances "Repair" potency=>"Repair" potency +20%
+
+// ====== Resistance Modifiers ======
+// ====== Resistance All ======
+Killer Shortbow::Increases resistance to all status ailments=>"Resist All"+0
+Hearty Earring::Increases resistance to all status ailments=>"Resist All"+5
+Adamas::Increases resistance to all status ailments=>"Resist All"+0
+Elegant Ribbon::Increases resistance to all status ailments=>"Resist All"+0
+Flawless Ribbon::Increases resistance to all status ailments=>"Resist All"+0
+// ====== Resist Amnesia ======
+Appetence Crown::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
+Urja Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
+Sthira Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
+// ====== Resist Bind ======
+Genin Mantle::Enhances "Resist Bind" effect=>"Resist Bind"+0
+Arete Del Sol::Enhances "Resist Bind" effect=>"Resist Bind"+0
+Ruler::Enhances "Resist Bind" effect=>"Resist Bind"+0
+// ====== Resist Blind ======
+Ashigaru Mantle::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Vision Earring::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Blood Ring::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Kyudogi::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Kyudogi +1::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Cobra Bow::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Fourth Toporok::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Mst.Cst. Bow::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Rsv.Cpt.Grt. sword::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Snr.Msk. Axe::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Wyrm Mail::Enhances "Resist Blind" effect=>"Resist Blind"+0
+Enedron Glasses::Enhances "Resist Blind" effect=>"Resist Blind"+0
+// ====== Resist Charm ======
+Wuji Ring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Dusksoul Ring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Sangha Earring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Toad Mittens::Enhances "Resist Charm" effect=>"Resist Charm"+0
+M. No.17's Locket::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Unyielding Ring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Volunt. Earring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+// ====== Resist Curse ======
+Blood Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
+Dawnsoul Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
+// ====== Resist Gravity ======
+Skanda Boots::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
+Arete Del Sol::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
+Ruler::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
+Shura Sune-Ate::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
+Shr. Sune-Ate +1::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
+// ====== Resist Paralyze ======
+Ebullient Ring::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Peiste Mantle::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Peiste Mantle +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Pirate's Cape::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Scorpion Helm::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Scorpion Helm +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Birdman Cape::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Blood Ring::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Cactuar Ribbon::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Fourth Zaghnal::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Snr.Msk. Scythe::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Panther Mask::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Panther Mask +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Dalmatica::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Dalmatica +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Koenig Schuhs::Enhances effect of "Resist Paralyze"=>"Resist Paralyze"+0
+Kaiser Schuhs::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Shura Kote::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Shura Kote +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Abyss Burgeonet::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Abs. Burgeonet +1::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Sigma Earring::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Gnadgott::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Pyrosoul Ring::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Hreysti Helm::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Urja Jerkin::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Sthira Jerkin::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Algidus Cape::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+Icecrack Ring::Enhances "Resist Paralyze" effect=>"Resist Paralyze"+0
+// ====== Resist Petrify ======
+Unfettered Ring::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Peiste Belt::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Peiste Belt +1::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Peiste Mantle::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Peiste Mantle +1::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Mrc. Subligar::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Adder Jambiya::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Adder Jambiya +1::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Januwiyah::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Januwiyah +1::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Perseus's Harpe::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Apathy Gorget::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Stormsoul Ring::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Jurfu Cloak::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+Prodigious Mantle::Enhances "Resist Petrify" effect=>"Resist Petrify"+0
+// ====== Resist Poison ======
+Chef's Hat::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Dobson Bandana::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Antivenom Earring::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Twinthread Obi::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Twinthread Obi +1::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Peiste Mantle::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Peiste Mantle +1::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Scp. Breastplate::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Scp. Brstplate +1::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Insect Ring::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Cobra Baghnakhs::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Mst.Cst.Baghnakhs::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Snr.Msk. Scimitar::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Gnadgott::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Adder Jambiya::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Adder Jambiya +1::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Orochi Nodowa::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Orochi Nodowa +1::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Thundersoul Ring::Enhances "Resist Poison" effect=>"Resist Poison"+0
+Waterfall Ring::Enhances "Resist Poison" effect=>"Resist Poison"+0
+// ====== Resist Silence ======
+Singer's Mantle::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Garrulous Ring::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Scp. Gauntlets::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Scp. Gnt. +1::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Ataractic Solea::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Malagigi's Trousers::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Insect Ring::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Stealth Earring::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Corselet::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Corselet +1::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Iron Ram Lance::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Rsv.Cpt. Lance::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Ruler::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Cleric's Cap::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Clr. Cap +1::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Zenith Crown::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Zenith Crown +1::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Spagyric Nails::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Icesoul Ring::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Urja Trousers::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Sthira Trousers::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Paean Boots::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Iaso Boots::Enhances "Resist Silence" effect=>"Resist Silence"+0
+Waterfall Ring::Enhances "Resist Silence" effect=>"Resist Silence"+0
+// ====== Resist Sleep ======
+Insomnia Earring::Enhances "Resist Sleep" effect=>"Resist Sleep"+5
+Viperine Pick::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Immortal's Cape::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Cactuar Ribbon::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Ruler::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Kng. Handschuhs::Enhances effect of "Resist Sleep"=>"Resist Sleep"+0
+Kaiser Handschuhs::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Urja Ledelsens::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Sthira Ledelsens::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+Wuji Ring::Enhances "Resist Sleep" effect=>"Resist Sleep"+0
+// ====== Resist Slow ======
+Webcutter::Enhances effect of "Resist Slow"=>"Resist Slow"+0
+Trimmer's Mantle::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Velocity Earring::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Arachne Obi::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Arachne Obi +1::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Fetter Lance::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Oynos Knife::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Jurfu Cloak::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Urja Helm::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Sthira Helm::Enhances "Resist Slow" effect=>"Resist Slow"+0
+Jwalamukhi Ring::Enhances "Resist Slow" effect=>"Resist Slow"+0
+// ====== Resist Stun ======
+Stoic Earring::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Bowman's Mask::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Carline Ribbon::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Mrc. Mantle::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Arete Del Sol::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Terrasoul Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
+Icecrack Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
+// ====== Resist Virus ======
+Hale Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Dark Amood::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Dark Amood +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Insect Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Shining Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Scintillant Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Jambiya::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Jambiya +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Spagyric Nails::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Amood::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Amood +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Thalassocrat::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Thalassocrat +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Wootz Amood::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Wootz Amood +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Gnadgott::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Aquasoul Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+Jwalamukhi Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
 
 // ====== Restraint ======
 Rvg. Mufflers +1::Enhances "Restraint" effect=>"Restraint"+50
@@ -1231,6 +1448,11 @@ Aymur(119)::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bo
 Aymur(119)Afterglow::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
 Aymur(119)Afterglow Final::Enhances "Sic" and "Ready" effect=>"Sic" TP Bonus +500 "Ready" TP Bonus +500
 Charmer's Merlin::"Sic" and "Ready" ability delay (-\d)=>"Sic" ability delay $1 "Ready" ability delay $1
+
+// ====== Skill Gain Rate ======
+Terminus Earring::Increases combat skill gain rate=>Combat skill gain rate +0
+Prouesse Ring::Increases combat skill gain rate=>Combat skill gain rate +0
+Liminus Earring::Increases magic skill gain rate=>Magic skill gain rate +0
 
 // ====== Skillchain Bonus ======
 Charis Bangles +1::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+5
@@ -1391,6 +1613,9 @@ Siriti::Enhances "Sublimation" effect=>"Sublimation"+1
 Savant's Earring::Enhances "Sublimation" effect=>"Sublimation"+1
 Argute Gown +2::Enhances "Sublimation" effect=>"Sublimation"+2
 Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
+
+// ====== Synthesis ======
+Shaper's Shawl::Increases synthesis skill gain rate=>Synthesis skill gain rate +25%
 
 // ====== Tactical Guard ======
 Tantra Gloves +1::Enhances "Tactical Guard" effect=>"Tactical Guard"+15
