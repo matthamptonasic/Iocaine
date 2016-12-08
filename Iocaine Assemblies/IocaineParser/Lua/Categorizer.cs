@@ -211,6 +211,7 @@ namespace Iocaine2.Parsing
                         if (l_match.Groups.Count != 4)
                         {
                             MessageBox.Show("Could not parse substitution '" + l_line + "'");
+                            l_reader.Close();
                             return false;
                         }
                         SubstitutionPair l_pair = new SubstitutionPair();
