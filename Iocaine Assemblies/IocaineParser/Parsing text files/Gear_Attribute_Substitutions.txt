@@ -41,6 +41,19 @@ Vishap Mail::Adds "Regen" effect to wyvern=>Wyvern: "Regen"+2
 *::Adds "Regen" effect=>"Regen"+1
 *::(?:Decreases|Reduces) movement speed=>Movement speed -12
 
+// Cases where the description is cut off.
+Souv. Schaller +1::Set.*=>Set: Reduces damage taken
+Carm. Sc. Mail +1::Magic damage t.*=>Magic damage taken -4% Set: Increases Accuracy
+Erilaz Surcoat::Set:.*=>Set: Occ. absorbs damage taken
+Erilaz Surcoat +1::Set:.*=>Set: Occ. absorbs damage taken
+Herculean Boots:: Phy.*=> Physical damage taken -2%
+Found. Breastplate::Annuls dama.*=>Annuls damage taken +2%
+
+// Other typos.
+Luhlaza Jubbah +1::"Evasion=>Evasion
+Luhlaza Jubbah +1::Refesh=>Refresh
+Foire Tobe +1::Magic Evastion=>Magic Evasion
+
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
 Bale Gauntlets +1::Enhances "Absorb-TP" effect=>"Absorb-TP" effect +5%
@@ -220,6 +233,9 @@ Hunter's Jerkin::Enhances "Camouflage" effect=>"Camouflage" duration +0
 Htr. Jerkin +1::Enhances "Camouflage" effect=>"Camouflage" duration +0
 Orion Jerkin::Enhances "Camouflage" effect=>"Camouflage" duration +0
 
+// ====== Cardinal Chant ======
+Geomancy Galero::Enhances "Cardinal Chant" effect=>"Cardinal Chant"+1
+
 // ====== Caster's Roll ======
 Nvrch. Culottes +1::Occ. enhances "Caster's Roll" effect=>"Caster's Roll"+5
 Nvrch. Culottes +2::Enhances "Caster's Roll" effect=>"Caster's Roll"+10
@@ -244,8 +260,8 @@ Mel. Gloves +1::Enhances "Chakra" effect II=>"Chakra"+30 Chakra removes Disease.
 Mel. Gloves +2::Enhances "Chakra" effect III=>"Chakra"+40 Chakra removes Disease Plague.
 Anchorite's Cyclas::Enhances "Chakra" effect=>"Chakra"+60 Chakra removes Paralysis.
 Anch. Cyclas +1::("Chakra"\+\d+)=>$1 Chakra removes Paralysis.
-Hes. Gloves::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
-Hes. Gloves +1::("Chakra III"\+\d+)=>$1 Chakra removes Disease Plague.
+Hes. Gloves::"Chakra III"(\+\d+)=>"Chakra"$1 Chakra removes Disease Plague.
+Hes. Gloves +1::"Chakra III"(\+\d+)=>"Chakra"$1 Chakra removes Disease Plague.
 
 // ====== Climactic Flourish ======
 Charis Tiara +1::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +10%
@@ -319,6 +335,8 @@ Cruadin::Increases critical hit damage=>Critical hit damage +0
 // Occasionally increases critical hit damage...
 Asteria::critical hit damage=>critical hit damage +20%
 Supernal Knife::critical hit damage=>critical hit damage +10%
+Pillager's Bonnet::Increases critical hit damage=>Critical hit damage +3%
+Pillager's Vest::Increases critical hit damage=>Critical hit damage +5%
 
 // ====== Critical Hit Rate ======
 Assassin's Vest::Increases rate of critical hits=>Critical hit rate +0
@@ -332,11 +350,11 @@ Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect dura
 Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect duration +30
 
 // ====== Cursna ======
-Ephedra Ring::Enhances "Cursna" effect=>Cursna+10
-Haoma's Ring::Enhances "Cursna" effect=>Cursna+15
-Hieros Mittens::Enhances "Cursna" effect=>Cursna+0
-Malison Medallion::Enhances "Cursna" effect=>Cursna+10
-Debilis Medallion::Enhances "Cursna" effect=>Cursna+15
+Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
+Haoma's Ring::Enhances "Cursna" effect=>"Cursna"+15
+Hieros Mittens::Enhances "Cursna" effect=>"Cursna"+0
+Malison Medallion::Enhances "Cursna" effect=>"Cursna"+10
+Debilis Medallion::Enhances "Cursna" effect=>"Cursna"+15
 Saida Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +15
 Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +20
 
@@ -364,10 +382,10 @@ Yagrush(119)Afterglow Final::Enhances "Divine Benison" effect III=>"Divine Benis
 Creed Sabatons +1::Enhances "Divine Emblem" effect=>"Divine Emblem"+5
 Creed Sabatons +2::Enhances "Divine Emblem" effect=>"Divine Emblem"+10
 
-// ====== Divine Carress ======
-Orison Mitts +1::Enhances "Divine Caress" effect=>"Divine Carress"+2
-Orison Mitts +2::Enhances "Divine Caress" effect=>"Divine Carress"+3
-Mending Cape::Enhances "Divine Caress" effect=>"Divine Carress"+2
+// ====== Divine Caress ======
+Orison Mitts +1::Enhances "Divine Caress" effect=>"Divine Caress"+2
+Orison Mitts +2::Enhances "Divine Caress" effect=>"Divine Caress"+3
+Mending Cape::Enhances "Divine Caress" effect=>"Divine Caress"+2
 
 // ====== Divine Veil ======
 Orison Cap +1::Enhances "Divine Veil" effect=>"Divine Veil"+5%
@@ -423,6 +441,7 @@ Rvg. Lorica +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Rvg. Mufflers +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Rvg. Cuisses +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Rvg. Calligae +2::Augments "Double Attack"=>Double Attack occ. deals double damage
+Quiahuiz Helm::Increases "Double Attack" damage=>Double Attack damage +5%
 
 // ====== Double Shot ======
 // ====== Enmity ======
@@ -439,10 +458,13 @@ Appetence Crown::Enhances effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Excelsis Ring::Enhances effect of "Drain" and "Aspir"=>"Drain"+5 "Aspir"+5
 Hirudinea Earring::Enhances effect of "Drain" and "Aspir"=>"Drain"+3 "Aspir"+3
 Evanescence Ring::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
-
-// ====== Dread Spikes ======
-Bale Cuirass +1::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +13%
-Bale Cuirass +2::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +25%
+Bagua Galero::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Bagua Galero +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Lugra Cloak::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Lugra Cloak +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Fall. Fin. Gaunt.::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Fall. Fin. Gaunt. +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Merlinic Crackows::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -485,6 +507,10 @@ Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
 
 // ====== Element Resistance ======
 Ahosi Leggings::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Erilaz Greaves::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Erilaz Greaves +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Founder's Corona::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Runeist Coat +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 
 // ====== Elemental Siphon ======
 Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
@@ -506,6 +532,19 @@ Estoqueur's Cape::Increases enhancing magic effect duration=>Enhancing magic dur
 
 // ====== Enhances the Effect of... ======
 Dream Robe +1::(Enhances the effect of Selbina milk)=>$1.
+
+// ====== Enmity Decrease ======
+Zouave's Beret::Boosts e(nmity decrease when taking damage)=>E$1 +0
+Beguiling Collar::Boosts e(nmity decrease when taking damage)=>E$1 +0
+
+// ====== Enmity Retention ======
+Creed Cuisses +1::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
+Creed Cuisses +2::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
+Creed Collar::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
+Erilaz Surcoat::Boosts (Enmity retention when taking damage \+\d+)=>$1
+Erilaz Surcoat +1::Boosts (Enmity retention when taking damage \+\d+)=>$1
+Chevalier's Cuisses::Reduces (Enmity decrease when taking damage \+\d+)=>$1
+Chev. Cuisses +1::Reduces (Enmity decrease when taking damage \+\d+)=>$1
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -695,10 +734,8 @@ Chanar Xyston::"?Jump"? TP Bonus=>"Jump" TP Bonus +20
 Chanar Xyston +1::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
 Vishap Mail::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
 Vish. Fin. Gaunt::"?Jump"? TP Bonus=>"Jump" TP Bonus +30
-Crusher Gauntlets::"?Jump"? TP Bonus=>"Jump" TP Bonus +25
 Lncr. Schynbld. +1::"Spirit Jump" TP Bonus=>"Spirit Jump": TP Bonus +25
 Lncr. Schynbld. +2::"Spirit Jump" TP Bonus=>"Spirit Jump": TP Bonus +50
-Pelt. Schynbalds::"Spirit Jump": TP Bonus=>"Spirit Jump": TP Bonus +60
 // ====== Critical Hit ======
 Ryunohige(75)::Augments jump attacks=>Jump critical hit
 Ryunohige(80)::Augments jump attacks II=>Jump critical hit Jump attack +13%
@@ -916,9 +953,11 @@ Aegis(99)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(99)Afterglow::Magic damage taken II (-\d+)%=>Magic damage taken $1
 
 // ====== Magic Skills ======
-Inyanga Dastanas::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
-Inyan. Dastanas +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
-Incanter's Torque::Magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Inyanga Dastanas::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Inyan. Dastanas +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Incanter's Torque::Magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Stikini Ring::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Stikini Ring +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 
 // ====== Mana Cede ======
 Caller's Bracers +1::Enhances "Mana Cede" effect=>"Mana Cede"+50
@@ -985,6 +1024,11 @@ Magus Keffiyeh::Enhances monster correlation effects=>Monster correlation effect
 
 // ====== Movement Speed ======
 Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
+
+// ====== Mug ======
+Assassin's Bonnet::Enhances "Mug" effect=>"Mug"+1
+Asn. Bonnet +1::Enhances "Mug" effect=>"Mug"+1
+Asn. Bonnet +2::Enhances "Mug" effect=>"Mug"+1
 
 // ====== Nether Void ======
 Bale Flanchard +1::Enhances "Nether Void" effect=>Nether Void+15
@@ -1115,6 +1159,7 @@ Surcouf's Jambiya::Adds "Recycle" effect=>"Recycle"+0
 // ====== Refresh ======
 Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
 Ixion Cloak::Adds "Regen" and "Refresh" effect=>"Regen"+1 "Refresh"+1
+Cait Sith Cap +1::Cait Sith's protection=>"Refresh"+1 "Magic Def. Bonus"+1
 // ====== Potency ======
 Estqr. Fuseau +2::Enhances "Refresh" potency=>"Refresh" potency +1
 // ====== Duration ======
@@ -1145,6 +1190,8 @@ Hearty Earring::Increases resistance to all status ailments=>"Resist All"+5
 Adamas::Increases resistance to all status ailments=>"Resist All"+0
 Elegant Ribbon::Increases resistance to all status ailments=>"Resist All"+0
 Flawless Ribbon::Increases resistance to all status ailments=>"Resist All"+0
+Erilaz Gauntlets::Resistance to all status ailments (\+\d+)=>"Resist All"$1
+Erilaz Gauntlets +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 // ====== Resist Amnesia ======
 Appetence Crown::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
 Urja Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
@@ -1549,6 +1596,19 @@ Chaos Burgeonet::Enhances "Souleater" effect=>"Souleater"+2
 Chs. Burgeonet +1::Enhances "Souleater" effect=>"Souleater"+2
 Ignominy Burgeonet::Enhances "Souleater" effect=>"Souleater"+2
 
+// ====== Spell Interruption Rate ======
+Marduk's Jubbah +1::(Summoning magic interruption rate down)=>$1 +0
+
+// ====== Spikes Spells ======
+// ====== Dread Spikes ======
+Bale Cuirass +1::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +13%
+Bale Cuirass +2::Enhances "Dread Spikes" effect=>"Dread Spikes" potency +25%
+// ====== All ======
+Duelist's Tights::Enhances effect of "Spikes" spells=>"Spikes" spell damage +3
+Dls. Tights +1::Enhances effect of "Spikes" spells=>"Spikes" spell damage +3
+Dls. Tights +2::Enhances effect of "Spikes" spells=>"Spikes" spell damage +4
+Mrc. Trousers::Enhances effect of "Spikes" spells=>"Spikes" spell damage +0
+
 // ====== Spirit Link ======
 Drn. Armet +1::Enhances "Spirit Link" effect=>"Spirit Link"+0
 Lncr. Vmbrc. +1::Enhances "Spirit Link" effect=>"Spirit Link"+5 "Spirit Link" removal +1
@@ -1678,6 +1738,10 @@ Nvrch. Frac +2::Increases "Triple Shot" effect duration=>"Triple Shot"+10%
 
 // ====== Utsusemi ======
 Iga Kyahan +2::Enhances "Utsusemi" effect=>"Utsusemi"+1
+
+// ====== Vallation ======
+Ogma's cape::"Vallation" and "Valiance" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
+Runeist Coat +1::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
 
 // ====== Violent Flourish ======
 Etoile Casaque::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
