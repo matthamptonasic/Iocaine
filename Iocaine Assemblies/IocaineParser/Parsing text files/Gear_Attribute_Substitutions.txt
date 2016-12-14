@@ -48,11 +48,16 @@ Erilaz Surcoat::Set:.*=>Set: Occ. absorbs damage taken
 Erilaz Surcoat +1::Set:.*=>Set: Occ. absorbs damage taken
 Herculean Boots:: Phy.*=> Physical damage taken -2%
 Found. Breastplate::Annuls dama.*=>Annuls damage taken +2%
+Spae. Sabots +2::Elemental magic casting time.*=>Elemental magic casting time -5%
+Spaekona's Petasos +3::Elemental magic casting.*=>Elemental magic casting time -6%
+Spae. Sabots +3::Elemental magic casting time.*=>Elemental magic casting time -6%
 
 // Other typos.
 Luhlaza Jubbah +1::"Evasion=>Evasion
 Luhlaza Jubbah +1::Refesh=>Refresh
 Foire Tobe +1::Magic Evastion=>Magic Evasion
+Pill. Culottes +2::Critical danage=>Critical hit damage
+Ashera Harness::Accuray=>Accuracy
 
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
@@ -192,6 +197,10 @@ Chass. Tricorne +1::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+4
 // ====== Blood Rage ======
 Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
 Rvg. Lorica +2::Enhances "Blood Rage" effect=>"Blood Rage" duration +30
+
+// ====== Blue Magic ======
+Magus Bazubands::Increases chance to learn blue magic=>Chance to learn blue magic +0
+Mag. Bazubands +1::Increases chance to learn blue magic=>Chance to learn blue magic +0
 
 // ====== Boost ======
 Temple Gloves::Enhances "Boost" effect=>"Boost"+0
@@ -465,6 +474,8 @@ Lugra Cloak +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Fall. Fin. Gaunt.::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Fall. Fin. Gaunt. +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Merlinic Crackows::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Spae. Tonban +2::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Spae. Tonban +3::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -511,6 +522,8 @@ Erilaz Greaves::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1
 Erilaz Greaves +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Founder's Corona::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist Coat +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Runeist's Coat +2::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Runeist's Coat +3::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 
 // ====== Elemental Siphon ======
 Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
@@ -1192,6 +1205,8 @@ Elegant Ribbon::Increases resistance to all status ailments=>"Resist All"+0
 Flawless Ribbon::Increases resistance to all status ailments=>"Resist All"+0
 Erilaz Gauntlets::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Erilaz Gauntlets +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
+Rune. Trousers +2::Resistance to all status ailments (\+\d+)=>"Resist All"$1
+Rune. Trousers +3::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 // ====== Resist Amnesia ======
 Appetence Crown::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
 Urja Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
@@ -1394,13 +1409,16 @@ Khimaira Bonnet::Reduces "Reward" recast time=>"Reward" recast -10
 Stout Bonnet::Reduces "Reward" recast time=>"Reward" recast -15
 Totemic Trousers::Reduces "Reward" recast time=>"Reward" recast -15
 Mst. Trousers +2::Reduces "Reward" recast time=>"Reward" recast -10
-Ankusa Trousers::"Reward" recast time reduction \+15=>"Reward" recast -15
-Ankusa Trousers +1::"Reward" recast time reduction \+17=>"Reward" recast -17
+Ankusa Trousers::"Reward" recast time reduction \+(\d+)=>"Reward" recast -$1
+Ankusa Trousers +1::"Reward" recast time reduction \+(\d+)=>"Reward" recast -$1
+
 // ====== Removes ... ====== 
 Beast Jackcoat::Augments "Reward"=>Reward removes Paralysis Poison Blind.
 Bst. Jackcoat +1::Augments "Reward"=>Reward removes Paralysis Poison Blind.
 Totemic Jackcoat::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
 Tot. Jackcoat +1::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
+Tot. Jackcoat +2::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
+Tot. Jackcoat +3::Augments "Reward" III=>Reward removes Paralysis Poison Blind.
 Monster Jackcoat::Augments "Reward" II=>Reward removes Silence Weight Slow.
 Mst. Jackcoat +1::Augments "Reward" II=>Reward removes Silence Weight Slow.
 Mst. Jackcoat +2::Augments "Reward" III=>Reward removes Silence Weight Slow Paralysis Poison Blind.
@@ -1545,6 +1563,8 @@ Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
 // ====== Sneak/Trick Attack ======
 Rog. Armlets +1::Increases "Trick Attack" damage=>"Trick Attack" damage+15
 Pillager's Armlets::Increases "Trick Attack" damage=>"Trick Attack" damage+15
+Pill. Armlets +2::("Trick Attack")(\+\d+)=>$1 damage$2
+Pill. Armlets +3::("Trick Attack")(\+\d+)=>$1 damage$2
 Raid. Armlets +1::Increases "Sneak Attack" damage=>"Sneak Attack"+10
 Raid. Armlets +2::Increases "Sneak Attack" damage=>"Sneak Attack"+20
 Vajra(75)::Enhances "Sneak Attack" effect=>"Sneak Attack" critical hit damage +10%
@@ -1742,6 +1762,8 @@ Iga Kyahan +2::Enhances "Utsusemi" effect=>"Utsusemi"+1
 // ====== Vallation ======
 Ogma's cape::"Vallation" and "Valiance" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
 Runeist Coat +1::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
+Runeist's Coat +2::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
+Runeist's Coat +3::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
 
 // ====== Violent Flourish ======
 Etoile Casaque::Enhances "Violent Flourish" effect=>"Violent Flourish" accuracy +0
