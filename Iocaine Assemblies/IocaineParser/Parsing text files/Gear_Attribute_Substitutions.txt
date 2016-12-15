@@ -39,6 +39,8 @@ Vishap Mail::Adds "Regen" effect to wyvern=>Wyvern: "Regen"+2
 // Quantify class refresh/regen with values of 1
 *::Adds "Refresh" effect=>"Refresh"+1
 *::Adds "Regen" effect=>"Regen"+1
+
+// Movement speed down
 *::(?:Decreases|Reduces) movement speed=>Movement speed -12
 
 // Cases where the description is cut off.
@@ -58,6 +60,7 @@ Luhlaza Jubbah +1::Refesh=>Refresh
 Foire Tobe +1::Magic Evastion=>Magic Evasion
 Pill. Culottes +2::Critical danage=>Critical hit damage
 Ashera Harness::Accuray=>Accuracy
+Maxixi Casaque(F)::Potenct=>Potency
 
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
@@ -85,6 +88,7 @@ Onyx Cuisses::Enhances effect of "Absorb" spells=>"Absorb" effect duration +10
 Black Sollerets::Enhances effect of "Absorb" spells=>"Absorb" effect duration +10
 Onyx Sollerets::Enhances effect of "Absorb" spells=>"Absorb" effect duration +10
 Vicious Mufflers::Enhances effect of "Absorb" spells=>"Absorb" effect duration +10
+Erra Pendant::"Absorb" effect=>"Absorb" potency
 
 // ====== Accomplice & Collaborator ======
 Raid. Bonnet +1::Enhances "Accomplice" effect=>"Accomplice"+5%
@@ -201,6 +205,7 @@ Rvg. Lorica +2::Enhances "Blood Rage" effect=>"Blood Rage" duration +30
 // ====== Blue Magic ======
 Magus Bazubands::Increases chance to learn blue magic=>Chance to learn blue magic +0
 Mag. Bazubands +1::Increases chance to learn blue magic=>Chance to learn blue magic +0
+Assim. Bazu.::Increases chance to learn blue magic=>Chance to learn blue magic +0
 
 // ====== Boost ======
 Temple Gloves::Enhances "Boost" effect=>"Boost"+0
@@ -346,6 +351,8 @@ Asteria::critical hit damage=>critical hit damage +20%
 Supernal Knife::critical hit damage=>critical hit damage +10%
 Pillager's Bonnet::Increases critical hit damage=>Critical hit damage +3%
 Pillager's Vest::Increases critical hit damage=>Critical hit damage +5%
+Pillager's Armlets::Increases critical hit damage=>Critical hit damage +2%
+Pillager's Culottes::Increases critical hit damage=>Critical hit damage +3%
 
 // ====== Critical Hit Rate ======
 Assassin's Vest::Increases rate of critical hits=>Critical hit rate +0
@@ -366,6 +373,9 @@ Malison Medallion::Enhances "Cursna" effect=>"Cursna"+10
 Debilis Medallion::Enhances "Cursna" effect=>"Cursna"+15
 Saida Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +15
 Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects received +20
+Theo. Pantaloons::Enhances "Cursna" effect=>"Cursna"+0
+Gende. Galoshes::Enhances "Cursna" effect=>"Cursna"+0
+Mending Cape::Enhances "Cursna" effect=>"Cursna"+15
 
 // ====== Dark Arts ======
 Scholar's Gown::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +15 Elemental magic skill +15 Enfeebling magic skill +15
@@ -451,6 +461,7 @@ Rvg. Mufflers +2::Augments "Double Attack"=>Double Attack occ. deals double dama
 Rvg. Cuisses +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Rvg. Calligae +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Quiahuiz Helm::Increases "Double Attack" damage=>Double Attack damage +5%
+Quiahuiz Trousers::Increases "Double Attack" damage=>Double Attack damage +5%
 
 // ====== Double Shot ======
 // ====== Enmity ======
@@ -476,6 +487,9 @@ Fall. Fin. Gaunt. +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Merlinic Crackows::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Spae. Tonban +2::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Spae. Tonban +3::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Erra Pendant::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Austerity Belt +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Fucho-no-Obi::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -516,11 +530,17 @@ Svnt. Bonnet +2::Enhances "Ebullience" effect=>"Ebullience"+10
 Mavi Tayt +1::Enhances "Efflux" effect=>"Efflux" TP Bonus +125
 Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
 
+// ====== Element Magic by Day ======
+Sorcerer's Tonban::Elemental magic affected by day=>Elemental magic +5 depending on day
+Src. Tonban +1::Elemental magic affected by day=>Elemental magic +5 depending on day
+
+
 // ====== Element Resistance ======
 Ahosi Leggings::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Erilaz Greaves::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Erilaz Greaves +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Founder's Corona::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Runeist Coat::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist Coat +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist's Coat +2::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist's Coat +3::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
@@ -664,6 +684,9 @@ Leyline Gloves::"Fast Cast"=>Fast Cast
 Taeon Tabard::"Fast Cast"=>Fast Cast
 Sapience Orb::"Fast Cast"=>Fast Cast
 Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
+Acad. Bracers::Enhances "Fast Cast" effect=>Fast Cast +5
+Orvail Pants +1::Enhances "Fast Cast" effect=>Fast Cast +5
+Geomancy Pants::Enhances "Fast Cast" effect=>Fast Cast +0
 
 // ====== Feather Step ======
 Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
@@ -696,6 +719,9 @@ Tantra Gaiters +2::Enhances "Footwork" effect=>"Footwork"+5%
 // ====== Futae ======
 Iga Tekko +1::Enhances "Futae" effect=>"Futae"+0
 Iga Tekko +2::Enhances "Futae" effect=>"Futae"+0
+
+// ====== Gambit ======
+Runeist Mitons::Enhances "Gambit" effect=>"Gambit" effect duration +10
 
 // ====== Gilfinder ======
 Palmer's Bangles::("Gilfinder")=>$1+1
@@ -919,9 +945,13 @@ Abyss Sollerets::Enhances "Last Resort" effect=>"Last Resort"+1
 Abs. Sollerets +1::Enhances "Last Resort" effect=>"Last Resort"+1
 Abs. Sollerets +2::Enhances "Last Resort" effect=>"Last Resort"+1
 
+// ====== Life Cycle ======
+Geomancy Tunic::Enhances "Life Cycle" effect=>"Life Cycle"+0
+
 // ====== Light Arts ======
-Scholar's Pants::Enhances "Light Arts" effect=>Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15
-Scholar's Pants +1::Enhances "Light Arts" effect=>Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15
+Scholar's Pants::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15 Enfeebling magic skill +15
+Scholar's Pants +1::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15 Enfeebling magic skill +15
+Academic's Pants::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +18 Healing magic skill +18 Enhancing magic skill +18 Enfeebling magic skill +18
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -965,12 +995,16 @@ Aegis(95)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(99)::Magic damage taken II (-\d+)%=>Magic damage taken $1
 Aegis(99)Afterglow::Magic damage taken II (-\d+)%=>Magic damage taken $1
 
+// ====== Magic Defense Bonus ======
+Runeist Trousers::M\. Def\. B\.=>Magic Def. Bonus
+
 // ====== Magic Skills ======
 Inyanga Dastanas::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 Inyan. Dastanas +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 Incanter's Torque::Magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 Stikini Ring::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
 Stikini Ring +1::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
+Runeist Trousers::Div. mag. skl. (\+\d+)=>Divine magic skill $1
 
 // ====== Mana Cede ======
 Caller's Bracers +1::Enhances "Mana Cede" effect=>"Mana Cede"+50
@@ -1023,6 +1057,7 @@ Rubeus Boots::Elemental/Summoning=>Elemental magic skill +10 Summoning
 Kaikias' Cape::(Wind Elemental) (Magic Accuracy\+\d) Wind Elemental ("Magic Atk. Bonus"\+\d)=>$1: $2 $3
 Chimera Hairpin::(Wind Elemental) ("Magic Atk. Bonus"\+\d)=>$1: $2
 Aries Mantle::Sleep:=>While asleep:
+Nesanica Ring::sleeping:=>asleep:
 Signal Pearl::(.*)=>
 Tactics Pearl::(.*)=>
 Rajas Ring::STR\+2～5 DEX\+2～5=>STR+5 DEX+5
@@ -1037,6 +1072,7 @@ Magus Keffiyeh::Enhances monster correlation effects=>Monster correlation effect
 
 // ====== Movement Speed ======
 Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
+Skd. Jambeaux +1::Increases movement speed=>Movement speed +18%
 
 // ====== Mug ======
 Assassin's Bonnet::Enhances "Mug" effect=>"Mug"+1
@@ -1097,6 +1133,9 @@ Svnt. Bracers +2::Enhances "Perpetuance" effect=>"Perpetuance"+50%
 
 // ====== Pet Effects ======
 Herder's Subligar::Enhances pet accuracy=>Pet: Accuracy +5 Ranged Accuracy +5
+
+// ====== Pflug ======
+Runeist Bottes::Enhances "Pflug" effect=>"Pflug"+0
 
 // ====== Phantom Roll ======
 Nvrch. Gants +1::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+5
@@ -1168,11 +1207,14 @@ Handgonne +1::Adds "Recycle" effect=>"Recycle"+0
 Manibozho Gloves::Adds "Recycle" effect=>"Recycle"+10
 Lak. Frac::Adds "Recycle" effect=>"Recycle"+15
 Surcouf's Jambiya::Adds "Recycle" effect=>"Recycle"+0
+Gunslinger's Cape::("Recycle")=>$1+0
 
 // ====== Refresh ======
 Baalmuian Robe::Adds "Refresh" effect=>"Refresh"+2
 Ixion Cloak::Adds "Regen" and "Refresh" effect=>"Regen"+1 "Refresh"+1
 Cait Sith Cap +1::Cait Sith's protection=>"Refresh"+1 "Magic Def. Bonus"+1
+Geomancy Tunic::Adds "Refresh" ef\.=>"Refresh"+2
+Runeist Coat::Enh\. "Refresh" ef\.=>"Refresh"+2
 // ====== Potency ======
 Estqr. Fuseau +2::Enhances "Refresh" potency=>"Refresh" potency +1
 // ====== Duration ======
@@ -1205,6 +1247,8 @@ Elegant Ribbon::Increases resistance to all status ailments=>"Resist All"+0
 Flawless Ribbon::Increases resistance to all status ailments=>"Resist All"+0
 Erilaz Gauntlets::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Erilaz Gauntlets +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
+Runeist Trousers::Enh. res. to all status ailments=>"Resist All"+0
+Rune. Trousers +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +2::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +3::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 // ====== Resist Amnesia ======
@@ -1368,6 +1412,8 @@ Mrc. Mantle::Enhances "Resist Stun" effect=>"Resist Stun"+0
 Arete Del Sol::Enhances "Resist Stun" effect=>"Resist Stun"+0
 Terrasoul Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
 Icecrack Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
+// ====== Resist Terror ======
+Founder's Greaves::Terror resistance (\+\d+)=>"Resist Terror"$1
 // ====== Resist Virus ======
 Hale Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
 Dark Amood::Enhances "Resist Virus" effect=>"Resist Virus"+0
@@ -1493,6 +1539,9 @@ Aegis(90)::Augments "Shield Bash" IV=>"Shield Bash"+230
 Aegis(95)::Augments "Shield Bash" V=>"Shield Bash"+240
 Aegis(99)::Augments "Shield Bash" VI=>"Shield Bash"+250
 Aegis(99)Afterglow::Augments "Shield Bash" VI=>"Shield Bash"+250
+
+// ====== Shield Block ======
+Beatific Shield::Increases chance of successful block=>Chance of successful block +0
 
 // ====== Shield Defense Bonus ======
 Crd. Gauntlets +1::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+1
@@ -1696,6 +1745,7 @@ Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
 
 // ====== Synthesis ======
 Shaper's Shawl::Increases synthesis skill gain rate=>Synthesis skill gain rate +25%
+Craftkeeper's Ring::Likelihood of synthesis material loss-(\d%)=>Decreases likelihood of synthesis material loss +$1
 
 // ====== Tactical Guard ======
 Tantra Gloves +1::Enhances "Tactical Guard" effect=>"Tactical Guard"+15
@@ -1761,6 +1811,7 @@ Iga Kyahan +2::Enhances "Utsusemi" effect=>"Utsusemi"+1
 
 // ====== Vallation ======
 Ogma's cape::"Vallation" and "Valiance" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
+Runeist Coat::Enh. "Valiance" and "Vallation" effects=>"Vallation" effect duration +15 "Valiance" effect duration +15
 Runeist Coat +1::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
 Runeist's Coat +2::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
 Runeist's Coat +3::"Valiance" and "Vallation" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
