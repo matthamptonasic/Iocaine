@@ -114,6 +114,41 @@ namespace Iocaine2.Parsing
         #endregion Inits
 
         #region Public Methods
+        public static List<string> GetItemAttributes(string iFilter)
+        {
+            List<string> l_retVal = new List<string>();
+            Items.ItemInfo l_info = Items.GetItem(ref iFilter);
+            if (l_info.m_id == 0)
+            {
+                l_retVal.Add("Error");
+                return l_retVal;
+            }
+            l_retVal.Add(l_info.m_name);
+            l_retVal.Add(ItemDescriptions.GetDescription(l_info.m_id));
+            string l_attrStr = "";
+            if (l_info.m_attributes == null)
+            {
+                return l_retVal;
+            }
+            foreach (Categorizer.AttrValue i_attr in l_info.m_attributes)
+            {
+                l_attrStr = Categorizer.GetAttributeName(i_attr.m_attrId) + " =";
+                foreach (short i_val in i_attr.m_values)
+                {
+                    if (i_attr.m_type == Categorizer.ValueType.SHORT)
+                    {
+                        l_attrStr += " " + i_val;
+                    }
+                    else
+                    {
+                        float l_tmpFloat = i_val / 10f;
+                        l_attrStr += " " + l_tmpFloat.ToString("1");
+                    }
+                }
+                l_retVal.Add(l_attrStr);
+            }
+            return l_retVal;
+        }
         #endregion Public Methods
 
         #region Private Methods
