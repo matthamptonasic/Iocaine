@@ -2995,7 +2995,31 @@ namespace Iocaine2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Weapon count: " + Parsing.Lua.Items.WeaponsCount);
+            Parsing.Lua.Categorizer.Load();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Parsing.Lua.Init_Process(true);
+            Parsing.Lua.Categorizer.Load();
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
+            {
+                if (textBox2.Text != "")
+                {
+                    // Search for item based on given filter.
+                    List<string> l_attr = Parsing.Lua.GetItemAttributes(textBox2.Text);
+                    if (l_attr != null)
+                    {
+                        listBox1.Items.Clear();
+                        listBox1.Items.AddRange(l_attr.ToArray());
+                    }
+                }
+                e.Handled = true;
+            }
         }
     }
 }

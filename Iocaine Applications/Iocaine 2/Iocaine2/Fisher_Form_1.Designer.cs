@@ -537,6 +537,9 @@
             this.WMS_SatchelOccLabel = new System.Windows.Forms.Label();
             this.WMS_BagOccLabel = new System.Windows.Forms.Label();
             this.WMS_PooledLB = new System.Windows.Forms.ListBox();
+            this.GS_Tab = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.TA_Tab = new System.Windows.Forms.TabPage();
             this.TA_MapPB = new System.Windows.Forms.PictureBox();
             this.TA_Hold_WS_HPP2Label = new System.Windows.Forms.Label();
@@ -656,8 +659,8 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.GS_Tab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -725,6 +728,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CB_MR_Ingredient1Quan_UpDown)).BeginInit();
             this.Synergizer_Tab.SuspendLayout();
             this.WMS_Tab.SuspendLayout();
+            this.GS_Tab.SuspendLayout();
             this.TA_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TA_MapPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TA_Fighting_DistanceUpDown)).BeginInit();
@@ -746,7 +750,6 @@
             this.About_Tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c_ErrorLightPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerConnectionLightPB)).BeginInit();
-            this.GS_Tab.SuspendLayout();
             this.SuspendLayout();
             // 
             // Fish_Bot_Tab
@@ -6874,6 +6877,39 @@
             this.WMS_PooledLB.Size = new System.Drawing.Size(525, 355);
             this.WMS_PooledLB.TabIndex = 15;
             // 
+            // GS_Tab
+            // 
+            this.GS_Tab.Controls.Add(this.listBox1);
+            this.GS_Tab.Controls.Add(this.textBox2);
+            this.GS_Tab.Controls.Add(this.button2);
+            this.GS_Tab.Controls.Add(this.button1);
+            this.GS_Tab.Location = new System.Drawing.Point(4, 25);
+            this.GS_Tab.Name = "GS_Tab";
+            this.GS_Tab.Size = new System.Drawing.Size(525, 403);
+            this.GS_Tab.TabIndex = 12;
+            this.GS_Tab.Text = "Search";
+            this.GS_Tab.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(225, 25);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Clean Parse";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(230, 163);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Parse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TA_Tab
             // 
             this.TA_Tab.Controls.Add(this.TA_MapPB);
@@ -8172,25 +8208,21 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // GS_Tab
+            // textBox2
             // 
-            this.GS_Tab.Controls.Add(this.button1);
-            this.GS_Tab.Location = new System.Drawing.Point(4, 25);
-            this.GS_Tab.Name = "GS_Tab";
-            this.GS_Tab.Size = new System.Drawing.Size(525, 403);
-            this.GS_Tab.TabIndex = 12;
-            this.GS_Tab.Text = "Search";
-            this.GS_Tab.UseVisualStyleBackColor = true;
+            this.textBox2.Location = new System.Drawing.Point(3, 75);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(196, 20);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
-            // button1
+            // listBox1
             // 
-            this.button1.Location = new System.Drawing.Point(230, 163);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(3, 100);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(196, 173);
+            this.listBox1.TabIndex = 3;
             // 
             // Iocaine_2_Form
             // 
@@ -8327,6 +8359,8 @@
             this.Synergizer_Tab.ResumeLayout(false);
             this.WMS_Tab.ResumeLayout(false);
             this.WMS_Tab.PerformLayout();
+            this.GS_Tab.ResumeLayout(false);
+            this.GS_Tab.PerformLayout();
             this.TA_Tab.ResumeLayout(false);
             this.TA_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TA_MapPB)).EndInit();
@@ -8353,7 +8387,6 @@
             this.About_Tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.c_ErrorLightPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ServerConnectionLightPB)).EndInit();
-            this.GS_Tab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8989,5 +9022,8 @@
         private System.Windows.Forms.RadioButton Nav_Rec_InsertAbove_RB;
         private System.Windows.Forms.TabPage GS_Tab;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
