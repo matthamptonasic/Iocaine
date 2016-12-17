@@ -143,7 +143,7 @@ namespace Iocaine2
         #region Action Parsing
         private Data.Structures.Action parseActionInfo()
         {
-            Data.Structures.Action actn = null;
+            //Data.Structures.Action actn = null;
             switch (TF_ActionTypeCB.SelectedIndex)
             {
                 //case (int)ActionType.Cast:

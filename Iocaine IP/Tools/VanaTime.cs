@@ -9,7 +9,6 @@ using Iocaine2.Memory;
 
 namespace Iocaine2.Tools
 {
-
     public class VanaTime
     {
         #region Members
@@ -291,11 +290,13 @@ namespace Iocaine2.Tools
                 {
                     return new DateTime(localJpTime.Year, localJpTime.Month, localJpTime.Day, 0, 0, 0);
                 }
+                #pragma warning disable CS0162
                 if (!testTimeStartedSet)
                 {
                     testTimeStarted = Now.ToEarth().AddHours(9);
                     testTimeStartedSet = true;
                 }
+                #pragma warning restore CS0162
                 TimeSpan sinceStart = localJpTime - testTimeStarted;
                 if (sinceStart.TotalMinutes < testMinutesToReset)
                 {

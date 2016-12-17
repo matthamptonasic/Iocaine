@@ -2718,7 +2718,6 @@ namespace Iocaine2
         }
         private void Nav_Prc_setTimeRemainingTextCallBackFunction(uint iTimeMs)
         {
-            //Monitor.Enter(m_TOP_TimerLabelLock);
             try
             {
                 lock(m_TOP_TimerLabelLock)
@@ -2749,12 +2748,10 @@ namespace Iocaine2
                     }
                 }
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception e)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
-            }
-            finally
-            {
-                //Monitor.Exit(m_TOP_TimerLabelLock);
             }
         }
         #endregion Label Updates

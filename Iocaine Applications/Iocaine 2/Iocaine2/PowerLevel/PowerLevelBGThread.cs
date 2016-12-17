@@ -10,6 +10,7 @@ namespace Iocaine2.Bots
 {
     public sealed partial class PowerLevel : Bot
     {
+#pragma warning disable CS0414
         private class PowerLevelBGThread
         {
             private Thread m_thread = null;
@@ -34,5 +35,6 @@ namespace Iocaine2.Bots
             }
 
         }
+#pragma warning restore CS0414
     }
 }

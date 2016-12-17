@@ -1085,7 +1085,6 @@ namespace Iocaine2.Bots
                     for (int ii = 0; ii < nbLines; ii++)
                     {
                         ChatLine chatString = null;
-                        int chatCode = 0;
                         if (!chatLog.Read(out chatString))
                         {
                             LoggingFunctions.Error("Could not read chat log from Crafter");

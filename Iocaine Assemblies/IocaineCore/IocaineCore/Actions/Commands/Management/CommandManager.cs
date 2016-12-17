@@ -30,7 +30,6 @@ namespace Iocaine2.Data.Structures
         #endregion Skill Types
         #region Flags
         private static object padlock = new object();
-        private static Boolean allCmdsSet = false;
         #endregion Flags
         #region Command Lists
         private static List<Command> allCommands = new List<Command>();

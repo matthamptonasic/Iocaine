@@ -88,7 +88,9 @@ namespace Iocaine2
         #region Flags
         private static Boolean PL_FirstInitDone = false;
         private static Boolean PL_CuresInitDone = false;
+        #pragma warning disable CS0414
         private static Boolean PL_PauseDebuffsParser = false;
+        #pragma warning restore CS0414
         #endregion Flags
         #region Threads
         private Thread PL_EnqueueThread = null;

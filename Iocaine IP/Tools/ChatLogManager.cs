@@ -436,7 +436,6 @@ namespace Iocaine2.Tools
 
 
         private volatile bool _backgroundlogger_stop_loop;
-        private byte _backgroundlogger_previous_chat_position;
         private void pollingLoop()
         {
             while (!_backgroundlogger_stop_loop)
