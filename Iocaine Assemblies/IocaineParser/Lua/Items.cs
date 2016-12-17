@@ -283,6 +283,18 @@ namespace Iocaine2.Parsing
                 //LoggingFunctions.Timestamp(l_allNewNames);
                 //Process.Start(LoggingFunctions.Name);
             }
+            internal static ItemInfo GetItem(ref string iFilter)
+            {
+                if (m_ids.ContainsKey(iFilter))
+                {
+                    return m_items[m_ids[iFilter]];
+                }
+                else
+                {
+                    // TBD - do a search for the item.
+                }
+                return new ItemInfo();
+            }
             #endregion Internal Methods
 
             #region Private Methods
