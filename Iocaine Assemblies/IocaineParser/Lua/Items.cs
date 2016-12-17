@@ -26,6 +26,7 @@ namespace Iocaine2.Parsing
                 public uint m_jobs;
                 public uint m_flags;
                 public string m_name;
+                public List<Categorizer.AttrValue> m_attributes;
             }
             #endregion Structs
 
@@ -390,6 +391,7 @@ namespace Iocaine2.Parsing
             private static bool processLine(ref string iLine, out ItemInfo oInfo)
             {
                 oInfo = new ItemInfo();
+                oInfo.m_attributes = null;
 
                 string l_patternNum = "=([^,}]*)[,}]";
                 string l_patternStr = "=\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)";  //"=\"([^\"]*)\"";
