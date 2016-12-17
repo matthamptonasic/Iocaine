@@ -47,6 +47,14 @@ namespace Iocaine2.Parsing
                 }
                 oDesc = m_desc;
             }
+            internal static string GetDescription(ushort iId)
+            {
+                if (m_desc.ContainsKey(iId))
+                {
+                    return m_desc[iId];
+                }
+                return "";
+            }
             internal static void Reparse()
             {
                 m_desc = null;
