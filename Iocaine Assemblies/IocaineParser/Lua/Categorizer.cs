@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -21,8 +22,101 @@ namespace Iocaine2.Parsing
                 This is where we run through each gear item and break down the item description into categories
                 and then build the ParsedDataset.GearAttributes table.
 
+                This table would be at least 500 columns wide and 13k+ deep. Each value will probably be stored as 32-bits
+                which gives a data structure of over 26MB.  That's not the best use of resources, especially considering
+                each item will only be using maybe 20 bytes (5 attributes average), not 2k bytes.
+
+                * So let's create a dictionary per filter/attribute and stuff an itemID + value pair in each.
+                When this is done, we'll have a list of every filter/attribute and each item + value for that filter/attribute.
+
+                * To make this work with restricted (sub-category) items, we'll need to keep track of un/restricted attributes
+                separately so that we can select either.
+                The restricted attribute can be the total of any unrestricted + restricted attributes of the same ID.
+                This way we do not need to keep another list for the total value.
+
+                We'll also probably want a list of attribute + value for each itemID so that we can look at the categorized item.
+                This will make it much easier to check that we're categorizing correctly as well as maybe letting the user
+                link to a displayed item by clicking on the attributes.
+
+                To fully understand the dictionary scheme above, we'll need to know every kind of 'value' we're storing.
+                Most will be signed short's. Some will be boolean which we can either save as short's or use a union.
+                - To know each value type, we can simply do a full parse and dump every match value into a file to view.
+                - Print out the filter name as well so we know what we're dealing with.
+
+                => We may be parsing:
+                1. signed shorts
+                2. boolean (match, but only 1 group)
+                3. float (at least in case of PDToTP)
+                4. string (most sub-categories, restrictions like "cannot equip...", Teleport, Dispense)
+                    - Sub-categories should be able to be broken down further until no strings remain.
+                    - The others are not quantifiable, so we may as well NOT capture and display the whole match to the user.
+                    - These two should allow us to remove the string match after all parsing is done.
+
+                The information we need to encapsulate is:
+                1. Attribute ID - identify which attribute we're specifying a value for.
+                2. Item ID - the item being categorized.
+                3. The value(s) of the attribute.
+                4. Whether this value is restricted or unrestricted (e.g. Salvage, Legion, etc).
+                5. Whether this value includes augmented values or not.
+
+                ===============================================================================================================
+                We'll also have to figure out how we're going to add in augmentation options.
+                Example 1: Adhemar Bonnet (Fixed sets of augments)
+                A. AGI+10, DEX+10, Accuracy+15
+                B. STR+10, DEX+10, Attack+15
+                C. AGI+10, Ranged Accuracy+15, Ranged Attack+15
+                D. HP+80, Attack+10, PDT-3%
+
+                This will create 4 different items, each with the same itemID, but having different AugmentIDs.
+
+                Example 2: Herculean Helm
+                A. STR+15
+                B. DEX+15
+                ...
+                H. Accuracy+40
+                I. Attack+40
+                ...
+                N. WS Dmg+5%
+                O. Critical Hit Rate +5%
+                P. Store TP +5
+                ...
+                HH. "Regen"+4
+
+                Again, each will have the same itemID, but unique AugmentIDs.
+            */
+            /*
+                Thought - Should we make the filters hierarchical so we can sort them in a tree-like structure?
+                Or so that the user can select a broader category like all job abilities?
+                Seems like a lot of extra work for a little payoff.
+            */
+            /*
+                == User Perspective ==
+                The user wants to be able to select and filter at least the following:
+                
+                - List gear in descending order of values if applicable.
+                    1. Any attribute/filter.
+                    2. Any job(s).
+                    3. Any slot(s).
+                    4. With or without restrictions (latent, assault, etc).
+                    5. With and/or without flags (rare, exclusive, etc).
+                    6. With and/or without augments.
+                - Once a filter is selected, list any related filters as well.
+                  e.g. HP+ and HPP+
+
+                - Search all items by name with wildcards or regex.
+                - Search all items by description with wildcards or regex.
+                - Search all filters/categories by name with wildcards or regex.
             */
             #endregion Description
+
+            #region Enums
+            public enum ValueType : byte
+            {
+                SHORT,
+                BOOL,
+                FLOAT
+            }
+            #endregion Enums
 
             #region Structs
             private struct SubstitutionPair
@@ -31,29 +125,50 @@ namespace Iocaine2.Parsing
                 public string m_old;
                 public string m_new;
             }
+            [StructLayout(LayoutKind.Explicit)]
+            public struct AttrValue
+            {
+                [FieldOffset(0)] public ValueType m_type;
+                [FieldOffset(1)] public ushort m_attrId;
+                [FieldOffset(3)] public ushort m_itemId;
+                [FieldOffset(5)] public bool m_restricted;
+                [FieldOffset(6)] public bool m_augmented;
+                [FieldOffset(7)] public bool m_bool;
+                [FieldOffset(7)] public bool m_float;
+                [FieldOffset(7)] public bool m_short;
+            }
             #endregion Structs
 
             #region Private Members
+            // Master Maps & Lists
             private static Dictionary<ushort, string> m_desc;
             private static Dictionary<ushort, Items.ItemInfo> m_items;
             private static Dictionary<string, ushort> m_ids;
             private static List<ushort> m_armorIds;
             private static List<ushort> m_weaponIds;
 
-            private const string m_filterFileName = @"Parsing\Gear_Attribute_Filters.txt";
-            //private static Dictionary<string, List<string>> m_filters; // <column_name, List<filter_strings> >
+            // Substitutions
             private const string m_subsFileName = @"Parsing\Gear_Attribute_Substitutions.txt";
             private static List<SubstitutionPair> m_substitutions;
             private static List<SubstitutionPair> m_globalSubs;
-            private const string m_tempFileName = @"Parsing\tempDescription.txt";
+
+            // Filters
+            private const string m_filterFileName = @"Parsing\Gear_Attribute_Filters.txt";
             private static Dictionary<string, Dictionary<string, List<string>>> m_subCategories; // <sub-cat <column_name, List<filter_string> > >
             private const string m_noSubCatName = "";
+            private const string m_tempFileName = @"Parsing\tempDescription.txt";
+
+            // Attributes (Parsed)
+            private static Dictionary<string, ushort> m_attrToId;
+            private static Dictionary<ushort, string> m_idToAttr;
 
             private static bool m_loaded = false;
 
+            // Processing flags
             private static bool m_parseArmor = true;
             private static bool m_parseWeapons = true;
 
+            // Parsing Bookmark & Progress
             private static float m_percentDone = 0f;
             private const string m_bookmarkFileName = @"Parsing\Parsing_Bookmark.txt";
             private static ushort m_startParsingAt = 0;
@@ -131,6 +246,9 @@ namespace Iocaine2.Parsing
             #region Private Methods
             private static bool loadFilters()
             {
+                ushort l_attrId = 0;
+                m_idToAttr = new Dictionary<ushort, string>();
+                m_attrToId = new Dictionary<string, ushort>();
                 //m_filters = new Dictionary<string, List<string>>();
                 m_subCategories = new Dictionary<string, Dictionary<string, List<string>>>();
                 if (File.Exists(m_filterFileName))
@@ -182,6 +300,12 @@ namespace Iocaine2.Parsing
                         else
                         {
                             m_subCategories[l_subCategory][l_colName] = new List<string> { l_filter };
+                            if (l_subCategory == m_noSubCatName)
+                            {
+                                m_idToAttr.Add(l_attrId, l_colName);
+                                m_attrToId.Add(l_colName, l_attrId);
+                                l_attrId++;
+                            }
                         }
                         l_subCategory = m_noSubCatName;
                     }
@@ -301,6 +425,10 @@ namespace Iocaine2.Parsing
             }
             private static bool runCategorization()
             {
+                // TBD - remove dump file when finished testing.
+                StreamWriter l_writer = new StreamWriter(@"Parsing\dump.txt", false);
+                l_writer.AutoFlush = false;
+
                 m_percentDone = 0f;
                 List<ushort> l_itemIds = new List<ushort>();
                 if (m_parseArmor)
@@ -328,20 +456,6 @@ namespace Iocaine2.Parsing
                     {
                         // TBD - For now do nothing.
                         // Once we have augments to parse, we'll need to do that.
-                        // 11697 is Moonshade Earring.
-                        // 11988 - 12007 are job-specific torques that are either not available or not used in the game?
-                        // 12491 - Onion cap no longer exists.
-                        // 12619 - Onion harness no longer exists.
-                        // 13121 - Beast Collar
-                        // 13122 - Miner's Pendant
-                        // 13147 - Ugg. Necklace
-                        // 13517 - Wedding Ring
-                        // 13842 - Tavnazian Mask
-                        //if (i_id > 13517)
-                        //{
-                        //    MessageBox.Show("No description found for item '" + m_items[i_id].m_name + "' (" + i_id + ")");
-                        //    return false;
-                        //}
                         continue;
                     }
                     l_desc = m_desc[i_id];
@@ -411,6 +525,8 @@ namespace Iocaine2.Parsing
                             l_ostream.Close();
                             Process.Start(m_tempFileName);
                         }
+                        l_writer.Flush();
+                        l_writer.Close();
                         return false;
                     }
                     else
@@ -418,7 +534,8 @@ namespace Iocaine2.Parsing
                         m_startParsingAt = i_id;
                     }
                 }
-
+                l_writer.Flush();
+                l_writer.Close();
                 return true;
             }
             #endregion Private Methods
