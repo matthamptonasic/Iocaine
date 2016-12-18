@@ -20,6 +20,9 @@
 18988=Kenkonken(75)(Incomplete)
 
 // These descriptions are cut off in the lua files, so our parsing fails.
+21139=Laevateinn(119)
+21140=Laevateinn(119)Afterglow
+22062=Laevateinn(119)Afterglow Final
 21062=Yagrush(119)
 21063=Yagrush(119)Afterglow
 21078=Yagrush(119)Afterglow Final

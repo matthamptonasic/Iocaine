@@ -35,6 +35,8 @@
 // ====== Special Regen Cases ======
 Drachen Mail::Adds "Regen" effect to wyvern=>Wyvern: "Regen"+1
 Vishap Mail::Adds "Regen" effect to wyvern=>Wyvern: "Regen"+2
+Himthige::Regen=>"Regen"+15
+Dukkha::Regen=>"Regen"+30
 
 // Quantify class refresh/regen with values of 1
 *::Adds "Refresh" effect=>"Refresh"+1
@@ -123,6 +125,12 @@ Drachen Brais::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 Drn. Brais +1::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 Vishap Brais::Enhances "Ancient Circle" effect=>"Ancient Circle"+1
 
+// ====== Animator ======
+Animator::^.*$=>
+Animator +1::^.*$=>DEX+4
+Turbo Animator::^.*$=>DEX+2
+Deluxe Animator::^.*$=>DEX+6
+
 // ====== Aquaveil ======
 Emphatikos Rope::Enhances "Aquaveil" effect=>"Aquaveil"+1
 Shedir Seraweels::Enhances "Aquaveil" effect=>"Aquaveil"+1
@@ -131,6 +139,9 @@ Shedir Seraweels::Enhances "Aquaveil" effect=>"Aquaveil"+1
 Chaos Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 Chs. Sollerets +1::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 Igno. Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
+
+// ====== Aura Steal ======
+Sagasinger::Steals enhancement effect=>"Aura Steal"+20
 
 // ====== Auspice ======
 Orsn. Duckbills +1::Enhances "Auspice" effect=>"Auspice"+5
@@ -211,6 +222,7 @@ Assim. Bazu.::Increases chance to learn blue magic=>Chance to learn blue magic +
 Temple Gloves::Enhances "Boost" effect=>"Boost"+0
 Tpl. Gloves +1::Enhances "Boost" effect=>"Boost"+0
 Anchorite's Gloves::Enhances "Boost" effect=>"Boost"+0
+Taurine Cesti::Enhances "Boost" effect=>"Boost"+0
 
 // ====== Bounty Shot ======
 Syl. Glvltte. +1::Enhances "Bounty Shot" effect=>"Bounty Shot"+1
@@ -276,6 +288,9 @@ Anchorite's Cyclas::Enhances "Chakra" effect=>"Chakra"+60 Chakra removes Paralys
 Anch. Cyclas +1::("Chakra"\+\d+)=>$1 Chakra removes Paralysis.
 Hes. Gloves::"Chakra III"(\+\d+)=>"Chakra"$1 Chakra removes Disease Plague.
 Hes. Gloves +1::"Chakra III"(\+\d+)=>"Chakra"$1 Chakra removes Disease Plague.
+
+// ====== Chocobo ======
+Chocobo Wand::Extends chocobo riding time=>Chocobo riding time +0
 
 // ====== Climactic Flourish ======
 Charis Tiara +1::Enhances "Climactic Flourish" effect=>Climactic Flourish: Critical hit rate +1 Critical hit damage +10%
@@ -360,10 +375,23 @@ Asn. Vest +1::Increases rate of critical hits=>Critical hit rate +0
 Sipahi Jawshan::Increases rate of critical hits=>Critical hit rate +3
 Abtal Jawshan::Increases rate of critical hits=>Critical hit rate +3
 Pln. Khazagand::Increases rate of critical hits=>Critical hit rate +0
+Ragnarok(75)::Increases rate of critical hits=>Critical hit rate +5
+Ragnarok(80)::Increases rate of critical hits II=>Critical hit rate +7
+Ragnarok(85)::Increases rate of critical hits III=>Critical hit rate +10
+Ragnarok(90)::Increases rate of critical hits IV=>Critical hit rate +12
+Ragnarok(95)::Increases rate of critical hits IV=>Critical hit rate +12
+Ragnarok(99)::Increases rate of critical hits V=>Critical hit rate +14
+Ragnarok(99)Afterglow::Increases rate of critical hits V=>Critical hit rate +14
+Ragnarok(119)::Increases rate of critical hits V=>Critical hit rate +14
+Ragnarok(119)Afterglow::Increases rate of critical hits V=>Critical hit rate +14
+Ragnarok(119)Afterglow Final::Enhances critical hit rate V=>Critical hit rate +14
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
 Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect duration +30
+
+// ====== Cure Potency ======
+Dia Wand::Enhances "Cure" potency=>"Cure" potency +1%
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
@@ -385,6 +413,9 @@ Academic's Gown::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +18 El
 // ====== Despoil ======
 Raid. Poulaines +1::Enhances "Despoil" effect=>"Despoil" effect +0
 Raid. Poulaines +2::Enhances "Despoil" effect=>"Despoil" effect +0
+
+// ====== Dia ======
+Dia Wand::Enhances "Dia" effect=>"Dia"+1
 
 // ====== Divine Benison ======
 Yagrush(80)::Enhances "Divine Benison" effect=>"Divine Benison"+1
@@ -462,6 +493,7 @@ Rvg. Cuisses +2::Augments "Double Attack"=>Double Attack occ. deals double damag
 Rvg. Calligae +2::Augments "Double Attack"=>Double Attack occ. deals double damage
 Quiahuiz Helm::Increases "Double Attack" damage=>Double Attack damage +5%
 Quiahuiz Trousers::Increases "Double Attack" damage=>Double Attack damage +5%
+Widowmaker::Increases "Double Attack" damage=>Double Attack damage +0%
 
 // ====== Double Shot ======
 // ====== Enmity ======
@@ -477,6 +509,7 @@ Striga Crown::Enhances the effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Appetence Crown::Enhances effect of "Drain" and "Aspir"=>"Drain"+10 "Aspir"+10
 Excelsis Ring::Enhances effect of "Drain" and "Aspir"=>"Drain"+5 "Aspir"+5
 Hirudinea Earring::Enhances effect of "Drain" and "Aspir"=>"Drain"+3 "Aspir"+3
+Bounty Sickle::Enhances effect of "Drain" and "Aspir"=>"Drain"+15 "Aspir"+15
 Evanescence Ring::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Bagua Galero::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Bagua Galero +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
@@ -544,11 +577,30 @@ Runeist Coat::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightnin
 Runeist Coat +1::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist's Coat +2::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Runeist's Coat +3::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Beneficus::Enhances elemental resistance spells=>Fire+5 Ice+5 Wind+5 Earth+5 Water+5 Lightning+5 Light+5 Dark+5
+Iridal Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+Chatoyant Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+
+// ====== Elemental Seal ======
+Laevateinn(75)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(80)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(85)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(90)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(95)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(99)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(99)Afterglow::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(119)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(119)Afterglow::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
+Laevateinn(119)Afterglow Final::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
 
 // ====== Elemental Siphon ======
 Caller's Pgch. +1::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+25
 Caller's Pgch. +2::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+40
 Conveyance Cape::Enhances "Elemental Siphon" effect=>"Elemental Siphon"+30
+
+// ====== En-Spells ======
+Woeborn::Enhances "Endark" effect=>"Endark"+0
+Honorbound::Enhances "Enlight" effect=>"Enlight"+7
 
 // ====== Enemy Critical Hit Rate ======
 Griffon Ring::Reduces enemy critical hit rate=>Enemy critical hit rate +0
@@ -691,6 +743,63 @@ Geomancy Pants::Enhances "Fast Cast" effect=>Fast Cast +0
 // ====== Feather Step ======
 Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
 Charis Shoes +2::Enhances "Feather Step" effect=>"Feather Step"+2
+
+// ====== Fishing Bait ======
+Slice of Bluetail::^.*$=>Fishing Bait
+Peeled Crayfish::^.*$=>Fishing Bait
+Slice of Carp::^.*$=>Fishing Bait
+Rotten Meat::^.*$=>Fishing Bait
+Sardine Ball::^.*$=>Fishing Bait
+Crayfish Ball::^.*$=>Fishing Bait
+Insect Ball::^.*$=>Fishing Bait
+Trout Ball::^.*$=>Fishing Bait
+Meatball::^.*$=>Fishing Bait
+Giant Shell Bug::^.*$=>Fishing Bait
+Robber Rig::^.*$=>Fishing Bait
+Super Scoop::^.*$=>Fishing Bait
+Judge Minnow::^.*$=>Fishing Bait
+Lufaise Fly::^.*$=>Fishing Bait
+Drill Calamary::^.*$=>Fishing Bait
+Dwarf Pugil::^.*$=>Fishing Bait
+Reg. MMM Ball::^.*$=>Fishing Bait
+Large MMM Ball::^.*$=>Fishing Bait
+Goliath Worm::^.*$=>Fishing Bait
+Sliced Sardine::^.*$=>Fishing Bait
+Sliced Cod::^.*$=>Fishing Bait
+Peeled Lobster::^.*$=>Fishing Bait
+Lugworm::^.*$=>Fishing Bait
+Little Worm::^.*$=>Fishing Bait
+Shell Bug::^.*$=>Fishing Bait
+Rogue Rig::^.*$=>Fishing Bait
+Sabiki Rig::^.*$=>Fishing Bait
+Sinking Minnow::^.*$=>Fishing Bait
+Lizard Lure::^.*$=>Fishing Bait
+Shrimp Lure::^.*$=>Fishing Bait
+Frog Lure::^.*$=>Fishing Bait
+Worm Lure::^.*$=>Fishing Bait
+Fly Lure::^.*$=>Fishing Bait
+Judge's Lure::^.*$=>Fishing Bait
+Minnow::^.*$=>Fishing Bait
+
+// ====== Fishing Rods ======
+Ebisu Fishing Rod::^.*$=>Fishing Rod
+Judge's Rod::^.*$=>Fishing Rod
+Goldfish Basket::^.*$=>Fishing Rod
+Hume Fishing Rod::^.*$=>Fishing Rod
+Halcyon Rod::^.*$=>Fishing Rod
+Mithran Fish. Rod::^.*$=>Fishing Rod
+Comp. Fishing Rod::^.*$=>Fishing Rod
+S.H. Fishing Rod::^.*$=>Fishing Rod
+Clothespole::^.*$=>Fishing Rod
+Carbon Fish. Rod::^.*$=>Fishing Rod
+Glass Fiber F. Rod::^.*$=>Fishing Rod
+Lu Shang's F. Rod::^.*$=>Fishing Rod
+Tarutaru F. Rod::^.*$=>Fishing Rod
+Fastwater F. Rod::^.*$=>Fishing Rod
+Bamboo Fish. Rod::^.*$=>Fishing Rod
+Yew Fishing Rod::^.*$=>Fishing Rod
+Willow Fish. Rod::^.*$=>Fishing Rod
+
 
 // ====== Flee ======
 Rogue's Poulaines::Increases "Flee" duration=>"Flee" duration +15
@@ -928,6 +1037,7 @@ Arcana Earring::Enhances "Undead Killer" effect=>"Undead Killer"+3
 Vampiric Mitts::Enhances "Undead Killer" effect=>"Undead Killer"+5
 Caballero Gnt.::Enhances "Undead Killer" effect=>"Undead Killer"+5
 Exorcist Hose::Enhances "Undead Killer" effect=>"Undead Killer"+3
+Templar Mace::Enhances "Undead Killer" effect=>"Undead Killer"+2
 // ======   Vermin Killer   ======
 Lizard Earring::Enhances "Vermin Killer" effect=>"Vermin Killer"+3
 Vermin Earring::Weakens "Vermin Killer" effect=>"Vermin Killer"-3
@@ -1064,11 +1174,37 @@ Rajas Ring::STR\+2～5 DEX\+2～5=>STR+5 DEX+5
 Sattva Ring::HP\+15～30 VIT\+2～5 AGI\+2～5=>HP+30 VIT+5 AGI+5
 Tamas Ring::MP\+15～30 INT\+2～5 MND\+2～5=>MP+30 INT+5 MND+5
 Glory Crown::.*=>
+Grapnel::.*=>
+Battery::.*=>
+Kilo Battery::.*=>
+Mega Battery::.*=>
+Hydro Pump::.*=>
+Kilo Pump::.*=>
+Mega Pump::.*=>
+Wind Fan::.*=>
+Kilo Fan::.*=>
+Mega Fan::.*=>
+Virtue Stone::.*=>
+Thr. Tomahawk::.*=>
+Angon::.*=>
+Bonanza Ball::^.*$=>
+Soulgauger SGR-1::^.*$=>
+B. Gauger Plate::^.*$=>
+Soultrapper::^.*$=>
+Blank Soulplate::^.*$=>
+Soultrapper 2000::^.*$=>
+H.S. Soul Plate::^.*$=>
+Automaton Oil::^.*$=>
+Automat. Oil +1::^.*$=>
+Automat. Oil +2::^.*$=>
 
 // ====== Monster Correlation ======
 Assim. Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
 Magus Keffiyeh +1::Enhances monster correlation effects=>Monster correlation effects+0
 Magus Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
+
+// ====== Moon ======
+Thoth's Wand::Moon phase affects additional damage=>Damage varies by moon phase
 
 // ====== Movement Speed ======
 Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
@@ -1133,6 +1269,16 @@ Svnt. Bracers +2::Enhances "Perpetuance" effect=>"Perpetuance"+50%
 
 // ====== Pet Effects ======
 Herder's Subligar::Enhances pet accuracy=>Pet: Accuracy +5 Ranged Accuracy +5
+
+// ====== Pet Food ======
+Pet Food Alpha::^.*$=>Pet Food
+Pet Food Beta::^.*$=>Pet Food
+Pet Fd. Gamma::^.*$=>Pet Food
+Pet Food Delta::^.*$=>Pet Food
+Pet Fd. Epsilon::^.*$=>Pet Food
+Pet Food Zeta::^.*$=>Pet Food
+Pet Food Eta::^.*$=>Pet Food
+Pet Food Theta::^.*$=>Pet Food
 
 // ====== Pflug ======
 Runeist Bottes::Enhances "Pflug" effect=>"Pflug"+0
@@ -1282,7 +1428,9 @@ Unyielding Ring::Enhances "Resist Charm" effect=>"Resist Charm"+0
 Volunt. Earring::Enhances "Resist Charm" effect=>"Resist Charm"+0
 // ====== Resist Curse ======
 Blood Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
+Rsv.Cpt. Pick::Enhances "Resist Curse" effect=>"Resist Curse"+0
 Dawnsoul Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
+Iron Ram Pick::Enhances "Resist Curse" effect=>"Resist Curse"+0
 // ====== Resist Gravity ======
 Skanda Boots::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
 Arete Del Sol::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
@@ -1414,6 +1562,8 @@ Terrasoul Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
 Icecrack Ring::Enhances "Resist Stun" effect=>"Resist Stun"+0
 // ====== Resist Terror ======
 Founder's Greaves::Terror resistance (\+\d+)=>"Resist Terror"$1
+Sagasinger::Resistance against terror=>"Resist Terror"+50
+Talekeeper::Resistance against terror=>"Resist Terror"+0
 // ====== Resist Virus ======
 Hale Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
 Dark Amood::Enhances "Resist Virus" effect=>"Resist Virus"+0
@@ -1433,6 +1583,8 @@ Wootz Amood +1::Enhances "Resist Virus" effect=>"Resist Virus"+0
 Gnadgott::Enhances "Resist Virus" effect=>"Resist Virus"+0
 Aquasoul Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
 Jwalamukhi Ring::Enhances "Resist Virus" effect=>"Resist Virus"+0
+// ====== Resist Weakness ======
+Himthige::Occasionally prevents "weakened" status=>"Resist Weakness"+10
 
 // ====== Restraint ======
 Rvg. Mufflers +1::Enhances "Restraint" effect=>"Restraint"+50
@@ -1655,6 +1807,7 @@ Carnwenhan(119)Afterglow Final::Increase song effect duration V=>Song duration +
 Daurdabla(90)::Increases song effect duration=>Song duration +25
 Daurdabla(95)::Increases song effect duration=>Song duration +30
 Daurdabla(99)::Increases song effect duration=>Song duration +30
+Daurdabla(99)b::Increases song effect duration=>Song duration +30
 Legato Dagger::Increases song effect duration=>Song duration +5
 Mdk. Shalwar +1::Increases song effect duration=>Song duration +10
 
@@ -1789,6 +1942,24 @@ Kogarasumaru(119)::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "T
 Kogarasumaru(119)Afterglow::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
 Kogarasumaru(119)Afterglow Final::Enhances "Third Eye" effect V=>"Third Eye" antic. rate +15 "Third Eye": "Counter" rate +25
 
+// ====== TP Bonus ======
+Martial Bow::TP Bonus=>TP Bonus +0
+Martial Gun::TP Bonus=>TP Bonus +0
+Martial Wand::TP Bonus=>TP Bonus +0
+Martial Staff::TP Bonus=>TP Bonus +0
+Martial Anelace::TP Bonus=>TP Bonus +0
+Shamo::TP Bonus=>TP Bonus +0
+Hagun::TP Bonus=>TP Bonus +1000
+Martial Axe::TP Bonus=>TP Bonus +0
+Martial Knife::TP Bonus=>TP Bonus +0
+Martial Scythe::TP Bonus=>TP Bonus +0
+Martial Lance::TP Bonus=>TP Bonus +0
+Martial Bhuj::TP Bonus=>TP Bonus +0
+Martial Knuckles::TP Bonus=>TP Bonus +0
+Martial Sword::TP Bonus=>TP Bonus +0
+Carbuncle's Pole::TP Bonus=>TP Bonus +0
+Nirastamo::Increases amount of TP gained when landing critical hits=>TP Return on Critical Hits +2.5
+
 // ====== Triple Attack ======
 Zareehkl Scythe::Increases rate of "Triple Attack"=>"Triple Attack"+0
 Homam Corazza::Enhances "Triple Attack" effect=>"Triple Attack"+1
@@ -1836,6 +2007,10 @@ Rheic Korazin +2::Increases weapon skill damage=>Weapon skill damage +4
 Rheic Korazin +3::Increases weapon skill damage=>Weapon skill damage +5
 Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
 Ogier's Breeches::Increases weapon skill damage=>Weapon skill damage +3
+Ultio Grip::Increases "Retribution" damage=>"Retribution"+10
+
+// ====== WS Effect ======
+Dukkha::Enhances "Starlight" effect=>"Starlight" effect +200
 
 // ====== Velocity Shot ======
 Sylvan Caban +1::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
