@@ -55,6 +55,7 @@ Found. Breastplate::Annuls dama.*=>Annuls damage taken +2%
 Spae. Sabots +2::Elemental magic casting time.*=>Elemental magic casting time -5%
 Spaekona's Petasos +3::Elemental magic casting.*=>Elemental magic casting time -6%
 Spae. Sabots +3::Elemental magic casting time.*=>Elemental magic casting time -6%
+Kenkonken(119)Afterglow Final::Occasionally attacks twic.*=>Occasionally attacks twice or thrice Afterglow
 
 // Other typos.
 Luhlaza Jubbah +1::"Evasion=>Evasion
@@ -63,6 +64,7 @@ Foire Tobe +1::Magic Evastion=>Magic Evasion
 Pill. Culottes +2::Critical danage=>Critical hit damage
 Ashera Harness::Accuray=>Accuracy
 Maxixi Casaque(F)::Potenct=>Potency
+Rhongomiant(119)Afterglow::DMG250=>DMG:250
 
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
@@ -243,6 +245,7 @@ Mirage Keffiyeh +1::Increases breath damage=>"Breath" attacks +10
 Mirage Keffiyeh +2::Increases breath damage=>"Breath" attacks +10
 Ardor Pendant::Increases breath damage=>"Breath" attacks +0
 Ardor Pendant +1::Breath damage dealt (\+\d+)=>"Breath" attacks $1
+Mavi Tathlum::Increases breath damage=>"Breath" attacks +0
 
 // ====== Burst Affinity ======
 Mavi Basmak +1::Enhances "Burst Affinity" effect=>"Burst Affinity"+5
@@ -299,6 +302,18 @@ Charis Tiara +2::Enhances "Climactic Flourish" effect=>Climactic Flourish: Criti
 // ====== Combat Skills ======
 Combatant's Torque::Combat skills (\+\d+)=>Hand-to-Hand skill $1 Dagger skill $1 Sword skill $1 Great Sword skill $1 Scythe skill $1 Polearm skill $1 Katana skill $1 Great Katana skill $1 Club skill $1 Staff skill $1 Archery skill $1 Marksmanship skill $1 Throwing skill $1 Evasion skill $1 Guarding skill $1 Parrying skill $1 Shield skill $1
 
+// ====== Convert ======
+Murgleis(75)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(80)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(85)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(90)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(95)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(99)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(99)Afterglow::Augments "Convert"=>"Convert" MP +100%
+Murgleis(119)::Augments "Convert"=>"Convert" MP +100%
+Murgleis(119)Afterglow::Augments "Convert"=>"Convert" MP +100%
+Murgleis(119)Afterglow Final::Enhances "Convert" effect=>"Convert" MP +100%
+
 // ====== Counter ======
 Cobra Cap::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
 Cobra Harness::Enhances "Counter" effect=>"Counter" {2=0,3=0,4=0,5=0}
@@ -313,7 +328,10 @@ Spharai(85)::Enhances "Counter" effect III=>"Counter"+9
 Spharai(90)::Enhances "Counter" effect IV=>"Counter"+11
 Spharai(95)::Enhances "Counter" effect IV=>"Counter"+11
 Spharai(99)::Enhances "Counter" effect V=>"Counter"+14
+Spharai(99)Afterglow::Enhances "Counter" effect V=>"Counter"+14
 Spharai(119)::Enhances "Counter" effect V=>"Counter"+14
+Spharai(119)Afterglow::Enhances "Counter" effect V=>"Counter"+14
+Spharai(119)Afterglow Final::Enhances "Counter" effect V=>"Counter"+14
 
 // ====== Counterstance ======
 Melee Gaiters::Enhances ("Counterstance") effect=>$1+5
@@ -361,6 +379,7 @@ Iga Erimaki::Increases critical hit damage=>Critical hit damage +0
 Dies Irae::Increases critical hit damage=>Critical hit damage +10%
 Wroth Scythe::Increases critical hit damage=>Critical hit damage +5%
 Cruadin::Increases critical hit damage=>Critical hit damage +0
+Percept Bow::Increases critical hit damage=>Critical hit damage +0
 // Occasionally increases critical hit damage...
 Asteria::critical hit damage=>critical hit damage +20%
 Supernal Knife::critical hit damage=>critical hit damage +10%
@@ -404,6 +423,18 @@ Eshmun's Ring::Enhances effect of "Cursna" received=>Potency of "Cursna" effects
 Theo. Pantaloons::Enhances "Cursna" effect=>"Cursna"+0
 Gende. Galoshes::Enhances "Cursna" effect=>"Cursna"+0
 Mending Cape::Enhances "Cursna" effect=>"Cursna"+15
+
+// ====== Damage to MP ======
+Tizona(75)::(Occ. converts damage dealt to MP)=>$1 +10
+Tizona(80)::(Occ. converts damage dealt to MP) II=>$1 +15
+Tizona(85)::(Occ. converts damage dealt to MP) III=>$1 +20
+Tizona(90)::(Occ. converts damage dealt to MP) IV=>$1 +25
+Tizona(95)::(Occ. converts damage dealt to MP) IV=>$1 +25
+Tizona(99)::(Occ. converts damage dealt to MP) V=>$1 +30
+Tizona(99)Afterglow::(Occ. converts damage dealt to MP) V=>$1 +30
+Tizona(119)::(Occ. converts damage dealt to MP) V=>$1 +30
+Tizona(119)Afterglow::(Occ. converts damage dealt to MP) V=>$1 +30
+Tizona(119)Afterglow Final::(Occ. converts damage dealt to MP) V=>$1 +30
 
 // ====== Dark Arts ======
 Scholar's Gown::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +15 Elemental magic skill +15 Enfeebling magic skill +15
@@ -523,6 +554,9 @@ Spae. Tonban +3::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Erra Pendant::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Austerity Belt +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Fucho-no-Obi::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Dacnomania::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Misanthropy::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Anaimatos Scythe::Enhances effect of "Drain" and "Aspir"=>"Drain"+0 "Aspir"+0
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -563,11 +597,6 @@ Svnt. Bonnet +2::Enhances "Ebullience" effect=>"Ebullience"+10
 Mavi Tayt +1::Enhances "Efflux" effect=>"Efflux" TP Bonus +125
 Mavi Tayt +2::Enhances "Efflux" effect=>"Efflux" TP Bonus +150
 
-// ====== Element Magic by Day ======
-Sorcerer's Tonban::Elemental magic affected by day=>Elemental magic +5 depending on day
-Src. Tonban +1::Elemental magic affected by day=>Elemental magic +5 depending on day
-
-
 // ====== Element Resistance ======
 Ahosi Leggings::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Erilaz Greaves::Resist all elements (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
@@ -580,6 +609,13 @@ Runeist's Coat +3::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lig
 Beneficus::Enhances elemental resistance spells=>Fire+5 Ice+5 Wind+5 Earth+5 Water+5 Lightning+5 Light+5 Dark+5
 Iridal Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Chatoyant Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+
+// ====== Elemental Magic ======
+Trilling Dagger::Increases light elemental magic damage dealt=>Light elemental Magic damage+10
+
+// ====== Elemental Magic by Day ======
+Sorcerer's Tonban::Elemental magic affected by day=>Elemental magic +5 depending on day
+Src. Tonban +1::Elemental magic affected by day=>Elemental magic +5 depending on day
 
 // ====== Elemental Seal ======
 Laevateinn(75)::Enhances "Elemental Seal" effect=>"Elemental Seal"+10
@@ -623,13 +659,23 @@ Zouave's Beret::Boosts e(nmity decrease when taking damage)=>E$1 +0
 Beguiling Collar::Boosts e(nmity decrease when taking damage)=>E$1 +0
 
 // ====== Enmity Retention ======
+Burtgang(75)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(80)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(85)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(90)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(95)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(99)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(99)Afterglow::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(119)::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(119)Afterglow::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
+Burtgang(119)Afterglow Final::Reduces Enmity decrease (when taking damage)\.=>Enmity retention $1 +0
 Creed Cuisses +1::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
 Creed Cuisses +2::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
 Creed Collar::Reduces Enmity decrease (when taking damage)=>Enmity retention $1 +0
 Erilaz Surcoat::Boosts (Enmity retention when taking damage \+\d+)=>$1
 Erilaz Surcoat +1::Boosts (Enmity retention when taking damage \+\d+)=>$1
-Chevalier's Cuisses::Reduces (Enmity decrease when taking damage \+\d+)=>$1
-Chev. Cuisses +1::Reduces (Enmity decrease when taking damage \+\d+)=>$1
+Chevalier's Cuisses::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity retention $1
+Chev. Cuisses +1::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity retention $1
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -780,6 +826,10 @@ Worm Lure::^.*$=>Fishing Bait
 Fly Lure::^.*$=>Fishing Bait
 Judge's Lure::^.*$=>Fishing Bait
 Minnow::^.*$=>Fishing Bait
+MMM Minnow::^.*$=>Fishing Bait
+Dried Squid::^.*$=>Fishing Bait
+Judge Fly::^.*$=>Fishing Bait
+Sea Dragon Liver::^.*$=>Fishing Bait
 
 // ====== Fishing Rods ======
 Ebisu Fishing Rod::^.*$=>Fishing Rod
@@ -799,7 +849,9 @@ Fastwater F. Rod::^.*$=>Fishing Rod
 Bamboo Fish. Rod::^.*$=>Fishing Rod
 Yew Fishing Rod::^.*$=>Fishing Rod
 Willow Fish. Rod::^.*$=>Fishing Rod
-
+MMM Fishing Rod::^.*$=>Fishing Rod
+Lu Sh. F. Rod +1::^.*$=>Fishing Rod
+Ebisu F. Rod +1::^.*$=>Fishing Rod
 
 // ====== Flee ======
 Rogue's Poulaines::Increases "Flee" duration=>"Flee" duration +15
@@ -1023,6 +1075,8 @@ Beast Earring::Enhances "Lizard Killer" effect=>"Lizard Killer"+3
 Panther Mask::Enhances "Lizard Killer" effect=>"Lizard Killer"+5
 Panther Mask +1::Enhances "Lizard Killer" effect=>"Lizard Killer"+5
 Lizard Earring::Weakens "Lizard Killer" effect=>"Lizard Killer"-3
+Ermine's Tail::Enhances "Lizard Killer" effect=>"Lizard Killer"+0
+Scheherazade::Enhances "Lizard Killer" effect=>"Lizard Killer"+7
 // ======   Plantoid Killer   ======
 Plantoid Earring::Weakens "Plantoid Killer" effect=>"Plantoid Killer"-3
 Vermin Earring::Enhances "Plantoid Killer" effect=>"Plantoid Killer"+3
@@ -1160,6 +1214,19 @@ Iga Ningi +1::Enhances "Migawari" effect=>"Migawari"+5
 Iga Ningi +2::Enhances "Migawari" effect=>"Migawari"+10
 Andartia's Mantle::"Mikage"(\+\d+)=>"Migawari"$1
 
+// ====== Mijin Gakure ======
+Reacton Arm::Enhances "Mijin Gakure" effect=>"Mijin Gakure" damage +0
+Nagi(75)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(80)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(85)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(90)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(95)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(99)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(99)Afterglow::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(119)::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(119)Afterglow::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+Nagi(119)Afterglow Final::Augments ("Mijin Gakure")=>$1 gives Reraise with no weakness effect
+
 // ====== Misc ======
 Rubeus Boots::Divine/Healing=>Divine magic skill +10 Healing
 Rubeus Boots::Enhancing/Enfeebling=>Enhancing magic skill +10 Enfeebling
@@ -1197,6 +1264,12 @@ H.S. Soul Plate::^.*$=>
 Automaton Oil::^.*$=>
 Automat. Oil +1::^.*$=>
 Automat. Oil +2::^.*$=>
+Automat. Oil +3::^.*$=>
+Fiendtrapper::^.*$=>
+Blank F. Plate::^.*$=>
+Pet Roborant::^.*$=>
+Pet Poultice::^.*$=>
+Magnus Stone::^.*$=>
 
 // ====== Monster Correlation ======
 Assim. Keffiyeh::Enhances monster correlation effects=>Monster correlation effects+0
@@ -1283,6 +1356,9 @@ Pet Food Theta::^.*$=>Pet Food
 // ====== Pflug ======
 Runeist Bottes::Enhances "Pflug" effect=>"Pflug"+0
 
+// ====== Phalanx ======
+Egeking::"Phalanx" damage reduction (\+\d+)=>"Phalanx"$1
+
 // ====== Phantom Roll ======
 Nvrch. Gants +1::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+5
 Nvrch. Gants +2::Inc. "Phantom Roll" effect duration=>"Phantom Roll" effect duration+10
@@ -1319,6 +1395,9 @@ Lebeche Ring::"Quick Magic"(\+\d%)=>Occ. quickens spellcasting $1
 Valor Coronet::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +1::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +2::Enhances "Rampart" effect=>"Rampart" duration +30
+
+// ====== Ranged Attack ======
+Stoertebeker::Occasionally enhances Ranged Attack=>Occasionally Ranged Attack +0
 
 // ====== Random Deal ======
 Commodore Frac::Enhances "Random Deal" effect=>"Random Deal" effect +5
@@ -1397,6 +1476,7 @@ Runeist Trousers::Enh. res. to all status ailments=>"Resist All"+0
 Rune. Trousers +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +2::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +3::Resistance to all status ailments (\+\d+)=>"Resist All"$1
+Denouements::Resistance to all status ailments (\+\d)=>"Resist All"$1
 // ====== Resist Amnesia ======
 Appetence Crown::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
 Urja Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
@@ -1431,6 +1511,11 @@ Blood Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
 Rsv.Cpt. Pick::Enhances "Resist Curse" effect=>"Resist Curse"+0
 Dawnsoul Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
 Iron Ram Pick::Enhances "Resist Curse" effect=>"Resist Curse"+0
+Cobra Knife::Enhances "Resist Curse" effect=>"Resist Curse"+0
+// ====== Resist Death ======
+Odium::Resistance against "Death"(\+\d+)=>"Death" resistance $1
+Malfeasance::Resistance against "Death" (\+\d+)=>"Death" resistance $1
+Malfeasance +1::Resistance against "Death" (\+\d+)=>"Death" resistance $1
 // ====== Resist Gravity ======
 Skanda Boots::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
 Arete Del Sol::Enhances "Resist Gravity" effect=>"Resist Gravity"+0
@@ -1760,6 +1845,15 @@ Nahtirah Trousers::Enhances "Snapshot" effect=>"Snapshot"+10
 Iuitl Wristbands::Enh. "Snapshot" ef.=>"Snapshot"+5
 Cama. Bow::Enhances "Snapshot" effect=>"Snapshot"+0
 Cama. Bowgun::Enhances "Snapshot" effect=>"Snapshot"+0
+Gastraphetes(75)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(80)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(85)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(90)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(95)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(99)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(99)Afterglow::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(119)::Enhances "Snapshot" effect=>"Snapshot"+10
+Gastraphetes(119)Afterglow::Enhances "Snapshot" effect=>"Snapshot"+10
 
 // ====== Sneak/Trick Attack ======
 Rog. Armlets +1::Increases "Trick Attack" damage=>"Trick Attack" damage+15
@@ -1865,14 +1959,20 @@ Terpsichore(85)::Increases "Steps" accuracy III=>"Step" accuracy +30
 Terpsichore(90)::Increases "Steps" accuracy IV=>"Step" accuracy +40
 Terpsichore(95)::Increases "Steps" accuracy IV=>"Step" accuracy +40
 Terpsichore(99)::Increases "Steps" accuracy V=>"Step" accuracy +50
+Terpsichore(99)Afterglow::Increases "Steps" accuracy V=>"Step" accuracy +50
 Terpsichore(119)::Increases "Steps" accuracy V=>"Step" accuracy +50
+Terpsichore(119)Afterglow::Increases "Steps" accuracy V=>"Step" accuracy +50
+Terpsichore(119)Afterglow Final::Increases "Steps" accuracy V=>"Step" accuracy +50
 Terpsichore(75)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(80)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(85)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(90)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(95)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(99)::Augments "Steps"=>"Step" finishing moves +1
-Terpsichore(119)::Augments "Steps"=>"Step" finishing moves +1
+Terpsichore(80)::Augments "Steps" II=>"Step" finishing moves +1
+Terpsichore(85)::Augments "Steps" III=>"Step" finishing moves +1
+Terpsichore(90)::Augments "Steps" IV=>"Step" finishing moves +1
+Terpsichore(95)::Augments "Steps" IV=>"Step" finishing moves +1
+Terpsichore(99)::Augments "Steps" V=>"Step" finishing moves +1
+Terpsichore(99)Afterglow::Augments "Steps" V=>"Step" finishing moves +1
+Terpsichore(119)::Augments "Steps" V=>"Step" finishing moves +1
+Terpsichore(119)Afterglow::Augments "Steps" V=>"Step" finishing moves +1
+Terpsichore(119)Afterglow Final::Augments "Steps" V=>"Step" finishing moves +1
 
 // ====== Stoneskin ======
 Shedir Seraweels::Enhances "Stoneskin" effect=>"Stoneskin"+35
@@ -1979,6 +2079,8 @@ Nvrch. Frac +2::Increases "Triple Shot" effect duration=>"Triple Shot"+10%
 
 // ====== Utsusemi ======
 Iga Kyahan +2::Enhances "Utsusemi" effect=>"Utsusemi"+1
+Kakesu::Enhances Attack based on number of Utsusemi shadow images=>Utsusemi gives Attak +5 per shadow
+Aizushintogo::Attack based on number of Utsusemi shadow images (\+\d+)=>Utsusemi gives Attak $1 per shadow
 
 // ====== Vallation ======
 Ogma's cape::"Vallation" and "Valiance" (effect duration \+\d+)=>"Vallation" $1 "Valiance" $1
@@ -2008,6 +2110,7 @@ Rheic Korazin +3::Increases weapon skill damage=>Weapon skill damage +5
 Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
 Ogier's Breeches::Increases weapon skill damage=>Weapon skill damage +3
 Ultio Grip::Increases "Retribution" damage=>"Retribution"+10
+Borealis::Occasionally deals severe weapon skill damage=>Occ. weapon skill damage +50
 
 // ====== WS Effect ======
 Dukkha::Enhances "Starlight" effect=>"Starlight" effect +200
