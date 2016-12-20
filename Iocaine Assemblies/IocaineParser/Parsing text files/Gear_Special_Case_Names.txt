@@ -28,6 +28,8 @@
 21078=Yagrush(119)Afterglow Final
 20511=Kenkonken(119)Afterglow Final
 20687=Burtgang(119)Afterglow Final
+20753=Epeolatry(119)
+21685=Epeolatry(119)Final
 
 // There is no difference between the level 99 items I & II, so we have to set their names here.
 18571=Daurdabla(99)
