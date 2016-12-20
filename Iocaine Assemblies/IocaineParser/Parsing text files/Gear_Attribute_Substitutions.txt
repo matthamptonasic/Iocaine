@@ -145,6 +145,8 @@ Animator P::^.*$=>Animator
 Animator P +1::^.*$=>Animator
 Animator P II::^.*$=>Animator
 Animator P II +1::^.*$=>Animator
+E. Animator II::^.*$=>Animator
+Divinator II::^.*$=>Animator
 
 // ====== Aquaveil ======
 Emphatikos Rope::Enhances "Aquaveil" effect=>"Aquaveil"+1
@@ -259,6 +261,8 @@ Mirage Keffiyeh +2::Increases breath damage=>"Breath" attacks +10
 Ardor Pendant::Increases breath damage=>"Breath" attacks +0
 Ardor Pendant +1::Breath damage dealt (\+\d+)=>"Breath" attacks $1
 Mavi Tathlum::Increases breath damage=>"Breath" attacks +0
+Luhlaza Keffiyeh::Breath damage dealt (\+\d+)%=>"Breath" attacks $1
+Luh. Keffiyeh +1::Breath damage dealt (\+\d+)%=>"Breath" attacks $1
 
 // ====== Burst Affinity ======
 Mavi Basmak +1::Enhances "Burst Affinity" effect=>"Burst Affinity"+5
@@ -1186,6 +1190,14 @@ Thunder Sachet::(Occasionally absorbs lightning damage)=>$1 +0%
 Aqua Sachet::(Occasionally absorbs water damage)=>$1 +0%
 Light Sachet::(Occasionally absorbs light damage)=>$1 +0%
 Shadow Sachet::(Occasionally absorbs dark damage)=>$1 +0%
+Gallian Helm +1::(Occasionally absorbs water elemental damage)=>$1 +0%
+Zanhi Ring::(Occasionally absorbs water elemental damage)=>$1 +0%
+Ik Cape::(Occasionally absorbs wind elemental damage)=>$1 +0%
+Tuilha Cape::(Occasionally absorbs water elemental damage)=>$1 +0%
+Buquwik Cape::(Occasionally absorbs fire elemental damage)=>$1 +3%
+Kayapa Cape::(Occasionally absorbs lightning elemental damage)=>$1 +0%
+Iximulew Cape::(Occasionally absorbs earth elemental damage)=>$1 +0%
+Toro Cape::(Occasionally absorbs ice elemental damage)=>$1 +0%
 
 // ====== Magic Defense Bonus ======
 Runeist Trousers::M\. Def\. B\.=>Magic Def. Bonus
@@ -1505,6 +1517,8 @@ Rune. Trousers +1::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +2::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Rune. Trousers +3::Resistance to all status ailments (\+\d+)=>"Resist All"$1
 Denouements::Resistance to all status ailments (\+\d)=>"Resist All"$1
+Staunch Tathlum::Resistance to all status ailments (\+\d)=>"Resist All"$1
+Staunch Tathlum +1::Resistance to all status ailments (\+\d)=>"Resist All"$1
 // ====== Resist Amnesia ======
 Appetence Crown::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0
 Urja Gloves::Enhances "Resist Amnesia" effect=>"Resist Amnesia"+0

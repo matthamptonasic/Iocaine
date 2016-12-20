@@ -636,6 +636,7 @@ MoonPhaseMagic=Magic Accuracy and "Magic Atk. Bonus" varies by moon phase
 MoonPhasePhys=(?:Attack and Accuracy|Damage) varies by moon phase
 MoonPhaseRng=Ranged Accuracy and Ranged Attack varies with the phases of the moon
 Crystals=Increases chances of obtaining crystals In (?:San d'Oria|Bastok|Windurst):
+SummIntrRate=Spellcasting interruption rate (-\d+)%
 BlueSkillRate=Chance to learn blue magic \+(\d+)
 Stealth="Stealth"\+(\d)
 SwordSpellDmg=Sword enhancement spell damage \+(\d+)
