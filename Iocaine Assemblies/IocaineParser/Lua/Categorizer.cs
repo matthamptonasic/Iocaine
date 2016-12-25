@@ -132,8 +132,15 @@ namespace Iocaine2.Parsing
                 public ushort m_attrId;
                 public ushort m_itemId;
                 public bool m_restricted;
+                public ushort m_restrAttrId;
                 public bool m_augmented;
                 public List<short> m_values;
+                public string m_str;
+            }
+            public struct RestrictedVal
+            {
+                public ushort m_attrId;
+                public ushort m_itemId;
                 public string m_str;
             }
             #endregion Structs
@@ -157,6 +164,7 @@ namespace Iocaine2.Parsing
             private static List<ValueType> m_attrTypes; // Index is the attribute ID.
             private const string m_noSubCatName = "";
             private const string m_tempFileName = @"Parsing\tempDescription.txt";
+            private static Dictionary<ushort, List<RestrictedVal>> m_subAttributes;
 
             // Attributes (Parsed)
             private static Dictionary<string, ushort> m_attrToId;
@@ -249,6 +257,17 @@ namespace Iocaine2.Parsing
                 }
                 return "Error";
             }
+            internal static List<RestrictedVal> GetSubAttributes(ushort iItemId)
+            {
+                if (m_subAttributes.ContainsKey(iItemId))
+                {
+                    return m_subAttributes[iItemId];
+                }
+                else
+                {
+                    return null;
+                }
+            }
             #endregion Internal Methods
 
             #region Private Methods
@@ -309,34 +328,40 @@ namespace Iocaine2.Parsing
                         else
                         {
                             m_subCategories[l_subCategory][l_colName] = new List<string> { l_filter };
-                            if (l_subCategory == m_noSubCatName)
+                            string l_keyName;
+                            if (l_subCategory != m_noSubCatName)
                             {
-                                m_idToAttr.Add(l_attrId, l_colName);
-                                m_attrToId.Add(l_colName, l_attrId);
-                                l_attrId++;
-
-                                // Now set the expected data type.
-                                // If the filter contains the string (\d+\.?\d*) it is a float (unique case).
-                                // Set filters look like '({.*})'.
-                                // Some string filters look like:
-                                // '([^\.]*)\.'
-                                // '(\w+)'
-                                // '(\w+day)/(\w+)'
-                                // '(.+)'
-                                // '([\w ]+)'
-                                // Use this search to find these filters: ^[^S].*\([^d\?]+\)
-                                // The index of m_attrTypes should follow l_attrId so they match up when we're done.
-                                ValueType l_type = ValueType.SHORT;
-                                if (l_filter.Contains("(\\d+\\.?\\d*)"))
-                                {
-                                    l_type = ValueType.FLOAT;
-                                }
-                                else if (l_filter.Contains("({.*})"))
-                                {
-                                    l_type = ValueType.SET;
-                                }
-                                m_attrTypes.Add(l_type);
+                                l_keyName = l_subCategory + "::" + l_colName;
                             }
+                            else
+                            {
+                                l_keyName = l_colName;
+                            }
+                            m_idToAttr.Add(l_attrId, l_keyName);
+                            m_attrToId.Add(l_keyName, l_attrId);
+                            l_attrId++;
+
+                            // Now set the expected data type.
+                            // If the filter contains the string (\d+\.?\d*) it is a float (unique case).
+                            // Set filters look like '({.*})'.
+                            // Some string filters look like:
+                            // '([^\.]*)\.'
+                            // '(\w+)'
+                            // '(\w+day)/(\w+)'
+                            // '(.+)'
+                            // '([\w ]+)'
+                            // Use this search to find these filters: ^[^S].*\([^d\?]+\)
+                            // The index of m_attrTypes should follow l_attrId so they match up when we're done.
+                            ValueType l_type = ValueType.SHORT;
+                            if (l_filter.Contains("(\\d+\\.?\\d*)"))
+                            {
+                                l_type = ValueType.FLOAT;
+                            }
+                            else if (l_filter.Contains("({.*?})"))
+                            {
+                                l_type = ValueType.SET;
+                            }
+                            m_attrTypes.Add(l_type);
                         }
                         l_subCategory = m_noSubCatName;
                     }
@@ -457,24 +482,16 @@ namespace Iocaine2.Parsing
             }
             private static bool runCategorization()
             {
+                m_subAttributes = new Dictionary<ushort, List<RestrictedVal>>();
                 // TBD - remove dump file when finished testing.
                 StreamWriter l_writer = new StreamWriter(@"Parsing\dump.txt", false);
                 l_writer.AutoFlush = false;
 
                 m_percentDone = 0f;
-                List<ushort> l_itemIds = new List<ushort>();
-                if (m_parseArmor)
-                {
-                    l_itemIds.AddRange(m_armorIds);
-                }
-                if (m_parseWeapons)
-                {
-                    l_itemIds.AddRange(m_weaponIds);
-                }
-                l_itemIds.Sort();
+                List<ushort> l_itemIds;
+                getListOfItemsToRun(out l_itemIds);
                 float l_totalItems = l_itemIds.Count;
 
-                bool l_itemClear = false;
                 ushort l_cnt = 0;
                 foreach (ushort i_id in l_itemIds)
                 {
@@ -483,7 +500,6 @@ namespace Iocaine2.Parsing
                     {
                         continue;
                     }
-                    l_itemClear = false;
                     string l_desc = "";
                     if (!m_desc.ContainsKey(i_id))
                     {
@@ -497,150 +513,274 @@ namespace Iocaine2.Parsing
                     {
                         l_desc = Regex.Replace(l_desc, i_sub.m_old, i_sub.m_new);
                     }
-                    foreach (string i_subCat in m_subCategories.Keys)
+
+                    // Run all of the conditional bucketing and save them for later. Do this first.
+                    // Stuff them into a dictionary so we can rerun the main filters at the end.
+                    // Then run the main filters on everything until clean.
+                    // Then run the main filters on the saved results from above. These we'll mark as conditional.
+                    if (!runFiltersAll(i_id, ref l_desc))
                     {
-                        foreach (string i_column in m_subCategories[i_subCat].Keys)
-                        {
-                            List<string> l_filterList = m_subCategories[i_subCat][i_column];
-                            foreach (string i_filter in l_filterList)
-                            {
-                                Regex l_regex = new Regex(i_filter);
-                                Match l_match = l_regex.Match(l_desc);
-                                if (l_match.Success)
-                                {
-                                    if (i_subCat == m_noSubCatName)
-                                    {
-                                        // This is the main list of filters (no sub-category/restriction).
-                                        // We only set values based on these filters.
-                                        ushort l_attrId = 0;
-                                        if (!m_attrToId.ContainsKey(i_column))
-                                        {
-                                            MessageBox.Show("Error looking up attribute ID of " + i_column + ".");
-                                            return false;
-                                        }
-                                        l_attrId = m_attrToId[i_column];
-
-                                        ValueType l_type = m_attrTypes[l_attrId];
-                                        AttrValue l_value = new AttrValue();
-                                        l_value.m_type = l_type;
-                                        l_value.m_attrId = l_attrId;
-                                        l_value.m_augmented = false;
-                                        l_value.m_restricted = false;
-                                        l_value.m_itemId = i_id;
-                                        if (l_match.Groups.Count > 1)
-                                        {
-                                            // TBD - only create the list if the type is not a string.
-                                            //       How do we set the type to be string?
-                                            l_value.m_values = new List<short>();
-                                            l_value.m_str = null;
-
-                                            // Set attribute values for each capture above index 0.
-                                            for (int ii = 1; ii < l_match.Groups.Count; ii++)
-                                            {
-                                                if (l_match.Groups[ii].ToString() == "")
-                                                {
-                                                    continue;
-                                                }
-                                                short l_val;
-                                                if (l_type == ValueType.SHORT)
-                                                {
-                                                    if (!short.TryParse(l_match.Groups[ii].ToString(), out l_val))
-                                                    {
-                                                        MessageBox.Show("Error parsing '" + l_match.Groups[ii] + "' into a short.\n" + i_filter + "\n" + l_desc);
-                                                        continue;
-                                                    }
-                                                }
-                                                else if (l_type == ValueType.FLOAT)
-                                                {
-                                                    float l_floatVal;
-                                                    if (!float.TryParse(l_match.Groups[ii].ToString(), out l_floatVal))
-                                                    {
-                                                        MessageBox.Show("Error parsing '" + l_match.Groups[ii] + "' into a float.");
-                                                        continue;
-                                                    }
-                                                    l_val = (short)(l_floatVal * 10f);
-                                                }
-                                                else if (l_type == ValueType.SET)
-                                                {
-                                                    // TBD - parse the set values and push them into their own values.
-                                                    l_val = 0;
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show("Cannot parse a value of unknown type from '" + l_match.Groups[ii] + "'");
-                                                    continue;
-                                                }
-                                                l_value.m_values.Add(l_val);
-                                            }
-                                        }
-                                        Items.ItemInfo l_info = m_items[i_id];
-                                        if (m_items[i_id].m_attributes == null)
-                                        {
-                                            l_info.m_attributes = new List<AttrValue>();
-                                        }
-                                        l_info.m_attributes.Add(l_value);
-                                        m_items[i_id] = l_info;
-                                    }
-                                    else
-                                    {
-                                        // TBD
-                                        // These are sub-category/conditional attribute filters.
-                                        // The values taken here are stuffed into a list and run through again.
-                                    }
-
-                                    // Replace the whole match with ""
-                                    l_desc = l_regex.Replace(l_desc, "");
-                                }
-
-                                if (Regex.IsMatch(l_desc, @"^\s*$"))
-                                {
-                                    l_itemClear = true;
-                                }
-                            }
-                            if (l_itemClear)
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    if (!l_itemClear)
-                    {
-                        string l_tmp = m_desc[i_id];
-                        string l_msg = "Item not clear after all filters.\n";
-                        l_msg += "Item[" + i_id + "]: " + m_items[i_id].m_name + "\n";
-                        l_msg += "Orig. Desc: '" + m_desc[i_id] + "'\n";
-                        l_msg += "Desc: '" + l_desc + "'\n\n";
-                        l_msg += "Description is " + l_tmp.Length + " characters long. UTF-16 codes:\n\n";
-                        for (int ii = 0; ii < l_tmp.Length; ii++)
-                        {
-                            l_msg += ((ushort)l_tmp[ii]).ToString("X4") + " ";
-                            if (((ii + 1) % 8) == 0)
-                            {
-                                l_msg += "\n";
-                            }
-                        }
-                        m_percentDone = l_cnt / l_totalItems * 100;
-                        l_msg += "\n\nPercent Complete: " + m_percentDone.ToString("f2") + "%";
-                        DialogResult l_dialRslt = MessageBox.Show(l_msg + "\n\nOpen this in text editor?", "Item Description Parser Miss", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
-                        if (l_dialRslt == DialogResult.Yes)
-                        {
-                            StreamWriter l_ostream = new StreamWriter(m_tempFileName, false);
-                            l_ostream.Write(l_msg);
-                            l_ostream.Close();
-                            Process.Start(m_tempFileName);
-                        }
+                        printItemNotClearMsg(i_id, ref l_desc, l_cnt, l_totalItems);
                         l_writer.Flush();
                         l_writer.Close();
                         return false;
                     }
-                    else
+
+                    // Go through each of the parsed sub-category filters and check if they have more sub-cat. matches.
+                    // Keep parsing until we find no matches.
+                    if (m_subAttributes.ContainsKey(i_id))
                     {
-                        m_startParsingAt = i_id;
+                        //List<RestrictedVal> l_rvalList = m_subAttributes[i_id];
+                        for(int ii=0; ii < m_subAttributes[i_id].Count; ii++)
+                        {
+                            string l_str = m_subAttributes[i_id][ii].m_str;
+                            while (runFiltersCategory("Sub", i_id, ref l_str))
+                            {
+                                RestrictedVal l_rval = m_subAttributes[i_id][ii];
+                                l_rval.m_str = l_str;
+                                m_subAttributes[i_id][ii] = l_rval;
+                                continue;
+                            }
+                        }
+
+                        // Now go back through the sub-category descriptions and run each through the main filters.
+                        for (int ii = 0; ii < m_subAttributes[i_id].Count; ii++)
+                        {
+                            string l_str = m_subAttributes[i_id][ii].m_str;
+                            if (!runFiltersMain(i_id, ref l_str, true, m_subAttributes[i_id][ii].m_attrId))
+                            {
+                                // I believe this means that we couldn't categorize the sub-attribute,
+                                // so we should print the error message just like we did when parsing the normal attributes.
+                                printItemNotClearMsg(i_id, ref l_str, l_cnt, l_totalItems);
+                                l_writer.Flush();
+                                l_writer.Close();
+                                return false;
+                            }
+                        }
                     }
+
+                    m_startParsingAt = i_id;
                 }
                 l_writer.Flush();
                 l_writer.Close();
                 return true;
+            }
+            private static bool runFiltersAll(ushort iItemId, ref string iDesc)
+            {
+                // First run through the restriction categories so we filter out those larger sections.
+                foreach (string i_subCat in m_subCategories.Keys)
+                {
+                    if (i_subCat == m_noSubCatName)
+                    {
+                        continue;
+                    }
+                    runFiltersCategory(i_subCat, iItemId, ref iDesc);
+                    if (checkOnlyWhitespace(ref iDesc))
+                    {
+                        return true;
+                    }
+                }
+                if (!runFiltersMain(iItemId, ref iDesc, false))
+                {
+                    return false;
+                }
+                return true;
+            }
+            private static bool runFiltersCategory(string iSubCat, ushort iItemId, ref string iDesc)
+            {
+                bool l_retVal = false; // Returns true if we match a filter and parse it sucessfully.
+                foreach (string i_column in m_subCategories[iSubCat].Keys)
+                {
+                    List<string> l_filterList = m_subCategories[iSubCat][i_column];
+                    foreach (string i_filter in l_filterList)
+                    {
+                        Regex l_regex = new Regex(i_filter);
+                        Match l_match = l_regex.Match(iDesc);
+                        if (l_match.Success)
+                        {
+                            ushort l_attrId = 0;
+                            string l_attrKey = iSubCat + "::" + i_column;
+                            if (!m_attrToId.ContainsKey(l_attrKey))
+                            {
+                                MessageBox.Show("Error looking up attribute ID of " + l_attrKey + ".");
+                                return false;
+                            }
+                            l_attrId = m_attrToId[l_attrKey];
+
+                            // We matched something. Save the string (if captured) and move on.
+                            RestrictedVal l_val = new RestrictedVal();
+                            l_val.m_attrId = l_attrId;
+                            l_val.m_itemId = iItemId;
+                            l_val.m_str = "";
+                            if (l_match.Groups.Count > 1)
+                            {
+                                l_val.m_str = l_match.Groups[1].ToString();
+                            }
+                            if (!m_subAttributes.ContainsKey(iItemId))
+                            {
+                                m_subAttributes.Add(iItemId, new List<RestrictedVal> { l_val });
+                            }
+                            else
+                            {
+                                m_subAttributes[iItemId].Add(l_val);
+                            }
+
+                            // Replace the whole match with ""
+                            iDesc = l_regex.Replace(iDesc, "");
+                            l_retVal = true;
+                        }
+
+                        if (Regex.IsMatch(iDesc, @"^\s*$"))
+                        {
+                            return l_retVal;
+                        }
+                    }
+                }
+                return l_retVal;
+            }
+            private static bool runFiltersMain(ushort iItemId, ref string iDesc, bool iRestricted, ushort iRestrAttrId = 0)
+            {
+                // Category here is assumed to be unrestricted (m_noSubCatName)
+                // This is where we run through each of the main filters and bucket whatever we find.
+                foreach (string i_column in m_subCategories[m_noSubCatName].Keys)
+                {
+                    List<string> l_filterList = m_subCategories[m_noSubCatName][i_column];
+                    foreach (string i_filter in l_filterList)
+                    {
+                        Regex l_regex = new Regex(i_filter);
+                        Match l_match = l_regex.Match(iDesc);
+                        if (l_match.Success)
+                        {
+                            // This is the main list of filters (no sub-category/restriction).
+                            // We only set values based on these filters.
+                            ushort l_attrId = 0;
+                            if (!m_attrToId.ContainsKey(i_column))
+                            {
+                                MessageBox.Show("Error looking up attribute ID of " + i_column + ".");
+                                return false;
+                            }
+                            l_attrId = m_attrToId[i_column];
+
+                            ValueType l_type = m_attrTypes[l_attrId];
+                            AttrValue l_value = new AttrValue();
+                            l_value.m_type = l_type;
+                            l_value.m_attrId = l_attrId;
+                            l_value.m_augmented = false;
+                            l_value.m_restricted = iRestricted;
+                            l_value.m_restrAttrId = iRestrAttrId;
+                            l_value.m_itemId = iItemId;
+                            if (l_match.Groups.Count > 1)
+                            {
+                                l_value.m_values = new List<short>();
+                                l_value.m_str = null;
+
+                                // Set attribute values for each capture above index 0.
+                                for (int ii = 1; ii < l_match.Groups.Count; ii++)
+                                {
+                                    if (l_match.Groups[ii].ToString() == "")
+                                    {
+                                        continue;
+                                    }
+                                    short l_val;
+                                    if (l_type == ValueType.SHORT)
+                                    {
+                                        if (!short.TryParse(l_match.Groups[ii].ToString(), out l_val))
+                                        {
+                                            MessageBox.Show("Error parsing '" + l_match.Groups[ii] + "' into a short.\n" + i_filter + "\n" + iDesc);
+                                            continue;
+                                        }
+                                    }
+                                    else if (l_type == ValueType.FLOAT)
+                                    {
+                                        float l_floatVal;
+                                        if (!float.TryParse(l_match.Groups[ii].ToString(), out l_floatVal))
+                                        {
+                                            MessageBox.Show("Error parsing '" + l_match.Groups[ii] + "' into a float.");
+                                            continue;
+                                        }
+                                        l_val = (short)(l_floatVal * 10f);
+                                    }
+                                    else if (l_type == ValueType.SET)
+                                    {
+                                        // TBD - parse the set values and push them into their own values.
+                                        l_val = 0;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Cannot parse a value of unknown type from '" + l_match.Groups[ii] + "'");
+                                        continue;
+                                    }
+                                    l_value.m_values.Add(l_val);
+                                }
+                            }
+                            Items.ItemInfo l_info = m_items[iItemId];
+                            if (m_items[iItemId].m_attributes == null)
+                            {
+                                l_info.m_attributes = new List<AttrValue>();
+                            }
+                            l_info.m_attributes.Add(l_value);
+                            m_items[iItemId] = l_info;
+
+                            // Replace the whole match with ""
+                            iDesc = l_regex.Replace(iDesc, "");
+                        }
+
+                        if (checkOnlyWhitespace(ref iDesc))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+            private static void getListOfItemsToRun(out List<ushort> oIds)
+            {
+                oIds = new List<ushort>();
+                if (m_parseArmor)
+                {
+                    oIds.AddRange(m_armorIds);
+                }
+                if (m_parseWeapons)
+                {
+                    oIds.AddRange(m_weaponIds);
+                }
+                oIds.Sort();
+            }
+            private static void printItemNotClearMsg(ushort iId, ref string iDesc, int iCount, float iTotalItems)
+            {
+                string l_tmp = m_desc[iId];
+                string l_msg = "Item not clear after all filters.\n";
+                l_msg += "Item[" + iId + "]: " + m_items[iId].m_name + "\n";
+                l_msg += "Orig. Desc: '" + m_desc[iId] + "'\n";
+                l_msg += "Desc: '" + iDesc + "'\n\n";
+                l_msg += "Description is " + l_tmp.Length + " characters long. UTF-16 codes:\n\n";
+                for (int ii = 0; ii < l_tmp.Length; ii++)
+                {
+                    l_msg += ((ushort)l_tmp[ii]).ToString("X4") + " ";
+                    if (((ii + 1) % 8) == 0)
+                    {
+                        l_msg += "\n";
+                    }
+                }
+                m_percentDone = iCount / iTotalItems * 100;
+                l_msg += "\n\nPercent Complete: " + m_percentDone.ToString("f2") + "%";
+                DialogResult l_dialRslt = MessageBox.Show(l_msg + "\n\nOpen this in text editor?", "Item Description Parser Miss", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+                if (l_dialRslt == DialogResult.Yes)
+                {
+                    StreamWriter l_ostream = new StreamWriter(m_tempFileName, false);
+                    l_ostream.Write(l_msg);
+                    l_ostream.Close();
+                    Process.Start(m_tempFileName);
+                }
+            }
+            private static bool checkOnlyWhitespace(ref string iText)
+            {
+                if (Regex.IsMatch(iText, @"^\s*$"))
+                {
+                    return true;
+                }
+                return false;
             }
             #endregion Private Methods
         }
