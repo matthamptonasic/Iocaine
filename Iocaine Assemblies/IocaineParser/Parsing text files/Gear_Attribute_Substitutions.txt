@@ -45,6 +45,9 @@ Dukkha::Regen=>"Regen"+30
 // Movement speed down
 *::(?:Decreases|Reduces) movement speed=>Movement speed -12
 
+// ~ substitutions, use second value (should be the higher value).
+*::\d+～(\d+)=>$1
+
 // Cases where the description is cut off.
 Souv. Schaller +1::Set.*=>Set: Reduces damage taken
 Carm. Sc. Mail +1::Magic damage t.*=>Magic damage taken -4% Set: Increases Accuracy
@@ -103,6 +106,9 @@ Raid. Bonnet +2::Enhances "Accomplice" effect=>"Accomplice"+10%
 Raid. Bonnet +1::Enhances "Collaborator" effect=>"Collaborator"+5%
 Raid. Bonnet +2::Enhances "Collaborator" effect=>"Collaborator"+10%
 
+// ====== Accuracy ======
+Smn. Bracers +2::Enhances accuracy=>Accuracy+10
+
 // ====== Addendum White/Black ======
 Savant's Gown +1::Enhances "Addendum: White" effect=>"Addendum: White" enmity -10
 Savant's Gown +1::Enhances "Addendum: Black" effect=>"Addendum: Black" enmity -10
@@ -157,6 +163,9 @@ Chaos Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 Chs. Sollerets +1::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 Igno. Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 
+// ====== Attack ======
+Smn. Pigaches +2::Enhances attack=>Attack+10
+
 // ====== Aura Steal ======
 Sagasinger::Steals enhancement effect=>"Aura Steal"+20
 
@@ -172,6 +181,8 @@ Mujin Obi::Enhances avatar attack=>Avatar attack +10
 // ====== Avatar Blood Pact Damage ======
 Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
 Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
+Shedir Crackows::Increases "Blood Pact" damage=>Avatar Blood Pact damage +3%
+Esper Earring::Increases "Blood Pact" damage=>Avatar Blood Pact damage +3%
 
 // ====== Avatar's Favor ======
 Caller's Horn +1::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+1
@@ -186,6 +197,11 @@ Clr. Mitts +2::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. 
 // ====== Bar-Spells ======
 Blessed Briault::Enhances elemental resistance spells=>Elemental resistance spells+0
 Blessed Briault +1::Enhances elemental resistance spells=>Elemental resistance spells+0
+Orison Cap +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
+Orison Bliaud +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
+Orison Mitts +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
+Orsn. Pantaln. +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
+Orsn. Duckbills +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
 
 // ====== Barrage ======
 Htr. Bracers +1::Enhances "Barrage" effect=>"Barrage"+1
@@ -319,6 +335,13 @@ Charis Tiara +2::Enhances "Climactic Flourish" effect=>Climactic Flourish: Criti
 // ====== Combat Skills ======
 Combatant's Torque::Combat skills (\+\d+)=>Hand-to-Hand skill $1 Dagger skill $1 Sword skill $1 Great Sword skill $1 Scythe skill $1 Polearm skill $1 Katana skill $1 Great Katana skill $1 Club skill $1 Staff skill $1 Archery skill $1 Marksmanship skill $1 Throwing skill $1 Evasion skill $1 Guarding skill $1 Parrying skill $1 Shield skill $1
 
+// ====== Conserve MP ======
+Goetia Petasos +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+Goetia Coat +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+Goetia Gloves +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+Goet. Chausses +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+Goetia Sabots +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+
 // ====== Convert ======
 Murgleis(75)::Augments "Convert"=>"Convert" MP +100%
 Murgleis(80)::Augments "Convert"=>"Convert" MP +100%
@@ -358,9 +381,9 @@ Mel. Gaiters +2::Enhances ("Counterstance") effect=>$1+10
 // ====== Cover ======
 Gallant Coronet::Enhances "Cover" effect=>Cover takes magic damage
 Glt. Coronet +1::Enhances "Cover" effect=>Cover takes magic damage
-Valor Surcoat::Augments "Cover"=>"Cover": Physical damage converted to MP +20
-Vlr. Surcoat +1::Augments "Cover"=>"Cover": Physical damage converted to MP +20
-Vlr. Surcoat +2::Augments "Cover"=>"Cover": Physical damage converted to MP +30
+Valor Surcoat::Augments "Cover"=>"Cover": Converts 20% of damage taken to MP
+Vlr. Surcoat +1::Augments "Cover"=>"Cover": Converts 20% of damage taken to MP
+Vlr. Surcoat +2::Augments "Cover"=>"Cover": Converts 30% of damage taken to MP
 Rev. Coronet::Enhances "Cover" effect=>Cover takes magic damage
 Rev. Coronet +1::"Cover" effect duration \+9=>Cover takes magic damage "Cover" +9
 
@@ -421,6 +444,16 @@ Ragnarok(99)Afterglow::Increases rate of critical hits V=>Critical hit rate +14
 Ragnarok(119)::Increases rate of critical hits V=>Critical hit rate +14
 Ragnarok(119)Afterglow::Increases rate of critical hits V=>Critical hit rate +14
 Ragnarok(119)Afterglow Final::Enhances critical hit rate V=>Critical hit rate +14
+Athos's Chapeau::Increases rate of critical hits=>Critical hit rate {2=3,3=4,4=5,5=6}
+Athos's Tabard::Increases rate of critical hits=>Critical hit rate {2=3,3=4,4=5,5=6}
+Athos's Gloves::Increases rate of critical hits=>Critical hit rate {2=3,3=4,4=5,5=6}
+Athos's Tights::Increases rate of critical hits=>Critical hit rate {2=3,3=4,4=5,5=6}
+Athos's Boots::Increases rate of critical hits=>Critical hit rate {2=3,3=4,4=5,5=6}
+Mustela Mask::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Mustela Harness::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Mustela Gloves::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Mustela Brais::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Mustela Boots::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -1024,11 +1057,11 @@ Bhikku Cyclas +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
 Bhikku Gloves +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
 Bhikku Hose +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
 Bhikku Gaiters +1::Augments "Kick Attacks"=>Occ. kicks twice {2=2,3=3,4=4,5=5}
-Tantra Crown +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
-Tantra Cyclas +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
-Tantra Gloves +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
-Tantra Hose +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
-Tantra Gaiters +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=2,3=3,4=4,5=5}
+Tantra Crown +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=0,3=0,4=0,5=0}
+Tantra Cyclas +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=0,3=0,4=0,5=0}
+Tantra Gloves +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=0,3=0,4=0,5=0}
+Tantra Hose +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=0,3=0,4=0,5=0}
+Tantra Gaiters +2::Augments "Kick Attacks"=>Kick Attacks occ. deals double damage {2=0,3=0,4=0,5=0}
 
 // ====== Killer Effects ======
 // ======   All Killer   ======
@@ -1139,6 +1172,13 @@ Geomancy Tunic::Enhances "Life Cycle" effect=>"Life Cycle"+0
 Scholar's Pants::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15 Enfeebling magic skill +15
 Scholar's Pants +1::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +15 Healing magic skill +15 Enhancing magic skill +15 Enfeebling magic skill +15
 Academic's Pants::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +18 Healing magic skill +18 Enhancing magic skill +18 Enfeebling magic skill +18
+
+// ====== Magic Accuracy ======
+Shedir Crackows::Enhances magic accuracy=>Magic Accuracy+3
+Smn. Spats +2::Enhances magic accuracy=>Magic Accuracy+5
+
+// ====== Magic Attack Bonus ======
+Shedir Crackows::Enhances "Magic Atk. Bonus"=>"Magic Atk. Bonus"+3
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -1979,6 +2019,23 @@ Vishap Armet::Enhances "Spirit Link" effect=>"Spirit Link"+10
 Ferine Ocreae +1::Enhances "Spur" effect=>"Spur"+5
 Ferine Ocreae +2::Enhances "Spur" effect=>"Spur"+10
 
+// ====== Stats ======
+Phorcys Salade::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
+Phorcys Korazin::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
+Phorcys Mitts::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
+Phorcys Dirs::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
+Phorcys Schuhs::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
+Thaumas Hat::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
+Thaumas Coat::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
+Thaumas Gloves::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
+Thaumas Kecks::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
+Thaumas Nails::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
+Nares Cap::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+Nares Saio::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+Nares Cuffs::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+Nares Trews::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+Nares Clogs::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+
 // ====== Stealth ======
 Sneaking Boots::Enhances "Stealth" effect=>"Stealth"+1
 
@@ -2041,6 +2098,7 @@ Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
 // ====== Synthesis ======
 Shaper's Shawl::Increases synthesis skill gain rate=>Synthesis skill gain rate +25%
 Craftkeeper's Ring::Likelihood of synthesis material loss-(\d%)=>Decreases likelihood of synthesis material loss +$1
+Chocobo Shirt::Likelihood of synthesis material loss -(\d%)=>Decreases likelihood of synthesis material loss +$1
 
 // ====== Tactical Guard ======
 Tantra Gloves +1::Enhances "Tactical Guard" effect=>"Tactical Guard"+15
