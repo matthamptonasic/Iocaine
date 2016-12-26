@@ -474,6 +474,9 @@ Theo. Pantaloons::Enhances "Cursna" effect=>"Cursna"+0
 Gende. Galoshes::Enhances "Cursna" effect=>"Cursna"+0
 Mending Cape::Enhances "Cursna" effect=>"Cursna"+15
 
+// ====== Damage Taken ======
+Lancer's Mezail +2::Occ\. absorbs damage taken=>Occ. absorbs damage taken +10%
+
 // ====== Damage to MP ======
 Tizona(75)::(Occ. converts damage dealt to MP)=>$1 +10
 Tizona(80)::(Occ. converts damage dealt to MP) II=>$1 +15
@@ -928,6 +931,9 @@ Glanzfaust(99)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate 
 Glanzfaust(119)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
 Glanzfaust(119)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
 Glanzfaust(119)Afterglow Final::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
+
+// ====== Food Effect ======
+//Lncr. Plackart +2::Grants food effect=>Applies food effect to Wyvern
 
 // ====== Footwork ======
 Tantra Gaiters +1::Enhances "Footwork" effect=>"Footwork"+3%
@@ -1821,8 +1827,8 @@ Htr. Socks +1::Enhances "Scavenge" effect=>"Scavenge"+5
 Orion Socks::Enhances "Scavenge" effect=>"Scavenge"+7
 
 // ====== Seigan ======
-Unkai Kabuto +1::Enhances "Seigan" effect=>Seigan: Counter rate+3
-Unkai Kabuto +2::Enhances "Seigan" effect=>Seigan: Counter rate+5
+Unkai Kabuto +1::Enhances "Seigan" effect=>Seigan: "Counter"+3
+Unkai Kabuto +2::Enhances "Seigan" effect=>Seigan: "Counter"+5
 
 // ====== Sekkanoki ======
 Unkai Kote +1::Enhances "Sekkanoki" effect=>"Sekkanoki" +50% TP
@@ -1986,6 +1992,13 @@ Daurdabla(99)::Increases song effect duration=>Song duration +30
 Daurdabla(99)b::Increases song effect duration=>Song duration +30
 Legato Dagger::Increases song effect duration=>Song duration +5
 Mdk. Shalwar +1::Increases song effect duration=>Song duration +10
+
+// ====== Song Status Boost ======
+Aoidos' Calot +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Aoidos' Hngrln. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Ad. Mnchtte. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Aoidos' Rhing. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Aoidos' Cothrn. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
 
 // ====== Souleater ======
 Gloom Breastplate::Enhances "Souleater" effect=>"Souleater"+2
@@ -2161,6 +2174,7 @@ Carbuncle's Pole::TP Bonus=>TP Bonus +0
 Bukyoku::TP Bonus=>TP Bonus +0
 Tomonari::TP Bonus=>TP Bonus +0
 Tomonari +1::TP Bonus=>TP Bonus +0
+Cirque Cappello +2::TP Bonus=>TP Bonus +0
 Nirastamo::Increases amount of TP gained when landing critical hits=>TP Return on Critical Hits +2.5
 
 // ====== Triple Attack ======
@@ -2225,6 +2239,13 @@ Sylvan Caban +2::Enhances "Velocity Shot" effect=>"Velocity Shot"+5%
 // ====== Yonin ======
 Iga Hakama +1::Augments "Yonin"=>Yonin: "Counter"+5
 Iga Hakama +2::Augments "Yonin"=>Yonin: "Counter"+10
+
+// ====== Zanshin Damage ======
+Unkai Kabuto +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
+Unkai Domaru +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
+Unkai Kote +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
+Unkai Haidate +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
+Unkai Sune-Ate +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
 
 // ====== Zanshin Rate ======
 Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0
