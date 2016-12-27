@@ -22,6 +22,9 @@
 //
 //   Blank lines or lines starting with // are ignored.
 
+// Items to check when done:
+// I.R. Dastanas - all element sets are parsed.
+
 // Elemental symbol codes
 *::\uE000=>Fire
 *::\uE001=>Ice
@@ -108,6 +111,27 @@ Raid. Bonnet +2::Enhances "Collaborator" effect=>"Collaborator"+10%
 
 // ====== Accuracy ======
 Smn. Bracers +2::Enhances accuracy=>Accuracy+10
+Call. Bracers +2::Enhances accuracy=>Accuracy+15
+Caller's Bracers +1::Enhances accuracy=>Accuracy+0
+Fenrir's Crown::Enhances accuracy=>Accuracy+0
+Evoker's Spats::Enhances accuracy=>Accuracy+10
+Denali Bonnet::Increases Accuracy=>Accuracy+{2=0,3=0,4=0,5=0}
+Denali Jacket::Increases Accuracy=>Accuracy+{2=0,3=0,4=0,5=0}
+Denali Wristbands::Increases Accuracy=>Accuracy+{2=0,3=0,4=0,5=0}
+Denali Kecks::Increases Accuracy=>Accuracy+{2=0,3=0,4=0,5=0}
+Denali Gamashes::Increases Accuracy=>Accuracy+{2=0,3=0,4=0,5=0}
+I.R. Chainmail::Increases Accuracy and Attack=>Accuracy+{2=0,3=0,4=0,5=0} Attack+{2=0,3=0,4=0,5=0}
+I.R. Breeches::Increases Accuracy and Attack=>Accuracy+{2=0,3=0,4=0,5=0} Attack+{2=0,3=0,4=0,5=0}
+Iron Ram Helm::Increases Accuracy and Attack=>Accuracy+{2=0,3=0,4=0,5=0} Attack+{2=0,3=0,4=0,5=0}
+Iron Ram Mufflers::Increases Attack and Accuracy=>Accuracy+{2=0,3=0,4=0,5=0} Attack+{2=0,3=0,4=0,5=0}
+I.R. Sollerets::Increases Accuracy and Attack=>Accuracy+{2=0,3=0,4=0,5=0} Attack+{2=0,3=0,4=0,5=0}
+Drn. Fng. Gnt. +1::Increases Accuracy=>Accuracy+0
+Smn. Bracers +1::Enhances accuracy=>Accuracy+0
+Summoner's Brcr.::Enhances accuracy=>Accuracy+7
+Evk. Spats +1::Enhances accuracy=>Accuracy+0
+Moliones's Ring::Increases Accuracy=>Accuracy+{2=5}
+Moliones's Sickle::Increases Accuracy=>Accuracy+{2=5}
+Fidelity Earring::Enhances pet accuracy=>Pet: Accuracy+0
 
 // ====== Addendum White/Black ======
 Savant's Gown +1::Enhances "Addendum: White" effect=>"Addendum: White" enmity -10
@@ -165,6 +189,18 @@ Igno. Sollerets::Enhances "Arcane Circle" effect=>"Arcane Circle"+1
 
 // ====== Attack ======
 Smn. Pigaches +2::Enhances attack=>Attack+10
+Koschei Crackows::Attack and Defense Bonus=>Attack+5 DEF+10
+Fourth Brunne::Increases Attack=>Attack+{2=0,3=0,4=0,5=0}
+Fourth Hentzes::Increases Attack=>Attack+{2=0,3=0,4=0,5=0}
+Fourth Schuhs::Increases Attack=>Attack+{2=0,3=0,4=0,5=0}
+Fourth Haube::Increases Attack=>Attack+{2=0,3=0,4=0,5=0}
+Fourth Schoss::Increases Attack=>Attack+{2=0,3=0,4=0,5=0}
+Evoker's Gages::Attack Bonus=>Attack+10
+Gothic Gauntlets::Increases Attack and Ranged Attack=>Attack+{2=0} Ranged Attack+{2=0}
+Gothic Sabatons::Increases Attack and Ranged Attack=>Attack+{2=0} Ranged Attack+{2=0}
+Summoner's Pgch.::Enhances attack=>Attack+7
+Smn. Pigaches +1::Enhances attack=>Attack+0
+Affinity Earring::Enhances pet attack=>Pet: Attack+0
 
 // ====== Aura Steal ======
 Sagasinger::Steals enhancement effect=>"Aura Steal"+20
@@ -177,16 +213,22 @@ Orsn. Duckbills +2::Enhances "Auspice" effect=>"Auspice"+10
 Auspex Gages::Enhances avatar attack=>Avatar attack +9
 Spurrina Gages::Enhances avatar attack=>Avatar attack +12
 Mujin Obi::Enhances avatar attack=>Avatar attack +10
+Sacrifice Torque::Enhances avatar attack=>Avatar attack +3
 
 // ====== Avatar Blood Pact Damage ======
 Auspex Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +4%
 Spurrina Gages::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 Shedir Crackows::Increases "Blood Pact" damage=>Avatar Blood Pact damage +3%
 Esper Earring::Increases "Blood Pact" damage=>Avatar Blood Pact damage +3%
+Caller's Doublet +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 
 // ====== Avatar's Favor ======
 Caller's Horn +1::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+1
 Caller's Horn +2::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+2
+
+// ====== Avatar Perpetuation ======
+Call. Bracers +2::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
+Caller's Bracers +1::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
 
 // ====== Banish ======
 Fenian Ring::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
@@ -242,6 +284,10 @@ Nvrch. Tricorne +2::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+3
 Chass. Tricorne::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+3
 Chass. Tricorne +1::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+4
 
+// ====== Blood Pact Damage ======
+Call. Doublet +2::Increases "Blood Pact" damage=>Avatar Blood Pact damage +10%
+Ngen Seraweels::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
+
 // ====== Blood Rage ======
 Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
 Rvg. Lorica +2::Enhances "Blood Rage" effect=>"Blood Rage" duration +30
@@ -289,6 +335,7 @@ Assim. Shalwar::Enhances "Burst Affinity" effect=>"Burst Affinity"+10
 Monster Gloves::Augments "Call Beast"=>Call Beast +1
 Mst. Gloves +1::Augments "Call Beast"=>Call Beast +1
 Mst. Gloves +2::Augments "Call Beast"=>Call Beast +2
+Beast Bazubands::Augments "Call Beast"=>Call Beast +0
 
 // ====== Camouflage ======
 Hunter's Jerkin::Enhances "Camouflage" effect=>"Camouflage" duration +0
@@ -334,6 +381,9 @@ Charis Tiara +2::Enhances "Climactic Flourish" effect=>Climactic Flourish: Criti
 
 // ====== Combat Skills ======
 Combatant's Torque::Combat skills (\+\d+)=>Hand-to-Hand skill $1 Dagger skill $1 Sword skill $1 Great Sword skill $1 Scythe skill $1 Polearm skill $1 Katana skill $1 Great Katana skill $1 Club skill $1 Staff skill $1 Archery skill $1 Marksmanship skill $1 Throwing skill $1 Evasion skill $1 Guarding skill $1 Parrying skill $1 Shield skill $1
+Cirq. Pantaloni +2::Enhances combat skill=>Hand-to-Hand skill +10 Dagger skill +10 Sword skill +10 Great Sword skill +10 Scythe skill +10 Polearm skill +10 Katana skill +10 Great Katana skill +10 Club skill +10 Staff skill +10 Archery skill +10 Marksmanship skill +10 Throwing skill +10 Evasion skill +10 Guarding skill +10 Parrying skill +10 Shield skill +10
+Cirq. Pantaloni +1::Enhances combat skill=>Hand-to-Hand skill +5 Dagger skill +5 Sword skill +5 Great Sword skill +5 Scythe skill +5 Polearm skill +5 Katana skill +5 Great Katana skill +5 Club skill +5 Staff skill +5 Archery skill +5 Marksmanship skill +5 Throwing skill +5 Evasion skill +5 Guarding skill +5 Parrying skill +5 Shield skill +5
+Wyg. Klt. Mantle::Melee skill (\+\d+)=>Hand-to-Hand skill $1 Dagger skill $1 Sword skill $1 Great Sword skill $1 Scythe skill $1 Polearm skill $1 Katana skill $1 Great Katana skill $1 Club skill $1 Staff skill $1 Archery skill $1 Marksmanship skill $1 Throwing skill $1 Evasion skill $1 Guarding skill $1 Parrying skill $1 Shield skill $1
 
 // ====== Conserve MP ======
 Goetia Petasos +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
@@ -454,6 +504,12 @@ Mustela Harness::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0
 Mustela Gloves::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 Mustela Brais::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 Mustela Boots::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Skadi's Visor::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Skadi's Cuirie::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Skadi's Bazubands::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Skadi's Chausses::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Skadi's Jambeaux::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
+Zeta Sash::Increases rate of critical hits=>Critical hit rate +2
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -461,6 +517,7 @@ Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect dura
 
 // ====== Cure Potency ======
 Dia Wand::Enhances "Cure" potency=>"Cure" potency +1%
+Pup. Churidars::Enhances "Cure" potency=>"Cure" potency +0%
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
@@ -493,6 +550,14 @@ Tizona(119)Afterglow Final::(Occ. converts damage dealt to MP) V=>$1 +30
 Scholar's Gown::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +15 Elemental magic skill +15 Enfeebling magic skill +15
 Scholar's Gown +1::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +15 Elemental magic skill +15 Enfeebling magic skill +15
 Academic's Gown::Enhances "Dark Arts" effect=>Dark Arts: Dark magic skill +18 Elemental magic skill +18 Enfeebling magic skill +18
+
+// ====== Defense Bonus ======
+Ebon Galoshes::Defense Bonus=>DEF+0
+Furia Galoshes::Defense Bonus=>DEF+0
+Ebur Galoshes::Defense Bonus=>DEF+0
+Beast Bazubands::Defense Bonus=>DEF+10
+Breeder Mufflers::Increases pet defense and enmity=>DEF+{2=10} Enmity+{2=5}
+Breeder Mask::Increases pet defense and enmity=>DEF+{2=10} Enmity+{2=5}
 
 // ====== Despoil ======
 Raid. Poulaines +1::Enhances "Despoil" effect=>"Despoil" effect +0
@@ -568,6 +633,11 @@ Brutal Earring::Enhances "Double Attack" effect=>"Double Attack"+5%
 Vougier's Contus::Enhances "Double Attack" effect=>"Double Attack"+5%
 Fighter's Calligae::Enhances "Double Attack" effect=>"Double Attack"+1%
 Ftr. Calligae +1::Enhances "Double Attack" effect=>"Double Attack"+1%
+Ares' Mask::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
+Ares' Cuirass::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
+Ares' Gauntlets::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
+Ares' Flanchard::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
+Ares' Sollerets::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
 // ====== Damage ======
 War. Cuisses +2::Increases "Double Attack" damage=>Double Attack damage +3%
 Ravager's Mask +2::Augments "Double Attack"=>Double Attack occ. deals double damage
@@ -613,6 +683,8 @@ Arasy Scythe::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Arasy Scythe +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Anaimatos Scythe::Enhances effect of "Drain" and "Aspir"=>"Drain"+0 "Aspir"+0
 Rubicundity::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
+Vampiric Mitts::Enhances effect of "Drain" and "Aspir"=>"Drain"+{2=10} "Aspir"+{2=10}
+Vampiric Boots::Enhances effect of "Drain" and "Aspir"=>"Drain"+{2=10} "Aspir"+{2=10}
 
 // ====== Dual Wield ======
 Sarashi::Enhances "Dual Wield" effect=>"Dual Wield"+1
@@ -666,10 +738,16 @@ Runeist's Coat +3::Res. all ele.(\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lig
 Beneficus::Enhances elemental resistance spells=>Fire+5 Ice+5 Wind+5 Earth+5 Water+5 Lightning+5 Light+5 Dark+5
 Iridal Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
 Chatoyant Staff::All elemental resistances (\+\d+)=>Fire$1 Ice$1 Wind$1 Earth$1 Water$1 Lightning$1 Light$1 Dark$1
+I.R. Dastanas::Increases all elemental resistances=>Fire+{2=0,3=0,4=0,5=0} Ice+{2=0,3=0,4=0,5=0} Wind+{2=0,3=0,4=0,5=0} Earth+{2=0,3=0,4=0,5=0} Water+{2=0,3=0,4=0,5=0} Lightning+{2=0,3=0,4=0,5=0} Light+{2=0,3=0,4=0,5=0} Dark+{2=0,3=0,4=0,5=0}
+Iron Ram Greaves::Increased resistance against all elements=>Fire+{2=0,3=0,4=0,5=0} Ice+{2=0,3=0,4=0,5=0} Wind+{2=0,3=0,4=0,5=0} Earth+{2=0,3=0,4=0,5=0} Water+{2=0,3=0,4=0,5=0} Lightning+{2=0,3=0,4=0,5=0} Light+{2=0,3=0,4=0,5=0} Dark+{2=0,3=0,4=0,5=0}
+Iron Ram Hauberk::Increases all elemental resistances=>Fire+{2=0,3=0,4=0,5=0} Ice+{2=0,3=0,4=0,5=0} Wind+{2=0,3=0,4=0,5=0} Earth+{2=0,3=0,4=0,5=0} Water+{2=0,3=0,4=0,5=0} Lightning+{2=0,3=0,4=0,5=0} Light+{2=0,3=0,4=0,5=0} Dark+{2=0,3=0,4=0,5=0}
+Iron Ram Hose::Increased resistance against all elements=>Fire+{2=0,3=0,4=0,5=0} Ice+{2=0,3=0,4=0,5=0} Wind+{2=0,3=0,4=0,5=0} Earth+{2=0,3=0,4=0,5=0} Water+{2=0,3=0,4=0,5=0} Lightning+{2=0,3=0,4=0,5=0} Light+{2=0,3=0,4=0,5=0} Dark+{2=0,3=0,4=0,5=0}
+Iron Ram Sallet::Increases all elemental resistances=>Fire+{2=0,3=0,4=0,5=0} Ice+{2=0,3=0,4=0,5=0} Wind+{2=0,3=0,4=0,5=0} Earth+{2=0,3=0,4=0,5=0} Water+{2=0,3=0,4=0,5=0} Lightning+{2=0,3=0,4=0,5=0} Light+{2=0,3=0,4=0,5=0} Dark+{2=0,3=0,4=0,5=0}
 
 // ====== Elemental Magic ======
 Trilling Dagger::Increases light elemental magic damage dealt=>Light elemental Magic damage+10
 Guglielmo's Bow::Increases light elemental magic damage dealt=>Light elemental Magic damage+0
+Zodiac Ring::Enhances elemental magic=>Magic damage+3
 
 // ====== Elemental Magic by Day ======
 Sorcerer's Tonban::Elemental magic affected by day=>Elemental magic +5 depending on day
@@ -735,6 +813,12 @@ Erilaz Surcoat::Boosts (Enmity retention when taking damage \+\d+)=>$1
 Erilaz Surcoat +1::Boosts (Enmity retention when taking damage \+\d+)=>$1
 Chevalier's Cuisses::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity retention $1
 Chev. Cuisses +1::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity retention $1
+
+// ====== Evasion ======
+Flock Earring::Bonus to Evasion=>Evasion+0
+Evoker's Pigaches::Enhances evasion=>Evasion+0
+Evk. Pigaches +1::Enhances evasion=>Evasion+0
+Brilliant Earring::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -844,6 +928,10 @@ Argute M.board +2::Grimoire: Reduces spellcasting time=>Grimoire Fast Cast +10
 Acad. Bracers::Enhances "Fast Cast" effect=>Fast Cast +5
 Orvail Pants +1::Enhances "Fast Cast" effect=>Fast Cast +5
 Geomancy Pants::Enhances "Fast Cast" effect=>Fast Cast +0
+Sch. Loafers +1::Reduces spellcasting time=>Fast Cast +5
+Argute M.board::Reduces spellcasting time=>Fast Cast +5
+Argute M.board +1::Reduces spellcasting time=>Fast Cast +5
+Scholar's Loafers::Reduces spellcasting time=>Fast Cast +5
 
 // ====== Feather Step ======
 Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
@@ -953,16 +1041,41 @@ Assassin's Culottes::Enhances "Gilfinder" effect=>"Gilfinder"+1
 Asn. Culottes +1::Enhances "Gilfinder" effect=>"Gilfinder"+1
 Asn. Culottes +2::Enhances "Gilfinder" effect=>"Gilfinder"+1
 
-
 // ====== Hasso ======
 Unkai Haidate +1::Enhances "Hasso" effect=>"Hasso"+1
 Unkai Haidate +2::Enhances "Hasso" effect=>"Hasso"+2
 Wakido Kote::Enhances "Hasso" effect=>"Hasso"+1
 
+// ====== Hasso ======
+Usukane Somen::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+Usukane Haramaki::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+Usukane Gote::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+Usukane Hizayoroi::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+Usukane Sune-Ate::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+
 // ====== Hide ======
 Rogue's Vest::Increases "Hide" duration=>"Hide" duration +0
 Rog. Vest +1::Extends duration of "Hide"=>"Hide" duration +0
 Pillager's Vest::Extends duration of "Hide"=>"Hide" duration +0
+
+// ====== HP & MP ======
+Pup. Tobe +1::Max HP and Max MP Bonus=>HP+0 MP+0
+Pup. Tobe::Max HP Boost Max MP Boost=>HP+0 MP+0
+Askar Zucchetto::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
+Askar Korazin::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
+Askar Manopolas::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
+Askar Dirs::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
+Askar Gambieras::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
+Fourth Cuirass::Increases HP=>HP+{2=0,3=0,4=0,5=0}%
+Fourth Gauntlets::Increases HP=>HP+{2=0,3=0,4=0,5=0}%
+Fourth Sabatons::Increases HP=>HP+{2=0,3=0,4=0,5=0}%
+Fourth Armet::Increases HP=>HP+{2=0,3=0,4=0,5=0}%
+Fourth Cuisses::Increases HP=>HP+{2=0,3=0,4=0,5=0}%
+Cobra Pigaches::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
+Cobra Coat::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
+Cobra Cuffs::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
+Cobra Hat::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
+Cobra Slops::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 
 // ====== Holy Circle ======
 Gallant Leggings::Enhances "Holy Circle" effect=>"Holy Circle"+1
@@ -1154,6 +1267,7 @@ Vampiric Mitts::Enhances "Undead Killer" effect=>"Undead Killer"+5
 Caballero Gnt.::Enhances "Undead Killer" effect=>"Undead Killer"+5
 Exorcist Hose::Enhances "Undead Killer" effect=>"Undead Killer"+3
 Templar Mace::Enhances "Undead Killer" effect=>"Undead Killer"+2
+Esquire's Mantle::Enhances "Undead Killer" effect=>"Undead Killer"+0
 // ======   Vermin Killer   ======
 Lizard Earring::Enhances "Vermin Killer" effect=>"Vermin Killer"+3
 Vermin Earring::Weakens "Vermin Killer" effect=>"Vermin Killer"-3
@@ -1182,9 +1296,25 @@ Academic's Pants::Enhances "Light Arts" effect=>Light Arts: Divine magic skill +
 // ====== Magic Accuracy ======
 Shedir Crackows::Enhances magic accuracy=>Magic Accuracy+3
 Smn. Spats +2::Enhances magic accuracy=>Magic Accuracy+5
+Caller's Pgch. +2::Enhances magic accuracy=>Magic Accuracy+0
+Caller's Pgch. +1::Enhances magic accuracy=>Magic Accuracy+0
+Morana Pigaches::Enhances magic accuracy=>Magic Accuracy+0
+Bond Cape::Bonus to Magic Accuracy=>Magic Accuracy+0
+Cobra Cloche::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
+Cobra Gloves::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
+Cobra Trews::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
+Cobra Crackows::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
+Cobra Robe::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
 
 // ====== Magic Attack Bonus ======
 Shedir Crackows::Enhances "Magic Atk. Bonus"=>"Magic Atk. Bonus"+3
+Fervor Ring::("Magic Atk. Bonus")=>$1+2
+Uggalepih Pendant::("Magic Atk. Bonus")=>$1+8
+Morrigan's Coron.::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
+Morrigan's Robe::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
+Morrigan's Cuffs::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
+Morrigan's Slops::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
+Morrigan's Pgch.::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -1244,9 +1374,21 @@ Buquwik Cape::(Occasionally absorbs fire elemental damage)=>$1 +3%
 Kayapa Cape::(Occasionally absorbs lightning elemental damage)=>$1 +0%
 Iximulew Cape::(Occasionally absorbs earth elemental damage)=>$1 +0%
 Toro Cape::(Occasionally absorbs ice elemental damage)=>$1 +0%
+Amir Korazin::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
+Amir Kolluks::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
+Amir Dirs::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
+Amir Boots::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
+Amir Puggaree::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
 
 // ====== Magic Defense Bonus ======
-Runeist Trousers::M\. Def\. B\.=>Magic Def. Bonus
+Runeist Trousers::M\. Def\. B\.=>"Magic Def. Bonus"+0
+Healer's Mantle::("Magic Def. Bonus")=>$1+0
+Goliard Chapeau::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
+Goliard Saio::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
+Goliard Cuffs::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
+Goliard Trews::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
+Goliard Clogs::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
+Shadow Ring::("Magic Def. Bonus")=>$1+0
 
 // ====== Magic Skills ======
 Inyanga Dastanas::All magic skills (\+\d+)=>Blue magic skill $1 Dark magic skill $1 Divine magic skill $1 Elemental magic skill $1 Enfeebling magic skill $1 Enhancing magic skill $1 Geomancy magic skill $1 Healing magic skill $1 Ninjutsu skill $1 Summoning magic skill $1 Handbell skill $1 Singing skill $1 String instrument skill $1 Wind instrument skill $1
@@ -1368,6 +1510,7 @@ Thoth's Wand::Moon phase affects additional damage=>Damage varies by moon phase
 // ====== Movement Speed ======
 Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
 Skd. Jambeaux +1::Increases movement speed=>Movement speed +18%
+Destrier Beret::Increases movement speed=>Movement speed +12%
 
 // ====== Mug ======
 Assassin's Bonnet::Enhances "Mug" effect=>"Mug"+1
@@ -1482,8 +1625,13 @@ Valor Coronet::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +1::Enhances "Rampart" effect=>"Rampart" duration +15
 Vlr. Coronet +2::Enhances "Rampart" effect=>"Rampart" duration +30
 
+// ====== Ranged Accuracy ======
+Flock Ring::Bonus to (Ranged Accuracy)=>$1 +0
+
 // ====== Ranged Attack ======
 Stoertebeker::Occasionally enhances Ranged Attack=>Occasionally Ranged Attack +0
+Bowman's Led.::Increases Ranged Attack=>Ranged Attack+0
+Bowman's Mask::Increases Ranged Attack=>Ranged Attack+0
 
 // ====== Random Deal ======
 Commodore Frac::Enhances "Random Deal" effect=>"Random Deal" effect +5
@@ -1526,6 +1674,9 @@ Ixion Cloak::Adds "Regen" and "Refresh" effect=>"Regen"+1 "Refresh"+1
 Cait Sith Cap +1::Cait Sith's protection=>"Refresh"+1 "Magic Def. Bonus"+1
 Geomancy Tunic::Adds "Refresh" ef\.=>"Refresh"+2
 Runeist Coat::Enh\. "Refresh" ef\.=>"Refresh"+2
+Roller's Ring::("Refresh")=>$1+1
+Destrier Beret::Adds "Regen" and "Refresh" effects=>"Regen"+1 "Refresh"+1
+Aries Mantle::Adds "Regen" and "Refresh" effect=>"Regen"+1 "Refresh"+1
 // ====== Potency ======
 Estqr. Fuseau +2::Enhances "Refresh" potency=>"Refresh" potency +1
 // ====== Duration ======
@@ -1594,6 +1745,7 @@ Toad Mittens::Enhances "Resist Charm" effect=>"Resist Charm"+0
 M. No.17's Locket::Enhances "Resist Charm" effect=>"Resist Charm"+0
 Unyielding Ring::Enhances "Resist Charm" effect=>"Resist Charm"+0
 Volunt. Earring::Enhances "Resist Charm" effect=>"Resist Charm"+0
+Lamia Garland::Enhances "Resist Charm" effect=>"Resist Charm"+0
 // ====== Resist Curse ======
 Blood Ring::Enhances "Resist Curse" effect=>"Resist Curse"+0
 Rsv.Cpt. Pick::Enhances "Resist Curse" effect=>"Resist Curse"+0
@@ -1854,6 +2006,7 @@ Orion Bracers::Enhances "Shadowbind" effect=>"Shadowbind"+10
 Hunter's Braccae::Enhances "Sharpshot" effect=>"Sharpshot"+10
 Htr. Braccae +1::Enhances "Sharpshot" effect=>"Sharpshot"+10
 Orion Braccae::Enhances "Sharpshot" effect=>"Sharpshot"+10
+Mrc. Turban::Enhances "Sharpshot" effect=>"Sharpshot"+0
 
 // ====== Shield Bash ======
 Fenian Ring::Augments "Shield Bash"=>"Shield Bash"+50
@@ -1864,6 +2017,7 @@ Aegis(90)::Augments "Shield Bash" IV=>"Shield Bash"+230
 Aegis(95)::Augments "Shield Bash" V=>"Shield Bash"+240
 Aegis(99)::Augments "Shield Bash" VI=>"Shield Bash"+250
 Aegis(99)Afterglow::Augments "Shield Bash" VI=>"Shield Bash"+250
+Ancile::Augments "Shield Bash"=>"Shield Bash"+0
 
 // ====== Shield Block ======
 Beatific Shield::Increases chance of successful block=>Chance of successful block +0
@@ -1892,6 +2046,7 @@ Charmer's Merlin::"Sic" and "Ready" ability delay (-\d)=>"Sic" ability delay $1 
 Terminus Earring::Increases combat skill gain rate=>Combat skill gain rate +0
 Prouesse Ring::Increases combat skill gain rate=>Combat skill gain rate +0
 Liminus Earring::Increases magic skill gain rate=>Magic skill gain rate +0
+Destrier Beret::Increases skill gain rate=>Combat skill gain rate +0 Magic skill gain rate +0
 
 // ====== Skillchain Bonus ======
 Charis Bangles +1::Enhances "Skillchain Bonus" effect=>"Skillchain Bonus"+5
@@ -2006,9 +2161,12 @@ Sable Cuisses::Enhances "Souleater" effect=>"Souleater"+2
 Chaos Burgeonet::Enhances "Souleater" effect=>"Souleater"+2
 Chs. Burgeonet +1::Enhances "Souleater" effect=>"Souleater"+2
 Ignominy Burgeonet::Enhances "Souleater" effect=>"Souleater"+2
+Moliones's Ring::Enhances "Souleater" effect=>"Souleater"+{2=2}
+Moliones's Sickle::Enhances "Souleater" effect=>"Souleater"+{2=2}
 
 // ====== Spell Interruption Rate ======
 Marduk's Jubbah +1::(Summoning magic interruption rate down)=>$1 +0
+Pup. Churidars::(Spell interruption rate down)=>$1 0%
 
 // ====== Spikes Spells ======
 // ====== Dread Spikes ======
@@ -2033,21 +2191,27 @@ Ferine Ocreae +1::Enhances "Spur" effect=>"Spur"+5
 Ferine Ocreae +2::Enhances "Spur" effect=>"Spur"+10
 
 // ====== Stats ======
-Phorcys Salade::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
-Phorcys Korazin::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
-Phorcys Mitts::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
-Phorcys Dirs::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
-Phorcys Schuhs::Increases STR, VIT, INT, MND=>STR+{2,5,10,15} VIT+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15}
-Thaumas Hat::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
-Thaumas Coat::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
-Thaumas Gloves::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
-Thaumas Kecks::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
-Thaumas Nails::Increases STR, DEX, AGI, MND=>STR+{2,5,10,15} DEX+{2,5,10,15} AGI+{2,5,10,15} MND+{2,5,10,15}
-Nares Cap::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
-Nares Saio::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
-Nares Cuffs::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
-Nares Trews::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
-Nares Clogs::Increases STR, INT, MND, CHR=>STR+{2,5,10,15} INT+{2,5,10,15} MND+{2,5,10,15} CHR+{2,5,10,15}
+Phorcys Salade::Increases STR, VIT, INT, MND=>STR+{2=2,3=5,4=10,5=15} VIT+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Phorcys Korazin::Increases STR, VIT, INT, MND=>STR+{2=2,3=5,4=10,5=15} VIT+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Phorcys Mitts::Increases STR, VIT, INT, MND=>STR+{2=2,3=5,4=10,5=15} VIT+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Phorcys Dirs::Increases STR, VIT, INT, MND=>STR+{2=2,3=5,4=10,5=15} VIT+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Phorcys Schuhs::Increases STR, VIT, INT, MND=>STR+{2=2,3=5,4=10,5=15} VIT+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Thaumas Hat::Increases STR, DEX, AGI, MND=>STR+{2=2,3=5,4=10,5=15} DEX+{2=2,3=5,4=10,5=15} AGI+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Thaumas Coat::Increases STR, DEX, AGI, MND=>STR+{2=2,3=5,4=10,5=15} DEX+{2=2,3=5,4=10,5=15} AGI+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Thaumas Gloves::Increases STR, DEX, AGI, MND=>STR+{2=2,3=5,4=10,5=15} DEX+{2=2,3=5,4=10,5=15} AGI+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Thaumas Kecks::Increases STR, DEX, AGI, MND=>STR+{2=2,3=5,4=10,5=15} DEX+{2=2,3=5,4=10,5=15} AGI+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Thaumas Nails::Increases STR, DEX, AGI, MND=>STR+{2=2,3=5,4=10,5=15} DEX+{2=2,3=5,4=10,5=15} AGI+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15}
+Nares Cap::Increases STR, INT, MND, CHR=>STR+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15} CHR+{2=2,3=5,4=10,5=15}
+Nares Saio::Increases STR, INT, MND, CHR=>STR+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15} CHR+{2=2,3=5,4=10,5=15}
+Nares Cuffs::Increases STR, INT, MND, CHR=>STR+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15} CHR+{2=2,3=5,4=10,5=15}
+Nares Trews::Increases STR, INT, MND, CHR=>STR+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15} CHR+{2=2,3=5,4=10,5=15}
+Nares Clogs::Increases STR, INT, MND, CHR=>STR+{2=2,3=5,4=10,5=15} INT+{2=2,3=5,4=10,5=15} MND+{2=2,3=5,4=10,5=15} CHR+{2=2,3=5,4=10,5=15}
+Caballero Gnt.::Increases VIT=>VIT+0
+Caballero Shield::Increases VIT=>VIT+0
+Carline Earring::Increases CHR=>CHR+0
+Carline Ribbon::Increases CHR=>CHR+0
+Supremacy Earring::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0
+Paramount Earring::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 
 // ====== Stealth ======
 Sneaking Boots::Enhances "Stealth" effect=>"Stealth"+1
@@ -2094,6 +2258,12 @@ Siegel Sash::Enhances "Stoneskin" effect=>"Stoneskin"+20
 Haven Hose::Enhances "Stoneskin" effect=>"Stoneskin"+20
 Earthcry Earring::Enhances "Stoneskin" effect=>"Stoneskin"+10
 
+// ====== Store TP ======
+Hachiryu Haramaki::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
+Hachiryu Kote::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
+Hachiryu Haidate::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
+Hachiryu Sune-Ate::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
+
 // ====== Striking Flourish ======
 Charis Casaque +1::Enhances "Striking Flourish" effect=>Striking Flourish: "Double Attack" critical hit rate +25%
 Charis Casaque +2::Enhances "Striking Flourish" effect=>Striking Flourish: "Double Attack" critical hit rate +50%
@@ -2107,6 +2277,13 @@ Siriti::Enhances "Sublimation" effect=>"Sublimation"+1
 Savant's Earring::Enhances "Sublimation" effect=>"Sublimation"+1
 Argute Gown +2::Enhances "Sublimation" effect=>"Sublimation"+2
 Acad. Mortarboard::Enhances "Sublimation" effect=>"Sublimation"+2
+
+// ====== Subtle Blow ======
+Pln. Qalansuwa::Enhances ("Subtle Blow") effect=>$1+{2=0,3=0,4=0,5=0}
+Pln. Khazagand::Enhances ("Subtle Blow") effect=>$1+{2=0,3=0,4=0,5=0}
+Pln. Dastanas::Enhances ("Subtle Blow") effect=>$1+{2=0,3=0,4=0,5=0}
+Pln. Seraweels::Enhances ("Subtle Blow") effect=>$1+{2=0,3=0,4=0,5=0}
+Pln. Crackows::Enhances ("Subtle Blow") effect=>$1+{2=0,3=0,4=0,5=0}
 
 // ====== Synthesis ======
 Shaper's Shawl::Increases synthesis skill gain rate=>Synthesis skill gain rate +25%
@@ -2175,6 +2352,9 @@ Bukyoku::TP Bonus=>TP Bonus +0
 Tomonari::TP Bonus=>TP Bonus +0
 Tomonari +1::TP Bonus=>TP Bonus +0
 Cirque Cappello +2::TP Bonus=>TP Bonus +0
+Caller's Spats +2::TP Bonus=>TP Bonus +500
+Cirque Cappello +1::TP Bonus=>TP Bonus +0
+Caller's Spats +1::TP Bonus=>TP Bonus +250
 Nirastamo::Increases amount of TP gained when landing critical hits=>TP Return on Critical Hits +2.5
 
 // ====== Triple Attack ======
@@ -2228,6 +2408,22 @@ Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
 Ogier's Breeches::Increases weapon skill damage=>Weapon skill damage +3
 Ultio Grip::Increases "Retribution" damage=>"Retribution"+10
 Borealis::Occasionally deals severe weapon skill damage=>Occ. weapon skill damage +50
+Flame Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Snow Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Breeze Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Soil Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Thunder Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Aqua Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Light Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Shadow Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Flame Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Snow Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Breeze Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Soil Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Thunder Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Aqua Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Light Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Shadow Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 
 // ====== WS Effect ======
 Dukkha::Enhances "Starlight" effect=>"Starlight" effect +200
