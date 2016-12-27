@@ -753,7 +753,8 @@ namespace Iocaine2.Parsing
                 string l_msg = "Item not clear after all filters.\n";
                 l_msg += "Item[" + iId + "]: " + m_items[iId].m_name + "\n";
                 l_msg += "Orig. Desc: '" + m_desc[iId] + "'\n";
-                l_msg += "Desc: '" + iDesc + "'\n\n";
+                l_msg += "Desc: '" + iDesc + "'\n";
+                l_msg += m_items[iId].m_name + "::" + iDesc.Trim() + "=>\n\n";
                 l_msg += "Description is " + l_tmp.Length + " characters long. UTF-16 codes:\n\n";
                 for (int ii = 0; ii < l_tmp.Length; ii++)
                 {
