@@ -201,6 +201,9 @@ Gothic Sabatons::Increases Attack and Ranged Attack=>Attack+{2=0} Ranged Attack+
 Summoner's Pgch.::Enhances attack=>Attack+7
 Smn. Pigaches +1::Enhances attack=>Attack+0
 Affinity Earring::Enhances pet attack=>Pet: Attack+0
+Karura Hachigane::Attack Bonus Defense Bonus=>Attack+10 DEF+10
+Bedivere's Hose::Increases Accuracy and Attack=>Attack+25 Accuracy+25
+Ryumon::Attack Bonus=>Attack+1%
 
 // ====== Aura Steal ======
 Sagasinger::Steals enhancement effect=>"Aura Steal"+20
@@ -510,6 +513,7 @@ Skadi's Bazubands::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4
 Skadi's Chausses::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 Skadi's Jambeaux::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 Zeta Sash::Increases rate of critical hits=>Critical hit rate +2
+Ifrit's Bow::Increases rate of critical hits=>Critical hit rate +0
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -518,6 +522,7 @@ Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect dura
 // ====== Cure Potency ======
 Dia Wand::Enhances "Cure" potency=>"Cure" potency +1%
 Pup. Churidars::Enhances "Cure" potency=>"Cure" potency +0%
+Pup. Churidars +1::Enhances "Cure" potency=>"Cure" potency +0%
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
@@ -558,6 +563,7 @@ Ebur Galoshes::Defense Bonus=>DEF+0
 Beast Bazubands::Defense Bonus=>DEF+10
 Breeder Mufflers::Increases pet defense and enmity=>DEF+{2=10} Enmity+{2=5}
 Breeder Mask::Increases pet defense and enmity=>DEF+{2=10} Enmity+{2=5}
+Astral Staff::Defense Bonus=>DEF+10
 
 // ====== Despoil ======
 Raid. Poulaines +1::Enhances "Despoil" effect=>"Despoil" effect +0
@@ -682,6 +688,7 @@ Misanthropy::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Arasy Scythe::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Arasy Scythe +1::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Anaimatos Scythe::Enhances effect of "Drain" and "Aspir"=>"Drain"+0 "Aspir"+0
+Diabolos's Pole::Enhances effect of "Drain" and "Aspir"=>"Drain"+0 "Aspir"+0
 Rubicundity::"Drain" and "Aspir" potency (\+\d+)=>"Drain"$1 "Aspir"$1
 Vampiric Mitts::Enhances effect of "Drain" and "Aspir"=>"Drain"+{2=10} "Aspir"+{2=10}
 Vampiric Boots::Enhances effect of "Drain" and "Aspir"=>"Drain"+{2=10} "Aspir"+{2=10}
@@ -748,6 +755,7 @@ Iron Ram Sallet::Increases all elemental resistances=>Fire+{2=0,3=0,4=0,5=0} Ice
 Trilling Dagger::Increases light elemental magic damage dealt=>Light elemental Magic damage+10
 Guglielmo's Bow::Increases light elemental magic damage dealt=>Light elemental Magic damage+0
 Zodiac Ring::Enhances elemental magic=>Magic damage+3
+Twilight Cape::Enhances bonus=>Magic damage+5
 
 // ====== Elemental Magic by Day ======
 Sorcerer's Tonban::Elemental magic affected by day=>Elemental magic +5 depending on day
@@ -818,7 +826,10 @@ Chev. Cuisses +1::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity ret
 Flock Earring::Bonus to Evasion=>Evasion+0
 Evoker's Pigaches::Enhances evasion=>Evasion+0
 Evk. Pigaches +1::Enhances evasion=>Evasion+0
+// Brilliant Earring Sets //
 Brilliant Earring::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Mukademaru::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Alastor::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -1310,6 +1321,7 @@ Cobra Robe::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
 Shedir Crackows::Enhances "Magic Atk. Bonus"=>"Magic Atk. Bonus"+3
 Fervor Ring::("Magic Atk. Bonus")=>$1+2
 Uggalepih Pendant::("Magic Atk. Bonus")=>$1+8
+Rune Staff::("Magic Atk. Bonus")=>$1+0
 Morrigan's Coron.::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Robe::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Cuffs::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
@@ -1511,6 +1523,7 @@ Thoth's Wand::Moon phase affects additional damage=>Damage varies by moon phase
 Skadi's Jambeaux::Increases movement speed=>Movement speed +12%
 Skd. Jambeaux +1::Increases movement speed=>Movement speed +18%
 Destrier Beret::Increases movement speed=>Movement speed +12%
+Pitchfork +1::Increases movement speed=>Movement speed +12%
 
 // ====== Mug ======
 Assassin's Bonnet::Enhances "Mug" effect=>"Mug"+1
@@ -1570,7 +1583,7 @@ Svnt. Bracers +1::Enhances "Perpetuance" effect=>"Perpetuance"+25%
 Svnt. Bracers +2::Enhances "Perpetuance" effect=>"Perpetuance"+50%
 
 // ====== Pet Effects ======
-Herder's Subligar::Enhances pet accuracy=>Pet: Accuracy +5 Ranged Accuracy +5
+Herder's Subligar::Enhances pet accuracy=>Pet: Accuracy+5 Ranged Accuracy+5
 
 // ====== Pet Food ======
 Pet Food Alpha::^.*$=>Pet Food
@@ -2167,6 +2180,7 @@ Moliones's Sickle::Enhances "Souleater" effect=>"Souleater"+{2=2}
 // ====== Spell Interruption Rate ======
 Marduk's Jubbah +1::(Summoning magic interruption rate down)=>$1 +0
 Pup. Churidars::(Spell interruption rate down)=>$1 0%
+Pup. Churidars +1::(Spell interruption rate down)=>$1 0%
 
 // ====== Spikes Spells ======
 // ====== Dread Spikes ======
@@ -2210,8 +2224,18 @@ Caballero Gnt.::Increases VIT=>VIT+0
 Caballero Shield::Increases VIT=>VIT+0
 Carline Earring::Increases CHR=>CHR+0
 Carline Ribbon::Increases CHR=>CHR+0
-Supremacy Earring::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0
+// Supremacy Earring Sets //
+Supremacy Earring::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Merveilleuse::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Skystrider::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Namioyogi::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Sparth::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Catalyst::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+// Paramount Earring Sets //
 Paramount Earring::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Sinfender::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Fleetwing::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Kebbie::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 
 // ====== Stealth ======
 Sneaking Boots::Enhances "Stealth" effect=>"Stealth"+1
@@ -2356,6 +2380,7 @@ Caller's Spats +2::TP Bonus=>TP Bonus +500
 Cirque Cappello +1::TP Bonus=>TP Bonus +0
 Caller's Spats +1::TP Bonus=>TP Bonus +250
 Nirastamo::Increases amount of TP gained when landing critical hits=>TP Return on Critical Hits +2.5
+Thunderer Mantle::(TP)(\+\d+)=>$1 Bonus $2
 
 // ====== Triple Attack ======
 Zareehkl Scythe::Increases rate of "Triple Attack"=>"Triple Attack"+0
@@ -2424,6 +2449,19 @@ Thunder Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage 
 Aqua Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 Light Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 Shadow Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Seismic Axe::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Storm Tulwar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Storm Tabar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Khanjar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Storm Zaghnal::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Imperial Neza::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Pahluwan Patas::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Doombringer::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Yigit Bulawa::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Sayosamonji::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Hotarumaru::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Imperial Bhuj::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Imperial Pole::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 
 // ====== WS Effect ======
 Dukkha::Enhances "Starlight" effect=>"Starlight" effect +200
