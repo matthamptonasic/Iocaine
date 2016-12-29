@@ -62,8 +62,42 @@ Spae. Sabots +2::Elemental magic casting time.*=>Elemental magic casting time -5
 Spaekona's Petasos +3::Elemental magic casting.*=>Elemental magic casting time -6%
 Spae. Sabots +3::Elemental magic casting time.*=>Elemental magic casting time -6%
 Kenkonken(119)Afterglow Final::Occasionally attacks twic.*=>Occasionally attacks twice or thrice Afterglow
-Ababinili +1::Unity Ranking.*=>Unity Ranking: "Cure" potency +6~10%
+Ababinili::Unity Ranking.*=>Unity Ranking: "Cure" potency +6～10%
+Ababinili +1::Unity Ranking.*=>Unity Ranking: "Cure" potency +6～10%
 Epeolatry(119)Final::Occasionally attacks=>Occasionally attacks twice or thrice
+Nirvana(119)Afterglow::Occasional.*=>Occasionally attacks twice or thrice Afterglow
+Nirvana(119)Afterglow Final::Occasional.*=>Occasionally attacks twice or thrice Afterglow
+Exemplar::"Blood Pact" damage.*=>"Blood Pact" damage +8
+Con. Doublet +2::Avatar:.*=>Avatar: Accuracy+35 Magic Accuracy+35 "Blood Pact" damage +14
+Convo. Bracers +2::Avatar:.*=>Avatar: Accuracy+33 Magic Accuracy+33 Enmity+10 "Double Attack"+5
+Convo. Pigaches +2::Avatar:.*=>Avatar: Accuracy+30 Magic Accuracy+30 Evasion+30 "Blood Pact" damage +8
+Con. Doublet +3::Avatar:.*=>Avatar: Accuracy+45 Magic Accuracy+45 "Blood Pact" damage +16
+Convo. Bracers +3::Avatar:.*=>Avatar: Accuracy+43 Magic Accuracy+43 Enmity+15 "Double Attack"+10%
+Convo. Pigaches +3::Avatar:.*=>Avatar: Accuracy+40 Magic Accuracy+40 Evasion+40 "Blood Pact" damage +10
+Emicho Haubert +1::Set:.*=>Set: Enhances "Double Attack" effect
+Emi. Gambieras +1::Set:.*=>Set: Enhances "Double Attack" effect
+Adhemar Jacket +1::Set:.*=>Set: Increases rate of critical hits
+Amalric Doublet +1::Set:.*=>Set: Enhances "Magic Atk. Bonus" effect
+Amalric Gages +1::Set:.*=>Set: Enhances "Magic Atk. Bonus" effect
+Amalric Nails +1::Set:.*=>Set: Enhances "Magic Atk. Bonus" effect
+Kaykaus Mitra +1::Set:.*=>Set: Enhances "Cure" potency II effect
+Kaykaus Bliaut +1::Set:.*=>Set: Enhances "Cure" potency II effect
+Carmine Cuisses +1::Haste.*=>Haste+6% Set: Increases Accuracy
+Ebers Pantaloons::Set:.*=>Set: Augments elemental resistance spells
+Ebers Pant. +1::Set:.*=>Set: Augments elemental resistance spells
+Fili Manchettes::Set:.*=>Set: Augments songs
+Fili Manchettes +1::Set:.*=>Set: Augments songs
+Beck. Doublet +1::Set:.*=>Set: Augments "Blood Boon"
+Chasseur's Frac::Set:.*=>Set: Augments "Quick Draw"
+Chasseur's Frac +1::Set:.*=>Set: Augments "Quick Draw"
+Arbatel Gown +1::Set:.*=>Set: Augments grimoire
+Azimuth Coat::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
+Azimuth Coat +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
+Pel. Vambraces +1::Set:.*=>Set: Attack occ. varies with wyvern's HP
+Beckoner's Bracers::Set:.*=>Set: Augments "Blood Boon"
+Beck. Bracers +1::Set:.*=>Set: Augments "Blood Boon"
+Azimuth Gloves +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
+Azimuth Tights +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
 
 // Other typos.
 Luhlaza Jubbah +1::"Evasion=>Evasion
@@ -74,6 +108,7 @@ Ashera Harness::Accuray=>Accuracy
 Maxixi Casaque(F)::Potenct=>Potency
 Rhongomiant(119)Afterglow::DMG250=>DMG:250
 Divinator::Lv\.\.=>Lv.
+Senkutanto::Ocassionally=>Occasionally
 
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
@@ -132,6 +167,12 @@ Evk. Spats +1::Enhances accuracy=>Accuracy+0
 Moliones's Ring::Increases Accuracy=>Accuracy+{2=5}
 Moliones's Sickle::Increases Accuracy=>Accuracy+{2=5}
 Fidelity Earring::Enhances pet accuracy=>Pet: Accuracy+0
+Ophidian Trident::Increases accuracy=>Accuracy+0
+Carmine Mask +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
+Carm. Sc. Mail +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
+Carmine Fin. Ga. +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
+Carmine Cuisses +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
+Carmine Greaves +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
 
 // ====== Addendum White/Black ======
 Savant's Gown +1::Enhances "Addendum: White" effect=>"Addendum: White" enmity -10
@@ -204,6 +245,21 @@ Affinity Earring::Enhances pet attack=>Pet: Attack+0
 Karura Hachigane::Attack Bonus Defense Bonus=>Attack+10 DEF+10
 Bedivere's Hose::Increases Accuracy and Attack=>Attack+25 Accuracy+25
 Ryumon::Attack Bonus=>Attack+1%
+Aymur(75)::Attack Bonus=>Attack+40
+Aymur(80)::Attack Bonus II=>Attack+50
+Aymur(85)::Attack Bonus III=>Attack+60
+Aymur(90)::Attack Bonus IV=>Attack+70
+Aymur(95)::Attack Bonus IV=>Attack+70
+Aymur(99)::Attack Bonus V=>Attack+80
+Aymur(99)Afterglow::Attack Bonus V=>Attack+80
+Aymur(119)::Attack Bonus V=>Attack+80
+Aymur(119)Afterglow::Attack Bonus V=>Attack+80
+Aymur(119)Afterglow Final::Attack Bonus V=>Attack+80
+Ryuo Somen +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
+Ryuo Domaru +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
+Ryuo Tekko +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
+Ryuo Hakama +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
+Ryuo Sune-Ate +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
 
 // ====== Aura Steal ======
 Sagasinger::Steals enhancement effect=>"Aura Steal"+20
@@ -232,6 +288,10 @@ Caller's Horn +2::Enhances "Avatar's Favor" effect=>"Avatar's Favor"+2
 // ====== Avatar Perpetuation ======
 Call. Bracers +2::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
 Caller's Bracers +1::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
+Beckoner's Bracers::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
+Beck. Bracers +1::Halves avatar perpetuation cost=>Avatar perpetuation cost -50%
+Asteria Mitts::Halves perpetuation cost=>Avatar perpetuation cost -50%
+Asteria Mitts +1::Halves perpetuation cost=>Avatar perpetuation cost -50%
 
 // ====== Banish ======
 Fenian Ring::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. undead +13
@@ -242,11 +302,21 @@ Clr. Mitts +2::Enhances potency of "Banish" vs. undead=>Potency of "Banish" vs. 
 // ====== Bar-Spells ======
 Blessed Briault::Enhances elemental resistance spells=>Elemental resistance spells+0
 Blessed Briault +1::Enhances elemental resistance spells=>Elemental resistance spells+0
-Orison Cap +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
-Orison Bliaud +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
-Orison Mitts +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
-Orsn. Pantaln. +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
-Orsn. Duckbills +2::Augments elemental resistance spells=>Elemental resistance spells +{2=4,3=6,4=8,5=10}
+Orison Cap +2::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Orison Bliaud +2::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Orison Mitts +2::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Orsn. Pantaln. +2::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Orsn. Duckbills +2::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Cap::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Bliaud::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Mitts::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Pantaloons::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Duckbills::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Cap +1::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Bliaud +1::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Mitts +1::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Pant. +1::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
+Ebers Duckbills +1::Augments elemental resistance spells=>Elemental resistance spells nullify damage +{2=4,3=6,4=8,5=10}
 
 // ====== Barrage ======
 Htr. Bracers +1::Enhances "Barrage" effect=>"Barrage"+1
@@ -290,6 +360,13 @@ Chass. Tricorne +1::Enhances "Blitzer's Roll" effect=>"Blitzer's Roll"+4
 // ====== Blood Pact Damage ======
 Call. Doublet +2::Increases "Blood Pact" damage=>Avatar Blood Pact damage +10%
 Ngen Seraweels::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
+Nirvana(119)::Increases "Blood Pact" damage=>Avatar Blood Pact damage +40%
+Nirvana(119)Afterglow::Increases "Blood Pact" damage=>Avatar Blood Pact damage +40%
+Apogee Crown +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
+Apo. Dalmatica +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
+Apogee Mitts +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
+Apogee Slacks +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
+Apogee Pumps +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
 
 // ====== Blood Rage ======
 Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
@@ -357,7 +434,9 @@ Chas. Culottes +1::Enhances "Caster's Roll" effect=>"Caster's Roll"+10
 // ====== Celerity & Alacrity ======
 Argute Loafers::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
 Argute Loafers +1::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
-Argute Loafers +2::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -15%
+Argute Loafers +2::Enhances "Celerity" and "Alacrity" effect=>"Celerity": Cast/Recast -10% "Alacrity": Cast/Recast -10%
+Peda. Loafers::"Celerity" and "Alacrity" effect \+(\d+)=>"Celerity": Cast/Recast -$1% "Alacrity": Cast/Recast -$1%
+Peda. Loafers +1::"Celerity" and "Alacrity" effect \+(\d+)=>"Celerity": Cast/Recast -$1% "Alacrity": Cast/Recast -$1%
 
 // ====== Chain Affinity ======
 Mavi Kavuk +1::Enhances "Chain Affinity" effect=>"Chain Affinity"+10
@@ -394,6 +473,16 @@ Goetia Coat +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2
 Goetia Gloves +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
 Goet. Chausses +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
 Goetia Sabots +2::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=0,3=0,4=0,5=0}
+Wicce Petasos::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Coat::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Gloves::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Chausses::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Sabots::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Petasos +1::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Coat +1::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Gloves +1::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Chausses +1::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
+Wicce Sabots +1::Augments "Conserve MP"=>Conserve MP occ. causes double damage {2=2,3=3,4=4,5=5}
 
 // ====== Convert ======
 Murgleis(75)::Augments "Convert"=>"Convert" MP +100%
@@ -425,6 +514,9 @@ Spharai(99)Afterglow::Enhances "Counter" effect V=>"Counter"+14
 Spharai(119)::Enhances "Counter" effect V=>"Counter"+14
 Spharai(119)Afterglow::Enhances "Counter" effect V=>"Counter"+14
 Spharai(119)Afterglow Final::Enhances "Counter" effect V=>"Counter"+14
+Ichigohitofuri::"Counter" rate (\+\d+)=>"Counter"$1
+Kasuga Kabuto::Counter rate(\+\d+)=>"Counter"$1
+Kasuga Kabuto +1::Counter rate(\+\d+)=>"Counter"$1
 
 // ====== Counterstance ======
 Melee Gaiters::Enhances ("Counterstance") effect=>$1+5
@@ -514,6 +606,12 @@ Skadi's Chausses::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=
 Skadi's Jambeaux::Increases rate of critical hits=>Critical hit rate {2=0,3=0,4=0,5=5}
 Zeta Sash::Increases rate of critical hits=>Critical hit rate +2
 Ifrit's Bow::Increases rate of critical hits=>Critical hit rate +0
+Trollbane::Increases rate of critical hits=>Critical hit rate +5
+Adhemar Bonnet +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
+Adhemar Jacket +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
+Adhemar Wrist. +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
+Adhemar Kecks +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
+Adhe. Gamashes +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -523,6 +621,11 @@ Goet. Chausses +2::Enhances cumulative magic effect=>Increases magic effect dura
 Dia Wand::Enhances "Cure" potency=>"Cure" potency +1%
 Pup. Churidars::Enhances "Cure" potency=>"Cure" potency +0%
 Pup. Churidars +1::Enhances "Cure" potency=>"Cure" potency +0%
+Kaykaus Mitra +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
+Kaykaus Bliaut +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
+Kaykaus Cuffs +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
+Kaykaus Tights +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
+Kaykaus Boots +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
@@ -538,6 +641,11 @@ Mending Cape::Enhances "Cursna" effect=>"Cursna"+15
 
 // ====== Damage Taken ======
 Lancer's Mezail +2::Occ\. absorbs damage taken=>Occ. absorbs damage taken +10%
+Souv. Schaller +1::Reduces damage taken=>Damage taken {2=-4,3=-6,4=-8,5=-10}
+Souv. Cuirass +1::Reduces damage taken=>Damage taken {2=-4,3=-6,4=-8,5=-10}
+Souv. Handsch. +1::Reduces damage taken=>Damage taken {2=-4,3=-6,4=-8,5=-10}
+Souv. Diechlings +1::Reduces damage taken=>Damage taken {2=-4,3=-6,4=-8,5=-10}
+Souveran Schuhs +1::Reduces damage taken=>Damage taken {2=-4,3=-6,4=-8,5=-10}
 
 // ====== Damage to MP ======
 Tizona(75)::(Occ. converts damage dealt to MP)=>$1 +10
@@ -610,16 +718,16 @@ Yagrush(119)Afterglow Final::Enhances "Divine Veil" effect=>"Divine Veil"+100%
 Temple Gaiters::Enhances "Dodge" effect=>"Dodge" effect +10
 Tpl. Gaiters +1::Enhances "Dodge" effect=>"Dodge" effect +10
 Anch. Gaiters::Enhances "Dodge" effect=>"Dodge" effect +10
-Glanzfaust(75)::and "Dodge"=>"Dodge": Guard+5% Evasion+5.
-Glanzfaust(80)::and "Dodge" II=>"Dodge": Guard+5% Evasion+10.
-Glanzfaust(85)::and "Dodge" III=>"Dodge": Guard+5% Evasion+20.
-Glanzfaust(90)::and "Dodge" IV=>"Dodge": Guard+5% Evasion+25.
-Glanzfaust(95)::and "Dodge" IV=>"Dodge": Guard+5% Evasion+25.
-Glanzfaust(99)::and "Dodge" V=>"Dodge": Guard+5% Evasion+30.
-Glanzfaust(99)Afterglow::and "Dodge" V=>"Dodge": Guard+5% Evasion+30.
-Glanzfaust(119)::and "Dodge" V=>"Dodge": Guard+5% Evasion+30.
-Glanzfaust(119)Afterglow::and "Dodge" V=>"Dodge": Guard+5% Evasion+30.
-Glanzfaust(119)Afterglow Final::and "Dodge" V=>"Dodge": Guard+5% Evasion+30.
+Glanzfaust(75)::and "Dodge"=>"Dodge": Guard+5% Evasion+5
+Glanzfaust(80)::and "Dodge" II=>"Dodge": Guard+5% Evasion+10
+Glanzfaust(85)::and "Dodge" III=>"Dodge": Guard+5% Evasion+20
+Glanzfaust(90)::and "Dodge" IV=>"Dodge": Guard+5% Evasion+25
+Glanzfaust(95)::and "Dodge" IV=>"Dodge": Guard+5% Evasion+25
+Glanzfaust(99)::and "Dodge" V=>"Dodge": Guard+5% Evasion+30
+Glanzfaust(99)Afterglow::and "Dodge" V=>"Dodge": Guard+5% Evasion+30
+Glanzfaust(119)::and "Dodge" V=>"Dodge": Guard+5% Evasion+30
+Glanzfaust(119)Afterglow::and "Dodge" V=>"Dodge": Guard+5% Evasion+30
+Glanzfaust(119)Afterglow Final::and "Dodge" V=>"Dodge": Guard+5% Evasion+30
 
 // ====== Double Attack ======
 // ====== Rate ======
@@ -644,6 +752,16 @@ Ares' Cuirass::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
 Ares' Gauntlets::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
 Ares' Flanchard::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
 Ares' Sollerets::Enhances ("Double Attack") effect=>$1 {2=0,3=0,4=0,5=5}
+Emicho Coronet +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Emicho Haubert +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Emi. Gauntlets +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Emicho Hose +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Emi. Gambieras +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Argosy Celata +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Argosy Hauberk +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Argosy Mufflers +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Argosy Breeches +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
+Argosy Sollerets +1::Enhances ("Double Attack") effect=>$1 {2=4,3=6,4=8,5=10}
 // ====== Damage ======
 War. Cuisses +2::Increases "Double Attack" damage=>Double Attack damage +3%
 Ravager's Mask +2::Augments "Double Attack"=>Double Attack occ. deals double damage
@@ -654,6 +772,16 @@ Rvg. Calligae +2::Augments "Double Attack"=>Double Attack occ. deals double dama
 Quiahuiz Helm::Increases "Double Attack" damage=>Double Attack damage +5%
 Quiahuiz Trousers::Increases "Double Attack" damage=>Double Attack damage +5%
 Widowmaker::Increases "Double Attack" damage=>Double Attack damage +0%
+Boii Mask::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Lorica::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Mufflers::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Cuisses::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Calligae::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Mask +1::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Lorica +1::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Mufflers +1::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Cuisses +1::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
+Boii Calligae +1::Augments "Double Attack"=>Double Attack deals double damage +{2=2,3=3,4=4,5=5}
 
 // ====== Double Shot ======
 // ====== Enmity ======
@@ -718,11 +846,22 @@ Thur. Chapeau +1::Enhances "Dual Wield" effect=>"Dual Wield"+5
 Hachi. Chainmail::Enhances "Dual Wield" effect=>"Dual Wield"+7
 Hachiya Hakama::Enhances "Dual Wield" effect=>"Dual Wield"+3
 Mextli Harness::Enhances "Dual Wield" effect=>"Dual Wield"+3
-Iga Zukin +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
-Iga Ningi +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
-Iga Tekko +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
-Iga Hakama +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
-Iga Kyahan +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=0,3=0,4=0,5=10}
+Iga Zukin +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Iga Ningi +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Iga Tekko +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Iga Hakama +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Iga Kyahan +2::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Zukin::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Ningi::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Tekko::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Hakama::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Kyahan::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Zukin +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Ningi +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Tekko +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Hakama +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Hattori Kyahan +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+
 
 // ====== Ebullience ======
 Svnt. Bonnet +1::Enhances "Ebullience" effect=>"Ebullience"+5
@@ -830,6 +969,12 @@ Evk. Pigaches +1::Enhances evasion=>Evasion+0
 Brilliant Earring::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 Mukademaru::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 Alastor::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Silktone::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Faucheuse::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Clearpath::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Grandeur::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Basilisk::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
+Yagentoshiro::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 
 // ====== Fast Cast ======
 Warlock's Mantle::Enhances "Fast Cast" effect=>Fast Cast +2
@@ -943,6 +1088,10 @@ Sch. Loafers +1::Reduces spellcasting time=>Fast Cast +5
 Argute M.board::Reduces spellcasting time=>Fast Cast +5
 Argute M.board +1::Reduces spellcasting time=>Fast Cast +5
 Scholar's Loafers::Reduces spellcasting time=>Fast Cast +5
+Acad. Loafers +2::Spellcasting time -(\d+)%=>Fast Cast +$1
+Acad. Loafers +3::Spellcasting time -(\d+)%=>Fast Cast +$1
+Peda. M.Board::Spellcasting time -(\d+)%=>Fast Cast +$1
+Peda. M.Board +1::Spellcasting time -(\d+)%=>Fast Cast +$1
 
 // ====== Feather Step ======
 Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
@@ -1020,16 +1169,16 @@ Pillager's Poulaines::Increases "Flee" duration=>"Flee" duration +15
 Temple Crown::Enhances "Focus" effect=>"Focus"+10
 Tpl. Crown +1::Enhances "Focus" effect=>"Focus"+10
 Anchorite's Crown::Enhances "Focus" effect=>"Focus"+15
-Glanzfaust(75)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+5.
-Glanzfaust(80)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+10.
-Glanzfaust(85)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+20.
-Glanzfaust(90)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+25.
-Glanzfaust(95)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+25.
-Glanzfaust(99)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
-Glanzfaust(99)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
-Glanzfaust(119)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
-Glanzfaust(119)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
-Glanzfaust(119)Afterglow Final::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30.
+Glanzfaust(75)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+5
+Glanzfaust(80)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+10
+Glanzfaust(85)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+20
+Glanzfaust(90)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+25
+Glanzfaust(95)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+25
+Glanzfaust(99)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30
+Glanzfaust(99)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30
+Glanzfaust(119)::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30
+Glanzfaust(119)Afterglow::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30
+Glanzfaust(119)Afterglow Final::Augments "Focus"=>"Focus": Attack+5% Critical hit rate +3% Accuracy+30
 
 // ====== Food Effect ======
 //Lncr. Plackart +2::Grants food effect=>Applies food effect to Wyvern
@@ -1057,12 +1206,17 @@ Unkai Haidate +1::Enhances "Hasso" effect=>"Hasso"+1
 Unkai Haidate +2::Enhances "Hasso" effect=>"Hasso"+2
 Wakido Kote::Enhances "Hasso" effect=>"Hasso"+1
 
-// ====== Hasso ======
+// ====== Haste ======
 Usukane Somen::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
 Usukane Haramaki::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
 Usukane Gote::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
 Usukane Hizayoroi::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
 Usukane Sune-Ate::Enhances Haste effect=>Haste+{2=0,3=0,4=0,5=5}
+Perle Salade +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
+Perle Hauberk +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
+Perle Moufles +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
+Perle Brayettes +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
+Perle Solerets +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
 
 // ====== Hide ======
 Rogue's Vest::Increases "Hide" duration=>"Hide" duration +0
@@ -1072,6 +1226,7 @@ Pillager's Vest::Extends duration of "Hide"=>"Hide" duration +0
 // ====== HP & MP ======
 Pup. Tobe +1::Max HP and Max MP Bonus=>HP+0 MP+0
 Pup. Tobe::Max HP Boost Max MP Boost=>HP+0 MP+0
+Gnafron's Adargas::Increases maximum HP and MP=>HP+0 MP+0
 Askar Zucchetto::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
 Askar Korazin::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
 Askar Manopolas::Max HP Boost=>HP+{2=0,3=0,4=0,5=10}%
@@ -1087,6 +1242,8 @@ Cobra Coat::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 Cobra Cuffs::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 Cobra Hat::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 Cobra Slops::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
+Adaman Sainti::Max HP Boost=>HP+0
+Gem Sainti::Max HP Boost=>HP+0
 
 // ====== Holy Circle ======
 Gallant Leggings::Enhances "Holy Circle" effect=>"Holy Circle"+1
@@ -1316,17 +1473,29 @@ Cobra Gloves::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
 Cobra Trews::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
 Cobra Crackows::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
 Cobra Robe::Increases (Magic Accuracy)=>$1+{2=0,3=0,4=0,5=0}
+Cama. Pole::Increases Magic Accuracy=>Magic Accuracy+0
+Forefront Scepter::Increases Magic Accuracy=>Magic Accuracy+0
+Forefront Scepter::Inc. Mag. Acc.=>Magic Accuracy+0
+Avitap Pole::Increases Magic Accuracy=>Magic Accuracy+0
 
 // ====== Magic Attack Bonus ======
 Shedir Crackows::Enhances "Magic Atk. Bonus"=>"Magic Atk. Bonus"+3
 Fervor Ring::("Magic Atk. Bonus")=>$1+2
 Uggalepih Pendant::("Magic Atk. Bonus")=>$1+8
 Rune Staff::("Magic Atk. Bonus")=>$1+0
+Lamiabane::Enhances ("Magic Atk. Bonus")=>$1+2
+Forefront Staff::"M. Atk. Bon."(\+\d+)=>"Magic Atk. Bonus"$1
+Forefront Scepter::"M. Atk. Bon."(\+\d+)=>"Magic Atk. Bonus"$1
 Morrigan's Coron.::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Robe::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Cuffs::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Slops::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
 Morrigan's Pgch.::Enhances ("Magic Atk. Bonus") effect=>$1+{2=0,3=0,4=0,5=5}
+Amalric Coif +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
+Amalric Doublet +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
+Amalric Gages +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
+Amalric Slops +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
+Amalric Nails +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -1440,6 +1609,11 @@ Kenkonken(99)Afterglow::Enhances "Martial Arts" effect V=>"Martial Arts"+55
 Kenkonken(119)::Enhances "Martial Arts" effect V=>"Martial Arts"+55
 Kenkonken(119)Afterglow::Enhances "Martial Arts" effect V=>"Martial Arts"+55
 Kenkonken(119)Afterglow Final::Enhances "Martial Arts" effect V=>"Martial Arts"+55
+Rao Kabuto +1::Augments "Martial Arts"=>"Martial Arts"+{2=8,3=12,4=16,5=20}
+Rao Togi +1::Augments "Martial Arts"=>"Martial Arts"+{2=8,3=12,4=16,5=20}
+Rao Kote +1::Augments "Martial Arts"=>"Martial Arts"+{2=8,3=12,4=16,5=20}
+Rao Haidate +1::Augments "Martial Arts"=>"Martial Arts"+{2=8,3=12,4=16,5=20}
+Rao Sune-Ate +1::Augments "Martial Arts"=>"Martial Arts"+{2=8,3=12,4=16,5=20}
 
 // ====== Meditate ======
 Myochin Kabuto::Enhances "Meditate" effect=>Meditate Duration +4
@@ -2110,6 +2284,7 @@ Gastraphetes(99)::Enhances "Snapshot" effect=>"Snapshot"+10
 Gastraphetes(99)Afterglow::Enhances "Snapshot" effect=>"Snapshot"+10
 Gastraphetes(119)::Enhances "Snapshot" effect=>"Snapshot"+10
 Gastraphetes(119)Afterglow::Enhances "Snapshot" effect=>"Snapshot"+10
+Cama. Gun::Enhances "Snapshot" effect=>"Snapshot"+0
 
 // ====== Sneak/Trick Attack ======
 Rog. Armlets +1::Increases "Trick Attack" damage=>"Trick Attack" damage+15
@@ -2167,6 +2342,16 @@ Aoidos' Hngrln. +2::Augments songs=>Song status boost based off of the song elem
 Ad. Mnchtte. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
 Aoidos' Rhing. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
 Aoidos' Cothrn. +2::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Calot::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Hongreline::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Manchettes::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Rhingrave::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Cothurnes::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Calot +1::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Hongreline +1::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Manchettes +1::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Rhingrave +1::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
+Fili Cothurnes +1::Augments songs=>Song status boost based off of the song element {2=1,3=2,4=3,5=5}
 
 // ====== Souleater ======
 Gloom Breastplate::Enhances "Souleater" effect=>"Souleater"+2
@@ -2231,11 +2416,19 @@ Skystrider::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Att
 Namioyogi::Increases STR, Attack, Ranged Attack, "Magic Atk\. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
 Sparth::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
 Catalyst::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Acantha Shavers::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Murderer::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
+Vendetta::Increases STR, Attack, Ranged Attack, "Magic Atk. Bonus"=>STR+0 Attack+0 Ranged Attack+0 "Magic Atk. Bonus"+0
 // Paramount Earring Sets //
 Paramount Earring::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 Sinfender::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 Fleetwing::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 Kebbie::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Useshi::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Farseer::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Balisarde::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Osoraku::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
+Amanokakoyumi::Increases HP, VIT, Accuracy, Ranged Accuracy=>HP+0% VIT+0 Accuracy+0 Ranged Accuracy+0
 
 // ====== Stealth ======
 Sneaking Boots::Enhances "Stealth" effect=>"Stealth"+1
@@ -2287,6 +2480,11 @@ Hachiryu Haramaki::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
 Hachiryu Kote::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
 Hachiryu Haidate::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
 Hachiryu Sune-Ate::Enhances "Store TP" effect=>"Store TP"+{2=5,3=10,4=15}
+Aurore Beret +1::"Store TP"\+2-8=>"Store TP"+{2=2,3=4,4=6,5=8}
+Aurore Doublet +1::"Store TP"\+2-8=>"Store TP"+{2=2,3=4,4=6,5=8}
+Aurore Gloves +1::"Store TP"\+2-8=>"Store TP"+{2=2,3=4,4=6,5=8}
+Aurore Brais +1::"Store TP"\+2-8=>"Store TP"+{2=2,3=4,4=6,5=8}
+Aurore Gaiters +1::"Store TP"\+2-8=>"Store TP"+{2=2,3=4,4=6,5=8}
 
 // ====== Striking Flourish ======
 Charis Casaque +1::Enhances "Striking Flourish" effect=>Striking Flourish: "Double Attack" critical hit rate +25%
@@ -2394,6 +2592,16 @@ Raider's Vest +2::Augments "Triple Attack"=>Triple Attack occ. deals triple dama
 Raid. Armlets +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
 Raid. Culottes +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
 Raid. Poulaines +2::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=0,3=0,4=0,5=0}
+Skulker's Bonnet::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulker's Vest::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulker's Armlets::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulker's Culottes::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulk. Poulaines::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulker's Bonnet +1::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulker's Vest +1::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulk. Armlets +1::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulk. Culottes +1::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
+Skulk. Poulaines +1::Augments "Triple Attack"=>Triple Attack occ. deals triple damage {2=2,3=3,4=4,5=5}
 
 // ====== Triple Shot ======
 Navarch's Frac +1::Enhances "Triple Shot" effect=>"Triple Shot"+5%
@@ -2431,6 +2639,12 @@ Rheic Korazin +2::Increases weapon skill damage=>Weapon skill damage +4
 Rheic Korazin +3::Increases weapon skill damage=>Weapon skill damage +5
 Phorcys Korazin::Increases weapon skill damage=>Weapon skill damage +7
 Ogier's Breeches::Increases weapon skill damage=>Weapon skill damage +3
+Aizenkunitoshi::Increases weapon skill damage=>Weapon skill damage +0
+Lustratio Cap +1::Increases weapon skill damage=>Weapon skill damage +{2=4,3=6,4=8,5=10}
+Lustr. Harness +1::Increases weapon skill damage=>Weapon skill damage +{2=4,3=6,4=8,5=10}
+Lustr. Mittens +1::Increases weapon skill damage=>Weapon skill damage +{2=4,3=6,4=8,5=10}
+Lustr. Subligar +1::Increases weapon skill damage=>Weapon skill damage +{2=4,3=6,4=8,5=10}
+Lustra. Leggings +1::Increases weapon skill damage=>Weapon skill damage +{2=4,3=6,4=8,5=10}
 Ultio Grip::Increases "Retribution" damage=>"Retribution"+10
 Borealis::Occasionally deals severe weapon skill damage=>Occ. weapon skill damage +50
 Flame Belt::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
@@ -2450,6 +2664,7 @@ Aqua Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10
 Light Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 Shadow Gorget::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 Seismic Axe::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
+Prester::Increases weapon skill accuracy and damage=>Weapon skill damage +10 Weapon skill accuracy +0
 Storm Tulwar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 Storm Tabar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 Khanjar::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
@@ -2462,6 +2677,8 @@ Sayosamonji::Increases elemental weapon skill damage=>Elemental weapon skill dam
 Hotarumaru::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 Imperial Bhuj::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 Imperial Pole::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Imperial Kaman::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
+Imperial Gun::Increases elemental weapon skill damage=>Elemental weapon skill damage increases depending on day
 
 // ====== WS Effect ======
 Dukkha::Enhances "Starlight" effect=>"Starlight" effect +200
@@ -2480,6 +2697,16 @@ Unkai Domaru +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0
 Unkai Kote +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
 Unkai Haidate +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
 Unkai Sune-Ate +2::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=0,3=0,4=0,5=0}
+Kasuga Kabuto::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Domaru::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Kote::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Haidate::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Sune-Ate::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Kabuto +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Domaru +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Kote +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kasuga Haidate +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Kas. Sune-Ate +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
 
 // ====== Zanshin Rate ======
 Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0
