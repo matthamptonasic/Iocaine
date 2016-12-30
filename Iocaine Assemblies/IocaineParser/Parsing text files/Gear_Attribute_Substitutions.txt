@@ -98,6 +98,7 @@ Beckoner's Bracers::Set:.*=>Set: Augments "Blood Boon"
 Beck. Bracers +1::Set:.*=>Set: Augments "Blood Boon"
 Azimuth Gloves +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
 Azimuth Tights +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
+Azimuth Gaiters +1::Set:.*=>Set: MP occasionally not depleted when using geomancy spells
 
 // Other typos.
 Luhlaza Jubbah +1::"Evasion=>Evasion
@@ -109,6 +110,7 @@ Maxixi Casaque(F)::Potenct=>Potency
 Rhongomiant(119)Afterglow::DMG250=>DMG:250
 Divinator::Lv\.\.=>Lv.
 Senkutanto::Ocassionally=>Occasionally
+Carmine Greaves::Increases Accuracy=>
 
 // ====== Absorb Spells ======
 Pavor Gauntlets::Augments "Absorb" spells=>"Absorb" potency +10%
@@ -173,6 +175,9 @@ Carm. Sc. Mail +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
 Carmine Fin. Ga. +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
 Carmine Cuisses +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
 Carmine Greaves +1::Increases Accuracy=>Accuracy+{2=20,3=30,4=40,5=50}
+Vish. Fin. Gaunt::Increases Accuracy=>Accuracy+12
+Punga's Slops::Increases accuracy and attack=>Accuracy+0 Attack+0
+Convoker's Spats::Increases Accuracy=>Accuracy+20
 
 // ====== Addendum White/Black ======
 Savant's Gown +1::Enhances "Addendum: White" effect=>"Addendum: White" enmity -10
@@ -260,6 +265,7 @@ Ryuo Domaru +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
 Ryuo Tekko +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
 Ryuo Hakama +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
 Ryuo Sune-Ate +1::Increases Attack=>Attack+{2=20,3=30,4=40,5=50}
+Mdk. Crackows +1::Increases attack and=>Attack+15
 
 // ====== Aura Steal ======
 Sagasinger::Steals enhancement effect=>"Aura Steal"+20
@@ -367,6 +373,9 @@ Apo. Dalmatica +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4
 Apogee Mitts +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
 Apogee Slacks +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
 Apogee Pumps +1::Increases "Blood Pact" damage=>Avatar Blood Pact damage +{2=4,3=6,4=8,5=10}
+Convo. Doublet::Increases "Blood Pact" damage=>Avatar Blood Pact damage +11%
+Con. Doublet +1::"Blood Pact" ability damage (\+\d+)=>Avatar Blood Pact damage $1%
+Con. Pigaches::Increases "Blood Pact" damage=>Avatar Blood Pact damage +5%
 
 // ====== Blood Rage ======
 Rvg. Lorica +1::Enhances "Blood Rage" effect=>"Blood Rage" duration +15
@@ -612,6 +621,11 @@ Adhemar Jacket +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4
 Adhemar Wrist. +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
 Adhemar Kecks +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
 Adhe. Gamashes +1::Increases rate of critical hits=>Critical hit rate {2=4,3=6,4=8,5=10}
+Skadi's Visor +1::Increases rate of critical hits=>Critical hit rate {2=3,3=5,4=7,5=9}
+Skadi's Cuirie +1::Increases rate of critical hits=>Critical hit rate {2=3,3=5,4=7,5=9}
+Skd. Bazubands +1::Increases rate of critical hits=>Critical hit rate {2=3,3=5,4=7,5=9}
+Skd. Chausses +1::Increases rate of critical hits=>Critical hit rate {2=3,3=5,4=7,5=9}
+Skd. Jambeaux +1::Increases rate of critical hits=>Critical hit rate {2=3,3=5,4=7,5=9}
 
 // ====== Cumulative Magic ======
 Goet. Chausses +1::Enhances cumulative magic effect=>Increases magic effect duration +15
@@ -626,6 +640,7 @@ Kaykaus Bliaut +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
 Kaykaus Cuffs +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
 Kaykaus Tights +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
 Kaykaus Boots +1::Enhances ("Cure" potency II) effect=>$1 +{2=4,3=6,4=8,5=10}
+Foire Churidars::Increases "Cure" potency=>"Cure" potency +0%
 
 // ====== Cursna ======
 Ephedra Ring::Enhances "Cursna" effect=>"Cursna"+10
@@ -861,6 +876,8 @@ Hattori Ningi +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice
 Hattori Tekko +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
 Hattori Hakama +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
 Hattori Kyahan +1::Augments "Dual Wield"=>"Dual Wield" offhand occ. attacks twice {2=4,3=6,4=8,5=10}
+Dudgeon Earring::Enhances "Dual Wield" effect=>"Dual Wield"+7
+Heartseeker Earring::Enhances "Dual Wield" effect=>"Dual Wield"+7
 
 
 // ====== Ebullience ======
@@ -965,6 +982,7 @@ Chev. Cuisses +1::Reduces Enmity decrease (when taking damage \+\d+)=>Enmity ret
 Flock Earring::Bonus to Evasion=>Evasion+0
 Evoker's Pigaches::Enhances evasion=>Evasion+0
 Evk. Pigaches +1::Enhances evasion=>Evasion+0
+Con. Pigaches::Enhances evasion=>Evasion+20
 // Brilliant Earring Sets //
 Brilliant Earring::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
 Mukademaru::Increases Evasion and HP recovered while healing Reduces Enmity=>Evasion+0 HP recovered while healing +0 Enmity+0
@@ -1092,6 +1110,8 @@ Acad. Loafers +2::Spellcasting time -(\d+)%=>Fast Cast +$1
 Acad. Loafers +3::Spellcasting time -(\d+)%=>Fast Cast +$1
 Peda. M.Board::Spellcasting time -(\d+)%=>Fast Cast +$1
 Peda. M.Board +1::Spellcasting time -(\d+)%=>Fast Cast +$1
+Acad. Loafers::Reduces spellcasting time=>Fast Cast +8
+Acad. Loafers +1::Spellcasting time -(\d+)%=>Fast Cast +$1
 
 // ====== Feather Step ======
 Charis Shoes +1::Enhances "Feather Step" effect=>"Feather Step"+1
@@ -1217,6 +1237,11 @@ Perle Hauberk +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
 Perle Moufles +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
 Perle Brayettes +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
 Perle Solerets +1::Haste\+2-5%=>Haste+{2=2,3=3,4=4,5=5}
+Usk. Somen +1::Enhances Haste effect=>Haste+{2=3,3=5,4=7,5=9}
+Usk. Haramaki +1::Enhances Haste effect=>Haste+{2=3,3=5,4=7,5=9}
+Usk. Gote +1::Enhances Haste effect=>Haste+{2=3,3=5,4=7,5=9}
+Usk. Hizayoroi +1::Enhances Haste effect=>Haste+{2=3,3=5,4=7,5=9}
+Usk. Sune-Ate +1::Enhances Haste effect=>Haste+{2=3,3=5,4=7,5=9}
 
 // ====== Hide ======
 Rogue's Vest::Increases "Hide" duration=>"Hide" duration +0
@@ -1244,6 +1269,8 @@ Cobra Hat::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 Cobra Slops::Increases MP=>MP+{2=0,3=0,4=0,5=0}%
 Adaman Sainti::Max HP Boost=>HP+0
 Gem Sainti::Max HP Boost=>HP+0
+Foire Tobe::Increases max HP and MP=>HP+0 MP+0
+Foire Churidars::Increases maximum MP=>MP+0
 
 // ====== Holy Circle ======
 Gallant Leggings::Enhances "Holy Circle" effect=>"Holy Circle"+1
@@ -1477,6 +1504,8 @@ Cama. Pole::Increases Magic Accuracy=>Magic Accuracy+0
 Forefront Scepter::Increases Magic Accuracy=>Magic Accuracy+0
 Forefront Scepter::Inc. Mag. Acc.=>Magic Accuracy+0
 Avitap Pole::Increases Magic Accuracy=>Magic Accuracy+0
+Nabu's Tiara::Increases magic accuracy and  "Magic Atk. Bonus"=>Magic Accuracy+0 "Magic Atk. Bonus"+5
+Bokwus Circlet::Inc. Mag. Acc.=>Magic Accuracy+0
 
 // ====== Magic Attack Bonus ======
 Shedir Crackows::Enhances "Magic Atk. Bonus"=>"Magic Atk. Bonus"+3
@@ -1496,6 +1525,11 @@ Amalric Doublet +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=5
 Amalric Gages +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
 Amalric Slops +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
 Amalric Nails +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=20,3=30,4=40,5=50}
+Mor. Coronal +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=3,3=5,4=7,5=9}
+Morrigan's Robe +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=3,3=5,4=7,5=9}
+Morrigan's Cuffs +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=3,3=5,4=7,5=9}
+Morrigan's Slops +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=3,3=5,4=7,5=9}
+Morrigan's Pgch. +1::Enhances ("Magic Atk. Bonus") effect=>$1+{2=3,3=5,4=7,5=9}
 
 // ====== Magic Burst Damage ======
 Chelona Trousers::Bonus damage added to magic burst=>Magic burst damage +10
@@ -1562,7 +1596,7 @@ Amir Boots::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=
 Amir Puggaree::Reduces magic and breath damage=>Magic damage taken -{2=0,3=0,4=0,5=0}% Breath damage taken -{2=0,3=0,4=0,5=0}%
 
 // ====== Magic Defense Bonus ======
-Runeist Trousers::M\. Def\. B\.=>"Magic Def. Bonus"+0
+Runeist Trousers::M\. Def\. B\.=>Magic Def. Bonus
 Healer's Mantle::("Magic Def. Bonus")=>$1+0
 Goliard Chapeau::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
 Goliard Saio::("Magic Def. Bonus")=>$1+{2=0,3=0,4=0,5=0}
@@ -1864,6 +1898,7 @@ Runeist Coat::Enh\. "Refresh" ef\.=>"Refresh"+2
 Roller's Ring::("Refresh")=>$1+1
 Destrier Beret::Adds "Regen" and "Refresh" effects=>"Regen"+1 "Refresh"+1
 Aries Mantle::Adds "Regen" and "Refresh" effect=>"Regen"+1 "Refresh"+1
+Contriver's Cape::Adds "Regen" and "Refresh" effects=>"Regen"+1 "Refresh"+1
 // ====== Potency ======
 Estqr. Fuseau +2::Enhances "Refresh" potency=>"Refresh" potency +1
 // ====== Duration ======
@@ -2208,6 +2243,8 @@ Ancile::Augments "Shield Bash"=>"Shield Bash"+0
 
 // ====== Shield Block ======
 Beatific Shield::Increases chance of successful block=>Chance of successful block +0
+Cama. Shield::Increases chance of successful block=>Chance of successful block +0
+Huactzin Shield::Increases chance of successful block=>Chance of successful block +0
 
 // ====== Shield Defense Bonus ======
 Crd. Gauntlets +1::Enhances "Shield Def. Bonus" effect=>"Shield Def. Bonus"+1
@@ -2707,6 +2744,8 @@ Kasuga Domaru +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=
 Kasuga Kote +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
 Kasuga Haidate +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
 Kas. Sune-Ate +1::Augments "Zanshin"=>"Zanshin" occ. deals double damage {2=2,3=3,4=4,5=5}
+Ryuo Sune-Ate::Occasionally attacks twice (\+\d+%)=>Chance to occasionally attack twice $1
+Ryuo Sune-Ate +1::Occasionally attacks twice (\+\d+%)=>Chance to occasionally attack twice $1
 
 // ====== Zanshin Rate ======
 Bushido Cape::Enhances "Zanshin" effect=>"Zanshin"+0
