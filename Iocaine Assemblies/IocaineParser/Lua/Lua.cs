@@ -132,7 +132,18 @@ namespace Iocaine2.Parsing
             }
             foreach (Categorizer.AttrValue i_attr in l_info.m_attributes)
             {
-                l_attrStr = Categorizer.GetAttributeName(i_attr.m_attrId) + " =";
+                l_attrStr = "";
+                if (i_attr.m_restricted)
+                {
+                    l_attrStr += Categorizer.GetAttributeName(i_attr.m_restrAttrId) + ": ";
+                }
+                if (i_attr.m_values == null)
+                {
+                    l_attrStr += "* " + Categorizer.GetAttributeName(i_attr.m_attrId) + " *";
+                    l_retVal.Add(l_attrStr);
+                    continue;
+                }
+                l_attrStr += Categorizer.GetAttributeName(i_attr.m_attrId) + " =";
                 foreach (short i_val in i_attr.m_values)
                 {
                     if (i_attr.m_type == Categorizer.ValueType.SHORT)
