@@ -169,6 +169,7 @@ namespace Iocaine2.Parsing
             // Attributes (Parsed)
             private static Dictionary<string, ushort> m_attrToId;
             private static Dictionary<ushort, string> m_idToAttr;
+            private static Dictionary<ushort, List<AttrValue>> m_attrValues;
 
             private static bool m_loaded = false;
 
@@ -268,6 +269,30 @@ namespace Iocaine2.Parsing
                 {
                     return null;
                 }
+            }
+            internal static List<string> GetAttributeList(string iFilter)
+            {
+                List<string> l_retVal = new List<string>();
+
+                if (m_attrToId == null)
+                {
+                    return l_retVal;
+                }
+
+                foreach (string i_attr in m_attrToId.Keys)
+                {
+                    if (string.IsNullOrEmpty(iFilter))
+                    {
+                        l_retVal.Add(i_attr);
+                        continue;
+                    }
+                    if (Regex.IsMatch(i_attr, iFilter))
+                    {
+                        l_retVal.Add(i_attr);
+                    }
+                }
+
+                return l_retVal;
             }
             #endregion Internal Methods
 

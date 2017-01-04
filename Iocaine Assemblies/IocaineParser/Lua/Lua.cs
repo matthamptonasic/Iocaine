@@ -160,6 +160,10 @@ namespace Iocaine2.Parsing
             }
             return l_retVal;
         }
+        public static List<string> GetAttributeList(string iFilter = "")
+        {
+            return Categorizer.GetAttributeList(iFilter);
+        }
         #endregion Public Methods
 
         #region Private Methods
