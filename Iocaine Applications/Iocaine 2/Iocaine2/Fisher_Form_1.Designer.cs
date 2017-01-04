@@ -538,6 +538,12 @@
             this.WMS_BagOccLabel = new System.Windows.Forms.Label();
             this.WMS_PooledLB = new System.Windows.Forms.ListBox();
             this.GS_Tab = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.TA_Tab = new System.Windows.Forms.TabPage();
@@ -659,8 +665,6 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6879,6 +6883,10 @@
             // 
             // GS_Tab
             // 
+            this.GS_Tab.Controls.Add(this.label4);
+            this.GS_Tab.Controls.Add(this.listBox2);
+            this.GS_Tab.Controls.Add(this.textBox3);
+            this.GS_Tab.Controls.Add(this.label3);
             this.GS_Tab.Controls.Add(this.listBox1);
             this.GS_Tab.Controls.Add(this.textBox2);
             this.GS_Tab.Controls.Add(this.button2);
@@ -6890,9 +6898,64 @@
             this.GS_Tab.Text = "Search";
             this.GS_Tab.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(207, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Attribute Search";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
+            this.listBox2.Location = new System.Drawing.Point(206, 49);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(196, 342);
+            this.listBox2.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(206, 24);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(196, 20);
+            this.textBox3.TabIndex = 5;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Item Search";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
+            this.listBox1.Location = new System.Drawing.Point(2, 49);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(196, 342);
+            this.listBox1.TabIndex = 3;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(2, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(196, 20);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(225, 25);
+            this.button2.Location = new System.Drawing.Point(447, 0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -6902,7 +6965,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(230, 163);
+            this.button1.Location = new System.Drawing.Point(447, 29);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -8208,22 +8271,6 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(3, 75);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(196, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 100);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(196, 173);
-            this.listBox1.TabIndex = 3;
-            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9025,5 +9072,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
     }
 }

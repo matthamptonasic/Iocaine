@@ -3021,5 +3021,72 @@ namespace Iocaine2
                 e.Handled = true;
             }
         }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
+            {
+                if (textBox3.Text != "")
+                {
+
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            string l_filter = parser_get_regex_filter(textBox3.Text);
+            List<string> l_matches = Parsing.Lua.GetAttributeList(l_filter);
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(l_matches.ToArray());
+        }
+
+        private string lastParserFilter = "";
+        private string parser_get_regex_filter(string iText)
+        {
+            string l_retVal = iText;
+
+            // ? matches single character.
+            // # matches single number.
+            // [! ] matches a single character that is not in the set.
+            // * matches one or more characters.
+            // [ ] matches any one of the characters specified in the set.
+            //
+            // ? converts to .
+            // # converts to [0-9]
+            // [! ] converts to [^ ]
+            // * converts to .*
+            // [ ] no conversion needed
+            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\?", @"$1.");
+            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\#", @"$1[0-9]");
+            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\*", @"$1.*");
+            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\[\!", @"$1[^");
+            if (isValidRegex(l_retVal))
+            {
+                lastParserFilter = l_retVal;
+                return l_retVal;
+            }
+            else
+            {
+                return lastParserFilter;
+            }
+        }
+        private bool isValidRegex(string iFilter)
+        {
+            if (string.IsNullOrEmpty(iFilter))
+            {
+                return false;
+            }
+            try
+            {
+                System.Text.RegularExpressions.Regex.Match("", iFilter);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
