@@ -158,16 +158,6 @@ namespace Iocaine2.Parsing
                 }
                 l_retVal.Add(l_attrStr);
             }
-            List<Categorizer.RestrictedVal> l_subAttributes = Categorizer.GetSubAttributes(l_info.m_id);
-            if (l_subAttributes != null)
-            {
-                foreach (Categorizer.RestrictedVal i_subAttr in l_subAttributes)
-                {
-                    string l_subAttrName = Categorizer.GetAttributeName(i_subAttr.m_attrId);
-                    l_retVal.Add(l_subAttrName + " " + i_subAttr.m_str);
-                }
-
-            }
             return l_retVal;
         }
         #endregion Public Methods
