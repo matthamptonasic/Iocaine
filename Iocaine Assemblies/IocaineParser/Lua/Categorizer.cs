@@ -180,6 +180,7 @@ namespace Iocaine2.Parsing
             private static float m_percentDone = 0f;
             private const string m_bookmarkFileName = @"Parsing\Parsing_Bookmark.txt";
             private static ushort m_startParsingAt = 0;
+            private static ushort m_endParsingAt = 10295; // after chocobo shirt
             #endregion Private Members
 
             #region Public Properties
@@ -495,6 +496,10 @@ namespace Iocaine2.Parsing
                 ushort l_cnt = 0;
                 foreach (ushort i_id in l_itemIds)
                 {
+                    if (i_id == 10293)
+                    {
+                        l_cnt = l_cnt;
+                    }
                     l_cnt++;
                     if (i_id < m_startParsingAt)
                     {
@@ -560,6 +565,12 @@ namespace Iocaine2.Parsing
                     }
 
                     m_startParsingAt = i_id;
+                    if (i_id >= m_endParsingAt)
+                    {
+                        l_writer.Flush();
+                        l_writer.Close();
+                        return true;
+                    }
                 }
                 l_writer.Flush();
                 l_writer.Close();
