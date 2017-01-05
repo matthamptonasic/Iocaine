@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,10 @@ namespace Iocaine2.Data.Entry
         #endregion Private Members
 
         #region Public Properties
+        [ 
+            Category("Behavior"), 
+            Description("Determines whether an 'Entry Complete' event is fired upon the user pressing the Enter or Return keys.")
+        ]
         public bool OnEnterFireEvent
         {
             get
