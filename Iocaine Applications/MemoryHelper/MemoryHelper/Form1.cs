@@ -66,7 +66,8 @@ namespace IocaineOffsetHelper
             TIME,
             NETWORK,
             MENU_TEXT,
-            MENU_BUTTON
+            MENU_BUTTON,
+            AH
         }
         #endregion Enums
         #region Members
@@ -184,6 +185,7 @@ namespace IocaineOffsetHelper
                 AddItemToOffsetCB("Network");
                 AddItemToOffsetCB("Menu Text-Style");
                 AddItemToOffsetCB("Menu Button-Style");
+                AddItemToOffsetCB("Auction House");
                 SetOffsetCBIndex((int)OFFSET.NPC_MAP);
             }
             catch(Exception e)
@@ -835,7 +837,7 @@ namespace IocaineOffsetHelper
                             AppendText("\nIs Casting: " + MemReads.Self.Casting.is_casting());
                             foreach (Spells.SPELL_INFO info in spellInfoList)
                             {
-                                UInt16 recast = MemReads.Self.Recast.Magic.get_time_remaining((short)info.ID);
+                                UInt16 recast = MemReads.Self.Recast.Magic.get_time_remaining(info.ID);
                                 if (recast != 0)
                                 {
                                     AppendText("\n" + info.Name + " recast: " + recast);
@@ -927,6 +929,36 @@ namespace IocaineOffsetHelper
                             AppendText("=====  Menu Info  ====\n");
                             AppendText("\nCurrent index:   " + MemReads.Windows.Menus.ButtonStyle.get_curr_index());
                             //AppendText("\nNumber of items: " + MemReads.info_menu_btn_count());
+                            break;
+                        #endregion Menu Button-Style
+                        #region Menu Button-Style
+                        case (int)OFFSET.AH:
+                            ushort l_list_count = MemReads.Windows.AH.get_list_count();
+                            uint l_bid_amount = MemReads.Windows.AH.get_bid_price();
+                            AppendText("=====  AH  ====\n");
+                            AppendText("\nCurrent Bid:   " + MemReads.Windows.AH.get_bid_price());
+                            AppendText("\nCurrent Cnt:   " + MemReads.Windows.AH.get_list_count());
+                            AppendText("\nCurrent Unq:   " + MemReads.Windows.AH.get_list_unique_count());
+                            List<MemReads.Windows.AH.Item> l_items = MemReads.Windows.AH.get_list_items();
+                            if (l_items != null)
+                            {
+                                AppendText("\nItems:   ");
+                                for (ushort ii = 0; ii < l_items.Count; ii++)
+                                {
+                                    string l_name = Things.GetNameFromId(l_items[ii].Id);
+                                    string l_stackStr = "";
+                                    if (l_items[ii].Stack)
+                                    {
+                                        l_stackStr += " x" + Things.GetStackSizeFromId(l_items[ii].Id);
+                                    }
+                                    AppendText("\n" + l_name + l_stackStr + "      [" + l_items[ii].NbAvailable + "]");
+                                }
+                            }
+                            do
+                            {
+                                IocaineFunctions.delay(1000);
+                            } while ((l_list_count == MemReads.Windows.AH.get_list_count()) && (l_bid_amount == MemReads.Windows.AH.get_bid_price()));
+
                             break;
                         #endregion Menu Button-Style
                         default:
