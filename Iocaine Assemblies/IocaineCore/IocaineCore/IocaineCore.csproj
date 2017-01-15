@@ -261,12 +261,16 @@
     <Compile Include="Data Entry\IocaineComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data Entry\IocaineSearchBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data Entry\IocaineTextbox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data Entry\IocaineUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data Entry\RegexPatternState.cs" />
     <Compile Include="Data Entry\TextboxParameter.cs" />
     <Compile Include="Data Entry\TextboxReturn.cs" />
     <Compile Include="Data Entry\UpDownParameter.cs" />
