@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace Iocaine2.Data.Entry
         #endregion Private Members
 
         #region Public Properties
+        [
+            Category("Iocaine"),
+            Description("Text compared against when deciding if text will be Gray or Black.")
+        ]
         public string DefaultText
         {
             get
@@ -32,6 +37,10 @@ namespace Iocaine2.Data.Entry
                 Text = m_defaultText;
             }
         }
+        [
+            Category("Iocaine"),
+            Description("Text becomes gray when it is the same as DefaultText.")
+        ]
         public bool GrayTextIfDefault
         {
             get
@@ -43,6 +52,10 @@ namespace Iocaine2.Data.Entry
                 m_grayTextIfDefault = value;
             }
         }
+        [
+            Category("Iocaine"),
+            Description("When true, will set the text value to the name of the currently selected PC/NPC in game.")
+        ]
         public bool OnEnterSetTarget
         {
             get
@@ -55,6 +68,10 @@ namespace Iocaine2.Data.Entry
                 checkAndSetTarget();
             }
         }
+        [
+            Category("Iocaine"),
+            Description("Fires the \"DataEntered\" event upon recieving the Enter or Return keys.")
+        ]
         public bool OnEnterFireEvent
         {
             get
@@ -66,6 +83,10 @@ namespace Iocaine2.Data.Entry
                 m_onEnterFireEvent = value;
             }
         }
+        [
+            Category("Iocaine"),
+            Description("If true, will select all of the text when the textbox is clicked on.")
+        ]
         public bool SelectTextOnClick
         {
             get
@@ -98,14 +119,14 @@ namespace Iocaine2.Data.Entry
         #endregion Public Methods
 
         #region Private Methods
-        private void IocaineTextbox_Click(object sender, EventArgs e)
+        protected virtual void IocaineTextbox_Click(object sender, EventArgs e)
         {
             if ((Text == m_defaultText) && m_selectTextOnClick)
             {
                 SelectAll();
             }
         }
-        private void IocaineTextbox_Enter(object sender, EventArgs e)
+        protected virtual void IocaineTextbox_Enter(object sender, EventArgs e)
         {
             if (Text == m_defaultText)
             {
@@ -113,7 +134,7 @@ namespace Iocaine2.Data.Entry
                 //ForeColor = Color.Black;
             }
         }
-        private void IocaineTextbox_Leave(object sender, EventArgs e)
+        protected virtual void IocaineTextbox_Leave(object sender, EventArgs e)
         {
             if ((Text == "") || (Text == m_defaultText))
             {
@@ -121,7 +142,7 @@ namespace Iocaine2.Data.Entry
                 //ForeColor = Color.Gray;
             }
         }
-        private void IocaineTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        protected virtual void IocaineTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
             {
@@ -129,7 +150,7 @@ namespace Iocaine2.Data.Entry
                 e.Handled = true;
             }
         }
-        private void IocaineTextbox_TextChanged(object sender, EventArgs e)
+        protected virtual void IocaineTextbox_TextChanged(object sender, EventArgs e)
         {
             if ((Text == m_defaultText) && m_grayTextIfDefault)
             {
