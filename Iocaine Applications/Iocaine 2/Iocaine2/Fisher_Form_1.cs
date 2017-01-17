@@ -3088,5 +3088,12 @@ namespace Iocaine2
             }
             return true;
         }
+
+        private void AttrSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> l_matches = Parsing.Lua.GetAttributeList(AttrSearchBox.Pattern);
+            listBox2.Items.Clear();
+            listBox2.Items.AddRange(l_matches.ToArray());
+        }
     }
 }

@@ -493,7 +493,6 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -665,6 +664,8 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
+            this.AttrSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6404,15 +6405,6 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -6883,6 +6875,7 @@
             // 
             // GS_Tab
             // 
+            this.GS_Tab.Controls.Add(this.AttrSearchBox);
             this.GS_Tab.Controls.Add(this.label4);
             this.GS_Tab.Controls.Add(this.listBox2);
             this.GS_Tab.Controls.Add(this.textBox3);
@@ -8271,6 +8264,30 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
+            // AttrSearchBox
+            // 
+            this.AttrSearchBox.DefaultText = "Search Attributes";
+            this.AttrSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.AttrSearchBox.GrayTextIfDefault = true;
+            this.AttrSearchBox.Location = new System.Drawing.Point(412, 58);
+            this.AttrSearchBox.Name = "AttrSearchBox";
+            this.AttrSearchBox.OnEnterFireEvent = false;
+            this.AttrSearchBox.OnEnterSetTarget = false;
+            this.AttrSearchBox.SelectTextOnClick = true;
+            this.AttrSearchBox.Size = new System.Drawing.Size(100, 20);
+            this.AttrSearchBox.TabIndex = 8;
+            this.AttrSearchBox.Text = "Search Attributes";
+            this.AttrSearchBox.TextChanged += new System.EventHandler(this.AttrSearchBox_TextChanged);
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9076,5 +9093,6 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
+        private Data.Entry.IocaineSearchBox AttrSearchBox;
     }
 }
