@@ -164,6 +164,12 @@ namespace Iocaine2.Parsing
         {
             return Categorizer.GetAttributeList(iFilter);
         }
+        public static void GetItemNames(out List<string> oItemNames)
+        {
+            List<string> l_ids;
+            Items.GetItemNames(out l_ids);
+            oItemNames = l_ids;
+        }
         #endregion Public Methods
 
         #region Private Methods
