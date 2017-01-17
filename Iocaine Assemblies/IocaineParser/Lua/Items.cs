@@ -115,6 +115,14 @@ namespace Iocaine2.Parsing
                 }
                 oItems = m_items;
             }
+            internal static void GetItemNames(out List<string> oItemNames)
+            {
+                if (!m_parsed)
+                {
+                    parse();
+                }
+                oItemNames = m_ids.Keys.ToList();
+            }
             internal static void GetArmorList(out List<ushort> oArmor)
             {
                 if (!m_parsed)
