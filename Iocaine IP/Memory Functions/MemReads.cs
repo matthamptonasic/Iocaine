@@ -49,6 +49,7 @@ namespace Iocaine2.Memory
             public uint Info_InventoryNpcWnd;
             public uint Info_Chatlog;
             public uint Info_ServerList;
+            #region Inventory
             public uint Info_Inv_Bag;
             public const uint SizeOf_Inv_Container = 3564; //0xDEC
             public const uint SizeOf_Inv_Item = 44;
@@ -229,6 +230,7 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
+            #endregion Inventory
             public uint Info_CraftWindow;
             public uint Info_TradeNpcWindow;
             private const uint Offset_TradePcWindow = 25404;
@@ -273,6 +275,8 @@ namespace Iocaine2.Memory
             public uint Info_Party;
             public uint Info_MenuBase;
             public uint Info_MenuBaseTextStyle;
+            public uint Info_AhBidPrice;
+            public uint Info_AhList;
             public uint Info_MapNpcBegin;
             public uint Info_MapNpcEnd;
             public uint Info_Casting;
@@ -323,6 +327,8 @@ namespace Iocaine2.Memory
         }
         private static class Signatures
         {
+            public static Signature AhBidPrice = new Signature("8B-0D", "33-C0-84-DB-57-68");
+            public static Signature AhList = new Signature("8B-35", "3B-F7-74-..-8B-46-..-3B-C7");
             public static Signature Bag = new Signature("8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D", 39032);
             public static Signature Casting = new Signature("A1", "85-C0-74-..-8B-48-..-85-C9-74");
             public static Signature Chatlog = new Signature("8B-0D", "85-C9-74-0F", 4);
@@ -672,6 +678,17 @@ namespace Iocaine2.Memory
         private const int off_shop_item_nb_items = 32;
         private const int off_shop_item_idx_in_wnd = 36;
         #endregion Shop Window
+        #region AH
+        private const int off_ah_bid_price = 40;
+        private const int off_ah_list_ptr = 32;
+        private const int off_ah_list_cnt = 8;
+        private const int off_ah_list_unq_cnt = 12;
+        private const int off_ah_list_item_sz = 76;
+        private const int off_ah_list_item_id = 4;
+        private const int off_ah_list_item_count_sngl = 8;
+        private const int off_ah_list_item_count_stack = 12;
+        private const int off_ah_list_item_stack_val = 0;
+        #endregion AH
         #region Network
         private const int off_net_receive = -4;
         private const int off_net_send = 0;
@@ -780,6 +797,8 @@ namespace Iocaine2.Memory
             #endregion Dump Memory
             #region Scan for pointers
             Pointers pntrStruct = new Pointers();
+            pntrStruct.Info_AhBidPrice = scanner.ScanPattern(Signatures.AhBidPrice).UInt32;
+            pntrStruct.Info_AhList = scanner.ScanPattern(Signatures.AhList).UInt32;
             pntrStruct.Info_Casting = scanner.ScanPattern(Signatures.Casting).UInt32;
             pntrStruct.Info_Chatlog = scanner.ScanPattern(Signatures.Chatlog).UInt32;
             pntrStruct.Info_CraftWindow = scanner.ScanPattern(Signatures.CraftWindow).UInt32;
@@ -848,6 +867,8 @@ namespace Iocaine2.Memory
             }
             #endregion Other calculated pointers
             #region Debug Messages
+            LoggingFunctions.Debug("Final Info_AhBidPrice: " + string.Format("{0:X}", pntrStruct.Info_AhBidPrice) + " (" + string.Format("{0:X}", pntrStruct.Info_AhBidPrice - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            LoggingFunctions.Debug("Final Info_AhList: " + string.Format("{0:X}", pntrStruct.Info_AhList) + " (" + string.Format("{0:X}", pntrStruct.Info_AhList - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_Casting: " + string.Format("{0:X}", pntrStruct.Info_Casting) + " (" + string.Format("{0:X}", pntrStruct.Info_Casting - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_Chatlog: " + string.Format("{0:X}", pntrStruct.Info_Chatlog) + " (" + string.Format("{0:X}", pntrStruct.Info_Chatlog - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_CraftWindow: " + string.Format("{0:X}", pntrStruct.Info_CraftWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_CraftWindow - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
@@ -6551,6 +6572,87 @@ namespace Iocaine2.Memory
                             MemReads.Windows.Menus.ButtonStyle.set_curr_index(10);
                         }
                     }
+                }
+            }
+            public static class AH
+            {
+                public enum StackType : byte
+                {
+                    SINGLE = 3,
+                    STACK = 4
+                }
+                public struct Item
+                {
+                    public ushort Id;
+                    public ushort NbAvailable;
+                    public bool Stack;
+
+                    public Item(ushort iId, bool iStack, ushort iNbAvailable)
+                    {
+                        Id = iId;
+                        Stack = iStack;
+                        NbAvailable = iNbAvailable;
+                    }
+                }
+                public static uint get_bid_price()
+                {
+                    Process proc = processPointerList[processIndex].MainProcess;
+                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, processPointerList[processIndex].Info_AhBidPrice);
+                    uint l_retVal = (uint)MemoryFunctions.ReadMem(MainProcess.Handle, ptr, off_ah_bid_price, 4);
+                    return l_retVal;
+                }
+                public static ushort get_list_count()
+                {
+                    Process proc = processPointerList[processIndex].MainProcess;
+                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, processPointerList[processIndex].Info_AhList);
+                    ushort l_retVal = (ushort)MemoryFunctions.ReadMem(MainProcess.Handle, ptr, off_ah_list_cnt, 2);
+                    return l_retVal;
+                }
+                public static ushort get_list_unique_count()
+                {
+                    Process proc = processPointerList[processIndex].MainProcess;
+                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, processPointerList[processIndex].Info_AhList);
+                    ushort l_retVal = (ushort)MemoryFunctions.ReadMem(MainProcess.Handle, ptr, off_ah_list_unq_cnt, 2);
+                    return l_retVal;
+                }
+                public static List<Item> get_list_items()
+                {
+                    List<Item> l_retVal = new List<Item>();
+
+                    Process proc = processPointerList[processIndex].MainProcess;
+                    uint ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, processPointerList[processIndex].Info_AhList);
+                    if (ptr == 0)
+                    {
+                        return null;
+                    }
+                    ptr = (uint)MemoryFunctions.GetPointer(proc.Handle, ptr, off_ah_list_ptr);
+                    if (ptr == 0)
+                    {
+                        return null;
+                    }
+
+                    ushort l_cnt = get_list_count();
+
+                    for (ushort ii = 0; ii < l_cnt; ii++)
+                    {
+                        int l_itemOff = off_ah_list_item_sz * ii;
+                        ushort l_id = (ushort)MemoryFunctions.ReadMem(proc.Handle, ptr, l_itemOff + off_ah_list_item_id, 2);
+                        if (l_id != 0)
+                        {
+                            byte l_stackVal = (byte)MemoryFunctions.ReadMem(proc.Handle, ptr, l_itemOff + off_ah_list_item_stack_val, 1);
+                            int l_nbOffset = off_ah_list_item_count_sngl;
+                            bool l_stack = l_stackVal == (byte)StackType.STACK;
+                            if (l_stack)
+                            {
+                                l_nbOffset = off_ah_list_item_count_stack;
+                            }
+                            ushort l_nbAvail = (ushort)MemoryFunctions.ReadMem(proc.Handle, ptr, l_itemOff + l_nbOffset, 2);
+                            Item l_item = new Item(l_id, l_stack, l_nbAvail);
+                            l_retVal.Add(l_item);
+                        }
+                    }
+
+                    return l_retVal;
                 }
             }
             public static class Crafting
