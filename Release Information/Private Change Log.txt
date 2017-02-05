@@ -1,5 +1,9 @@
 Iocaine Change Notes:
 
+Main.exe            - 2.10.5.0 - 2017/02/05
+IocaineCore.dll     - 1.3.13.0
+	- Added "raw command" option to the Skill Up (Reive) bot. Used to call Windower scripts.
+
 IocaineCore.dll		- 1.3.12.1
 IocaineNpcs.dll		- 1.0.3.2
 	- Added/fixed delay between Sneak and Invisible in the Nav bot when using Silent Oil and Prism Powder.
