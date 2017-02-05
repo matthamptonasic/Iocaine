@@ -255,7 +255,11 @@
             this.BY_Item_LB = new System.Windows.Forms.ListBox();
             this.Skill_Up_Bot_Tab = new System.Windows.Forms.TabPage();
             this.SU_ReivePanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.SU_WaitTimeLabel = new System.Windows.Forms.Label();
+            this.SU_CommandDurationUpDn = new System.Windows.Forms.NumericUpDown();
+            this.SU_RawCommandTB = new System.Windows.Forms.TextBox();
+            this.SU_RawCommandChkB = new System.Windows.Forms.CheckBox();
+            this.SU_OffCountLabel = new System.Windows.Forms.Label();
             this.SU_LoopCountUpDn = new System.Windows.Forms.NumericUpDown();
             this.SU_OffensiveTB = new System.Windows.Forms.TextBox();
             this.SU_OffensiveLabel = new System.Windows.Forms.Label();
@@ -688,6 +692,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BY_Item_Quan_UpDn)).BeginInit();
             this.Skill_Up_Bot_Tab.SuspendLayout();
             this.SU_ReivePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SU_CommandDurationUpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SU_LoopCountUpDn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SUDelayBetweenCastsUpDn)).BeginInit();
             this.SUWhenDonePanel.SuspendLayout();
@@ -3536,7 +3541,11 @@
             // SU_ReivePanel
             // 
             this.SU_ReivePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.SU_ReivePanel.Controls.Add(this.label2);
+            this.SU_ReivePanel.Controls.Add(this.SU_WaitTimeLabel);
+            this.SU_ReivePanel.Controls.Add(this.SU_CommandDurationUpDn);
+            this.SU_ReivePanel.Controls.Add(this.SU_RawCommandTB);
+            this.SU_ReivePanel.Controls.Add(this.SU_RawCommandChkB);
+            this.SU_ReivePanel.Controls.Add(this.SU_OffCountLabel);
             this.SU_ReivePanel.Controls.Add(this.SU_LoopCountUpDn);
             this.SU_ReivePanel.Controls.Add(this.SU_OffensiveTB);
             this.SU_ReivePanel.Controls.Add(this.SU_OffensiveLabel);
@@ -3558,18 +3567,72 @@
             this.SU_ReivePanel.Size = new System.Drawing.Size(519, 116);
             this.SU_ReivePanel.TabIndex = 34;
             // 
-            // label2
+            // SU_WaitTimeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Offensive Count";
+            this.SU_WaitTimeLabel.AutoSize = true;
+            this.SU_WaitTimeLabel.Location = new System.Drawing.Point(383, 71);
+            this.SU_WaitTimeLabel.Name = "SU_WaitTimeLabel";
+            this.SU_WaitTimeLabel.Size = new System.Drawing.Size(123, 13);
+            this.SU_WaitTimeLabel.TabIndex = 53;
+            this.SU_WaitTimeLabel.Text = "Command Duration (sec)";
+            // 
+            // SU_CommandDurationUpDn
+            // 
+            this.SU_CommandDurationUpDn.DecimalPlaces = 1;
+            this.SU_CommandDurationUpDn.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.SU_CommandDurationUpDn.Location = new System.Drawing.Point(403, 88);
+            this.SU_CommandDurationUpDn.Maximum = new decimal(new int[] {
+            1800,
+            0,
+            0,
+            0});
+            this.SU_CommandDurationUpDn.Name = "SU_CommandDurationUpDn";
+            this.SU_CommandDurationUpDn.Size = new System.Drawing.Size(61, 20);
+            this.SU_CommandDurationUpDn.TabIndex = 52;
+            this.SU_CommandDurationUpDn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SU_CommandDurationUpDn.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            65536});
+            this.SU_CommandDurationUpDn.ValueChanged += new System.EventHandler(this.SU_CommandDurationUpDn_ValueChanged);
+            // 
+            // SU_RawCommandTB
+            // 
+            this.SU_RawCommandTB.Location = new System.Drawing.Point(386, 42);
+            this.SU_RawCommandTB.Name = "SU_RawCommandTB";
+            this.SU_RawCommandTB.Size = new System.Drawing.Size(99, 20);
+            this.SU_RawCommandTB.TabIndex = 51;
+            this.SU_RawCommandTB.Text = "//exec script";
+            this.SU_RawCommandTB.TextChanged += new System.EventHandler(this.SU_RawCommandTB_TextChanged);
+            // 
+            // SU_RawCommandChkB
+            // 
+            this.SU_RawCommandChkB.AutoSize = true;
+            this.SU_RawCommandChkB.Location = new System.Drawing.Point(386, 21);
+            this.SU_RawCommandChkB.Name = "SU_RawCommandChkB";
+            this.SU_RawCommandChkB.Size = new System.Drawing.Size(98, 17);
+            this.SU_RawCommandChkB.TabIndex = 50;
+            this.SU_RawCommandChkB.Text = "Raw Command";
+            this.SU_RawCommandChkB.UseVisualStyleBackColor = true;
+            this.SU_RawCommandChkB.CheckedChanged += new System.EventHandler(this.SU_RawCommandChkB_CheckedChanged);
+            // 
+            // SU_OffCountLabel
+            // 
+            this.SU_OffCountLabel.AutoSize = true;
+            this.SU_OffCountLabel.Location = new System.Drawing.Point(201, 91);
+            this.SU_OffCountLabel.Name = "SU_OffCountLabel";
+            this.SU_OffCountLabel.Size = new System.Drawing.Size(83, 13);
+            this.SU_OffCountLabel.TabIndex = 49;
+            this.SU_OffCountLabel.Text = "Offensive Count";
             // 
             // SU_LoopCountUpDn
             // 
-            this.SU_LoopCountUpDn.Location = new System.Drawing.Point(345, 88);
+            this.SU_LoopCountUpDn.Location = new System.Drawing.Point(290, 88);
             this.SU_LoopCountUpDn.Minimum = new decimal(new int[] {
             1,
             0,
@@ -3589,7 +3652,7 @@
             // 
             // SU_OffensiveTB
             // 
-            this.SU_OffensiveTB.Location = new System.Drawing.Point(141, 19);
+            this.SU_OffensiveTB.Location = new System.Drawing.Point(86, 19);
             this.SU_OffensiveTB.Name = "SU_OffensiveTB";
             this.SU_OffensiveTB.Size = new System.Drawing.Size(99, 20);
             this.SU_OffensiveTB.TabIndex = 48;
@@ -3599,7 +3662,7 @@
             // SU_OffensiveLabel
             // 
             this.SU_OffensiveLabel.AutoSize = true;
-            this.SU_OffensiveLabel.Location = new System.Drawing.Point(83, 22);
+            this.SU_OffensiveLabel.Location = new System.Drawing.Point(28, 22);
             this.SU_OffensiveLabel.Name = "SU_OffensiveLabel";
             this.SU_OffensiveLabel.Size = new System.Drawing.Size(52, 13);
             this.SU_OffensiveLabel.TabIndex = 47;
@@ -3607,7 +3670,7 @@
             // 
             // SU_DivineTB
             // 
-            this.SU_DivineTB.Location = new System.Drawing.Point(328, 65);
+            this.SU_DivineTB.Location = new System.Drawing.Point(273, 65);
             this.SU_DivineTB.Name = "SU_DivineTB";
             this.SU_DivineTB.Size = new System.Drawing.Size(99, 20);
             this.SU_DivineTB.TabIndex = 45;
@@ -3617,7 +3680,7 @@
             // SU_DivineChkB
             // 
             this.SU_DivineChkB.AutoSize = true;
-            this.SU_DivineChkB.Location = new System.Drawing.Point(266, 68);
+            this.SU_DivineChkB.Location = new System.Drawing.Point(211, 68);
             this.SU_DivineChkB.Name = "SU_DivineChkB";
             this.SU_DivineChkB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SU_DivineChkB.Size = new System.Drawing.Size(56, 17);
@@ -3628,7 +3691,7 @@
             // 
             // SU_DarkTB
             // 
-            this.SU_DarkTB.Location = new System.Drawing.Point(328, 42);
+            this.SU_DarkTB.Location = new System.Drawing.Point(273, 42);
             this.SU_DarkTB.Name = "SU_DarkTB";
             this.SU_DarkTB.Size = new System.Drawing.Size(99, 20);
             this.SU_DarkTB.TabIndex = 43;
@@ -3638,7 +3701,7 @@
             // SU_DarkChkB
             // 
             this.SU_DarkChkB.AutoSize = true;
-            this.SU_DarkChkB.Location = new System.Drawing.Point(274, 45);
+            this.SU_DarkChkB.Location = new System.Drawing.Point(219, 45);
             this.SU_DarkChkB.Name = "SU_DarkChkB";
             this.SU_DarkChkB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SU_DarkChkB.Size = new System.Drawing.Size(49, 17);
@@ -3649,7 +3712,7 @@
             // 
             // SU_EnfeeblingTB
             // 
-            this.SU_EnfeeblingTB.Location = new System.Drawing.Point(328, 19);
+            this.SU_EnfeeblingTB.Location = new System.Drawing.Point(273, 19);
             this.SU_EnfeeblingTB.Name = "SU_EnfeeblingTB";
             this.SU_EnfeeblingTB.Size = new System.Drawing.Size(99, 20);
             this.SU_EnfeeblingTB.TabIndex = 41;
@@ -3659,7 +3722,7 @@
             // SU_EnfeeblingChkB
             // 
             this.SU_EnfeeblingChkB.AutoSize = true;
-            this.SU_EnfeeblingChkB.Location = new System.Drawing.Point(245, 21);
+            this.SU_EnfeeblingChkB.Location = new System.Drawing.Point(190, 21);
             this.SU_EnfeeblingChkB.Name = "SU_EnfeeblingChkB";
             this.SU_EnfeeblingChkB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SU_EnfeeblingChkB.Size = new System.Drawing.Size(76, 17);
@@ -3671,7 +3734,7 @@
             // SU_EnhancingStatusLabel
             // 
             this.SU_EnhancingStatusLabel.AutoSize = true;
-            this.SU_EnhancingStatusLabel.Location = new System.Drawing.Point(67, 91);
+            this.SU_EnhancingStatusLabel.Location = new System.Drawing.Point(12, 91);
             this.SU_EnhancingStatusLabel.Name = "SU_EnhancingStatusLabel";
             this.SU_EnhancingStatusLabel.Size = new System.Drawing.Size(68, 13);
             this.SU_EnhancingStatusLabel.TabIndex = 40;
@@ -3679,7 +3742,7 @@
             // 
             // SU_EnhancingStatusTB
             // 
-            this.SU_EnhancingStatusTB.Location = new System.Drawing.Point(141, 88);
+            this.SU_EnhancingStatusTB.Location = new System.Drawing.Point(86, 88);
             this.SU_EnhancingStatusTB.Name = "SU_EnhancingStatusTB";
             this.SU_EnhancingStatusTB.Size = new System.Drawing.Size(99, 20);
             this.SU_EnhancingStatusTB.TabIndex = 39;
@@ -3688,7 +3751,7 @@
             // 
             // SU_EnhancingTB
             // 
-            this.SU_EnhancingTB.Location = new System.Drawing.Point(141, 65);
+            this.SU_EnhancingTB.Location = new System.Drawing.Point(86, 65);
             this.SU_EnhancingTB.Name = "SU_EnhancingTB";
             this.SU_EnhancingTB.Size = new System.Drawing.Size(99, 20);
             this.SU_EnhancingTB.TabIndex = 37;
@@ -3698,7 +3761,7 @@
             // SU_EnhancingChkB
             // 
             this.SU_EnhancingChkB.AutoSize = true;
-            this.SU_EnhancingChkB.Location = new System.Drawing.Point(58, 68);
+            this.SU_EnhancingChkB.Location = new System.Drawing.Point(3, 68);
             this.SU_EnhancingChkB.Name = "SU_EnhancingChkB";
             this.SU_EnhancingChkB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SU_EnhancingChkB.Size = new System.Drawing.Size(77, 17);
@@ -3709,7 +3772,7 @@
             // 
             // SU_RefreshTB
             // 
-            this.SU_RefreshTB.Location = new System.Drawing.Point(141, 42);
+            this.SU_RefreshTB.Location = new System.Drawing.Point(86, 42);
             this.SU_RefreshTB.Name = "SU_RefreshTB";
             this.SU_RefreshTB.Size = new System.Drawing.Size(99, 20);
             this.SU_RefreshTB.TabIndex = 35;
@@ -3719,7 +3782,7 @@
             // SU_RefreshChkB
             // 
             this.SU_RefreshChkB.AutoSize = true;
-            this.SU_RefreshChkB.Location = new System.Drawing.Point(72, 45);
+            this.SU_RefreshChkB.Location = new System.Drawing.Point(17, 45);
             this.SU_RefreshChkB.Name = "SU_RefreshChkB";
             this.SU_RefreshChkB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SU_RefreshChkB.Size = new System.Drawing.Size(63, 17);
@@ -8257,6 +8320,7 @@
             this.Skill_Up_Bot_Tab.PerformLayout();
             this.SU_ReivePanel.ResumeLayout(false);
             this.SU_ReivePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SU_CommandDurationUpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SU_LoopCountUpDn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SUDelayBetweenCastsUpDn)).EndInit();
             this.SUWhenDonePanel.ResumeLayout(false);
@@ -8894,7 +8958,7 @@
         private System.Windows.Forms.TextBox SU_EnfeeblingTB;
         private System.Windows.Forms.CheckBox SU_EnfeeblingChkB;
         private System.Windows.Forms.Label SU_EnhancingStatusLabel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label SU_OffCountLabel;
         private System.Windows.Forms.NumericUpDown SU_LoopCountUpDn;
         private System.Windows.Forms.TextBox SU_OffensiveTB;
         private System.Windows.Forms.Label SU_OffensiveLabel;
@@ -8962,5 +9026,9 @@
         private System.Windows.Forms.RadioButton Nav_Rec_AppendToEnd_RB;
         private System.Windows.Forms.RadioButton Nav_Rec_InsertBelow_RB;
         private System.Windows.Forms.RadioButton Nav_Rec_InsertAbove_RB;
+        private System.Windows.Forms.Label SU_WaitTimeLabel;
+        private System.Windows.Forms.NumericUpDown SU_CommandDurationUpDn;
+        private System.Windows.Forms.TextBox SU_RawCommandTB;
+        private System.Windows.Forms.CheckBox SU_RawCommandChkB;
     }
 }

@@ -93,6 +93,9 @@ namespace Iocaine2.Bots
         private static bool doDivine = false;
         private static UInt32 castCountLimit = 20;
         private static UInt32 castCount = castCountLimit;
+        private static bool doRawCommand = false;
+        private static string rawCommandName = "//exec script";
+        private static float rawCommandDuration = 20f;
         #endregion Controls
         #region Properties
         #region Control Parallels
@@ -161,6 +164,17 @@ namespace Iocaine2.Bots
             set
             {
                 doDivine = value;
+            }
+        }
+        public static bool SU_DoRawCommand
+        {
+            get
+            {
+                return doRawCommand;
+            }
+            set
+            {
+                doRawCommand = value;
             }
         }
         #endregion Enables
@@ -242,6 +256,17 @@ namespace Iocaine2.Bots
                 divineCastName = value;
             }
         }
+        public static string SU_RawCommandName
+        {
+            get
+            {
+                return rawCommandName;
+            }
+            set
+            {
+                rawCommandName = value;
+            }
+        }
         #endregion Commands
         public static UInt32 SU_CastCountLimit
         {
@@ -252,6 +277,17 @@ namespace Iocaine2.Bots
             set
             {
                 castCountLimit = value;
+            }
+        }
+        public static float SU_RawCommandDuration
+        {
+            get
+            {
+                return rawCommandDuration;
+            }
+            set
+            {
+                rawCommandDuration = value;
             }
         }
         #endregion Control Parallels
@@ -547,60 +583,73 @@ namespace Iocaine2.Bots
                             {
                                 break;
                             }
-                            if (!checkStatusActive(refreshStatusName) && (refreshCmd != null))
+
+                            #region Run our commands
+                            if (!doRawCommand)
                             {
-                                refreshCmd.Execute("<me>");
-                            }
-                            if (!checkStatusActive(enhancingStatusName) && (enhancingCmd != null))
-                            {
-                                enhancingCmd.Execute("<me>");
-                            }
-                            if (MemReads.Self.Vitals.get_mp_current() < elementalCmd.MP)
-                            {
-                                rest();
-                                // check the state, because it might have been changed during resting.
-                                if (!checkState())
+                                if (!checkStatusActive(refreshStatusName) && (refreshCmd != null))
                                 {
-                                    return;
+                                    refreshCmd.Execute("<me>");
                                 }
-                            }
-                            while (!elementalCmd.Ready)
-                            {
-                                IocaineFunctions.delay(500);
-                            }
-                            if (!checkTargetMob(mobName, mobInfo))
-                            {
-                                break;
-                            }
-                            elementalCmd.Execute("<t>");
-                            if (++castCount >= castCountLimit)
-                            {
-                                if (enfeeblingCmd != null)
+                                if (!checkStatusActive(enhancingStatusName) && (enhancingCmd != null))
                                 {
-                                    if (!checkTargetMob(mobName, mobInfo))
+                                    enhancingCmd.Execute("<me>");
+                                }
+                                if (MemReads.Self.Vitals.get_mp_current() < elementalCmd.MP)
+                                {
+                                    rest();
+                                    // check the state, because it might have been changed during resting.
+                                    if (!checkState())
                                     {
-                                        break;
+                                        return;
                                     }
-                                    enfeeblingCmd.Execute("<t>");
                                 }
-                                if (divineCmd != null)
+                                while (!elementalCmd.Ready)
                                 {
-                                    if (!checkTargetMob(mobName, mobInfo))
-                                    {
-                                        break;
-                                    }
-                                    divineCmd.Execute("<t>");
+                                    IocaineFunctions.delay(500);
                                 }
-                                if (darkCmd != null)
+                                if (!checkTargetMob(mobName, mobInfo))
                                 {
-                                    if (!checkTargetMob(mobName, mobInfo))
-                                    {
-                                        break;
-                                    }
-                                    darkCmd.Execute("<t>");
+                                    break;
                                 }
-                                castCount = 0;
+                                elementalCmd.Execute("<t>");
+                                if (++castCount >= castCountLimit)
+                                {
+                                    if (enfeeblingCmd != null)
+                                    {
+                                        if (!checkTargetMob(mobName, mobInfo))
+                                        {
+                                            break;
+                                        }
+                                        enfeeblingCmd.Execute("<t>");
+                                    }
+                                    if (divineCmd != null)
+                                    {
+                                        if (!checkTargetMob(mobName, mobInfo))
+                                        {
+                                            break;
+                                        }
+                                        divineCmd.Execute("<t>");
+                                    }
+                                    if (darkCmd != null)
+                                    {
+                                        if (!checkTargetMob(mobName, mobInfo))
+                                        {
+                                            break;
+                                        }
+                                        darkCmd.Execute("<t>");
+                                    }
+                                    castCount = 0;
+                                }
                             }
+                            #endregion Run our commands
+                            #region Run raw command
+                            else
+                            {
+                                RawCommand l_raw = new RawCommand(rawCommandName, rawCommandName, true);
+                                IocaineFunctions.delay((uint)(rawCommandDuration * 1000));
+                            }
+                            #endregion
                         }
                         //for (int ii = 0; ii < 60 * (uint)respawnTime; ii++)
                         //{

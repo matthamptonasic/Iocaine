@@ -907,6 +907,7 @@ namespace Iocaine2
                 SUSetDelayBetweenCastsChkB(SU_DelayBetweenCasts);
                 SUSetDelayValueBetweenCasts(SU_DelayValueBetweenCasts);
             }
+            SU_setReiveCommandsEnable(true);
             setSUParam();
             return true;
         }
@@ -1437,31 +1438,96 @@ namespace Iocaine2
         private void SURestCommandCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             SU_GiveRestCommand = SURestCommandCheckBox.Checked;
-            if (Bots.SkillUp.Access != null)
-            {
-                Bots.SkillUp.Access.updateGiveCommandBeforeResting(SU_GiveRestCommand);
-            }
+            Bots.SkillUp.Access.updateGiveCommandBeforeResting(SU_GiveRestCommand);
             //Update settings
             UserSettings.SetValue(UserSettings.BOT.SU, "SUGiveRestCommand", SU_GiveRestCommand.ToString());
         }
         private void SULogoutCommandCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             SU_GiveLogoutCommand = SULogoutCommandCheckBox.Checked;
-            if (Bots.SkillUp.Access != null)
-            {
-                Bots.SkillUp.Access.updateGiveCommandBeforeLogout(SU_GiveLogoutCommand);
-            }
+            Bots.SkillUp.Access.updateGiveCommandBeforeLogout(SU_GiveLogoutCommand);
             //Update settings
             UserSettings.SetValue(UserSettings.BOT.SU, "SUGiveLogoutCommand", SU_GiveLogoutCommand.ToString());
         }
         private void SUDelayBetweenCastsChkB_CheckedChanged(object sender, EventArgs e)
         {
             SU_DelayBetweenCasts = SUDelayBetweenCastsChkB.Checked;
-            if (Bots.SkillUp.Access != null)
-            {
-                Bots.SkillUp.Access.updateDelayBetweenCasts(SU_DelayBetweenCasts);
-            }
+            Bots.SkillUp.Access.updateDelayBetweenCasts(SU_DelayBetweenCasts);
             UserSettings.SetValue(UserSettings.BOT.SU, "SUDelayBetweenCasts", SU_DelayBetweenCasts.ToString());
+        }
+        private void SU_ReiveChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoLairReives = SU_ReiveChkB.Checked;
+        }
+        private void SU_RefreshChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoRefresh = SU_RefreshChkB.Checked;
+        }
+        private void SU_EnhancingChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_EnhancingCastName = SU_EnhancingTB.Text;
+        }
+        private void SU_EnfeeblingChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoEnfeebling = SU_EnfeeblingChkB.Checked;
+        }
+        private void SU_DarkChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoDark = SU_DarkChkB.Checked;
+        }
+        private void SU_DivineChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoDivine = SU_DivineChkB.Checked;
+        }
+        private void SU_RawCommandChkB_CheckedChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_DoRawCommand = SU_RawCommandChkB.Checked;
+            SU_setReiveCommandsEnable(!Bots.SkillUp.SU_DoRawCommand);
+        }
+        private void SU_setReiveCommandsEnable(bool iEnable)
+        {
+            if (iEnable)
+            {
+                // Make the other commands/enables accessible.
+                SU_RefreshChkB.Enabled = true;
+                SU_EnhancingChkB.Enabled = true;
+                SU_EnfeeblingChkB.Enabled = true;
+                SU_DarkChkB.Enabled = true;
+                SU_DivineChkB.Enabled = true;
+                SU_OffensiveTB.Enabled = true;
+                SU_RefreshTB.Enabled = true;
+                SU_EnhancingTB.Enabled = true;
+                SU_EnhancingStatusTB.Enabled = true;
+                SU_EnfeeblingTB.Enabled = true;
+                SU_DarkTB.Enabled = true;
+                SU_DivineTB.Enabled = true;
+                SU_LoopCountUpDn.Enabled = true;
+
+                // Disable raw command controls
+                SU_RawCommandTB.Enabled = false;
+                SU_CommandDurationUpDn.Enabled = false;
+            }
+            else
+            {
+                // Make the other commands/enables read only.
+                SU_RefreshChkB.Enabled = false;
+                SU_EnhancingChkB.Enabled = false;
+                SU_EnfeeblingChkB.Enabled = false;
+                SU_DarkChkB.Enabled = false;
+                SU_DivineChkB.Enabled = false;
+                SU_OffensiveTB.Enabled = false;
+                SU_RefreshTB.Enabled = false;
+                SU_EnhancingTB.Enabled = false;
+                SU_EnhancingStatusTB.Enabled = false;
+                SU_EnfeeblingTB.Enabled = false;
+                SU_DarkTB.Enabled = false;
+                SU_DivineTB.Enabled = false;
+                SU_LoopCountUpDn.Enabled = false;
+
+                // Enable raw command controls
+                SU_RawCommandTB.Enabled = true;
+                SU_CommandDurationUpDn.Enabled = true;
+            }
         }
         #endregion Check Boxes
         #region Text Boxes
@@ -1525,30 +1591,6 @@ namespace Iocaine2
             //Update settings
             UserSettings.SetValue(UserSettings.BOT.SU, "SULogoutCommand", SU_LogoutCommand.ToString());
         }
-        private void SU_ReiveChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_DoLairReives = SU_ReiveChkB.Checked;
-        }
-        private void SU_RefreshChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_DoRefresh = SU_RefreshChkB.Checked;
-        }
-        private void SU_EnhancingChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_EnhancingCastName = SU_EnhancingTB.Text;
-        }
-        private void SU_EnfeeblingChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_DoEnfeebling = SU_EnfeeblingChkB.Checked;
-        }
-        private void SU_DarkChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_DoDark = SU_DarkChkB.Checked;
-        }
-        private void SU_DivineChkB_CheckedChanged(object sender, EventArgs e)
-        {
-            Bots.SkillUp.SU_DoDivine = SU_DivineChkB.Checked;
-        }
         private void SU_OffensiveTB_TextChanged(object sender, EventArgs e)
         {
             Bots.SkillUp.SU_ElementalCastName = SU_OffensiveTB.Text;
@@ -1577,6 +1619,10 @@ namespace Iocaine2
         {
             Bots.SkillUp.SU_DivineCastName = SU_DivineTB.Text;
         }
+        private void SU_RawCommandTB_TextChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_RawCommandName = SU_RawCommandTB.Text;
+        }
         #endregion Text Boxes
         #region Up Downs
         private void SUDelayBetweenCastsUpDn_ValueChanged(object sender, EventArgs e)
@@ -1591,6 +1637,10 @@ namespace Iocaine2
         private void SU_LoopCountUpDn_ValueChanged(object sender, EventArgs e)
         {
             Bots.SkillUp.SU_CastCountLimit = (uint)SU_LoopCountUpDn.Value;
+        }
+        private void SU_CommandDurationUpDn_ValueChanged(object sender, EventArgs e)
+        {
+            Bots.SkillUp.SU_RawCommandDuration = (float)SU_CommandDurationUpDn.Value;
         }
         #endregion Up Downs
         #region Other
