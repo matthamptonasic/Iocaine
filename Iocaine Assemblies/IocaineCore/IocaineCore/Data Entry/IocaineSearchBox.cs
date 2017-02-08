@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 
 using Iocaine2.Memory;
 
@@ -180,6 +181,10 @@ namespace Iocaine2.Data.Entry
             }
 
             int l_origCnt = m_filteredList.Count;
+            if (l_origCnt == 0)
+            {
+                return;
+            }
             for (int ii = l_origCnt - 1; ii >= 0; ii--)
             {
                 Regex l_idRegex = new Regex(m_regexPattern.Pattern);
@@ -233,16 +238,46 @@ namespace Iocaine2.Data.Entry
                 return;
             }
             m_rtfBox.Document.Blocks.Clear();
-            for (int ii=0; ii<m_filteredList.Count; ii++)
+            Regex l_regex = new Regex(m_regexPattern.Pattern);
+            try
             {
-                string l_str = "";
-                if (ii != 0)
+                for (int ii = 0; ii < m_filteredList.Count; ii++)
                 {
-                    l_str = "\n";
+                    TextPointer l_tpLineEnd;
+
+                    string l_str = "";
+                    if (ii != 0)
+                    {
+                        l_str = "\n";
+                    }
+                    l_str += m_filteredList[ii];
+                    m_rtfBox.AppendText(l_str);
+                    Match l_match = l_regex.Match(l_str);
+                    int l_matchStartIdx = (ii == 0) ? l_match.Index + 1 : l_match.Index;
+                    int l_matchEndIdx = l_matchStartIdx + l_match.Length;
+                    l_tpLineEnd = m_rtfBox.Document.ContentEnd;
+                    TextPointer l_tpLineStart = l_tpLineEnd.GetLineStartPosition(0);
+                    TextPointer l_tpMatchStart = l_tpLineStart.GetPositionAtOffset(l_matchStartIdx);
+                    TextPointer l_tpMatchEnd = l_tpLineStart.GetPositionAtOffset(l_matchEndIdx);
+                    TextRange l_tr = new TextRange(l_tpMatchStart, l_tpMatchEnd);
+
+                    l_tr.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
+
+                    //if (ii == 0)
+                    //{
+                    //    l_tr.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow));
+                    //}
+
+                    TextRange l_trEoL = new TextRange(l_tpMatchEnd, l_tpLineEnd);
+                    l_trEoL.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Normal);
+                    l_trEoL.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent));
                 }
-                l_str += m_filteredList[ii];
-                m_rtfBox.AppendText(l_str);
             }
+            catch (Exception e)
+            {
+                Logging.LoggingFunctions.Error(e.ToString());
+            }
+            highlightSuggestedBoxRow(1);
         }
         private void destroySuggestedBox()
         {
@@ -251,6 +286,42 @@ namespace Iocaine2.Data.Entry
                 m_suggestBox.IsOpen = false;
                 m_suggestBox = null;
             }
+        }
+        private void highlightSuggestedBoxRow(int iIndex)
+        {
+            if ((m_suggestBox == null) || (m_suggestBox.IsOpen == false))
+            {
+                return;
+            }
+
+            clearHighlightedRows();
+
+            if (iIndex >= m_rtfBox.Document.Blocks.Count)
+            {
+                return;
+            }
+
+            Block l_blk = m_rtfBox.Document.Blocks.ToList()[iIndex];
+            TextPointer l_tpDocStart = m_rtfBox.Document.ContentStart;
+            TextPointer l_tpLineStart = l_blk.ContentStart;
+            TextPointer l_tpLineEnd = l_blk.ContentEnd;
+            TextRange l_tr = new TextRange(l_tpLineStart, l_tpLineEnd);
+            l_tr.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow));
+        }
+        private void clearHighlightedRows()
+        {
+            if ((m_suggestBox == null) || (m_suggestBox.IsOpen == false))
+            {
+                return;
+            }
+            TextRange l_tr = new TextRange(m_rtfBox.Document.ContentStart, m_rtfBox.Document.ContentEnd);
+            l_tr.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent));
+        }
+        private int getLineCount(ref System.Windows.Controls.RichTextBox iRtb)
+        {
+            TextRange l_tr = new TextRange(iRtb.Document.ContentStart, iRtb.Document.ContentEnd);
+            int l_retVal = l_tr.Text.Split('\n').Length;
+            return l_retVal;
         }
         #endregion Private Methods
     }
