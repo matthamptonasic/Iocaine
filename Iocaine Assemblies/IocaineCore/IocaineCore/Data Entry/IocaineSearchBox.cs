@@ -28,6 +28,7 @@ namespace Iocaine2.Data.Entry
         private int m_lastCharCnt;
         private Popup m_suggestBox;
         private System.Windows.Controls.RichTextBox m_rtfBox;
+        private int m_selectIndex = -1;
         #endregion Private Members
 
         #region Public Properties
@@ -92,6 +93,7 @@ namespace Iocaine2.Data.Entry
             m_filteredList = new List<string>();
             Leave += IocaineSearchBox_Leave;
             Enter += IocaineSearchBox_Enter;
+            KeyDown += IocaineSearchBox_KeyDown;
 
             m_lastCharCnt = Text.Length;
         }
@@ -125,6 +127,34 @@ namespace Iocaine2.Data.Entry
         protected override void IocaineTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             base.IocaineTextbox_KeyPress(sender, e);
+        }
+        protected void IocaineSearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((m_rtfBox == null) || (m_suggestBox == null) || (!m_suggestBox.IsOpen))
+            {
+                return;
+            }
+
+            int l_nbLines = m_rtfBox.Document.Blocks.Count;
+            switch (e.KeyCode)
+            {
+                case Keys.Down:
+                    e.Handled = true;
+                    if (m_selectIndex < (l_nbLines - 1))
+                    {
+                        m_selectIndex++;
+                    }
+                    highlightSuggestedBoxRow(m_selectIndex);
+                    break;
+                case Keys.Up:
+                    e.Handled = true;
+                    if (m_selectIndex > 0)
+                    {
+                        m_selectIndex--;
+                    }
+                    highlightSuggestedBoxRow(m_selectIndex);
+                    break;
+            }
         }
         protected override void IocaineTextbox_TextChanged(object sender, EventArgs e)
         {
@@ -197,6 +227,7 @@ namespace Iocaine2.Data.Entry
         }
         private void createSuggestedBox()
         {
+            m_selectIndex = -1;
             if (m_suggestBox != null)
             {
                 if (m_suggestBox.IsOpen == false)
@@ -277,7 +308,7 @@ namespace Iocaine2.Data.Entry
             {
                 Logging.LoggingFunctions.Error(e.ToString());
             }
-            highlightSuggestedBoxRow(1);
+            highlightSuggestedBoxRow(m_selectIndex);
         }
         private void destroySuggestedBox()
         {
@@ -296,7 +327,7 @@ namespace Iocaine2.Data.Entry
 
             clearHighlightedRows();
 
-            if (iIndex >= m_rtfBox.Document.Blocks.Count)
+            if ((iIndex >= m_rtfBox.Document.Blocks.Count) || (iIndex < 0))
             {
                 return;
             }
