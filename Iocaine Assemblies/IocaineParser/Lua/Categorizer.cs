@@ -169,7 +169,7 @@ namespace Iocaine2.Parsing
             // Attributes (Parsed)
             private static Dictionary<string, ushort> m_attrToId;
             private static Dictionary<ushort, string> m_idToAttr;
-            private static Dictionary<ushort, List<AttrValue>> m_attrValues;
+            private static Dictionary<ushort, List<AttrValue>> m_attrValues; // Attribute ID to all associated attributes.
 
             private static bool m_loaded = false;
 
@@ -293,6 +293,24 @@ namespace Iocaine2.Parsing
                 }
 
                 return l_retVal;
+            }
+            public static void GetItemsWithAttribute(string iAttributeName, out List<AttrValue> oValues)
+            {
+                ushort l_attrId;
+                if (!m_attrToId.ContainsKey(iAttributeName))
+                {
+                    oValues = new List<AttrValue>();
+                    return;
+                }
+                l_attrId = m_attrToId[iAttributeName];
+                if (m_attrValues.ContainsKey(l_attrId))
+                {
+                    oValues = m_attrValues[l_attrId];
+                }
+                else
+                {
+                    oValues = new List<AttrValue>();
+                }
             }
             #endregion Internal Methods
 
@@ -509,6 +527,7 @@ namespace Iocaine2.Parsing
             private static bool runCategorization()
             {
                 m_subAttributes = new Dictionary<ushort, List<RestrictedVal>>();
+                m_attrValues = new Dictionary<ushort, List<AttrValue>>();
                 // TBD - remove dump file when finished testing.
                 StreamWriter l_writer = new StreamWriter(@"Parsing\dump.txt", false);
                 l_writer.AutoFlush = false;
@@ -521,10 +540,6 @@ namespace Iocaine2.Parsing
                 ushort l_cnt = 0;
                 foreach (ushort i_id in l_itemIds)
                 {
-                    if (i_id == 10293)
-                    {
-                        l_cnt = l_cnt;
-                    }
                     l_cnt++;
                     if (i_id < m_startParsingAt)
                     {
@@ -756,6 +771,12 @@ namespace Iocaine2.Parsing
                             }
                             l_info.m_attributes.Add(l_value);
                             m_items[iItemId] = l_info;
+
+                            if (!m_attrValues.ContainsKey(l_attrId))
+                            {
+                                m_attrValues.Add(l_attrId, new List<AttrValue>());
+                            }
+                            m_attrValues[l_attrId].Add(l_value);
 
                             // Replace the whole match with ""
                             iDesc = l_regex.Replace(iDesc, "");
