@@ -101,6 +101,10 @@ namespace Iocaine2.Data.Entry
         #endregion Public Properties
 
         #region Events
+        [
+            Category("Iocaine"),
+            Description("Fires upon recieving the Enter or Return keys. OnEnterFireEvent property must be set to true.")
+        ]
         public event Statics.FuncPtrs.TD_Void_Void _DataEntered;
         #endregion Events
 
