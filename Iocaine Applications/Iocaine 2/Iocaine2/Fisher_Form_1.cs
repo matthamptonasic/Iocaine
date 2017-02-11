@@ -3023,79 +3023,28 @@ namespace Iocaine2
                 e.Handled = true;
             }
         }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        private void AttrSearchBox__DataEntered()
         {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                if (textBox3.Text != "")
-                {
-
-                }
-                e.Handled = true;
-            }
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            string l_filter = parser_get_regex_filter(textBox3.Text);
-            List<string> l_matches = Parsing.Lua.GetAttributeList(l_filter);
+            List<Parsing.Lua.Categorizer.AttrValue> l_values;
+            Parsing.Lua.Categorizer.GetItemsWithAttribute(AttrSearchBox.Text, out l_values);
+            string l_itemName;
             listBox2.Items.Clear();
-            listBox2.Items.AddRange(l_matches.ToArray());
+            foreach (Parsing.Lua.Categorizer.AttrValue i_attr in l_values)
+            {
+                l_itemName = Things.GetNameFromId(i_attr.m_itemId);
+                l_itemName += " => ";
+                if (i_attr.m_restricted)
+                {
+                    l_itemName += "(";
+                }
+                l_itemName += i_attr.m_values[0];
+                if (i_attr.m_restricted)
+                {
+                    l_itemName += ")";
+                }
+                listBox2.Items.Add(l_itemName);
+            }
         }
 
-        private string lastParserFilter = "";
-        private string parser_get_regex_filter(string iText)
-        {
-            string l_retVal = iText;
-
-            // ? matches single character.
-            // # matches single number.
-            // [! ] matches a single character that is not in the set.
-            // * matches one or more characters.
-            // [ ] matches any one of the characters specified in the set.
-            //
-            // ? converts to .
-            // # converts to [0-9]
-            // [! ] converts to [^ ]
-            // * converts to .*
-            // [ ] no conversion needed
-            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\?", @"$1.");
-            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\#", @"$1[0-9]");
-            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\*", @"$1.*");
-            l_retVal = System.Text.RegularExpressions.Regex.Replace(l_retVal, @"([^\\]|^)\[\!", @"$1[^");
-            if (isValidRegex(l_retVal))
-            {
-                lastParserFilter = l_retVal;
-                return l_retVal;
-            }
-            else
-            {
-                return lastParserFilter;
-            }
-        }
-        private bool isValidRegex(string iFilter)
-        {
-            if (string.IsNullOrEmpty(iFilter))
-            {
-                return false;
-            }
-            try
-            {
-                System.Text.RegularExpressions.Regex.Match("", iFilter);
-            }
-            catch (ArgumentException)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private void AttrSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            //List<string> l_matches = Parsing.Lua.GetAttributeList(AttrSearchBox.Pattern);
-            //listBox2.Items.Clear();
-            //listBox2.Items.AddRange(l_matches.ToArray());
-        }
     }
 }

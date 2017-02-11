@@ -493,6 +493,7 @@
             this.CB_MR_GS_Button = new System.Windows.Forms.CheckBox();
             this.CB_MR_CC_Button = new System.Windows.Forms.CheckBox();
             this.Synergizer_Tab = new System.Windows.Forms.TabPage();
+            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
             this.WMS_Tab = new System.Windows.Forms.TabPage();
             this.WMS_Safe2LB = new System.Windows.Forms.ListBox();
             this.WMS_Safe2Label = new System.Windows.Forms.Label();
@@ -537,9 +538,9 @@
             this.WMS_BagOccLabel = new System.Windows.Forms.Label();
             this.WMS_PooledLB = new System.Windows.Forms.ListBox();
             this.GS_Tab = new System.Windows.Forms.TabPage();
+            this.AttrSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -664,8 +665,6 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.SynergizerDlg = new Iocaine2.Synergy.SynergyDlg();
-            this.AttrSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6405,6 +6404,15 @@
             this.Synergizer_Tab.Text = "Synergizer";
             this.Synergizer_Tab.UseVisualStyleBackColor = true;
             // 
+            // SynergizerDlg
+            // 
+            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
+            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
+            this.SynergizerDlg.Name = "SynergizerDlg";
+            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
+            this.SynergizerDlg.TabIndex = 0;
+            // 
             // WMS_Tab
             // 
             this.WMS_Tab.AutoScroll = true;
@@ -6878,7 +6886,6 @@
             this.GS_Tab.Controls.Add(this.AttrSearchBox);
             this.GS_Tab.Controls.Add(this.label4);
             this.GS_Tab.Controls.Add(this.listBox2);
-            this.GS_Tab.Controls.Add(this.textBox3);
             this.GS_Tab.Controls.Add(this.label3);
             this.GS_Tab.Controls.Add(this.listBox1);
             this.GS_Tab.Controls.Add(this.textBox2);
@@ -6890,6 +6897,24 @@
             this.GS_Tab.TabIndex = 12;
             this.GS_Tab.Text = "Search";
             this.GS_Tab.UseVisualStyleBackColor = true;
+            // 
+            // AttrSearchBox
+            // 
+            this.AttrSearchBox.CaseSensitive = false;
+            this.AttrSearchBox.DefaultText = "Search Attributes";
+            this.AttrSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.AttrSearchBox.GrayTextIfDefault = true;
+            this.AttrSearchBox.Location = new System.Drawing.Point(204, 23);
+            this.AttrSearchBox.MaxMatchDepth = 10;
+            this.AttrSearchBox.MinCharToSuggest = 2;
+            this.AttrSearchBox.Name = "AttrSearchBox";
+            this.AttrSearchBox.OnEnterFireEvent = true;
+            this.AttrSearchBox.OnEnterSetTarget = false;
+            this.AttrSearchBox.SelectTextOnClick = true;
+            this.AttrSearchBox.Size = new System.Drawing.Size(198, 20);
+            this.AttrSearchBox.TabIndex = 8;
+            this.AttrSearchBox.Text = "Search Attributes";
+            this.AttrSearchBox._DataEntered += new Iocaine2.Statics.FuncPtrs.TD_Void_Void(this.AttrSearchBox__DataEntered);
             // 
             // label4
             // 
@@ -6909,15 +6934,6 @@
             this.listBox2.ScrollAlwaysVisible = true;
             this.listBox2.Size = new System.Drawing.Size(196, 342);
             this.listBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(206, 24);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(196, 20);
-            this.textBox3.TabIndex = 5;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // label3
             // 
@@ -8264,30 +8280,6 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SynergizerDlg
-            // 
-            this.SynergizerDlg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SynergizerDlg.Location = new System.Drawing.Point(3, 3);
-            this.SynergizerDlg.Margin = new System.Windows.Forms.Padding(4);
-            this.SynergizerDlg.Name = "SynergizerDlg";
-            this.SynergizerDlg.Size = new System.Drawing.Size(511, 368);
-            this.SynergizerDlg.TabIndex = 0;
-            // 
-            // AttrSearchBox
-            // 
-            this.AttrSearchBox.DefaultText = "Search Attributes";
-            this.AttrSearchBox.ForeColor = System.Drawing.Color.Gray;
-            this.AttrSearchBox.GrayTextIfDefault = true;
-            this.AttrSearchBox.Location = new System.Drawing.Point(412, 58);
-            this.AttrSearchBox.Name = "AttrSearchBox";
-            this.AttrSearchBox.OnEnterFireEvent = false;
-            this.AttrSearchBox.OnEnterSetTarget = false;
-            this.AttrSearchBox.SelectTextOnClick = true;
-            this.AttrSearchBox.Size = new System.Drawing.Size(100, 20);
-            this.AttrSearchBox.TabIndex = 8;
-            this.AttrSearchBox.Text = "Search Attributes";
-            this.AttrSearchBox.TextChanged += new System.EventHandler(this.AttrSearchBox_TextChanged);
-            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9091,7 +9083,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private Data.Entry.IocaineSearchBox AttrSearchBox;
     }
