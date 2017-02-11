@@ -23,6 +23,8 @@ namespace Iocaine2.Data.Entry
         private List<string> m_filteredList;
         private int m_maxMatchDepth = 10;
         private int m_minCharToSuggest = 2;
+        private bool m_caseSenstivie = false;
+        private RegexOptions m_regexOptions;
 
         // State
         private int m_lastCharCnt;
@@ -73,6 +75,22 @@ namespace Iocaine2.Data.Entry
                 m_minCharToSuggest = value;
             }
         }
+        [
+            Category("Iocaine"),
+            Description("Search is case-sensitive.")
+        ]
+        public bool CaseSensitive
+        {
+            get
+            {
+                return m_caseSenstivie;
+            }
+            set
+            {
+                m_caseSenstivie = value;
+                updateRegexOptions();
+            }
+        }
         #endregion Public Properties
 
         #region Events
@@ -97,6 +115,8 @@ namespace Iocaine2.Data.Entry
             KeyDown += IocaineSearchBox_KeyDown;
 
             m_lastCharCnt = Text.Length;
+            OnEnterFireEvent = true;
+            updateRegexOptions();
         }
         #endregion Constructor
 
@@ -127,6 +147,21 @@ namespace Iocaine2.Data.Entry
         }
         protected override void IocaineTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
+            {
+                if (m_selectIndex >= 0)
+                {
+                    this.Text = m_selectedText.Trim();
+                    destroySuggestedBox();
+                }
+                e.Handled = true;
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                destroySuggestedBox();
+                this.Text = "";
+                e.Handled = true;
+            }
             base.IocaineTextbox_KeyPress(sender, e);
         }
         protected void IocaineSearchBox_KeyDown(object sender, KeyEventArgs e)
@@ -187,7 +222,6 @@ namespace Iocaine2.Data.Entry
             // 2. From 1 char to 2 char - Need to reset list to full list and try again.
             // 3. Text is default - Need to clear list and keep reset.
             // 4. Has 0 or 1 char - Need to clear list and keep reset.
-            // 5. 
             if (m_stringList == null)
             {
                 return;
@@ -216,10 +250,12 @@ namespace Iocaine2.Data.Entry
             {
                 return;
             }
+            Regex l_idRegex;
+            Match l_idMatch;
             for (int ii = l_origCnt - 1; ii >= 0; ii--)
             {
-                Regex l_idRegex = new Regex(m_regexPattern.Pattern);
-                Match l_idMatch = l_idRegex.Match(m_filteredList[ii]);
+                l_idRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
+                l_idMatch = l_idRegex.Match(m_filteredList[ii]);
                 if (!l_idMatch.Success)
                 {
                     m_filteredList.RemoveAt(ii);
@@ -272,12 +308,18 @@ namespace Iocaine2.Data.Entry
                 return;
             }
             m_rtfBox.Document.Blocks.Clear();
-            Regex l_regex = new Regex(m_regexPattern.Pattern);
+            Regex l_regex = new Regex(m_regexPattern.Pattern, m_regexOptions);
             try
             {
+                TextPointer l_tpLineEnd;
+                Match l_match;
+                TextPointer l_tpLineStart;
+                TextPointer l_tpMatchStart;
+                TextPointer l_tpMatchEnd;
+                TextRange l_tr;
+                TextRange l_trEoL;
                 for (int ii = 0; ii < m_filteredList.Count; ii++)
                 {
-                    TextPointer l_tpLineEnd;
 
                     string l_str = "";
                     if (ii != 0)
@@ -286,18 +328,18 @@ namespace Iocaine2.Data.Entry
                     }
                     l_str += m_filteredList[ii];
                     m_rtfBox.AppendText(l_str);
-                    Match l_match = l_regex.Match(l_str);
+                    l_match = l_regex.Match(l_str);
                     int l_matchStartIdx = (ii == 0) ? l_match.Index + 1 : l_match.Index;
                     int l_matchEndIdx = l_matchStartIdx + l_match.Length;
                     l_tpLineEnd = m_rtfBox.Document.ContentEnd;
-                    TextPointer l_tpLineStart = l_tpLineEnd.GetLineStartPosition(0);
-                    TextPointer l_tpMatchStart = l_tpLineStart.GetPositionAtOffset(l_matchStartIdx);
-                    TextPointer l_tpMatchEnd = l_tpLineStart.GetPositionAtOffset(l_matchEndIdx);
-                    TextRange l_tr = new TextRange(l_tpMatchStart, l_tpMatchEnd);
+                    l_tpLineStart = l_tpLineEnd.GetLineStartPosition(0);
+                    l_tpMatchStart = l_tpLineStart.GetPositionAtOffset(l_matchStartIdx);
+                    l_tpMatchEnd = l_tpLineStart.GetPositionAtOffset(l_matchEndIdx);
+                    l_tr = new TextRange(l_tpMatchStart, l_tpMatchEnd);
 
                     l_tr.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
 
-                    TextRange l_trEoL = new TextRange(l_tpMatchEnd, l_tpLineEnd);
+                    l_trEoL = new TextRange(l_tpMatchEnd, l_tpLineEnd);
                     l_trEoL.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Normal);
                     l_trEoL.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent));
 
@@ -311,7 +353,12 @@ namespace Iocaine2.Data.Entry
             {
                 Logging.LoggingFunctions.Error(e.ToString());
             }
-            if (m_selectIndex >= m_filteredList.Count)
+            if ((m_selectIndex < 0) && (m_filteredList.Count > 0))
+            {
+                m_selectIndex = 0;
+                m_selectedText = m_filteredList.First();
+            }
+            else if (m_selectIndex >= m_filteredList.Count)
             {
                 m_selectIndex = m_filteredList.Count - 1;
                 m_selectedText = m_filteredList.Last();
@@ -362,6 +409,17 @@ namespace Iocaine2.Data.Entry
             TextRange l_tr = new TextRange(iRtb.Document.ContentStart, iRtb.Document.ContentEnd);
             int l_retVal = l_tr.Text.Split('\n').Length;
             return l_retVal;
+        }
+        private void updateRegexOptions()
+        {
+            if (!m_caseSenstivie)
+            {
+                m_regexOptions |= RegexOptions.IgnoreCase;
+            }
+            else
+            {
+                m_regexOptions &= ~RegexOptions.IgnoreCase;
+            }
         }
         #endregion Private Methods
     }
