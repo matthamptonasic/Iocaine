@@ -29,6 +29,7 @@ namespace Iocaine2.Data.Entry
         private Popup m_suggestBox;
         private System.Windows.Controls.RichTextBox m_rtfBox;
         private int m_selectIndex = -1;
+        private string m_selectedText = "";
         #endregion Private Members
 
         #region Public Properties
@@ -227,7 +228,6 @@ namespace Iocaine2.Data.Entry
         }
         private void createSuggestedBox()
         {
-            m_selectIndex = -1;
             if (m_suggestBox != null)
             {
                 if (m_suggestBox.IsOpen == false)
@@ -236,6 +236,9 @@ namespace Iocaine2.Data.Entry
                 }
                 return;
             }
+
+            m_selectIndex = -1;
+            m_selectedText = "";
             m_suggestBox = new Popup();
             m_rtfBox = new System.Windows.Controls.RichTextBox();
             m_rtfBox.Foreground = System.Windows.Media.Brushes.Gray;
@@ -294,19 +297,24 @@ namespace Iocaine2.Data.Entry
 
                     l_tr.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
 
-                    //if (ii == 0)
-                    //{
-                    //    l_tr.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow));
-                    //}
-
                     TextRange l_trEoL = new TextRange(l_tpMatchEnd, l_tpLineEnd);
                     l_trEoL.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Normal);
                     l_trEoL.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent));
+
+                    if ((m_selectedText != "") && (m_selectedText == l_str.Trim()))
+                    {
+                        m_selectIndex = ii;
+                    }
                 }
             }
             catch (Exception e)
             {
                 Logging.LoggingFunctions.Error(e.ToString());
+            }
+            if (m_selectIndex >= m_filteredList.Count)
+            {
+                m_selectIndex = m_filteredList.Count - 1;
+                m_selectedText = m_filteredList.Last();
             }
             highlightSuggestedBoxRow(m_selectIndex);
         }
@@ -338,6 +346,7 @@ namespace Iocaine2.Data.Entry
             TextPointer l_tpLineEnd = l_blk.ContentEnd;
             TextRange l_tr = new TextRange(l_tpLineStart, l_tpLineEnd);
             l_tr.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Yellow));
+            m_selectedText = l_tr.Text;
         }
         private void clearHighlightedRows()
         {
