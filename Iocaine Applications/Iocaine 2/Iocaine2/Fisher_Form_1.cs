@@ -3004,25 +3004,11 @@ namespace Iocaine2
             Parsing.Lua.Categorizer.Load();
 
             AttrSearchBox.SetStringList(Parsing.Lua.GetAttributeList());
+            List<string> l_itemNames;
+            Parsing.Lua.GetItemNames(out l_itemNames);
+            ItemSearchBox.SetStringList(l_itemNames);
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar == (char)Keys.Enter) || (e.KeyChar == (char)Keys.Return))
-            {
-                if (textBox2.Text != "")
-                {
-                    // Search for item based on given filter.
-                    List<string> l_attr = Parsing.Lua.GetItemAttributes(textBox2.Text);
-                    if (l_attr != null)
-                    {
-                        listBox1.Items.Clear();
-                        listBox1.Items.AddRange(l_attr.ToArray());
-                    }
-                }
-                e.Handled = true;
-            }
-        }
         private void AttrSearchBox__DataEntered()
         {
             List<Parsing.Lua.Categorizer.AttrValue> l_values;
@@ -3046,5 +3032,18 @@ namespace Iocaine2
             }
         }
 
+        private void ItemSearchBox__DataEntered()
+        {
+            if (ItemSearchBox.Text != "")
+            {
+                // Search for item based on given filter.
+                List<string> l_attr = Parsing.Lua.GetItemAttributes(ItemSearchBox.Text);
+                if (l_attr != null)
+                {
+                    listBox1.Items.Clear();
+                    listBox1.Items.AddRange(l_attr.ToArray());
+                }
+            }
+        }
     }
 }

@@ -543,7 +543,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.TA_Tab = new System.Windows.Forms.TabPage();
@@ -665,6 +664,7 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
+            this.ItemSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6883,12 +6883,12 @@
             // 
             // GS_Tab
             // 
+            this.GS_Tab.Controls.Add(this.ItemSearchBox);
             this.GS_Tab.Controls.Add(this.AttrSearchBox);
             this.GS_Tab.Controls.Add(this.label4);
             this.GS_Tab.Controls.Add(this.listBox2);
             this.GS_Tab.Controls.Add(this.label3);
             this.GS_Tab.Controls.Add(this.listBox1);
-            this.GS_Tab.Controls.Add(this.textBox2);
             this.GS_Tab.Controls.Add(this.button2);
             this.GS_Tab.Controls.Add(this.button1);
             this.GS_Tab.Location = new System.Drawing.Point(4, 25);
@@ -6953,14 +6953,6 @@
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(196, 342);
             this.listBox1.TabIndex = 3;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(2, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(196, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // button2
             // 
@@ -8280,6 +8272,24 @@
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // ItemSearchBox
+            // 
+            this.ItemSearchBox.CaseSensitive = false;
+            this.ItemSearchBox.DefaultText = "Search Items";
+            this.ItemSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.ItemSearchBox.GrayTextIfDefault = true;
+            this.ItemSearchBox.Location = new System.Drawing.Point(2, 23);
+            this.ItemSearchBox.MaxMatchDepth = 10;
+            this.ItemSearchBox.MinCharToSuggest = 2;
+            this.ItemSearchBox.Name = "ItemSearchBox";
+            this.ItemSearchBox.OnEnterFireEvent = true;
+            this.ItemSearchBox.OnEnterSetTarget = false;
+            this.ItemSearchBox.SelectTextOnClick = true;
+            this.ItemSearchBox.Size = new System.Drawing.Size(197, 20);
+            this.ItemSearchBox.TabIndex = 9;
+            this.ItemSearchBox.Text = "Search Items";
+            this.ItemSearchBox._DataEntered += new Iocaine2.Statics.FuncPtrs.TD_Void_Void(this.ItemSearchBox__DataEntered);
+            // 
             // Iocaine_2_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9080,10 +9090,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label3;
         private Data.Entry.IocaineSearchBox AttrSearchBox;
+        private Data.Entry.IocaineSearchBox ItemSearchBox;
     }
 }
