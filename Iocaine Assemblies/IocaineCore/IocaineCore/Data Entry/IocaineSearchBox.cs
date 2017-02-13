@@ -227,6 +227,13 @@ namespace Iocaine2.Data.Entry
             // 2. From 1 char to 2 char - Need to reset the filtered list based on the full list/string.
             // 3. Text is default - Need to clear list and keep reset.
             // 4. Has 0 or 1 char - Need to clear list and keep reset.
+
+            // === m_stringList case ===
+            // We have a full list (FL) of item names.
+            // Whenever the user 1) reduces the pattern size or 2) reaches min pattern size
+            //  the FL must be used to populate the filtered list again (iReset = true, iKeepClear = false).
+            // Whenever 3) the text is default or 4) the pattern is < min size,
+            //  we do not do anything. Just keep the filtered list clear (iReset = true, iKeepClear = true).
             if ((m_stringList == null) && (m_string == ""))
             {
                 return;
@@ -243,6 +250,9 @@ namespace Iocaine2.Data.Entry
                 {
                     return;
                 }
+
+                // If we get here it means we're repopulating the list from the full list.
+                // Move this outside of this 'if' and down to a new "if(iReset)"
                 if (m_stringList != null)
                 {
                     m_filteredList.AddRange(m_stringList);
@@ -260,6 +270,9 @@ namespace Iocaine2.Data.Entry
                     }
                 }
             }
+
+            // If we reset, we're going through the entire list again.
+            // If we did not reset, we're only removing any non-matching items from the existing filtered list.
 
 
             if ((m_filteredList.Count == 0) && (this.Text.Length == m_minCharToSuggest))
