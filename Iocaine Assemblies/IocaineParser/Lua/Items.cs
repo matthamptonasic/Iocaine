@@ -42,6 +42,7 @@ namespace Iocaine2.Parsing
             private static Dictionary<ushort, string> m_desc; //References the one in ItemDescriptions.
             private static Dictionary<string, List<ItemInfo>> m_postProcessingItems;
             private static Dictionary<ushort, string> m_specialCases;
+            private static string m_armorNames = "";
             #endregion Private Members
 
             #region Public Properties
@@ -138,6 +139,14 @@ namespace Iocaine2.Parsing
                     parse();
                 }
                 oWeapons = m_weaponIds;
+            }
+            internal static void GetArmorNames(out string oNames)
+            {
+                if (!m_parsed)
+                {
+                    parse();
+                }
+                oNames = m_armorNames;
             }
             internal static void PostProcess()
             {
@@ -317,6 +326,7 @@ namespace Iocaine2.Parsing
                 m_armorIds = new List<ushort>();
                 m_weaponIds = new List<ushort>();
                 m_postProcessingItems = new Dictionary<string, List<ItemInfo>>();
+                m_armorNames = "";
 
                 List<ushort> l_idsToRemove = new List<ushort>();
 
@@ -583,6 +593,13 @@ namespace Iocaine2.Parsing
                     l_reader.Close();
                 }
                 return;
+            }
+            private static void setArmorNamesString()
+            {
+                foreach (ushort i_id in m_armorIds)
+                {
+                    m_armorNames += m_items[i_id] + "\n";
+                }
             }
             #endregion Private Methods
         }

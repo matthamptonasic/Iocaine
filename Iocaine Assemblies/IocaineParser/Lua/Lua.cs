@@ -170,6 +170,10 @@ namespace Iocaine2.Parsing
             Items.GetItemNames(out l_ids);
             oItemNames = l_ids;
         }
+        public static void GetArmorNames(out string oArmorNames)
+        {
+            Items.GetArmorNames(out oArmorNames);
+        }
         #endregion Public Methods
 
         #region Private Methods
