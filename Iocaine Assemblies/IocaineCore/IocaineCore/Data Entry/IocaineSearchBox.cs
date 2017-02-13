@@ -20,6 +20,7 @@ namespace Iocaine2.Data.Entry
         // Properties
         private RegexPatternState m_regexPattern;
         private List<string> m_stringList;
+        private string m_string = "";
         private List<string> m_filteredList;
         private int m_maxMatchDepth = 10;
         private int m_minCharToSuggest = 2;
@@ -130,6 +131,10 @@ namespace Iocaine2.Data.Entry
             }
             m_stringList = iStringList;
         }
+        public void SetString(ref string iString)
+        {
+            m_string = iString;
+        }
         #endregion Public Methods
 
         #region Private Methods
@@ -218,11 +223,11 @@ namespace Iocaine2.Data.Entry
         }
         private void filterStringList(bool iReset = false, bool iKeepClear = false)
         {
-            // 1. Text shrunk - need to reset list to full list and try again.
-            // 2. From 1 char to 2 char - Need to reset list to full list and try again.
+            // 1. Text shrunk - Need to reset the filtered list based on the full list/string.
+            // 2. From 1 char to 2 char - Need to reset the filtered list based on the full list/string.
             // 3. Text is default - Need to clear list and keep reset.
             // 4. Has 0 or 1 char - Need to clear list and keep reset.
-            if (m_stringList == null)
+            if ((m_stringList == null) && (m_string == ""))
             {
                 return;
             }
@@ -238,11 +243,35 @@ namespace Iocaine2.Data.Entry
                 {
                     return;
                 }
-                m_filteredList.AddRange(m_stringList);
+                if (m_stringList != null)
+                {
+                    m_filteredList.AddRange(m_stringList);
+                }
+                else
+                {
+                    Regex l_strRegex;
+                    Match l_strMatch;
+                    l_strRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
+                    l_strMatch = l_strRegex.Match(m_string);
+                    GroupCollection l_groups = l_strMatch.Groups;
+                    for (int ii = 0; ii < l_groups.Count; ii++)
+                    {
+                        m_filteredList.Add(l_groups[ii].ToString());
+                    }
+                }
             }
+
+
             if ((m_filteredList.Count == 0) && (this.Text.Length == m_minCharToSuggest))
             {
-                m_filteredList.AddRange(m_stringList);
+                if (m_stringList != null)
+                {
+                    m_filteredList.AddRange(m_stringList);
+                }
+                else
+                {
+                    // Do the equiv. processing for the m_string case.
+                }
             }
 
             int l_origCnt = m_filteredList.Count;
@@ -252,14 +281,24 @@ namespace Iocaine2.Data.Entry
             }
             Regex l_idRegex;
             Match l_idMatch;
-            for (int ii = l_origCnt - 1; ii >= 0; ii--)
+            if (m_stringList != null)
             {
-                l_idRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
-                l_idMatch = l_idRegex.Match(m_filteredList[ii]);
-                if (!l_idMatch.Success)
+                // TBD
+                // This is backwards as well. We shouldn't add the whole thing, then remove, it's wasteful.
+                for (int ii = l_origCnt - 1; ii >= 0; ii--)
                 {
-                    m_filteredList.RemoveAt(ii);
+                    l_idRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
+                    l_idMatch = l_idRegex.Match(m_filteredList[ii]);
+                    if (!l_idMatch.Success)
+                    {
+                        m_filteredList.RemoveAt(ii);
+                    }
                 }
+            }
+            else
+            {
+                // Extract each match of the pattern from the m_string member
+                // and put it in the filtered list.
             }
         }
         private void createSuggestedBox()
