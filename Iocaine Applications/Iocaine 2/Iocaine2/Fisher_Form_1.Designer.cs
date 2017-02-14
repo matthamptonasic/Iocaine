@@ -538,6 +538,7 @@
             this.WMS_BagOccLabel = new System.Windows.Forms.Label();
             this.WMS_PooledLB = new System.Windows.Forms.ListBox();
             this.GS_Tab = new System.Windows.Forms.TabPage();
+            this.ItemSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.AttrSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -664,7 +665,6 @@
             this.c_ErrorLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLightPB = new System.Windows.Forms.PictureBox();
             this.ServerConnectionLabel = new System.Windows.Forms.Label();
-            this.ItemSearchBox = new Iocaine2.Data.Entry.IocaineSearchBox();
             this.Fish_Bot_Tab.SuspendLayout();
             this.InfoBoxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RightArrowIcon)).BeginInit();
@@ -6898,6 +6898,24 @@
             this.GS_Tab.Text = "Search";
             this.GS_Tab.UseVisualStyleBackColor = true;
             // 
+            // ItemSearchBox
+            // 
+            this.ItemSearchBox.CaseSensitive = false;
+            this.ItemSearchBox.DefaultText = "Search Items";
+            this.ItemSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.ItemSearchBox.GrayTextIfDefault = true;
+            this.ItemSearchBox.Location = new System.Drawing.Point(2, 23);
+            this.ItemSearchBox.MaxMatchDepth = 10;
+            this.ItemSearchBox.MinCharToSuggest = 3;
+            this.ItemSearchBox.Name = "ItemSearchBox";
+            this.ItemSearchBox.OnEnterFireEvent = true;
+            this.ItemSearchBox.OnEnterSetTarget = false;
+            this.ItemSearchBox.SelectTextOnClick = true;
+            this.ItemSearchBox.Size = new System.Drawing.Size(197, 20);
+            this.ItemSearchBox.TabIndex = 9;
+            this.ItemSearchBox.Text = "Search Items";
+            this.ItemSearchBox._DataEntered += new Iocaine2.Statics.FuncPtrs.TD_Void_Void(this.ItemSearchBox__DataEntered);
+            // 
             // AttrSearchBox
             // 
             this.AttrSearchBox.CaseSensitive = false;
@@ -8271,24 +8289,6 @@
             this.ServerConnectionLabel.TabIndex = 134;
             this.ServerConnectionLabel.Text = "Checking";
             this.ServerConnectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ItemSearchBox
-            // 
-            this.ItemSearchBox.CaseSensitive = false;
-            this.ItemSearchBox.DefaultText = "Search Items";
-            this.ItemSearchBox.ForeColor = System.Drawing.Color.Gray;
-            this.ItemSearchBox.GrayTextIfDefault = true;
-            this.ItemSearchBox.Location = new System.Drawing.Point(2, 23);
-            this.ItemSearchBox.MaxMatchDepth = 10;
-            this.ItemSearchBox.MinCharToSuggest = 2;
-            this.ItemSearchBox.Name = "ItemSearchBox";
-            this.ItemSearchBox.OnEnterFireEvent = true;
-            this.ItemSearchBox.OnEnterSetTarget = false;
-            this.ItemSearchBox.SelectTextOnClick = true;
-            this.ItemSearchBox.Size = new System.Drawing.Size(197, 20);
-            this.ItemSearchBox.TabIndex = 9;
-            this.ItemSearchBox.Text = "Search Items";
-            this.ItemSearchBox._DataEntered += new Iocaine2.Statics.FuncPtrs.TD_Void_Void(this.ItemSearchBox__DataEntered);
             // 
             // Iocaine_2_Form
             // 

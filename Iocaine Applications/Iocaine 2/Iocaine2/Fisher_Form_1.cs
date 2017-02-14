@@ -3004,9 +3004,12 @@ namespace Iocaine2
             Parsing.Lua.Categorizer.Load();
 
             AttrSearchBox.SetStringList(Parsing.Lua.GetAttributeList());
-            List<string> l_itemNames;
-            Parsing.Lua.GetItemNames(out l_itemNames);
-            ItemSearchBox.SetStringList(l_itemNames);
+            //List<string> l_itemNames;
+            //Parsing.Lua.GetItemNames(out l_itemNames);
+            //ItemSearchBox.SetStringList(l_itemNames);
+            string l_itemStr;
+            Parsing.Lua.GetArmorNames(out l_itemStr);
+            ItemSearchBox.SetString(ref l_itemStr);
         }
 
         private void AttrSearchBox__DataEntered()
