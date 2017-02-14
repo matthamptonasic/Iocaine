@@ -199,13 +199,18 @@ namespace Iocaine2.Data.Entry
         }
         protected override void IocaineTextbox_TextChanged(object sender, EventArgs e)
         {
+            System.Diagnostics.Stopwatch l_sw = System.Diagnostics.Stopwatch.StartNew();
+
             base.IocaineTextbox_TextChanged(sender, e);
             m_regexPattern.UpdatePattern(this.Text);
             bool l_textShrunk = this.Text.Length < m_lastCharCnt;
             bool l_defText = this.Text == DefaultText;
             bool l_lessThanMin = this.Text.Length < m_minCharToSuggest;
+            bool l_upToMin = (this.Text.Length == m_minCharToSuggest) && (m_lastCharCnt == (m_minCharToSuggest - 1));
             m_lastCharCnt = this.Text.Length;
-            filterStringList(l_textShrunk, l_defText || l_lessThanMin);
+            filterStringList(l_textShrunk || l_upToMin, l_defText || l_lessThanMin);
+
+            long l_filterMs = l_sw.ElapsedMilliseconds;
 
             if (this.Text.Length < m_minCharToSuggest)
             {
@@ -216,6 +221,8 @@ namespace Iocaine2.Data.Entry
                 createSuggestedBox();
             }
             updateSuggestedBox();
+            long l_updateMs = l_sw.ElapsedMilliseconds - l_filterMs;
+            //MessageBox.Show("Filter: " + l_filterMs + " ==> Update: " + l_updateMs);
         }
         protected override void IocaineTextbox_Click(object sender, EventArgs e)
         {
@@ -243,6 +250,8 @@ namespace Iocaine2.Data.Entry
                 m_filteredList = new List<string>();
             }
 
+            Regex l_regex = new Regex(m_regexPattern.Pattern, m_regexOptions);
+            Match l_match;
             if (iReset || iKeepClear)
             {
                 m_filteredList.Clear();
@@ -253,65 +262,71 @@ namespace Iocaine2.Data.Entry
 
                 // If we get here it means we're repopulating the list from the full list.
                 // Move this outside of this 'if' and down to a new "if(iReset)"
-                if (m_stringList != null)
-                {
-                    m_filteredList.AddRange(m_stringList);
-                }
-                else
-                {
-                    Regex l_strRegex;
-                    Match l_strMatch;
-                    l_strRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
-                    l_strMatch = l_strRegex.Match(m_string);
-                    GroupCollection l_groups = l_strMatch.Groups;
-                    for (int ii = 0; ii < l_groups.Count; ii++)
-                    {
-                        m_filteredList.Add(l_groups[ii].ToString());
-                    }
-                }
+                //if (m_stringList != null)
+                //{
+                //    m_filteredList.AddRange(m_stringList);
+                //}
+                //else
+                //{
+                //    l_match = l_regex.Match(m_string);
+                //    GroupCollection l_groups = l_match.Groups;
+                //    for (int ii = 0; ii < l_groups.Count; ii++)
+                //    {
+                //        m_filteredList.Add(l_groups[ii].ToString());
+                //    }
+                //}
             }
 
             // If we reset, we're going through the entire list again.
             // If we did not reset, we're only removing any non-matching items from the existing filtered list.
-
-
-            if ((m_filteredList.Count == 0) && (this.Text.Length == m_minCharToSuggest))
+            if (iReset)
             {
-                if (m_stringList != null)
+                if ((m_stringList != null) && (m_stringList.Count > 0))
                 {
-                    m_filteredList.AddRange(m_stringList);
-                }
-                else
-                {
-                    // Do the equiv. processing for the m_string case.
-                }
-            }
-
-            int l_origCnt = m_filteredList.Count;
-            if (l_origCnt == 0)
-            {
-                return;
-            }
-            Regex l_idRegex;
-            Match l_idMatch;
-            if (m_stringList != null)
-            {
-                // TBD
-                // This is backwards as well. We shouldn't add the whole thing, then remove, it's wasteful.
-                for (int ii = l_origCnt - 1; ii >= 0; ii--)
-                {
-                    l_idRegex = new Regex(m_regexPattern.Pattern, m_regexOptions);
-                    l_idMatch = l_idRegex.Match(m_filteredList[ii]);
-                    if (!l_idMatch.Success)
+                    for (int ii = 0; ii < m_stringList.Count; ii++)
                     {
-                        m_filteredList.RemoveAt(ii);
+                        l_match = l_regex.Match(m_stringList[ii]);
+                        if (l_match.Success)
+                        {
+                            m_filteredList.Add(m_stringList[ii]);
+                        }
+                    }
+                }
+                else if (m_string != "")
+                {
+                    string l_fullPattern = m_regexPattern.Pattern;
+                    if (l_fullPattern[0] != '^')
+                    {
+                        l_fullPattern = "^.*" + l_fullPattern;
+                    }
+                    l_fullPattern = l_fullPattern[0] + "(" + l_fullPattern.Substring(1, l_fullPattern.Length - 1);
+                    if (l_fullPattern.Last() != '$')
+                    {
+                        l_fullPattern += ".*$";
+                    }
+                    l_fullPattern = l_fullPattern.Substring(0, l_fullPattern.Length - 1) + ")" + l_fullPattern[l_fullPattern.Length - 1];
+                    MatchCollection l_matches = Regex.Matches(m_string, l_fullPattern, m_regexOptions | RegexOptions.Multiline);
+                    foreach (Match i_match in l_matches)
+                    {
+                        m_filteredList.Add(i_match.Value);
                     }
                 }
             }
             else
             {
-                // Extract each match of the pattern from the m_string member
-                // and put it in the filtered list.
+                int l_origCnt = m_filteredList.Count;
+                if (l_origCnt == 0)
+                {
+                    return;
+                }
+                for (int ii = l_origCnt - 1; ii >= 0; ii--)
+                {
+                    l_match = l_regex.Match(m_filteredList[ii]);
+                    if (!l_match.Success)
+                    {
+                        m_filteredList.RemoveAt(ii);
+                    }
+                }
             }
         }
         private void createSuggestedBox()
@@ -331,6 +346,8 @@ namespace Iocaine2.Data.Entry
             m_rtfBox = new System.Windows.Controls.RichTextBox();
             m_rtfBox.Foreground = System.Windows.Media.Brushes.Gray;
             m_rtfBox.Document.PageWidth = 200;
+            m_rtfBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            m_rtfBox.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
             System.Windows.Style noSpaceStyle = new System.Windows.Style(typeof(System.Windows.Documents.Paragraph));
             noSpaceStyle.Setters.Add(new System.Windows.Setter(System.Windows.Documents.Paragraph.MarginProperty, new System.Windows.Thickness(0)));
@@ -359,6 +376,8 @@ namespace Iocaine2.Data.Entry
             {
                 return;
             }
+            //System.Diagnostics.Stopwatch l_sw = System.Diagnostics.Stopwatch.StartNew();
+            m_rtfBox.BeginChange();
             m_rtfBox.Document.Blocks.Clear();
             Regex l_regex = new Regex(m_regexPattern.Pattern, m_regexOptions);
             try
@@ -370,6 +389,7 @@ namespace Iocaine2.Data.Entry
                 TextPointer l_tpMatchEnd;
                 TextRange l_tr;
                 TextRange l_trEoL;
+                bool l_deboldNext = false;
                 for (int ii = 0; ii < m_filteredList.Count; ii++)
                 {
 
@@ -385,6 +405,13 @@ namespace Iocaine2.Data.Entry
                     int l_matchEndIdx = l_matchStartIdx + l_match.Length;
                     l_tpLineEnd = m_rtfBox.Document.ContentEnd;
                     l_tpLineStart = l_tpLineEnd.GetLineStartPosition(0);
+
+                    if (l_deboldNext)
+                    {
+                        l_tr = new TextRange(l_tpLineStart, l_tpLineEnd);
+                        l_tr.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Normal);
+                    }
+
                     l_tpMatchStart = l_tpLineStart.GetPositionAtOffset(l_matchStartIdx);
                     l_tpMatchEnd = l_tpLineStart.GetPositionAtOffset(l_matchEndIdx);
                     l_tr = new TextRange(l_tpMatchStart, l_tpMatchEnd);
@@ -393,7 +420,7 @@ namespace Iocaine2.Data.Entry
 
                     l_trEoL = new TextRange(l_tpMatchEnd, l_tpLineEnd);
                     l_trEoL.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Normal);
-                    l_trEoL.ApplyPropertyValue(TextElement.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Transparent));
+                    l_deboldNext = !l_tpMatchEnd.IsAtInsertionPosition;
 
                     if ((m_selectedText != "") && (m_selectedText == l_str.Trim()))
                     {
@@ -405,6 +432,8 @@ namespace Iocaine2.Data.Entry
             {
                 Logging.LoggingFunctions.Error(e.ToString());
             }
+            //l_sw.Stop();
+            //MessageBox.Show("Update: " + l_sw.ElapsedMilliseconds);
             if ((m_selectIndex < 0) && (m_filteredList.Count > 0))
             {
                 m_selectIndex = 0;
@@ -415,6 +444,7 @@ namespace Iocaine2.Data.Entry
                 m_selectIndex = m_filteredList.Count - 1;
                 m_selectedText = m_filteredList.Last();
             }
+            m_rtfBox.EndChange();
             highlightSuggestedBoxRow(m_selectIndex);
         }
         private void destroySuggestedBox()
