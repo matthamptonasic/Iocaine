@@ -103,6 +103,7 @@ namespace Iocaine2.Parsing
                 m_filePath = Path.Combine(iFilePath, m_fileName);
                 loadSpecialCases();
                 parse();
+                setArmorNamesString();
                 return true;
             }
             #endregion Inits
@@ -598,7 +599,7 @@ namespace Iocaine2.Parsing
             {
                 foreach (ushort i_id in m_armorIds)
                 {
-                    m_armorNames += m_items[i_id] + "\n";
+                    m_armorNames += m_items[i_id].m_name + "\n";
                 }
             }
             #endregion Private Methods
