@@ -1,5 +1,9 @@
 Iocaine Change Notes:
 
+FFXIResource.dll	- 1.2.7.1 - 2017/04/22
+FFXIThings.dll		- 1.2.5.1
+	- Updated libraries.
+
 Main.exe            - 2.10.5.0 - 2017/02/05
 IocaineCore.dll     - 1.3.13.0
 	- Added "raw command" option to the Skill Up (Reive) bot. Used to call Windower scripts.
