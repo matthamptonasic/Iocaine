@@ -3002,6 +3002,11 @@ namespace Iocaine2.Data.Client
             row.ID = 611;
             FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
 
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Colure Active";
+            row.ID = 612;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
             FfxiResource.mainDb.StatusEffects.AcceptChanges();
         }
     }
