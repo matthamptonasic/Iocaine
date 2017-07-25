@@ -279,6 +279,7 @@
     <Compile Include="..\..\..\Iocaine IP\Tools\Schedules.cs">
       <Link>Schedules.cs</Link>
     </Compile>
+    <Compile Include="SocketServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FFXINpcs\FFXINpcs\FFXINpcs.csproj">
