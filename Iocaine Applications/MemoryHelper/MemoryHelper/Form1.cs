@@ -968,7 +968,7 @@ namespace IocaineOffsetHelper
                             AppendText("=====  Info LUA Interface =====\n");
                             SocketServer.Start();
                             IocaineFunctions.keys("//lua load ioc");
-                            IocaineFunctions.delay(2000);
+                            IocaineFunctions.delay(1000);
                             IocaineFunctions.keys("//lua invoke ioc setSocketPort " + SocketServer.Port.ToString());
                             AppendText("\n/echo Listening on port " + SocketServer.Port);
                             while (GetOffsetCBIndex() == (int)OFFSET.LUA_INTF)
