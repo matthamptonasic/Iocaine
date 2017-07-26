@@ -67,7 +67,8 @@ namespace IocaineOffsetHelper
             NETWORK,
             MENU_TEXT,
             MENU_BUTTON,
-            AH
+            AH,
+            LUA_INTF
         }
         #endregion Enums
         #region Members
@@ -186,7 +187,8 @@ namespace IocaineOffsetHelper
                 AddItemToOffsetCB("Menu Text-Style");
                 AddItemToOffsetCB("Menu Button-Style");
                 AddItemToOffsetCB("Auction House");
-                SetOffsetCBIndex((int)OFFSET.NPC_MAP);
+                AddItemToOffsetCB("LUA Interface");
+                SetOffsetCBIndex((int)OFFSET.LUA_INTF);
             }
             catch(Exception e)
             {
@@ -931,7 +933,7 @@ namespace IocaineOffsetHelper
                             //AppendText("\nNumber of items: " + MemReads.info_menu_btn_count());
                             break;
                         #endregion Menu Button-Style
-                        #region Menu Button-Style
+                        #region AH
                         case (int)OFFSET.AH:
                             ushort l_list_count = MemReads.Windows.AH.get_list_count();
                             uint l_bid_amount = MemReads.Windows.AH.get_bid_price();
@@ -960,7 +962,25 @@ namespace IocaineOffsetHelper
                             } while ((l_list_count == MemReads.Windows.AH.get_list_count()) && (l_bid_amount == MemReads.Windows.AH.get_bid_price()));
 
                             break;
-                        #endregion Menu Button-Style
+                        #endregion AH
+                        #region LUA Interface
+                        case (int)OFFSET.LUA_INTF:
+                            AppendText("=====  Info LUA Interface =====\n");
+                            SocketServer.Start();
+                            IocaineFunctions.keys("//lua load ioc");
+                            IocaineFunctions.delay(2000);
+                            IocaineFunctions.keys("//lua invoke ioc setSocketPort " + SocketServer.Port.ToString());
+                            AppendText("\n/echo Listening on port " + SocketServer.Port);
+                            while (GetOffsetCBIndex() == (int)OFFSET.LUA_INTF)
+                            {
+                                ScrollToCaret();
+                                Thread.Sleep(1000);
+                            }
+                            AppendText("\nStopping server.");
+                            SocketServer.Stop();
+                            AppendText("\nServer stopped.");
+                            break;
+                        #endregion LUA Interface
                         default:
                             AppendText("Error, unknown index selected.");
                             break;
@@ -985,6 +1005,7 @@ namespace IocaineOffsetHelper
                 mainMod = ProcessFunctions.GetMainModule(mainProc, "FFXiMain.dll");
                 Iocaine_2_Form.mainProc = mainProc;
                 Iocaine_2_Form.mainModule = mainMod;
+                IocaineFunctions.setKbHelper(mainProc);
                 MemReads.Set_FFXI_Pointers(mainProc, mainMod);
                 job = MemReads.Self.Job.get_main();
                 subJob = MemReads.Self.Job.get_sub();
