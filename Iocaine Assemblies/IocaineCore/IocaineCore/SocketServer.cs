@@ -134,7 +134,7 @@ namespace Iocaine2
                         byte[] msg = System.Text.Encoding.ASCII.GetBytes(m_bufferStr);
 
                         // Send back a response.
-                        stream.Write(msg, 0, msg.Length);
+                        //stream.Write(msg, 0, msg.Length);
                         Logging.LoggingFunctions.Timestamp("Sent: " + m_bufferStr);
                     }
 
