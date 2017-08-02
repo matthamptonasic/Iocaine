@@ -967,10 +967,15 @@ namespace IocaineOffsetHelper
                         case (int)OFFSET.LUA_INTF:
                             AppendText("=====  Info LUA Interface =====\n");
                             SocketServer.Start();
-                            IocaineFunctions.keys("//lua load ioc");
+                            IocaineFunctions.keys("//lua reload eventFwd");
                             IocaineFunctions.delay(1000);
-                            IocaineFunctions.keys("//lua invoke ioc setSocketPort " + SocketServer.Port.ToString());
-                            AppendText("\n/echo Listening on port " + SocketServer.Port);
+                            IocaineFunctions.keys("//lua invoke eventFwd setSocketPort " + SocketServer.Port.ToString());
+                            AppendText("\n/echo Listening on port " + SocketServer.Port + "\n");
+                            IocaineFunctions.delay(1000);
+                            SocketServer._DataRecieved += AppendLine;
+                            //IocaineFunctions.keys("//lua invoke eventFwd register_event \"gain buff\"");
+                            //IocaineFunctions.keys("//lua invoke eventFwd register_event \"lose buff\"");
+                            IocaineFunctions.keys("//lua invoke eventFwd register_event \"incoming chunk\"");
                             while (GetOffsetCBIndex() == (int)OFFSET.LUA_INTF)
                             {
                                 ScrollToCaret();
@@ -1297,6 +1302,10 @@ namespace IocaineOffsetHelper
         public void AppendTextCBF(String iItem)
         {
             MainTextBox.AppendText(iItem);
+        }
+        public void AppendLine(String iText)
+        {
+            AppendText(iText + "\n");
         }
         public void ClearText()
         {

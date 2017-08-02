@@ -56,6 +56,21 @@ namespace Iocaine2
             }
         }
         #endregion Public Properties
+        #region Events & Delegates
+        public delegate void DataRecieved_Delegate(string oString);
+        private static DataRecieved_Delegate _dataRecieved;
+        public static DataRecieved_Delegate _DataRecieved
+        {
+            get
+            {
+                return _dataRecieved;
+            }
+            set
+            {
+                _dataRecieved = value;
+            }
+        }
+        #endregion Events & Delegates
         #region Public Methods
         public static void Start()
         {
@@ -105,46 +120,48 @@ namespace Iocaine2
         {
             try
             {
+                Logging.LoggingFunctions.AddDebugScope(Logging.LoggingFunctions.DBG_SCOPE.BACKGROUND);
                 m_state = STATE.RUNNING;
+                NetworkStream l_stream = null;
+                TcpClient l_client = null;
+                Thread l_thread = null;
+                int l_bytesRead = 0;
                 while (m_stop == false)
                 {
-                    Logging.LoggingFunctions.Timestamp("Waiting for a connection at " + m_addr.ToString() + ", port " + m_port + "...");
+                    Logging.LoggingFunctions.Debug("SocketServer: Waiting for a connection at " + m_addr.ToString() + ", port " + m_port + "...", Logging.LoggingFunctions.DBG_SCOPE.BACKGROUND);
 
                     // Perform a blocking call to accept requests.
-                    TcpClient l_client = m_server.AcceptTcpClient();
-                    Logging.LoggingFunctions.Timestamp("Connected!");
+                    l_client = m_server.AcceptTcpClient();
+                    Logging.LoggingFunctions.Debug("SocketServer: Connected!", Logging.LoggingFunctions.DBG_SCOPE.BACKGROUND);
 
                     m_bufferStr = "";
 
                     // Get a stream object for reading and writing
-                    NetworkStream stream = l_client.GetStream();
-
-                    int i;
+                    l_stream = l_client.GetStream();
 
                     // Loop to receive all the data sent by the client.
-                    while ((i = stream.Read(m_buffer, 0, m_buffer.Length)) != 0)
+                    while ((l_bytesRead = l_stream.Read(m_buffer, 0, m_buffer.Length)) != 0)
                     {
                         // Translate data bytes to a ASCII string.
-                        m_bufferStr = System.Text.Encoding.ASCII.GetString(m_buffer, 0, i);
-                        Logging.LoggingFunctions.Timestamp("Received: " + m_bufferStr);
-
-                        // Process the data sent by the client.
-                        m_bufferStr = m_bufferStr.ToUpper();
-
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(m_bufferStr);
-
-                        // Send back a response.
-                        //stream.Write(msg, 0, msg.Length);
-                        Logging.LoggingFunctions.Timestamp("Sent: " + m_bufferStr);
+                        m_bufferStr = System.Text.Encoding.ASCII.GetString(m_buffer, 0, l_bytesRead);
+                        Logging.LoggingFunctions.Debug("Recieved: '" + m_bufferStr + "'", Logging.LoggingFunctions.DBG_SCOPE.BACKGROUND);
+                        eventFwdParser.Parse(m_bufferStr);
+                        if (_dataRecieved != null)
+                        {
+                            l_thread = new Thread(new ParameterizedThreadStart(fireDataRecieved));
+                            l_thread.IsBackground = true;
+                            l_thread.Name = "SocketServer_fireDataRecieved";
+                            l_thread.Start(m_bufferStr);
+                        }
                     }
-
+                    
                     // Shutdown and end connection
                     l_client.Close();
                 }
             }
             catch (SocketException e)
             {
-                Console.WriteLine("SocketException: {0}", e);
+                Logging.LoggingFunctions.Error(e.ToString());
             }
             finally
             {
@@ -152,6 +169,10 @@ namespace Iocaine2
                 m_server.Stop();
                 m_state = STATE.STOPPED;
             }
+        }
+        private static void fireDataRecieved(object iValue)
+        {
+            _dataRecieved((string)iValue);
         }
         #endregion Private Methods
     }

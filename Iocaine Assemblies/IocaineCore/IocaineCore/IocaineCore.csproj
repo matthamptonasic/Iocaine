@@ -271,6 +271,7 @@
     <Compile Include="Data Entry\TextboxReturn.cs" />
     <Compile Include="Data Entry\UpDownParameter.cs" />
     <Compile Include="Data Entry\UpDownReturn.cs" />
+    <Compile Include="eventFwdParser.cs" />
     <Compile Include="IocaineThreading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\Iocaine IP\Tools\Toolbox.cs">
