@@ -435,6 +435,7 @@ namespace Iocaine2.Tools
         }
         public static bool SellSelectedItem(String iItemName, ushort iQuan, bool iFirstItemBeingSold, ref byte oActualSold, Statics.FuncPtrs.TD_Bool_Void iCheckStatus)
         {
+            LoggingFunctions.Debug("********    Selling item '" + iItemName + "' x" + iQuan + ". Need to get price = " + iFirstItemBeingSold + ".", LoggingFunctions.DBG_SCOPE.SELLER);
             UInt32 prevGil = MemReads.Self.Inventory.get_gil();
             if ((iCheckStatus != null) && (!iCheckStatus()))
             {
@@ -452,8 +453,9 @@ namespace Iocaine2.Tools
             String helpText = MemReads.Windows.BannerText.get_help_text();
             if (iFirstItemBeingSold)
             {
+                LoggingFunctions.Debug("<Enter>     To get price. Then waiting for " + (Statics.Settings.Helpers.PressEnterToSellDelay + 500).ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
-                IocaineFunctions.delay(Statics.Settings.Helpers.PressEnterToSellDelay);
+                IocaineFunctions.delay(Statics.Settings.Helpers.PressEnterToSellDelay + 500);
             }
             String itemName = MemReads.Windows.Items.get_selected_item_name();
             if ((itemName != iItemName) && (itemName != "N/A"))
@@ -461,6 +463,7 @@ namespace Iocaine2.Tools
                 return false;
             }
 
+            LoggingFunctions.Debug("<Enter>     To get sell/cancel or quantity. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
             IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
             IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
 
@@ -470,26 +473,11 @@ namespace Iocaine2.Tools
             byte maxCnt = MemReads.Windows.Items.get_shop_quan_max();
             if (maxCnt > 1)
             {
-                if (iQuan >= maxCnt)
-                {
-                    IocaineFunctions.arrowKeyDown(Keys.Left, MenuNavigation.KeyDownTimeArrow);
-                    IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
-                }
-                else
-                {
-                    //We have multiple to sell, so keep hitting up until we get the number we need or we reach the max.
-                    while ((currentCnt < iQuan) && (currentCnt < maxCnt))
-                    {
-                        if ((iCheckStatus != null) && (!iCheckStatus()))
-                        {
-                            return false;
-                        }
-                        IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
-                        IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
-                        currentCnt = MemReads.Windows.Items.get_shop_quan_cur();
-                    }
-                }
+                LoggingFunctions.Debug("<NA>        Writing quantity. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
+                MemReads.Windows.Items.set_shop_quan_cur((byte)(iQuan >= maxCnt ? maxCnt : iQuan));
+                IocaineFunctions.delay(Statics.Settings.Helpers.ChangeSellQuanDelay);
                 oActualSold = MemReads.Windows.Items.get_shop_quan_cur();
+                LoggingFunctions.Debug("<Enter>     To get set quantity. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
                 //Use same as check help text. That will make the delay same as if we were selling non-stackable item.
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
@@ -502,6 +490,13 @@ namespace Iocaine2.Tools
             if (!getToSellMenuButton())
             {
                 //We're not in the Sell/Cancel menu. Try pressing Enter again and rechecking.
+                //But first make sure we're still on the right item.
+                itemName = MemReads.Windows.Items.get_selected_item_name();
+                if ((itemName != iItemName) && (itemName != "N/A"))
+                {
+                    return false;
+                }
+                LoggingFunctions.Debug("<Enter>    Failed to find sell button once. Trying to hit enter again. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 if (!getToSellMenuButton())
@@ -522,6 +517,7 @@ namespace Iocaine2.Tools
             {
                 return false;
             }
+            LoggingFunctions.Debug("<Enter>     To sell item. Then waiting for " + Statics.Settings.Top.MoveUpDownDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
             IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
             IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
             UInt32 afterGil = MemReads.Self.Inventory.get_gil();
@@ -552,6 +548,7 @@ namespace Iocaine2.Tools
             else if (menuIdx == 1)
             {
                 //Pressing down should wrap up to 0.
+                LoggingFunctions.Debug("<Down>      To wrap to sell button. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.arrowKeyDown(Keys.Down, MenuNavigation.KeyDownTimeArrow);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 menuIdx = MemReads.Windows.Menus.ButtonStyle.get_curr_index();
@@ -570,6 +567,7 @@ namespace Iocaine2.Tools
             else
             {
                 //To make sure we're really in the menu, press up once and the index should wrap up to 1.
+                LoggingFunctions.Debug("<Up>        To wrap to cancel button. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
                 IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                 menuIdx = MemReads.Windows.Menus.ButtonStyle.get_curr_index();
@@ -583,6 +581,7 @@ namespace Iocaine2.Tools
                 else
                 {
                     //We ARE in the menu. Just hit back up again to get to 0 and return.
+                    LoggingFunctions.Debug("<Up>        To wrap back to sell button. Then waiting for " + Statics.Settings.Helpers.CheckHelpTextDelay.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                     IocaineFunctions.arrowKeyDown(Keys.Up, MenuNavigation.KeyDownTimeArrow);
                     IocaineFunctions.delay(Statics.Settings.Helpers.CheckHelpTextDelay);
                     return true;

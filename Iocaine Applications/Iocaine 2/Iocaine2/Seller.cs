@@ -584,18 +584,35 @@ namespace Iocaine2.Bots
                 {
                     return false;
                 }
+                // Keep a map of whether we've sold this item since entering the menu (for first <enter> press to get price).
+                Dictionary<Item, bool> noneSoldYet = new Dictionary<Item, bool>();
+                for (int ii = 0; ii < bagRemainingList.Count; ii++)
+                {
+                    noneSoldYet.Add(bagRemainingList[ii], true);
+                }
                 //We should now be in the sell dialog at the top of the list.
                 byte itemIdx = MemReads.Windows.Items.get_selected_item_inventory_index();
                 byte lastItemIdx = 0;
                 byte twoItemsAgo = 0;
                 bool atBottom = false;
                 bool firstItemBeingSold = true;
+                byte lastSelectedIdx = 0xff;
                 while (!atBottom && checkState() && checkStatus())
                 {
                     Statics.FuncPtrs.SetStatusBoxPtr("Searching for sellable items.", Statics.Fields.Green);
                     if (firstItemBeingSold)
                     {
                         IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
+                    }
+                    else
+                    {
+                        // Try to avoid re-selecting an item that we just sold. This sometimes happens with even a small amount of lag.
+                        byte resellWaitCnt = 0;
+                        while ((MemReads.Windows.Items.get_selected_item_inventory_index() == lastSelectedIdx) && (resellWaitCnt < 20))
+                        {
+                            IocaineFunctions.delay(100);
+                            resellWaitCnt++;
+                        }
                     }
                     String selItem = MemReads.Windows.Items.get_selected_item_name();
                     byte errCnt = 0;
@@ -636,13 +653,15 @@ namespace Iocaine2.Bots
                         {
                             itemQuan = (byte)bagQuanRemainingList[idx];
                         }
-                        if (!Interaction.SellSelectedItem(bagRemainingList[idx].Name, itemQuan, firstItemBeingSold, ref actualSold, new Statics.FuncPtrs.TD_Bool_Void(checkState)))
+                        lastSelectedIdx = MemReads.Windows.Items.get_selected_item_inventory_index();
+                        if (!Interaction.SellSelectedItem(bagRemainingList[idx].Name, itemQuan, noneSoldYet[bagRemainingList[idx]], ref actualSold, new Statics.FuncPtrs.TD_Bool_Void(checkState)))
                         {
                             LoggingFunctions.Warning("Discrepancy when selling item '" + selItem + ". Going on to next item.");
                         }
                         else
                         {
                             //Update the bag and master lists.
+                            noneSoldYet[bagRemainingList[idx]] = false;
                             reduceItem(ItemContainer.STORAGE_TYPE.BAG, bagRemainingList[idx], actualSold);
                             totalItemsSold += actualSold;
                             firstItemBeingSold = false;
@@ -700,21 +719,10 @@ namespace Iocaine2.Bots
                     statusString += "Satchel.";
                 }
                 Statics.FuncPtrs.SetStatusBoxPtr(statusString, Statics.Fields.Green);
-                ushort nbMoved = 0;
-                for (int ii = 0; ii < srcItems.Count; ii++)
+                List<ushort> nbMoved = Movement.MoveItem(srcItems, srcQuan, srcContainer, Containers.Bag, checkState, true, (byte)(Containers.Bag.Capacity - Containers.Bag.LiveOccupancy));
+                for (int ii = srcItems.Count - 1; ii >= 0; ii--)
                 {
-                    srcContainer.RebuildLists();
-                    Containers.Bag.RebuildLists();
-                    nbMoved = Movement.MoveItem(srcItems[ii], srcQuan[ii], srcContainer, Containers.Bag, checkState);
-                    moveItem(iSrc, ItemContainer.STORAGE_TYPE.BAG, srcItems[ii], nbMoved);
-                    if (Containers.Bag.LiveOccupancy == Containers.Bag.Capacity)
-                    {
-                        break;
-                    }
-                    if (!checkState())
-                    {
-                        break;
-                    }
+                    moveItem(iSrc, ItemContainer.STORAGE_TYPE.BAG, srcItems[ii], nbMoved[ii]);
                 }
                 return true;
             }

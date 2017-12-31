@@ -195,6 +195,7 @@ namespace Iocaine2.Inventory
                         if (iSource.Contains(iItems[kk]))
                         {
                             itemsRemaining = true;
+                            break;
                         }
                     }
                     if (!itemsRemaining)
@@ -208,6 +209,7 @@ namespace Iocaine2.Inventory
                         if(quanRemainingList[mm] > 0)
                         {
                             needToMoveMore = true;
+                            break;
                         }
                     }
                     if(!needToMoveMore)
@@ -464,20 +466,17 @@ namespace Iocaine2.Inventory
                     {
                         return true;
                     }
-                    else
-                    {
-                        if (position == maxInvCnt)
-                        {
-                            goToTopOfInv(secWndOpen);
-                        }
-                        else
-                        {
-                            IocaineFunctions.arrowKeyDown(Keys.Down);
-                        }
-                        IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
-                        //position = onLeftWnd ? MemReads.info_inv_sec_wnd_location() : MemReads.info_inv_location();
-                    }
                 }
+                if (position == maxInvCnt)
+                {
+                    goToTopOfInv(secWndOpen);
+                }
+                else
+                {
+                    IocaineFunctions.arrowKeyDown(Keys.Down);
+                }
+                IocaineFunctions.delay(Statics.Settings.Top.MoveUpDownDelay);
+                //position = onLeftWnd ? MemReads.info_inv_sec_wnd_location() : MemReads.info_inv_location();
             }
             while (position != lastPos);
             return false;
