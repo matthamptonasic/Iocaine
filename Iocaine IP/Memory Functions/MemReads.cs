@@ -5853,6 +5853,20 @@ namespace Iocaine2.Memory
                     }
                     return (byte)MemoryFunctions.ReadMem((IntPtr)proc.Handle, (uint)ptr, 35, 1);
                 }
+                public static void set_shop_quan_cur(byte iQuan)
+                {
+                    set_shop_quan_cur(processIndex, iQuan);
+                }
+                public static void set_shop_quan_cur(int iProcIndex, byte iQuan)
+                {
+                    Process proc = processPointerList[iProcIndex].MainProcess;
+                    UIntPtr ptr = MemoryFunctions.GetPointer((IntPtr)proc.Handle, processPointerList[processIndex].Info_Windows, 8);
+                    if ((int)ptr == 0)
+                    {
+                        return;
+                    }
+                    MemoryFunctions.WriteMem((IntPtr)proc.Handle, (uint)ptr, iQuan, 35, 1);
+                }
                 public static string get_selected_item_name()
                 {
                     return get_selected_item_name(processIndex);
