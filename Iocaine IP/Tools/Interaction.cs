@@ -453,9 +453,9 @@ namespace Iocaine2.Tools
             String helpText = MemReads.Windows.BannerText.get_help_text();
             if (iFirstItemBeingSold)
             {
-                LoggingFunctions.Debug("<Enter>     To get price. Then waiting for " + (Statics.Settings.Helpers.PressEnterToSellDelay + 500).ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
+                LoggingFunctions.Debug("<Enter>     To get price. Then waiting for " + 1200.ToString() + "ms.", LoggingFunctions.DBG_SCOPE.SELLER);
                 IocaineFunctions.keyDown(Keys.Enter, MenuNavigation.KeyDownTimeEnter);
-                IocaineFunctions.delay(Statics.Settings.Helpers.PressEnterToSellDelay + 500);
+                IocaineFunctions.delay(1200);
             }
             String itemName = MemReads.Windows.Items.get_selected_item_name();
             if ((itemName != iItemName) && (itemName != "N/A"))
