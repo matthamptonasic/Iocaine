@@ -355,7 +355,7 @@ return {
     [352] = {id=352,en="Dokumori: San",ja="毒盛の術:参",cast_time=12,element=5,icon_id=-1,icon_id_nq=29,levels={},mp_cost=0,prefix="/ninjutsu",range=11,recast=60,recast_id=352,requirements=0,skill=39,targets=32,type="Ninjutsu"},
     [353] = {id=353,en="Tonko: Ichi",ja="遁甲の術:壱",cast_time=1.5,duration=180,element=2,icon_id=-1,icon_id_nq=26,levels={[13]=9},mp_cost=0,prefix="/ninjutsu",range=0,recast=30,recast_id=353,requirements=0,skill=39,targets=1,type="Ninjutsu"},
     [354] = {id=354,en="Tonko: Ni",ja="遁甲の術:弐",cast_time=1.5,duration=300,element=2,icon_id=-1,icon_id_nq=26,levels={[13]=34},mp_cost=0,prefix="/ninjutsu",range=0,recast=45,recast_id=354,requirements=0,skill=39,targets=1,type="Ninjutsu"},
-    [355] = {id=355,en="Tonko: San",ja="遁甲の術:参",cast_time=12,element=2,icon_id=-1,icon_id_nq=26,levels={[13]=59},mp_cost=0,prefix="/ninjutsu",range=0,recast=60,recast_id=355,requirements=0,skill=39,targets=1,type="Ninjutsu"},
+    [355] = {id=355,en="Tonko: San",ja="遁甲の術:参",cast_time=12,element=2,icon_id=-1,icon_id_nq=26,levels={[13]=59},mp_cost=0,prefix="/magic",range=0,recast=60,recast_id=355,requirements=0,skill=38,targets=1,type="SummonerPact"},
     [356] = {id=356,en="Paralyga",ja="パライガ",cast_time=4,element=1,icon_id=-1,icon_id_nq=24,levels={[3]=61,[5]=61},mp_cost=12,prefix="/magic",range=12,recast=20,recast_id=356,requirements=0,skill=35,targets=32,type="WhiteMagic"},
     [357] = {id=357,en="Slowga",ja="スロウガ",cast_time=2.5,element=3,icon_id=-1,icon_id_nq=24,levels={[3]=61,[5]=61},mp_cost=30,prefix="/magic",range=12,recast=30,recast_id=357,requirements=0,skill=35,targets=32,type="WhiteMagic"},
     [358] = {id=358,en="Hastega",ja="ヘイスガ",cast_time=4,element=2,icon_id=-1,icon_id_nq=24,levels={[3]=61,[5]=61},mp_cost=80,prefix="/magic",range=12,recast=30,recast_id=358,requirements=0,skill=34,targets=1,type="WhiteMagic"},
@@ -938,6 +938,8 @@ return {
     [995] = {id=995,en="AATT",ja="アークTT",cast_time=2,element=6,icon_id=1035,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=995,requirements=0,skill=0,targets=1,type="Trust"},
     [996] = {id=996,en="AAGK",ja="アークGK",cast_time=2,element=6,icon_id=1017,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=996,requirements=0,skill=0,targets=1,type="Trust"},
     [997] = {id=997,en="Iroha",ja="イロハ",cast_time=2,element=6,icon_id=1017,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=997,requirements=0,skill=0,targets=1,type="Trust"},
+    [998] = {id=998,en="Ygnas",ja="ユグナス",cast_time=2,element=6,icon_id=1043,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=998,requirements=0,skill=0,targets=1,type="Trust"},
+    [1003] = {id=1003,en="Cornelia",ja="コーネリア",cast_time=2,element=6,icon_id=1055,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=1003,requirements=0,skill=0,targets=1,type="Trust"},
     [1004] = {id=1004,en="Excenmille [S]",ja="エグセニミルII",cast_time=2,element=6,icon_id=1015,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=1004,requirements=0,skill=0,targets=1,type="Trust"},
     [1005] = {id=1005,en="Ayame (UC)",ja="アヤメ(UC)",cast_time=2,element=6,icon_id=1010,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=1005,requirements=0,skill=0,targets=1,type="Trust"},
     [1006] = {id=1006,en="Maat (UC)",ja="マート(UC)",cast_time=2,element=6,icon_id=1012,icon_id_nq=22,levels={[1]=1,[2]=1,[3]=1,[4]=1,[5]=1,[6]=1,[7]=1,[8]=1,[9]=1,[10]=1,[11]=1,[12]=1,[13]=1,[14]=1,[15]=1,[16]=1,[17]=1,[18]=1,[19]=1,[20]=1,[21]=1,[22]=1},mp_cost=0,prefix="/magic",range=0,recast=48,recast_id=1006,requirements=0,skill=0,targets=1,type="Trust"},
@@ -957,7 +959,7 @@ return {
 }, {"id", "en", "ja", "cast_time", "element", "icon_id", "icon_id_nq", "levels", "mp_cost", "prefix", "range", "recast", "recast_id", "requirements", "skill", "targets", "type", "duration"}
 
 --[[
-Copyright © 2013-2017, Windower
+Copyright © 2013-2018, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

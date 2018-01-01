@@ -3007,6 +3007,26 @@ namespace Iocaine2.Data.Client
             row.ID = 612;
             FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
 
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Mumor&apsts Radiance";
+            row.ID = 613;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Ullegore&apsts Gloom";
+            row.ID = 614;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Boost";
+            row.ID = 615;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Artisanal Knowledge";
+            row.ID = 616;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
             FfxiResource.mainDb.StatusEffects.AcceptChanges();
         }
     }

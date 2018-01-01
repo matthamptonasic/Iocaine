@@ -283,10 +283,12 @@ return {
     [291] = {id=291,en="Reisenjima",ja="醴泉島",search="Reisenjima"},
     [292] = {id=292,en="Reisenjima Henge",ja="醴泉島-秘境",search="ReisenHenge"},
     [293] = {id=293,en="Reisenjima Sanctorium",ja="醴泉島の祠",search="ReisenSanc"},
+    [294] = {id=294,en="Dynamis - San d'Oria [D]",ja="デュナミス-サンドリア〔Ｄ〕",search="DynamisSan_D"},
+    [295] = {id=295,en="Dynamis - Bastok [D]",ja="デュナミス-バストゥーク〔Ｄ〕",search="DynamisBas_D"},
 }, {"id", "en", "ja", "search"}
 
 --[[
-Copyright © 2013-2017, Windower
+Copyright © 2013-2018, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
