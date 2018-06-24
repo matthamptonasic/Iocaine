@@ -2883,6 +2883,20 @@ namespace Iocaine2.Data.Client
             FfxiResource.mainDb.WS.AddWSRow(wsRow);
 
             wsRow = FfxiResource.mainDb.WS.NewWSRow();
+            wsRow.Name = "Final Paradise";
+            wsRow.ID = 228;
+            wsRow.Command = "/weaponskill \"Final Paradise\"";
+            wsRow.SkillType = 0;
+            wsRow.SkillLevel = 0;
+            wsRow.Special = "";
+            wsRow.Jobs = 0x0;
+            wsRow.JobsSubs = 0x0;
+            wsRow.AttrA = "Unknown";
+            wsRow.AttrB = "Unknown";
+            wsRow.AttrC = "Unknown";
+            FfxiResource.mainDb.WS.AddWSRow(wsRow);
+
+            wsRow = FfxiResource.mainDb.WS.NewWSRow();
             wsRow.Name = "Uriel Blade";
             wsRow.ID = 238;
             wsRow.Command = "/weaponskill \"Uriel Blade\"";
