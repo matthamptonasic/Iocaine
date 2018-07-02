@@ -1544,7 +1544,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient1_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient1_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient1_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient1_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient1_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient1_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient1_Textbox.BackColor = Statics.Fields.Red;
@@ -1558,7 +1566,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient2_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient2_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient2_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient2_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient2_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient2_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient2_Textbox.BackColor = Statics.Fields.Red;
@@ -1572,7 +1588,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient3_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient3_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient3_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient3_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient3_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient3_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient3_Textbox.BackColor = Statics.Fields.Red;
@@ -1587,7 +1611,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient4_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient4_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient4_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient4_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient4_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient4_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient4_Textbox.BackColor = Statics.Fields.Red;
@@ -1601,7 +1633,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient5_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient5_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient5_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient5_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient5_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient5_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient5_Textbox.BackColor = Statics.Fields.Red;
@@ -1615,7 +1655,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient6_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient6_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient6_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient6_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient6_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient6_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient6_Textbox.BackColor = Statics.Fields.Red;
@@ -1629,7 +1677,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient7_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient7_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient7_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient7_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient7_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient7_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient7_Textbox.BackColor = Statics.Fields.Red;
@@ -1643,7 +1699,15 @@ namespace Iocaine2
         private void CB_MR_Ingredient8_Textbox_Leave(object sender, EventArgs e)
         {
             CB_MR_Ingredient8_Textbox.BackColor = Statics.Fields.White;
-            ushort id = Things.GetIdFromName(CB_MR_Ingredient8_Textbox.Text);
+            ushort id;
+            if (Recipe.IsItemId(CB_MR_Ingredient8_Textbox.Text))
+            {
+                id = Convert.ToUInt16(CB_MR_Ingredient8_Textbox.Text);
+            }
+            else
+            {
+                id = Things.GetIdFromName(CB_MR_Ingredient8_Textbox.Text);
+            }
             if (id == Things.invalidID)
             {
                 CB_MR_Ingredient8_Textbox.BackColor = Statics.Fields.Red;

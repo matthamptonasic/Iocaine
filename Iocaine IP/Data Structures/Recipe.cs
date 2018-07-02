@@ -454,9 +454,9 @@ namespace Iocaine2.Data.Structures
             }
             return true;
         }
-        private bool isItemId(string iValue)
+        public static bool IsItemId(string iValue)
         {
-            string pattern = "^[0-9]+$";
+            string pattern = @"^[0-9]+$";
             Regex re = new Regex(pattern);
             Match ma;
             try
@@ -517,14 +517,16 @@ namespace Iocaine2.Data.Structures
                 {
                     string name = iIngredients[index];
                     ushort id;
-                    if (isItemId(name))
+                    if (IsItemId(name))
                     {
                         id = Convert.ToUInt16(name);
+                        LoggingFunctions.Debug("SetRecipe: Name was found to be the item ID.", LoggingFunctions.DBG_SCOPE.CRAFTER);
                     }
                     else
                     {
                         id = Things.GetIdFromName(iIngredients[index]);
                     }
+                    LoggingFunctions.Debug("SetRecipe: id set to " + id.ToString() + ".", LoggingFunctions.DBG_SCOPE.CRAFTER);
                     if (id == Things.invalidID)
                     {
                         Logging.LoggingFunctions.Debug("SetRecipe: Ingredient not found (" + iIngredients[index] + ")", LoggingFunctions.DBG_SCOPE.CRAFTER);
