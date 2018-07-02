@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using Iocaine2.Logging;
 using Iocaine2.Inventory;
@@ -453,6 +454,29 @@ namespace Iocaine2.Data.Structures
             }
             return true;
         }
+        private bool isItemId(string iValue)
+        {
+            string pattern = "^[0-9]+$";
+            Regex re = new Regex(pattern);
+            Match ma;
+            try
+            {
+                ma = re.Match(iValue);
+                if (!ma.Success)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch(Exception e)
+            {
+                LoggingFunctions.Error("Recipe.isItemId: Failed trying to match pattern \"" + iValue + "\": " + e.ToString());
+                return false;
+            }
+        }
         public StatusCode SetRecipe(FFXIEnums.CRAFTS iPriCraft, 
                         byte iPriCraftSkill,
                         FFXIEnums.CRAFTS iSecCraft, 
@@ -491,7 +515,16 @@ namespace Iocaine2.Data.Structures
 
                 if (quantity > 0)
                 {
-                    ushort id = Things.GetIdFromName(iIngredients[index]);
+                    string name = iIngredients[index];
+                    ushort id;
+                    if (isItemId(name))
+                    {
+                        id = Convert.ToUInt16(name);
+                    }
+                    else
+                    {
+                        id = Things.GetIdFromName(iIngredients[index]);
+                    }
                     if (id == Things.invalidID)
                     {
                         Logging.LoggingFunctions.Debug("SetRecipe: Ingredient not found (" + iIngredients[index] + ")", LoggingFunctions.DBG_SCOPE.CRAFTER);
@@ -744,8 +777,6 @@ namespace Iocaine2.Data.Structures
                     aggregatedIngredientList[ingredient.ID] = currentcount;
                 }
             }
-
-
 
             foreach (ushort key in aggregatedIngredientList.Keys)
             {
