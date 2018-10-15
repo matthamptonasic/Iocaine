@@ -2043,6 +2043,20 @@ namespace Iocaine2.Data.Client
             FfxiResource.mainDb.WS.AddWSRow(wsRow);
 
             wsRow = FfxiResource.mainDb.WS.NewWSRow();
+            wsRow.Name = "Tachi: Suikawari";
+            wsRow.ID = 158;
+            wsRow.Command = "/weaponskill \"Tachi: Suikawari\"";
+            wsRow.SkillType = 0;
+            wsRow.SkillLevel = 0;
+            wsRow.Special = "";
+            wsRow.Jobs = 0x0;
+            wsRow.JobsSubs = 0x0;
+            wsRow.AttrA = "Unknown";
+            wsRow.AttrB = "Unknown";
+            wsRow.AttrC = "Unknown";
+            FfxiResource.mainDb.WS.AddWSRow(wsRow);
+
+            wsRow = FfxiResource.mainDb.WS.NewWSRow();
             wsRow.Name = "Shining Strike";
             wsRow.ID = 160;
             wsRow.Command = "/weaponskill \"Shining Strike\"";
