@@ -176,7 +176,7 @@ namespace Iocaine2.Data.Client
                 filterString += " AND AsSub = 'true'))";
                 filterString += " AND (RecastId <> 0 OR (RecastId = 0 AND JobLevel = 1))";
                 filterString += " AND ((Type = 'JobAbility') OR (Type = 'CorsairRoll') OR (Type LIKE 'Flourish%')";
-                filterString += "    OR (Type = 'Jig') OR (Type = 'Waltz') OR (Type = 'Samba'))";
+                filterString += "    OR (Type = 'Jig') OR (Type = 'Waltz') OR (Type = 'Samba') OR (Type = 'Rune'))";
                 filterString += " AND (Targets = " + ((short)Spells.TARGETS.ME_ONLY).ToString() + ")";
                 filterString += " AND (Name <> 'Pet commands')";
                 filterString += " AND (Name <> 'Convert')";
@@ -188,6 +188,7 @@ namespace Iocaine2.Data.Client
                 filterString += " AND (Name <> 'Elemental Siphon')";
                 filterString += " AND (Name NOT LIKE 'Flourishes%')";
                 filterString += " AND (Name <> 'Steps')";
+                filterString += " AND (Name <> 'Rune Enchantment')";
                 string sortString = "Name";
                 MainDatabase.JARow[] jaRows = (MainDatabase.JARow[])FfxiResource.mainDb.JA.Select(filterString, sortString);
                 foreach (MainDatabase.JARow row in jaRows)
