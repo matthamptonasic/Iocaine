@@ -170,7 +170,10 @@ namespace Iocaine2.Data.Client
             string filterString;
             string sortString;
             byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
-            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
+            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND ";
+            // If the current job level is 99, bypass the job level requirement for this spell if its > 99 (via job points).
+            // This is a quick fix. Ideally we should be checking the number of job points and using that for comparison.
+            filterString += "(LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + " OR " + iJobLevel.ToString() + " >= 99))";
             if (iSubJob != 0)
             {
                 filterString += " OR (LevelJob" + iSubJob.ToString() + " <> 0 AND LevelJob" + iSubJob.ToString() + " <= " + subJobLevel.ToString() + ")";
@@ -212,7 +215,10 @@ namespace Iocaine2.Data.Client
             string filterString;
             string sortString;
             byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
-            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
+            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND ";
+            // If the current job level is 99, bypass the job level requirement for this spell if its > 99 (via job points).
+            // This is a quick fix. Ideally we should be checking the number of job points and using that for comparison.
+            filterString += "(LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + " OR " + iJobLevel.ToString() + " >= 99))";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
@@ -231,7 +237,10 @@ namespace Iocaine2.Data.Client
             string filterString;
             string sortString;
             byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
-            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
+            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND ";
+            // If the current job level is 99, bypass the job level requirement for this spell if its > 99 (via job points).
+            // This is a quick fix. Ideally we should be checking the number of job points and using that for comparison.
+            filterString += "(LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + " OR " + iJobLevel.ToString() + " >= 99))";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
@@ -295,7 +304,10 @@ namespace Iocaine2.Data.Client
             string filterString;
             string sortString;
             byte subJobLevel = (iJobLevel == 1) ? (byte)1 : (byte)(iJobLevel / 2);
-            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + ")";
+            filterString = "(LevelJob" + iJob.ToString() + " <> 0 AND ";
+            // If the current job level is 99, bypass the job level requirement for this spell if its > 99 (via job points).
+            // This is a quick fix. Ideally we should be checking the number of job points and using that for comparison.
+            filterString += "(LevelJob" + iJob.ToString() + " <= " + iJobLevel.ToString() + " OR " + iJobLevel.ToString() + " >= 99))";
             if (iSubJob != 0)
             {
                 filterString = filterString.Insert(0, "(");
