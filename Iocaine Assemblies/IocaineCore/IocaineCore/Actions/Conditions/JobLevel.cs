@@ -87,7 +87,9 @@ namespace Iocaine2.Data.Structures
             #region Private Methods
             private bool main_only()
             {
-                return (PlayerCache.Vitals.MainJob == m_job.ID) && (PlayerCache.Vitals.MainJobLvl >= m_levelMin) && (PlayerCache.Vitals.MainJobLvl <= m_levelMax);
+                // If the current job level is 99, bypass the job level requirement for this spell if its > 99 (via job points).
+                // This is a quick fix. Ideally we should be checking the number of job points and using that for comparison.
+                return (PlayerCache.Vitals.MainJob == m_job.ID) && ((PlayerCache.Vitals.MainJobLvl >= m_levelMin) || (PlayerCache.Vitals.MainJobLvl == 99))  && (PlayerCache.Vitals.MainJobLvl <= m_levelMax);
             }
             private bool sub_only()
             {
