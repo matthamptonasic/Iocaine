@@ -856,14 +856,14 @@ namespace Iocaine2.Data.Client
             wsRow.Name = "Dimidiation";
             wsRow.ID = 61;
             wsRow.Command = "/weaponskill \"Dimidiation\"";
-            wsRow.SkillType = 0;
+            wsRow.SkillType = 4;
             wsRow.SkillLevel = 0;
             wsRow.Special = "";
             wsRow.Jobs = 0x0;
             wsRow.JobsSubs = 0x0;
-            wsRow.AttrA = "Unknown";
-            wsRow.AttrB = "Unknown";
-            wsRow.AttrC = "Unknown";
+            wsRow.AttrA = "Light";
+            wsRow.AttrB = "Fragmentation";
+            wsRow.AttrC = "";
             FfxiResource.mainDb.WS.AddWSRow(wsRow);
 
             wsRow = FfxiResource.mainDb.WS.NewWSRow();
@@ -2270,14 +2270,14 @@ namespace Iocaine2.Data.Client
             wsRow.Name = "Exudation";
             wsRow.ID = 175;
             wsRow.Command = "/weaponskill \"Exudation\"";
-            wsRow.SkillType = 0;
+            wsRow.SkillType = 11;
             wsRow.SkillLevel = 0;
             wsRow.Special = "";
             wsRow.Jobs = 0x0;
             wsRow.JobsSubs = 0x0;
-            wsRow.AttrA = "Unknown";
-            wsRow.AttrB = "Unknown";
-            wsRow.AttrC = "Unknown";
+            wsRow.AttrA = "Darkness";
+            wsRow.AttrB = "Fragmentation";
+            wsRow.AttrC = "";
             FfxiResource.mainDb.WS.AddWSRow(wsRow);
 
             wsRow = FfxiResource.mainDb.WS.NewWSRow();

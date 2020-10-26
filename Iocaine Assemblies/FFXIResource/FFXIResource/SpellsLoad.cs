@@ -880,7 +880,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 7;
             spellsRow.RecastID = 23;
             spellsRow.CastTime = 1000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -919,7 +919,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 30;
             spellsRow.RecastID = 24;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -958,7 +958,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 45;
             spellsRow.RecastID = 25;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -997,7 +997,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 164;
             spellsRow.RecastID = 26;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -1475,7 +1475,7 @@ namespace Iocaine2.Data.Client
             spellsRow.LevelJob4 = 0;
             spellsRow.LevelJob5 = 0;
             spellsRow.LevelJob6 = 0;
-            spellsRow.LevelJob7 = 0;
+            spellsRow.LevelJob7 = 30;
             spellsRow.LevelJob8 = 0;
             spellsRow.LevelJob9 = 0;
             spellsRow.LevelJob10 = 0;
@@ -2167,7 +2167,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 15;
             spellsRow.RecastID = 56;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -2245,7 +2245,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 6;
             spellsRow.RecastID = 58;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -2284,7 +2284,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 16;
             spellsRow.RecastID = 59;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -3064,7 +3064,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 45;
             spellsRow.RecastID = 79;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -3103,7 +3103,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 36;
             spellsRow.RecastID = 80;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -3805,7 +3805,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 98;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -4156,7 +4156,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 42;
             spellsRow.RecastID = 107;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 120000;
+            spellsRow.Duration = 240000;
             spellsRow.Range = 12;
             spellsRow.Targets = 5;
             spellsRow.AsSub = true;
@@ -7938,7 +7938,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 0;
             spellsRow.MP = 315;
             spellsRow.RecastID = 204;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -7977,7 +7977,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 0;
             spellsRow.MP = 280;
             spellsRow.RecastID = 205;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8016,7 +8016,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 1;
             spellsRow.MP = 315;
             spellsRow.RecastID = 206;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8055,7 +8055,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 1;
             spellsRow.MP = 280;
             spellsRow.RecastID = 207;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8094,7 +8094,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 2;
             spellsRow.MP = 315;
             spellsRow.RecastID = 208;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8133,7 +8133,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 2;
             spellsRow.MP = 280;
             spellsRow.RecastID = 209;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8172,7 +8172,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 3;
             spellsRow.MP = 315;
             spellsRow.RecastID = 210;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8211,7 +8211,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 3;
             spellsRow.MP = 280;
             spellsRow.RecastID = 211;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8250,7 +8250,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 4;
             spellsRow.MP = 315;
             spellsRow.RecastID = 212;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8289,7 +8289,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 4;
             spellsRow.MP = 280;
             spellsRow.RecastID = 213;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8328,7 +8328,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 5;
             spellsRow.MP = 315;
             spellsRow.RecastID = 214;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 8500;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8367,7 +8367,7 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 5;
             spellsRow.MP = 280;
             spellsRow.RecastID = 215;
-            spellsRow.CastTime = 10000;
+            spellsRow.CastTime = 7000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
@@ -8407,7 +8407,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 24;
             spellsRow.RecastID = 216;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -8446,7 +8446,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 36;
             spellsRow.RecastID = 217;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -8563,7 +8563,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 5;
             spellsRow.RecastID = 220;
             spellsRow.CastTime = 1000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -8602,7 +8602,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 38;
             spellsRow.RecastID = 221;
             spellsRow.CastTime = 1000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -8953,7 +8953,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 15;
             spellsRow.RecastID = 230;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -8992,7 +8992,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 36;
             spellsRow.RecastID = 231;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9031,7 +9031,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 54;
             spellsRow.RecastID = 232;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 30000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9148,7 +9148,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 235;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9187,7 +9187,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 236;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9226,7 +9226,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 237;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9265,7 +9265,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 238;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9304,7 +9304,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 239;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9343,7 +9343,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 25;
             spellsRow.RecastID = 240;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9850,7 +9850,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 19;
             spellsRow.RecastID = 253;
             spellsRow.CastTime = 2500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9889,7 +9889,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 5;
             spellsRow.RecastID = 254;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 180000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -9928,7 +9928,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 39;
             spellsRow.RecastID = 255;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 30000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10045,7 +10045,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 8;
             spellsRow.RecastID = 258;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10084,7 +10084,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 29;
             spellsRow.RecastID = 259;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10630,7 +10630,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 38;
             spellsRow.RecastID = 273;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10669,7 +10669,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 58;
             spellsRow.RecastID = 274;
             spellsRow.CastTime = 3500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10747,7 +10747,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 31;
             spellsRow.RecastID = 276;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 180000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10786,7 +10786,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 277;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 60000;
+            spellsRow.Duration = 180000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -10825,7 +10825,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 278;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10864,7 +10864,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 279;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10903,7 +10903,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 280;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10942,7 +10942,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 281;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -10981,7 +10981,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 282;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -11020,7 +11020,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 283;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -11059,7 +11059,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 284;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -11098,7 +11098,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 26;
             spellsRow.RecastID = 285;
             spellsRow.CastTime = 5000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -11137,7 +11137,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 36;
             spellsRow.RecastID = 286;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -11176,7 +11176,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 30;
             spellsRow.RecastID = 287;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 12;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -12385,7 +12385,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 318;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 420000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -12424,7 +12424,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 319;
             spellsRow.CastTime = 4000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -13750,7 +13750,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 353;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 420000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -13789,7 +13789,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 354;
             spellsRow.CastTime = 1500;
-            spellsRow.Duration = 300000;
+            spellsRow.Duration = 600000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -13819,15 +13819,15 @@ namespace Iocaine2.Data.Client
             FfxiResource.mainDb.Spells.AddSpellsRow(spellsRow);
 
             spellsRow = FfxiResource.mainDb.Spells.NewSpellsRow();
-            spellsRow.Name = "Tonko: San";
+            spellsRow.Name = "Siren";
             spellsRow.ID = 355;
             spellsRow.Type = "SummonerPact";
             spellsRow.Skill = 38;
-            spellsRow.Command = "/magic \"Tonko: San\"";
+            spellsRow.Command = "/magic \"Siren\"";
             spellsRow.Element = 2;
-            spellsRow.MP = 0;
+            spellsRow.MP = 7;
             spellsRow.RecastID = 355;
-            spellsRow.CastTime = 12000;
+            spellsRow.CastTime = 5000;
             spellsRow.Duration = 0;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
@@ -13844,9 +13844,9 @@ namespace Iocaine2.Data.Client
             spellsRow.LevelJob10 = 0;
             spellsRow.LevelJob11 = 0;
             spellsRow.LevelJob12 = 0;
-            spellsRow.LevelJob13 = 59;
+            spellsRow.LevelJob13 = 0;
             spellsRow.LevelJob14 = 0;
-            spellsRow.LevelJob15 = 0;
+            spellsRow.LevelJob15 = 1;
             spellsRow.LevelJob16 = 0;
             spellsRow.LevelJob17 = 0;
             spellsRow.LevelJob18 = 0;
@@ -14020,34 +14020,34 @@ namespace Iocaine2.Data.Client
             spellsRow.Skill = 35;
             spellsRow.Command = "/magic \"Dispelga\"";
             spellsRow.Element = 7;
-            spellsRow.MP = 20;
+            spellsRow.MP = 200;
             spellsRow.RecastID = 360;
-            spellsRow.CastTime = 5000;
+            spellsRow.CastTime = 3000;
             spellsRow.Duration = 0;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
             spellsRow.LevelJob1 = 0;
             spellsRow.LevelJob2 = 0;
-            spellsRow.LevelJob3 = 0;
-            spellsRow.LevelJob4 = 0;
-            spellsRow.LevelJob5 = 61;
+            spellsRow.LevelJob3 = 99;
+            spellsRow.LevelJob4 = 99;
+            spellsRow.LevelJob5 = 99;
             spellsRow.LevelJob6 = 0;
             spellsRow.LevelJob7 = 0;
             spellsRow.LevelJob8 = 0;
             spellsRow.LevelJob9 = 0;
-            spellsRow.LevelJob10 = 0;
+            spellsRow.LevelJob10 = 99;
             spellsRow.LevelJob11 = 0;
             spellsRow.LevelJob12 = 0;
             spellsRow.LevelJob13 = 0;
             spellsRow.LevelJob14 = 0;
-            spellsRow.LevelJob15 = 0;
+            spellsRow.LevelJob15 = 99;
             spellsRow.LevelJob16 = 0;
             spellsRow.LevelJob17 = 0;
             spellsRow.LevelJob18 = 0;
             spellsRow.LevelJob19 = 0;
-            spellsRow.LevelJob20 = 0;
-            spellsRow.LevelJob21 = 0;
+            spellsRow.LevelJob20 = 99;
+            spellsRow.LevelJob21 = 99;
             spellsRow.LevelJob22 = 0;
             spellsRow.LevelJob23 = 0;
             FfxiResource.mainDb.Spells.AddSpellsRow(spellsRow);
@@ -14335,7 +14335,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 368;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14374,7 +14374,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 369;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14413,7 +14413,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 370;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14452,7 +14452,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 371;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14491,7 +14491,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 372;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14530,7 +14530,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 373;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14569,7 +14569,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 374;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14608,7 +14608,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 375;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14647,7 +14647,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 376;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 45000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -14686,7 +14686,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 377;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 11;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -16441,7 +16441,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 422;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 120000;
+            spellsRow.Duration = 180000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -16480,7 +16480,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 423;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 120000;
+            spellsRow.Duration = 240000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -18040,7 +18040,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 463;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 30000;
+            spellsRow.Duration = 45000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -18352,7 +18352,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 471;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 60000;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -19717,7 +19717,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 506;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -19756,7 +19756,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 507;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -19834,7 +19834,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 509;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 180000;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -21667,7 +21667,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 55;
             spellsRow.RecastID = 576;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 4;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -21901,7 +21901,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 22;
             spellsRow.RecastID = 584;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 4;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -24943,7 +24943,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 68;
             spellsRow.RecastID = 678;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -26425,7 +26425,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 29;
             spellsRow.RecastID = 717;
             spellsRow.CastTime = 500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 4;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -26815,7 +26815,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 116;
             spellsRow.RecastID = 727;
             spellsRow.CastTime = 6000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -26854,7 +26854,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 116;
             spellsRow.RecastID = 728;
             spellsRow.CastTime = 6000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -27049,7 +27049,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 108;
             spellsRow.RecastID = 740;
             spellsRow.CastTime = 1000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 60000;
             spellsRow.Range = 10;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -27439,7 +27439,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 299;
             spellsRow.RecastID = 750;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 180000;
             spellsRow.Range = 0;
             spellsRow.Targets = 1;
             spellsRow.AsSub = true;
@@ -30442,7 +30442,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 32;
             spellsRow.RecastID = 841;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -30481,7 +30481,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 58;
             spellsRow.RecastID = 842;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -30520,7 +30520,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 38;
             spellsRow.RecastID = 843;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -30559,7 +30559,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 64;
             spellsRow.RecastID = 844;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31378,7 +31378,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 390;
             spellsRow.RecastID = 865;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31417,7 +31417,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 432;
             spellsRow.RecastID = 866;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31456,7 +31456,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 350;
             spellsRow.RecastID = 867;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31495,7 +31495,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 276;
             spellsRow.RecastID = 868;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31534,7 +31534,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 476;
             spellsRow.RecastID = 869;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31573,7 +31573,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 312;
             spellsRow.RecastID = 870;
             spellsRow.CastTime = 4500;
-            spellsRow.Duration = 90000;
+            spellsRow.Duration = 0;
             spellsRow.Range = 8;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31690,7 +31690,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 873;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31729,7 +31729,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 874;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31768,7 +31768,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 875;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31807,7 +31807,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 876;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31846,7 +31846,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 877;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31885,7 +31885,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 0;
             spellsRow.RecastID = 878;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 90000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -31924,7 +31924,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 48;
             spellsRow.RecastID = 879;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 300000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32041,7 +32041,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 84;
             spellsRow.RecastID = 882;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32080,7 +32080,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 90;
             spellsRow.RecastID = 883;
             spellsRow.CastTime = 3000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32119,7 +32119,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 63;
             spellsRow.RecastID = 884;
             spellsRow.CastTime = 2000;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 120000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32158,7 +32158,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 885;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32197,7 +32197,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 886;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32236,7 +32236,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 887;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32275,7 +32275,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 888;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32314,7 +32314,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 889;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32353,7 +32353,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 890;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32392,7 +32392,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 891;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -32431,7 +32431,7 @@ namespace Iocaine2.Data.Client
             spellsRow.MP = 78;
             spellsRow.RecastID = 892;
             spellsRow.CastTime = 7500;
-            spellsRow.Duration = 0;
+            spellsRow.Duration = 230000;
             spellsRow.Range = 12;
             spellsRow.Targets = 32;
             spellsRow.AsSub = true;
@@ -36564,6 +36564,45 @@ namespace Iocaine2.Data.Client
             spellsRow.Element = 6;
             spellsRow.MP = 0;
             spellsRow.RecastID = 998;
+            spellsRow.CastTime = 2000;
+            spellsRow.Duration = 0;
+            spellsRow.Range = 0;
+            spellsRow.Targets = 1;
+            spellsRow.AsSub = true;
+            spellsRow.LevelJob1 = 1;
+            spellsRow.LevelJob2 = 1;
+            spellsRow.LevelJob3 = 1;
+            spellsRow.LevelJob4 = 1;
+            spellsRow.LevelJob5 = 1;
+            spellsRow.LevelJob6 = 1;
+            spellsRow.LevelJob7 = 1;
+            spellsRow.LevelJob8 = 1;
+            spellsRow.LevelJob9 = 1;
+            spellsRow.LevelJob10 = 1;
+            spellsRow.LevelJob11 = 1;
+            spellsRow.LevelJob12 = 1;
+            spellsRow.LevelJob13 = 1;
+            spellsRow.LevelJob14 = 1;
+            spellsRow.LevelJob15 = 1;
+            spellsRow.LevelJob16 = 1;
+            spellsRow.LevelJob17 = 1;
+            spellsRow.LevelJob18 = 1;
+            spellsRow.LevelJob19 = 1;
+            spellsRow.LevelJob20 = 1;
+            spellsRow.LevelJob21 = 1;
+            spellsRow.LevelJob22 = 1;
+            spellsRow.LevelJob23 = 0;
+            FfxiResource.mainDb.Spells.AddSpellsRow(spellsRow);
+
+            spellsRow = FfxiResource.mainDb.Spells.NewSpellsRow();
+            spellsRow.Name = "Monberaux";
+            spellsRow.ID = 999;
+            spellsRow.Type = "Trust";
+            spellsRow.Skill = 0;
+            spellsRow.Command = "/magic \"Monberaux\"";
+            spellsRow.Element = 6;
+            spellsRow.MP = 0;
+            spellsRow.RecastID = 999;
             spellsRow.CastTime = 2000;
             spellsRow.Duration = 0;
             spellsRow.Range = 0;
