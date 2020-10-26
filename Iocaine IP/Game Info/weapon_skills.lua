@@ -61,7 +61,7 @@ return {
     [58] = {id=58,en="Herculean Slash",ja="ヘラクレススラッシュ",element=1,icon_id=603,prefix="/weaponskill",range=2,skill=4,skillchain_a="Induration",skillchain_b="Impaction",skillchain_c="Detonation",targets=32},
     [59] = {id=59,en="Torcleaver",ja="トアクリーバー",element=6,icon_id=602,prefix="/weaponskill",range=2,skill=4,skillchain_a="Light",skillchain_b="Distortion",skillchain_c="",targets=32},
     [60] = {id=60,en="Resolution",ja="レゾルーション",element=6,icon_id=602,prefix="/weaponskill",range=2,skill=4,skillchain_a="Fragmentation",skillchain_b="Scission",skillchain_c="",targets=32},
-    [61] = {id=61,en="Dimidiation",ja="デミディエーション",element=6,icon_id=602,prefix="/weaponskill",range=2,targets=32},
+    [61] = {id=61,en="Dimidiation",ja="デミディエーション",element=6,icon_id=602,prefix="/weaponskill",range=2,skill=4,skillchain_a="Light",skillchain_b="Fragmentation",skillchain_c="",targets=32},
     [64] = {id=64,en="Raging Axe",ja="レイジングアクス",element=6,icon_id=605,prefix="/weaponskill",range=2,skill=5,skillchain_a="Detonation",skillchain_b="Impaction",skillchain_c="",targets=32},
     [65] = {id=65,en="Smash Axe",ja="スマッシュ",element=4,icon_id=606,prefix="/weaponskill",range=2,skill=5,skillchain_a="Impaction",skillchain_b="Reverberation",skillchain_c="",targets=32},
     [66] = {id=66,en="Gale Axe",ja="ラファールアクス",element=2,icon_id=607,prefix="/weaponskill",range=2,skill=5,skillchain_a="Detonation",skillchain_b="",skillchain_c="",targets=32},
@@ -162,7 +162,7 @@ return {
     [172] = {id=172,en="Flash Nova",ja="フラッシュノヴァ",element=6,icon_id=628,prefix="/weaponskill",range=2,skill=11,skillchain_a="Induration",skillchain_b="Reverberation",skillchain_c="",targets=32},
     [173] = {id=173,en="Dagan",ja="ダガン",element=6,icon_id=628,prefix="/weaponskill",range=2,skill=11,skillchain_a="",skillchain_b="",skillchain_c="",targets=1},
     [174] = {id=174,en="Realmrazer",ja="レルムレイザー",element=6,icon_id=628,prefix="/weaponskill",range=2,skill=11,skillchain_a="Fusion",skillchain_b="Impaction",skillchain_c="",targets=32},
-    [175] = {id=175,en="Exudation",ja="エクズデーション",element=6,icon_id=628,prefix="/weaponskill",range=2,targets=32},
+    [175] = {id=175,en="Exudation",ja="エクズデーション",element=6,icon_id=628,prefix="/weaponskill",range=2,skill=11,skillchain_a="Darkness",skillchain_b="Fragmentation",skillchain_c="",targets=32},
     [176] = {id=176,en="Heavy Swing",ja="ヘヴィスイング",element=6,icon_id=631,prefix="/weaponskill",range=2,skill=12,skillchain_a="Impaction",skillchain_b="",skillchain_c="",targets=32},
     [177] = {id=177,en="Rock Crusher",ja="ロッククラッシャー",element=3,icon_id=632,prefix="/weaponskill",range=2,skill=12,skillchain_a="Impaction",skillchain_b="",skillchain_c="",targets=32},
     [178] = {id=178,en="Earth Crusher",ja="アースクラッシャー",element=3,icon_id=632,prefix="/weaponskill",range=2,skill=12,skillchain_a="Detonation",skillchain_b="Impaction",skillchain_c="",targets=32},
@@ -229,7 +229,7 @@ return {
 }, {"id", "en", "ja", "element", "icon_id", "prefix", "range", "skill", "skillchain_a", "skillchain_b", "skillchain_c", "targets"}
 
 --[[
-Copyright © 2013-2019, Windower
+Copyright © 2013-2020, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
