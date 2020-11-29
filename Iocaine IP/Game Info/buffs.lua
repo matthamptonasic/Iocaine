@@ -509,7 +509,7 @@ return {
     [517] = {id=517,en="Collimated Fervor",ja="コリメイトファーバー",enl="Collimated Fervor",jal="コリメイトファーバー"},
     [518] = {id=518,en="Dematerialize",ja="デマテリアライズ",enl="Dematerialize",jal="デマテリアライズ"},
     [519] = {id=519,en="Theurgic Focus",ja="タウマテルギフォカス",enl="Theurgic Focus",jal="タウマテルギフォカス"},
-    [522] = {id=522,en="Elemental Sforzo",ja="Ｅ.スフォルツォ",enl="Elemental Sforzo",jal="Ｅ.スフォルツォ"},
+    [522] = {id=522,en="Elemental Sforzo",ja="E.スフォルツォ",enl="Elemental Sforzo",jal="E.スフォルツォ"},
     [523] = {id=523,en="Ignis",ja="イグニス",enl="Ignis",jal="イグニス"},
     [524] = {id=524,en="Gelus",ja="ゲールス",enl="Gelus",jal="ゲールス"},
     [525] = {id=525,en="Flabra",ja="フラブラ",enl="Flabra",jal="フラブラ"},
@@ -604,10 +604,21 @@ return {
     [614] = {id=614,en="Ullegore's Gloom",ja="ウルゴアの闇",enl="Ullegore's Gloom",jal="ウルゴアの闇"},
     [615] = {id=615,en="Boost",ja="ためる",enl="Boost",jal="ためる"},
     [616] = {id=616,en="Artisanal Knowledge",ja="芸術家肌",enl="Artisanal Knowledge",jal="芸術家肌"},
+    [617] = {id=617,en="Sacrifice",ja="サクリファイス",enl="Sacrifice",jal="サクリファイス"},
+    [618] = {id=618,en="Emporox's Gift",ja="エンポロックスのツボ",enl="Emporox's Gift",jal="エンポロックスのツボ"},
+    [619] = {id=619,en="Spirit Bond",ja="スピリットボンド",enl="Spirit Bond",jal="スピリットボンド"},
+    [620] = {id=620,en="Awaken",ja="覚醒",enl="awakened",jal="覚醒"},
+    [621] = {id=621,en="Majesty",ja="マジェスティ",enl="Majesty",jal="マジェスティ"},
+    [622] = {id=622,en="Guarding Rate Boost",ja="ガード率アップ",enl="Guarding Rate Boost",jal="ガード率アップ"},
+    [623] = {id=623,en="Rampart",ja="ランパート",enl="Rampart",jal="ランパート"},
+    [624] = {id=624,en="Wind's Blessing",ja="風の守り",enl="Wind's Blessing",jal="風の守り"},
+    [625] = {id=625,en="Siren's Favor",ja="セイレーンの加護",enl="Siren's Favor",jal="セイレーンの加護"},
+    [626] = {id=626,en="Negate Sleep",ja="ネゲートスリープ",enl="Negate Sleep",jal="ネゲートスリープ"},
+    [627] = {id=627,en="Mobilization",ja="戦闘準備期間",enl="mobilized",jal="戦闘準備期間"},
 }, {"id", "en", "ja", "enl", "jal"}
 
 --[[
-Copyright © 2013-2019, Windower
+Copyright © 2013-2020, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

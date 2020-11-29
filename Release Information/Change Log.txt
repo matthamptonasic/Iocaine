@@ -1,6 +1,31 @@
 Iocaine Change Notes:
 
-FFXIResource.dll	- 1.2.9.0
+FFXINpcs.dll		- 1.0.3.4 - 2020/11/28
+FFXIResource.dll	- 1.2.9.2
+FFXIThings.dll		- 1.2.6.1
+IocaineCore.dll		- 1.3.13.5
+IocaineEvents.dll	- 1.0.1.3
+IocaineServer.dll	- 1.0.2.3
+ItemsFishing.dll	- 1.0.4.3
+Main.exe			- 2.10.6.1
+MapDll.dll			- 1.1.5.3
+	- Reverted dotnet versions of all assemblies to 3.5.
+
+FFXINpcs.dll		- 1.0.3.3 - 2020/10/26
+FFXIResource.dll	- 1.2.9.1
+FFXIThings.dll		- 1.2.6.0
+IocaineCore.dll		- 1.3.13.4
+IocaineEvents.dll	- 1.0.1.2
+IocaineServer.dll	- 1.0.2.2
+ItemsFishing.dll	- 1.0.4.2
+Main.exe			- 2.10.6.0
+MapDll.dll			- 1.1.5.2
+Iocaine2.exe		- 1.4.1.0
+	- Added Frigorifish x2/x3 to the resource tables.
+	- Updated dotnet versions of all assemblies.
+	- Minor bug fixes in the server library.
+
+FFXIResource.dll	- 1.2.9.0 - 2019/01/06
 	- Added Rune Enchantments to the PL bot's self buffs.
 
 IocaineCore.dll		- 1.3.13.3 - 2019/01/06

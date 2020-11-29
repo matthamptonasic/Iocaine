@@ -629,6 +629,22 @@ namespace Iocaine2.Data.Client
             FfxiResource.mainDb.Fish.AddFishRow(row);
 
             row = FfxiResource.mainDb.Fish.NewFishRow();
+            row.FishName = "Frigorifish 2";
+            row.Large = false;
+            row.Type = 0;
+            row.DropType = 0;
+            row.ItemID = 24;
+            FfxiResource.mainDb.Fish.AddFishRow(row);
+
+            row = FfxiResource.mainDb.Fish.NewFishRow();
+            row.FishName = "Frigorifish 3";
+            row.Large = false;
+            row.Type = 0;
+            row.DropType = 0;
+            row.ItemID = 25;
+            FfxiResource.mainDb.Fish.AddFishRow(row);
+
+            row = FfxiResource.mainDb.Fish.NewFishRow();
             row.FishName = "garpike";
             row.Large = false;
             row.Type = 0;

@@ -3027,6 +3027,61 @@ namespace Iocaine2.Data.Client
             row.ID = 616;
             FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
 
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Sacrifice";
+            row.ID = 617;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Emporox&apsts Gift";
+            row.ID = 618;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Spirit Bond";
+            row.ID = 619;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Awaken";
+            row.ID = 620;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Majesty";
+            row.ID = 621;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Guarding Rate Boost";
+            row.ID = 622;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Rampart";
+            row.ID = 623;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Wind&apsts Blessing";
+            row.ID = 624;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Siren&apsts Favor";
+            row.ID = 625;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Negate Sleep";
+            row.ID = 626;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
+            row = FfxiResource.mainDb.StatusEffects.NewStatusEffectsRow();
+            row.Name = "Mobilization";
+            row.ID = 627;
+            FfxiResource.mainDb.StatusEffects.AddStatusEffectsRow(row);
+
             FfxiResource.mainDb.StatusEffects.AcceptChanges();
         }
     }

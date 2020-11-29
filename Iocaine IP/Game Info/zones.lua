@@ -182,7 +182,7 @@ return {
     [180] = {id=180,en="La'Loff Amphitheater",ja="ラ・ロフの劇場",search="LaLoff"},
     [181] = {id=181,en="The Celestial Nexus",ja="宿星の座",search="CelesNexus"},
     [182] = {id=182,en="Walk of Echoes",ja="ウォークオブエコーズ",search="WalkEchoes"},
-    [183] = {id=183,en="Maquette Abdhaljs-Legion",ja="アブダルスの模型-レギオン",search="Legion"},
+    [183] = {id=183,en="Maquette Abdhaljs-LegionA",ja="アブダルスの模型-レギオンA",search="LegionA"},
     [184] = {id=184,en="Lower Delkfutt's Tower",ja="デルクフの塔下層",search="LowDelkfut"},
     [185] = {id=185,en="Dynamis - San d'Oria",ja="デュナミス-サンドリア",search="DynamisSan"},
     [186] = {id=186,en="Dynamis - Bastok",ja="デュナミス-バストゥーク",search="DynamisBas"},
@@ -271,12 +271,14 @@ return {
     [275] = {id=275,en="Outer Ra'Kaznar [U]",ja="ラ・カザナル宮外郭〔Ｕ〕",search="OutRaKaz_U"},
     [276] = {id=276,en="Ra'Kaznar Inner Court",ja="ラ・カザナル宮内郭",search="InRaKaz"},
     [277] = {id=277,en="Ra'Kaznar Turris",ja="ラ・カザナル宮天守",search="RaKazTurris"},
+    [279] = {id=279,en="Walk of Echoes [P2]",ja="ウォークオブエコーズ〔Ｐ２〕",search="WlkEchoes_P2"},
     [280] = {id=280,en="Mog Garden",ja="モグガーデン",search="MogGarden"},
     [281] = {id=281,en="Leafallia",ja="リファーリア",search="Leafallia"},
     [282] = {id=282,en="Mount Kamihr",ja="カミール山",search="MtKamihr"},
     [283] = {id=283,en="Silver Knife",ja="シルバー・ナイフ",search="SilverKnife"},
     [284] = {id=284,en="Celennia Memorial Library",ja="セレニア図書館",search="Celennia"},
     [285] = {id=285,en="Feretory",ja="魂の聖櫃",search="Feretory"},
+    [287] = {id=287,en="Maquette Abdhaljs-LegionB",ja="アブダルスの模型-レギオンB",search="LegionB"},
     [288] = {id=288,en="Escha - Zi'Tah",ja="エスカ-ジ・タ",search="EschaZiTah"},
     [289] = {id=289,en="Escha - Ru'Aun",ja="エスカ-ル・オン",search="EschaRuAun"},
     [290] = {id=290,en="Desuetia - Empyreal Paradox",ja="デスエチア-天象の鎖",search="DesParadox"},
@@ -287,10 +289,11 @@ return {
     [295] = {id=295,en="Dynamis - Bastok [D]",ja="デュナミス-バストゥーク〔Ｄ〕",search="DynamisBas_D"},
     [296] = {id=296,en="Dynamis - Windurst [D]",ja="デュナミス-ウィンダス〔Ｄ〕",search="DynamisWin_D"},
     [297] = {id=297,en="Dynamis - Jeuno [D]",ja="デュナミス-ジュノ〔Ｄ〕",search="DynamisJeu_D"},
+    [298] = {id=298,en="Walk of Echoes [P1]",ja="ウォークオブエコーズ〔Ｐ１〕",search="WlkEchoes_P1"},
 }, {"id", "en", "ja", "search"}
 
 --[[
-Copyright © 2013-2019, Windower
+Copyright © 2013-2020, Windower
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
