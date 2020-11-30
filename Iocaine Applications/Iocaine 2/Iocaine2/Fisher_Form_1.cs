@@ -1042,7 +1042,7 @@ namespace Iocaine2
         private void TOP_Srv_updaterThreadFunction()
         {
             LoggingFunctions.Debug("Top::updaterThreadFunction: Beginning update thread.", LoggingFunctions.DBG_SCOPE.TOP);
-            ArrayList versionList = null; ;
+            ArrayList versionList = null;
             if (!File.Exists(m_TOP_File_updaterFile))
             {
                 try
