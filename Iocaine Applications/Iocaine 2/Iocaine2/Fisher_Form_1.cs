@@ -1039,9 +1039,16 @@ namespace Iocaine2
         #endregion Chat Log Parsing
         
         #region Updater
+        private void updaterDebugCBF(string iMessage)
+        {
+            LoggingFunctions.Debug(iMessage, LoggingFunctions.DBG_SCOPE.TOP);
+        }
         private void TOP_Srv_updaterThreadFunction()
         {
             LoggingFunctions.Debug("Top::updaterThreadFunction: Beginning update thread.", LoggingFunctions.DBG_SCOPE.TOP);
+            Server.Update._debugMessage += updaterDebugCBF;
+            Server.Update._errorMessage += LoggingFunctions.Error;
+
             ArrayList versionList = null;
             if (!File.Exists(m_TOP_File_updaterFile))
             {
