@@ -478,7 +478,8 @@ namespace Iocaine2.Memory
         #region general
         //Structure offsets
         //There's an x/y/z pos just before the weather info (about 88 before).
-        private const uint off_weather = 2636;
+        private const uint off_weather = 2652;
+        //Pre 11.20.21: 2636;
         //Pre 02.09.16: 2628;
         //Pre 06.24.15: 2404;
         //Pre 02.18.15: 2276;
@@ -493,7 +494,8 @@ namespace Iocaine2.Memory
         private const uint off_player_struct = 2700;
         //Pre 02.09.16: 2692;
         //Pre 06.24.15: 2116;
-        private const uint off_zoning = 1108;
+        private const uint off_zoning = 1120;
+        //Pre 11.20.21: 1108;
         //Pre 02.09.16  1100;
         //Pre 06.24.15  876;
         //Pre 05.13.15  872;
@@ -577,19 +579,22 @@ namespace Iocaine2.Memory
         //Pre 11.10.14:  368;
         #endregion Craft Skills
         #region Merits
-        private const int off_merit_merits_current = 664;
+        private const int off_merit_merits_current = 678;
+        //Pre 11.20.21  664;
         //Pre 02.09.16  656;
         //Pre 05.13.15  652;
         //Pre 02.18.15  528;
         //Pre 11.10.14  524;
         //Pre 10.06.14  516;
-        private const int off_merit_limit_points = 662;
+        private const int off_merit_limit_points = 674;
+        //Pre 11.20.21  662;
         //Pre 02.09.16  654;
         //Pre 05.13.14  650;
         //Pre 02.18.15  526;
         //Pre 11.10.14  522;
         //Pre 10.06.14  514;
-        private const int off_merit_mode = 665;
+        private const int off_merit_mode = 677;
+        //Pre 11.20.21  665;
         //Pre 02.09.16  657;
         //Pre 05.13.15  653;
         //Pre 02.18.15  529;
