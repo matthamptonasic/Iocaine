@@ -109,6 +109,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Iocaine Assemblies\FFXINpcs\FFXINpcs\FFXINpcs.csproj">
+      <Project>{34a07d26-85c6-41a3-a474-d7c30e248a8e}</Project>
+      <Name>FFXINpcs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Iocaine Assemblies\FFXIResource\FFXIResource\FFXIResource.csproj">
       <Project>{cb437cb5-9269-4571-a925-e80868f76342}</Project>
       <Name>FFXIResource</Name>
