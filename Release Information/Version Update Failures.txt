@@ -12,8 +12,8 @@ Status effects are off by 8 locations: DONE
 Trade PC window might be broken, but I only have 1 character.
 Spell recast (is casting is okay, nothing else shows up): DONE
 Ability recast is showing wrong job. Timers seem to be okay, maybe? DONE
-Speed hack broken, both address 2 and 3 are not found: 
-Crafter pointer is not found: 
+Speed hack broken, both address 2 and 3 are not found: DONE
+Crafter pointer is not found: DONE
 
 
 2/9/16:

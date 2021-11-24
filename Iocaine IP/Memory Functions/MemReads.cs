@@ -283,28 +283,6 @@ namespace Iocaine2.Memory
             public ushort Offset_SpeedValue;
             public uint Info_SpeedText1Addr;
             public byte[] Info_SpeedText1Opcode;
-            public uint Info_SpeedText2Addr;
-            public byte[] Info_SpeedText2Opcode;
-            public uint Info_SpeedText3Addr;
-            public byte[] Info_SpeedText3Opcode;
-            public uint Info_SpeedText4Addr;
-            public byte[] Info_SpeedText4Opcode;
-            public uint Info_SpeedText5Addr;
-            public byte[] Info_SpeedText5Opcode;
-            public uint Info_SpeedText6Addr;
-            public byte[] Info_SpeedText6Opcode;
-            public uint Info_SpeedText7Addr;
-            public byte[] Info_SpeedText7Opcode;
-            public uint Info_SpeedText8Addr;
-            public byte[] Info_SpeedText8Opcode;
-            public uint Info_SpeedText9Addr;
-            public byte[] Info_SpeedText9Opcode;
-            public uint Info_SpeedText10Addr;
-            public byte[] Info_SpeedText10Opcode;
-            public uint Info_SpeedText11Addr;
-            public byte[] Info_SpeedText11Opcode;
-            public uint Info_SpeedText12Addr;
-            public byte[] Info_SpeedText12Opcode;
         }
         internal class Signature
         {
@@ -350,7 +328,7 @@ namespace Iocaine2.Memory
             public static Signature Bag = new Signature("8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D", 39032);
             public static Signature Casting = new Signature("A1", "85-C0-74-..-8B-48-..-85-C9-74");
             public static Signature Chatlog = new Signature("8B-0D", "85-C9-74-0F", 4);
-            public static Signature CraftWindow = new Signature("74-..-8A-4E-02-8A-56-FE-51-8B-0D", "50-8A-C3-2C-02-52-50");
+            public static Signature CraftWindow = new Signature("56-8B-F1-8B-0D", "85-C9-74-..-E8-..-..-..-..-84-C0-74");
             public static Signature Fishing = new Signature("8B-0F-2B-C8-89-0F-A1", "8B-48-1C");
             public static Signature Inventory = new Signature("56-8B-F1-8B-0D", "E8-..-..-..-..-50-E8-..-..-..-..-83-C4-04-83-F8-03");
             public static Signature InventorySecWnd = new Signature("83-C4-04-8B-4C-24-10-51-8B-0D", "");
@@ -367,26 +345,56 @@ namespace Iocaine2.Memory
             public static Signature RecastAbility = new Signature("55-57-89-41-..-52-B9", "E8");
             public static Signature ServerList = new Signature("66-C7-81-30-01-00-00-FF-FF-8B-15", "89-82-28-01-00-00-8B-0D", -6384);
             public static Signature ShopBuyWindow = new Signature("8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D");
-            //public static Signature SpeedText1 = new Signature("D8-0D-..-..-..-..-8B-0C-85-..-..-..-..-33-C0", "8A-56", 0, 6, 0);
-            public static Signature SpeedText1 = new Signature("89-91-..-..-..-..-8B-8F-..-..-..-..-8B-50-..", "8B-8F-..-..-..-..-8B-50-..-5F", 0, 6, 0);
-            //public static Signature SpeedText2 = new Signature("8B-14-8D-..-..-..-..-33-C9-D8-0D-..-..-..-..", "8A-46", 0, 6, 0);
-            public static Signature SpeedText2 = new Signature("8B-10-89-91-..-..-..-..-8B-8E-..-..-..-..-8B-50-..-89-91-..-..-..-..-8B-8E-..-..-..-..-8B-50-..", "8B-8E", 0, 6, 0);
-            //public static Signature SpeedText3 = new Signature("DB-44-24-..-33-D2-33-C0-D8-0D-..-..-..-..", "8B-4F", 0, 6, 0);
-            public static Signature SpeedText3 = new Signature("66-8B-41-..-8B-4C-24-..", "89-81-..-..-..-..-33-C0", 0, 6, 0);
-            public static Signature SpeedText4 = new Signature("D9-9A-54-01-00-00-8B-88-..-..-00-00", "8B-90-..-..-00-00-8B-44-24", 0, 6, 0);
-            public static Signature SpeedText5 = new Signature("D9-99-54-01-00-00-8B-90-..-..-00-00-8B-4C-24-..", "8B-80-..-..-00-00-89-88", 0, 6, 0);
-            public static Signature SpeedText6 = new Signature("8B-8E-..-..-00-00", "8B-96-..-..-00-00-66-89-9E-..-..-00-00-88-9E", 0, 6, 0);
-            public static Signature SpeedText7 = new Signature("C7-80-54-01-00-00-00-00-00-00", "89-81-..-..-00-00-E8", 0, 6, 0);
-            public static Signature SpeedText8 = new Signature("8B-68-..", "8B-89-..-..-00-00-8B-50-..-5D", 0, 6, 0);
-            public static Signature SpeedText9 = new Signature("66-8B-41-..-8B-4C-24-..", "89-81-..-..-00-00-33-C0-C3", 0, 6, 0);
-            public static Signature SpeedText10 = new Signature("8D-44-24-..-50-E8-..-..-..-..-8B-0D-..-..-..-..-83-C4-..", "8D-54-24-..-52-68", 0, 6, 0);
-            public static Signature SpeedText11 = new Signature("6A-10-8B-4E-..-89-86-..-..-..-..", "E8", 0, 6, 0);
-            public static Signature SpeedText12 = new Signature("DB-44-24-..-D8-0D-..-..-..-..", "8B-47-..-C1-E8", 0, 6, 0);
+            public static Signature SpeedText1 = new Signature("DB-44-24-..-D8-0D-..-..-..-..", "8B-47-..-C1-E8", 0, 6, 0);
             public static Signature Target = new Signature("C7-40-68-80-80-80-80-8B-0D", "E8");
             public static Signature TargetLock = new Signature("8B-0D", "53-56-33-F6-33-DB-57-85-C9");
             public static Signature Time = new Signature("B0-01-5E-C3-90-51-8B-4C-24-08-8D-44-24-00-50-68", "", 0xC, 4, 36);
             public static Signature TradeNpcWindow = new Signature("8A-4E-02-51-8B-0D", "E8");
             public static Signature Windows = new Signature("49-74-1D-8B-0D", "85-C9-74-13");
+            #region === Notes on various signatures ===
+            #region General
+            /*
+             *  If you know what you're looking for, the easiest thing to do is to:
+             *  1. Open OllyDbg,
+             *  2. Open and run FFXIMain.dll for a few clicks of the play button.  This loads all of the pointers and data.
+             *  3. Find FFXIMain.dll in memory and open the memory dump.
+             *  4. ** Save this as a text file, it's under the right click --> copy to file menu.
+             *  5. Open this output file in Notepad++. This lets you search both the data (address) as well as the type of operation you're looking for.
+             *      It also has regex capabilities which is much easier than trying to do it in ArtMoney or OllyDbg directly.
+            */
+            #endregion General
+            #region CraftWindow
+            /*
+             *  Signature as of 11/23/21:
+             *  101DD740   56               PUSH ESI
+             *  101DD741   8BF1             MOV ESI,ECX
+             *  101DD743   8B0D 90436210    MOV ECX,DWORD PTR DS:[10624390]  <-- pointer of interest
+             *  101DD749   85C9             TEST ECX,ECX
+             *  101DD74B   74 25            JE SHORT FFXiMain.101DD772
+             *  101DD74D   E8 5EECFFFF      CALL FFXiMain.101DC3B0
+             *  101DD752   84C0             TEST AL,AL
+             *  101DD754   74 1C            JE SHORT FFXiMain.101DD772
+            */
+            #endregion CraftWindow
+            #region SpeedText
+            /*  The speed text was difficult to find because it's to a minor offset instead of a pointer location.
+             *  The place to start is to find the speed offset in the NPC structure. Currently it's 0x158.
+             *  SW will use this a number of places in the text segment.
+             *  It may be used as MOV DWORD PTR DS:[E**+158],E**  <= 89[89AB]. 58010000
+             *  It may be used as FSTP DWORD PTR DS:[ESI+158]     <= D99. 58010000
+             *  The latter is more likely as it guarantees this is a floating point operation which is what the speed value is.
+             *  
+             *  This used to require multiple signatures, but it seems to only be 1 now.
+             *  
+             *  Signature as of 11/23/21:
+             *  1009C3F0   DB4424 20        FILD DWORD PTR SS:[ESP+20]
+             *  1009C3F4   D80D 00323210    FMUL DWORD PTR DS:[10323200]
+             *  1009C3FA   D99E 58010000    FSTP DWORD PTR DS:[ESI+158]  <-- data captured is this 6 bytes.
+             *  1009C400   8B47 2C          MOV EAX,DWORD PTR DS:[EDI+2C]
+             *  1009C403   C1E8 11          SHR EAX,11
+            */
+            #endregion SpeedText
+            #endregion === Notes on various signatures ===
             #region === Archived Signatures ===
             // == Bag ==
             //                                            39028     Pre 11.10.15
@@ -398,10 +406,10 @@ namespace Iocaine2.Memory
             //                                            32084     Pre 11.10.14
             //                                            32076     Pre 10.06.14
             //                                            31676     Pre 09.09.14: 31676
-            //"8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D") + 31352
-            //"8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D") + 32072     Pre 08.11.14
+            //  "8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D") + 31352
+            //  "8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D") + 32072     Pre 08.11.14
             // == Player5 ==
-            //"85-C0-75-8F-A0", "BF-01-00-00-00-3C-01", 8           Pre 01.15.15
+            //  "85-C0-75-8F-A0", "BF-01-00-00-00-3C-01", 8           Pre 01.15.15
             #endregion === Archived Signatures ===
         }
         #endregion Structures
@@ -867,39 +875,6 @@ namespace Iocaine2.Memory
             pntrStruct.Info_SpeedText1Addr = speed1Rslt.ResultAddress;
             pntrStruct.Info_SpeedText1Opcode = speed1Rslt.ResultPattern;
             pntrStruct.Offset_SpeedValue = (ushort)((pntrStruct.Info_SpeedText1Opcode[3] << 8) | pntrStruct.Info_SpeedText1Opcode[2]);
-            MemScanner.ScanResult speed2Rslt = scanner.ScanPattern(Signatures.SpeedText2);
-            pntrStruct.Info_SpeedText2Addr = speed2Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText2Opcode = speed2Rslt.ResultPattern;
-            MemScanner.ScanResult speed3Rslt = scanner.ScanPattern(Signatures.SpeedText3);
-            pntrStruct.Info_SpeedText3Addr = speed3Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText3Opcode = speed3Rslt.ResultPattern;
-            MemScanner.ScanResult speed4Rslt = scanner.ScanPattern(Signatures.SpeedText4);
-            pntrStruct.Info_SpeedText4Addr = speed4Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText4Opcode = speed4Rslt.ResultPattern;
-            MemScanner.ScanResult speed5Rslt = scanner.ScanPattern(Signatures.SpeedText5);
-            pntrStruct.Info_SpeedText5Addr = speed5Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText5Opcode = speed5Rslt.ResultPattern;
-            MemScanner.ScanResult speed6Rslt = scanner.ScanPattern(Signatures.SpeedText6);
-            pntrStruct.Info_SpeedText6Addr = speed6Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText6Opcode = speed6Rslt.ResultPattern;
-            MemScanner.ScanResult speed7Rslt = scanner.ScanPattern(Signatures.SpeedText7);
-            pntrStruct.Info_SpeedText7Addr = speed7Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText7Opcode = speed7Rslt.ResultPattern;
-            MemScanner.ScanResult speed8Rslt = scanner.ScanPattern(Signatures.SpeedText8);
-            pntrStruct.Info_SpeedText8Addr = speed8Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText8Opcode = speed8Rslt.ResultPattern;
-            MemScanner.ScanResult speed9Rslt = scanner.ScanPattern(Signatures.SpeedText9);
-            pntrStruct.Info_SpeedText9Addr = speed9Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText9Opcode = speed9Rslt.ResultPattern;
-            MemScanner.ScanResult speed10Rslt = scanner.ScanPattern(Signatures.SpeedText10);
-            pntrStruct.Info_SpeedText10Addr = speed10Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText10Opcode = speed10Rslt.ResultPattern;
-            MemScanner.ScanResult speed11Rslt = scanner.ScanPattern(Signatures.SpeedText11);
-            pntrStruct.Info_SpeedText11Addr = speed11Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText11Opcode = speed11Rslt.ResultPattern;
-            MemScanner.ScanResult speed12Rslt = scanner.ScanPattern(Signatures.SpeedText12);
-            pntrStruct.Info_SpeedText12Addr = speed12Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText12Opcode = speed12Rslt.ResultPattern;
 
             pntrStruct.MainProcess = iMainProcess;
             pntrStruct.MainModule = iMainModule;
@@ -970,28 +945,6 @@ namespace Iocaine2.Memory
             LoggingFunctions.Debug("Final Info_ShopBuyWindow: " + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_SpeedText1Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_SpeedText1Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText1Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText2Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText3Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText3Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText3Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText3Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText3Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText4Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText4Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText4Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText4Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText4Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText5Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText5Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText5Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText5Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText5Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText6Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText6Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText6Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText6Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText6Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText7Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText7Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText7Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText7Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText7Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText8Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText8Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText8Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText8Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText8Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText9Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText9Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText9Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText9Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText9Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText10Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText10Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText10Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText10Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText10Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText11Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText11Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText11Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText11Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText11Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText12Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText12Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText12Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText12Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText12Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Offset_SpeedValue: " + string.Format("{0:X}", pntrStruct.Offset_SpeedValue) + " (dec=" + pntrStruct.Offset_SpeedValue + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_Target: " + string.Format("{0:X}", pntrStruct.Info_Target) + " (" + string.Format("{0:X}", pntrStruct.Info_Target - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_TargetLock: " + string.Format("{0:X}", pntrStruct.Info_TargetLock) + " (" + string.Format("{0:X}", pntrStruct.Info_TargetLock - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
@@ -1411,18 +1364,16 @@ namespace Iocaine2.Memory
         #region Opcode Healing
         private static void checkSpeedOpcodes(Pointers iPntrs)
         {
-            if (!checkNoOpBytes(iPntrs.Info_SpeedText1Opcode) || !checkNoOpBytes(iPntrs.Info_SpeedText2Opcode) || !checkNoOpBytes(iPntrs.Info_SpeedText3Opcode))
+            if (!checkNoOpBytes(iPntrs.Info_SpeedText1Opcode))
             {
                 //At least one of our opcode's is stuck at no-op in the text segment (when we scanned).
                 //This may happen if Iocaine crashes while the speed hack is enabled.
                 //The next time we start Iocaine, the scanner will see the no-ops that we left behind.
                 //Hopefully we've saved good codes in the settings folder.
                 byte[][] fromFile = getSpeedOpcodesFromFile();
-                if (fromFile.Length == 3)
+                if (fromFile.Length > 0)
                 {
                     iPntrs.Info_SpeedText1Opcode = fromFile[0];
-                    iPntrs.Info_SpeedText2Opcode = fromFile[1];
-                    iPntrs.Info_SpeedText3Opcode = fromFile[2];
                     iPntrs.Offset_SpeedValue = (ushort)((iPntrs.Info_SpeedText1Opcode[3] << 8) | iPntrs.Info_SpeedText1Opcode[2]);
                     writeSpeedOpcodeOnInitDone = true;
                 }
@@ -1458,11 +1409,7 @@ namespace Iocaine2.Memory
             {
                 strFromFile.Add(rdr.ReadLine());
             }
-            if (strFromFile.Count != 3)
-            {
-                return fromFile;
-            }
-            for (int ii = 0; ii < 3; ii++)
+            for (int ii = 0; ii < strFromFile.Count; ii++)
             {
                 fromFile[ii] = stringToOpcode(strFromFile[ii]);
             }
@@ -1477,8 +1424,6 @@ namespace Iocaine2.Memory
             string fullFileName = settingsDir + speedOpcodeFile;
             StreamWriter ostr = new StreamWriter(fullFileName);
             ostr.WriteLine(opcodeToString(iPntrs.Info_SpeedText1Opcode));
-            ostr.WriteLine(opcodeToString(iPntrs.Info_SpeedText2Opcode));
-            ostr.WriteLine(opcodeToString(iPntrs.Info_SpeedText3Opcode));
             ostr.Flush();
             ostr.Close();
         }
@@ -1868,66 +1813,17 @@ namespace Iocaine2.Memory
                     ProcessModule mod = processPointerList[processIndex].MainModule;
 
                     // No-op the text-segment where the speed value is saved to the NPC structure.
-                    // This is done in 3 places.
-                    // The first appears to be when we interact with NPCs (and possibly other places).
-                    // The second is unknown.
-                    // The third is when we change gear.
+                    // Write back the original code when disabling (or zoning).
                     uint nb = 0;
                     byte[] nop_buf = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
 
                     if (iEnable)
                     {
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText2Addr, nop_buf, 0, 6, ref nb);
-                        
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText3Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText4Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText5Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText6Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText7Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText8Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText9Addr, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText11Addr, nop_buf, 0, 6, ref nb);
-                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText12Addr, nop_buf, 0, 6, ref nb);  // << This handles the background refresh and gear change.
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x43CA8, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x47445, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x89463, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0xA7AD4, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0xA9952, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0xBAC6A, nop_buf, 0, 6, ref nb); // #1
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0xBBB2C, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x100E0A, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x14A6CC, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x172FC3, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x1756E5, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x176400, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x182707, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x18285D, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x182BB7, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x182CA3, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x18389E, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x25902F, nop_buf, 0, 6, ref nb);
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x2BB3F6, nop_buf, 0, 6, ref nb);
-
-                        // FSTP - D999
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x98FAD, nop_buf, 0, 6, ref nb);
-                        MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x9AB24, nop_buf, 0, 6, ref nb);
-
-                        // FSTP - D9..
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x833ED, nop_buf, 0, 6, ref nb); // FLD
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x8D46B, nop_buf, 0, 6, ref nb); // FLD
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x93B80, nop_buf, 0, 6, ref nb); // FSTP
-                        // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x9C3FA, nop_buf, 0, 6, ref nb); // FSTP <<<<<< This is the one, moved to 12.
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0xBAD97, nop_buf, 0, 6, ref nb); // FSTP
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x175601, nop_buf, 0, 6, ref nb); // FSTP
-                        //MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x1756F1, nop_buf, 0, 6, ref nb); // FSTP
+                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, nop_buf, 0, 6, ref nb);
                     }
                     else
                     {
-                        //MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, processPointerList[processIndex].Info_SpeedText1Opcode, 0, 6, ref nb);
-                        //MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText2Addr, processPointerList[processIndex].Info_SpeedText2Opcode, 0, 6, ref nb);
-                        //MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText3Addr, processPointerList[processIndex].Info_SpeedText3Opcode, 0, 6, ref nb);
-                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText12Addr, processPointerList[processIndex].Info_SpeedText12Opcode, 0, 6, ref nb);
+                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, processPointerList[processIndex].Info_SpeedText1Opcode, 0, 6, ref nb);
                     }
 
                     uint myStructPtr = (uint)MemoryFunctions.GetPointer(proc.Handle, processPointerList[processIndex].Info_MapNpcBegin, iMyIndex * 4);
