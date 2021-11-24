@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Iocaine2</RootNamespace>
     <AssemblyName>Main</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ManifestCertificateThumbprint>A83A6004D7DA9AD1F8D49C7091B2E6DBC2BC8629</ManifestCertificateThumbprint>
     <ManifestKeyFile>Iocaine2_TemporaryKey.pfx</ManifestKeyFile>
