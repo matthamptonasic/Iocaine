@@ -42,6 +42,7 @@ namespace Iocaine2
         private bool POS_Init_Iocaine()
         {
             ChangeMonitor._zoneChanged += POS_zoneChanged;
+            ChangeMonitor._inMogChanged += POS_inMogChanged;
             _ALR_AlertChanged += POS_AlertChanged;
             return true;
         }
@@ -313,6 +314,10 @@ namespace Iocaine2
                 while (MemReads.Self.get_is_zoning());
                 POS_SetSpeed();
             }
+        }
+        private void POS_inMogChanged()
+        {
+            POS_zoneChanged(0, 0);
         }
         private void POS_AlertChanged(bool iAlertSet)
         {

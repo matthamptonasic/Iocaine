@@ -1205,6 +1205,14 @@ namespace Iocaine2.Data.Client
             FfxiResource.mainDb.Fish.AddFishRow(row);
 
             row = FfxiResource.mainDb.Fish.NewFishRow();
+            row.FishName = "piece of rotten meat";
+            row.Large = false;
+            row.Type = 1;
+            row.DropType = 0;
+            row.ItemID = 16995;
+            FfxiResource.mainDb.Fish.AddFishRow(row);
+
+            row = FfxiResource.mainDb.Fish.NewFishRow();
             row.FishName = "pipira";
             row.Large = false;
             row.Type = 0;
@@ -1506,6 +1514,14 @@ namespace Iocaine2.Data.Client
             row.Type = 0;
             row.DropType = 0;
             row.ItemID = 4451;
+            FfxiResource.mainDb.Fish.AddFishRow(row);
+
+            row = FfxiResource.mainDb.Fish.NewFishRow();
+            row.FishName = "slab of ruszor meat";
+            row.Large = false;
+            row.Type = 1;
+            row.DropType = 0;
+            row.ItemID = 5755;
             FfxiResource.mainDb.Fish.AddFishRow(row);
 
             row = FfxiResource.mainDb.Fish.NewFishRow();
