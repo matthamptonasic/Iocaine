@@ -1,5 +1,10 @@
 Iocaine Change Notes:
 
+IocaineCore.dll     - 1.3.13.7 - 2021/11/23
+Main.exe            - 2.10.6.4
+    - Fixed memory reads broken in recent updates.
+    - Updated POS to reapply speed when zoning into/out of mog house.
+
 IocaineServer.dll	- 1.0.2.4 - 2020/12/22
 Main.exe		- 2.10.6.3
 Iocaine2.exe	- 1.4.1.3
