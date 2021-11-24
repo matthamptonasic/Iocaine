@@ -1862,24 +1862,9 @@ namespace Iocaine2.Memory
 
                     if (iEnable)
                     {
-                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText0Addr, nop_buf, 0, 6, ref nb); // 9C3FA
-                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, nop_buf, 0, 6, ref nb); // BAD97
-                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText2Addr, nop_buf, 0, 6, ref nb); // 98FAD
-
-                        // FSTP - D9..
-                        // 1 // 1 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x833ED, nop_buf, 0, 6, ref nb); // FLD
-                        // think this killed pos.angle // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x8D46B, nop_buf, 0, 6, ref nb); // FLD
-                        // 2 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x93B80, nop_buf, 0, 6, ref nb); // FSTP
-
-                        // FSTP - D999
-                        // 3 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x98FAD, nop_buf, 0, 6, ref nb);
-                        // 4 // 2 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x9AB24, nop_buf, 0, 6, ref nb);
-                        // 5 // 1 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x175601, nop_buf, 0, 6, ref nb); // FSTP
-                        // 6 // 1 // MemoryFunctions.WriteMem(proc.Handle, (uint)processPointerList[processIndex].MainModule.BaseAddress + 0x1756F1, nop_buf, 0, 6, ref nb); // FSTP
-
-                        // Exp1 - Removed 1, 5, & 6 - worked
-                        // Exp2 - Kept only 2 - failed when walking around.
-                        // Exp3 - Kept only 3 - worked.
+                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText0Addr, nop_buf, 0, 6, ref nb);
+                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText1Addr, nop_buf, 0, 6, ref nb);
+                        MemoryFunctions.WriteMem(proc.Handle, processPointerList[processIndex].Info_SpeedText2Addr, nop_buf, 0, 6, ref nb);
                     }
                     else
                     {
