@@ -574,7 +574,7 @@ namespace Iocaine2.Settings
             {"ShowPcs", "true"},
             {"ShowPcNames", "false"},
             {"ShowRangeCircle", "true"},
-            {"MapsPath", @".\Maps\Images\"},
+            {"MapsPath", @".\Maps\Images\Default\"},
             {"ALR_Enable", "false"},
             {"ALR_AlwaysAlert", "false"},
             {"ALR_PlayMessage", "false"},

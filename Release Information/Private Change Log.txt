@@ -1,5 +1,14 @@
 Iocaine Change Notes:
 
+IocaineCore         - 1.3.13.8 - 2021/12/29
+MapDll.dll          - 1.1.5.5
+	- Changed the default location for map downloads.
+	  If you get prompted for a new download and you already have a map pack,
+	  simply click 'No' and select the path to your current pack.
+
+IocaineServer.dll   - 1.0.3.1 - 2021/12/28
+    - Fixed obfuscation issue that was breaking map pack updates.
+
 IocaineServer.dll   - 1.0.2.4 - 2021/11/26
     - Fixed server connection issues related to the fisher.
 
