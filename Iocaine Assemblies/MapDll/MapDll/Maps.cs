@@ -77,7 +77,7 @@ namespace Iocaine2.Data.Client
         private static string mapsPath = "";
         private static string defaultMapsDirFromRoot = "Map_Packs/Default";
         private const string localMapsDir = @".\Maps\";
-        private const string localMapImagesDir = @".\Maps\Images\";
+        private const string localMapImagesDir = @".\Maps\Images\Default\";
         private static bool useHexZoneId = false;
         private static bool useHexMapId = false;
         private static bool useApneaPack = false;
@@ -563,7 +563,7 @@ namespace Iocaine2.Data.Client
                 message += "to be downloaded here yet. Click Yes to download it now.\n\n";
                 message += "Or, if you have it saved somewhere else already, click No to\n";
                 message += "select the existing directory. (Select the folder with all\n";
-                message += "of the map files in it (ie \\Maps\\Images\\).\n\n";
+                message += "of the map files in it (ie \\Maps\\Images\\Default\\).\n\n";
                 message += "Cancel will take no action.";
                 result = MessageBox.Show(message, "+=+=+  Map Pack Download  +=+=+", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
