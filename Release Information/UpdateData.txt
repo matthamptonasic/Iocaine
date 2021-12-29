@@ -12,4 +12,4 @@ WindowerHelper.dll
 ZedGraph.dll,5.1.5.28844
 Setup Instructions.rtf
 Change Log.txt
-Iocaine2.exe,1.4.1.3
+Iocaine2.exe,1.4.2.0
