@@ -77,7 +77,7 @@ namespace Iocaine2.Data.Client
         private static string mapsPath = "";
         private static string defaultMapsDirFromRoot = "Map_Packs/Default";
         private const string localMapsDir = @".\Maps\";
-        private const string localMapImagesDir = @".\Maps\Images\Default\";
+        private const string localMapImagesDir = @".\Maps\Images\";
         private static bool useHexZoneId = false;
         private static bool useHexMapId = false;
         private static bool useApneaPack = false;
@@ -570,7 +570,7 @@ namespace Iocaine2.Data.Client
                 {
                     mapsPath = Path.GetDirectoryName(Application.ExecutablePath);
                     mapsPath = Path.GetFullPath(mapsPath + localMapImagesDir);
-                    setMapsPath(mapsPath);
+                    setMapsPath(Path.Combine(mapsPath, "Default")); // This is hard coded for now, it's also hard coded in WebTools_FTP.cs.
                     MessageBox.Show("This may take a minute, there's over 150MB of maps.\nPlease be patient.", "^.^b");
                     downloadMaps();
                 }
