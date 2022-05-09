@@ -196,7 +196,8 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            private const uint Offset_Inv_Max = 47757;
+            private const uint Offset_Inv_Max = 65577;
+            //Pre 05.08.22  47757; (5th-8th wardrobes added)
             //Pre 04.04.16  37065; (2nd wardrobe added)
             //Pre 05.13.15  33501; (2nd safe added)
             //Pre 05.14.14  29937;
@@ -213,7 +214,8 @@ namespace Iocaine2.Memory
                     return 0;
                 }
             }
-            public const uint Offset_EquippedTable = 48188;
+            public const uint Offset_EquippedTable = 66028;
+            //Pre 05.08.22  48188; (5th-8th wardrobes added)
             //Pre 04.04.16  37488; (2nd wardrobe added)
             //Pre 05.13.15  33920; (2nd safe added)
             //Pre 05.14.14  30356;
@@ -335,7 +337,17 @@ namespace Iocaine2.Memory
             public static Signature CraftWindow = new Signature("56-8B-F1-8B-0D", "85-C9-74-..-E8-..-..-..-..-84-C0-74");
             public static Signature Fishing = new Signature("8B-0F-2B-C8-89-0F-A1", "8B-48-1C");
             public static Signature Inventory = new Signature("56-8B-F1-8B-0D", "E8-..-..-..-..-50-E8-..-..-..-..-83-C4-04-83-F8-03");
-            public static Signature InventorySecWnd = new Signature("83-C4-04-8B-4C-24-10-51-8B-0D", "");
+            /*  === InventorySecWnd ===
+                101D540B   A1 887B6210      MOV EAX,DWORD PTR DS:[10627B88]
+                101D5410   6A 00            PUSH 0
+                101D5412   57               PUSH EDI
+                101D5413   C640 70 00       MOV BYTE PTR DS:[EAX+70],0
+                101D5417   C640 71 00       MOV BYTE PTR DS:[EAX+71],0
+                101D541B   8B0D 887B6210    MOV ECX,DWORD PTR DS:[10627B88]
+
+                Pre 05.08.22 - ("83-C4-04-8B-4C-24-10-51-8B-0D", "")
+            */
+            public static Signature InventorySecWnd = new Signature("A1-..-..-..-..-6A-00-57-C6-40-70-00-C6-40-71-00-8B-0D", "");
             public static Signature InventoryNpcWnd = new Signature("75-7C-A1-..-..-..-..-8B-0D", "50-E8-..-..-..-..-C6-05");
             public static Signature MapNpcBegin = new Signature("83-EC-0C-56-8B-F1-8B-46-04-8B-04-85", "85-C0-74-68");
             public static Signature MapPcBegin = new Signature("A1", "85-C0-BF-FF-03-00-00-74-0E-4F-74-0B-8B-04-BD");
@@ -345,11 +357,11 @@ namespace Iocaine2.Memory
             public static Signature Player1 = new Signature("89-4C-24-..-89-54-24-..-8D-B8", "");
             public static Signature Player2 = new Signature("D9-05", "D8-66-0C");
             public static Signature Player3 = new Signature("85-C9-89-0D", "74-45");
-            public static Signature Player5 = new Signature("8B-0D", "43-81-E1-FF-00-00-00-3B-D9-0F-8C", 8);
+            public static Signature Player5 = new Signature("8B-0D", "47-81-E1-FF-00-00-00-3B-F9", 8);
             public static Signature RecastAbility = new Signature("55-57-89-41-..-52-B9", "E8");
             public static Signature ServerList = new Signature("66-C7-81-30-01-00-00-FF-FF-8B-15", "89-82-28-01-00-00-8B-0D", -6384);
             public static Signature ShopBuyWindow = new Signature("8A-0D", "B0-01-84-C8-75-08-0A-C8-88-0D");
-            public static Signature SpeedText0 = new Signature("DB-44-24-..-D8-0D-..-..-..-..", "8B-47-..-C1-E8", 0, 6, 0);
+            public static Signature SpeedText0 = new Signature("DB-44-24-..-33-..-33-..-D8-0D-..-..-..-..", "8B-4[7F]-..-C1-E[89]", 0, 6, 0);
             public static Signature SpeedText1 = new Signature("D8-0D-..-..-..-..", "66-01-9E-..-..-00-00-5F-5E-5B-83-C4-..-C3", 0, 6, 0);
             public static Signature SpeedText2 = new Signature("D8-0D-..-..-..-..-8B-0C-85-..-..-..-..-33-C0", "8A-56-..-66-8B-46", 0, 6, 0);
             public static Signature Target = new Signature("C7-40-68-80-80-80-80-8B-0D", "E8");
@@ -402,6 +414,15 @@ namespace Iocaine2.Memory
              *  1009C400   8B47 2C          MOV EAX,DWORD PTR DS:[EDI+2C]
              *  1009C403   C1E8 11          SHR EAX,11
              *  
+             *  1009C65D   DB4424 20        FILD DWORD PTR SS:[ESP+20]
+             *  1009C661   33D2             XOR EDX,EDX
+             *  1009C663   33C0             XOR EAX,EAX
+             *  1009C665   D80D 00323210    FMUL DWORD PTR DS:[10323200]
+             *  1009C66B   D99E 5C010000    FSTP DWORD PTR DS:[ESI+15C]
+             *  1009C671   8B4F 2C          MOV ECX,DWORD PTR DS:[EDI+2C]
+             *  1009C674   C1E9 11          SHR ECX,11
+             *  1009C677   81E1 FF000000    AND ECX,0FF
+             *  --------------------------------------------------------------------------------
              *  Signature 1 as of 11/23/21:
              *  100BAD91   D80D C0903210    FMUL DWORD PTR DS:[103290C0]
              *  100BAD97   D99A 58010000    FSTP DWORD PTR DS:[EDX+158]  <-- data captured is this 6 bytes.
@@ -412,6 +433,16 @@ namespace Iocaine2.Memory
              *  100BADA7   83C4 08          ADD ESP,8
              *  100BADAA   C3               RETN
              *  
+             *  Currently (5/8/22) we're still using the above signature (offset = 158) and it's still working.
+             *  I'm not sure if it's correct or not. Maybe the data structure being referenced here did not change,
+             *  but that doesn't make sense. It should always be referring to our data structure (NPC struct).
+             *  102B81FE   DD45 14          FLD QWORD PTR SS:[EBP+14]
+             *  102B8201   D998 5C010000    FSTP DWORD PTR DS:[EAX+15C]
+             *  102B8207   DD45 0C          FLD QWORD PTR SS:[EBP+C]
+             *  102B820A   D998 60010000    FSTP DWORD PTR DS:[EAX+160]
+             *  102B8210   5D               POP EBP
+             *  102B8211   C3               RETN
+             *  --------------------------------------------------------------------------------
              *  Signature 2 as of 11/23/21:
              *  10098F9E   D80D 00323210    FMUL DWORD PTR DS:[10323200]
              *  10098FA4   8B0C85 B0444710  MOV ECX,DWORD PTR DS:[EAX*4+104744B0]
@@ -421,6 +452,17 @@ namespace Iocaine2.Memory
              *  10098FB6   66:8B46 08       MOV AX,WORD PTR DS:[ESI+8]
              *  10098FBA   895424 40        MOV DWORD PTR SS:[ESP+40],EDX
              *  10098FBE   DB4424 40        FILD DWORD PTR SS:[ESP+40]
+             *  
+             *  (no change as of 5/8/22):
+             *  1009924E   D80D 00323210    FMUL DWORD PTR DS:[10323200]
+             *  10099254   8B0C85 607D4710  MOV ECX,DWORD PTR DS:[EAX*4+10477D60]
+             *  1009925B   33C0             XOR EAX,EAX
+             *  1009925D   D999 5C010000    FSTP DWORD PTR DS:[ECX+15C]  <-- Only the offset is different.
+             *  10099263   8A56 1D          MOV DL,BYTE PTR DS:[ESI+1D]
+             *  10099266   66:8B46 08       MOV AX,WORD PTR DS:[ESI+8]
+             *  1009926A   895424 40        MOV DWORD PTR SS:[ESP+40],EDX
+             *  1009926E   DB4424 40        FILD DWORD PTR SS:[ESP+40]
+             *  
             */
             #endregion SpeedText
             #endregion === Notes on various signatures ===
@@ -449,6 +491,7 @@ namespace Iocaine2.Memory
         public static int processIndex = -1;
         private static List<Pointers> processPointerList = new List<Pointers>();
         private static string speedOpcodeFile = "_SpeedOpcodes.txt";
+        public static bool PosEnabled = false;
         private static string settingsDir = "Settings\\";
         private static bool writeSpeedOpcodeOnInitDone = false;
         #endregion Variables
@@ -524,7 +567,8 @@ namespace Iocaine2.Memory
         //Pre 03.26.13:     204 - Change:    +4;
         //Pre 12.11.12:     196 - Change:    +8;
         //Pre 12.08.08:     208 - Change:   -12
-        private const int off_pc_map_status = 360;
+        private const int off_pc_map_status = 364;
+        //Pre 05.08.22      360;
         //Pre 12.09.15:     368;
         //Pre 06.24.15:     364;
         //Pre 05.13.15:     360;
@@ -584,7 +628,8 @@ namespace Iocaine2.Memory
         //Pre 03.17.14  156
         //Pre 02.17.14  148
         //Pre 12.11.13  144
-        private const uint off_map_grid = 332;
+        private const uint off_map_grid = 340;
+        //Pre 05.08.22  332;
         #endregion general
         #region Skills, Merits, and Status Effects
         #region Combat Skills
@@ -788,7 +833,8 @@ namespace Iocaine2.Memory
         //Pre 02.17.14:     184 - Change:    -8
         //Pre 03.26.13:     180 - Change:    +4
         //Pre 12.12.12:     172 - Change:    +8
-        private const int off_target_sta = 360;
+        private const int off_target_sta = 364;
+        //Pre 05.08.22:     360;
         //Pre 12.09.15:     368;
         //Pre 06.24.15:     308;
         #endregion Target
@@ -901,15 +947,19 @@ namespace Iocaine2.Memory
             pntrStruct.Info_Windows = scanner.ScanPattern(Signatures.Windows).UInt32;
 
             MemScanner.ScanResult speed0Rslt = scanner.ScanPattern(Signatures.SpeedText0);
-            pntrStruct.Info_SpeedText0Addr = speed0Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText0Opcode = speed0Rslt.ResultPattern;
-            MemScanner.ScanResult speed1Rslt = scanner.ScanPattern(Signatures.SpeedText1);
-            pntrStruct.Info_SpeedText1Addr = speed1Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText1Opcode = speed1Rslt.ResultPattern;
-            MemScanner.ScanResult speed2Rslt = scanner.ScanPattern(Signatures.SpeedText2);
-            pntrStruct.Info_SpeedText2Addr = speed2Rslt.ResultAddress;
-            pntrStruct.Info_SpeedText2Opcode = speed2Rslt.ResultPattern;
-            pntrStruct.Offset_SpeedValue = (ushort)((pntrStruct.Info_SpeedText0Opcode[3] << 8) | pntrStruct.Info_SpeedText0Opcode[2]);
+            if (speed0Rslt.Success == true)
+            {
+                pntrStruct.Info_SpeedText0Addr = speed0Rslt.ResultAddress;
+                pntrStruct.Info_SpeedText0Opcode = speed0Rslt.ResultPattern;
+                MemScanner.ScanResult speed1Rslt = scanner.ScanPattern(Signatures.SpeedText1);
+                pntrStruct.Info_SpeedText1Addr = speed1Rslt.ResultAddress;
+                pntrStruct.Info_SpeedText1Opcode = speed1Rslt.ResultPattern;
+                MemScanner.ScanResult speed2Rslt = scanner.ScanPattern(Signatures.SpeedText2);
+                pntrStruct.Info_SpeedText2Addr = speed2Rslt.ResultAddress;
+                pntrStruct.Info_SpeedText2Opcode = speed2Rslt.ResultPattern;
+                pntrStruct.Offset_SpeedValue = (ushort)((pntrStruct.Info_SpeedText0Opcode[3] << 8) | pntrStruct.Info_SpeedText0Opcode[2]);
+                PosEnabled = true;
+            }
 
             pntrStruct.MainProcess = iMainProcess;
             pntrStruct.MainModule = iMainModule;
@@ -917,7 +967,8 @@ namespace Iocaine2.Memory
             #region Other calculated pointers
             if (pntrStruct.Info_RecastAbility != 0)
             {
-                pntrStruct.Info_RecastSpell = pntrStruct.Info_RecastAbility + 816;
+                pntrStruct.Info_RecastSpell = pntrStruct.Info_RecastAbility + 800;
+                //Pre 05.08.22: 816;
                 //Pre 04.04.16: 664;
                 //Pre 06.24.15: 656;
                 //Pre 03.25.15: 632;
@@ -978,13 +1029,16 @@ namespace Iocaine2.Memory
             LoggingFunctions.Debug("Final Info_RecastSpell: " + string.Format("{0:X}", pntrStruct.Info_RecastSpell) + " (" + string.Format("{0:X}", pntrStruct.Info_RecastSpell - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_ServerList: " + string.Format("{0:X}", pntrStruct.Info_ServerList) + " (" + string.Format("{0:X}", pntrStruct.Info_ServerList - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_ShopBuyWindow: " + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow) + " (" + string.Format("{0:X}", pntrStruct.Info_ShopBuyWindow - (uint)iMainModule.BaseAddress) + ")" + " (Calculated)", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText0Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText0Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText0Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText0Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText0Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText1Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText1Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText1Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Info_SpeedText2Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText2Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
-            LoggingFunctions.Debug("Final Offset_SpeedValue: " + string.Format("{0:X}", pntrStruct.Offset_SpeedValue) + " (dec=" + pntrStruct.Offset_SpeedValue + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            if (PosEnabled == true)
+            {
+                LoggingFunctions.Debug("Final Info_SpeedText0Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText0Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText0Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Info_SpeedText0Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText0Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Info_SpeedText1Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText1Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Info_SpeedText1Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText1Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Info_SpeedText2Addr: " + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr) + " (" + string.Format("{0:X}", pntrStruct.Info_SpeedText2Addr - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Info_SpeedText2Opcode: " + string.Format("{0:X}", BitConverter.ToString(pntrStruct.Info_SpeedText2Opcode)), LoggingFunctions.DBG_SCOPE.MEMREADS);
+                LoggingFunctions.Debug("Final Offset_SpeedValue: " + string.Format("{0:X}", pntrStruct.Offset_SpeedValue) + " (dec=" + pntrStruct.Offset_SpeedValue + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
+            }
             LoggingFunctions.Debug("Final Info_Target: " + string.Format("{0:X}", pntrStruct.Info_Target) + " (" + string.Format("{0:X}", pntrStruct.Info_Target - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_TargetLock: " + string.Format("{0:X}", pntrStruct.Info_TargetLock) + " (" + string.Format("{0:X}", pntrStruct.Info_TargetLock - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             LoggingFunctions.Debug("Final Info_Time: " + string.Format("{0:X}", pntrStruct.Info_Time) + " (" + string.Format("{0:X}", pntrStruct.Info_Time - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
@@ -994,7 +1048,10 @@ namespace Iocaine2.Memory
             LoggingFunctions.Debug("Final Info_Windows2: " + string.Format("{0:X}", pntrStruct.Info_Windows2) + " (" + string.Format("{0:X}", pntrStruct.Info_Windows2 - (uint)iMainModule.BaseAddress) + ")", LoggingFunctions.DBG_SCOPE.MEMREADS);
             #endregion Debug Messages
             #region Wrap Up
-            checkSpeedOpcodes(pntrStruct);
+            if (PosEnabled == true)
+            {
+                checkSpeedOpcodes(pntrStruct);
+            }
             if (Check_For_Null_Pointers(pntrStruct))
             {
                 pointersSet = false;
@@ -7377,14 +7434,14 @@ namespace Iocaine2.Memory
                 public byte Flag;                                                                // 299  12B
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)] private byte[] Padding13;   // 300
                 public byte Charmed;                                                             // 303  12F
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 40)] private byte[] Padding14;  // 304
-                public float Speed;                                                              // 344  158
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)] private byte[] Padding15;  // 348
-                public eStatus Status;                                                           // 360  168
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 27)] private byte[] Padding16;  // 361
-                public uint LastClaimedID;                                                       // 388  184
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 280)] private byte[] Padding17; // 392
-                public short PetID;                                                              // 672  2A0
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 44)] private byte[] Padding14;  // 304
+                public float Speed;                                                              // 348  15C
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)] private byte[] Padding15;  // 352
+                public eStatus Status;                                                           // 364  16C
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 27)] private byte[] Padding16;  // 365
+                public uint LastClaimedID;                                                       // 392  188
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 280)] private byte[] Padding17; // 393
+                public short PetID;                                                              // 676  2A4
             }
             public const ushort InvalidNpcId = 0x00;
             #endregion Structures

@@ -49,9 +49,13 @@ namespace Iocaine2
         private bool POS_Init_LoggedIn()
         {
             POS_LoadSettings();
-            if (Statics.Settings.POS.EnableOnStartup)
+            if (Statics.Settings.POS.EnableOnStartup && MemReads.PosEnabled)
             {
                 POS_SetEnableSpeedChkB(true);
+            }
+            else if(MemReads.PosEnabled == false)
+            {
+                POS_SetEnableSpeedChkB(false);
             }
             return true;
         }
@@ -97,6 +101,10 @@ namespace Iocaine2
                 float endX = POS_curX;
                 float endY = POS_curY;
                 float endZ = POS_curZ;
+                if(MemReads.PosEnabled == false)
+                {
+                    return;
+                }
                 float dirDistance = 0;
                 if ((iDir == POS_DIRECTION.NE) || (iDir == POS_DIRECTION.SE) || (iDir == POS_DIRECTION.SW) || (iDir == POS_DIRECTION.NW))
                 {
@@ -170,6 +178,11 @@ namespace Iocaine2
             {
                 return;
             }
+            if (MemReads.PosEnabled == false)
+            {
+                POS_speedCurrentlyEnabled = false;
+                return;
+            }
             MemReads.Self.Speed.set_speed(true, Statics.Settings.POS.Speed);
             POS_speedCurrentlyEnabled = true;
         }
@@ -177,6 +190,11 @@ namespace Iocaine2
         {
             if (!ChangeMonitor.LoggedIn)
             {
+                return;
+            }
+            if (MemReads.PosEnabled == false)
+            {
+                POS_speedCurrentlyEnabled = false;
                 return;
             }
             MemReads.Self.Speed.set_speed(false, Statics.Settings.POS.SpeedDisable);
@@ -248,7 +266,7 @@ namespace Iocaine2
                 Statics.Settings.POS.Speed = (float)POS_SpeedUpDown.Value;
                 UserSettings.SetValue(UserSettings.BOT.POS, "POS_Speed", Statics.Settings.POS.Speed.ToString());
                 UserSettings.SaveSettings();
-                if (Statics.Settings.POS.Enable)
+                if (Statics.Settings.POS.Enable && MemReads.PosEnabled)
                 {
                     POS_SetSpeed();
                 }
@@ -268,12 +286,16 @@ namespace Iocaine2
         private void POS_EnableSpeedChkB_CheckedChanged(object sender, EventArgs e)
         {
             Statics.Settings.POS.Enable = POS_EnableSpeedChkB.Checked;
-            if (Statics.Settings.POS.Enable)
+            if (Statics.Settings.POS.Enable && MemReads.PosEnabled)
             {
                 POS_SetSpeed();
             }
             else
             {
+                if(!MemReads.PosEnabled)
+                {
+                    POS_EnableSpeedChkB.Enabled = false;
+                }
                 POS_ClearSpeed();
             }
         }
