@@ -1,5 +1,10 @@
 Iocaine Change Notes:
 
+IocaineCore.dll     - 1.3.13.9 - 2022/05/09
+Main.exe            - 2.10.6.5
+	- Updated memory reads after multiple updates since February.
+	- Made the POS bot disable gracefully if the apporpriate memory locations are not found.
+	
 MapDll.dll          - 1.1.5.6 - 2021/12/29
 	- Resolved the default map save location correctly.
 

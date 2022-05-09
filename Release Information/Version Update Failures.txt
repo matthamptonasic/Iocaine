@@ -1,5 +1,21 @@
 minnow = 17407
 
+5/8/22 (broken since February): text start: 5C30000 end: 5EF4000
+Map grid (Player3): DONE
+Player status (Player5): 06215FC8 (5E5FC8)
+  sig1: A0-..-..-..-..-BF-01-00-00-00-3C-01-0F-86
+  sig2: 8B-0D-..-..-..-..-47-81-E1-FF-00-00-00-3B-F9 <-- similar to previous one
+  sig3: 8B-CD-C6-05-..-..-..-..-E8
+Target status (target): DONE
+2nd window info all busted: DONE
+Bag is busted (gil is okay): DONE
+  Bag also caused a hang in the GUI update.
+Equip table busted: DONE
+PC info status: DONE
+NPC info status: DONE
+Recast offsets are off: DONE
+
+
 11/20/21:
 Player_2:
 Weather ID: DONE
